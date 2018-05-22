@@ -1,15 +1,10 @@
 <?php
 
 return [
-    'Sales' => [
+    'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'submenu' => [
-            'general' => [
-                'title' => 'General',
-                'route' => 'welcome'
-            ],
-        ]
+        'route' => 'shoppings.index'
     ],
 
     'logout' => [

@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('color-box', require('./components/lte/ColorBox.vue'));
+Vue.component('data-table', require('./components/lte/DataTable.vue'));
 
 const app = new Vue({
     el: '#app'

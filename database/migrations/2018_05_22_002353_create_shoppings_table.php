@@ -15,6 +15,16 @@ class CreateShoppingsTable extends Migration
     {
         Schema::create('shoppings', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('folio')->nullable();
+            $table->date('date')->nullable();
+            $table->double('amount')->nullable();
+            $table->integer('reference')->nullable();
+            $table->string('type')->nullable();
+            $table->integer('store_id')->nullable();
+            $table->string('status')->nullable();
+            $table->integer('user_id')->nullable();
+
             $table->timestamps();
         });
     }

@@ -168,5 +168,9 @@ return [
         'time' => 'hora',
         'subject' => 'asunto',
         'message' => 'mensaje',
+        'amount' => 'monto',
+        'reference' => 'referencia',
+        'type' => 'tipo',
+
     ],
 ];

@@ -1,4 +1,4 @@
-<?php 
+<?php
 use Jenssegers\Date\Date;
 
 function usesas($ctrl, $fun, $as = null)
@@ -13,6 +13,11 @@ function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:
 {
     $date = Date::createFromFormat($original_format, $original_date);
     return $date->format($format);
+}
+
+function fnumber($original_number)
+{
+    return '$ ' . number_format($original_number, 2);
 }
 
 function drawHeader(...$titles)

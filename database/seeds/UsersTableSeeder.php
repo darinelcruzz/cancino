@@ -9,10 +9,8 @@ class UsersTableSeeder extends Seeder
     {
         factory(\App\User::class)->create([
             'name' => 'Lab 3',
-            'username' => 'lab3',
-            'password' => Hash::make('helefante'),
-            'level' => 1,
-            'store' => 1,
+            'username' => 'admin',
+            'password' => Hash::make('helefante')
         ]);
     }
 }
