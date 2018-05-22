@@ -2,8 +2,8 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\store::class, function (Faker $faker) {
+$factory->define(App\Store::class, function (Faker $faker) {
     return [
-        //
+        'name' => 'Todas',
     ];
 });

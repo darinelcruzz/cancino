@@ -9,7 +9,7 @@ class ShoppingController extends Controller
 {
     function index()
     {
-        $shoppings = Shopping::all();
+        $shoppings = Shopping::where('store_id', auth()->user()->store_id)->get();
         return view('shoppings.index', compact('shoppings'));
     }
 

@@ -10,10 +10,15 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'level', 'store_id'
+        'name', 'username', 'email', 'password', 'level', 'store_id'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

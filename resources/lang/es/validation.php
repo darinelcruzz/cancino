@@ -171,6 +171,8 @@ return [
         'amount' => 'monto',
         'reference' => 'referencia',
         'type' => 'tipo',
+        'level' => 'nivel',
+        'store' => 'tienda',
 
     ],
 ];
