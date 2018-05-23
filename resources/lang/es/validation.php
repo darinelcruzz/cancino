@@ -173,6 +173,7 @@ return [
         'type' => 'tipo',
         'level' => 'nivel',
         'store' => 'tienda',
+        'cash' => 'efectivo',
 
     ],
 ];

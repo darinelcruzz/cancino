@@ -10,7 +10,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Compras" color="primary">
+            <color-box title="Usuarios" color="primary">
                 <data-table example="1">
                     {{ drawHeader('ID', 'Nombre','Usuario', 'Nivel', 'Tienda') }}
 

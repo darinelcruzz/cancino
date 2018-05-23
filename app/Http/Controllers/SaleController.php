@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Sales;
+use App\Sale;
 use Illuminate\Http\Request;
 
-class SalesController extends Controller
+class SaleController extends Controller
 {
     function index()
     {
@@ -20,7 +20,15 @@ class SalesController extends Controller
 
     function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'date_sale' => 'required',
+            'cash' => 'required',
+            'total' => 'required',
+        ]);
+
+        Sale::create($request->all());
+
+        return redirect(route('sales.index'));
     }
 
     function show(Sales $sales)
@@ -38,8 +46,9 @@ class SalesController extends Controller
         //
     }
 
-    function destroy(Sales $sales)
+    function deposit(Request $request)
     {
-        //
+        Sale::find($request->id)->update($request->all());
+        return back();
     }
 }

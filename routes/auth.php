@@ -15,10 +15,11 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.'], function () {
 });
 
 Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
-    $ctrl = 'ShoppingController';
+    $ctrl = 'SaleController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::post('deposit', usesas($ctrl, 'deposit'));
 	Route::get('editar/{sale}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('cancelar/{sale}', usesas($ctrl, 'destroy'));

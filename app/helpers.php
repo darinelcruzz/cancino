@@ -15,6 +15,19 @@ function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:
     return $date->format($format);
 }
 
+function fdif($start_date, $end_date)
+{
+    $start = new Date(strtotime($start_date));
+    $end = new Date(strtotime($end_date));
+    $interval = $start->diff($end);
+    $interval = $interval->format('%a');
+    if ($interval < 4) {
+        return 'success';
+    }else{
+        return 'danger';
+    }
+}
+
 function fnumber($original_number)
 {
     return '$ ' . number_format($original_number, 2);
