@@ -22,4 +22,19 @@
     $("#example1").DataTable({
       "order":[[ 0 , "desc"]]
     });
+    $("#example2").DataTable({
+      "order":[[ 0 , "desc"]]
+    });
+    $("#example3").DataTable({
+      "order":[[ 0 , "desc"]]
+    });
+    $("#example4").DataTable({
+      "order":[[ 0 , "desc"]]
+    });
+    $("#example5").DataTable({
+      "order":[[ 0 , "desc"]]
+    });
+    $("#example6").DataTable({
+      "order":[[ 0 , "desc"]]
+    });
 </script>

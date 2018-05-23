@@ -4,7 +4,7 @@
 @endpush
 
 @push('headerTitle')
-    <a href="{{ route('shoppings.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
+    <a href="{{ route('sales.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
 @endpush
 
 @section('content')
@@ -15,14 +15,13 @@
                     {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Referencia') }}
 
                     <template slot="body">
-                        @foreach($shoppings as $shopping)
+                        @foreach($sales as $sale)
                             <tr>
-                                <td>{{ $shopping->id }}</td>
-                                <td>{{ $shopping->folio }}</td>
-                                <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
-                                <td>{{ fnumber($shopping->amount) }}</td>
-                                <td>{{ $shopping->type }}</td>
-                                <td>{{ $shopping->reference }}</td>
+                                <td>{{ $sale->id }}</td>
+                                <td>{{ fdate($sale->date, 'd M Y', 'Y-m-d') }}</td>
+                                <td>{{ fnumber($sale->cash) }}</td>
+                                <td>{{ fnumber($sale->amount) }}</td>
+                                <td>{{ $sale->stauts }}</td>
                             </tr>
                         @endforeach
                     </template>
@@ -30,5 +29,4 @@
             </solid-box>
         </div>
     </div>
-
 @endsection

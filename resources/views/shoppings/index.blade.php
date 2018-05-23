@@ -30,5 +30,4 @@
             </solid-box>
         </div>
     </div>
-
 @endsection

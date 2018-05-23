@@ -6,6 +6,17 @@ return [
         'icon' => 'fa fa-archive',
         'route' => 'shoppings.index'
     ],
+    'ShoppingsAdmin' => [
+        'title' => 'Compras Admin',
+        'icon' => 'fa fa-archive',
+        'route' => 'admin.shoppings'
+    ],
+
+    'Sales' => [
+        'title' => 'Ventas',
+        'icon' => 'fa fa-money',
+        'route' => 'sales.index'
+    ],
 
     'Users' => [
         'title' => 'Usuarios',

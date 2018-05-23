@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Shopping;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    function create()
+    function shoppings()
     {
-        //
+        $shoppings = Shopping::all();
+        return view('admin.shoppings', compact('shoppings'));
     }
 
-    function store(Request $request)
+    function verify(Shopping $shopping)
     {
-        //
+        $shopping->update(['status' => 'verificado']);
+        return back();
     }
 
     function show($id)

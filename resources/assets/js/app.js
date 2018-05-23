@@ -18,6 +18,8 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('color-box', require('./components/lte/ColorBox.vue'));
 Vue.component('data-table', require('./components/lte/DataTable.vue'));
+Vue.component('dropdown', require('./components/lte/DropdownButton.vue'));
+Vue.component('ddi', require('./components/lte/DropdownItem.vue'));
 
 const app = new Vue({
     el: '#app'
