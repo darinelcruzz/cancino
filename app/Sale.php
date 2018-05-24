@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Date\Date;
+use Illuminate\Notifications\Notifiable;
 
 class Sale extends Model
 {
+    use Notifiable;
+
     protected $fillable = ['date_sale', 'cash', 'total', 'store_id',
     'status', 'user_id', 'date_deposit'];
 

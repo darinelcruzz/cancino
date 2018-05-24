@@ -7,7 +7,11 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MENÚ</li>
 
-      @each('lte.items', trans('menus/one'), 'item')
+      @if (auth()->user()->level == 1)
+          @each('lte.items', trans('menus/one'), 'item')
+      @elseif (auth()->user()->level == 4)
+          @each('lte.items', trans('menus/five'), 'item')
+      @endif
 
     </ul>
     <!-- /.sidebar-menu -->

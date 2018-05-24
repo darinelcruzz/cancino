@@ -15,7 +15,7 @@
                             {!! Field::date('date_sale',['label' =>  'Fecha de venta','tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('cash', ['tpl' => 'lte/withicon'], ['icon' => 'money']) !!}
+                            {!! Field::number('cash', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
                         </div>
                     </div>
 

@@ -26,7 +26,9 @@ class SaleController extends Controller
             'total' => 'required',
         ]);
 
-        Sale::create($request->all());
+        $sale = Sale::create($request->all());
+
+        $sale->notify(new \App\Notifications\SaleDay());
 
         return redirect(route('sales.index'));
     }

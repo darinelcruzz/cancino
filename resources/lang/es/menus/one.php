@@ -18,6 +18,18 @@ return [
         'route' => 'sales.index'
     ],
 
+    'SalesAdmin' => [
+        'title' => 'Ventas Admin',
+        'icon' => 'fa fa-money',
+        'route' => 'admin.sales'
+    ],
+
+    'Expenses' => [
+        'title' => 'Gastos',
+        'icon' => 'fa fa-money',
+        'route' => 'sales.index'
+    ],
+
     'Users' => [
         'title' => 'Usuarios',
         'icon' => 'fa fa-user',

@@ -14,6 +14,16 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.'], function () {
     Route::get('cancelar/{shopping}', usesas($ctrl, 'destroy'));
 });
 
+Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
+    $ctrl = 'ExpenseController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('cancelar/{expense}', usesas($ctrl, 'destroy'));
+});
+
 Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
     $ctrl = 'SaleController';
     Route::get('/', usesas($ctrl, 'index'));
