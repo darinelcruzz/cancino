@@ -39,4 +39,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));
     Route::get('compras/{shopping}', usesas($ctrl, 'verify'));
+    Route::get('ventas', usesas($ctrl, 'sales'));
 });

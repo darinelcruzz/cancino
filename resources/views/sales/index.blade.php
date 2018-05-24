@@ -18,21 +18,20 @@
                         @foreach($sales as $sale)
                             <tr>
                                 <td>{{ $sale->id }}</td>
-                                <td>{{ fdate($sale->date_sale, 'd M Y', 'Y-m-d') }}</td>
+                                <td>{{ fdate($sale->date_sale, 'D, d M Y', 'Y-m-d') }}</td>
                                 <td>{{ fnumber($sale->cash) }}</td>
                                 <td>{{ fnumber($sale->total) }}</td>
                                 <td>
                                     @if ($sale->status == 'pendiente')
                                         @include('sales/date')
                                     @else
-                                        {{ fdate($sale->date_deposit, 'd M Y', 'Y-m-d') }}
+                                        {{ fdate($sale->date_deposit, 'D, d M Y', 'Y-m-d') }}
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="label label-{{ fdif($sale->date_sale, $sale->date_deposit) }}">
+                                    <span style="color:{{ $sale->dif_day }}">
                                         <i class="fa fa-circle"></i>
                                     </span>
-
                                 </td>
                             </tr>
                         @endforeach
