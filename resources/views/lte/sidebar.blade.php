@@ -10,6 +10,9 @@
       @if (auth()->user()->level == 1)
           @each('lte.items', trans('menus/one'), 'item')
       @elseif (auth()->user()->level == 4)
+          @each('lte.items', trans('menus/four'), 'item')
+      @endif
+      @elseif (auth()->user()->level == 5)
           @each('lte.items', trans('menus/five'), 'item')
       @endif
 

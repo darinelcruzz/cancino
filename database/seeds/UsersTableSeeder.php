@@ -19,19 +19,19 @@ class UsersTableSeeder extends Seeder
             'level' => 1,
             'store_id' => 1
         ]);
-        // factory(\App\User::class)->create([
-        //     'name' => 'Adveel López',
-        //     'username' => 'adveel',
-        //     'password' => Hash::make('tapachula'),
-        //     'level' => 4,
-        //     'store_id' => 4
-        // ]);
-        // factory(\App\User::class)->create([
-        //     'name' => 'Jorge Gonzalez',
-        //     'username' => 'jorge',
-        //     'password' => Hash::make('altos'),
-        //     'level' => 4,
-        //     'store_id' => 4
-        // ]);
+        factory(\App\User::class)->create([
+            'name' => 'Adveel López',
+            'username' => 'adveel',
+            'password' => Hash::make('tapachula'),
+            'level' => 4,
+            'store_id' => 4
+        ]);
+        factory(\App\User::class)->create([
+            'name' => 'Jorge Gonzalez',
+            'username' => 'jorge',
+            'password' => Hash::make('altos'),
+            'level' => 4,
+            'store_id' => 4
+        ]);
     }
 }
