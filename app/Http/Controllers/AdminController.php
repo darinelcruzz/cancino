@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Shopping;
 use App\Sale;
-use App\CreditNote;
+use App\Note;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -27,10 +27,10 @@ class AdminController extends Controller
         return view('admin.sales', compact('dates'));
     }
 
-    function creditNotes()
+    function notes()
     {
-        $creditnotes = CreditNote::all();
-        return view('admin.notes', compact('creditnotes'));
+        $notes = Note::all();
+        return view('admin.notes', compact('notes'));
     }
 
     function edit($id)

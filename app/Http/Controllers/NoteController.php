@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\CreditNote;
+use App\Note;
 use Illuminate\Http\Request;
 
-class CreditNoteController extends Controller
+class NoteController extends Controller
 {
     function index()
     {
-        $notes = CreditNote::where('store_id', auth()->user()->store_id)->get();
+        $notes = Note::where('store_id', auth()->user()->store_id)->get();
         return view('notes.index', compact('notes'));
     }
 
@@ -28,7 +28,7 @@ class CreditNoteController extends Controller
             'items' => 'required',
         ]);
 
-        $nc = CreditNote::create($request->all());
+        $nc = Note::create($request->all());
 
         if ($nc->document > 1000) {
             $nc->update(['status'=>'aplicada']);
@@ -37,22 +37,22 @@ class CreditNoteController extends Controller
         return redirect(route('admin.notes'));
     }
 
-    function show(CreditNote $note)
+    function show(Note $note)
     {
         //
     }
 
-    function edit(CreditNote $creditNote)
+    function edit(Note $note)
     {
         //
     }
 
-    function update(Request $request, CreditNote $creditNote)
+    function update(Request $request, Note $note)
     {
         //
     }
 
-    function destroy(CreditNote $creditNote)
+    function destroy(Note $note)
     {
         //
     }
