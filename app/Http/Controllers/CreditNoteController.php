@@ -9,8 +9,8 @@ class CreditNoteController extends Controller
 {
     function index()
     {
-        $shoppings = Shopping::where('store_id', auth()->user()->store_id)->get();
-        return view('shoppings.index', compact('shoppings'));
+        $creditnotes = CreditNote::where('store_id', auth()->user()->store_id)->get();
+        return view('creditnotes.index', compact('creditnotes'));
     }
 
     function create()
