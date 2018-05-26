@@ -9,13 +9,13 @@ class CreditNoteController extends Controller
 {
     function index()
     {
-        $creditnotes = CreditNote::where('store_id', auth()->user()->store_id)->get();
-        return view('creditnotes.index', compact('creditnotes'));
+        $notes = CreditNote::where('store_id', auth()->user()->store_id)->get();
+        return view('notes.index', compact('notes'));
     }
 
     function create()
     {
-        return view('creditnotes.create');
+        return view('notes.create');
     }
 
     function store(Request $request)
@@ -34,10 +34,10 @@ class CreditNoteController extends Controller
             $nc->update(['status'=>'aplicada']);
         }
 
-        return redirect(route('admin.creditnotes'));
+        return redirect(route('admin.notes'));
     }
 
-    function show(CreditNote $creditNote)
+    function show(CreditNote $note)
     {
         //
     }

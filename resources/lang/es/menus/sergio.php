@@ -9,7 +9,7 @@ return [
     'NC' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',
-        'route' => 'admin.creditnotes'
+        'route' => 'admin.notes'
     ],
     'logout' => [
         'title' => 'Salir',

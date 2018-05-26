@@ -30,7 +30,7 @@ class AdminController extends Controller
     function creditNotes()
     {
         $creditnotes = CreditNote::all();
-        return view('admin.creditnotes', compact('creditnotes'));
+        return view('admin.notes', compact('creditnotes'));
     }
 
     function edit($id)

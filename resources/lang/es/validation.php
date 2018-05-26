@@ -180,6 +180,6 @@ return [
         'date_pos' => 'fecha en POS',
         'items' => 'articulos',
         'observations' => 'observaciones',
-        'document' => 'Docuemnto POS'
+        'document' => 'Documento POS'
     ],
 ];
