@@ -1,0 +1,34 @@
+folio<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateCreditNotesTable extends Migration
+{
+
+    function up()
+    {
+        Schema::create('credit_notes', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->integer('store_id');
+            $table->integer('folio');
+            $table->double('amount');
+            $table->date('date_nc');
+            $table->integer('items');
+            $table->string('observations')->nullable();
+            $table->integer('document')->nullable();
+            $table->date('date_pos')->nullable();
+            $table->string('status')->default('pendiente');
+            $table->integer('user_id');
+
+            $table->timestamps();
+        });
+    }
+
+     function down()
+    {
+        Schema::dropIfExists('credit_notes');
+    }
+}

@@ -1,6 +1,6 @@
 @extends('lte.root')
 @push('pageTitle')
-    Ventas | Lista
+    NC | Lista
 @endpush
 
 @push('headerTitle')
@@ -23,7 +23,7 @@
                                 <td>{{ fnumber($sale->total) }}</td>
                                 <td>
                                     @if ($sale->status == 'pendiente')
-                                        @include('templates/date')
+                                        @include('sales/date')
                                     @else
                                         {{ fdate($sale->date_deposit, 'D, d M Y', 'Y-m-d') }}
                                     @endif

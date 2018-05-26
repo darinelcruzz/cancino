@@ -13,7 +13,7 @@
                     {!! Field::text('username', ['tpl' => 'lte/oneline'], ['icon' => 'user']) !!}
                     {!! Field::text('email', ['tpl' => 'lte/oneline'], ['icon' => 'at']) !!}
                     {!! Field::select('level',
-                        ['1' => 'Admin', '2' => 'Alta', '3' => 'Supervisores', '4' => 'Gerentes', '5' => 'Apoyos'], null,
+                        ['1' => 'Admin', '2' => 'Alta', '3' => 'Supervisor', '4' => 'Gerente', '5' => 'Apoyo'], null,
                         ['empty' => 'Seleccione un nivel', 'tpl' => 'lte/oneline'], ['icon' => 'sitemap'])
                     !!}
                     {!! Field::select('store_id',

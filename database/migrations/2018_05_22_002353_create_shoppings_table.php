@@ -14,7 +14,7 @@ class CreateShoppingsTable extends Migration
             $table->integer('folio')->nullable();
             $table->date('date')->nullable();
             $table->double('amount')->nullable();
-            $table->integer('reference')->nullable();
+            $table->integer('document')->nullable();
             $table->string('type')->nullable();
             $table->integer('store_id')->nullable();
             $table->string('status')->nullable();

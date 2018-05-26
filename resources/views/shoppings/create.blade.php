@@ -30,7 +30,7 @@
                             !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('reference', ['tpl' => 'lte/withicon'   ], ['icon' => 'desktop']) !!}
+                            {!! Field::number('document',['tpl' => 'lte/withicon'   ], ['icon' => 'desktop']) !!}
                         </div>
                     </div>
                     <hr>

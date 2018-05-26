@@ -8,7 +8,7 @@ $factory->define(App\Shopping::class, function (Faker $faker) {
         'date' => date('Y-m-d'),
         'amount' => $faker->numberBetween(100,10000),
         'type' => 'mercancia',
-        'reference' => $faker->numberBetween(100,1000),
+        'document' => $faker->numberBetween(100,1000),
         'store_id' => $faker->numberBetween(2,5),
         'status' => 'pendiente',
         'user_id' => 1

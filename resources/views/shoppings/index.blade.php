@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <color-box title="Compras" color="primary">
                 <data-table example="1">
-                    {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Referencia') }}
+                    {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS') }}
 
                     <template slot="body">
                         @foreach($shoppings as $shopping)
@@ -22,7 +22,7 @@
                                 <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                 <td>{{ fnumber($shopping->amount) }}</td>
                                 <td>{{ $shopping->type }}</td>
-                                <td>{{ $shopping->reference }}</td>
+                                <td>{{ $shopping->document }}</td>
                             </tr>
                         @endforeach
                     </template>

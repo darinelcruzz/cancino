@@ -15,9 +15,9 @@ class CreateSalesTable extends Migration
             $table->double('cash');
             $table->double('total');
             $table->integer('store_id');
-            $table->string('status');
             $table->integer('user_id');
             $table->date('date_deposit')->nullable();
+            $table->string('status')->default('pendiente');
 
             $table->timestamps();
         });

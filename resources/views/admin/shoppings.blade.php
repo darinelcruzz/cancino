@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" button collapsed>
                     <data-table example="{{ $i }}">
-                        {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Referencia', 'Estado') }}
+                        {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado') }}
 
                         <template slot="body">
                             @foreach($shoppings->where('store_id', $i) as $shopping)
@@ -19,7 +19,7 @@
                                     <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fnumber($shopping->amount) }}</td>
                                     <td>{{ $shopping->type }}</td>
-                                    <td>{{ $shopping->reference }}</td>
+                                    <td>{{ $shopping->document }}</td>
                                     <td>
                                         <span class="label label-{{ $shopping->status != 'pendiente' ? 'success': 'danger'}}">
                                             {{ ucfirst($shopping->status) }}

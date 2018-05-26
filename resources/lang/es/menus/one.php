@@ -24,6 +24,12 @@ return [
         'route' => 'admin.sales'
     ],
 
+    'NC' => [
+        'title' => 'NC',
+        'icon' => 'fa fa-file-excel-o',
+        'route' => 'admin.creditnotes'
+    ],
+
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-money',
