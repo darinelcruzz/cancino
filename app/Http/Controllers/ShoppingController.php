@@ -24,7 +24,7 @@ class ShoppingController extends Controller
             'folio' => 'required',
             'date' => 'required',
             'amount' => 'required',
-            'reference' => 'required',
+            'document' => 'required',
             'type' => 'required',
         ]);
 
