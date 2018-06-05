@@ -24,8 +24,14 @@ return [
         'route' => 'admin.sales'
     ],
 
-    'NC' => [
+    'Notes' => [
         'title' => 'NC',
+        'icon' => 'fa fa-file-excel-o',
+        'route' => 'notes.index'
+    ],
+
+    'NotesAdmin' => [
+        'title' => 'NC Admin',
         'icon' => 'fa fa-file-excel-o',
         'route' => 'admin.notes'
     ],
@@ -33,7 +39,7 @@ return [
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-money',
-        'route' => 'sales.index'
+        'route' => 'expenses.index'
     ],
 
     'Users' => [

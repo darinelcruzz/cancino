@@ -28,10 +28,12 @@ class NoteController extends Controller
             'items' => 'required',
         ]);
 
-        $nc = Note::create($request->all());
-
-        if ($nc->document > 1000) {
-            $nc->update(['status'=>'aplicada']);
+        $note = Note::create($request->all());
+        if ($note->observations != null) {
+            $note->update(['status'=>'faltante']);
+        }
+        elseif ($note->document > 1000) {
+            $note->update(['status'=>'aplicada']);
         }
 
         return redirect(route('admin.notes'));
@@ -44,12 +46,26 @@ class NoteController extends Controller
 
     function edit(Note $note)
     {
-        //
+        return view('notes.edit', compact('note'));
     }
 
-    function update(Request $request, Note $note)
+    function update(Request $request)
     {
-        //
+        $note = Note::find($request->id);
+        if(isset($_POST['complete']))
+        {
+            Note::find($note->id)->update([
+                'status' => 'aplicada'
+            ]);
+            return redirect(route('admin.notes'));
+        }
+        else if(isset($_POST['pending']))
+        {
+            Note::find($note->id)->update([
+                'status' => 'faltante'
+            ]);
+            return redirect(route('admin.notes'));
+        }
     }
 
     function destroy(Note $note)

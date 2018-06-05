@@ -13,8 +13,7 @@
             <div class="col-md-12">
                 <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" button collapsed>
                     <data-table example="{{ $i }}">
-                        {{ drawHeader('ID', 'Folio','Fecha NC', 'Monto', 'Doc POS', 'Fecha POS', 'Estado') }}
-
+                        {{ drawHeader('ID', 'Folio','Fecha NC', 'Monto', 'Doc POS', 'Fecha POS', 'Observaciones', 'Estado', '') }}
                         <template slot="body">
                             @foreach($notes->where('store_id', $i) as $note)
                                 <tr>
@@ -24,10 +23,22 @@
                                     <td>{{ fnumber($note->amount) }}</td>
                                     <td>{{ $note->document }}</td>
                                     <td>{{ $note->date_pos == NULL ? '' : fdate($note->date_pos, 'd M Y', 'Y-m-d') }}</td>
-
-                                    <td><span class="label label-{{ $note->status != 'pendiente' ? 'success': 'danger'}}">
-                                        {{ ucfirst($note->status) }}
-                                    </span></td>
+                                    <td>{{ $note->observations }}</td>
+                                    <td>
+                                        <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'danger' : 'warning') }}">
+                                            {{ ucfirst($note->status) }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @if (auth()->user()->level == 1)
+                                            <dropdown icon="cogs" color="primary">
+                                                @if ($note->status != 'aplicada')
+                                                    <ddi to="{{ route('notes.edit', ['id'=>$note->id]) }}" icon="check" text="Aplicar"></ddi>
+                                                @endif
+                                                <ddi to="{{ route('notes.edit', ['id'=>$note->id]) }}" icon="edit" text="Editar"></ddi>
+                                            </dropdown>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </template>

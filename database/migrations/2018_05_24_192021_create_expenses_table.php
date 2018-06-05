@@ -13,7 +13,7 @@ class CreateExpensesTable extends Migration
 
             $table->integer('check');
             $table->date('date');
-            $table->integer('amount');
+            $table->double('amount');
             $table->string('concept');
             $table->string('description')->nullable();
             $table->integer('store_id');

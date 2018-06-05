@@ -3,34 +3,25 @@
     NC | Lista
 @endpush
 
-@push('headerTitle')
-    <a href="{{ route('sales.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
-@endpush
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <color-box title="Ventas" color="success">
                 <data-table example="1">
-                    {{ drawHeader('ID','Fecha', 'Efectivo', 'Total', 'Deposito', 'Tiempo') }}
-
+                    {{ drawHeader('ID', 'Folio','Fecha NC', 'Monto', 'Doc POS', 'Fecha POS', 'Observaciones', 'Estado') }}
                     <template slot="body">
-                        @foreach($sales as $sale)
+                        @foreach($notes as $note)
                             <tr>
-                                <td>{{ $sale->id }}</td>
-                                <td>{{ fdate($sale->date_sale, 'D, d M Y', 'Y-m-d') }}</td>
-                                <td>{{ fnumber($sale->cash) }}</td>
-                                <td>{{ fnumber($sale->total) }}</td>
+                                <td>{{ $note->id }}</td>
+                                <td>{{ $note->folio }}</td>
+                                <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
+                                <td>{{ fnumber($note->amount) }}</td>
+                                <td>{{ $note->document }}</td>
+                                <td>{{ $note->date_pos == NULL ? '' : fdate($note->date_pos, 'd M Y', 'Y-m-d') }}</td>
+                                <td>{{ $note->observations }}</td>
                                 <td>
-                                    @if ($sale->status == 'pendiente')
-                                        @include('sales/date')
-                                    @else
-                                        {{ fdate($sale->date_deposit, 'D, d M Y', 'Y-m-d') }}
-                                    @endif
-                                </td>
-                                <td>
-                                    <span style="color:{{ $sale->dif_day }}">
-                                        <i class="fa fa-circle"></i>
+                                    <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'danger' : 'warning') }}">
+                                        {{ ucfirst($note->status) }}
                                     </span>
                                 </td>
                             </tr>

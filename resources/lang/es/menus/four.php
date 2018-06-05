@@ -13,11 +13,17 @@ return [
         'route' => 'sales.index'
     ],
 
-    // 'Expenses' => [
-    //     'title' => 'Gastos',
-    //     'icon' => 'fa fa-money',
-    //     'route' => 'expenses.index'
-    // ],
+    'NC' => [
+        'title' => 'NC',
+        'icon' => 'fa fa-file-excel-o',
+        'route' => 'notes.index'
+    ],
+
+    'Expenses' => [
+        'title' => 'Gastos',
+        'icon' => 'fa fa-money',
+        'route' => 'expenses.index'
+    ],
 
     'logout' => [
         'title' => 'Salir',
