@@ -45,6 +45,16 @@ Route::group(['prefix' => 'nc', 'as' => 'notes.'], function () {
     Route::get('cancelar/{note}', usesas($ctrl, 'destroy'));
 });
 
+Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {
+    $ctrl = 'StoreController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{store}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('cancelar/{store}', usesas($ctrl, 'destroy'));
+});
+
 Route::group(['prefix' => 'usuarios', 'as' => 'users.'], function () {
     $ctrl = 'UserController';
     Route::get('/', usesas($ctrl, 'index'));
@@ -55,10 +65,11 @@ Route::group(['prefix' => 'usuarios', 'as' => 'users.'], function () {
     Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));
     Route::get('compras/{shopping}', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
-    Route::get('nc', usesas($ctrl, 'notes'));
+    Route::get('notas', usesas($ctrl, 'notes'));
+    Route::get('saldos', usesas($ctrl, 'balances'));
 });

@@ -8,11 +8,12 @@
         <div class="col-md-12">
             <color-box title="Ventas" color="primary">
                 <data-table example="1">
-                    {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Plaza', 'Total') }}
+                    {{ drawHeader('id', 'Fecha','Chiapas', 'Soconusco', 'Altos', 'Plaza', 'Total') }}
                     <template slot="body">
                         @foreach ($dates as $date => $stores)
                             <tr>
-                                <td>{{ fdate($date, 'd M Y', 'Y-m-d') }}</td>
+                                <td width="1%">{{ fdate($date, 'U', 'Y-m-d') }}</td>
+                                <td>{{ fdate($date, 'D, d/M/Y', 'Y-m-d') }}</td>
                                 <td>{{ fnumber($stores->where('store_id', 2)->sum('total')) }}</td>
                                 <td>{{ fnumber($stores->where('store_id', 3)->sum('total')) }}</td>
                                 <td>{{ fnumber($stores->where('store_id', 4)->sum('total')) }}</td>

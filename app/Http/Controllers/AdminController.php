@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Shopping;
 use App\Sale;
 use App\Note;
+use App\Store;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -33,18 +34,9 @@ class AdminController extends Controller
         return view('admin.notes', compact('notes'));
     }
 
-    function edit($id)
+    function balances()
     {
-        //
-    }
-
-    function update(Request $request, $id)
-    {
-        //
-    }
-
-    function destroy($id)
-    {
-        //
+        $stores = Store::all();
+        return view('admin.balances', compact('stores'));
     }
 }

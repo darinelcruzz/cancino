@@ -1,15 +1,20 @@
 <?php
 
 return [
+
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'route' => 'shoppings.index'
-    ],
-    'ShoppingsAdmin' => [
-        'title' => 'Compras Admin',
-        'icon' => 'fa fa-archive',
-        'route' => 'admin.shoppings'
+        'submenu' => [
+            'manager' => [
+                'title' => 'Tienda',
+                'route' => 'shoppings.index'
+            ],
+            'admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.shoppings'
+            ],
+        ],
     ],
 
     'Sales' => [
@@ -41,16 +46,15 @@ return [
         'icon' => 'fa fa-money',
         'route' => 'expenses.index'
     ],
+    'ExpensesAdmin' => [
+        'title' => 'Saldos',
+        'icon' => 'fa fa-money',
+        'route' => 'admin.balances'
+    ],
 
     'Users' => [
         'title' => 'Usuarios',
         'icon' => 'fa fa-user',
         'route' => 'users.index'
-    ],
-
-    'logout' => [
-        'title' => 'Salir',
-        'icon' => 'fa fa-sign-out',
-        'route' => 'logout'
     ],
 ];

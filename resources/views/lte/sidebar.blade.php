@@ -13,7 +13,7 @@
           @each('lte.items', trans('menus/four'), 'item')
       @elseif (auth()->user()->level == 5)
           @each('lte.items', trans('menus/five'), 'item')
-      @elseif (auth()->user()->user == 'cheko')
+      @elseif (auth()->user()->username == 'cheko')
           @each('lte.items', trans('menus/sergio'), 'item')
       @endif
 

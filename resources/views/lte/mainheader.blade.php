@@ -17,47 +17,20 @@
     <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
       <ul class="nav navbar-nav">
-
-        <!-- User Account Menu -->
         @if(true)
             <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#">
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">
-                  @auth
-                    {{ auth()->user()->name }}
-                  @endauth
-                </span>
-              </a>
-            </li>
-        @else
-            <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">
-                  @auth
-                    {{ auth()->user()->name }}
-                  @endauth
-                </span>
-              </a>
-
-              <ul class="dropdown-menu">
-                  <li class="user-footer">
-                      <div class="row">
-                        <div class="col-md-4">
-                            <a href="coffee" class="btn btn-danger btn-xs">Coffee</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="user-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{ route('logout') }}" class="btn btn-block"><i class="fa fa-unlock-alt"></i> Cerrar sesión</a>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <a href="mbe" class="btn btn-success btn-xs">MBE</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="paal" class="btn btn-primary btn-xs">PAAL</a>
-                        </div>
-                      </div>
-                  </li>
-              </ul>
+                    </li>
+                </ul>
             </li>
         @endif
 
