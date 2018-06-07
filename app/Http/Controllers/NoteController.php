@@ -62,7 +62,8 @@ class NoteController extends Controller
         else if(isset($_POST['pending']))
         {
             Note::find($note->id)->update([
-                'status' => 'faltante'
+                'status' => 'faltante',
+                'observations' => $note->observations
             ]);
             return redirect(route('admin.notes'));
         }

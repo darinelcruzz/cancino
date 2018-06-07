@@ -6,7 +6,7 @@
 @section('content')
     @for ($i=2; $i < 6; $i++)
         <div class="col-md-12">
-            <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" button collapsed>
+            <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" label="2" span button collapsed>
                 <data-table example="{{ $i }}">
                     {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado') }}
                     <template slot="body">
