@@ -55,7 +55,9 @@ class NoteController extends Controller
         if(isset($_POST['complete']))
         {
             Note::find($note->id)->update([
-                'status' => 'aplicada'
+                'status' => 'aplicada',
+                'document' => $request->document,
+                'date_pos' => $request->date_pos
             ]);
             return redirect(route('admin.notes'));
         }

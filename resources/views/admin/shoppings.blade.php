@@ -6,7 +6,7 @@
 @section('content')
     @for ($i=2; $i < 6; $i++)
         <div class="col-md-12">
-            <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" label="2" span button collapsed>
+            <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" label="{{ $shoppings->where('store_id', $i)->where('status', 'pendiente')->count() }}" button collapsed>
                 <data-table example="{{ $i }}">
                     {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado') }}
                     <template slot="body">
@@ -35,7 +35,7 @@
     @endfor
     <div class="col-md-12">
         <color-box title="Verificadas" color="success" button collapsed>
-            <data-table example="5">
+            <data-table example="6">
                 {{ drawHeader('ID', 'Tienda', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado') }}
                 <template slot="body">
                     @foreach($shoppings->where('status', 'verificado') as $shopping)

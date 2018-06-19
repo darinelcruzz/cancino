@@ -3,7 +3,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{ title }}</h3>
             &nbsp;&nbsp;&nbsp;
-            <span v-if="showSpan" class="label label-danger">
+            <span v-if="showLabel" class="label label-danger">
                 {{ label }}
             </span>
             <div v-if="showButton" class="box-tools pull-right">
@@ -26,17 +26,17 @@ export default {
             isCollapsed: false,
             isSolid: false,
             showButton: false,
-            showSpan: false,
+            showLabel: false,
             colorBox: 'box-',
         };
     },
 
-    props: ['title', 'span', 'label', 'color', 'button', 'collapsed', 'solid'],
+    props: ['title', 'label', 'color', 'button', 'collapsed', 'solid'],
     created() {
         this.isCollapsed = this.collapsed == '';
         this.isSolid = this.solid == '';
         this.showButton = this.button == '';
-        this.showSpan = this.span == '' ;
+        this.showLabel = this.label > 0 && !this.label == '';
         this.colorBox += this.color;
     }
 }

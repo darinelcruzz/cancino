@@ -47462,18 +47462,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             isCollapsed: false,
             isSolid: false,
             showButton: false,
-            showSpan: false,
+            showLabel: false,
             colorBox: 'box-'
         };
     },
 
 
-    props: ['title', 'span', 'label', 'color', 'button', 'collapsed', 'solid'],
+    props: ['title', 'label', 'color', 'button', 'collapsed', 'solid'],
     created: function created() {
         this.isCollapsed = this.collapsed == '';
         this.isSolid = this.solid == '';
         this.showButton = this.button == '';
-        this.showSpan = this.span == '';
+        this.showLabel = this.label > 0 && !this.label == '';
         this.colorBox += this.color;
     }
 });
@@ -47499,7 +47499,7 @@ var render = function() {
       _c("div", { staticClass: "box-header with-border" }, [
         _c("h3", { staticClass: "box-title" }, [_vm._v(_vm._s(_vm.title))]),
         _vm._v("\n           \n        "),
-        _vm.showSpan
+        _vm.showLabel
           ? _c("span", { staticClass: "label label-danger" }, [
               _vm._v("\n            " + _vm._s(_vm.label) + "\n        ")
             ])
