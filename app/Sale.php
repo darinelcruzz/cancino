@@ -30,7 +30,7 @@ class Sale extends Model
             return 'green';
         }elseif($day == 'sáb' && $interval < 3 ){
             return 'green';
-        }elseif($interval < 2){
+        }elseif($interval < 3){
             return 'green';
         }else{
             return 'red';

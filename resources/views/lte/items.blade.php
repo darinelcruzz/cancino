@@ -1,7 +1,8 @@
 @if (empty($item['submenu']))
     <li @if (!empty($item['class'])) class="{{ $item['class'] }}" @endif>
         <a href="{{ route($item['route']) }}">
-            <i class="{{ $item['icon'] }}"></i> <span>{{ $item['title'] }}</span>
+            <i class="{{ $item['icon'] }}"></i>
+            <span>{{ $item['title'] }}</span>
         </a>
     </li>
 @else

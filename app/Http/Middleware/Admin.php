@@ -8,7 +8,7 @@ class Admin
 {
     function handle($request, Closure $next)
     {
-        if ($request->user()->level == 1) {
+        if ($request->user()->level < 3) {
             return $next($request);
         }
         return redirect('/');

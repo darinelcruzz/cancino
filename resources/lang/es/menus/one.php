@@ -8,11 +8,13 @@ return [
         'submenu' => [
             'manager' => [
                 'title' => 'Tienda',
-                'route' => 'shoppings.index'
+                'route' => 'shoppings.index',
+                'noti' => '.'
             ],
             'admin' => [
                 'title' => 'Admin',
-                'route' => 'admin.shoppings'
+                'route' => 'admin.shoppings',
+                'noti' => '.'
             ],
         ],
     ],
@@ -20,41 +22,48 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'route' => 'sales.index'
+        'route' => 'sales.index',
+        'noti' => '.'
     ],
 
     'SalesAdmin' => [
         'title' => 'Ventas Admin',
         'icon' => 'fa fa-money',
-        'route' => 'admin.sales'
+        'route' => 'admin.sales',
+        'noti' => '.'
     ],
 
     'Notes' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',
-        'route' => 'notes.index'
+        'route' => 'notes.index',
+        'noti' => '.'
     ],
 
     'NotesAdmin' => [
         'title' => 'NC Admin',
         'icon' => 'fa fa-file-excel-o',
-        'route' => 'admin.notes'
+        'route' => 'admin.notes',
+        'noti' => '.'
     ],
 
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-money',
-        'route' => 'expenses.index'
+        'route' => 'expenses.index',
+        'noti' => '.'
     ],
     'ExpensesAdmin' => [
         'title' => 'Saldos',
         'icon' => 'fa fa-money',
-        'route' => 'admin.balances'
+        'route' => 'admin.balances',
+        'noti' => '.'
     ],
 
     'Users' => [
         'title' => 'Usuarios',
         'icon' => 'fa fa-user',
-        'route' => 'users.index'
+        'route' => 'users.index',
+        'noti' => '.'
     ],
 ];
