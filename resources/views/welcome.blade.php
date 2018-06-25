@@ -3,7 +3,7 @@
     Cancino | Inicio
 @endpush
 @push('headerTitle')
-    Bienvenido(a), {{ auth()->user()->name }} holix
+    Bienvenido(a), {{ auth()->user()->name }}
 @endpush
 
 @section('content')
