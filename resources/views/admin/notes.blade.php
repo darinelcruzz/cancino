@@ -13,11 +13,11 @@
             <div class="col-md-12">
                 <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" button collapsed>
                     <data-table example="{{ $i }}">
-                        {{ drawHeader('ID', 'Folio','Fecha NC', 'Monto', 'Doc POS', 'Fecha POS', 'Observaciones', 'Estado', '') }}
+                        {{ drawHeader('Folio','Fecha NC', 'Monto', 'Doc POS', 'Fecha POS', 'Observaciones', 'Estado', '') }}
                         <template slot="body">
                             @foreach($notes->where('store_id', $i) as $note)
                                 <tr>
-                                    <td>{{ $note->id }}</td>
+
                                     <td>{{ $note->folio }}</td>
                                     <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fnumber($note->amount) }}</td>
