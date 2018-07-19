@@ -11,6 +11,9 @@ function usesas($ctrl, $fun, $as = null)
 
 function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s')
 {
+    if ($original_date == NULL) {
+        return 'N/A';
+    }
     $date = Date::createFromFormat($original_format, $original_date);
     return $date->format($format);
 }

@@ -55,6 +55,17 @@ Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {
     Route::get('cancelar/{store}', usesas($ctrl, 'destroy'));
 });
 
+Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
+    $ctrl = 'LoanController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('detalles/{loan}', usesas($ctrl, 'show'));
+	Route::get('editar/{loan}', usesas($ctrl, 'agree'));
+    Route::post('editar', usesas($ctrl, 'pay'));
+    Route::get('cancelar/{loan}', usesas($ctrl, 'destroy'));
+});
+
 Route::group(['prefix' => 'usuarios', 'as' => 'users.'], function () {
     $ctrl = 'UserController';
     Route::get('/', usesas($ctrl, 'index'));
