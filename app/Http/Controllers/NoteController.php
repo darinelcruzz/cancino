@@ -51,16 +51,27 @@ class NoteController extends Controller
 
     function update(Request $request)
     {
+        Note::find($request->id)->update($request->all());
+        return redirect(route('admin.notes'));
+    }
+
+    function capture(Note $note)
+    {
+        return view('notes.add', compact('note'));
+    }
+
+    function add(Request $request)
+    {
         $note = Note::find($request->id);
         if(isset($_POST['complete'])){
-            Note::find($note->id)->update([
+            $note->update([
                 'status' => 'aplicada',
                 'document' => $request->document,
                 'date_pos' => $request->date_pos
             ]);
             return redirect(route('admin.notes'));
         }else if(isset($_POST['pending'])){
-            Note::find($note->id)->update([
+            $note->update([
                 'status' => 'faltante',
                 'observations' => $note->observations
             ]);

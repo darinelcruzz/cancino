@@ -55,11 +55,8 @@
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="id" value="{{ $note->id }}">
                     <div class="row">
-                        <div class="col-md-6">
-                            {!! Form::submit('Completa', ['class' => 'btn btn-success btn-block', 'name' => 'complete']) !!}
-                        </div>
-                        <div class="col-md-6">
-                            {!! Form::submit('Faltante', ['class' => 'btn btn-warning btn-block', 'name' => 'pending']) !!}
+                        <div class="col-md-12">
+                            {!! Form::submit('Modificar', ['class' => 'btn btn-success btn-block']) !!}
                         </div>
                     </div>
 

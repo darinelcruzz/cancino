@@ -42,6 +42,8 @@ Route::group(['prefix' => 'nc', 'as' => 'notes.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{note}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+	Route::get('capturar/{note}', usesas($ctrl, 'capture'));
+    Route::post('capturar', usesas($ctrl, 'add'));
     Route::get('cancelar/{note}', usesas($ctrl, 'destroy'));
 });
 
