@@ -30,7 +30,7 @@
                                 <td>
                                     <h4><B>Fecha:</B></h4><h4>{{ fdate($loan->d1, 'd/M/y', 'Y-m-d') }}</h4><br>
                                     <h4><B>Cantidad:</B></h4>
-                                    @if ($loan->q1 == 0 && $loan->status != 'solicitado' && $loan->status != 'aceptado' && $loan->from != auth()->user()->store_id)
+                                    @if ($loan->q1 == 0 && $loan->status != 'facturado' && $loan->status != 'pagado' && $loan->from != auth()->user()->store_id)
                                         {!! Field::number('q1', ['tpl' => 'loans/input', 'min' => '0', 'max' => $loan->rest]) !!}
                                         <input type="hidden" name="d1" value="{{ Date::now()->format('Y-m-d') }}">
                                     @else
@@ -68,13 +68,14 @@
                 {!! Form::close() !!}
             </color-box>
         </div>
-        @if ($loan->from != auth()->user()->store_id && $loan->rest != 0)
+        @if ($loan->from != auth()->user()->store_id && $loan->rest != 0 && $loan->status != 'facturado' && $loan->status != 'pagado')
             <div class="col-md-4">
                 <color-box title="Facturar" color="primary" button collapsed solid>
                     {!! Form::open(['method' => 'POST', 'route' => 'loans.invoice', 'class' => 'form-horizontal']) !!}
                         {!! Field::number('invoice', ['tpl' => 'lte/oneline'], ['icon' => 'tag']) !!}
                         {!! Field::date('invoice_date', ['tpl' => 'lte/oneline'], ['icon' => 'tag']) !!}
                         <input type="hidden" name="status" value="facturado">
+                        <input type="hidden" name="id" value="{{ $loan->id }}">
                         {!! Form::submit('Agregar', ['class' => 'btn btn-primary pull-right']) !!}
                     {!! Form::close() !!}
                 </color-box>

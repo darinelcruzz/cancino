@@ -19,7 +19,13 @@
                             <tr>
                                 <td>{{ $row->id }}</td>
                                 <td>{{ $row->fromr->name }}</td>
-                                <td><a href="{{ route('loans.show', ['id' => $row->id]) }}"> {{ $row->item }} </a></td>
+                                <td>
+                                    @if ($row->status != 'solicitado' && $row->status != 'aceptado')
+                                        <a href="{{ route('loans.show', ['id' => $row->id]) }}"> {{ $row->item }} </a>
+                                    @else
+                                        {{ $row->item }}
+                                    @endif
+                                </td>
                                 <td>{{ $row->quantity }}</td>
                                 <td>{{ fdate($row->created_at, 'd/M/y') }}</td>
                                 <td>

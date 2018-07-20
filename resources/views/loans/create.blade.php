@@ -4,6 +4,10 @@
     Prestamos | Agregar
 @endpush
 
+@push('headerTitle')
+    <a href="{{ route('loans.index') }}" class="btn btn-success btn"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;atras</a>
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-md-6">

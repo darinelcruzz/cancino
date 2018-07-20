@@ -67,7 +67,13 @@ class LoanController extends Controller
 
     function invoice(Request $request)
     {
+        $this->validate($request, [
+            'invoice' => 'required',
+            'invoice_date' => 'required',
+        ]);
+        Loan::find($request->id)->update($request->all());
 
+        return back();
     }
 
     function destroy(Loan $loan)
