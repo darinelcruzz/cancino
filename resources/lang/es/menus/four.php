@@ -19,6 +19,13 @@ return [
         'route' => 'notes.index'
     ],
 
+    'Loans' => [
+        'title' => 'Prestamos',
+        'icon' => 'fa fa-random',
+        'route' => 'loans.index',
+        'noti' => '.'
+    ],
+
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-money',
