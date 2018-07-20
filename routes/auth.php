@@ -63,6 +63,7 @@ Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
 	Route::get('detalles/{loan}', usesas($ctrl, 'show'));
 	Route::get('editar/{loan}', usesas($ctrl, 'agree'));
     Route::post('editar', usesas($ctrl, 'pay'));
+    Route::post('facturar', usesas($ctrl, 'invoice'));
     Route::get('cancelar/{loan}', usesas($ctrl, 'destroy'));
 });
 

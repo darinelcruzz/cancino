@@ -4,7 +4,7 @@
 @endpush
 
 @push('headerTitle')
-    <a href="{{ route('loans.create') }}" class="btn btn-danger btn"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
+    <a href="{{ route('loans.create') }}" class="btn btn-danger btn"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a><br>
 @endpush
 
 @section('content')
@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <color-box title="Debo" color="danger" solid button>
                 <data-table example="1">
-                    {{ drawHeader('ID','Tienda', 'Modelo', 'Cantidad', 'Fecha', 'Pagadas', '') }}
+                    {{ drawHeader('ID','Tienda', 'Modelo', 'Cantidad', 'Fecha', 'Estado') }}
 
                     <template slot="body">
                         @foreach($lent as $row)
@@ -22,7 +22,6 @@
                                 <td><a href="{{ route('loans.show', ['id' => $row->id]) }}"> {{ $row->item }} </a></td>
                                 <td>{{ $row->quantity }}</td>
                                 <td>{{ fdate($row->created_at, 'd/M/y') }}</td>
-                                <td>{{ $row->q1 + $row->q2 + $row->q3 }}</td>
                                 <td>
                                     @if ($row->status == 'solicitado')
                                         <span class="label label-danger">
@@ -33,6 +32,22 @@
                                         <a href="{{ route('loans.agree', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                                     @elseif ($row->status == 'recibido')
                                         <span class="label label-info">
+                                            {{ ucfirst($row->status) }}
+                                        </span>
+                                    @elseif ($row->status == 'devuelto')
+                                        <span class="label label-primary">
+                                            {{ ucfirst($row->status) }}
+                                        </span>
+                                    @elseif ($row->status == 'parcialmente')
+                                        <span class="label label-warning">
+                                            {{ ucfirst($row->status) }}
+                                        </span>
+                                    @elseif ($row->status == 'pagado')
+                                        <span class="label label-success">
+                                            {{ ucfirst($row->status) }}
+                                        </span>
+                                    @elseif ($row->status == 'facturado')
+                                        <span class="label label-warning">
                                             {{ ucfirst($row->status) }}
                                         </span>
                                     @endif
@@ -48,7 +63,7 @@
         <div class="col-md-12">
             <color-box title="Me deben" color="success" solid button>
                 <data-table example="2">
-                    {{ drawHeader('ID','Tienda', 'Modelo', 'Cantidad', 'Fecha', 'Pagadas', '') }}
+                    {{ drawHeader('ID','Tienda', 'Modelo', 'Cantidad', 'Fecha', 'Estado') }}
 
                     <template slot="body">
                         @foreach($borrowed as $row)
@@ -58,7 +73,6 @@
                                 <td><a href="{{ route('loans.show', ['id' => $row->id]) }}"> {{ $row->item }} </a></td>
                                 <td>{{ $row->quantity }}</td>
                                 <td>{{ fdate($row->created_at, 'd/M/y') }}</td>
-                                <td>{{ $row->q1 + $row->q2 + $row->q3 }}</td>
                                 <td>
                                     @if ($row->status == 'solicitado')
                                         ¿Aceptas?&nbsp;
@@ -69,6 +83,21 @@
                                         </span>
                                     @elseif ($row->status == 'recibido')
                                         <span class="label label-info">
+                                            {{ ucfirst($row->status) }}
+                                        </span>
+                                    @elseif ($row->status == 'devuelto')
+                                        ¿Aceptas {{ $row->lastQ }}?&nbsp;
+                                        <a href="{{ route('loans.agree', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                    @elseif ($row->status == 'parcialmente')
+                                        <span class="label label-warning">
+                                            {{ ucfirst($row->status) }}
+                                        </span>
+                                    @elseif ($row->status == 'pagado')
+                                        <span class="label label-success">
+                                            {{ ucfirst($row->status) }}
+                                        </span>
+                                    @elseif ($row->status == 'facturado')
+                                        <span class="label label-warning">
                                             {{ ucfirst($row->status) }}
                                         </span>
                                     @endif

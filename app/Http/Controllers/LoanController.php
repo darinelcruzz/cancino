@@ -46,16 +46,28 @@ class LoanController extends Controller
             $loan->update(['status' => 'aceptado']);
         }elseif ($loan->status == 'aceptado') {
             $loan->update(['status' => 'recibido']);
+        }elseif ($loan->status == 'devuelto') {
+            if (!$loan->rest) {
+                $loan->update(['status' => 'pagado']);
+            }else {
+                $loan->update(['status' => 'parcialmente']);
+            }
         }
         return redirect(route('loans.index'));
     }
 
     function pay(Request $request)
     {
-
-        Loan::find($request->id)->update($request->all());
+        $loan = Loan::find($request->id);
+        $loan->update($request->all());
+        $loan->update(['status' => 'devuelto']);
 
         return back();
+    }
+
+    function invoice(Request $request)
+    {
+
     }
 
     function destroy(Loan $loan)

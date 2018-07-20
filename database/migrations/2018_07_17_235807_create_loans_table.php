@@ -22,6 +22,8 @@ class CreateLoansTable extends Migration
             $table->integer('q3')->default(0);
             $table->date('d3')->nullable();
             $table->string('status')->default('solicitado');
+            $table->integer('invoice')->nullable();
+            $table->date('invoice_date')->nullable();
             $table->string('user_id');
 
             $table->timestamps();

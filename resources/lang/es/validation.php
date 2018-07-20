@@ -183,6 +183,8 @@ return [
         'document' => 'Documento POS',
         'from' => 'de',
         'item' => 'modelo',
-        'quantity' => 'cantidad'
+        'quantity' => 'cantidad',
+        'invoice' => 'factura',
+        'invoice_date' => 'fecha factura'
     ],
 ];

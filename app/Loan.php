@@ -18,4 +18,20 @@ class Loan extends Model
     {
         return $this->belongsTo(Store::class, 'to');
     }
+
+    function getRestAttribute()
+    {
+        return $this->quantity - $this->q1 - $this->q2 - $this->q3;
+    }
+
+    function getLastQAttribute()
+    {
+        if ($this->q3) {
+            return $this->q3;
+        }elseif ($this->q2) {
+            return $this->q2;
+        }else {
+            return $this->q1;
+        }
+    }
 }
