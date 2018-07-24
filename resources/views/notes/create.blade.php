@@ -32,8 +32,8 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            {!! Field::number('items', ['tpl' => 'lte/withicon'], ['icon' => 'tags']) !!}
+                        <div class="col-md-12">
+                            {!! Field::text('items', ['tpl' => 'lte/withicon'], ['icon' => 'tags']) !!}
                         </div>
 
                     </div>
