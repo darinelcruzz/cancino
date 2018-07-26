@@ -16,7 +16,7 @@ class CreateNotesTable extends Migration
             $table->integer('folio');
             $table->double('amount');
             $table->date('date_nc');
-            $table->integer('items');
+            $table->string('items', 600);
             $table->string('observations')->nullable();
             $table->integer('document')->nullable();
             $table->date('date_pos')->nullable();
