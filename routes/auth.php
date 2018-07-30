@@ -57,6 +57,26 @@ Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {
     Route::get('cancelar/{store}', usesas($ctrl, 'destroy'));
 });
 
+Route::group(['prefix' => 'clientes', 'as' => 'clients.'], function () {
+    $ctrl = 'ClientController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{client}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('cancelar/{client}', usesas($ctrl, 'destroy'));
+});
+
+Route::group(['prefix' => 'bitacora', 'as' => 'binnacles.'], function () {
+    $ctrl = 'BinnacleController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{binnacle}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('cancelar/{binnacle}', usesas($ctrl, 'destroy'));
+});
+
 Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     $ctrl = 'LoanController';
     Route::get('/', usesas($ctrl, 'index'));

@@ -9,12 +9,25 @@ return [
             'manager' => [
                 'title' => 'Tienda',
                 'route' => 'shoppings.index',
-                'noti' => '.'
             ],
             'admin' => [
                 'title' => 'Admin',
                 'route' => 'admin.shoppings',
-                'noti' => '.'
+            ],
+        ],
+    ],
+
+    'B2B' => [
+        'title' => 'B2B',
+        'icon' => 'fa fa-line-chart',
+        'submenu' => [
+            'manager' => [
+                'title' => 'Bitacora',
+                'route' => 'shoppings.index',
+            ],
+            'admin' => [
+                'title' => 'Clientes',
+                'route' => 'admin.shoppings',
             ],
         ],
     ],

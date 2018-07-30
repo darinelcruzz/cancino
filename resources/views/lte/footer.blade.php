@@ -5,5 +5,5 @@
     Sistema de control
   </div>
   <!-- Default to the left -->
-  <strong>Copyright &copy; 2018 <a href="#">LAB3</a>.</strong>
+  <strong>Copyright &copy; 2018 <a href="http://www.labtr3s.com">LAB3</a>.</strong>
 </footer>

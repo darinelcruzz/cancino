@@ -14,6 +14,21 @@ return [
         'route' => 'admin.sales',
     ],
 
+    'B2B' => [
+        'title' => 'B2B',
+        'icon' => 'fa fa-line-chart',
+        'submenu' => [
+            'binnacle' => [
+                'title' => 'Bitacora',
+                'route' => 'binnacles.index',
+            ],
+            'client' => [
+                'title' => 'Clientes',
+                'route' => 'clients.index',
+            ],
+        ],
+    ],
+
     'Notes' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',

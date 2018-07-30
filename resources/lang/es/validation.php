@@ -185,6 +185,11 @@ return [
         'item' => 'modelo',
         'quantity' => 'cantidad',
         'invoice' => 'factura',
-        'invoice_date' => 'fecha factura'
+        'invoice_date' => 'fecha factura',
+        'business' => 'nombre comercial',
+        'social' => 'razón social',
+        'contact' => 'contacto',
+        'position' => 'puesto',
+        'cellphone' => 'celular',
     ],
 ];
