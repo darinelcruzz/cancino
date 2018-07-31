@@ -21,13 +21,13 @@ return [
         'title' => 'B2B',
         'icon' => 'fa fa-line-chart',
         'submenu' => [
-            'manager' => [
+            'Binnacle' => [
                 'title' => 'Bitacora',
-                'route' => 'shoppings.index',
+                'route' => 'binnacles.index',
             ],
-            'admin' => [
+            'Clients' => [
                 'title' => 'Clientes',
-                'route' => 'admin.shoppings',
+                'route' => 'clients.index',
             ],
         ],
     ],

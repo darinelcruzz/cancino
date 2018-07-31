@@ -2,9 +2,7 @@
     <section class="sidebar">
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENÚ</li>
-            @if (auth()->user()->level == 5 && auth()->user()->store_id == 1)
-                @each('lte.items', trans('menus/helper'), 'item')
-            @elseif (auth()->user()->username == 'admin')
+            @if (auth()->user()->username == 'admin')
                 @each('lte.items', trans('menus/admin'), 'item')
             @elseif (auth()->user()->level == 1)
                 @each('lte.items', trans('menus/one'), 'item')

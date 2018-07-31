@@ -8,16 +8,27 @@ return [
         'route' => 'admin.shoppings'
     ],
 
-    'SalesAdmin' => [
+    'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
         'route' => 'admin.sales'
     ],
 
-    'ExpensesAdmin' => [
+    'NC' => [
+        'title' => 'NC',
+        'icon' => 'fa fa-file-excel-o',
+        'route' => 'admin.notes'
+    ],
+
+    'Expenses' => [
         'title' => 'Saldos',
         'icon' => 'fa fa-money',
         'route' => 'admin.balances'
     ],
 
+    'logout' => [
+        'title' => 'Salir',
+        'icon' => 'fa fa-sign-out',
+        'route' => 'logout'
+    ],
 ];

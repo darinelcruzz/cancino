@@ -21,7 +21,22 @@ class ClientController extends Controller
 
     function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'business' => 'required',
+            'social' => 'required',
+            'rfc' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'contact' => 'required',
+            'position' => 'required',
+            'store_id' => 'required',
+        ]);
+
+        Client::create($request->all());
+
+        return redirect(route('clients.index'));
     }
 
     function show(Client $client)

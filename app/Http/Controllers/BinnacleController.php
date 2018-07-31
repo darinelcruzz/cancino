@@ -9,7 +9,9 @@ class BinnacleController extends Controller
 {
     function index()
     {
-        //
+        $binnacles = Binnacle::All();
+
+        return view('binnacles.index', compact('binnacles'));
     }
 
     function create()
