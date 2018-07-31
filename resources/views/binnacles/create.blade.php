@@ -1,62 +1,30 @@
 @extends('lte.root')
 
 @push('pageTitle')
-    Cliente | Agregar
+    Bitácora | Agregar
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <color-box title="Agregar cliente" color="success" solid>
-                {!! Form::open(['method' => 'POST', 'route' => 'clients.store']) !!}
+            <color-box title="Agregar actividad" color="success" solid>
+                {!! Form::open(['method' => 'POST', 'route' => 'binnacles.store']) !!}
 
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            {!! Field::text('business',['tpl' => 'lte/withicon'], ['icon' => 'shopping-cart']) !!}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            {!! Field::text('social',['tpl' => 'lte/withicon'], ['icon' => 'gavel']) !!}
+                        <div class="col-md-4">
+                            {!! Field::select('client_id', $clients, null, ['empty' => 'Seleccione el cliente']) !!}
                         </div>
                         <div class="col-md-4">
-                            {!! Field::text('rfc', ['tpl' => 'lte/withicon'], ['icon' => 'bank']) !!}
+                            {!! Field::date('date', date('Y-m-d'), ['empty' => 'Seleccione el cliente']) !!}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::number('phone',['tpl' => 'lte/withicon'], ['icon' => 'phone']) !!}
-                        </div>
-                        <div class="col-md-6">
-                            {!! Field::email('email', ['tpl' => 'lte/withicon'], ['icon' => 'at']) !!}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            {!! Field::text('address',['tpl' => 'lte/withicon'], ['icon' => 'map-o']) !!}
-                        </div>
-                        <div class="col-md-4">
-                            {!! Field::text('city', ['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            {!! Field::text('contact',['tpl' => 'lte/withicon'], ['icon' => 'user']) !!}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::text('position',['tpl' => 'lte/withicon'], ['icon' => 'briefcase']) !!}
-                        </div>
-                        <div class="col-md-6">
-                            {!! Field::number('cellphone', ['tpl' => 'lte/withicon'], ['icon' => 'mobile']) !!}
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            {!! Field::select('store_id',
-                                ['2' => 'Chiapas', '3' => 'Soconusco'], null,
-                                ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
+                            {!! Field::select('reason',
+                                ['llamada' => 'Llamada', 'visita' => 'Visita', 'cotizacion' => 'Cotización',
+                                'venta' => 'Venta', 'entrega' => 'Entrega'], null,
+                                ['empty' => 'Selecciona el motivo', 'tpl' => 'lte/withicon'], ['icon' => 'check'])
                             !!}
                         </div>
                     </div>

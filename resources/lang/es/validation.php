@@ -191,5 +191,7 @@ return [
         'contact' => 'contacto',
         'position' => 'puesto',
         'cellphone' => 'celular',
+        'reason' => 'motivo',
+        'client_id' => 'cliente',
     ],
 ];

@@ -6,25 +6,24 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBinnaclesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    function up()
     {
         Schema::create('binnacles', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->date('date');
+            $table->integer('client_id');
+            $table->long('observations');
+            $table->string('reason');
+            $table->string('document');
+            $table->double('amount');
+            $table->integer('user_id');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    function down()
     {
         Schema::dropIfExists('binnacles');
     }
