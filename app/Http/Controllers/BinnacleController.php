@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Binnacle;
 use App\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BinnacleController extends Controller
 {
@@ -28,9 +29,18 @@ class BinnacleController extends Controller
             'date' => 'required',
             'reason' => 'required',
             'observations' => 'required',
+            'document' => 'sometimes|required',
         ]);
 
-        Binnacle::create($request->all());
+        $binnacle = Binnacle::create($request->except('document'));
+
+        $path_to_pdf = Storage::putFileAs(
+            "public/bills", $request->file("document"), $request->file("document")->getClientOriginalName()
+        );
+
+        $binnacle->update([
+            'document' => $path_to_pdf,
+        ]);
 
         return redirect(route('binnacles.index'));
     }

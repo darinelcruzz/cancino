@@ -20,7 +20,18 @@
                                 <td>{{ $binnacle->id }}</td>
                                 <td>{{ fdate($binnacle->date, 'd/m/Y', 'Y-m-d') }}</td>
                                 <td>{{ $binnacle->client->business }}</td>
-                                <td>{{ $binnacle->reason }}</td>
+                                <td>
+                                    {{ $binnacle->reason }}
+                                    @if($binnacle->document)
+                                        &nbsp;&nbsp;&nbsp;
+                                        <modal id="pdf{{ $binnacle->id }}" title="Factura (pdf)">
+                                            <iframe src="{{ Storage::url($binnacle->document) }}#view=FitH" width="100%" height="600"></iframe>
+                                        </modal>
+                                        <modal-button target="pdf{{ $binnacle->id }}">
+                                            <a style="color: red;" title="FACTURA"><i class="fa fa-file-pdf-o"></i></a>
+                                        </modal-button>
+                                    @endif
+                                </td>
                                 <td>{{ $binnacle->observations }}</td>
                             </tr>
                         @endforeach

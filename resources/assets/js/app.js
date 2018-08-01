@@ -20,7 +20,13 @@ Vue.component('color-box', require('./components/lte/ColorBox.vue'));
 Vue.component('data-table', require('./components/lte/DataTable.vue'));
 Vue.component('dropdown', require('./components/lte/DropdownButton.vue'));
 Vue.component('ddi', require('./components/lte/DropdownItem.vue'));
+Vue.component('file-upload', require('./components/lte/FileUploadInput.vue'));
+Vue.component('modal', require('./components/lte/Modal.vue'));
+Vue.component('modal-button', require('./components/lte/ModalButton.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+    	binnacle_reason: '',
+    }
 });
