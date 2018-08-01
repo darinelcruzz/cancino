@@ -12,13 +12,16 @@
         <div class="col-md-12">
             <color-box title="Bitácora" color="success">
                 <data-table example="1">
-                    {{ drawHeader('ID') }}
+                    {{ drawHeader('ID', 'Fecha', 'Cliente', 'Motivo', 'Observaciones') }}
 
                     <template slot="body">
                         @foreach($binnacles as $binnacle)
                             <tr>
                                 <td>{{ $binnacle->id }}</td>
-
+                                <td>{{ fdate($binnacle->date, 'd/m/Y', 'Y-m-d') }}</td>
+                                <td>{{ $binnacle->client->business }}</td>
+                                <td>{{ $binnacle->reason }}</td>
+                                <td>{{ $binnacle->observations }}</td>
                             </tr>
                         @endforeach
                     </template>

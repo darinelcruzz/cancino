@@ -15,8 +15,8 @@ class CreateBinnaclesTable extends Migration
             $table->integer('client_id');
             $table->string('observations', 900);
             $table->string('reason');
-            $table->string('document');
-            $table->double('amount');
+            $table->string('document')->nullable();
+            $table->double('amount')->nullable();
             $table->integer('user_id');
 
             $table->timestamps();

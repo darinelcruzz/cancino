@@ -23,7 +23,16 @@ class BinnacleController extends Controller
 
     function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'client_id' => 'required',
+            'date' => 'required',
+            'reason' => 'required',
+            'observations' => 'required',
+        ]);
+
+        Binnacle::create($request->all());
+
+        return redirect(route('binnacles.index'));
     }
 
     function show(Binnacle $binnacle)
