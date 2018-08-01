@@ -13,7 +13,7 @@ class CreateBinnaclesTable extends Migration
 
             $table->date('date');
             $table->integer('client_id');
-            $table->long('observations');
+            $table->string('observations', 900);
             $table->string('reason');
             $table->string('document');
             $table->double('amount');
