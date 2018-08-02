@@ -19,7 +19,7 @@
                             <tr>
                                 <td>{{ $client->id }}</td>
                                 <td>
-                                    <b>{{ $client->business }}</b><br>
+                                    <b><a href="{{ route('clients.show', ['id' => $client->id]) }}">{{ $client->business }} </a></b><br>
                                     {{ $client->rfc }}
                                 </td>
                                 <td>

@@ -11,12 +11,14 @@ class CreateBinnaclesTable extends Migration
         Schema::create('binnacles', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->date('date');
+            $table->timestamp('date');
             $table->integer('client_id');
-            $table->string('observations', 900);
+            $table->string('observations', 900)->nullable();
+            $table->string('notes', 900)->nullable();
             $table->string('reason');
             $table->string('document')->nullable();
             $table->double('amount')->nullable();
+            $table->string('status');
             $table->integer('user_id');
 
             $table->timestamps();

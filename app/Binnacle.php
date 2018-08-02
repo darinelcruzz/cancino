@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Binnacle extends Model
 {
-    protected $fillable = ['date', 'client_id', 'observations', 'reason', 'document', 'amount', 'user_id'];
+    protected $fillable = ['date', 'client_id', 'observations', 'reason', 'document', 'notes', 'amount', 'status', 'user_id'];
 
     function store()
     {

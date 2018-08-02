@@ -11,15 +11,22 @@ class BinnacleController extends Controller
 {
     function index()
     {
-        $binnacles = Binnacle::All();
+        $activitys = Binnacle::where('status', 'realizada')->get();
+        $plannings = Binnacle::where('status', 'pendiente')->get();
 
-        return view('binnacles.index', compact('binnacles'));
+        return view('binnacles.index', compact('activitys', 'plannings'));
     }
 
-    function create()
+    function planning()
     {
         $clients = Client::pluck('business', 'id')->toArray();
-        return view('binnacles.create', compact('clients'));
+        return view('binnacles.planning', compact('clients'));
+    }
+
+    function activity()
+    {
+        $clients = Client::pluck('business', 'id')->toArray();
+        return view('binnacles.activity', compact('clients'));
     }
 
     function store(Request $request)
@@ -27,20 +34,23 @@ class BinnacleController extends Controller
         $this->validate($request, [
             'client_id' => 'required',
             'date' => 'required',
-            'reason' => 'required',
-            'observations' => 'required',
+            'reason' => 'sometimes|required',
+            'observations' => 'sometimes|required',
+            'notes' => 'sometimes|required',
             'document' => 'sometimes|required',
         ]);
 
         $binnacle = Binnacle::create($request->except('document'));
 
-        $path_to_pdf = Storage::putFileAs(
-            "public/bills", $request->file("document"), $request->file("document")->getClientOriginalName()
-        );
+        if ($request->document) {
+            $path_to_pdf = Storage::putFileAs(
+                "public/bills", $request->file("document"), $request->file("document")->getClientOriginalName()
+            );
 
-        $binnacle->update([
-            'document' => $path_to_pdf,
-        ]);
+            $binnacle->update([
+                'document' => $path_to_pdf,
+            ]);
+        }
 
         return redirect(route('binnacles.index'));
     }

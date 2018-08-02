@@ -193,5 +193,7 @@ return [
         'cellphone' => 'celular',
         'reason' => 'motivo',
         'client_id' => 'cliente',
+        'notes' => 'notas',
+        'balance' => 'saldo',
     ],
 ];

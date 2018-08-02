@@ -65,12 +65,14 @@ Route::group(['prefix' => 'clientes', 'as' => 'clients.'], function () {
 	Route::get('editar/{client}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('cancelar/{client}', usesas($ctrl, 'destroy'));
+    Route::get('detalles/{client}', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'bitacora', 'as' => 'binnacles.'], function () {
     $ctrl = 'BinnacleController';
     Route::get('/', usesas($ctrl, 'index'));
-    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::get('actividad', usesas($ctrl, 'activity'));
+    Route::get('planeacion', usesas($ctrl, 'planning'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{binnacle}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
