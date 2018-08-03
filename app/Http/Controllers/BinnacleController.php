@@ -11,8 +11,8 @@ class BinnacleController extends Controller
 {
     function index()
     {
-        $activitys = Binnacle::where('status', 'realizada')->get();
-        $plannings = Binnacle::where('status', 'pendiente')->get();
+        $activitys = Binnacle::where('status', 'realizada')->where('user_id', auth()->user()->id)->get();
+        $plannings = Binnacle::where('status', 'pendiente')->where('user_id', auth()->user()->id)->get();
 
         return view('binnacles.index', compact('activitys', 'plannings'));
     }
@@ -62,12 +62,32 @@ class BinnacleController extends Controller
 
     function edit(Binnacle $binnacle)
     {
-        //
+        return view('binnacles.edit', compact('binnacle'));
     }
 
-    function update(Request $request, Binnacle $binnacle)
+    function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'date' => 'required',
+            'reason' => 'required',
+            'observations' => 'sometimes|required',
+            'document' => 'sometimes|required'
+        ]);
+
+        $binnacle = Binnacle::find($request->id);
+        $binnacle->update($request->except('document'));
+
+        if ($request->document) {
+            $path_to_pdf = Storage::putFileAs(
+                "public/bills", $request->file("document"), $request->file("document")->getClientOriginalName()
+            );
+
+            $binnacle->update([
+                'document' => $path_to_pdf,
+            ]);
+        }
+
+        return redirect(route('binnacles.index'));
     }
 
     function destroy(Binnacle $binnacle)

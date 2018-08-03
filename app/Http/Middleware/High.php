@@ -4,11 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin
+class High
 {
     function handle($request, Closure $next)
     {
-        if ($request->user()->level == 1) {
+        if ($request->user()->store_id == 1) {
             return $next($request);
         }
         return redirect('/');

@@ -91,7 +91,7 @@ Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     Route::get('cancelar/{loan}', usesas($ctrl, 'destroy'));
 });
 
-Route::group(['prefix' => 'usuarios', 'as' => 'users.'], function () {
+Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'middleware' => 'admin'], function () {
     $ctrl = 'UserController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -101,11 +101,12 @@ Route::group(['prefix' => 'usuarios', 'as' => 'users.'], function () {
     Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));
     Route::get('compras/{shopping}', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('saldos', usesas($ctrl, 'balances'));
+    Route::get('bitacora', usesas($ctrl, 'binnacles'));
 });

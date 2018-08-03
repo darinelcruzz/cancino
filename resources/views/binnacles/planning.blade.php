@@ -28,10 +28,9 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::select('reason',
-                                ['llamada' => 'Llamada', 'visita' => 'Visita', 'cotizacion' => 'Cotización',
-                                'venta' => 'Venta', 'entrega' => 'Entrega'], null,
-                                ['empty' => 'Selecciona el motivo', 'tpl' => 'lte/withicon', 'v-model' => 'binnacle_reason'], ['icon' => 'check'])
+                            {!! Field::select('method',
+                                ['visita' => 'Visita', 'llamada' => 'Llamada', 'correo' => 'Correo'], null,
+                                ['empty' => 'Selecciona el motivo', 'tpl' => 'lte/withicon'], ['icon' => 'handshake-o'])
                             !!}
                         </div>
                     </div>
@@ -41,10 +40,10 @@
                             {!! Field::text('notes', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
                         </div>
                     </div>
-
+                    <hr>
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="status" value="pendiente">
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-warning pull-right']) !!}
+                    <button type="submit" class="btn btn-warning pull-right" onclick="submitForm(this);">Agregar</button>
 
                 {!! Form::close() !!}
             </solid-box>

@@ -9,7 +9,12 @@ class SaleController extends Controller
 {
     function index()
     {
-        $sales = Sale::where('store_id', auth()->user()->store_id)->get();
+        if (auth()->user()->username == 'cynthia') {
+            $store = 2;
+        }else {
+            $store = auth()->user()->store_id;
+        }
+        $sales = Sale::where('store_id', $store)->get();
         return view('sales.index', compact('sales'));
     }
 
@@ -30,7 +35,7 @@ class SaleController extends Controller
 
         $sale->notify(new \App\Notifications\SaleDay());
 
-        return redirect(route('sales.index'));
+        return redirect(route('admin.sales'));
     }
 
     function show(Sales $sales)

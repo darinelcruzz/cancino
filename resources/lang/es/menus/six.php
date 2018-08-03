@@ -2,16 +2,16 @@
 
 return [
 
-    'Sales' => [
-        'title' => 'Ventas',
-        'icon' => 'fa fa-money',
-        'route' => 'sales.index'
-    ],
-
     'Binnacle' => [
         'title' => 'Bitacora',
         'icon' => 'fa fa-list',
-        'route' => 'sales.index'
+        'route' => 'binnacles.index'
+    ],
+
+    'Clients' => [
+        'title' => 'Clientes',
+        'icon' => 'fa fa-handshake-o',
+        'route' => 'clients.index'
     ],
 
     'logout' => [

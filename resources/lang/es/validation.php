@@ -195,5 +195,11 @@ return [
         'client_id' => 'cliente',
         'notes' => 'notas',
         'balance' => 'saldo',
+        'method' => 'método',
+        'transfer' => 'transferencia',
+        'check' => 'cheque',
+        'tdebit' => 'tarjeta débito',
+        'tcredit' => 'tarjeta crédito',
+        'credit' => 'crédito',
     ],
 ];

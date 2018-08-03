@@ -29,6 +29,10 @@ return [
                 'title' => 'Clientes',
                 'route' => 'clients.index',
             ],
+            'Admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.binnacles',
+            ],
         ],
     ],
 

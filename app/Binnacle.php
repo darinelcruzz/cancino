@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Binnacle extends Model
 {
-    protected $fillable = ['date', 'client_id', 'observations', 'reason', 'document', 'notes', 'amount', 'status', 'user_id'];
+    protected $fillable = ['date', 'client_id', 'observations', 'method', 'reason',
+    'document', 'notes', 'amount', 'status', 'user_id'];
 
     function store()
     {
@@ -16,5 +17,10 @@ class Binnacle extends Model
     function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

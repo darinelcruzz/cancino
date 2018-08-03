@@ -23,9 +23,10 @@
                     !!}
                     <hr>
                     {!! Field::password('password', ['tpl' => 'lte/oneline', ], ['icon' => 'key']) !!}
+                    {!! Field::password('password_confirmation', ['tpl' => 'lte/oneline', ], ['icon' => 'key']) !!}
 
 
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
+                    <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
 
                 {!! Form::close() !!}
             </solid-box>

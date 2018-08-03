@@ -6,6 +6,7 @@ use App\Shopping;
 use App\Sale;
 use App\Note;
 use App\Store;
+use App\Binnacle;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -24,7 +25,7 @@ class AdminController extends Controller
 
     function sales()
     {
-        $dates = Sale::get(['date_sale','store_id', 'total'])->groupBy('date_sale');
+        $dates = Sale::get(['date_sale','store_id', 'total'])->groupBy('date_sale')->take(60);
         return view('admin.sales', compact('dates'));
     }
 
@@ -38,5 +39,13 @@ class AdminController extends Controller
     {
         $stores = Store::all();
         return view('admin.balances', compact('stores'));
+    }
+
+    function binnacles()
+    {
+        $activitys = Binnacle::where('status', 'realizada')->get();
+        $plannings = Binnacle::where('status', 'pendiente')->get();
+
+        return view('admin.binnacles', compact('activitys', 'plannings'));
     }
 }

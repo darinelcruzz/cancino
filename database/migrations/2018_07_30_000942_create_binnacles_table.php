@@ -15,7 +15,8 @@ class CreateBinnaclesTable extends Migration
             $table->integer('client_id');
             $table->string('observations', 900)->nullable();
             $table->string('notes', 900)->nullable();
-            $table->string('reason');
+            $table->string('method');
+            $table->string('reason')->nullable();
             $table->string('document')->nullable();
             $table->double('amount')->nullable();
             $table->string('status');

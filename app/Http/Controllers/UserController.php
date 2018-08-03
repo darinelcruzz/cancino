@@ -27,7 +27,7 @@ class UserController extends Controller
             'email' => 'required',
             'level' => 'required',
             'store_id' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed',
         ]);
 
         User::create([

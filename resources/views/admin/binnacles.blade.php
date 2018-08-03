@@ -3,17 +3,12 @@
     Bitácora | Lista
 @endpush
 
-@push('headerTitle')
-    <a href="{{ route('binnacles.activity') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Actividad</a>
-    <a href="{{ route('binnacles.planning') }}" class="btn btn-warning"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Planeación</a>
-@endpush
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <color-box title="Actividades" color="success" button collapsed>
                 <data-table example="1">
-                    {{ drawHeader('ID', 'Fecha', 'Cliente', 'Motivo', 'Observaciones') }}
+                    {{ drawHeader('ID', 'Fecha', 'Cliente', 'Motivo', 'Observaciones', 'Usuario') }}
 
                     <template slot="body">
                         @foreach($activitys as $activity)
@@ -37,6 +32,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $activity->observations }}</td>
+                                <td>{{ $activity->user->name }}</td>
                             </tr>
                         @endforeach
                     </template>
@@ -48,7 +44,7 @@
         <div class="col-md-12">
             <color-box title="Planeación" label="{{ count($plannings) }}" color="warning" button collapsed>
                 <data-table example="2">
-                    {{ drawHeader('ID', 'Fecha', 'Cliente', 'Método', 'Notas', '¿Realizado?') }}
+                    {{ drawHeader('ID', 'Fecha', 'Cliente', 'Método', 'Notas', 'Usuario') }}
 
                     <template slot="body">
                         @foreach($plannings as $planning)
@@ -58,7 +54,7 @@
                                 <td><a href="{{ route('clients.show', ['id' => $planning->client->id]) }}">{{ $planning->client->business }} </a></td>
                                 <td>{{ $planning->method }}</td>
                                 <td>{{ $planning->notes }}</td>
-                                <td><a href="{{ route('binnacles.edit', ['id' => $planning->id])}}" class="btn btn-xs btn-success"><i class="fa fa-arrow-up"></i></a></td>
+                                <td>{{ $planning->user->name }}</td>
                             </tr>
                         @endforeach
                     </template>

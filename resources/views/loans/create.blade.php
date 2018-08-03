@@ -33,7 +33,7 @@
                     <hr>
                     <input type="hidden" name="to" value="{{ auth()->user()->store_id }}">
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
+                    <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
 
                 {!! Form::close() !!}
             </color-box>

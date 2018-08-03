@@ -37,7 +37,7 @@
                     <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="status" value="pendiente">
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
+                    <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
 
                 {!! Form::close() !!}
             </solid-box>

@@ -16,7 +16,15 @@
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-
+ <script>
+     function submitForm(btn) {
+         // disable the button
+         btn.disabled = true;
+         // submit the form
+         btn.form.submit();
+     }
+ </script>
+ 
 <script>
 	// Data Table With Full Features
     $("#example1").DataTable({
@@ -36,5 +44,8 @@
     });
     $("#example6").DataTable({
       "order":[[ 0 , "desc"]]
+    });
+    $("#exampleN").DataTable({
+      "order":false
     });
 </script>
