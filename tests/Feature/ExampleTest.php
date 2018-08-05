@@ -11,7 +11,7 @@ class ExampleTest extends TestCase
     {
         $user = factory(\App\User::class)->create();
         $this->actingAs($user)
-            ->get(route('/'))
+            ->get('/')
             ->assertStatus(200);
     }
 }

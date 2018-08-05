@@ -39,15 +39,16 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'route' => 'sales.index',
-        'noti' => '.'
-    ],
-
-    'SalesAdmin' => [
-        'title' => 'Ventas Admin',
-        'icon' => 'fa fa-money',
-        'route' => 'admin.sales',
-        'noti' => '.'
+        'submenu' => [
+            'Store' => [
+                'title' => 'Tienda',
+                'route' => 'sales.index',
+            ],
+            'Admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.sales',
+            ],
+        ],
     ],
 
     'Loans' => [
@@ -58,17 +59,18 @@ return [
     ],
 
     'Notes' => [
-        'title' => 'NC',
+        'title' => 'Notas',
         'icon' => 'fa fa-file-excel-o',
-        'route' => 'notes.index',
-        'noti' => '.'
-    ],
-
-    'NotesAdmin' => [
-        'title' => 'NC Admin',
-        'icon' => 'fa fa-file-excel-o',
-        'route' => 'admin.notes',
-        'noti' => '.'
+        'submenu' => [
+            'Store' => [
+                'title' => 'Tienda',
+                'route' => 'notes.index',
+            ],
+            'Admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.notes',
+            ],
+        ],
     ],
 
     'Expenses' => [

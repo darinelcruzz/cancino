@@ -8,6 +8,8 @@
                 @each('lte.items', trans('menus/one'), 'item')
             @elseif (auth()->user()->level == 2)
                 @each('lte.items', trans('menus/two'), 'item')
+            @elseif (auth()->user()->level == 3)
+                @each('lte.items', trans('menus/three'), 'item')
             @elseif (auth()->user()->level == 4)
                 @each('lte.items', trans('menus/four'), 'item')
             @elseif (auth()->user()->level == 5 && auth()->user()->store_id == 1)

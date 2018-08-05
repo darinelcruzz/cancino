@@ -20,7 +20,7 @@ return [
         'submenu' => [
             'binnacle' => [
                 'title' => 'Bitacora',
-                'route' => 'binnacles.index',
+                'route' => 'admin.binnacles',
             ],
             'client' => [
                 'title' => 'Clientes',
