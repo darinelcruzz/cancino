@@ -201,5 +201,7 @@ return [
         'tdebit' => 'tarjeta débito',
         'tcredit' => 'tarjeta crédito',
         'credit' => 'crédito',
+        'past_sale' => 'año anterior',
+        'past_point' => 'punto anterior',
     ],
 ];

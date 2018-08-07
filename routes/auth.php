@@ -101,6 +101,16 @@ Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'middleware' => 'admin']
     Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
 });
 
+Route::group(['prefix' => 'metas', 'as' => 'goals.'], function () {
+    $ctrl = 'GoalController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{user}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
+});
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));

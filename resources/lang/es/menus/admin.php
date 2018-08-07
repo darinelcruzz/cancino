@@ -44,6 +44,10 @@ return [
                 'title' => 'Tienda',
                 'route' => 'sales.index',
             ],
+            'Goals' => [
+                'title' => 'Metas',
+                'route' => 'goals.create',
+            ],
             'Admin' => [
                 'title' => 'Admin',
                 'route' => 'admin.sales',
