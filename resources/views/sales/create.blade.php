@@ -23,7 +23,7 @@
                             <div class="col-md-6 col-md-offset-3">
                                 <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
                         @endif
-                            {!! Field::date('date_sale', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            {!! Field::date('date_sale', date('Y-m-d', strtotime( '-1 days' )), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                     </div>
 
