@@ -38,20 +38,6 @@
 
                     </div>
                     <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::number('document', ['tpl' => 'lte/withicon'], ['icon' => 'tags']) !!}
-                        </div>
-                        <div class="col-md-6">
-                            {!! Field::date('date_pos',['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            {!! Field::text('observations',['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
-                        </div>
-                    </div>
-                    <hr>
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
 

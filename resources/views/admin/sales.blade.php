@@ -13,11 +13,12 @@
     <div class="row">
         <div class="col-md-12">
             <color-box title="Ventas" color="primary">
-                <data-table example="N">
-                    {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Plaza', 'Total') }}
+                <data-table example="1">
+                    {{ drawHeader('', 'Fecha','Chiapas', 'Soconusco', 'Altos', 'Plaza', 'Total') }}
                     <template slot="body">
                         @foreach ($dates as $date => $stores)
                             <tr>
+                                <td>{{ fdate($date, 'U', 'Y-m-d') }}</td>
                                 <td>{{ fdate($date, 'D, d/m/Y', 'Y-m-d') }}</td>
                                 <td>{{ fnumber($stores->where('store_id', 2)->sum('total')) }}</td>
                                 <td>{{ fnumber($stores->where('store_id', 3)->sum('total')) }}</td>

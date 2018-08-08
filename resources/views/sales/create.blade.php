@@ -51,7 +51,7 @@
                             {!! Field::number('credit', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'mail-forward']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('total', ['tpl' => 'lte/withicon', 'step' => '0.01', 'placeholder' => 'Sin iva'], ['icon' => 'dollar']) !!}
+                            {!! Field::number('total', ['tpl' => 'lte/withicon', 'step' => '0.01', 'placeholder' => 'Total cobrado'], ['icon' => 'dollar']) !!}
                         </div>
                     </div>
                     <hr>
