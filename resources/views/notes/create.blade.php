@@ -27,7 +27,7 @@
                             {!! Field::number('amount', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::date('date_nc',['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            {!! Field::date('date_nc', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                     </div>
 

@@ -15,7 +15,7 @@
                             {!! Field::text('folio', ['tpl' => 'lte/withicon'], ['icon' => 'barcode']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::date('date', ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            {!! Field::date('date', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                     </div>
 
@@ -34,7 +34,11 @@
                         </div>
                     </div>
                     <hr>
-                    <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
+                    @if (auth()->user()->username == 'cynthia')
+                        <input type="hidden" name="store_id" value="2}">
+                    @else
+                        <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
+                    @endif
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="status" value="pendiente">
                     <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
