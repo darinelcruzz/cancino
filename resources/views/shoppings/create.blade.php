@@ -35,7 +35,7 @@
                     </div>
                     <hr>
                     @if (auth()->user()->username == 'cynthia')
-                        <input type="hidden" name="store_id" value="2}">
+                        <input type="hidden" name="store_id" value="2">
                     @else
                         <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
                     @endif
