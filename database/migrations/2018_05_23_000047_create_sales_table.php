@@ -17,7 +17,6 @@ class CreateSalesTable extends Migration
             $table->double('check')->nullable();
             $table->double('tdebit')->nullable();
             $table->double('tcredit')->nullable();
-            $table->double('credit')->nullable();
             $table->double('total')->nullable();
             $table->integer('store_id');
             $table->integer('user_id');
