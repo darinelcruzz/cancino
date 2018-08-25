@@ -31,15 +31,15 @@ class StoresTableSeeder extends Seeder
             'name' => 'Altos',
             'color' => 'danger',
             'type' => 'c',
-            'star' => '1.25',
-            'golden' => '1.15'
+            'star' => '1.23',
+            'golden' => '1.20'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Plaza',
             'color' => 'info',
             'type' => 's',
             'star' => '1.25',
-            'golden' => '1.15'
+            'golden' => '1.20'
         ]);
     }
 }
