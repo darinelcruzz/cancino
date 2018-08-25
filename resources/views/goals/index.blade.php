@@ -1,34 +1,23 @@
 @extends('lte.root')
 @push('pageTitle')
-    Ventas | Lista
+    Metas | Lista
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Ventas" color="success">
+            <color-box title="2017" color="success">
                 <data-table example="1">
-                    {{ drawHeader('ID','Fecha', 'Efectivo', 'Total', 'Deposito', 'Tiempo') }}
+                    {{ drawHeader('', 'Mes', 'Tienda', 'Venta 2017', 'Punto 2017') }}
 
                     <template slot="body">
-                        @foreach($sales as $sale)
+                        @foreach($goals17 as $goal)
                             <tr>
-                                <td>{{ $sale->id }}</td>
-                                <td>{{ fdate($sale->date_sale, 'D, d M Y', 'Y-m-d') }}</td>
-                                <td>{{ fnumber($sale->cash) }}</td>
-                                <td>{{ fnumber($sale->total) }}</td>
-                                <td>
-                                    @if ($sale->status == 'pendiente')
-                                        @include('templates/date')
-                                    @else
-                                        {{ fdate($sale->date_deposit, 'D, d M Y', 'Y-m-d') }}
-                                    @endif
-                                </td>
-                                <td>
-                                    <span style="color:{{ $sale->dif_day }}">
-                                        <i class="fa fa-circle"></i>
-                                    </span>
-                                </td>
+                                <td>{{ $goal->month }}</td>
+                                <td>{{ fdate($goal->month, 'M', 'm') }}</td>
+                                <td>{{ $goal->store->name }}</td>
+                                <td>{{ fnumber($goal->past_sale) }}</td>
+                                <td>{{ $goal->past_point }}</td>
                             </tr>
                         @endforeach
                     </template>
