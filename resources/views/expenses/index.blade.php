@@ -41,7 +41,7 @@
                                 @foreach ($ingreses as $ingres)
                                     <tr>
                                         <td>{{ fdate($ingres->date, 'd M Y', 'Y-m-d') }}</td>
-                                        <td>{{ $ingres->amount }}</td>
+                                        <td>{{ fnumber($ingres->amount) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
