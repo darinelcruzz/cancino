@@ -23,6 +23,7 @@ Vue.component('ddi', require('./components/lte/DropdownItem.vue'));
 Vue.component('file-upload', require('./components/lte/FileUploadInput.vue'));
 Vue.component('modal', require('./components/lte/Modal.vue'));
 Vue.component('modal-button', require('./components/lte/ModalButton.vue'));
+Vue.component('file-input', require('./components/FileInput.vue'));
 
 const app = new Vue({
     el: '#app',

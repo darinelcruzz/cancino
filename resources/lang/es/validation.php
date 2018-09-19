@@ -203,5 +203,6 @@ return [
         'credit' => 'crédito',
         'past_sale' => 'año anterior',
         'past_point' => 'punto anterior',
+        'concept' => 'concepto',
     ],
 ];

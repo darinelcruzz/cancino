@@ -11,12 +11,14 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('check');
+            $table->integer('check')->nullable();
             $table->date('date');
             $table->double('amount');
-            $table->string('concept');
-            $table->string('description')->nullable();
+            $table->string('concept')->nullable();
+            $table->string('observations')->nullable();
             $table->integer('store_id');
+            $table->integer('type');
+            $table->longText('invoices')->nullable();
 
             $table->timestamps();
         });

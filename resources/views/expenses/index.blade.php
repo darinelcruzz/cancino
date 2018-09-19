@@ -6,57 +6,69 @@
 @section('content')
     <div class="row">
         <div class="col-md-3">
-            <div class="col-md-12">
-                <div class="small-box bg-success">
-                    <div class="inner">
-                        <h4><b>Saldo</b></h4>
-                        <h3 align="center"><b>{{ fnumber(auth()->user()->store->balance) }}</b></h3>
-                        <h4 align="center">{{ fdate(auth()->user()->store->updated_at,'d/M/Y') }}</h4>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-dollar"></i>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h4 align="center"><b>Saldo</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>CH:</b>{{ $last ? $last->check + 1 : 1 }}</h4>
+                            <h3 align="center"><b>{{ fnumber(App\Expense::balanceByStore($store)) }}</b></h3>
+                            <h4 align="center">{{ fdate(App\Expense::lastUpdate($store)->created_at,'d/M/Y') }}</h4>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-dollar"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <color-box title="Agregar" color="danger" button collapsed>
-                    <div class="col-md-12">
-                        {!! Field::date('date', ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
-                    </div>
-                    <div class="col-md-12">
-                        {!! Field::number('check', ['tpl' => 'lte/withicon', 'min' => '0'], ['icon' => 'pencil']) !!}
-                    </div>
-                    <div class="col-md-12">
-                        {!! Field::number('amount', ['tpl' => 'lte/withicon', 'min' => '0'], ['icon' => 'pencil']) !!}
-                    </div>
-                    <div class="col-md-12">
-                        {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'pencil']) !!}
-                    </div>
-                    <div class="col-md-12">
-                        {!! Field::text('description', ['tpl' => 'lte/withicon'], ['icon' => 'pencil']) !!}
-                    </div>
-                </color-box>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{{ route('expenses.create') }}" class="btn btn-success btn-block"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a><br>
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <color-box title="Transferencias" color="primary">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($ingreses as $ingres)
+                                    <tr>
+                                        <td>{{ fdate($ingres->date, 'd M Y', 'Y-m-d') }}</td>
+                                        <td>{{ fnumber($ingres->amount) }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </color-box>
+                </div>
+            </div>
+
         </div>
         <div class="col-md-9">
-                <color-box title="Gastos" color="primary">
-                    <data-table example="1">
-                        {{ drawHeader('ID', 'Cheque','Fecha', 'Monto', 'Concepto', 'Descripcion') }}
+            <color-box title="Gastos" color="primary">
+                <data-table example="1">
+                    {{ drawHeader('CH','Fecha', 'Monto', 'Concepto', 'Observaciones') }}
 
-                        <template slot="body">
-                            @foreach($expenses as $expense)
-                                <tr>
-                                    <td>{{ $expense->id }}</td>
-                                    <td>{{ $expense->check }}</td>
-                                    <td>{{ fdate($expense->date, 'd M Y', 'Y-m-d') }}</td>
-                                    <td>{{ fnumber($expense->amount) }}</td>
-                                    <td>{{ $expense->concept }}</td>
-                                    <td>{{ $expense->description }}</td>
-                                </tr>
-                            @endforeach
-                        </template>
-                    </data-table>
-                </color-box>
+                    <template slot="body">
+                        @foreach($expenses as $expense)
+                            <tr>
+                                <td>{{ $expense->check }}</td>
+                                <td>{{ fdate($expense->date, 'd M Y', 'Y-m-d') }}</td>
+                                <td>{{ fnumber($expense->amount) }}</td>
+                                <td>{{ $expense->concept }}</td>
+                                <td>{{ $expense->observations }}</td>
+                            </tr>
+                        @endforeach
+                    </template>
+                </data-table>
+            </color-box>
         </div>
     </div>
 @endsection
