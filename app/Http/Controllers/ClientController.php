@@ -24,7 +24,6 @@ class ClientController extends Controller
         $this->validate($request, [
             'business' => 'required',
             'social' => 'required',
-            'rfc' => 'required',
             'phone' => 'required',
             'email' => 'required',
             'address' => 'required',
