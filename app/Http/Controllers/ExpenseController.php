@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
+use Iluminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -25,6 +26,7 @@ class ExpenseController extends Controller
 
     function store(Request $request)
     {
+        $store = auth()->user()->username == 'cynthia' ? 2 : auth()->user()->store_id;
         $this->validate($request, [
             'date' => 'required',
             'amount' => 'required',
@@ -32,7 +34,14 @@ class ExpenseController extends Controller
             'store_id' => 'required',
         ]);
 
-        Expense::create($request->all());
+        // $expense = Expense::create($request->except('files'));
+        $paths = [];
+        for ($i=0; $i <= $request->quantity; $i++) {
+            $path = $request->file("invoice$i")->store('public/expenses/store' . $store . "/$request->check");
+            array_push($paths, $path);
+        }
+        dd($paths);
+
         if (auth()->user()->level < 3) {
             return redirect(route('admin.balances'));
         }
