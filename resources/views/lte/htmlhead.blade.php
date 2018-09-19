@@ -13,7 +13,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('adminlte/bower_components/Ionicons/css/ionicons.min.css') }}">
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/AdminLTE.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('adminlte/dist/css/skins/_all-skins.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/dist/css/skins/_all-skins.css') }}">
 
   <!-- DataTables -->
   <link rel="stylesheet" href="{{ asset('adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
@@ -28,4 +28,21 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+    <style>
+        #login-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url(../../../img/background.jpg);
+            background-size: cover;
+        }
+
+        .login-box-body {
+            border-radius: 20px;
+            opacity: 0.88;
+        }
+    </style>
 </head>
