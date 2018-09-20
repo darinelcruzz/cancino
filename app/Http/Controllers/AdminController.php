@@ -26,7 +26,11 @@ class AdminController extends Controller
 
     function sales()
     {
-        $dates = Sale::get(['date_sale','store_id', 'total'])->groupBy('date_sale');
+        $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')->orderBy('month', 'des')->get()->groupBy('month');
+        $dates->transform(function ($item, $key) {
+            return $item->groupBy('date_sale');
+        });
+
         return view('admin.sales', compact('dates'));
     }
 
