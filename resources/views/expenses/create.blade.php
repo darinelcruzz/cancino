@@ -26,13 +26,13 @@
                                 {!! Field::select('concept',
                                     ['CFE' => 'CFE', 'TELMEX' => 'TELMEX', 'Nomina' => 'Nómina', 'SUA' => 'SUA',
                                     'IMSS' => 'IMSS', 'CANACO' => 'CANACO', 'Otros gastos' => 'Otros gastos', 'Cancelado' => 'Cancelado'], null,
-                                    ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
+                                    ['empty' => 'Seleccione el concepto', 'tpl' => 'lte/withicon', 'v-model' => 'concept'], ['icon' => 'map-pin'])
                                     !!}
                             </div>
                         </div>
                         {!! Field::text('observations', ['tpl' => 'lte/withicon'], ['icon' => 'pencil']) !!}
                         <hr>
-                        <file-input></file-input>
+                        <file-input v-if='concept=="Otros gastos"'></file-input>
                         <hr>
                         {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
                         <input type="hidden" name="check" value="{{ $last->check + 1 }}">

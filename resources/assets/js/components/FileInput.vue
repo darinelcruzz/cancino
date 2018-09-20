@@ -3,12 +3,12 @@
         <div v-for="(input, index) in inputs" class="row">
             <div class="col-md-6 col-md-offset-2">
                 <div class="row">
-                    <div class="col-md-6" align="center">
+                    <div class="col-md-2">
+                        <button @click="deleteRow(index)" type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
+                    </div>
+                    <div class="col-md-10" align="center">
                         <input type="file" :name="'invoice' + index">
                         <input type="hidden" name="quantity" :value="index">
-                    </div>
-                    <div class="col-md-6">
-                        <button @click="deleteRow(index)" type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
-use Iluminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -33,14 +33,14 @@ class ExpenseController extends Controller
             'concept' => 'required|sometimes',
             'store_id' => 'required',
         ]);
-
-        // $expense = Expense::create($request->except('files'));
-        $paths = [];
-        for ($i=0; $i <= $request->quantity; $i++) {
-            $path = $request->file("invoice$i")->store('public/expenses/store' . $store . "/$request->check");
-            array_push($paths, $path);
+        $route = 'public/expenses/store' . $store . "/$request->check";
+        if ($request->file("invoice0")) {
+            for ($i=0; $i <= $request->quantity; $i++) {
+                $path = $request->file("invoice$i")->store($route);
+            }
         }
-        dd($paths);
+
+        $expense = Expense::create($request->all());
 
         if (auth()->user()->level < 3) {
             return redirect(route('admin.balances'));
@@ -51,7 +51,9 @@ class ExpenseController extends Controller
 
     function show(Expense $expense)
     {
-        //
+        $route = 'public/expenses/store' . $expense->store_id . "/$expense->check";
+        $files = Storage::files($route);
+        return view('expenses.show', compact('files', 'expense', 'route'));
     }
 
     function edit(Expense $expense)
@@ -59,9 +61,15 @@ class ExpenseController extends Controller
         //
     }
 
-    function update(Request $request, Expense $expense)
+    function update(Request $request)
     {
-        //
+        if ($request->file("invoice0")) {
+            for ($i=0; $i <= $request->quantity; $i++) {
+                $path = $request->file("invoice$i")->store($request->route);
+            }
+        }
+
+        return redirect(route('expenses.show', ['id' => $request->id]));
     }
 
     function destroy(Expense $expense)

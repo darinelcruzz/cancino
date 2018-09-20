@@ -29,5 +29,6 @@ const app = new Vue({
     el: '#app',
     data: {
     	binnacle_reason: '',
+    	concept: '',
     }
 });

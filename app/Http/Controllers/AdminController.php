@@ -7,6 +7,7 @@ use App\Sale;
 use App\Note;
 use App\Store;
 use App\Binnacle;
+use App\Expense;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -39,6 +40,15 @@ class AdminController extends Controller
     {
         $stores = Store::all();
         return view('admin.balances', compact('stores'));
+    }
+
+    function expenses(Store $store)
+    {
+        $store = $store->id;
+        $expenses = Expense::where('store_id', $store)->where('type', '0')->get();
+        $ingreses = Expense::where('store_id', $store)->where('type', '1')->orderByDesc('id')->get()->take(3);
+        $last = Expense::where('store_id', $store)->where('type', '0')->get()->last();
+        return view('expenses.index', compact('expenses', 'ingreses', 'last', 'balance', 'store'));
     }
 
     function binnacles()

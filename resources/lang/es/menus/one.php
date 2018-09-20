@@ -14,6 +14,12 @@ return [
         'route' => 'admin.sales',
     ],
 
+    'Expenses' => [
+        'title' => 'Gastos',
+        'icon' => 'fa fa-money',
+        'route' => 'admin.balances',
+    ],
+
     'B2B' => [
         'title' => 'B2B',
         'icon' => 'fa fa-line-chart',
@@ -35,11 +41,6 @@ return [
         'route' => 'admin.notes',
     ],
 
-    'Expenses' => [
-        'title' => 'Saldos',
-        'icon' => 'fa fa-money',
-        'route' => 'admin.balances',
-    ],
 
     'Users' => [
         'title' => 'Usuarios',

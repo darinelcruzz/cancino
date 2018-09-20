@@ -14013,7 +14013,8 @@ Vue.component('file-input', __webpack_require__(69));
 var app = new Vue({
   el: '#app',
   data: {
-    binnacle_reason: ''
+    binnacle_reason: '',
+    concept: ''
   }
 });
 
@@ -48725,22 +48726,7 @@ var render = function() {
         return _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-6 col-md-offset-2" }, [
             _c("div", { staticClass: "row" }, [
-              _c(
-                "div",
-                { staticClass: "col-md-6", attrs: { align: "center" } },
-                [
-                  _c("input", {
-                    attrs: { type: "file", name: "invoice" + index }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    attrs: { type: "hidden", name: "quantity" },
-                    domProps: { value: index }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "col-md-2" }, [
                 _c(
                   "button",
                   {
@@ -48754,7 +48740,22 @@ var render = function() {
                   },
                   [_c("i", { staticClass: "fa fa-times" })]
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-10", attrs: { align: "center" } },
+                [
+                  _c("input", {
+                    attrs: { type: "file", name: "invoice" + index }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "quantity" },
+                    domProps: { value: index }
+                  })
+                ]
+              )
             ])
           ])
         ])

@@ -54,7 +54,7 @@
         <div class="col-md-9">
             <color-box title="Gastos" color="primary">
                 <data-table example="1">
-                    {{ drawHeader('CH','Fecha', 'Monto', 'Concepto', 'Observaciones') }}
+                    {{ drawHeader('CH','Fecha', 'Monto', 'Concepto', 'Observaciones', '') }}
 
                     <template slot="body">
                         @foreach($expenses as $expense)
@@ -64,6 +64,11 @@
                                 <td>{{ fnumber($expense->amount) }}</td>
                                 <td>{{ $expense->concept }}</td>
                                 <td>{{ $expense->observations }}</td>
+                                <td>
+                                    @if ($expense->concept == 'Otros gastos')
+                                        <a href="{{ route('expenses.show', ['id' => $expense->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </template>

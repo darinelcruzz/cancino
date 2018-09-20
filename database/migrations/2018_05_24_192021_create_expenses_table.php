@@ -18,7 +18,6 @@ class CreateExpensesTable extends Migration
             $table->string('observations')->nullable();
             $table->integer('store_id');
             $table->integer('type');
-            $table->longText('invoices')->nullable();
 
             $table->timestamps();
         });

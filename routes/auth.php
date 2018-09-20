@@ -21,6 +21,7 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('detalles/{expense}', usesas($ctrl, 'show'));
     Route::get('cancelar/{expense}', usesas($ctrl, 'destroy'));
 });
 
@@ -118,5 +119,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('saldos', usesas($ctrl, 'balances'));
+    Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
 });

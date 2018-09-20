@@ -80,14 +80,16 @@ return [
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-money',
-        'route' => 'expenses.index',
-        'noti' => '.'
-    ],
-    'ExpensesAdmin' => [
-        'title' => 'Saldos',
-        'icon' => 'fa fa-money',
-        'route' => 'admin.balances',
-        'noti' => '.'
+        'submenu' => [
+            'Store' => [
+                'title' => 'Tienda',
+                'route' => 'expenses.index',
+            ],
+            'Admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.balances',
+            ],
+        ],
     ],
 
     'Users' => [
