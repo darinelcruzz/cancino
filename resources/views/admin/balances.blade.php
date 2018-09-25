@@ -11,7 +11,7 @@
                     <div class="inner">
                         <h4><b>{{ App\Store::find($i)->name }}</b></h4>
                         <h3 align="center"><b>{{ fnumber(App\Expense::balanceByStore($i)) }}</b></h3>
-                        <h4 align="center">{{ fdate(App\Expense::lastUpdate($i)->created_at, 'd/M/Y') }}</h4>
+                        <h4 align="center">{{ fdate(App\Expense::lastUpdate($i)->date, 'd/M/Y', 'Y-m-d') }}</h4>
                     </div>
                     <div class="icon">
                         <i class="fa fa-dollar"></i>

@@ -14,7 +14,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>CH:</b>{{ $last ? $last->check + 1 : 1 }}</h4>
                             <h3 align="center"><b>{{ fnumber(App\Expense::balanceByStore($store)) }}</b></h3>
-                            <h4 align="center">{{ fdate(App\Expense::lastUpdate($store)->created_at,'d/M/Y') }}</h4>
+                            <h4 align="center">{{ fdate(App\Expense::lastUpdate($store)->date,'d/M/Y', 'Y-m-d') }}</h4>
                         </div>
                         <div class="icon">
                             <i class="fa fa-dollar"></i>
