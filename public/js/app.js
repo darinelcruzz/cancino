@@ -48747,7 +48747,11 @@ var render = function() {
                 { staticClass: "col-md-10", attrs: { align: "center" } },
                 [
                   _c("input", {
-                    attrs: { type: "file", name: "invoice" + index }
+                    attrs: {
+                      type: "file",
+                      name: "invoice" + index,
+                      accept: "application/pdf"
+                    }
                   }),
                   _vm._v(" "),
                   _c("input", {

@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="css/web/main.css" />
 		<noscript><link rel="stylesheet" href="css/web/noscript.css" /></noscript>
+		<script src="https://use.fontawesome.com/4dbd648825.js"></script>
 	</head>
 	<body class="is-preload">
 		<div id="wrapper">
