@@ -23,8 +23,8 @@
         @endfor
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <color-box title="Editar" color="info">
+        <div class="col-md-12 col-lg-6">
+            <color-box title="Ingresos" color="success">
                 {!! Form::open(['method' => 'POST', 'route' => 'expenses.store']) !!}
                     <div class="row">
                         <div class="col-md-6">
@@ -43,6 +43,34 @@
                             </div>
                         </div>
                         <input type="hidden" name="type" value="1">
+                    {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
+
+                {!! Form::close() !!}
+            </color-box>
+        </div>
+        <div class="col-md-12 col-lg-6">
+            <color-box title="Gastos sin cheque" color="danger">
+                {!! Form::open(['method' => 'POST', 'route' => 'expenses.store']) !!}
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Field::select('store_id',
+                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Plaza'], null,
+                                ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon', 'label' => 'Tienda'], ['icon' => 'map-pin'])
+                            !!}
+                        </div>
+                        <div class="col-md-6">
+                            {!! Field::number('amount', ['tpl' => 'lte/withicon'], ['icon' => 'dollar']) !!}
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::date('date', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
+                            </div>
+                        </div>
+                        <input type="hidden" name="type" value="0">
                     {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
 
                 {!! Form::close() !!}
