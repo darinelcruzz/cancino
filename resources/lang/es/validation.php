@@ -204,5 +204,6 @@ return [
         'past_sale' => 'año anterior',
         'past_point' => 'punto anterior',
         'concept' => 'concepto',
+        'public' => 'público',
     ],
 ];

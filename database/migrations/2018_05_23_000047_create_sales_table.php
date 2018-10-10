@@ -13,10 +13,7 @@ class CreateSalesTable extends Migration
 
             $table->date('date_sale');
             $table->double('cash')->nullable();
-            $table->double('transfer')->nullable();
-            $table->double('check')->nullable();
-            $table->double('tdebit')->nullable();
-            $table->double('tcredit')->nullable();
+            $table->double('public')->nullable();
             $table->double('total')->nullable();
             $table->integer('store_id');
             $table->integer('user_id');

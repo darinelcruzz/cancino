@@ -28,22 +28,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             {!! Field::number('cash', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
                         </div>
-                        <div class="col-md-4">
-                            {!! Field::number('transfer', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'exchange']) !!}
-                        </div>
-                        <div class="col-md-4">
-                            {!! Field::number('check', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'pencil-square-o']) !!}
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('tdebit', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'credit-card']) !!}
-                        </div>
-                        <div class="col-md-6">
-                            {!! Field::number('tcredit', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'credit-card-alt']) !!}
+                            {!! Field::number('public', ['tpl' => 'lte/withicon', 'step' => '0.01', 'placeholder' => 'Total a precio público'], ['icon' => 'users']) !!}
                         </div>
                     </div>
                     <div class="row">

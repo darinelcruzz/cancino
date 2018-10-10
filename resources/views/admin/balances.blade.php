@@ -34,7 +34,7 @@
                             !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('amount', ['tpl' => 'lte/withicon'], ['icon' => 'dollar']) !!}
+                            {!! Field::number('amount', ['tpl' => 'lte/withicon', 'min' => '0', 'step' => '0.01'], ['icon' => 'dollar']) !!}
                         </div>
                     </div>
                         <div class="row">
@@ -59,7 +59,7 @@
                             !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('amount', ['tpl' => 'lte/withicon'], ['icon' => 'dollar']) !!}
+                            {!! Field::number('amount', ['tpl' => 'lte/withicon', 'min' => '0', 'step' => '0.01'], ['icon' => 'dollar']) !!}
                         </div>
                     </div>
                         <div class="row">
