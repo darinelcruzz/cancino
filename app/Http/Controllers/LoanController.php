@@ -40,6 +40,14 @@ class LoanController extends Controller
         return view('loans.show', compact('loan'));
     }
 
+    function details(Loan $loan)
+    {
+        $invoice = Loan::where('invoice', $loan->invoice)->where('from', $loan->from)->get();
+        $info = $loan->invoice . ' de ' . $loan->fromr->name . ' a ' . $loan->tor->name;
+
+        return view('loans.invoice', compact('invoice', 'info'));
+    }
+
     function agree(Loan $loan)
     {
         if ($loan->status == 'solicitado') {
@@ -54,7 +62,7 @@ class LoanController extends Controller
             }
         }elseif ($loan->status == 'facturado') {
             $loan->update(['status' => 'pagado']);
-            return redirect(route('admin.loans'));
+            return redirect(route('admin.loans', $loan->from));
         }
         return redirect(route('loans.index'));
     }

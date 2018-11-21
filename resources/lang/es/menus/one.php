@@ -24,10 +24,6 @@ return [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',
         'submenu' => [
-            'Store' => [
-                'title' => 'Tienda',
-                'route' => 'loans.index',
-            ],
             'Chiapas' => [
                 'title' => 'Chiapas',
                 'route' => ['admin.loans', 2]

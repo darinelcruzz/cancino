@@ -86,6 +86,7 @@ Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('detalles/{loan}', usesas($ctrl, 'show'));
+	Route::get('factura/{loan}', usesas($ctrl, 'details'));
 	Route::get('editar/{loan}', usesas($ctrl, 'agree'));
     Route::post('editar', usesas($ctrl, 'pay'));
     Route::post('facturar', usesas($ctrl, 'invoice'));
