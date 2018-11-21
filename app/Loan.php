@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Loan extends Model
 {
     protected $fillable = ['from', 'to', 'item', 'quantity', 'q1',
-    'd1', 'q2', 'd2', 'q3', 'd3','status', 'user_id'];
+    'd1', 'q2', 'd2', 'q3', 'd3','status', 'user_id', 'invoice', 'invoice_date'];
 
     function fromr()
     {

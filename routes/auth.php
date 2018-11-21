@@ -121,4 +121,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('saldos', usesas($ctrl, 'balances'));
     Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
+    Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
 });

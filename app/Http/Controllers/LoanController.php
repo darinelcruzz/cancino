@@ -52,6 +52,9 @@ class LoanController extends Controller
             }else {
                 $loan->update(['status' => 'parcialmente']);
             }
+        }elseif ($loan->status == 'facturado') {
+            $loan->update(['status' => 'pagado']);
+            return redirect(route('admin.loans'));
         }
         return redirect(route('loans.index'));
     }

@@ -58,8 +58,28 @@ return [
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',
-        'route' => 'loans.index',
-        'noti' => '.'
+        'submenu' => [
+            'Store' => [
+                'title' => 'Tienda',
+                'route' => 'loans.index',
+            ],
+            'Chiapas' => [
+                'title' => 'Chiapas',
+                'route' => ['admin.loans', 2]
+            ],
+            'Soconusco' => [
+                'title' => 'Soconusco',
+                'route' => ['admin.loans', 3]
+            ],
+            'Altos' => [
+                'title' => 'Altos',
+                'route' => ['admin.loans', 4]
+            ],
+            'Plaza' => [
+                'title' => 'Plaza',
+                'route' => ['admin.loans', 5]
+            ],
+        ],
     ],
 
     'Notes' => [

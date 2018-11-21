@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Shopping;
 use App\Sale;
 use App\Note;
 use App\Store;
 use App\Binnacle;
 use App\Expense;
-use Illuminate\Http\Request;
+use App\Loan;
 
 class AdminController extends Controller
 {
@@ -61,5 +61,13 @@ class AdminController extends Controller
         $plannings = Binnacle::where('status', 'pendiente')->get();
 
         return view('admin.binnacles', compact('activitys', 'plannings'));
+    }
+
+    function loans(Store $store)
+    {
+        $lent = Loan::where('to', $store->id)->get();
+        $borrowed = Loan::where('from', $store->id)->get();
+
+        return view('admin.loans', compact('lent', 'borrowed', 'store'));
     }
 }

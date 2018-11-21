@@ -20,6 +20,33 @@ return [
         'route' => 'admin.balances',
     ],
 
+    'Loans' => [
+        'title' => 'Prestamos',
+        'icon' => 'fa fa-random',
+        'submenu' => [
+            'Store' => [
+                'title' => 'Tienda',
+                'route' => 'loans.index',
+            ],
+            'Chiapas' => [
+                'title' => 'Chiapas',
+                'route' => ['admin.loans', 2]
+            ],
+            'Soconusco' => [
+                'title' => 'Soconusco',
+                'route' => ['admin.loans', 3]
+            ],
+            'Altos' => [
+                'title' => 'Altos',
+                'route' => ['admin.loans', 4]
+            ],
+            'Plaza' => [
+                'title' => 'Plaza',
+                'route' => ['admin.loans', 5]
+            ],
+        ],
+    ],
+
     'B2B' => [
         'title' => 'B2B',
         'icon' => 'fa fa-line-chart',

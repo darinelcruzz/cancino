@@ -1,6 +1,6 @@
 @extends('lte.root')
 @push('pageTitle')
-    Ventas | Lista
+    Prestamos | Lista
 @endpush
 
 @push('headerTitle')
