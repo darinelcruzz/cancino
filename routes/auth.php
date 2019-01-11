@@ -85,12 +85,19 @@ Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-	Route::get('detalles/{loan}', usesas($ctrl, 'show'));
-	Route::get('factura/{loan}', usesas($ctrl, 'details'));
 	Route::get('editar/{loan}', usesas($ctrl, 'agree'));
     Route::post('editar', usesas($ctrl, 'pay'));
-    Route::post('facturar', usesas($ctrl, 'invoice'));
     Route::get('cancelar/{loan}', usesas($ctrl, 'destroy'));
+});
+
+Route::group(['prefix' => 'facturas', 'as' => 'invoices.'], function () {
+    $ctrl = 'InvoiceController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar/{store}', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('detlles/{invoice}', usesas($ctrl, 'show'));
+    Route::get('editar/{invoice}', usesas($ctrl, 'pay'));
+    Route::post('editar', usesas($ctrl, 'pos'));
 });
 
 Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'middleware' => 'admin'], function () {

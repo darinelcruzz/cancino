@@ -9,6 +9,7 @@ use App\Store;
 use App\Binnacle;
 use App\Expense;
 use App\Loan;
+use App\Invoice;
 
 class AdminController extends Controller
 {
@@ -65,9 +66,11 @@ class AdminController extends Controller
 
     function loans(Store $store)
     {
-        $lent = Loan::where('to', $store->id)->get();
-        $borrowed = Loan::where('from', $store->id)->get();
+        $lent = Loan::where('to', $store->id)->where('status', '!=', 'facturado')->get();
+        $borrowed = Loan::where('from', $store->id)->where('status', '!=', 'facturado')->get();
+        $invoiced = Invoice::where('from', $store->id)->where('status', 'pendiente')->get();
+        $payed = Invoice::where('from', $store->id)->where('status', 'pagada')->get();
 
-        return view('admin.loans', compact('lent', 'borrowed', 'store'));
+        return view('admin.loans', compact('lent', 'borrowed', 'store', 'invoiced', 'payed'));
     }
 }

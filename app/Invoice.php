@@ -4,9 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Loan extends Model
+class Invoice extends Model
 {
-    protected $fillable = ['from', 'to', 'item', 'quantity', 'status', 'user_id', 'invoice_id'];
+    protected $fillable = ['folio', 'amount', 'date', 'from', 'to', 'status', 'pos', 'pos_at', 'payed_at'];
+
+    function invoice()
+    {
+        return $this->hasMany(Loan::class);
+    }
 
     function fromr()
     {

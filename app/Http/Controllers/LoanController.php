@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Loan;
+use App\Invoice;
 use Illuminate\Http\Request;
 
 class LoanController extends Controller
 {
     function index()
     {
-        $lent = Loan::where('to', auth()->user()->store_id)->get();
-        $borrowed = Loan::where('from', auth()->user()->store_id)->get();
+        $lent = Loan::where('to', auth()->user()->store_id)->where('status', '!=', 'facturado')->get();
+        $borrowed = Loan::where('from', auth()->user()->store_id)->where('status', '!=', 'facturado')->get();
+        $invoiceLent = Invoice::where('to', auth()->user()->store_id)->get();
+        $invoiceBorrowed = Invoice::where('from', auth()->user()->store_id)->get();
 
-        return view('loans.index', compact('lent', 'borrowed'));
+        return view('loans.index', compact('lent', 'borrowed', 'invoiceLent', 'invoiceBorrowed'));
     }
 
     function create()
@@ -54,15 +57,6 @@ class LoanController extends Controller
             $loan->update(['status' => 'aceptado']);
         }elseif ($loan->status == 'aceptado') {
             $loan->update(['status' => 'recibido']);
-        }elseif ($loan->status == 'devuelto') {
-            if (!$loan->rest) {
-                $loan->update(['status' => 'pagado']);
-            }else {
-                $loan->update(['status' => 'parcialmente']);
-            }
-        }elseif ($loan->status == 'facturado') {
-            $loan->update(['status' => 'pagado']);
-            return redirect(route('admin.loans', $loan->from));
         }
         return redirect(route('loans.index'));
     }
@@ -74,21 +68,5 @@ class LoanController extends Controller
         $loan->update(['status' => 'devuelto']);
 
         return back();
-    }
-
-    function invoice(Request $request)
-    {
-        $this->validate($request, [
-            'invoice' => 'required',
-            'invoice_date' => 'required',
-        ]);
-        Loan::find($request->id)->update($request->all());
-
-        return back();
-    }
-
-    function destroy(Loan $loan)
-    {
-        //
     }
 }
