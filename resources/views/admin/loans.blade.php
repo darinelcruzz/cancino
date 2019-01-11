@@ -53,7 +53,7 @@
                             <tr>
                                 <td>{{ $row->id }}</td>
                                 <td>{{ $row->tor->name }}</td>
-                                <td><a href="{{ route('loans.show', ['id' => $row->id]) }}">{{ $row->item }}</a></td>
+                                <td>{{ $row->item }}</td>
                                 <td>{{ $row->quantity }}</td>
                                 <td>{{ fdate($row->created_at, 'd/M/y') }}</td>
                                 <td>
