@@ -22,7 +22,7 @@
 					</div>
 					<nav>
 						<ul>
-							<li><a href="/login">Intranet</a></li>
+							<li><a href="/inicio">Intranet</a></li>
 						</ul>
 					</nav>
 				</header>
