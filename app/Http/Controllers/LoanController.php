@@ -10,8 +10,8 @@ class LoanController extends Controller
 {
     function index()
     {
-        $lent = Loan::where('to', auth()->user()->store_id)->where('status', '!=', 'facturado')->get();
-        $borrowed = Loan::where('from', auth()->user()->store_id)->where('status', '!=', 'facturado')->get();
+        $lent = Loan::where('to', auth()->user()->store_id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
+        $borrowed = Loan::where('from', auth()->user()->store_id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
         $invoiceLent = Invoice::where('to', auth()->user()->store_id)->get();
         $invoiceBorrowed = Invoice::where('from', auth()->user()->store_id)->get();
 

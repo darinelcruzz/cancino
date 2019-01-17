@@ -66,8 +66,8 @@ class AdminController extends Controller
 
     function loans(Store $store)
     {
-        $lent = Loan::where('to', $store->id)->where('status', '!=', 'facturado')->get();
-        $borrowed = Loan::where('from', $store->id)->where('status', '!=', 'facturado')->get();
+        $lent = Loan::where('to', $store->id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
+        $borrowed = Loan::where('from', $store->id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
         $invoiced = Invoice::where('from', $store->id)->where('status', 'pendiente')->get();
         $payed = Invoice::where('from', $store->id)->where('status', 'pagada')->get();
 

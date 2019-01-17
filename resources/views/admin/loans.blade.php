@@ -114,7 +114,7 @@
                                 <td>{{ $row->id }}</td>
                                 <td>{{ fdate($row->date, 'd-M-y', 'Y-m-d') }}</td>
                                 <td>{{ $row->folio }}</td>
-                                <td>{{ $row->fromr->name }}</td>
+                                <td>{{ $row->tor->name }}</td>
                                 <td>{{ fnumber($row->amount) }}</td>
                                 <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
                                 <td>{{ fdate($row->payed_at, 'd-M-y', 'Y-m-d') }} </td>
