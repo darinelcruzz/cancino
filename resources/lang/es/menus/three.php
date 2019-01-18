@@ -19,6 +19,29 @@ return [
         'route' => 'clients.index'
     ],
 
+    'Loans' => [
+        'title' => 'Prestamos',
+        'icon' => 'fa fa-random',
+        'submenu' => [
+            'Chiapas' => [
+                'title' => 'Chiapas',
+                'route' => ['admin.loans', 2]
+            ],
+            'Soconusco' => [
+                'title' => 'Soconusco',
+                'route' => ['admin.loans', 3]
+            ],
+            'Altos' => [
+                'title' => 'Altos',
+                'route' => ['admin.loans', 4]
+            ],
+            'Plaza' => [
+                'title' => 'Plaza',
+                'route' => ['admin.loans', 5]
+            ],
+        ],
+    ],
+
     'logout' => [
         'title' => 'Salir',
         'icon' => 'fa fa-sign-out',

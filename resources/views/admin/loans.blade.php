@@ -94,7 +94,9 @@
                                 <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
                                 <td>
                                     <a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
-                                    <a href="{{ route('invoices.pay', ['id' => $row->id])}}" class="btn btn-xs btn-primary"><i class="fa fa-dollar"></i></a>
+                                    @if (auth()->user()->level == 1)
+                                        <a href="{{ route('invoices.pay', ['id' => $row->id])}}" class="btn btn-xs btn-primary"><i class="fa fa-dollar"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
