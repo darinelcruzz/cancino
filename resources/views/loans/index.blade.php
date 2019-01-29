@@ -128,7 +128,7 @@
                     {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', 'Pago', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">
                         @foreach($invoiceBorrowed as $row)
-                            @if ($row->status == 'pagado')
+                            @if ($row->status == 'pagada')
                                 <tr>
                                     <td>{{ $row->id }}</td>
                                     <td>{{ fdate($row->date, 'd-M-y', 'Y-m-d') }}</td>

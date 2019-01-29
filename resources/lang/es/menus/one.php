@@ -16,7 +16,7 @@ return [
 
     'Expenses' => [
         'title' => 'Gastos',
-        'icon' => 'fa fa-money',
+        'icon' => 'fa fa-file-invoice-dollar',
         'route' => 'admin.balances',
     ],
 

@@ -26,7 +26,7 @@ class ExpenseController extends Controller
 
     function store(Request $request)
     {
-        $store = auth()->user()->username == 'cynthia' ? 2 : auth()->user()->store_id;
+        $store = auth()->user()->username == 'dulce' ? 2 : auth()->user()->store_id;
         $this->validate($request, [
             'date' => 'required',
             'amount' => 'required',

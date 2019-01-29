@@ -22,7 +22,7 @@ return [
 
     'Expenses' => [
         'title' => 'Saldos',
-        'icon' => 'fa fa-money',
+        'icon' => 'fa fa-file-invoice-dollar',
         'route' => 'admin.balances'
     ],
 

@@ -35,13 +35,7 @@ class StoreController extends Controller
 
     function update(Request $request)
     {
-        $this->validate($request, [
-            'balance' => 'required',
-        ]);
-        Store::find($request->id)->update([
-            'balance' => $request->balance
-        ]);
-        return redirect(route('admin.balances'));
+        //
     }
 
     function destroy(Store $store)

@@ -48,14 +48,13 @@ Route::group(['prefix' => 'nc', 'as' => 'notes.'], function () {
     Route::get('cancelar/{note}', usesas($ctrl, 'destroy'));
 });
 
-Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {
-    $ctrl = 'StoreController';
+Route::group(['prefix' => '200', 'as' => 'wastes.'], function () {
+    $ctrl = 'WasteController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-	Route::get('editar/{store}', usesas($ctrl, 'edit'));
+	Route::get('editar/{waste}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('cancelar/{store}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => 'clientes', 'as' => 'clients.'], function () {
