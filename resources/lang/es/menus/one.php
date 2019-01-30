@@ -15,7 +15,7 @@ return [
     ],
 
     'Expenses' => [
-        'title' => 'Gastos',
+        'title' => 'Saldos',
         'icon' => 'fa fa-file-invoice-dollar',
         'route' => 'admin.balances',
     ],
@@ -64,6 +64,11 @@ return [
         'route' => 'admin.notes',
     ],
 
+    'Waste' => [
+        'title' => '-$200',
+        'icon' => 'fa fa-boxes',
+        'route' => 'admin.wastes'
+    ],
 
     'Users' => [
         'title' => 'Usuarios',

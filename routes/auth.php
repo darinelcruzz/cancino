@@ -53,7 +53,7 @@ Route::group(['prefix' => '200', 'as' => 'wastes.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-	Route::get('editar/{waste}', usesas($ctrl, 'edit'));
+	Route::get('editar/{store}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
 });
 
@@ -129,4 +129,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
+    Route::get('200', usesas($ctrl, 'wastes'));
 });

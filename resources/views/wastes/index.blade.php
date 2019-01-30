@@ -31,8 +31,8 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-12">
-                    <color-box title="Pendientes" color="danger" button>
-                        <data-table example="1">
+                    <color-box title="Pendientes  {{ count($pendings) }}" color="danger" button>
+                        <data-table example="2">
                             {{ drawHeader('Folio','Modelo', 'Descripción', 'Fecha') }}
                             <template slot="body">
                                 @foreach($pendings as $row)
@@ -52,15 +52,20 @@
                 <div class="col-md-12">
                     <color-box title="Destruidos" color="success" button collapsed>
                         <data-table example="1">
-                            {{ drawHeader('Folio','Modelo', 'Fecha', 'Pos', 'Fecha Pos') }}
+                            {{ drawHeader('Folio','Modelo', 'Descripción', 'Pos') }}
                             <template slot="body">
                                 @foreach($complete as $row)
                                     <tr>
                                         <td>{{ $row->id }}</td>
                                         <td>{{ $row->item }}</td>
-                                        <td>{{ fdate($row->created_at, 'd-M-y') }}</td>
-                                        <td>{{ $row->pos }}</td>
-                                        <td>{{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
+                                        <td>
+                                            {{ $row->description }}<br>
+                                            {{ fdate($row->created_at, 'd-M-y') }}
+                                        </td>
+                                        <td>
+                                            {{ $row->pos }}<br>
+                                            {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </template>

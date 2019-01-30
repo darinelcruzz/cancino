@@ -2,14 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Shopping;
-use App\Sale;
-use App\Note;
-use App\Store;
-use App\Binnacle;
-use App\Expense;
-use App\Loan;
-use App\Invoice;
+use App\{Shopping,Sale,Note,Store,Binnacle,Expense,Loan,Invoice,Waste};
 
 class AdminController extends Controller
 {
@@ -72,5 +65,13 @@ class AdminController extends Controller
         $payed = Invoice::where('from', $store->id)->where('status', 'pagada')->get();
 
         return view('admin.loans', compact('lent', 'borrowed', 'store', 'invoiced', 'payed'));
+    }
+
+    function wastes()
+    {
+        $pendings = Waste::where('status', 'pendiente')->get()->groupBy('store_id');
+        $complete = Waste::where('status', 'destruido')->get()->groupBy('store_id');
+
+        return view('admin.wastes', compact('pendings', 'complete'));
     }
 }

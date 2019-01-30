@@ -15,6 +15,7 @@ class CreateWastesTable extends Migration
             $table->string('description');
             $table->integer('store_id');
             $table->string('status')->default('pendiente');
+            $table->integer('pos')->nullable();
             $table->date('pos_at')->nullable();
             $table->integer('user_id');
 

@@ -178,6 +178,7 @@ return [
         'date_nc' => 'fecha de nc',
         'date_sale' => 'fecha de venta',
         'date_pos' => 'fecha en POS',
+        'pos_at' => 'fecha en POS',
         'items' => 'articulos',
         'observations' => 'observaciones',
         'document' => 'Documento POS',
