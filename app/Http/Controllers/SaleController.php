@@ -29,6 +29,8 @@ class SaleController extends Controller
             'date_sale' => 'required',
             'cash' => 'required',
             'total' => 'required',
+            'public' => 'required',
+            'store_id' => 'required',
         ]);
 
         $sale = Sale::create($request->all());

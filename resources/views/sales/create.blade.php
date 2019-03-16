@@ -32,7 +32,7 @@
                             {!! Field::number('cash', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('public', ['tpl' => 'lte/withicon', 'step' => '0.01', 'placeholder' => 'Total a precio público'], ['icon' => 'users']) !!}
+                            {!! Field::number('public', ['tpl' => 'lte/withicon', 'step' => '0.01', 'placeholder' => 'Sin iva (Shop es precio Shop)'], ['icon' => 'users']) !!}
                         </div>
                     </div>
                     <div class="row">

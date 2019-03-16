@@ -10,7 +10,7 @@ class Sale extends Model
 {
     use Notifiable;
 
-    protected $fillable = ['date_sale', 'cash', 'transfer', 'check', 'tdebit', 'tcredit', 'credit',
+    protected $fillable = ['date_sale', 'cash', 'public',
     'total', 'store_id', 'status', 'user_id', 'date_deposit'];
 
     function store()
