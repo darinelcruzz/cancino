@@ -9,12 +9,7 @@ class SaleController extends Controller
 {
     function index()
     {
-        if (auth()->user()->username == 'cynthia') {
-            $store = 2;
-        }else {
-            $store = auth()->user()->store_id;
-        }
-        $sales = Sale::where('store_id', $store)->get();
+        $sales = Sale::where('store_id', auth()->user()->store_id)->get();
         return view('sales.index', compact('sales'));
     }
 

@@ -10,7 +10,7 @@ class ExpenseController extends Controller
 {
     function index()
     {
-        $store = auth()->user()->username == 'cynthia' ? 2 : auth()->user()->store_id;
+        $store = auth()->user()->username == 'dulce' ? 2 : auth()->user()->store_id;
         $expenses = Expense::where('store_id', $store)->where('type', '0')->get();
         $ingreses = Expense::where('store_id', $store)->where('type', '1')->orderByDesc('id')->get()->take(3);
         $last = Expense::where('store_id', $store)->where('type', '0')->get()->last();

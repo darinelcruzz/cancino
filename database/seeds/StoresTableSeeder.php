@@ -16,26 +16,33 @@ class StoresTableSeeder extends Seeder
         factory(\App\Store::class)->create([
             'name' => 'Chiapas',
             'color' => 'primary',
-            'type' => 'c',
+            'type' => 'p',
             'star' => '1.2',
             'golden' => '1.2'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Soconusco',
             'color' => 'success',
-            'type' => 'c',
+            'type' => 'p',
             'star' => '1.25',
             'golden' => '1.15'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Altos',
             'color' => 'danger',
-            'type' => 'c',
-            'star' => '1.23',
+            'type' => 'p',
+            'star' => '1.30',
             'golden' => '1.20'
         ]);
         factory(\App\Store::class)->create([
-            'name' => 'Plaza',
+            'name' => 'Gale Tux',
+            'color' => 'info',
+            'type' => 's',
+            'star' => '1.25',
+            'golden' => '1.20'
+        ]);
+        factory(\App\Store::class)->create([
+            'name' => 'Gale Tapa',
             'color' => 'info',
             'type' => 's',
             'star' => '1.25',

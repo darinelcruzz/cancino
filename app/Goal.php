@@ -6,10 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Goal extends Model
 {
-    protected $fillable = ['store_id', 'month', 'year', 'past_sale', 'past_point', 'point', 'days', 'star', 'golden'];
+    protected $fillable = ['store_id', 'month', 'year', 'sale', 'point', 'days', 'star', 'golden'];
 
     function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    function getPointLabelAttribute()
+    {
+        $colors = ['rojo' => '#C81D11', 'negro' => '#000000', 'estrella' => '#008F39', 'dorada' => '#DCBF32'];
+        $icons = ['rojo' => 'circle', 'negro' => 'circle', 'estrella' => 'star', 'dorada' => 'star'];
+        $color = array_key_exists($this->point, $colors) ? $colors[$this->point] : 'default';
+        $icon = array_key_exists($this->point, $icons) ? $icons[$this->point] : 'default';
+        return "<i style='color:$color' class='fa fa-$icon'>";
     }
 }

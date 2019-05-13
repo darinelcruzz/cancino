@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\{Shopping,Sale,Note,Store,Binnacle,Expense,Loan,Invoice,Waste};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal};
 
 class AdminController extends Controller
 {
@@ -73,5 +73,15 @@ class AdminController extends Controller
         $complete = Waste::where('status', 'destruido')->get()->groupBy('store_id');
 
         return view('admin.wastes', compact('pendings', 'complete'));
+    }
+
+    function goals()
+    {
+        $dates = Goal::All()->groupBy('month');
+        $dates->transform(function ($item, $key) {
+            return $item->groupBy('year');
+        });
+
+        return view('admin.goals', compact('dates'));
     }
 }

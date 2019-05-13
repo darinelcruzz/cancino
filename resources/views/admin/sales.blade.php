@@ -4,7 +4,7 @@
 @endpush
 
 @push('headerTitle')
-    @if (auth()->user()->level == 5)
+    @if (auth()->user()->isHelper)
         <a href="{{ route('sales.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
     @endif
 @endpush

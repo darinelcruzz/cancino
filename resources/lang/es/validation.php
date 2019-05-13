@@ -206,5 +206,9 @@ return [
         'past_point' => 'punto anterior',
         'concept' => 'concepto',
         'public' => 'público',
+        'point' => 'punto',
+        'sale' => 'venta',
+        'daysshop' => 'dias shop',
+        'daysprofessional' => 'dias profesional',
     ],
 ];

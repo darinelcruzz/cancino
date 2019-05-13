@@ -44,13 +44,17 @@ return [
                 'title' => 'Tienda',
                 'route' => 'sales.index',
             ],
-            'Goals' => [
-                'title' => 'Metas',
-                'route' => 'goals.create',
-            ],
             'Admin' => [
                 'title' => 'Admin',
                 'route' => 'admin.sales',
+            ],
+            'Goals' => [
+                'title' => 'Metas Tienda',
+                'route' => 'goals.index',
+            ],
+            'GoalsAdmin' => [
+                'title' => 'Metas Admin',
+                'route' => 'admin.goals',
             ],
         ],
     ],

@@ -10,9 +10,13 @@ class GoalController extends Controller
 {
     function index()
     {
-        $goals17 = Goal::where('year', '2017')->get();
-        $goals18 = Goal::where('year', '2018')->get();
-        return view('goals.index', compact('goals17'));
+        $store = auth()->user()->username == 'dulce' ? 2 : auth()->user()->store_id;
+        $dates = Goal::where('store_id', $store)->get()->groupBy('month');
+        $dates->transform(function ($item, $key) {
+            return $item->groupBy('year');
+        });
+
+        return view('goals.index', compact('dates', 'store'));
     }
 
     function create()
@@ -23,19 +27,24 @@ class GoalController extends Controller
     function store(Request $request)
     {
         $this->validate($request, [
-            'store_id' => 'required',
             'month' => 'required',
             'year' => 'required',
-            'past_sale' => 'required',
-            'past_point' => 'required',
+            'daysshop' => 'required',
         ]);
+        $stores = Store::All();
+        foreach ($stores as $store) {
+            if ($store->type == 'p') {
+                $goal = Goal::create($request->except(['daysshop', 'daysprofessional']));
+                $goal->update(['star' => $store->star, 'golden' => $store->golden,
+                                'store_id' => $store->id, 'days' => $request->daysprofessional]);
+            }elseif ($store->type == 's') {
+                $goal = Goal::create($request->except(['daysshop', 'daysprofessional']));
+                $goal->update(['star' => $store->star, 'golden' => $store->golden,
+                                'store_id' => $store->id, 'days' => $request->daysshop]);
+            }
+        }
 
-        $goal = Goal::create($request->all());
-
-        $factors= Store::where('id', $request->store_id)->get();
-        //$note->update(['star'=>'faltante']);
-
-        return redirect(route('goals.index'));
+        return redirect(route('admin.goals'));
     }
 
     function show(Goal $goal)
@@ -43,14 +52,23 @@ class GoalController extends Controller
         //
     }
 
-    function edit(Goal $goal)
+    function edit($month, $year)
     {
-        //
+        $stores = Store::where('type', '!=', 'c')->get();
+        return view('goals.update', compact('stores', 'month', 'year'));
     }
 
-    function update(Request $request, Goal $goal)
+    function update(Request $request)
     {
-        //
+        $stores = Store::where('type', '!=', 'c')->get();
+        foreach ($stores as $store) {
+            $sale = $request->{'sale' . $store->id};
+            $point = $request->{'point' . $store->id};
+            $goal = Goal::where('month', $request->month)->where('year', $request->year)->where('store_id', $store->id)->take(1);
+            $goal->update(['sale' => $sale, 'point' => $point]);
+        }
+
+        return redirect(route('admin.goals'));
     }
 
     function destroy(Goal $goal)

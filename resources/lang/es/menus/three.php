@@ -44,7 +44,7 @@ return [
 
     'logout' => [
         'title' => 'Salir',
-        'icon' => 'fa fa-sign-out',
+        'icon' => 'fa fa-sign-out-alt',
         'route' => 'logout'
     ],
 ];

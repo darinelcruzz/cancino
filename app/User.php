@@ -21,4 +21,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Store::class);
     }
+
+    function getIsHelperAttribute()
+    {
+        return $this->username == 'dulce';
+    }
 }

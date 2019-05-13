@@ -4,25 +4,21 @@
 @endpush
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <color-box title="2017" color="success">
-                <data-table example="1">
-                    {{ drawHeader('', 'Mes', 'Tienda', 'Venta 2017', 'Punto 2017') }}
-
+    @foreach ($dates as $month => $years)
+        <div class="col-md-6">
+            <color-box title="{{ ucfirst(fdate($month, 'F', 'm')) }}" color="{{ auth()->user()->store->color }}" solid button {{ date('m') == $month ? '': 'collapsed' }}>
+                <data-table example="{{ $loop->iteration }}">
+                    {{ drawHeader('Año','Venta') }}
                     <template slot="body">
-                        @foreach($goals17 as $goal)
+                        @foreach ($years as $date => $stores)
                             <tr>
-                                <td>{{ $goal->month }}</td>
-                                <td>{{ fdate($goal->month, 'M', 'm') }}</td>
-                                <td>{{ $goal->store->name }}</td>
-                                <td>{{ fnumber($goal->past_sale) }}</td>
-                                <td>{{ $goal->past_point }}</td>
+                                <td>{{ $date }}</td>
+                                <td>{{ fnumber($stores->sum('sale')) }} {!! $stores->first()->pointLabel !!}</td>
                             </tr>
                         @endforeach
                     </template>
                 </data-table>
             </solid-box>
         </div>
-    </div>
+    @endforeach
 @endsection

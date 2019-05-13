@@ -11,11 +11,9 @@ class CreateGoalsTable extends Migration
         Schema::create('goals', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('store_id');
+            $table->integer('store_id')->nullable();;
             $table->integer('month');
             $table->integer('year');
-            $table->double('past_sale');
-            $table->string('past_point');
             $table->double('sale')->nullable();
             $table->string('point')->nullable();
             $table->integer('days')->nullable();

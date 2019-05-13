@@ -22,6 +22,12 @@ return [
         ],
     ],
 
+    'Waste' => [
+        'title' => '-$200',
+        'icon' => 'fa fa-boxes',
+        'route' => 'wastes.index'
+    ],
+
     'NC' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',
@@ -30,7 +36,7 @@ return [
 
     'logout' => [
         'title' => 'Salir',
-        'icon' => 'fa fa-sign-out',
+        'icon' => 'fa fa-sign-out-alt',
         'route' => 'logout'
     ],
 ];

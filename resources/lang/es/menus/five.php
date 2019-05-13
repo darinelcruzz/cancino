@@ -13,9 +13,15 @@ return [
         'route' => 'sales.index'
     ],
 
+    'Waste' => [
+        'title' => '-$200',
+        'icon' => 'fa fa-boxes',
+        'route' => 'wastes.index'
+    ],
+
     'logout' => [
         'title' => 'Salir',
-        'icon' => 'fa fa-sign-out',
+        'icon' => 'fa fa-sign-out-alt',
         'route' => 'logout'
     ],
 ];

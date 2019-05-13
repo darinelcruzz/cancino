@@ -114,7 +114,7 @@ Route::group(['prefix' => 'metas', 'as' => 'goals.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-	Route::get('editar/{user}', usesas($ctrl, 'edit'));
+	Route::get('editar/{month}/{year}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
 });
@@ -130,4 +130,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
     Route::get('200', usesas($ctrl, 'wastes'));
+    Route::get('metas', usesas($ctrl, 'goals'));
 });
