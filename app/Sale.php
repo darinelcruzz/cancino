@@ -36,4 +36,13 @@ class Sale extends Model
             return 'red';
         }
     }
+    function getDifSaleAttribute()
+    {
+        $now = Goal::where('store_id', auth()->user()->store_id)->where('year', date('Y'))->where('month', date('m'))->first();
+        $pastYear = Goal::where('store_id', auth()->user()->store_id)->where('year', date('Y')-1)->where('month', date('m'))->first();
+        $point = $this->public - ($pastYear->sale/$now->days);
+        $star = $this->public - (($pastYear->sale/$now->days) * $now->star);
+
+        return array($point, $star);
+    }
 }

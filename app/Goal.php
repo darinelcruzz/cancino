@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Goal extends Model
 {
-    protected $fillable = ['store_id', 'month', 'year', 'sale', 'point', 'days', 'star', 'golden'];
+    protected $fillable = ['store_id', 'month', 'year', 'sale', 'point', 'days', 'star', 'golden', 'total'];
 
     function store()
     {

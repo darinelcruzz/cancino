@@ -34,6 +34,7 @@ Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
 	Route::get('editar/{sale}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('cancelar/{sale}', usesas($ctrl, 'destroy'));
+    Route::get('publico', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'nc', 'as' => 'notes.'], function () {

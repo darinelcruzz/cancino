@@ -25,7 +25,7 @@
                                     <td>{{ fnumber($stores->where('store_id', 4)->sum('sale')) }} {!! empty($stores->where('store_id', 4)->first()) ? '' : $stores->where('store_id', 4)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 5)->sum('sale')) }} {!! empty($stores->where('store_id', 5)->first()) ? '' : $stores->where('store_id', 5)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 6)->sum('sale')) }} {!! empty($stores->where('store_id', 6)->first()) ? '' : $stores->where('store_id', 6)->first()->pointLabel !!}</td>
-                                    <td><a href="{{ route('goals.edit', [$month, $date])}}" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a></td>
+                                    <td><a href="{{ route('goals.edit', [$month, $date])}}"><i class="fa fa-edit"></i></a></td>
                                 </tr>
                             @endforeach
                         </template>

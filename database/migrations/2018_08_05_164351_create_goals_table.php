@@ -19,6 +19,7 @@ class CreateGoalsTable extends Migration
             $table->integer('days')->nullable();
             $table->double('star')->nullable();
             $table->double('golden')->nullable();
+            $table->double('total')->nullable();
 
             $table->timestamps();
         });

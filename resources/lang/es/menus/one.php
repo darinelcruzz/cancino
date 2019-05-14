@@ -14,6 +14,25 @@ return [
         'route' => 'admin.sales',
     ],
 
+    'Sales' => [
+        'title' => 'Ventas',
+        'icon' => 'fa fa-money',
+        'submenu' => [
+            'total' => [
+                'title' => 'Generales',
+                'route' => 'admin.sales'
+            ],
+            'public' => [
+                'title' => 'Público',
+                'route' => 'admin.sales'
+            ],
+            'goals' => [
+                'title' => 'Metas',
+                'route' => 'admin.goals'
+            ],
+        ],
+    ],
+
     'Expenses' => [
         'title' => 'Saldos',
         'icon' => 'fa fa-file-invoice-dollar',

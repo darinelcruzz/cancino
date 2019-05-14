@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Depositos" color="success">
+            <color-box title="Depositos pendientes" color="success">
                 <data-table example="1">
                     {{ drawHeader('ID','Fecha', 'Efectivo', 'Total', 'Deposito', 'Tiempo') }}
 

@@ -10,7 +10,16 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money-bill-alt',
-        'route' => 'sales.index'
+        'submenu' => [
+            'total' => [
+                'title' => 'Depositos',
+                'route' => 'sales.index'
+            ],
+            'goals' => [
+                'title' => 'Metas',
+                'route' => 'goals.index'
+            ],
+        ],
     ],
 
     'NC' => [
