@@ -57,11 +57,15 @@ class SaleController extends Controller
         $star = $sales->keyBy('day')->map(function ($sale) use ($date) {
             return $sale->getScale($date)[1];
         });
+        $golden = $sales->keyBy('day')->map(function ($sale) use ($date) {
+            return $sale->getScale($date)[2];
+        });
 
         $chart->labels($public->keys());
         $chart->dataset('Ventas a público', 'line', $public->values())->options(['borderColor' => '#E03317', 'fill' => false]);
         $chart->dataset('Punto negro', 'line', $black->values())->options(['borderColor' => '#000000', 'fill' => false]);
         $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);
+        $chart->dataset('Dorada', 'line', $golden->values())->options(['borderColor' => '#ACAC0D', 'fill' => false]);
 
         return view('sales.show', compact('sales', 'date', 'perDay', 'chart'));
     }

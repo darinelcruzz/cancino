@@ -10,9 +10,18 @@
         @endif
         <div class="col-md-6">
             <color-box title="{{ ucfirst(fdate($month, 'F', 'm')) }}" color="{{ auth()->user()->store->color }}" solid button {{ date('m') == $month ? '': 'collapsed' }}>
-                <data-table example="{{ $loop->iteration }}">
-                    {{ drawHeader('Año','Venta', 'Negro', 'Estrella', 'Dorada') }}
-                    <template slot="body">
+                <table class="table table-striped table-bordered no-pagination">
+                    <thead>
+                        <tr>
+                            <th>Año</th>
+                            <th>Ventas</th>
+                            <th>Negro</th>
+                            <th>Estrella</th>
+                            <th>Dorada</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
                         @foreach ($years as $date => $stores)
                             <tr>
                                 <td>{{ $date }}</td>
@@ -22,8 +31,8 @@
                                 <td>{{ fnumber($stores->first()->goldenPoint) }}</td>
                             </tr>
                         @endforeach
-                    </template>
-                </data-table>
+                    </tbody>
+                </table>
             </solid-box>
         </div>
         @if ($loop->iteration % 2 == 0)

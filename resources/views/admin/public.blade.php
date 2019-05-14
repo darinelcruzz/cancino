@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            {!! Form::open(['method' => 'POST', 'route' => 'sales.show']) !!}
+            {!! Form::open(['method' => 'POST', 'route' => ['admin.public', $store]]) !!}
 
                 <div class="row">
                     <div class="col-md-10">
@@ -14,17 +14,16 @@
                     </div>
                     <div class="col-md-2">
                         <label>&nbsp;</label><br>
-                        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-search"></i></button>
+                        <button type="submit" class="btn btn-{{ $store->color }} btn-sm"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-
             {!! Form::close() !!}
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Ventas de {{ fdate($date, 'F Y', 'Y-m') }}" color="success">
+            <color-box title="Ventas de {{ fdate($date, 'F Y', 'Y-m') . ' de ' . $store->name }} " color="{{ $store->color }}">
                 {!! $chart->container() !!}
             </solid-box>
         </div>

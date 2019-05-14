@@ -36,13 +36,17 @@ class Sale extends Model
             return 'red';
         }
     }
-    function getScale($date)
+    function getScale($date, $store = NULL)
     {
-        $now = Goal::where('store_id', auth()->user()->store_id)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->first();
-        $pastYear = Goal::where('store_id', auth()->user()->store_id)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->first();
+        if ($store == NULL) {
+            $store = auth()->user()->store_id;
+        }
+        $now = Goal::where('store_id', $store)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->first();
+        $pastYear = Goal::where('store_id', $store)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->first();
         $point = round($pastYear->sale/$now->days, 2);
         $star = round(($pastYear->sale/$now->days) * $now->star, 2);
+        $golden = round($star * $now->golden, 2);
 
-        return array($point, $star);
+        return array($point, $star, $golden);
     }
 }

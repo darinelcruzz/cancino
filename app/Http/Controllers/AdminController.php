@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Charts\TestChart;
 use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal};
 
 class AdminController extends Controller
@@ -20,7 +21,7 @@ class AdminController extends Controller
 
     function sales()
     {
-        $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')->orderBy('month', 'des')->get()->groupBy('month');
+        $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')->orderBy('month', 'des')->get()->groupBy('month')->take(12);
         $dates->transform(function ($item, $key) {
             return $item->groupBy('date_sale');
         });
@@ -83,5 +84,39 @@ class AdminController extends Controller
         });
 
         return view('admin.goals', compact('dates'));
+    }
+
+    function public(Request $request, Store $store)
+    {
+        $date = isset($request->date) ? $request->date : date('Y-m');
+
+        $chart = new TestChart;
+
+        $sales = Sale::where('store_id', $store->id)
+            ->whereMonth('date_sale', substr($date, 5))
+            ->whereYear('date_sale', substr($date, 0, 4))
+            ->selectRaw('public, DATE_FORMAT(date_sale, "%d") as day')
+            ->get();
+
+        $public = $sales->keyBy('day')->map(function ($sale) {
+            return $sale->public;
+        });
+        $black = $sales->keyBy('day')->map(function ($sale) use ($date, $store) {
+            return $sale->getScale($date, $store->id)[0];
+        });
+        $star = $sales->keyBy('day')->map(function ($sale) use ($date, $store) {
+            return $sale->getScale($date, $store->id)[1];
+        });
+        $golden = $sales->keyBy('day')->map(function ($sale) use ($date, $store) {
+            return $sale->getScale($date, $store->id)[2];
+        });
+
+        $chart->labels($public->keys());
+        $chart->dataset('Ventas a público', 'line', $public->values())->options(['borderColor' => '#E03317', 'fill' => false]);
+        $chart->dataset('Punto negro', 'line', $black->values())->options(['borderColor' => '#000000', 'fill' => false]);
+        $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);
+        $chart->dataset('Dorada', 'line', $golden->values())->options(['borderColor' => '#ACAC0D', 'fill' => false]);
+
+        return view('admin.public', compact('sales', 'date', 'perDay', 'chart', 'store'));
     }
 }

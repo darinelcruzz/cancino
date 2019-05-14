@@ -19,7 +19,7 @@ return [
 
     'B2B' => [
         'title' => 'B2B',
-        'icon' => 'fa fa-line-chart',
+        'icon' => 'fas fa-hands-helping',
         'submenu' => [
             'Binnacle' => [
                 'title' => 'Bitacora',
@@ -55,6 +55,29 @@ return [
             'GoalsAdmin' => [
                 'title' => 'Metas Admin',
                 'route' => 'admin.goals',
+            ],
+        ],
+    ],
+
+    'Public' => [
+        'title' => 'Ventas Publico',
+        'icon' => 'fa fa-line-chart',
+        'submenu' => [
+            'Chiapas' => [
+                'title' => 'Chiapas',
+                'route' => ['admin.public', 2]
+            ],
+            'Soconusco' => [
+                'title' => 'Soconusco',
+                'route' => ['admin.public', 3]
+            ],
+            'Altos' => [
+                'title' => 'Altos',
+                'route' => ['admin.public', 4]
+            ],
+            'Plaza' => [
+                'title' => 'Plaza',
+                'route' => ['admin.public', 5]
             ],
         ],
     ],

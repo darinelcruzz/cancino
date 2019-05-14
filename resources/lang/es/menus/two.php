@@ -14,6 +14,29 @@ return [
         'route' => 'admin.sales'
     ],
 
+    'Public' => [
+        'title' => 'Ventas Publico',
+        'icon' => 'fa fa-line-chart',
+        'submenu' => [
+            'Chiapas' => [
+                'title' => 'Chiapas',
+                'route' => ['admin.public', 2]
+            ],
+            'Soconusco' => [
+                'title' => 'Soconusco',
+                'route' => ['admin.public', 3]
+            ],
+            'Altos' => [
+                'title' => 'Altos',
+                'route' => ['admin.public', 4]
+            ],
+            'Plaza' => [
+                'title' => 'Plaza',
+                'route' => ['admin.public', 5]
+            ],
+        ],
+    ],
+
     'NC' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',

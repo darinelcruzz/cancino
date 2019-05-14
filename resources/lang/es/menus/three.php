@@ -4,7 +4,43 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'route' => 'admin.sales',
+        'submenu' => [
+            'total' => [
+                'title' => 'Generales',
+                'route' => 'admin.sales'
+            ],
+            'public' => [
+                'title' => 'Público',
+                'route' => 'admin.sales'
+            ],
+            'goals' => [
+                'title' => 'Metas',
+                'route' => 'admin.goals'
+            ],
+        ],
+    ],
+
+    'Public' => [
+        'title' => 'Ventas Publico',
+        'icon' => 'fa fa-line-chart',
+        'submenu' => [
+            'Chiapas' => [
+                'title' => 'Chiapas',
+                'route' => ['admin.public', 2]
+            ],
+            'Soconusco' => [
+                'title' => 'Soconusco',
+                'route' => ['admin.public', 3]
+            ],
+            'Altos' => [
+                'title' => 'Altos',
+                'route' => ['admin.public', 4]
+            ],
+            'Plaza' => [
+                'title' => 'Plaza',
+                'route' => ['admin.public', 5]
+            ],
+        ],
     ],
 
     'Binnacle' => [
