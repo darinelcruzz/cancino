@@ -22,7 +22,7 @@
                 @include('lte.footer')
             </div>
         </div>
-
+        @yield('chart')
         @include('lte.scripts')
 
     </body>

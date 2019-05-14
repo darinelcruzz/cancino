@@ -15,6 +15,10 @@ return [
                 'title' => 'Depositos',
                 'route' => 'sales.index'
             ],
+            'public' => [
+                'title' => 'Público',
+                'route' => 'sales.show'
+            ],
             'goals' => [
                 'title' => 'Metas',
                 'route' => 'goals.index'

@@ -24,7 +24,7 @@
          btn.form.submit();
      }
  </script>
- 
+
 <script>
 	// Data Table With Full Features
     $("#example1").DataTable({
@@ -45,7 +45,17 @@
     $("#example6").DataTable({
       "order":[[ 0 , "desc"]]
     });
-    $("#exampleN").DataTable({
+    $("#example7").DataTable({
       "order":false
+    });
+    $("#example8").DataTable({
+      "order":false
+    });
+    $("#example9").DataTable({
+      "order":false
+    });
+    $(".no-pagination").DataTable({
+      "order":[[ 0 , "desc"]],
+      paging: false
     });
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sale;
 use App\Goal;
 use App\Date;
+use App\Charts\TestChart;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -37,15 +38,32 @@ class SaleController extends Controller
         return redirect(route('admin.sales'));
     }
 
-    function show()
+    function show(Request $request)
     {
-        $days = Goal::where('store_id', auth()->user()->store_id)->where('year', date('Y'))->where('month', date('m'))->first()->days;
-        $pastYear = Goal::where('store_id', auth()->user()->store_id)->where('year', date('Y')-1)->where('month', date('m'))->first()->sale;
-        $perDay = $pastYear/$days;
-        $sales = Sale::where('store_id', auth()->user()->store_id)->get();
-        $month = date('m') . '-' . date('Y');
+        $date = isset($request->date) ? $request->date: date('Y-m');
+        $chart = new TestChart;
+        $sales = Sale::where('store_id', auth()->user()->store_id)
+            ->whereMonth('date_sale', substr($date, 5))
+            ->whereYear('date_sale', substr($date, 0, 4))
+            ->selectRaw('public, DATE_FORMAT(date_sale, "%d") as day')
+            ->get();
 
-        return view('sales.show', compact('sales', 'month', 'perDay'));
+        $public = $sales->keyBy('day')->map(function ($sale) {
+            return $sale->public;
+        });
+        $black = $sales->keyBy('day')->map(function ($sale) use ($date) {
+            return $sale->getScale($date)[0];
+        });
+        $star = $sales->keyBy('day')->map(function ($sale) use ($date) {
+            return $sale->getScale($date)[1];
+        });
+
+        $chart->labels($public->keys());
+        $chart->dataset('Ventas a público', 'line', $public->values())->options(['borderColor' => '#E03317', 'fill' => false]);
+        $chart->dataset('Punto negro', 'line', $black->values())->options(['borderColor' => '#000000', 'fill' => false]);
+        $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);
+
+        return view('sales.show', compact('sales', 'date', 'perDay', 'chart'));
     }
 
     function edit(Sales $sales)

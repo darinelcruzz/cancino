@@ -36,12 +36,12 @@ class Sale extends Model
             return 'red';
         }
     }
-    function getDifSaleAttribute()
+    function getScale($date)
     {
-        $now = Goal::where('store_id', auth()->user()->store_id)->where('year', date('Y'))->where('month', date('m'))->first();
-        $pastYear = Goal::where('store_id', auth()->user()->store_id)->where('year', date('Y')-1)->where('month', date('m'))->first();
-        $point = $this->public - ($pastYear->sale/$now->days);
-        $star = $this->public - (($pastYear->sale/$now->days) * $now->star);
+        $now = Goal::where('store_id', auth()->user()->store_id)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->first();
+        $pastYear = Goal::where('store_id', auth()->user()->store_id)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->first();
+        $point = round($pastYear->sale/$now->days, 2);
+        $star = round(($pastYear->sale/$now->days) * $now->star, 2);
 
         return array($point, $star);
     }

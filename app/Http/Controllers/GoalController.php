@@ -10,13 +10,13 @@ class GoalController extends Controller
 {
     function index()
     {
-        $store = auth()->user()->username == 'dulce' ? 2 : auth()->user()->store_id;
-        $dates = Goal::where('store_id', $store)->get()->groupBy('month');
+        $dates = Goal::where('store_id', auth()->user()->store_id)->get()->groupBy('month');
         $dates->transform(function ($item, $key) {
             return $item->groupBy('year');
         });
+        // dd($dates);
 
-        return view('goals.index', compact('dates', 'store'));
+        return view('goals.index', compact('dates'));
     }
 
     function create()

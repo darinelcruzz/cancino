@@ -21,4 +21,29 @@ class Goal extends Model
         $icon = array_key_exists($this->point, $icons) ? $icons[$this->point] : 'default';
         return "<i style='color:$color' class='fa fa-$icon'>";
     }
+
+    function getFormerSaleAttribute()
+    {
+        $goal = Goal::where('month', $this->month)
+            ->where('year', $this->year - 1)
+            ->where('store_id', $this->store_id)
+            ->first();
+
+        return !empty($goal) ? $goal->sale: 0;
+    }
+
+    function getBlackPointAttribute()
+    {
+        return $this->formerSale;
+    }
+
+    function getStarPointAttribute()
+    {
+        return $this->formerSale * $this->star;
+    }
+
+    function getGoldenPointAttribute()
+    {
+        return $this->formerSale * $this->star * $this->golden;
+    }
 }
