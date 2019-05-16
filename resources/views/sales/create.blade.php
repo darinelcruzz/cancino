@@ -11,7 +11,7 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'sales.store']) !!}
 
                     <div class="row">
-                        @if (auth()->user()->store_id == 1)
+                        @if (auth()->user()->isHelper)
                             <div class="col-md-6">
                                 {!! Field::select('store_id',
                                     ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Plaza'], null,
