@@ -67,7 +67,7 @@ class NoteController extends Controller
             $note->update([
                 'status' => 'aplicada',
                 'document' => $request->document,
-                'date_pos' => $request->date_pos
+                'date_pos' => $request->date_pos,
                 'observations' => $note->observations
             ]);
             return redirect(route('admin.notes'));
