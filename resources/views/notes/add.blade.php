@@ -24,7 +24,6 @@
                         </div>
                     </div>
                     <hr>
-                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="id" value="{{ $note->id }}">
                     <div class="row">
                         <div class="col-md-6">

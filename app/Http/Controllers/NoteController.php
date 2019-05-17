@@ -68,6 +68,7 @@ class NoteController extends Controller
                 'status' => 'aplicada',
                 'document' => $request->document,
                 'date_pos' => $request->date_pos
+                'observations' => $note->observations
             ]);
             return redirect(route('admin.notes'));
         }else if(isset($_POST['pending'])){
