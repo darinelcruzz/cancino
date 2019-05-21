@@ -11,7 +11,7 @@
     @for ($i=2; $i < 6; $i++)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" button collapsed>
+                <color-box title="{{ App\Store::find($i)->name . ' ' . count($notes->where('store_id', $i)->where('status', '!=', 'aplicada')) }}" color="{{ App\Store::find($i)->color }}" button collapsed>
                     <data-table example="{{ $i }}">
                         {{ drawHeader('Folio','Fecha NC', 'Monto', 'Productos', 'Doc POS', 'Fecha POS', 'Observaciones', 'Estado', '') }}
                         <template slot="body">

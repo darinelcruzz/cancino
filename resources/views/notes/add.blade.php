@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <color-box title="Agregar nota de crédito" color="success" solid>
+            <color-box title="Agregar nota de crédito {{ $note->folio }}" color="success" solid>
                 {!! Form::open(['method' => 'POST', 'route' => 'notes.add']) !!}
 
                     <div class="row">
