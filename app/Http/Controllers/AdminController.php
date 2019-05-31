@@ -89,7 +89,21 @@ class AdminController extends Controller
     function public(Request $request, Store $store)
     {
         $date = isset($request->date) ? $request->date : date('Y-m');
+        $chart = $this->buildChart($store, $date);
 
+        // $stores = Store::where('type', '!=', 'c')->get();
+        //
+        // $charts = [];
+        //
+        // foreach ($stores as $store) {
+        //     $charts[$store->tab_name] = $this->buildChart($store, $date);
+        // }
+
+        return view('admin.public', compact('date', 'chart', 'store'));
+    }
+
+    function buildChart(Store $store, $date)
+    {
         $chart = new TestChart;
 
         $sales = Sale::where('store_id', $store->id)
@@ -117,6 +131,6 @@ class AdminController extends Controller
         $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);
         $chart->dataset('Dorada', 'line', $golden->values())->options(['borderColor' => '#ACAC0D', 'fill' => false]);
 
-        return view('admin.public', compact('sales', 'date', 'perDay', 'chart', 'store'));
+        return $chart;
     }
 }

@@ -41,12 +41,12 @@ class StoresTableSeeder extends Seeder
             'star' => '1.25',
             'golden' => '1.20'
         ]);
-        factory(\App\Store::class)->create([
-            'name' => 'Gale Tapa',
-            'color' => 'info',
-            'type' => 's',
-            'star' => '1.25',
-            'golden' => '1.20'
-        ]);
+        // factory(\App\Store::class)->create([
+        //     'name' => 'Gale Tapa',
+        //     'color' => 'info',
+        //     'type' => 's',
+        //     'star' => '1.25',
+        //     'golden' => '1.20'
+        // ]);
     }
 }

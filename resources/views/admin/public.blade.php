@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-md-2">
                         <label>&nbsp;</label><br>
-                        <button type="submit" class="btn btn-{{ $store->color }} btn-sm"><i class="fa fa-search"></i></button>
+                        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             {!! Form::close() !!}
@@ -25,7 +25,32 @@
         <div class="col-md-12">
             <color-box title="Ventas de {{ fdate($date, 'F Y', 'Y-m') . ' de ' . $store->name }} " color="{{ $store->color }}">
                 {!! $chart->container() !!}
-            </solid-box>
+            </color-box>
+
+{{--
+            <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              @foreach ($charts as $key => $chart)
+                  <li class="{{ $loop->iteration == 1 ? 'active': '' }}">
+                      <a href="#{{ $key }}" data-toggle="tab">{{ $key }}</a>
+                  </li>
+              @endforeach
+            </ul>
+            <div class="tab-content">
+
+                @foreach ($charts as $key => $chart)
+
+                    <div class="tab-pane" id="{{ $key }}">
+                        {!! $chart->container() !!}
+                    </div>
+
+
+
+                @endforeach
+
+            </div>
+          </div> --}}
+
         </div>
     </div>
 
