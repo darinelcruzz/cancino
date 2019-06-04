@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             <color-box title="Nueva factura a {{ $store->name }}" color="danger">
                 {!! Form::open(['method' => 'POST', 'route' => 'invoices.store']) !!}
                     <div class="box-body">
@@ -48,6 +48,39 @@
                     </div>
 
                 {!! Form::close() !!}
+            </color-box>
+        </div>
+        <div class="col-md-4">
+            <color-box title="Observaciones" color="danger">
+                <p>
+                    - Profecionales facturan a precio <b>ESPECIAL</b>. <br>
+                    - Shop faturan a precio <b>PÚblico</b> con <b>%15</b> de descuento. <br>
+                    - Con uso de CFDI Adquisición de mercancías. <br>
+                </p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th colspan="2" style="width:30%">Chiapas</th>
+                            <td>3018</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Soconusco</th>
+                            <td>7873</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Altos</th>
+                            <td>3030</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Gale Tux</th>
+                            <td>3480</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Gale Tapa</th>
+                            <td>0000</td>
+                        </tr>
+                    </tbody>
+                </table>
             </color-box>
         </div>
     </div>

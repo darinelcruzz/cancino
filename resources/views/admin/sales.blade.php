@@ -20,7 +20,7 @@
                 $total = 0;
             @endphp
             <div class="col-md-12">
-                <color-box title="{{ ucfirst(fdate($month, 'F \(Y\)', 'Y-m')) }}" color="primary" solid button {{ $loop->index == 0 ? '': 'collapsed' }}>
+                <color-box title="{{ ucfirst(fdate("$month-1", 'F \(Y\)', 'Y-m-j')) }}" color="primary" solid button {{ $loop->index == 0 ? '': 'collapsed' }}>
                     <data-table example="{{ $loop->iteration }}">
                         {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Plaza', 'Total') }}
                         <template slot="body">

@@ -26,6 +26,13 @@ return [
         ],
     ],
 
+    'Documents' => [
+        'title' => 'Documentos',
+        'icon' => 'fa fa-folder',
+        'route' => ['documents.index', 'store' . auth()->user()->store_id]
+    ],
+
+
     'NC' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel',

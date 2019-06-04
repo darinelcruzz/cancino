@@ -121,6 +121,13 @@ Route::group(['prefix' => 'metas', 'as' => 'goals.'], function () {
     Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
 });
 
+Route::group(['prefix' => 'documentos', 'as' => 'documents.'], function () {
+    $ctrl = 'DocumentController';
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('/{store}', usesas($ctrl, 'index'));
+});
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));
@@ -135,4 +142,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('metas', usesas($ctrl, 'goals'));
     Route::get('publico/{store}', usesas($ctrl, 'public'));
     Route::post('publico/{store}', usesas($ctrl, 'public'));
+    Route::get('documentos', usesas($ctrl, 'documents'));
 });

@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
 use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal};
 
 class AdminController extends Controller
 {
+    function documents()
+    {
+        $labels = ['Todas', 'Chiapas', 'Soconusco', 'Altos', 'Galerías Tuxtla', 'Galerías Tapachula'];
+        $route = 'public/documents';
+        $folders = Storage::directories($route);
+
+        return view('documents.show', compact('folders', 'route', 'labels'));
+    }
+
     function shoppings()
     {
         $shoppings = Shopping::all();

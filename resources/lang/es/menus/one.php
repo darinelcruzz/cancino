@@ -11,19 +11,9 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'route' => 'admin.sales',
-    ],
-
-    'Sales' => [
-        'title' => 'Ventas',
-        'icon' => 'fa fa-money',
         'submenu' => [
             'total' => [
-                'title' => 'Generales',
-                'route' => 'admin.sales'
-            ],
-            'public' => [
-                'title' => 'Público',
+                'title' => 'Diarias',
                 'route' => 'admin.sales'
             ],
             'goals' => [
@@ -60,6 +50,27 @@ return [
         'title' => 'Saldos',
         'icon' => 'fa fa-file-invoice-dollar',
         'route' => 'admin.balances',
+    ],
+
+    'Documents' => [
+        'title' => 'Documentos',
+        'icon' => 'fa fa-folder',
+        'route' => 'admin.documents',
+    ],
+
+    'Documents' => [
+        'title' => 'Documentos',
+        'icon' => 'fa fa-folder',
+        'submenu' => [
+            'create' => [
+                'title' => 'Lista',
+                'route' => 'admin.documents',
+            ],
+            'index' => [
+                'title' => 'Soconusco',
+                'route' => 'documents.create'
+            ],
+        ],
     ],
 
     'Loans' => [

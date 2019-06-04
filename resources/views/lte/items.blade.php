@@ -1,9 +1,18 @@
 @if (empty($item['submenu']))
     <li @if (!empty($item['class'])) class="{{ $item['class'] }}" @endif>
-        <a href="{{ route($item['route']) }}">
+        {{-- <a href="{{ route($item['route']) }}">
             <i class="{{ $item['icon'] }}"></i>
             <span>{{ $item['title'] }}</span>
-        </a>
+        </a> --}}
+        @if (is_array($item['route']))
+            <a href="{{ route($item['route'][0], $item['route'][1]) }}">
+                <i class="{{ $item['icon'] }}"></i><span>{{ $item['title'] }}</span>
+            </a>
+        @else
+            <a href="{{ route($item['route']) }}">
+                <i class="{{ $item['icon'] }}"></i><span>{{ $item['title'] }}</span>
+            </a>
+        @endif
     </li>
 @else
     <li class="treeview">

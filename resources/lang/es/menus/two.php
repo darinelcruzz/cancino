@@ -11,7 +11,16 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'route' => 'admin.sales'
+        'submenu' => [
+            'total' => [
+                'title' => 'Diarias',
+                'route' => 'admin.sales'
+            ],
+            'goals' => [
+                'title' => 'Metas',
+                'route' => 'admin.goals'
+            ],
+        ],
     ],
 
     'Public' => [
@@ -35,6 +44,12 @@ return [
                 'route' => ['admin.public', 5]
             ],
         ],
+    ],
+
+    'Documents' => [
+        'title' => 'Documentos',
+        'icon' => 'fa fa-folder',
+        'route' => 'admin.documents',
     ],
 
     'NC' => [

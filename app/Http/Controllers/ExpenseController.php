@@ -36,7 +36,7 @@ class ExpenseController extends Controller
         $route = 'public/expenses/store' . $store . "/$request->check";
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
-                $path = $request->file("invoice$i")->store($route);
+                $request->file("invoice$i")->store($route);
             }
         }
 
@@ -65,7 +65,7 @@ class ExpenseController extends Controller
     {
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
-                $path = $request->file("invoice$i")->store($request->route);
+                $request->file("invoice$i")->store($request->route);
             }
         }
 

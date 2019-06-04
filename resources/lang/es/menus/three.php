@@ -6,11 +6,7 @@ return [
         'icon' => 'fa fa-money',
         'submenu' => [
             'total' => [
-                'title' => 'Generales',
-                'route' => 'admin.sales'
-            ],
-            'public' => [
-                'title' => 'Público',
+                'title' => 'Diarias',
                 'route' => 'admin.sales'
             ],
             'goals' => [
