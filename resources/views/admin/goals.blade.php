@@ -19,14 +19,22 @@
                         <template slot="body">
                             @foreach ($years as $date => $stores)
                                 <tr>
-                                    <td>{{ $date }}</td>
+                                    <td>
+                                        {{ $date }} &nbsp; <modal-button target="{{ $month . $date }}"><i class="fa fa-flag"></i></modal-button>
+                                        @include('templates/goalsModal')
+                                    </td>
                                     <td>{{ fnumber($stores->where('store_id', 2)->sum('sale')) }} {!! empty($stores->where('store_id', 2)->first()) ? '' : $stores->where('store_id', 2)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 3)->sum('sale')) }} {!! empty($stores->where('store_id', 3)->first()) ? '' : $stores->where('store_id', 3)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 4)->sum('sale')) }} {!! empty($stores->where('store_id', 4)->first()) ? '' : $stores->where('store_id', 4)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 5)->sum('sale')) }} {!! empty($stores->where('store_id', 5)->first()) ? '' : $stores->where('store_id', 5)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 6)->sum('sale')) }} {!! empty($stores->where('store_id', 6)->first()) ? '' : $stores->where('store_id', 6)->first()->pointLabel !!}</td>
-                                    <td><a href="{{ route('goals.edit', [$month, $date])}}"><i class="fa fa-edit"></i></a></td>
+                                    <td>
+                                        @if ($stores->where('store_id', 2)->sum('sale') == NULL)
+                                            <a href="{{ route('goals.edit', [$month, $date])}}"><i class="fa fa-edit"></i></a>
+                                        @endif
+                                    </td>
                                 </tr>
+
                             @endforeach
                         </template>
                     </data-table>

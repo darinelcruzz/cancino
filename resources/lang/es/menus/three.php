@@ -9,8 +9,8 @@ return [
                 'title' => 'Diarias',
                 'route' => 'admin.sales'
             ],
-            'goals' => [
-                'title' => 'Metas',
+            'monthly' => [
+                'title' => 'Mensuales y Metas',
                 'route' => 'admin.goals'
             ],
         ],
