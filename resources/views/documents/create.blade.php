@@ -11,8 +11,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         {!! Field::select('store',
-                            ['1' => 'Chiapas', '2' => 'Soconusco', '3' => 'Altos', '4' => 'Gale Tux',
-                            '5' => 'Gale Tapa'], null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
+                            ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Gale Tux',
+                            '6' => 'Gale Tapa'], null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
                             !!}
                     </div>
                     <div class="col-md-6">

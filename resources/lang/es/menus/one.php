@@ -67,7 +67,7 @@ return [
                 'route' => 'admin.documents',
             ],
             'index' => [
-                'title' => 'Soconusco',
+                'title' => 'Agregar',
                 'route' => 'documents.create'
             ],
         ],
