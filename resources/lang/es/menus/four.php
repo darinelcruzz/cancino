@@ -39,6 +39,12 @@ return [
         'route' => 'notes.index'
     ],
 
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'route' => 'employers.index',
+    ],
+
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',

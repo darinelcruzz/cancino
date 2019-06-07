@@ -96,6 +96,21 @@ return [
         ],
     ],
 
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'employers.create'
+            ],
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'admin.employers'
+            ],
+        ],
+    ],
+
     'B2B' => [
         'title' => 'B2B',
         'icon' => 'fas fa-hands-helping',

@@ -82,6 +82,25 @@ return [
         ],
     ],
 
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'employers.create'
+            ],
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'employers.index'
+            ],
+            'admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.employers'
+            ],
+        ],
+    ],
+
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',

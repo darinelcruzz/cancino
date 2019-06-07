@@ -51,6 +51,21 @@ return [
         'route' => 'clients.index'
     ],
 
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'employers.create'
+            ],
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'admin.employers'
+            ],
+        ],
+    ],
+
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',

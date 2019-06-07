@@ -46,6 +46,12 @@ return [
         ],
     ],
 
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'route' => 'admin.employers',
+    ],
+
     'Documents' => [
         'title' => 'Documentos',
         'icon' => 'fa fa-folder',
