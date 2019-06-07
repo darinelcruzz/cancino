@@ -210,5 +210,12 @@ return [
         'sale' => 'venta',
         'daysshop' => 'dias shop',
         'daysprofessional' => 'dias profesional',
+        'job' => 'puesto',
+        'birthday' => 'cumpleaños',
+        'married' => 'casado',
+        'sons' => 'hijos',
+        'ingress' => 'ingreso',
+        'skills' => 'habilidades',
+        'weaknesses' => 'debilidades',
     ],
 ];

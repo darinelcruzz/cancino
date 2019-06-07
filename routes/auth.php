@@ -11,7 +11,6 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('cancelar/{shopping}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
@@ -22,7 +21,6 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
 	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('detalles/{expense}', usesas($ctrl, 'show'));
-    Route::get('cancelar/{expense}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
@@ -33,7 +31,6 @@ Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
     Route::post('deposit', usesas($ctrl, 'deposit'));
 	Route::get('editar/{sale}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('cancelar/{sale}', usesas($ctrl, 'destroy'));
     Route::get('publico', usesas($ctrl, 'show'));
     Route::post('publico', usesas($ctrl, 'show'));
 });
@@ -47,7 +44,6 @@ Route::group(['prefix' => 'nc', 'as' => 'notes.'], function () {
     Route::post('editar', usesas($ctrl, 'update'));
 	Route::get('capturar/{note}', usesas($ctrl, 'capture'));
     Route::post('capturar', usesas($ctrl, 'add'));
-    Route::get('cancelar/{note}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => '200', 'as' => 'wastes.'], function () {
@@ -66,7 +62,6 @@ Route::group(['prefix' => 'clientes', 'as' => 'clients.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{client}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('cancelar/{client}', usesas($ctrl, 'destroy'));
     Route::get('detalles/{client}', usesas($ctrl, 'show'));
 });
 
@@ -78,7 +73,6 @@ Route::group(['prefix' => 'bitacora', 'as' => 'binnacles.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{binnacle}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('cancelar/{binnacle}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
@@ -88,7 +82,6 @@ Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{loan}', usesas($ctrl, 'agree'));
     Route::post('editar', usesas($ctrl, 'pay'));
-    Route::get('cancelar/{loan}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => 'facturas', 'as' => 'invoices.'], function () {
@@ -108,7 +101,6 @@ Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'middleware' => 'admin']
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{user}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => 'metas', 'as' => 'goals.'], function () {
@@ -118,7 +110,16 @@ Route::group(['prefix' => 'metas', 'as' => 'goals.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{month}/{year}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('cancelar/{user}', usesas($ctrl, 'destroy'));
+});
+
+Route::group(['prefix' => 'empleados', 'as' => 'employers.'], function () {
+    $ctrl = 'EmployerController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{emplyer}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('detalles/{employer}', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'documentos', 'as' => 'documents.'], function () {
@@ -143,4 +144,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('publico/{store}', usesas($ctrl, 'public'));
     Route::post('publico/{store}', usesas($ctrl, 'public'));
     Route::get('documentos', usesas($ctrl, 'documents'));
+    Route::get('empleados', usesas($ctrl, 'employers'));
 });

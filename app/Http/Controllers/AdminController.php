@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer};
 
 class AdminController extends Controller
 {
@@ -94,6 +94,13 @@ class AdminController extends Controller
         });
 
         return view('admin.goals', compact('dates'));
+    }
+
+    function employers()
+    {
+        $stores = Employer::where('status', 1)->get()->groupBy('store_id');
+
+        return view('admin.employers', compact('stores'));
     }
 
     function public(Request $request, Store $store)
