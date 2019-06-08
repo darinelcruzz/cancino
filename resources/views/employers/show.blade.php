@@ -7,13 +7,17 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-3">
+    @if (auth()->user()->level < 4)
+        <div class="col-md-3">
+    @else
+        <div class="col-md-4 col-md-offset-4">
+    @endif
         <div class="box box-{{ auth()->user()->store->color }}">
             <div class="box-body box-profile">
                 <img class="profile-user-img img-responsive img-circle" src="/storage/employers/{{ $employer->id }}/photo.png" alt="User profile picture">
                 <h3 class="profile-username text-center">{{ $employer->name }}</h3>
                 <p class="text-muted text-center">{{ $employer->store->name . ' - ' . $employer->job }}</p>
-                
+
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                         <b>Ingreso</b> <a class="pull-right">{{ fdate($employer->ingress, 'd/M/y', 'Y-m-d') }}</a>
@@ -34,20 +38,22 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
-        <color-box title="Detalles" color="{{ auth()->user()->store->color }}">
-            <div class="row">
-                <div class="col-md-6">
-                    <h4><b>Habilidades</b></h4>
-                    <p>{{ $employer->skills }}</p>
+    @if (auth()->user()->level < 4)
+        <div class="col-md-9">
+            <color-box title="Detalles" color="{{ auth()->user()->store->color }}">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4><b>Habilidades</b></h4>
+                        <p>{{ $employer->skills }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h4><b>Debilidades</b></h4>
+                        <p>{{ $employer->weaknesses }}</p>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h4><b>Debilidades</b></h4>
-                    <p>{{ $employer->weaknesses }}</p>
-                </div>
-            </div>
+            </color-box>
         </div>
-    </div>
+    @endif
 </div>
 
 @endsection

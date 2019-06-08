@@ -98,7 +98,7 @@ class AdminController extends Controller
 
     function employers()
     {
-        $stores = Employer::where('status', 1)->get()->groupBy('store_id');
+        $stores = Employer::where('status', 1)->orderBy('store_id')->get()->groupBy('store_id');
 
         return view('admin.employers', compact('stores'));
     }

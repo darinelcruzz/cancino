@@ -36,10 +36,16 @@ class EmployerController extends Controller
         $employer = Employer::create($request->all());
         Movement::create(['ingress' => $employer->ingress, 'employer_id' => $employer->id, 'date' => $employer->ingress, 'store_id' => $employer->store_id]);
 
-        $route = 'public/employers/' . $employer->id;
-        $request->file('photo')->storeAs($route, 'photo.png');
+        if ($request->file('photo')) {
+            $route = 'public/employers/' . $employer->id;
+            $request->file('photo')->storeAs($route, 'photo.png');
+        }
+        if (auth()->user()->level < 4) {
+            return redirect(route('admin.employers'));
+        }else {
+            return redirect(route('employers.index'));
+        }
 
-        return redirect(route('employers.index'));
     }
 
     function show(Employer $employer)

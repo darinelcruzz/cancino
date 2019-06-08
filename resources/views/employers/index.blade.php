@@ -17,9 +17,11 @@
                                 <td>{{ $employer->job }}</td>
                                 <td>{{ fdate($employer->birthday, 'd M Y', 'Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ route('employers.show', ['id' => $employer->id])}}" class="btn btn-xs btn-{{ auth()->user()->store->color }}">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
+                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
+                                        <ddi to="{{ route('employers.show', ['id' => $employer->id]) }}" icon="eye" text="Detalles"></ddi>
+                                        <ddi to="#" icon="edit" text="Editar"></ddi>
+                                        <ddi to="#" icon="times" text="Dar de baja"></ddi>
+                                    </dropdown>
                                 </td>
                             </tr>
                         @endforeach
