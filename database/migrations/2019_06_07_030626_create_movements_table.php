@@ -6,12 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMovementsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    function up()
     {
         Schema::create('movements', function (Blueprint $table) {
             $table->increments('id');
@@ -25,12 +20,7 @@ class CreateMovementsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    function down()
     {
         Schema::dropIfExists('movements');
     }

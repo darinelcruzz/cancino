@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <color-box title="Empleados de {{ auth()->user()->store->name }}" color="{{ auth()->user()->store->color }}">
                 <data-table example="1">
-                    {{ drawHeader('id', 'name', 'puesto','cumpleaños', '<i class="fa fa-eye"></i>') }}
+                    {{ drawHeader('id', 'nombre', 'puesto', 'cumpleaños', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">
                         @foreach($employers as $employer)
                             <tr>
