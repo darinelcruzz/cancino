@@ -4,7 +4,7 @@
 @endpush
 
 @section('content')
-    @for ($i=2; $i < 6; $i++)
+    @for ($i=2; $i < 7; $i++)
         <div class="col-md-12">
             <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" label="{{ $shoppings->where('store_id', $i)->where('status', 'pendiente')->count() }}" button collapsed>
                 <data-table example="{{ $i }}">

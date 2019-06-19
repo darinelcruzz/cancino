@@ -5,22 +5,22 @@
 
 @section('content')
     <div class="row">
-        @for ($i=2; $i < 6; $i++)
-            <div class="col-lg-3 col-md-6">
-                <div class="small-box bg-{{ App\Store::find($i)->color }}">
+        @foreach ($stores as $store)
+            <div class="col-lg-4 col-md-6">
+                <div class="small-box bg-{{ $store->color }}">
                     <div class="inner">
-                        <h4><b>{{ App\Store::find($i)->name }}</b></h4>
-                        <h3 align="center"><b>{{ fnumber(App\Expense::balanceByStore($i)) }}</b></h3>
-                        <h4 align="center">{{ fdate(App\Expense::lastUpdate($i)->date, 'd/M/Y', 'Y-m-d') }}</h4>
+                        <h4><b>{{ $store->name }}</b></h4>
+                        <h3 align="center"><b>{{ fnumber(App\Expense::balanceByStore($store->id)) }}</b></h3>
+                        <h4 align="center">{{ fdate(App\Expense::lastUpdate($store->id)->date, 'd/M/Y', 'Y-m-d') }}</h4>
                     </div>
                     <div class="icon">
                         <i class="fa fa-dollar"></i>
                     </div>
                 </div>
-                    <a href="{{ route('admin.expenses', ['store' => $i])}}" class="btn btn-block btn-{{ App\Store::find($i)->color }}">Gastos</a>
-                    <br>
+                <a href="{{ route('admin.expenses', ['store' => $store->id])}}" class="btn btn-block btn-{{ $store->color }}">Gastos</a>
+                <br>
             </div>
-        @endfor
+        @endforeach
     </div>
     <div class="row">
         <div class="col-md-12 col-lg-6">

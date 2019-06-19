@@ -12,7 +12,6 @@
             <color-box title="{{ ucfirst(fdate("2019-$month-1", 'F', 'Y-n-j')) }}" color="{{ auth()->user()->store->color }}" solid button {{ date('m') == $month ? '': 'collapsed' }}>
                 <table class="table table-striped table-bordered no-pagination">
                     <thead>
-                        {{ $month }}
                         <tr>
                             <th>Año</th>
                             <th>Ventas</th>

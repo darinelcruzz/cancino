@@ -39,9 +39,13 @@ return [
                 'title' => 'Altos',
                 'route' => ['admin.public', 4]
             ],
-            'Plaza' => [
-                'title' => 'Plaza',
+            'GaleTux' => [
+                'title' => 'Gale Tuxtla',
                 'route' => ['admin.public', 5]
+            ],
+            'GaleTapa' => [
+                'title' => 'Gale Tapachula',
+                'route' => ['admin.public', 6]
             ],
         ],
     ],
@@ -89,9 +93,13 @@ return [
                 'title' => 'Altos',
                 'route' => ['admin.loans', 4]
             ],
-            'Plaza' => [
-                'title' => 'Plaza',
+            'GaleTux' => [
+                'title' => 'Gale Tuxtla',
                 'route' => ['admin.loans', 5]
+            ],
+            'GaleTapa' => [
+                'title' => 'Gale Tapa',
+                'route' => ['admin.loans', 6]
             ],
         ],
     ],

@@ -39,9 +39,13 @@ return [
                 'title' => 'Altos',
                 'route' => ['admin.public', 4]
             ],
-            'Plaza' => [
-                'title' => 'Plaza',
+            'GaleTux' => [
+                'title' => 'Gale Tuxtla',
                 'route' => ['admin.public', 5]
+            ],
+            'GaleTapa' => [
+                'title' => 'Gale Tapachula',
+                'route' => ['admin.public', 6]
             ],
         ],
     ],

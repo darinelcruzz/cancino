@@ -22,7 +22,7 @@
             <div class="col-md-12">
                 <color-box title="{{ ucfirst(fdate("$month-1", 'F \(Y\)', 'Y-m-j')) }}" color="primary" solid button {{ $loop->index == 0 ? '': 'collapsed' }}>
                     <data-table example="{{ $loop->iteration }}">
-                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Plaza', 'Total') }}
+                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa', 'Total') }}
                         <template slot="body">
                             @foreach ($days as $date => $stores)
                                 <tr>
@@ -31,6 +31,7 @@
                                     <td>{{ fnumber($stores->where('store_id', 3)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->where('store_id', 4)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->where('store_id', 5)->sum('total')) }}</td>
+                                    <td>{{ fnumber($stores->where('store_id', 6)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->sum('total')) }}</td>
                                 </tr>
                                 @php

@@ -47,7 +47,7 @@ class AdminController extends Controller
 
     function balances()
     {
-        $stores = Store::all();
+        $stores = Store::where('type', '!=', 'c')->get();
         return view('admin.balances', compact('stores'));
     }
 
@@ -56,7 +56,7 @@ class AdminController extends Controller
         $store = $store->id;
         $expenses = Expense::where('store_id', $store)->where('type', '0')->get();
         $ingreses = Expense::where('store_id', $store)->where('type', '1')->orderByDesc('id')->get()->take(3);
-        $last = Expense::where('store_id', $store)->where('type', '0')->get()->last();
+        $last = Expense::where('store_id', $store)->where('type', '0')->where('check', '!=', NULL)->get()->last();
         return view('expenses.index', compact('expenses', 'ingreses', 'last', 'balance', 'store'));
     }
 

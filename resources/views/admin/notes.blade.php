@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-    @for ($i=2; $i < 6; $i++)
+    @for ($i=2; $i < 7; $i++)
         <div class="row">
             <div class="col-md-12">
                 <color-box title="{{ App\Store::find($i)->name . ' ' . count($notes->where('store_id', $i)->where('status', '!=', 'aplicada')) }}" color="{{ App\Store::find($i)->color }}" button collapsed>
