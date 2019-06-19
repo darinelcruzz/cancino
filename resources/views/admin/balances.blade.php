@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             {!! Field::select('store_id',
-                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Plaza'], null,
+                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Gale Tux', '6' => 'Gale Tapa'], null,
                                 ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon', 'label' => 'Tienda'], ['icon' => 'map-pin'])
                             !!}
                         </div>
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             {!! Field::select('store_id',
-                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Plaza'], null,
+                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Gale Tux', '6' => 'Gale Tapa'], null,
                                 ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon', 'label' => 'Tienda'], ['icon' => 'map-pin'])
                             !!}
                         </div>

@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             {!! Field::select('from',
-                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Plaza'], null,
+                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Gale Tux', '6' => 'Gale Tapa'], null,
                                 ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
                             !!}
                         </div>
