@@ -3,15 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Http\Composers\StoresComposer;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    function boot()
     {
         $this->publishes([
             base_path() . '\vendor\almasaeed2010\adminlte\bower_components'
@@ -20,14 +17,11 @@ class AppServiceProvider extends ServiceProvider
             => public_path('adminlte/dist'),
             base_path() . '\vendor\almasaeed2010\adminlte\plugins'
             => public_path('adminlte/plugins'), ], 'adminlte');
+
+        View::composer('*', StoresComposer::class);
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    function register()
     {
         //
     }

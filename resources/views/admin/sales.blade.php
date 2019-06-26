@@ -13,11 +13,7 @@
     @foreach ($dates as $month => $days)
         <div class="row">
             @php
-                $chiapas = 0;
-                $soconusco = 0;
-                $altos = 0;
-                $plaza = 0;
-                $total = 0;
+                $chiapas = $soconusco = $altos = $galeTux = $galeTapa = $total = 0;
             @endphp
             <div class="col-md-12">
                 <color-box title="{{ ucfirst(fdate("$month-1", 'F \(Y\)', 'Y-m-j')) }}" color="primary" solid button {{ $loop->index == 0 ? '': 'collapsed' }}>
@@ -38,7 +34,8 @@
                                     $chiapas = $chiapas + $stores->where('store_id', 2)->sum('total');
                                     $soconusco = $soconusco + $stores->where('store_id', 3)->sum('total');
                                     $altos = $altos + $stores->where('store_id', 4)->sum('total');
-                                    $plaza = $plaza + $stores->where('store_id', 5)->sum('total');
+                                    $galeTux = $galeTux + $stores->where('store_id', 5)->sum('total');
+                                    $galeTapa = $galeTapa + $stores->where('store_id', 6)->sum('total');
                                     $total = $total + $stores->sum('total');
                                 @endphp
                             @endforeach
@@ -49,7 +46,8 @@
                                 <td><b>{{ fnumber($chiapas) }}</b></td>
                                 <td><b>{{ fnumber($soconusco) }}</b></td>
                                 <td><b>{{ fnumber($altos) }}</b></td>
-                                <td><b>{{ fnumber($plaza) }}</b></td>
+                                <td><b>{{ fnumber($galeTux) }}</b></td>
+                                <td><b>{{ fnumber($galeTapa) }}</b></td>
                                 <td><b>{{ fnumber($total) }}</b></td>
                             </tr>
                         </template>

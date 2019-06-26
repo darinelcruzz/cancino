@@ -103,20 +103,19 @@ class AdminController extends Controller
         return view('admin.employers', compact('stores'));
     }
 
-    function public(Request $request, Store $store)
+    function public(Request $request)
     {
         $date = isset($request->date) ? $request->date : date('Y-m');
-        $chart = $this->buildChart($store, $date);
 
-        // $stores = Store::where('type', '!=', 'c')->get();
-        //
-        // $charts = [];
-        //
-        // foreach ($stores as $store) {
-        //     $charts[$store->tab_name] = $this->buildChart($store, $date);
-        // }
+        $stores = Store::where('type', '!=', 'c')->get();
 
-        return view('admin.public', compact('date', 'chart', 'store'));
+        foreach ($stores as $store) {
+            ${strtolower($store->tabName)} = $this->buildChart($store, $date);
+        }
+
+        // dd($chiapas, $soconusco, $altos, $galetux, $galetapa);
+
+        return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'galetux', 'galetapa'));
     }
 
     function buildChart(Store $store, $date)
@@ -143,6 +142,7 @@ class AdminController extends Controller
         });
 
         $chart->labels($public->keys());
+        $chart->height(400);
         $chart->dataset('Ventas a público', 'line', $public->values())->options(['borderColor' => '#E03317', 'fill' => false]);
         $chart->dataset('Punto negro', 'line', $black->values())->options(['borderColor' => '#000000', 'fill' => false]);
         $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);

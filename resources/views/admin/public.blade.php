@@ -6,7 +6,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-            {!! Form::open(['method' => 'POST', 'route' => ['admin.public', $store]]) !!}
+            {!! Form::open(['method' => 'POST', 'route' => 'admin.public']) !!}
 
                 <div class="row">
                     <div class="col-md-10">
@@ -23,44 +23,34 @@
 
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Ventas de {{ fdate($date, 'F Y', 'Y-m') . ' de ' . $store->name }} " color="{{ $store->color }}">
-                {!! $chart->container() !!}
+            <color-box title="Ventas Chiapas" color="primary">
+                {!! $chiapas->container() !!}
             </color-box>
 
-{{--
-            <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              @foreach ($charts as $key => $chart)
-                  <li class="{{ $loop->iteration == 1 ? 'active': '' }}">
-                      <a href="#{{ $key }}" data-toggle="tab">{{ $key }}</a>
-                  </li>
-              @endforeach
-            </ul>
-            <div class="tab-content">
+            <color-box title="Ventas Soconusco" color="primary">
+                {!! $soconusco->container() !!}
+            </color-box>
 
-                @foreach ($charts as $key => $chart)
+            <color-box title="Ventas Altos" color="primary">
+                {!! $altos->container() !!}
+            </color-box>
 
-                    <div class="tab-pane" id="{{ $key }}">
-                        {!! $chart->container() !!}
-                    </div>
+            <color-box title="Ventas Gale Tux" color="danger">
+                {!! $galetux->container() !!}
+            </color-box>
 
-
-
-                @endforeach
-
-            </div>
-          </div> --}}
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+            <color-box title="Ventas Gale Tapa" color="danger">
+                {!! $galetapa->container() !!}
+            </color-box>
         </div>
     </div>
 
 @endsection
 
 @section('chart')
-    {!! $chart->script() !!}
+    {!! $chiapas->script() !!}
+    {!! $soconusco->script() !!}
+    {!! $altos->script() !!}
+    {!! $galetux->script() !!}
+    {!! $galetapa->script() !!}
 @endsection

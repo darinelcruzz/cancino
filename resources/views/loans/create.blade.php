@@ -15,8 +15,7 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'loans.store']) !!}
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::select('from',
-                                ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Gale Tux', '6' => 'Gale Tapa'], null,
+                            {!! Field::select('from', $storesArray, null,
                                 ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
                             !!}
                         </div>

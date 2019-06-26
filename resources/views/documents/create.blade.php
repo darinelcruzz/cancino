@@ -10,9 +10,7 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'documents.store', 'enctype' => 'multipart/form-data']) !!}
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Field::select('store',
-                            ['2' => 'Chiapas', '3' => 'Soconusco', '4' => 'Altos', '5' => 'Gale Tux',
-                            '6' => 'Gale Tapa'], null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
+                        {!! Field::select('store', $storesArray, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
                             !!}
                     </div>
                     <div class="col-md-6">

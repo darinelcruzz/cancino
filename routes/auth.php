@@ -151,8 +151,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
     Route::get('200', usesas($ctrl, 'wastes'));
     Route::get('metas', usesas($ctrl, 'goals'));
-    Route::get('publico/{store}', usesas($ctrl, 'public'));
-    Route::post('publico/{store}', usesas($ctrl, 'public'));
+    Route::get('publico', usesas($ctrl, 'public'));
+    Route::post('publico', usesas($ctrl, 'public'));
     Route::get('documentos', usesas($ctrl, 'documents'));
     Route::get('empleados', usesas($ctrl, 'employers'));
 });
