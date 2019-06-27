@@ -9,11 +9,12 @@
             </tr>
         </thead>
         <tbody>
-            @for ($i=2; $i < 6; $i++)
+            @for ($i=2; $i < 7; $i++)
                 <tr>
                     <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : $stores->where('store_id', $i)->first()->store->name !!}</td>
                     <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->blackPoint) !!}</td>
                     <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->starPoint) !!}</td>
+                    <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->goldenPoint) !!}</td>
                     <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->goldenPoint) !!}</td>
                 </tr>
             @endfor

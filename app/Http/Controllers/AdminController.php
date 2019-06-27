@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
 use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer};
@@ -111,9 +112,8 @@ class AdminController extends Controller
 
         foreach ($stores as $store) {
             ${strtolower($store->tabName)} = $this->buildChart($store, $date);
+            // $sales[$store->id]= $store->sales->where()
         }
-
-        // dd($chiapas, $soconusco, $altos, $galetux, $galetapa);
 
         return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'galetux', 'galetapa'));
     }
@@ -122,10 +122,12 @@ class AdminController extends Controller
     {
         $chart = new TestChart;
 
+        DB::raw("SET lc_time_names = 'es_ES'");
+
         $sales = Sale::where('store_id', $store->id)
             ->whereMonth('date_sale', substr($date, 5))
             ->whereYear('date_sale', substr($date, 0, 4))
-            ->selectRaw('public, DATE_FORMAT(date_sale, "%d") as day')
+            ->selectRaw('public, DATE_FORMAT(date_sale, "%a %d") as day')
             ->get();
 
         $public = $sales->keyBy('day')->map(function ($sale) {
