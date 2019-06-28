@@ -72,8 +72,12 @@ class ExpenseController extends Controller
         return redirect(route('expenses.show', ['id' => $request->id]));
     }
 
-    function destroy(Expense $expense)
+    function deleteFile($path)
     {
-        //
+        $path = str_replace('-', '/', $path);
+
+        Storage::delete($path);
+
+        return back();
     }
 }

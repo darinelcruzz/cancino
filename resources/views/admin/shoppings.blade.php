@@ -21,10 +21,11 @@
                                 <td>
                                     <span class="label label-{{ $shopping->status != 'pendiente' ? 'success': 'danger'}}">
                                         {{ ucfirst($shopping->status) }}
-                                    </span> &nbsp;
-                                    @if ($shopping->status == 'pendiente')
-                                        <a href="{{ route('admin.verify', ['id' => $shopping->id])}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                                    @endif
+                                    </span> &nbsp;&nbsp;&nbsp;
+                                    {{-- <dropdown icon="cogs" color="primary">
+                                        <ddi to="{{ route('admin.verify', ['id' => $shopping->id]) }}" icon="check" text="Verificada"></ddi>
+                                        <ddi to="{{ route('admin.verify', ['id' => $shopping->id]) }}" icon="edit" text="Duplicada"></ddi>
+                                    </dropdown> --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -35,7 +36,7 @@
     @endfor
     <div class="col-md-12">
         <color-box title="Verificadas" color="success" button collapsed>
-            <data-table example="6">
+            <data-table example="7">
                 {{ drawHeader('ID', 'Tienda', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado') }}
                 <template slot="body">
                     @foreach($shoppings->where('status', 'verificado') as $shopping)

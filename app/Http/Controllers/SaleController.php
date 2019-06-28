@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sale;
 use App\Goal;
 use App\Date;
+use App\Store;
 use App\Charts\TestChart;
 use Illuminate\Http\Request;
 
@@ -67,7 +68,12 @@ class SaleController extends Controller
         $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);
         $chart->dataset('Dorada', 'line', $golden->values())->options(['borderColor' => '#ACAC0D', 'fill' => false]);
 
-        return view('sales.show', compact('sales', 'date', 'perDay', 'chart'));
+            $total = Store::where('id', auth()->user()->store_id)->get()->first()->getSalesSum($date);
+            $sumBlack = Store::where('id', auth()->user()->store_id)->get()->first()->getPoint($date);
+            $sumStar = Store::where('id', auth()->user()->store_id)->get()->first()->getStar($date);
+            $sumGolden = Store::where('id', auth()->user()->store_id)->get()->first()->getGolden($date);
+
+        return view('sales.show', compact('sales', 'date', 'perDay', 'chart', 'total', 'sumBlack', 'sumStar', 'sumGolden'));
     }
 
     function edit(Sales $sales)

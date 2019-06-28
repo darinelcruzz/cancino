@@ -24,23 +24,58 @@
     <div class="row">
         <div class="col-md-12">
             <color-box title="Ventas Chiapas" color="primary">
-                {!! $chiapas->container() !!}
+                <div>
+                    {!! $chiapas->container() !!}
+                </div>
+                <br>
+                @php
+                    $num = '2';
+                @endphp
+                @include('templates/progress')
             </color-box>
 
             <color-box title="Ventas Soconusco" color="primary">
-                {!! $soconusco->container() !!}
+                <div>
+                    {!! $soconusco->container() !!}
+                </div>
+                <br>
+                @php
+                    $num = '3';
+                @endphp
+                @include('templates/progress')
             </color-box>
 
             <color-box title="Ventas Altos" color="primary">
-                {!! $altos->container() !!}
+                <div>
+                    {!! $altos->container() !!}
+                </div>
+                <br>
+                @php
+                    $num = '4';
+                @endphp
+                @include('templates/progress')
             </color-box>
 
             <color-box title="Ventas Gale Tux" color="danger">
-                {!! $galetux->container() !!}
+                <div>
+                    {!! $galetux->container() !!}
+                </div>
+                <br>
+                @php
+                    $num = '5';
+                @endphp
+                @include('templates/progress')
             </color-box>
 
             <color-box title="Ventas Gale Tapa" color="danger">
-                {!! $galetapa->container() !!}
+                <div>
+                    {!! $galetapa->container() !!}
+                </div>
+                <br>
+                @php
+                    $num = '6';
+                @endphp
+                @include('templates/progress')
             </color-box>
         </div>
     </div>

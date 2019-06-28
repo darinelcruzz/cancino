@@ -21,6 +21,7 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
 	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('detalles/{expense}', usesas($ctrl, 'show'));
+    Route::get('eliminar/{path}', usesas($ctrl, 'deleteFile'));
 });
 
 Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
@@ -142,7 +143,8 @@ Route::group(['prefix' => 'documentos', 'as' => 'documents.'], function () {
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));
-    Route::get('compras/{shopping}', usesas($ctrl, 'verify'));
+    Route::get('compras/verificar/{store}', usesas($ctrl, 'verify'));
+    Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('saldos', usesas($ctrl, 'balances'));

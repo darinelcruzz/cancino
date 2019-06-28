@@ -112,10 +112,12 @@ class AdminController extends Controller
 
         foreach ($stores as $store) {
             ${strtolower($store->tabName)} = $this->buildChart($store, $date);
-            // $sales[$store->id]= $store->sales->where()
+            $sales[$store->id]= $store->getSalesSum($date);
+            $points[$store->id]= $store->getPoint($date);
+            $stars[$store->id]= $store->getStar($date);
+            $goldens[$store->id]= $store->getGolden($date);
         }
-
-        return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'galetux', 'galetapa'));
+        return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'galetux', 'galetapa', 'sales', 'points', 'stars', 'goldens'));
     }
 
     function buildChart(Store $store, $date)

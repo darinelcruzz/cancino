@@ -16,7 +16,7 @@ return [
                 'route' => 'sales.index'
             ],
             'public' => [
-                'title' => 'Público',
+                'title' => 'Gráficas',
                 'route' => 'sales.show'
             ],
             'goals' => [
