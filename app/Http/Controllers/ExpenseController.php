@@ -65,7 +65,7 @@ class ExpenseController extends Controller
     {
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
-                $request->file("invoice$i")->store($request->route);
+                $request->file("invoice$i")->storeAs($request->route, $request->{"name$i"});
             }
         }
 

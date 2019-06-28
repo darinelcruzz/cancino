@@ -15,16 +15,10 @@
                             <tr>
                                 <td>{{ substr($file, strlen($route) + 1) }}</td>
                                 <td>
-                                    <a type="button" data-toggle="modal" data-target="#factura{{ $loop->index }}">
-                                        <i class="fa fa-file-pdf-o"></i>
-                                    </a> &nbsp;&nbsp;
+                                    <a href="{{ Storage::url($file) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a> &nbsp; &nbsp;
                                     @if (auth()->user()->level ==1)
                                         <a href="{{ route('expenses.deleteFile', str_replace('/', '-', $file))}}"><i class="fa fa-trash"></i></a>
                                     @endif
-
-                                    <modal id="factura{{ $loop->index }}" title="Factura">
-                                        <iframe src="{{ Storage::url($file) }}#view=FitH" width="100%" height="600"></iframe>
-                                    </modal>
                                 </td>
                             </tr>
                         @endforeach

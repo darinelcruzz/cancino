@@ -48691,6 +48691,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -48746,6 +48747,10 @@ var render = function() {
                 "div",
                 { staticClass: "col-md-10", attrs: { align: "center" } },
                 [
+                  _c("input", {
+                    attrs: { type: "text", name: "name" + index, required: "" }
+                  }),
+                  _vm._v(" "),
                   _c("input", {
                     attrs: {
                       type: "file",
