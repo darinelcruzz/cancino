@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Shopping;
+use App\Store;
 use Illuminate\Http\Request;
 
 class ShoppingController extends Controller
@@ -38,9 +39,10 @@ class ShoppingController extends Controller
         //
     }
 
-    function edit(Shopping $shopping)
+    function verify(Store $store)
     {
-        //
+        $shoppings = Shopping::where('store_id', $store->id)->where('status', 'pendiente')->get();
+        return view('shoppings.verify', compact('store', 'shoppings'));
     }
 
     function update(Request $request, Shopping $shopping)

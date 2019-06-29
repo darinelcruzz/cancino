@@ -38,7 +38,7 @@ class EmployerController extends Controller
 
         if ($request->file('photo')) {
             $route = 'public/employers/' . $employer->id;
-            $request->file('photo')->storeAs($route, 'photo.png');
+            $request->file('photo')->storeAs($route, 'photo');
         }
         if (auth()->user()->level < 4) {
             return redirect(route('admin.employers'));

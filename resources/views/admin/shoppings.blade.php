@@ -4,13 +4,13 @@
 @endpush
 
 @section('content')
-    @for ($i=2; $i < 7; $i++)
+    @foreach ($stores as $store)
         <div class="col-md-12">
-            <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" label="{{ $shoppings->where('store_id', $i)->where('status', 'pendiente')->count() }}" button collapsed>
-                <data-table example="{{ $i }}">
+            <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $shoppings->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
+                <data-table example="{{ $loop->iteration }}">
                     {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado') }}
                     <template slot="body">
-                        @foreach($shoppings->where('store_id', $i)->where('status', 'pendiente') as $shopping)
+                        @foreach($shoppings->where('store_id', $store->id)->where('status', 'pendiente') as $shopping)
                             <tr>
                                 <td>{{ $shopping->id }}</td>
                                 <td>{{ $shopping->folio }}</td>
@@ -21,22 +21,20 @@
                                 <td>
                                     <span class="label label-{{ $shopping->status != 'pendiente' ? 'success': 'danger'}}">
                                         {{ ucfirst($shopping->status) }}
-                                    </span> &nbsp;&nbsp;&nbsp;
-                                    {{-- <dropdown icon="cogs" color="primary">
-                                        <ddi to="{{ route('admin.verify', ['id' => $shopping->id]) }}" icon="check" text="Verificada"></ddi>
-                                        <ddi to="{{ route('admin.verify', ['id' => $shopping->id]) }}" icon="edit" text="Duplicada"></ddi>
-                                    </dropdown> --}}
+                                    </span>
                                 </td>
                             </tr>
                         @endforeach
                     </template>
                 </data-table>
+                <br>
+                    <a class="btn btn-xs btn-success btn-block" href="{{ route('shoppings.verify', ['store' => $store]) }}">Verificar</a>
             </color-box>
         </div>
-    @endfor
+    @endforeach
     <div class="col-md-12">
         <color-box title="Verificadas" color="success" button collapsed>
-            <data-table example="7">
+            <data-table example="{{ count($stores) + 2 }}">
                 {{ drawHeader('ID', 'Tienda', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado') }}
                 <template slot="body">
                     @foreach($shoppings->where('status', 'verificado') as $shopping)

@@ -11,6 +11,7 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('verificar/{store}', usesas($ctrl, 'verify'));
 });
 
 Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
@@ -143,7 +144,6 @@ Route::group(['prefix' => 'documentos', 'as' => 'documents.'], function () {
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));
-    Route::get('compras/verificar/{store}', usesas($ctrl, 'verify'));
     Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('notas', usesas($ctrl, 'notes'));

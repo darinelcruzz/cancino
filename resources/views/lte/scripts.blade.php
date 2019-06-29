@@ -46,7 +46,7 @@
       "order":[[ 0 , "desc"]]
     });
     $("#example7").DataTable({
-      "order":false
+      "order":[[ 0 , "desc"]]
     });
     $("#example8").DataTable({
       "order":false

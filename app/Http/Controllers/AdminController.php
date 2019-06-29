@@ -20,14 +20,20 @@ class AdminController extends Controller
 
     function shoppings()
     {
+        $stores = Store::where('type', '!=', 'c')->get();
         $shoppings = Shopping::all();
-        return view('admin.shoppings', compact('shoppings'));
+        return view('admin.shoppings', compact('shoppings', 'stores'));
     }
 
-    function verify(Shopping $shopping)
+    function verify(Request $request)
     {
-        $shopping->update(['status' => 'verificado']);
-        return back();
+        foreach (Shopping::find($request->shoppings) as $shopping) {
+            $shopping->update([
+                'status' => 'verificado'
+            ]);
+        }
+
+        return redirect(route('admin.shoppings'));
     }
 
     function sales()
