@@ -31,15 +31,28 @@ class EmployerController extends Controller
             'sons' => 'required',
             'job' => 'required',
             'store_id' => 'required',
+            'ine' => 'required',
+            'curp' => 'required',
+            'birth_certificate' => 'required',
+            'address_file' => 'required',
         ]);
 
         $employer = Employer::create($request->all());
-        Movement::create(['ingress' => $employer->ingress, 'employer_id' => $employer->id, 'date' => $employer->ingress, 'store_id' => $employer->store_id]);
+
+        Movement::create([
+            'ingress' => $employer->ingress, 
+            'employer_id' => $employer->id, 
+            'date' => $employer->ingress, 
+            'store_id' => $employer->store_id
+        ]);
+
+        $employer->storeDocuments($request);
 
         if ($request->file('photo')) {
             $route = 'public/employers/' . $employer->id;
-            $request->file('photo')->storeAs($route, 'photo');
+            $request->file('photo')->storeAs($route, 'FOTO.' . $request->photo->extension());
         }
+
         if (auth()->user()->level < 4) {
             return redirect(route('admin.employers'));
         }else {
@@ -67,4 +80,6 @@ class EmployerController extends Controller
     {
         //
     }
+
+
 }

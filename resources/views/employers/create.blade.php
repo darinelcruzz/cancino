@@ -48,26 +48,65 @@
                                     {!! Field::select('store_id', $stores, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {!! Field::text('account_number', ['tpl' => 'lte/withicon'], ['icon' => 'id-card-alt']) !!}
+                                </div>
+                            </div>
+
                             @if (auth()->user()->level < 4)
                                 <div class="row">
                                     <div class="col-md-6">
-                                        {!! Field::textarea('skills', ['tpl' => 'lte/withicon'], ['icon' => 'smile-wink']) !!}
+                                        {!! Field::textarea('skills', ['tpl' => 'lte/withicon', 'rows' => '3'], ['icon' => 'smile-wink']) !!}
                                     </div>
                                     <div class="col-md-6">
-                                        {!! Field::textarea('weaknesses', ['tpl' => 'lte/withicon'], ['icon' => 'skull']) !!}
+                                        {!! Field::textarea('weaknesses', ['tpl' => 'lte/withicon', 'rows' => '3'], ['icon' => 'skull']) !!}
                                     </div>
                                 </div>
                             @endif
                         </div>
                         <div class="col-md-3">
                             <div class="row">
-                                <h4><b>Agregar una foto</b></h4>
+                                <b>Archivos</b>
                                 <br>
                                 <div class="col-md-12" align="center">
-                                    <input type="file" name="photo" accept="image/*">
+                                    <fu-button fname="ine" color="primary" ext="application/pdf" bname="INE"></fu-button>
                                 </div>
                                 <br><br><br>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12" align="center">
+                                    <fu-button fname="curp" color="primary" ext="application/pdf" bname="CURP"></fu-button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" align="center">
+                                    <fu-button fname="address_file" color="primary" ext="application/pdf" bname="COMP. DOM"></fu-button>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-12" align="center">
+                                    <fu-button fname="birth_certificate" color="primary" ext="application/pdf" bname="ACTA"></fu-button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" align="center">
+                                    <fu-button fname="social_security_number" color="primary" ext="application/pdf" bname="NUM. SEG. SOCIAL"></fu-button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12" align="center">
+                                    <fu-button fname="photo" color="primary" ext="image/*" bname="FOTO"></fu-button>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     <hr>

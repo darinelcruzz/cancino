@@ -217,5 +217,7 @@ return [
         'ingress' => 'ingreso',
         'skills' => 'habilidades',
         'weaknesses' => 'debilidades',
+        'account_number' => 'número de cuenta',
+        'social_security_number' => 'número de seguro social',
     ],
 ];
