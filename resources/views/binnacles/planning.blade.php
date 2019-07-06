@@ -12,17 +12,10 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::select('client_id', $clients, null, ['empty' => 'Seleccione el cliente']) !!}
+                            {!! Field::select('client_id', $clients, null, ['empty' => 'Seleccione el cliente', 'tpl' => 'lte/withicon'], ['icon' => 'handshake-o']) !!}
                         </div>
                         <div class="col-md-6">
-                            <div id="field_date" class="form-group">
-                                <label for="date" class="control-label">
-                                    Fecha y hora:
-                                </label>
-                                <div class="controls">
-                                    <input class="form-control" id="date" name="date" type="datetime-local" value="{{  date('Y-m-d\TH:i') }}">
-                                </div>
-                            </div>
+                            {!! Field::datetimelocal('date', date('Y-m-d\TH:i'), ['empty' => 'Seleccione el cliente', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                     </div>
 
@@ -30,7 +23,7 @@
                         <div class="col-md-6">
                             {!! Field::select('method',
                                 ['visita' => 'Visita', 'llamada' => 'Llamada', 'correo' => 'Correo'], null,
-                                ['empty' => 'Selecciona el motivo', 'tpl' => 'lte/withicon'], ['icon' => 'handshake-o'])
+                                ['empty' => 'Selecciona el motivo', 'tpl' => 'lte/withicon'], ['icon' => 'envelope'])
                             !!}
                         </div>
                     </div>

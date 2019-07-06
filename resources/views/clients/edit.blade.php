@@ -1,61 +1,61 @@
 @extends('lte.root')
 
 @push('pageTitle')
-    Cliente | Agregar
+    Cliente | Editar
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <color-box title="Agregar cliente" color="success" solid>
-                {!! Form::open(['method' => 'POST', 'route' => 'clients.store']) !!}
+                {!! Form::open(['method' => 'POST', 'route' => 'clients.update']) !!}
 
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            {!! Field::text('business',['tpl' => 'lte/withicon'], ['icon' => 'shopping-cart']) !!}
+                            {!! Field::text('business',$client->business, ['tpl' => 'lte/withicon'], ['icon' => 'shopping-cart']) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            {!! Field::text('social',['tpl' => 'lte/withicon'], ['icon' => 'gavel']) !!}
+                            {!! Field::text('social',$client->social, ['tpl' => 'lte/withicon'], ['icon' => 'gavel']) !!}
                         </div>
                         <div class="col-md-4">
-                            {!! Field::text('rfc', ['tpl' => 'lte/withicon'], ['icon' => 'bank']) !!}
+                            {!! Field::text('rfc',$client->rfc, ['tpl' => 'lte/withicon'], ['icon' => 'bank']) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('phone',['tpl' => 'lte/withicon'], ['icon' => 'phone']) !!}
+                            {!! Field::number('phone',$client->phone, ['tpl' => 'lte/withicon'], ['icon' => 'phone']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::email('email', ['tpl' => 'lte/withicon'], ['icon' => 'at']) !!}
+                            {!! Field::email('email',$client->email, ['tpl' => 'lte/withicon'], ['icon' => 'at']) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
-                            {!! Field::text('address',['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
+                            {!! Field::text('address',$client->address, ['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
                         </div>
                         <div class="col-md-4">
-                            {!! Field::text('city', ['tpl' => 'lte/withicon'], ['icon' => 'map']) !!}
+                            {!! Field::text('city',$client->city, ['tpl' => 'lte/withicon'], ['icon' => 'map']) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            {!! Field::text('contact',['tpl' => 'lte/withicon', 'placeholder' => 'nombre'], ['icon' => 'user']) !!}
+                            {!! Field::text('contact',$client->contact, ['tpl' => 'lte/withicon', 'placeholder' => 'nombre'], ['icon' => 'user']) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::text('position',['tpl' => 'lte/withicon'], ['icon' => 'briefcase']) !!}
+                            {!! Field::text('position', $client->position, ['tpl' => 'lte/withicon'], ['icon' => 'briefcase']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('cellphone', ['tpl' => 'lte/withicon', 'placeholder' => 'del contacto'], ['icon' => 'mobile']) !!}
+                            {!! Field::number('cellphone',$client->cellphone, ['tpl' => 'lte/withicon', 'placeholder' => 'del contacto'], ['icon' => 'mobile']) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             {!! Field::select('type',
-                                ['1' => 'Ventas', '0' => 'Escuela'], null,
+                                ['1' => 'Ventas', '0' => 'Escuela'], $client->type,
                                 ['empty' => 'Seleccione el tipo', 'tpl' => 'lte/withicon'], ['icon' => 'map-signs'])
                             !!}
                         </div>
@@ -64,7 +64,8 @@
 
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
-                    <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
+                    <input type="hidden" name="id" value="{{ $client->id }}">
+                    <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Editar</button>
 
                 {!! Form::close() !!}
             </solid-box>

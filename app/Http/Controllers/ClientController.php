@@ -25,12 +25,10 @@ class ClientController extends Controller
             'business' => 'required',
             'social' => 'required',
             'phone' => 'required',
-            'email' => 'required',
             'address' => 'required',
             'city' => 'required',
             'contact' => 'required',
             'position' => 'required',
-            'store_id' => 'required',
         ]);
 
         Client::create($request->all());
@@ -45,12 +43,23 @@ class ClientController extends Controller
 
     function edit(Client $client)
     {
-        //
+        return view('clients.edit', compact('client'));
     }
 
-    function update(Request $request, Client $client)
+    function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'business' => 'required',
+            'social' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'contact' => 'required',
+            'position' => 'required',
+        ]);
+
+        Client::find($request->id)->update($request->all());
+        return redirect(route('clients.index'));
     }
 
     function destroy(Client $client)

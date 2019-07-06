@@ -23,6 +23,7 @@ class CreateClientsTable extends Migration
             $table->string('cellphone')->nullable();
             $table->integer('store_id');
             $table->integer('user_id');
+            $table->integer('type');
 
             $table->timestamps();
         });

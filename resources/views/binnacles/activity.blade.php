@@ -12,17 +12,10 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::select('client_id', $clients, null, ['empty' => 'Seleccione el cliente']) !!}
+                            {!! Field::select('client_id', $clients, null, ['empty' => 'Seleccione el cliente', 'tpl' => 'lte/withicon'], ['icon' => 'handshake-o']) !!}
                         </div>
                         <div class="col-md-6">
-                            <div id="field_date" class="form-group">
-                                <label for="date" class="control-label">
-                                    Fecha y hora:
-                                </label>
-                                <div class="controls">
-                                    <input class="form-control" id="date" name="date" type="datetime-local" value="{{  date('Y-m-d\TH:i') }}">
-                                </div>
-                            </div>
+                            {!! Field::datetimelocal('date', date('Y-m-d\TH:i'), ['empty' => 'Seleccione el cliente', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                     </div>
 
@@ -30,14 +23,14 @@
                         <div class="col-md-6">
                             {!! Field::select('method',
                                 ['visita' => 'Visita', 'llamada' => 'Llamada', 'correo' => 'Correo'], null,
-                                ['empty' => 'Selecciona el motivo', 'tpl' => 'lte/withicon'], ['icon' => 'handshake-o'])
+                                ['empty' => 'Selecciona el método', 'tpl' => 'lte/withicon'], ['icon' => 'envelope'])
                             !!}
                         </div>
                         <div class="col-md-6">
                             {!! Field::select('reason',
                                 ['cotizacion' => 'Cotización', 'venta' => 'Venta', 'entrega' => 'Entrega', 'saludo' => 'Saludo',
                                 'sin respuesta' => 'Sin respuesta', 'otro' => 'Otro'], NULL,
-                                ['empty' => 'Selecciona el método', 'tpl' => 'lte/withicon', 'v-model' => 'binnacle_reason'], ['icon' => 'check'])
+                                ['empty' => 'Selecciona el motivo', 'tpl' => 'lte/withicon', 'v-model' => 'binnacle_reason'], ['icon' => 'check'])
                             !!}
                         </div>
                     </div>
@@ -50,11 +43,7 @@
                     <div class="row">
                         <span v-if="binnacle_reason == 'cotizacion' || binnacle_reason == 'venta'" style="align-content: center;">
                             <div class="col-md-6">
-                                <br>
-                                <file-upload fname="document" ext="pdf" color="success"></file-upload>
-                            </div>
-                            <div class="col-md-6">
-                                {!! Field::number('amount', ['tpl' => 'lte/withicon'], ['icon' => 'money']) !!}
+                                {!! Field::number('amount', ['tpl' => 'lte/withicon', 'placeholder' => 'sin IVA', 'step' => '0.01'], ['icon' => 'money']) !!}
                             </div>
                         </span>
                     </div>

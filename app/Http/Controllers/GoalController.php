@@ -14,7 +14,6 @@ class GoalController extends Controller
         $dates->transform(function ($item, $key) {
             return $item->groupBy('year');
         });
-        // dd($dates);
 
         return view('goals.index', compact('dates'));
     }

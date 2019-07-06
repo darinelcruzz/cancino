@@ -45,11 +45,7 @@
                     <div class="row">
                         <span v-if="binnacle_reason == 'cotizacion' || binnacle_reason == 'venta'" style="align-content: center;">
                             <div class="col-md-6">
-                                <br>
-                                <file-upload fname="document" ext="pdf" color="success"></file-upload>
-                            </div>
-                            <div class="col-md-6">
-                                {!! Field::number('amount', ['tpl' => 'lte/withicon'], ['icon' => 'money']) !!}
+                                {!! Field::number('amount', ['tpl' => 'lte/withicon', 'placeholder' => 'sin IVA', 'step' => '0.01'], ['icon' => 'money']) !!}
                             </div>
                         </span>
                     </div>
