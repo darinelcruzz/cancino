@@ -14,7 +14,7 @@
     @endif
         <div class="box box-{{ auth()->user()->store->color }}">
             <div class="box-body box-profile">
-                <img class="profile-user-img img-responsive img-circle" src="/storage/employers/{{ $employer->id }}/photo.png" alt="User profile picture">
+                <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" alt="User profile picture">
                 <h3 class="profile-username text-center">{{ $employer->name }}</h3>
                 <p class="text-muted text-center">{{ $employer->store->name . ' - ' . $employer->job }}</p>
 

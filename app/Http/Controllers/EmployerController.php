@@ -48,11 +48,6 @@ class EmployerController extends Controller
 
         $employer->storeDocuments($request);
 
-        if ($request->file('photo')) {
-            $route = 'public/employers/' . $employer->id;
-            $request->file('photo')->storeAs($route, 'FOTO.' . $request->photo->extension());
-        }
-
         if (auth()->user()->level < 4) {
             return redirect(route('admin.employers'));
         }else {
@@ -66,14 +61,42 @@ class EmployerController extends Controller
         return view('employers.show', compact('employer'));
     }
 
+    function explore(Employer $employer)
+    {
+        $route = 'public/employers/' . $employer->id;
+        $files = Storage::files($route);
+
+        return view('employers.explore', compact('files', 'employer'));
+    }
+
     function edit(Employer $employer)
     {
-        //
+        $stores = Store::pluck('name', 'id')->toArray();
+
+        return view('employers.edit', compact('employer', 'stores'));
     }
 
     function update(Request $request, Employer $employer)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'married' => 'required',
+            'sons' => 'required',
+            'job' => 'required',
+            'store_id' => 'required',
+            'ine' => 'sometimes|required',
+            'curp' => 'sometimes|required',
+            'birth_certificate' => 'sometimes|required',
+            'address_file' => 'sometimes|required',
+        ]);
+
+        $employer->update($request->all());
+
+        $employer->storeDocuments($request);
+
+        return redirect(route('employers.index'));
     }
 
     function destroy(Employer $employer)
