@@ -8,11 +8,28 @@
         <div class="col-md-12">
             <color-box title="Empleados de {{ auth()->user()->store->name }}" color="{{ auth()->user()->store->color }}">
                 <data-table example="1">
-                    {{ drawHeader('id', '<i class="fa fa-cogs"></i>', '<i class="fa fa-camera"></i>',  'nombre', 'puesto', 'cumpleaños') }}
+                    {{ drawHeader('nombre', '<i class="fa fa-cogs"></i>', 'cumpleaños') }}
                     <template slot="body">
                         @foreach($employers as $employer)
                             <tr>
-                                <td>{{ $employer->id }}</td>
+                                <td>
+                                    <div class="col-md-2">
+                                        @if(Storage::disk('public')->exists('employers/' . $employer->id . '/FOTO.jpeg'))
+                                            <img src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" 
+                                                alt="foto de {{ $employer->name }}" 
+                                                width="50px" height="50px"
+                                                style="border-radius: 50%;">
+                                        @else
+                                            <img src="{{ asset('images/default-avatar.png') }}"
+                                                width="50px" height="50px"
+                                                style="border-radius: 50%;">
+                                        @endif
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{ $employer->name }} <br>
+                                        <code>{{ $employer->job }}</code>
+                                    </div>
+                                </td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         <ddi to="{{ route('employers.show', $employer) }}" icon="eye" text="Detalles"></ddi>
@@ -21,14 +38,6 @@
                                         <ddi to="#" icon="times" text="Dar de baja"></ddi>
                                     </dropdown>
                                 </td>
-                                <td>
-                                    <img src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" 
-                                        alt="foto de {{ $employer->name }}" 
-                                        width="50px" height="50px"
-                                        style="border-radius: 50%;">
-                                </td>
-                                <td>{{ $employer->name }}</td>
-                                <td>{{ $employer->job }}</td>
                                 <td>{{ fdate($employer->birthday, 'd M Y', 'Y-m-d') }}</td>
                             </tr>
                         @endforeach
