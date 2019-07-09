@@ -78,7 +78,8 @@ class SaleController extends Controller
 
     function edit(Sales $sales)
     {
-        //
+        $sales = Sale::where()
+        >update($request->all());
     }
 
     function update(Request $request, Sales $sales)

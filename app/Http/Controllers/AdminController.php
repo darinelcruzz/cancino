@@ -46,6 +46,16 @@ class AdminController extends Controller
         return view('admin.sales', compact('dates'));
     }
 
+    function deposits()
+    {
+        $dates = Sale::selectRaw('date_sale, store_id, date_deposit, DATE_FORMAT(date_sale, "%Y-%m") as month')->orderBy('month', 'des')->get()->groupBy('month')->take(12);
+        $dates->transform(function ($item, $key) {
+            return $item->groupBy('date_sale');
+        });
+
+        return view('admin.deposits', compact('dates'));
+    }
+
     function notes()
     {
         $notes = Note::all();
