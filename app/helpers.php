@@ -35,6 +35,25 @@ function drawHeader(...$titles)
 function fileExists($file)
 {
     $file_headers = @get_headers($file);
-    
+
     return $file_headers[0] == 'HTTP/1.1 404 Not Found';
+}
+
+function colorDay($sale, $deposit)
+{
+    $start = new Date(strtotime($sale));
+    $day = $start->format('D');
+    $end = new Date(strtotime($deposit));
+    $interval = $start->diff($end);
+    $interval = $interval->format('%a');
+
+    if ($day == 'vie' && $interval < 4 ) {
+        return 'green';
+    }elseif($day == 'sáb' && $interval < 3 ){
+        return 'green';
+    }elseif($interval < 3){
+        return 'green';
+    }else{
+        return 'red';
+    }
 }

@@ -23,11 +23,41 @@
                             @foreach ($days as $date => $stores)
                                 <tr>
                                     <td>{{ fdate($date, 'd, l', 'Y-m-d') }}</td>
-                                    <td>{{ fdate($stores->where('store_id', 2)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
-                                    <td>{{ fdate($stores->where('store_id', 3)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
-                                    <td>{{ fdate($stores->where('store_id', 4)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
-                                    <td>{{ fdate($stores->where('store_id', 5)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
-                                    <td>{{ fdate($stores->where('store_id', 6)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
+                                    <td>
+                                        {{ fdate($stores->where('store_id', 2)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
+                                        {{ fnumber($stores->where('store_id', 2)->sum('cash')) }}
+                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 2)->pluck('date_deposit')->pop()) }}">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{ fdate($stores->where('store_id', 3)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
+                                        {{ fnumber($stores->where('store_id', 3)->sum('cash')) }}
+                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 3)->pluck('date_deposit')->pop()) }}">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{ fdate($stores->where('store_id', 4)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
+                                        {{ fnumber($stores->where('store_id', 4)->sum('cash')) }}
+                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 4)->pluck('date_deposit')->pop()) }}">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{ fdate($stores->where('store_id', 5)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
+                                        {{ fnumber($stores->where('store_id', 5)->sum('cash')) }}
+                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 5)->pluck('date_deposit')->pop()) }}">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{ fdate($stores->where('store_id', 6)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
+                                        {{ fnumber($stores->where('store_id', 6)->sum('cash')) }}
+                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 6)->pluck('date_deposit')->pop()) }}">
+                                            <i class="fa fa-circle"></i>
+                                        </span>
+                                    </td>
                                 </tr>
                             @endforeach
                         </template>

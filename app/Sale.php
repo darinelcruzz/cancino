@@ -36,6 +36,7 @@ class Sale extends Model
             return 'red';
         }
     }
+    
     function getScale($date, $store = NULL)
     {
         if ($store == NULL) {
