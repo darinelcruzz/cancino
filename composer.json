@@ -9,6 +9,7 @@
         "almasaeed2010/adminlte": "~2.4",
         "consoletvs/charts": "6.*",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "jenssegers/date": "^3.4",
         "laravel-notification-channels/telegram": "^0.0.4",
         "laravel/framework": "5.6.*",

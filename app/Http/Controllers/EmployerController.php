@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EmployerCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\{Employer, Store, Movement};
 
@@ -47,6 +49,10 @@ class EmployerController extends Controller
         ]);
 
         $employer->storeDocuments($request);
+
+        // Mail::to('darinelcruzz@gmail.com')
+        //     ->cc('victorjcg_6@hotmail.com')
+        //     ->queue(new EmployerCreated($employer));
 
         if (auth()->user()->level < 4) {
             return redirect(route('admin.employers'));
