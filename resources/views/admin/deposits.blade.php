@@ -23,11 +23,11 @@
                             @foreach ($days as $date => $stores)
                                 <tr>
                                     <td>{{ fdate($date, 'd, l', 'Y-m-d') }}</td>
-                                    <td>{{ $stores->where('store_id', 2)->pluck('date_deposit')->pop() }}</td>
-                                    <td>{{ $stores->where('store_id', 3)->pluck('date_deposit')->pop() }}</td>
-                                    <td>{{ $stores->where('store_id', 4)->pluck('date_deposit')->pop() }}</td>
-                                    <td>{{ $stores->where('store_id', 5)->pluck('date_deposit')->pop() }}</td>
-                                    <td>{{ $stores->where('store_id', 6)->pluck('date_deposit')->pop() }}</td>
+                                    <td>{{ fdate($stores->where('store_id', 2)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
+                                    <td>{{ fdate($stores->where('store_id', 3)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
+                                    <td>{{ fdate($stores->where('store_id', 4)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
+                                    <td>{{ fdate($stores->where('store_id', 5)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
+                                    <td>{{ fdate($stores->where('store_id', 6)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}</td>
                                 </tr>
                             @endforeach
                         </template>
