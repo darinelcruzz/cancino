@@ -120,8 +120,9 @@ Route::group(['prefix' => 'empleados', 'as' => 'employers.'], function () {
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{employer}', usesas($ctrl, 'edit'));
-    Route::post('editar', usesas($ctrl, 'update'));
+    Route::post('editar/{employer}', usesas($ctrl, 'update'));
     Route::get('detalles/{employer}', usesas($ctrl, 'show'));
+    Route::get('documentos/{employer}', usesas($ctrl, 'explore'));
 });
 
 Route::group(['prefix' => 'mantenimiento', 'as' => 'maintenances.'], function () {

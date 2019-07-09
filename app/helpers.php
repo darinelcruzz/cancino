@@ -31,3 +31,10 @@ function drawHeader(...$titles)
     }
     echo "</tr></template>";
 }
+
+function fileExists($file)
+{
+    $file_headers = @get_headers($file);
+    
+    return $file_headers[0] == 'HTTP/1.1 404 Not Found';
+}
