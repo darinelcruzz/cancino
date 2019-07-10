@@ -33,6 +33,10 @@ return [
                 'title' => 'Admin',
                 'route' => 'admin.binnacles',
             ],
+            'Public' => [
+                'title' => 'Depositos',
+                'route' => 'admin.deposits',
+            ],
         ],
     ],
 

@@ -12,17 +12,21 @@ return [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
         'submenu' => [
-            'total' => [
+            'Total' => [
                 'title' => 'Diarias',
                 'route' => 'admin.sales'
             ],
-            'monthly' => [
+            'Monthly' => [
                 'title' => 'Mensuales y Metas',
                 'route' => 'admin.goals'
             ],
             'Public' => [
                 'title' => 'Graficas',
                 'route' => 'admin.public',
+            ],
+            'Deposits' => [
+                'title' => 'Depositos',
+                'route' => 'admin.deposits',
             ],
         ],
     ],

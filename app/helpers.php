@@ -51,7 +51,7 @@ function colorDay($sale, $deposit)
         return 'green';
     }elseif($day == 'sáb' && $interval < 3 ){
         return 'green';
-    }elseif($interval < 3){
+    }elseif($interval < 2){
         return 'green';
     }else{
         return 'red';
