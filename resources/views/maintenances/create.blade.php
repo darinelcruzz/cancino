@@ -36,10 +36,7 @@
                                     {!! Field::text('provider', ['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!!
-                                        Field::select('type',['limpieza' => 'Limpieza', 'reseteo' => 'Reseteo', 'relleno' => 'Relleno'],
-                                        null, ['empty' => 'Seleccione tipo de mantenimiento', 'tpl' => 'lte/withicon'], ['icon' => 'screwdriver'])
-                                    !!}
+                                    {!! Field::text('type',['tpl' => 'lte/withicon'], ['icon' => 'screwdriver']) !!}
                                 </div>
                                 <div class="col-md-6">
 

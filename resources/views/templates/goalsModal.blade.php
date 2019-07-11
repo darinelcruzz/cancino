@@ -15,7 +15,6 @@
                     <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->blackPoint) !!}</td>
                     <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->starPoint) !!}</td>
                     <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->goldenPoint) !!}</td>
-                    <td>{!! empty($stores->where('store_id', $i)->first()) ? '' : fnumber($stores->where('store_id', $i)->first()->goldenPoint) !!}</td>
                 </tr>
             @endfor
         </tbody>

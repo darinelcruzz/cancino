@@ -115,6 +115,12 @@ return [
         ],
     ],
 
+    'Maintenance' => [
+        'title' => 'Manetenimientos',
+        'icon' => 'fa fa-toolbox',
+        'route' => 'admin.maintenances',
+    ],
+
     'Notes' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',

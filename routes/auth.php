@@ -125,7 +125,7 @@ Route::group(['prefix' => 'empleados', 'as' => 'employers.'], function () {
     Route::get('documentos/{employer}', usesas($ctrl, 'explore'));
 });
 
-Route::group(['prefix' => 'mantenimiento', 'as' => 'maintenances.'], function () {
+Route::group(['prefix' => 'mantenimientos', 'as' => 'maintenances.'], function () {
     $ctrl = 'MaintenanceController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -159,4 +159,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::post('publico', usesas($ctrl, 'public'));
     Route::get('documentos', usesas($ctrl, 'documents'));
     Route::get('empleados', usesas($ctrl, 'employers'));
+    Route::get('mantenimientos', usesas($ctrl, 'maintenances'));
 });

@@ -3,6 +3,10 @@
     Equipos | Lista
 @endpush
 
+@push('headerTitle')
+    <a href="{{ route('maintenances.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -28,8 +32,8 @@
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         <ddi to="{{ route('maintenances.show', ['id' => $maintenance->id]) }}" icon="eye" text="Detalles"></ddi>
-                                        {{-- <ddi to="#" icon="edit" text="Editar"></ddi>
-                                        <ddi to="#" icon="times" text="Dar de baja"></ddi> --}}
+                                        <ddi to="#" icon="edit" text="Editar"></ddi>
+                                        <ddi to="#" icon="times" text="Dar de baja"></ddi>
                                     </dropdown>
                                 </td>
                             </tr>

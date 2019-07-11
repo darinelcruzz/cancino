@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Maintenance};
 
 class AdminController extends Controller
 {
@@ -118,6 +118,13 @@ class AdminController extends Controller
         $stores = Employer::where('status', 1)->orderBy('store_id')->get()->groupBy('store_id');
 
         return view('admin.employers', compact('stores'));
+    }
+
+    function maintenances()
+    {
+        $maintenances = Maintenance::All();
+
+        return view('admin.maintenances', compact('maintenances'));
     }
 
     function public(Request $request)
