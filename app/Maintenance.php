@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Maintenance extends Model
 {
-    protected $fillable = ['store_id', 'equipment', 'type', 'name', 'provider', 'maintenance_at', 'observations'];
+    protected $fillable = ['equipment_id', 'type', 'cost', 'provider', 'maintenance_at', 'observations'];
 
-    function store()
+    function equipment()
     {
-        return $this->belongsTo(Store::class);
+        return $this->belongsTo(Equipment::class);
     }
 }

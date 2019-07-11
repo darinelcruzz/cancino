@@ -17,6 +17,7 @@ class ClientsTableSeeder extends Seeder
             'contact' => 'Aparicio Serrano',
             'position' => 'Gerente',
             'cellphone' => '9621453485',
+            'type' => '1',
             'store_id' => 2,
             'user_id' => 8
         ]);

@@ -11,11 +11,10 @@ class CreateMaintenancesTable extends Migration
         Schema::create('maintenances', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('store_id');
-            $table->string('name');
-            $table->string('equipment');
+            $table->integer('equipment_id');
             $table->string('type')->nullable();
             $table->string('provider')->nullable();
+            $table->integer('cost')->nullable();
             $table->date('maintenance_at')->nullable();
             $table->string('observations')->nullable();
 

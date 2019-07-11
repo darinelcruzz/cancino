@@ -118,7 +118,7 @@ return [
     'Maintenance' => [
         'title' => 'Manetenimientos',
         'icon' => 'fa fa-toolbox',
-        'route' => 'admin.maintenances',
+        'route' => 'admin.equipments',
     ],
 
     'Notes' => [

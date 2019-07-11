@@ -219,6 +219,8 @@ return [
         'maintenance_at' => 'mantenimiento',
         'provider' => 'proveedor',
         'skills' => 'habilidades',
+        'brand' => 'marca',
+        'months' => 'meses',
         'weaknesses' => 'debilidades',
         'account_number' => 'número de cuenta',
         'social_security_number' => 'número de seguro social',

@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Maintenance};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment};
 
 class AdminController extends Controller
 {
@@ -120,11 +120,11 @@ class AdminController extends Controller
         return view('admin.employers', compact('stores'));
     }
 
-    function maintenances()
+    function equipments()
     {
-        $maintenances = Maintenance::All();
+        $equipments = Equipment::All();
 
-        return view('admin.maintenances', compact('maintenances'));
+        return view('admin.equipments', compact('equipments'));
     }
 
     function public(Request $request)

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Maintenance;
+use App\Equipment;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    function maintenance(Maintenance $maintenance)
+    function equipment(Equipment $equipment)
     {
-        return view('maintenances.public', compact('maintenance'));
+        return view('equipments.public', compact('equipment'));
     }
 }
