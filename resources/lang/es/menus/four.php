@@ -52,6 +52,12 @@ return [
         'noti' => '.'
     ],
 
+    'Equipments' => [
+        'title' => 'Equipos',
+        'icon' => 'fa fa-toolbox',
+        'route' => 'equipments.index',
+    ],
+
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-file-invoice-dollar',

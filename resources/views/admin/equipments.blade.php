@@ -35,7 +35,7 @@
                         @endforeach
                     </template>
                 </data-table>
-            </solid-box>
+            </color-box>
         </div>
     </div>
 @endsection

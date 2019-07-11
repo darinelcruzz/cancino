@@ -6,7 +6,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'publico', 'as' => 'public.'], function () {
     $ctrl = 'PublicController';
-    Route::get('equipo/{equipment}', usesas($ctrl, 'equipment'));
+    Route::get('equipos/{equipment}', usesas($ctrl, 'equipment'));
 });
 
 Route::match(['post', 'get'], 'login', [
