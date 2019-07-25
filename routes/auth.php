@@ -159,6 +159,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('depositos', usesas($ctrl, 'deposits'));
+    Route::post('depositos', usesas($ctrl, 'deposits'));
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('saldos', usesas($ctrl, 'balances'));
     Route::get('gastos/{store}', usesas($ctrl, 'expenses'));

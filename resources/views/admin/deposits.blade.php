@@ -10,68 +10,57 @@
 @endpush
 
 @section('content')
-    @foreach ($dates as $month => $days)
+
+
+    {!! Form::open(['method' => 'post', 'route' => 'admin.deposits']) !!}
+        
+        <div class="row">
+            <div class="col-md-3 pull-right">
+                <div class="input-group input-group-sm">
+                    <input type="month" name="date" class="form-control" value="{{ $date }}">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    {!! Form::close() !!}
+
+    <br>
+
+    @foreach ($months as $month => $days)
         <div class="row">
             @php
                 $chiapas = $soconusco = $altos = $galeTux = $galeTapa = $total = 0;
             @endphp
             <div class="col-md-12">
                 <color-box title="{{ ucfirst(fdate("$month-1", 'F \(Y\)', 'Y-m-j')) }}" color="primary" solid button {{ $loop->index == 0 ? '': 'collapsed' }}>
+
                     <data-table example="{{ $loop->iteration }}">
-                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa') }}
+
+                        {{ drawHeader('Fecha', 'Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa') }}
+
                         <template slot="body">
                             @foreach ($days as $date => $stores)
                                 <tr>
                                     <td>{{ fdate($date, 'd, l', 'Y-m-d') }}</td>
-                                    <td>
-                                        {{ fdate($stores->where('store_id', 2)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
-                                        {{ fnumber($stores->where('store_id', 2)->sum('cash')) }}
-                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 2)->pluck('date_deposit')->pop()) }}">
-                                            <i class="fa fa-circle"></i>
-                                        </span><br>
-                                        {{ $stores->where('store_id', 2)->pluck('observations')->pop() }}
-                                        @if ($stores->where('store_id', 2)->pluck('status')->pop() == 'depositado')
-                                            <modal-button target="{{ $stores->where('store_id', 2)->pluck('id')->pop() }}"><i class="fa fa-check"></i></modal-button>
-                                            @include('templates/checkModal', ['num' => 2])
-                                        @endif
 
-                                    </td>
-                                    <td>
-                                        {{ fdate($stores->where('store_id', 3)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
-                                        {{ fnumber($stores->where('store_id', 3)->sum('cash')) }}
-                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 3)->pluck('date_deposit')->pop()) }}">
-                                            <i class="fa fa-circle"></i>
-                                        </span><br>
-                                        {{ $stores->where('store_id', 3)->pluck('observations')->pop() }}
-                                        @if ($stores->where('store_id', 3)->pluck('status')->pop() == 'depositado')
-                                            <modal-button target="{{ $stores->where('store_id', 3)->pluck('id')->pop() }}"><i class="fa fa-check"></i></modal-button>
-                                            @include('templates/checkModal', ['num' => 3])
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{ fdate($stores->where('store_id', 4)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
-                                        {{ fnumber($stores->where('store_id', 4)->sum('cash')) }}
-                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 4)->pluck('date_deposit')->pop()) }}">
-                                            <i class="fa fa-circle"></i>
-                                        </span><br>
-                                        {{ $stores->where('store_id', 4)->pluck('observations')->pop() }}
-                                        @if ($stores->where('store_id', 4)->pluck('status')->pop() == 'depositado')
-                                            <modal-button target="{{ $stores->where('store_id', 4)->pluck('id')->pop() }}"><i class="fa fa-check"></i></modal-button>
-                                            @include('templates/checkModal', ['num' => 4])
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{ fdate($stores->where('store_id', 5)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
-                                        {{ fnumber($stores->where('store_id', 5)->sum('cash')) }}
-                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 5)->pluck('date_deposit')->pop()) }}">
-                                            <i class="fa fa-circle"></i>
-                                        </span><br>
-                                        {{ $stores->where('store_id', 5)->pluck('observations')->pop() }}
-                                        @if ($stores->where('store_id', 5)->pluck('status')->pop() == 'depositado')
-                                            <modal-button target="{{ $stores->where('store_id', 5)->pluck('id')->pop() }}"><i class="fa fa-check"></i></modal-button>
-                                            @include('templates/checkModal', ['num' => 5])
-                                        @endif
-                                    </td>
+                                    @foreach([2, 3, 4, 5] as $store_id)
+                                        <td>
+                                            {{ fdate($stores->where('store_id', $store_id)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
+                                            {{ fnumber($stores->where('store_id', $store_id)->sum('cash')) }}
+                                            <span style="color:{{ colorDay($date, $stores->where('store_id', $store_id)->pluck('date_deposit')->pop()) }}">
+                                                <i class="fa fa-circle"></i>
+                                            </span><br>
+                                            {{ $stores->where('store_id', $store_id)->pluck('observations')->pop() }}
+                                            @if ($stores->where('store_id', $store_id)->pluck('status')->pop() == 'depositado')
+                                                <modal-button target="{{ $stores->where('store_id', $store_id)->pluck('id')->pop() }}"><i class="fa fa-check"></i></modal-button>
+                                                @include('templates/checkModal')
+                                            @endif
+                                        </td>
+                                    @endforeach
+
                                     <td>
                                         {{ fdate($stores->where('store_id', 6)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
                                         {{ fnumber($stores->where('store_id', 6)->sum('cash')) }}
