@@ -11,7 +11,7 @@ class Sale extends Model
     use Notifiable;
 
     protected $fillable = ['date_sale', 'cash', 'public',
-    'total', 'store_id', 'status', 'user_id', 'date_deposit'];
+    'total', 'store_id', 'status', 'user_id', 'date_deposit', 'observations'];
 
     function store()
     {
@@ -36,7 +36,7 @@ class Sale extends Model
             return 'red';
         }
     }
-    
+
     function getScale($date, $store = NULL)
     {
         if ($store == NULL) {

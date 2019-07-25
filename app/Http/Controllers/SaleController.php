@@ -78,8 +78,7 @@ class SaleController extends Controller
 
     function edit(Sales $sales)
     {
-        $sales = Sale::where()
-        >update($request->all());
+        //
     }
 
     function update(Request $request, Sales $sales)
@@ -88,6 +87,12 @@ class SaleController extends Controller
     }
 
     function deposit(Request $request)
+    {
+        Sale::find($request->id)->update($request->all());
+        return back();
+    }
+
+    function check(Request $request)
     {
         Sale::find($request->id)->update($request->all());
         return back();
