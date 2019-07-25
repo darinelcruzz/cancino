@@ -150,7 +150,8 @@ class AdminController extends Controller
             $stars[$store->id]= $store->getStar($date);
             $goldens[$store->id]= $store->getGolden($date);
         }
-        return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'galetux', 'galetapa', 'sales', 'points', 'stars', 'goldens'));
+
+        return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'sales', 'points', 'stars', 'goldens'));
     }
 
     function buildChart(Store $store, $date)

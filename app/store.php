@@ -10,7 +10,7 @@ class Store extends Model
 
     function getTabNameAttribute()
     {
-        return str_replace(' ', '', $this->name);
+        return str_replace(' ', '_', $this->name);
     }
     function sales()
     {

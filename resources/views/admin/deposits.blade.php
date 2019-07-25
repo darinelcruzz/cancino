@@ -10,24 +10,12 @@
 @endpush
 
 @section('content')
-
-
-    {!! Form::open(['method' => 'post', 'route' => 'admin.deposits']) !!}
         
-        <div class="row">
-            <div class="col-md-3 pull-right">
-                <div class="input-group input-group-sm">
-                    <input type="month" name="date" class="form-control" value="{{ $date }}">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-md-3">
+            @include('templates/month_select', ['route' => 'admin.deposits', 'date' => $date])
         </div>
-
-    {!! Form::close() !!}
-
-    <br>
+    </div><br>
 
     @foreach ($months as $month => $days)
         <div class="row">
@@ -46,7 +34,7 @@
                                 <tr>
                                     <td>{{ fdate($date, 'd, l', 'Y-m-d') }}</td>
 
-                                    @foreach([2, 3, 4, 5] as $store_id)
+                                    @foreach([2, 3, 4, 5, 6] as $store_id)
                                         <td>
                                             {{ fdate($stores->where('store_id', $store_id)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
                                             {{ fnumber($stores->where('store_id', $store_id)->sum('cash')) }}
@@ -60,18 +48,6 @@
                                             @endif
                                         </td>
                                     @endforeach
-
-                                    <td>
-                                        {{ fdate($stores->where('store_id', 6)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
-                                        {{ fnumber($stores->where('store_id', 6)->sum('cash')) }}
-                                        <span style="color:{{ colorDay($date, $stores->where('store_id', 6)->pluck('date_deposit')->pop()) }}">
-                                            <i class="fa fa-circle"></i>
-                                        </span><br>
-                                        {{ $stores->where('store_id', 6)->pluck('observations')->pop() }}
-                                        @if ($stores->where('store_id', 6)->pluck('status')->pop() == 'depositado')
-                                            <a href="{{ route('sales.check', ['id' => $stores->where('store_id', 6)->pluck('id')->pop()]) }}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                                        @endif
-                                    </td>
                                 </tr>
                             @endforeach
                         </template>
