@@ -94,4 +94,5 @@ class BinnacleController extends Controller
     {
         //
     }
+    
 }

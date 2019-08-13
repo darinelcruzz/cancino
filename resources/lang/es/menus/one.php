@@ -5,12 +5,14 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
+        'label' => pendingShoppings(),
         'route' => 'admin.shoppings',
     ],
 
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
+        'label' => pendingDepositsAll(),
         'submenu' => [
             'Daily' => [
                 'title' => 'Diarias',
@@ -61,6 +63,7 @@ return [
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',
+        'label' => pendingInvoices(),
         'submenu' => [
             'Chiapas' => [
                 'title' => 'Chiapas',
@@ -124,12 +127,14 @@ return [
     'Notes' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',
+        'label' => pendingNotesAll(),
         'route' => 'admin.notes',
     ],
 
     'Waste' => [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',
+        'label' => pendingWastes(),
         'route' => 'admin.wastes'
     ],
 

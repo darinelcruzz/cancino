@@ -57,3 +57,51 @@ function colorDay($sale, $deposit)
         return 'red';
     }
 }
+//labels
+function pendingDeposits()
+{
+    return App\Sale::where('store_id', auth()->user()->store_id)
+        ->whereNull('date_deposit')->count();
+}
+
+function pendingDepositsAll()
+{
+    return App\Sale::whereNull('date_deposit')->count();
+}
+
+function pendingShoppings()
+{
+    return App\Shopping::whereStatus('pendiente')->count();
+}
+
+function pendingInvoices()
+{
+    return App\Invoice::whereStatus('pendiente')->count();
+}
+
+function pendingWastes()
+{
+    return App\Waste::whereStatus('pendiente')->count();
+}
+
+function pendingNotes()
+{
+    return App\Note::where('store_id', auth()->user()->store_id)
+        ->whereStatus('pendiente')->count();
+}
+
+function pendingNotesAll()
+{
+    return App\Note::whereStatus('pendiente')->count();
+}
+
+function pendingLoans()
+{
+    $from = App\Loan::where('from', auth()->user()->store_id)
+        ->where('status', '!=', 'facturado')
+        ->where('status', '!=', 'cancelado')->count();
+    $to = App\Loan::where('to', auth()->user()->store_id)
+        ->where('status', '!=', 'facturado')
+        ->where('status', '!=', 'cancelado')->count();
+    return $from + $to;
+}

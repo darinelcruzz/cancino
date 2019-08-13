@@ -10,6 +10,7 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money-bill-alt',
+        'label' => pendingDeposits(),
         'submenu' => [
             'total' => [
                 'title' => 'Depositos',
@@ -36,6 +37,7 @@ return [
     'NC' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel',
+        'label' => pendingNotes(),
         'route' => 'notes.index'
     ],
 
@@ -48,8 +50,8 @@ return [
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',
-        'route' => 'loans.index',
-        'noti' => '.'
+        'label' => pendingLoans(),
+        'route' => 'loans.index'
     ],
 
     'Equipments' => [

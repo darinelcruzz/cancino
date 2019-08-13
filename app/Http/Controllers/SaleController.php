@@ -13,8 +13,10 @@ class SaleController extends Controller
 {
     function index()
     {
-        $sales = Sale::where('store_id', auth()->user()->store_id)->whereNull('date_deposit')->get();
-        return view('sales.index', compact('sales'));
+        $date = date('Y-m');
+        $pendings = Sale::where('store_id', auth()->user()->store_id)->whereNull('date_deposit')->get();
+        $currents = Sale::where('store_id', auth()->user()->store_id)->whereNotNull('date_deposit')->orderBy('date_sale', 'desc')->take(10)->get();
+        return view('sales.index', compact('pendings', 'currents'));
     }
 
     function create()
@@ -92,9 +94,4 @@ class SaleController extends Controller
         return back();
     }
 
-    function check(Request $request)
-    {
-        Sale::find($request->id)->update($request->all());
-        return back();
-    }
 }

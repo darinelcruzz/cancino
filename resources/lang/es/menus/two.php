@@ -5,12 +5,14 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
+        'label' => pendingShoppings(),
         'route' => 'admin.shoppings'
     ],
 
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
+        'label' => pendingDepositsAll(),
         'submenu' => [
             'Total' => [
                 'title' => 'Diarias',

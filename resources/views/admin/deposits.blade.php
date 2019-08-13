@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
-        
+
     <div class="row">
         <div class="col-md-3">
             @include('templates/month_select', ['route' => 'admin.deposits', 'date' => $date])
@@ -42,7 +42,7 @@
                                                 <i class="fa fa-circle"></i>
                                             </span><br>
                                             {{ $stores->where('store_id', $store_id)->pluck('observations')->pop() }}
-                                            @if ($stores->where('store_id', $store_id)->pluck('status')->pop() == 'depositado')
+                                            @if ($stores->where('store_id', $store_id)->pluck('status')->pop() == 'pendiente')
                                                 <modal-button target="{{ $stores->where('store_id', $store_id)->pluck('id')->pop() }}"><i class="fa fa-check"></i></modal-button>
                                                 @include('templates/checkModal')
                                             @endif

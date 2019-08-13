@@ -38,7 +38,10 @@ class AdminController extends Controller
 
     function sales()
     {
-        $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')->orderBy('month', 'des')->get()->groupBy('month')->take(12);
+        $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')
+            ->orderBy('month', 'des')
+            ->get()->groupBy('month')
+            ->take(12);
         $dates->transform(function ($item, $key) {
             return $item->groupBy('date_sale');
         });
@@ -51,8 +54,9 @@ class AdminController extends Controller
         $date = $request->date ? $request->date: date('Y-m');
 
         $months = Sale::whereMonth('date_sale', substr($date, 5))
+            ->whereYear('date_sale', substr($date, 0, 4))
             ->orWhereMonth('date_sale', substr($date, 5) - 1)
-            ->selectRaw('id, observations, status, 
+            ->selectRaw('id, observations, status,
             date_sale, store_id, date_deposit, cash,
             DATE_FORMAT(date_sale, "%Y-%m") as month')
             ->orderBy('month', 'des')
@@ -81,9 +85,15 @@ class AdminController extends Controller
     function expenses(Store $store)
     {
         $store = $store->id;
-        $expenses = Expense::where('store_id', $store)->where('type', '0')->get();
-        $ingreses = Expense::where('store_id', $store)->where('type', '1')->orderByDesc('id')->get()->take(3);
-        $last = Expense::where('store_id', $store)->where('type', '0')->where('check', '!=', NULL)->get()->last();
+        $expenses = Expense::where('store_id', $store)
+            ->where('type', '0')->get();
+        $ingreses = Expense::where('store_id', $store)
+            ->where('type', '1')->orderByDesc('id')
+            ->get()->take(3);
+        $last = Expense::where('store_id', $store)
+            ->where('type', '0')
+            ->where('check', '!=', NULL)
+            ->get()->last();
         return view('expenses.index', compact('expenses', 'ingreses', 'last', 'balance', 'store'));
     }
 
@@ -97,10 +107,16 @@ class AdminController extends Controller
 
     function loans(Store $store)
     {
-        $lent = Loan::where('to', $store->id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
-        $borrowed = Loan::where('from', $store->id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
-        $invoiced = Invoice::where('from', $store->id)->where('status', 'pendiente')->get();
-        $payed = Invoice::where('from', $store->id)->where('status', 'pagada')->get();
+        $lent = Loan::where('to', $store->id)
+            ->where('status', '!=', 'facturado')
+            ->where('status', '!=', 'cancelado')->get();
+        $borrowed = Loan::where('from', $store->id)
+            ->where('status', '!=', 'facturado')
+            ->where('status', '!=', 'cancelado')->get();
+        $invoiced = Invoice::where('from', $store->id)
+            ->where('status', 'pendiente')->get();
+        $payed = Invoice::where('from', $store->id)
+            ->where('status', 'pagada')->get();
 
         return view('admin.loans', compact('lent', 'borrowed', 'store', 'invoiced', 'payed'));
     }

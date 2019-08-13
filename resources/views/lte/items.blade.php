@@ -1,9 +1,5 @@
 @if (empty($item['submenu']))
     <li @if (!empty($item['class'])) class="{{ $item['class'] }}" @endif>
-        {{-- <a href="{{ route($item['route']) }}">
-            <i class="{{ $item['icon'] }}"></i>
-            <span>{{ $item['title'] }}</span>
-        </a> --}}
         @if (is_array($item['route']))
             <a href="{{ route($item['route'][0], $item['route'][1]) }}">
                 <i class="{{ $item['icon'] }}"></i><span>{{ $item['title'] }}</span>
@@ -11,13 +7,20 @@
         @else
             <a href="{{ route($item['route']) }}">
                 <i class="{{ $item['icon'] }}"></i><span>{{ $item['title'] }}</span>
+                @if (isset($item['label']))
+                    &nbsp;&nbsp;<span class="label label-danger">{{ $item['label'] }}</span>
+                @endif
             </a>
         @endif
     </li>
 @else
     <li class="treeview">
         <a href="#">
-            <i class="{{ $item['icon'] }}"></i> <span>{{ $item['title'] }}</span> <i class="fa fa-angle-left pull-right"></i>
+            <i class="{{ $item['icon'] }}"></i> <span>{{ $item['title'] }}</span>
+            @if (isset($item['label']))
+                &nbsp;&nbsp;<span class="label label-danger">{{ $item['label'] }}</span>
+            @endif
+            <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
             @foreach ($item['submenu'] as $subitem)
