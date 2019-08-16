@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Expense;
+use App\Store;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,10 @@ class ExpenseController extends Controller
 {
     function index()
     {
-        $store = auth()->user()->store_id;
-        $expenses = Expense::where('store_id', $store)->where('type', '0')->get();
-        $ingreses = Expense::where('store_id', $store)->where('type', '1')->orderByDesc('id')->get()->take(3);
-        $last = Expense::where('store_id', $store)->where('type', '0')->where('check', '!=', NULL)->get()->last();
+        $store = Store::where('id', auth()->user()->store_id)->first();
+        $expenses = Expense::where('store_id', $store->id)->where('type', '0')->get();
+        $ingreses = Expense::where('store_id', $store->id)->where('type', '1')->orderByDesc('id')->get()->take(3);
+        $last = Expense::where('store_id', $store->id)->where('type', '0')->where('check', '!=', NULL)->get()->last();
         return view('expenses.index', compact('expenses', 'ingreses', 'last', 'balance', 'store'));
     }
 

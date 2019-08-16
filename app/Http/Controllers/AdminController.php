@@ -84,13 +84,12 @@ class AdminController extends Controller
 
     function expenses(Store $store)
     {
-        $store = $store->id;
-        $expenses = Expense::where('store_id', $store)
+        $expenses = Expense::where('store_id', $store->id)
             ->where('type', '0')->get();
-        $ingreses = Expense::where('store_id', $store)
+        $ingreses = Expense::where('store_id', $store->id)
             ->where('type', '1')->orderByDesc('id')
             ->get()->take(3);
-        $last = Expense::where('store_id', $store)
+        $last = Expense::where('store_id', $store->id)
             ->where('type', '0')
             ->where('check', '!=', NULL)
             ->get()->last();

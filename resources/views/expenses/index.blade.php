@@ -13,8 +13,8 @@
                             <h4 align="center"><b>Saldo</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>CH:</b>{{ $last->check + 1 }}</h4>
-                            <h3 align="center"><b>{{ fnumber(App\Expense::balanceByStore($store)) }}</b></h3>
-                            <h4 align="center">{{ fdate(App\Expense::lastUpdate($store)->date,'d/M/Y', 'Y-m-d') }}</h4>
+                            <h3 align="center"><b>{{ fnumber(App\Expense::balanceByStore($store->id)) }}</b></h3>
+                            <h4 align="center">{{ fdate(App\Expense::lastUpdate($store->id)->date,'d/M/Y', 'Y-m-d') }}</h4>
                         </div>
                         <div class="icon">
                             <i class="fa fa-dollar"></i>
@@ -44,6 +44,24 @@
                                         <td>{{ fnumber($ingres->amount) }}</td>
                                     </tr>
                                 @endforeach
+                            </tbody>
+                        </table>
+                    </color-box>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <color-box title="Caja chica" color="primary">
+                        <table class="table table-bordered">
+                            <tbody>
+                                    <tr>
+                                        <th>Gastos</td>
+                                        <td>{{ fnumber($store->expense) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cambio</td>
+                                        <td>{{ fnumber($store->cash) }}</td>
+                                    </tr>
                             </tbody>
                         </table>
                     </color-box>
