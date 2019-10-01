@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12">
                 <color-box title="{{ ucfirst(fdate($month, 'F', 'm')) }}" color="primary" solid button {{ date('m') == $month ? '': 'collapsed' }}>
-                    <data-table example="{{ $loop->iteration }}">
+                    <data-table classes="ordered">
                         {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa', '<i class="far fa-edit"></i>') }}
                         <template slot="body">
                             @foreach ($years as $date => $stores)

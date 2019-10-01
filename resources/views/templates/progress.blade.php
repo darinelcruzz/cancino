@@ -13,7 +13,7 @@
                 <span class="pull-left"><b>Negro {{ fnumber($points[$num]) }}</b></span>
             </div>
             <div class="progress">
-                <div class="progress-bar progress-bar-black" style="width: {{ ($sales[$num] - $points[$num]) * 100 / ($stars[$num] - $points[$num]) }}%;"></div>
+                <div class="progress-bar progress-bar-black" style="width: {{ $stars[$num] == $points[$num] ? 0 : ($sales[$num] - $points[$num]) * 100 / ($stars[$num] - $points[$num]) }}%;"></div>
             </div>
         </div>
         <div class="col-md-2">
@@ -21,7 +21,7 @@
                 <span class="pull-left"><b>Estrella {{ fnumber($stars[$num]) }}</b></span>
             </div>
             <div class="progress">
-                <div class="progress-bar progress-bar-green" style="width: {{ ($sales[$num] - $stars[$num]) * 100 / ($goldens[$num] - $stars[$num]) }}%;"></div>
+                <div class="progress-bar progress-bar-green" style="width: {{ $stars[$num] == $goldens[$num] ? 0 : ($sales[$num] - $stars[$num]) * 100 / ($goldens[$num] - $stars[$num]) }}%;"></div>
             </div>
         </div>
         <div class="col-md-2">

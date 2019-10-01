@@ -56,6 +56,7 @@ class AdminController extends Controller
         $months = Sale::whereMonth('date_sale', substr($date, 5))
             ->whereYear('date_sale', substr($date, 0, 4))
             ->orWhereMonth('date_sale', substr($date, 5) - 1)
+            ->whereYear('date_sale', substr($date, 0, 4))
             ->selectRaw('id, observations, status,
             date_sale, store_id, date_deposit, cash,
             DATE_FORMAT(date_sale, "%Y-%m") as month')

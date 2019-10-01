@@ -49,11 +49,18 @@
       "order":[[ 0 , "desc"]]
     });
     $("#example8").DataTable({
-      "order":false
+      "order":[[ 0 , "desc"]]
     });
     $("#example9").DataTable({
-      "order":false
+      "order":[[ 0 , "desc"]]
     });
+    $("#example10").DataTable({
+      "order":[[ 0 , "desc"]]
+    });
+    $(".ordered").DataTable({
+      "order":[[ 0 , "desc"]]
+    });
+
     $(".no-pagination").DataTable({
       "order":[[ 0 , "desc"]],
       paging: false

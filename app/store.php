@@ -43,7 +43,7 @@ class Store extends Model
         if ($pastYear == NULL) {
             return 0;
         }else {
-            return round($pastYear->sale * $now->star, 2);
+            return round($pastYear->sale * ($now != null ? $now->star: 1) , 2);
         }
     }
 
@@ -54,8 +54,8 @@ class Store extends Model
         if ($pastYear == NULL) {
             return 0;
         }else {
-            $star = round($pastYear->sale * $now->star, 2);
-            return round($star * $now->golden, 2);
+            $star = round($pastYear->sale * ($now != null ? $now->star: 1), 2);
+            return round($star * ($now != null ? $now->golden: 1), 2);
         }
     }
 }
