@@ -67,6 +67,21 @@ return [
         ],
     ],
 
+    'checkups' => [
+        'title' => 'Arqueo',
+        'icon' => 'fa fa-cash-register',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'checkup.create'
+            ],
+            'index' => [
+                'title' => 'Listado',
+                'route' => ['checkup.index', 1]
+            ]
+        ],
+    ],
+
     'Employers' => [
         'title' => 'Empleados',
         'icon' => 'fa fa-users',

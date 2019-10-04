@@ -152,6 +152,13 @@ Route::group(['prefix' => 'documentos', 'as' => 'documents.'], function () {
     Route::get('/{store}', usesas($ctrl, 'index'));
 });
 
+Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
+    $ctrl = 'CheckupController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+});
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
     Route::get('compras', usesas($ctrl, 'shoppings'));

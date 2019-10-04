@@ -9,6 +9,22 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import VueCurrencyFilter from 'vue-currency-filter'
+
+Vue.use(VueFormWizard)
+
+Vue.use(VueCurrencyFilter,
+{
+  symbol : '$',
+  thousandsSeparator: ',',
+  fractionCount: 2,
+  fractionSeparator: '.',
+  symbolPosition: 'front',
+  symbolSpacing: true
+})
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -24,12 +40,21 @@ Vue.component('file-upload', require('./components/lte/FileUploadInput.vue'));
 Vue.component('fu-button', require('./components/lte/FileUploadButton.vue'));
 Vue.component('modal', require('./components/lte/Modal.vue'));
 Vue.component('modal-button', require('./components/lte/ModalButton.vue'));
+
 Vue.component('file-input', require('./components/FileInput.vue'));
+Vue.component('cash-checkup', require('./components/CashCheckup.vue'));
+Vue.component('transfer-checkup', require('./components/TransferCheckup.vue'));
+Vue.component('cards-checkup', require('./components/CardsCheckup.vue'));
 
 const app = new Vue({
     el: '#app',
     data: {
     	binnacle_reason: '',
     	concept: '',
+    },
+    methods: {
+    	submit() {
+            this.$refs.cform.submit()
+        }
     }
 });
