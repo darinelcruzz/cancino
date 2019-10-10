@@ -22,6 +22,21 @@ return [
         ],
     ],
 
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'employers.create'
+            ],
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'admin.employers'
+            ],
+        ],
+    ],
+
     'Waste' => [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',
