@@ -13,7 +13,7 @@ return [
         'submenu' => [
             'sales' => [
                 'title' => 'Ventas',
-                'route' => 'admin.sales',
+                'route' => 'helper.sales',
             ],
             'deposits' => [
                 'title' => 'Depositos',
@@ -31,7 +31,7 @@ return [
     'NC' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',
-        'route' => 'admin.notes'
+        'route' => 'helper.notes'
     ],
 
     'logout' => [

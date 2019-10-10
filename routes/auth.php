@@ -179,3 +179,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('empleados', usesas($ctrl, 'employers'));
     Route::get('equipos', usesas($ctrl, 'equipments'));
 });
+
+Route::group(['prefix' => 'helper', 'as' => 'helper.', 'middleware' => 'helper'], function () {
+    $ctrl = 'HelperController';
+    Route::get('compras', usesas($ctrl, 'shoppings'));
+    Route::post('compras/verificar', usesas($ctrl, 'verify'));
+    Route::get('ventas', usesas($ctrl, 'sales'));
+    Route::get('depositos', usesas($ctrl, 'deposits'));
+    Route::post('depositos', usesas($ctrl, 'deposits'));
+    Route::get('notas', usesas($ctrl, 'notes'));
+    Route::get('saldos', usesas($ctrl, 'balances'));
+    Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
+    Route::get('bitacora', usesas($ctrl, 'binnacles'));
+    Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
+    Route::get('200', usesas($ctrl, 'wastes'));
+    Route::get('metas', usesas($ctrl, 'goals'));
+    Route::get('publico', usesas($ctrl, 'public'));
+    Route::post('publico', usesas($ctrl, 'public'));
+    Route::get('documentos', usesas($ctrl, 'documents'));
+    Route::get('empleados', usesas($ctrl, 'employers'));
+    Route::get('equipos', usesas($ctrl, 'equipments'));
+});
