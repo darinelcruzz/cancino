@@ -36,7 +36,7 @@ class EmployerController extends Controller
             // 'ine' => 'required',
             // 'curp' => 'required',
             // 'birth_certificate' => 'required',
-            'address_file' => 'required',
+            // 'address_file' => 'required',
         ]);
 
         $employer = Employer::create($request->all());
