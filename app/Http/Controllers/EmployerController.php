@@ -33,9 +33,9 @@ class EmployerController extends Controller
             'sons' => 'required',
             'job' => 'required',
             'store_id' => 'required',
-            'ine' => 'required',
-            'curp' => 'required',
-            'birth_certificate' => 'required',
+            // 'ine' => 'required',
+            // 'curp' => 'required',
+            // 'birth_certificate' => 'required',
             'address_file' => 'required',
         ]);
 

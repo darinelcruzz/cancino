@@ -45,6 +45,7 @@ Vue.component('file-input', require('./components/FileInput.vue'));
 Vue.component('cash-checkup', require('./components/CashCheckup.vue'));
 Vue.component('transfer-checkup', require('./components/TransferCheckup.vue'));
 Vue.component('cards-checkup', require('./components/CardsCheckup.vue'));
+Vue.component('sterencard-checkup', require('./components/SterenCardCheckup.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -16,6 +16,8 @@ class Checkup extends Model
     	'bbva' => 'array',
     	'banamex' => 'array',
     	'card_sums' => 'array',
+        'notes' => 'array',
+        'returns' => 'array',
     ];
 
     function getAmountAttribute()
