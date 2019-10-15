@@ -180,10 +180,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('equipos', usesas($ctrl, 'equipments'));
 });
 
-Route::group(['prefix' => 'helper', 'as' => 'helper.', 'middleware' => 'helper'], function () {
+Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
     $ctrl = 'HelperController';
-    Route::get('compras', usesas($ctrl, 'shoppings'));
-    Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('depositos', usesas($ctrl, 'deposits'));
     Route::post('depositos', usesas($ctrl, 'deposits'));

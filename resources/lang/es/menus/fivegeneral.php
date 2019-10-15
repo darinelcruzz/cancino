@@ -1,25 +1,10 @@
 <?php
 
 return [
-    'Shoppings' => [
-        'title' => 'Compras',
-        'icon' => 'fa fa-archive',
-        'route' => 'shoppings.index'
-    ],
-
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'submenu' => [
-            'sales' => [
-                'title' => 'Ventas',
-                'route' => 'helper.sales',
-            ],
-            'deposits' => [
-                'title' => 'Depositos',
-                'route' => 'sales.index',
-            ],
-        ],
+        'route' => 'helper.sales',
     ],
 
     'Employers' => [
@@ -32,7 +17,7 @@ return [
             ],
             'index' => [
                 'title' => 'Listado',
-                'route' => 'admin.employers'
+                'route' => 'helper.employers'
             ],
         ],
     ],

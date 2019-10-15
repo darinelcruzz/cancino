@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
 use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment};
 
-class AdminController extends Controller
+class HelperController extends Controller
 {
     function documents()
     {
@@ -40,13 +40,14 @@ class AdminController extends Controller
     {
         $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')
             ->orderBy('month', 'des')
-            ->get()->groupBy('month')
-            ->take(12);
+            ->get()
+            ->take(50)
+            ->groupBy('month');
         $dates->transform(function ($item, $key) {
             return $item->groupBy('date_sale');
         });
 
-        return view('admin.sales', compact('dates'));
+        return view('helper.sales', compact('dates'));
     }
 
     function notes()
