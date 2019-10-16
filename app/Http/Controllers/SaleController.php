@@ -38,7 +38,7 @@ class SaleController extends Controller
 
         $sale->notify(new \App\Notifications\SaleDay());
 
-        return redirect(route('admin.sales'));
+        return redirect(route('helper.sales'));
     }
 
     function show(Request $request)

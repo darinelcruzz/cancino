@@ -79,7 +79,8 @@ Route::group(['prefix' => 'bitacora', 'as' => 'binnacles.'], function () {
 
 Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     $ctrl = 'LoanController';
-    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('/anteriores', usesas($ctrl, 'index'));
+    Route::get('/actuales', usesas($ctrl, 'groups'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{loan}', usesas($ctrl, 'agree'));

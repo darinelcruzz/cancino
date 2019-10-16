@@ -18,4 +18,9 @@ class Loan extends Model
         return $this->belongsTo(Store::class, 'to');
     }
 
+    function invoice()
+    {
+        return $this->belongsTo(Invoice::class);
+    }
+
 }

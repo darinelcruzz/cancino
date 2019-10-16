@@ -51,8 +51,18 @@ return [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',
         'label' => pendingLoans(),
-        'route' => 'loans.index'
+        'submenu' => [
+            'current' => [
+                'title' => 'Actuales',
+                'route' => 'loans.groups'
+            ],
+            'past' => [
+                'title' => 'Anteriores',
+                'route' => 'loans.index'
+            ],
+        ],
     ],
+
 
     'Equipments' => [
         'title' => 'Equipos',

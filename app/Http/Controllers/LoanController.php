@@ -8,14 +8,22 @@ use Illuminate\Http\Request;
 
 class LoanController extends Controller
 {
-    function index()
+    function groups()
     {
         $lent = Loan::where('to', auth()->user()->store_id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
         $borrowed = Loan::where('from', auth()->user()->store_id)->where('status', '!=', 'facturado')->where('status', '!=', 'cancelado')->get();
         $invoiceLent = Invoice::where('to', auth()->user()->store_id)->get();
         $invoiceBorrowed = Invoice::where('from', auth()->user()->store_id)->get();
 
-        return view('loans.index', compact('lent', 'borrowed', 'invoiceLent', 'invoiceBorrowed'));
+        return view('loans.groups', compact('lent', 'borrowed', 'invoiceLent', 'invoiceBorrowed'));
+    }
+
+    function index()
+    {
+        $lent = Loan::where('to', auth()->user()->store_id)->where('status', 'facturado')->get();
+        $borrowed = Loan::where('from', auth()->user()->store_id)->where('status', 'facturado')->get();
+
+        return view('loans.index', compact('lent', 'borrowed'));
     }
 
     function create()
