@@ -41,8 +41,8 @@ class HelperController extends Controller
         $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')
             ->orderBy('month', 'des')
             ->get()
-            ->take(50)
-            ->groupBy('month');
+            ->groupBy('month')
+            ->take(2);
         $dates->transform(function ($item, $key) {
             return $item->groupBy('date_sale');
         });
