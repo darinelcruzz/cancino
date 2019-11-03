@@ -11,6 +11,7 @@ class ExpenseController extends Controller
 {
     function index()
     {
+
         $store = Store::where('id', auth()->user()->store_id)->first();
         $expenses = Expense::where('store_id', $store->id)->where('type', '0')->get();
         $ingreses = Expense::where('store_id', $store->id)->where('type', '1')->orderByDesc('id')->get()->take(3);
@@ -31,9 +32,13 @@ class ExpenseController extends Controller
         $this->validate($request, [
             'date' => 'required',
             'amount' => 'required',
+            'name' => 'required',
+            'letter' => 'required',
             'concept' => 'required|sometimes',
+            'type' => 'required',
             'store_id' => 'required',
         ]);
+
         $route = 'public/expenses/store' . $store . "/$request->check";
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
@@ -60,6 +65,13 @@ class ExpenseController extends Controller
     function edit(Expense $expense)
     {
         //
+    }
+
+    function policy(Expense $expense)
+    {
+        $store = Store::where('id', $expense->store_id)->get()->first();
+
+        return view('expenses.policy', compact('expense', 'store'));
     }
 
     function update(Request $request)

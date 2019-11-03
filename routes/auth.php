@@ -19,6 +19,7 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('poliza/{expense}', usesas($ctrl, 'policy'));
 	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('detalles/{expense}', usesas($ctrl, 'show'));

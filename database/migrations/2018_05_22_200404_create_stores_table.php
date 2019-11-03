@@ -17,6 +17,7 @@ class CreateStoresTable extends Migration
             $table->string('type');
             $table->double('star')->nullable();
             $table->double('golden')->nullable();
+            $table->string('account')->nullable();
 
             $table->timestamps();
         });

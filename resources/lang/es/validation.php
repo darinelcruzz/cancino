@@ -225,5 +225,7 @@ return [
         'weaknesses' => 'debilidades',
         'account_number' => 'número de cuenta',
         'social_security_number' => 'número de seguro social',
+        'letter' => 'letra',
+        'group' => 'grupo',
     ],
 ];

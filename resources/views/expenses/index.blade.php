@@ -83,9 +83,12 @@
                                 <td>{{ $expense->concept }}</td>
                                 <td>{{ $expense->observations }}</td>
                                 <td>
-                                    @if ($expense->concept == 'Otros gastos')
-                                        <a href="{{ route('expenses.show', ['id' => $expense->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
-                                    @endif
+                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
+                                        <ddi to="{{ route('expenses.policy', $expense) }}" icon="file-pdf" text="Póliza"></ddi>
+                                        @if ($expense->concept == 'Otros gastos')
+                                            <ddi to="{{ route('expenses.show', $expense)}}" icon="eye" text="Detalles"></ddi>
+                                        @endif
+                                    </dropdown>
                                 </td>
                             </tr>
                         @endforeach

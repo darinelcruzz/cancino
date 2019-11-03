@@ -11,42 +11,49 @@ class StoresTableSeeder extends Seeder
             'color' => 'primary',
             'type' => 'c',
             'star' => '0',
-            'golden' => '0'
+            'golden' => '0',
+            'account' => '0155996007'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Chiapas',
             'color' => 'primary',
             'type' => 'p',
             'star' => '1.2',
-            'golden' => '1.2'
+            'golden' => '1.2',
+            'account' => '0155996007'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Soconusco',
-            'color' => 'success',
+            'color' => 'primary',
             'type' => 'p',
             'star' => '1.25',
-            'golden' => '1.15'
+            'golden' => '1.15',
+            'account' => '0166866913'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Altos',
-            'color' => 'danger',
+            'color' => 'primary',
             'type' => 'p',
             'star' => '1.30',
-            'golden' => '1.20'
+            'golden' => '1.20',
+            'account' => '0192810603'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Gale Tux',
-            'color' => 'info',
+            'color' => 'danger',
             'type' => 's',
             'star' => '1.25',
-            'golden' => '1.20'
+            'golden' => '1.20',
+            'account' => '0103373908'
         ]);
-        // factory(\App\Store::class)->create([
-        //     'name' => 'Gale Tapa',
-        //     'color' => 'info',
-        //     'type' => 's',
-        //     'star' => '1.25',
-        //     'golden' => '1.20'
-        // ]);
+
+        factory(\App\Store::class)->create([
+            'name' => 'Gale Tapa',
+            'color' => 'danger',
+            'type' => 's',
+            'star' => '1.25',
+            'golden' => '1.20',
+            'account' => '0113347451'
+        ]);
     }
 }

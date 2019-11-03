@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Expense extends Model
 {
     protected $fillable = ['check', 'date', 'amount', 'concept',
-    'observations', 'store_id', 'type'];
+    'observations', 'store_id', 'type', 'name', 'letter', 'group'];
 
     function store()
     {
