@@ -22,6 +22,7 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
     Route::get('poliza/{expense}', usesas($ctrl, 'policy'));
 	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+    Route::post('subir', usesas($ctrl, 'upFile'));
     Route::get('detalles/{expense}', usesas($ctrl, 'show'));
     Route::get('eliminar/{path}', usesas($ctrl, 'deleteFile'));
 });
@@ -159,6 +160,7 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('reporte/{checkup}', usesas($ctrl, 'report'));
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {

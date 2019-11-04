@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Checkup;
+use App\{Checkup, Store};
 use Illuminate\Http\Request;
 
 class CheckupController extends Controller
 {
-    public function index()
+    function index()
     {
         $checkups = Checkup::all();
 
         return view('checkups.index', compact('checkups'));
     }
 
-    public function create()
+    function create()
     {
         return view('checkups.create');
     }
-    
-    public function store(Request $request)
+
+    function store(Request $request)
     {
         $request->validate([
             'cash' => 'required',
@@ -30,23 +30,30 @@ class CheckupController extends Controller
         return redirect(route('checkup.index'));
     }
 
-    public function show(Checkup $checkup)
+    function show(Checkup $checkup)
     {
         //
     }
-    
-    public function edit(Checkup $checkup)
+
+    function edit(Checkup $checkup)
     {
         //
     }
-    
-    public function update(Request $request, Checkup $checkup)
+
+    function update(Request $request, Checkup $checkup)
     {
         //
     }
-    
-    public function destroy(Checkup $checkup)
+
+    function destroy(Checkup $checkup)
     {
         //
+    }
+
+    function report(Checkup $checkup)
+    {
+        $store = Store::where('id', $checkup->store_id)->get()->first();
+
+        return view('checkups.report', compact('checkup', 'store'));
     }
 }

@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-5">
             <color-box title="Agregar PDFs" color="success" button collapsed>
-                {!! Form::open(['method' => 'POST', 'route' => 'expenses.update', 'enctype' => 'multipart/form-data']) !!}
+                {!! Form::open(['method' => 'POST', 'route' => 'expenses.upFile', 'enctype' => 'multipart/form-data']) !!}
                     <file-input></file-input>
                     <hr>
                     {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}

@@ -85,7 +85,7 @@
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         <ddi to="{{ route('expenses.policy', $expense) }}" icon="file-pdf" text="Póliza"></ddi>
-                                        @if ($expense->concept == 'Otros gastos')
+                                        @if ($expense->group == 'Otros gastos')
                                             <ddi to="{{ route('expenses.show', $expense)}}" icon="eye" text="Detalles"></ddi>
                                         @endif
                                     </dropdown>

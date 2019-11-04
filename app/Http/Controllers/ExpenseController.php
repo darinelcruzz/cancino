@@ -42,7 +42,7 @@ class ExpenseController extends Controller
         $route = 'public/expenses/store' . $store . "/$request->check";
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
-                $request->file("invoice$i")->store($route);
+                $request->file("invoice$i")->store($route, $request->{"name$i"});
             }
         }
 
@@ -64,6 +64,11 @@ class ExpenseController extends Controller
 
     function edit(Expense $expense)
     {
+        return view('expenses.edit', compact('expense'));
+    }
+
+    function update(Request $request)
+    {
         //
     }
 
@@ -74,7 +79,7 @@ class ExpenseController extends Controller
         return view('expenses.policy', compact('expense', 'store'));
     }
 
-    function update(Request $request)
+    function upFile(Request $request)
     {
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
