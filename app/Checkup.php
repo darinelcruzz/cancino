@@ -24,4 +24,15 @@ class Checkup extends Model
     {
         return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'];
     }
+
+    function getReturnsSumAttribute()
+    {
+        $sum = 0;
+
+        foreach ($this->returns as $return) {
+            $sum += $return['a'];
+        }
+        
+        return $sum;
+    }
 }

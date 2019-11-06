@@ -37,10 +37,17 @@
                 </tab-content>
 
                 <tab-content title="Devolución / Cancelación" icon="fa fa-ban">
-                    {{-- <returns-checkup></returns-checkup> --}}
+                    <returns-checkup></returns-checkup>
+                </tab-content>
+
+                <tab-content title="Confirmar" icon="fa fa-check-double">
+                    <confirm-checkup></confirm-checkup>
                 </tab-content>
 
               </form-wizard>
+
+              <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+              <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
 
             {!! Form::close() !!}
           </color-box>

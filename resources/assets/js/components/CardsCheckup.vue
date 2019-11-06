@@ -137,6 +137,9 @@ export default {
         popFromBbva(index) {
             this.bbva.splice(index, 1)
         },
+    },
+    updated() {
+        this.$root.$emit('checkupdate', [2, {method: 'tarjetas', cut: this.cut, diff: this.difference}])
     }
 }
 </script>

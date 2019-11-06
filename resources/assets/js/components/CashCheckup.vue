@@ -86,6 +86,9 @@ export default {
         difference() {
             return this.total - this.cut
         }
+    },
+    updated() {
+        this.$root.$emit('checkupdate', [0, {method: 'efectivo', cut: this.cut, diff: this.difference}])
     }
 }
 </script>

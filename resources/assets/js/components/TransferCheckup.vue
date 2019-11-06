@@ -97,6 +97,9 @@ export default {
         pop(index) {
             this.checks.splice(index, 1)
         },
+    },
+    updated() {
+        this.$root.$emit('checkupdate', [1, {method: 'cheques', cut: this.cut, diff: this.difference}])
     }
 }
 </script>
