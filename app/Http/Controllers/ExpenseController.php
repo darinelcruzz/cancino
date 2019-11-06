@@ -32,8 +32,8 @@ class ExpenseController extends Controller
         $this->validate($request, [
             'date' => 'required',
             'amount' => 'required',
-            'name' => 'required',
-            'letter' => 'required',
+            'name' => 'required|sometimes',
+            'letter' => 'required|sometimes',
             'concept' => 'required|sometimes',
             'type' => 'required',
             'store_id' => 'required',
