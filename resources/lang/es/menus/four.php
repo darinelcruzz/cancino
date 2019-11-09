@@ -27,6 +27,21 @@ return [
         ],
     ],
 
+    'checkups' => [
+        'title' => 'Arqueo',
+        'icon' => 'fa fa-cash-register',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'checkup.create'
+            ],
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'checkup.index'
+            ]
+        ],
+    ],
+
     'Documents' => [
         'title' => 'Documentos',
         'icon' => 'fa fa-folder',

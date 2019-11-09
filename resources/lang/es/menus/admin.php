@@ -77,7 +77,7 @@ return [
             ],
             'index' => [
                 'title' => 'Listado',
-                'route' => ['checkup.index', 1]
+                'route' => 'checkup.index'
             ]
         ],
     ],

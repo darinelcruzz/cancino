@@ -13,6 +13,21 @@ return [
         'route' => 'sales.index'
     ],
 
+    'checkups' => [
+        'title' => 'Arqueo',
+        'icon' => 'fa fa-cash-register',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'checkup.create'
+            ],
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'checkup.index'
+            ]
+        ],
+    ],
+
     'Waste' => [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',

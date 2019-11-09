@@ -32,7 +32,8 @@ class Checkup extends Model
         foreach ($this->returns as $return) {
             $sum += $return['a'];
         }
-        
+
         return $sum;
     }
+
 }

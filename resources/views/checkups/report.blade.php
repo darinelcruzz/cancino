@@ -25,8 +25,7 @@
     </style>
 </head>
 
-{{-- <body onload="window.print()"> --}}
-<body>
+<body onload="window.print()">
     <section class="invoice">
         <table width="100%">
             <tbody>
@@ -40,7 +39,7 @@
                 </tr>
                 <tr>
                     <td width="6%"></td>
-                    <td width="10%"><span style="font-size: 10pt;">Almacén:</span></td>
+                    <td width="10%"><span style="font-size: 10pt;">RFC:</span></td>
                     <td width="84%"><span style="font-size: 10pt;">{{ $store->rfc }}</span></td>
                 </tr>
             </tbody>
@@ -82,7 +81,7 @@
                             </tbody>
                         </table>
                     </td>
-                    <td valign="TOP" width="40%" rowspan="2">
+                    <td valign="TOP" width="40%">
                         <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
                             <tbody>
                                 <tr>
@@ -110,7 +109,7 @@
                             </tbody>
                         </table>
                     </td>
-                    <td valign="TOP" width="18%" style="height:auto;">
+                    <td valign="TOP" width="18%" height='10%'>
                         <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
                             <tbody>
                                 <tr>
@@ -142,19 +141,29 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <table width="80%" style="border-collapse: collapse;" align="center" border="3" class="spaced">
+                            <tbody>
+                                <tr>
+                                    <td width="40%"><spam style="font-size: 10pt;"><b>Total<br>Corte</b></spam></td>
+                                    <td width="60%"><spam style="font-size: 12pt;"><b><b>{{ fnumber($checkup->amount) }}</b></spam></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
                     <td valign="TOP" colspan="2">
                         <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
                             <tbody>
                                 <tr>
-                                    <td colspan="2"><b>Total</b></td>
+                                    <td><b>Total</b></td>
                                     <td><b>{{ fnumber($checkup->card_sums['s']) }}</b></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Total Corte</b></td>
+                                    <td><b>Total Corte</b></td>
                                     <td><b>{{ fnumber($checkup->card_sums['c']) }}</b></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2"><b>Diferencia</b></td>
+                                    <td><b>Diferencia</b></td>
                                     <td><b>{{ fnumber($checkup->card_sums['d']) }}</b></td>
                                 </tr>
                             </tbody>
@@ -187,11 +196,11 @@
                     <td>OBSERVACIONES</td>
                 </tr>
                 <tr>
-                    <td>23456</td>
+                    <td>{{ $checkup->notes['f'] }}</td>
                     <td>CLIENTE MOSTRADOR</td>
-                    <td>$2,000.00</td>
-                    <td>$2,000.00</td>
-                    <td>$2,000.00</td>
+                    <td>{{ subtotal($checkup->notes['a']) }}</td>
+                    <td>{{ iva($checkup->notes['a']) }}</td>
+                    <td>{{ fnumber($checkup->notes['a']) }}</td>
                     <td>BONIF STEREN CARD</td>
                 </tr>
             </tbody>
@@ -215,19 +224,38 @@
                     <td width="13%">TOTAL</td>
                     <td>OBSERVACIONES</td>
                 </tr>
-                <tr>
-                    <td>23456</td>
-                    <td>CLIENTE MOSTRADOR</td>
-                    <td>$2,000.00</td>
-                    <td>$2,000.00</td>
-                    <td>$2,000.00</td>
-                    <td>BONIF STEREN CARD</td>
-                </tr>
+                @php
+                    $sum = 0;
+                @endphp
+                @foreach ($checkup->returns as $item)
+                    <tr>
+                        <td>{{ $item['f'] }}</td>
+                        <td>{{ $item['c'] }}</td>
+                        <td>{{ subtotal($item['a']) }}</td>
+                        <td>{{ iva($item['a']) }}</td>
+                        <td>{{ fnumber($item['a']) }}</td>
+                        <td>{{ $item['o'] }}</td>
+                    </tr>
+                    @php
+                        $sum = $sum + $item['a'];
+                    @endphp
+                @endforeach
                 <tr>
                     <td colspan="2">SUMAS:--------------------</td>
-                    <td>$2,000.00</td>
-                    <td>$2,000.00</td>
-                    <td>$2,000.00</td>
+                    <td>{{ subtotal($sum) }}</td>
+                    <td>{{ iva($sum) }}</td>
+                    <td>{{ fnumber($sum) }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table width="74%" style="border-collapse: collapse;" border="1" class="spaced">
+            <tbody>
+                <tr>
+                    <th colspan="2">SUMA NOTAS CRÉDITO MOTIVO (1 Y 2):-----</th>
+                    <th width="17.6%">{{ subtotal($sum + $checkup->notes['a']) }}</th>
+                    <th width="17.6%">{{ iva($sum + $checkup->notes['a']) }}</th>
+                    <th width="17.6%">{{ fnumber($sum + $checkup->notes['a']) }}</th>
                 </tr>
             </tbody>
         </table>

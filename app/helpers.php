@@ -23,6 +23,16 @@ function fnumber($original_number)
     return '$' . number_format($original_number, 2);
 }
 
+function iva($original_number)
+{
+    return '$' . number_format(($original_number/1.16), 2);
+}
+
+function subtotal($original_number)
+{
+    return '$' . number_format(($original_number - ($original_number/1.16)), 2);
+}
+
 function drawHeader(...$titles)
 {
     echo "<template slot=\"header\"><tr>";

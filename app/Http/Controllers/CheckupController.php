@@ -9,7 +9,7 @@ class CheckupController extends Controller
 {
     function index()
     {
-        $checkups = Checkup::all();
+        $checkups = Checkup::where('store_id', auth()->user()->store_id)->get()->take(30);
 
         return view('checkups.index', compact('checkups'));
     }
@@ -20,7 +20,7 @@ class CheckupController extends Controller
     }
 
     function store(Request $request)
-    {        
+    {
         $request->validate([
             'cash' => 'required',
             'public' => 'required',
@@ -64,6 +64,9 @@ class CheckupController extends Controller
     {
         $store = Store::where('id', $checkup->store_id)->get()->first();
 
-        return view('checkups.report', compact('checkup', 'store'));
+        if ($checkup->store_id == auth()->user()->store_id) {
+            return view('checkups.report', compact('checkup', 'store'));
+        }
+        return redirect(route('checkup.index'));
     }
 }
