@@ -28,6 +28,12 @@ return [
         ],
     ],
 
+    'Expenses' => [
+        'title' => 'Gastos',
+        'icon' => 'fa fa-file-invoice-dollar',
+        'route' => 'expenses.index'
+    ],
+
     'Waste' => [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',
