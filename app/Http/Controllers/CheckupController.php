@@ -22,20 +22,21 @@ class CheckupController extends Controller
     function store(Request $request)
     {
         $request->validate([
-            'cash' => 'required',
-            'public' => 'required',
+            'cash' => 'required|min:1',
+            'public' => 'required|min:1',
         ]);
-
         $checkup = Checkup::create($request->except(['user_id', 'public']));
 
         $sale = Sale::create([
-            'date_sale' => date('Y-m-d'),
+            'date_sale' => $checkup->date_sale,
+            'checkup_id' => $checkup->id,
             'cash' => $checkup->cash_sums['c'],
             'public' => $request->public,
             'total' => $checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'],
             'user_id' => $request->user_id,
             'store_id' => $request->store_id
         ]);
+        $sale->notify(new \App\Notifications\SaleDayStore());
 
         return redirect(route('checkup.index'));
     }

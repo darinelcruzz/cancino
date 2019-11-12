@@ -10,12 +10,16 @@ class Sale extends Model
 {
     use Notifiable;
 
-    protected $fillable = ['date_sale', 'cash', 'public',
-    'total', 'store_id', 'status', 'user_id', 'date_deposit', 'observations'];
+    protected $guarded = [];
 
     function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    function checkup()
+    {
+        return $this->belongsTo(Checkup::class);
     }
 
     function getDifDayAttribute()

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class SaleDay extends Notification
+class SaleDayStore extends Notification
 {
     use Queueable;
 
@@ -21,7 +21,7 @@ class SaleDay extends Notification
    {
        return TelegramMessage::create()
            ->to(env('TELEGRAM_GROUP_ID'))
-           ->content("*Corte de *" . $sale->store->name . "*, vendió *" . fnumber($sale->total) . "* del " . fdate($sale->date_sale,'d/M','Y-m-d'))
+           ->content("Corte de *" . $sale->store->name . "*, vendió *" . fnumber($sale->total) . "*, público *" . fnumber($sale->public) . "* del " . fdate($sale->date_sale,'d/M','Y-m-d'))
            ->button('Ver ventas', 'grupocancino.com/admin/ventas');
            // ->button('Ver', 'cancino.test/admin/ventas');
    }

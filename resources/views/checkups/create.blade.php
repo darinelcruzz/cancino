@@ -47,6 +47,7 @@
               </form-wizard>
 
               <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+              <input type="hidden" name="date_sale" value="{{ date('Y-m-d') }}">
               <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
 
             {!! Form::close() !!}

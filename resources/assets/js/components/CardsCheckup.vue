@@ -13,7 +13,6 @@
                         <th>Cantidad</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr v-for="(item, index) in bbva">
                         <td style="width: 5%">
@@ -29,6 +28,15 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <a @click="addToBbva" class="btn btn-info btn-xs">
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;BBVA
+                            </a>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
 
@@ -44,7 +52,6 @@
                         <th>Cantidad</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr v-for="(item, index) in banamex">
                         <td style="width: 5%">
@@ -60,6 +67,15 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <a @click="addToBanamex" class="btn btn-primary btn-xs">
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;BANAMEX
+                            </a>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
 
@@ -87,17 +103,6 @@
                         <td style="text-align: right">
                             {{ difference | currency }}
                             <input type="hidden" name="card_sums[d]" :value="difference">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td style="text-align: right">
-                            <a @click="addToBbva" class="btn btn-info btn-xs">
-                                <i class="fa fa-plus"></i>&nbsp;&nbsp;BBVA
-                            </a>
-                            <a @click="addToBanamex" class="btn btn-primary btn-xs">
-                                <i class="fa fa-plus"></i>&nbsp;&nbsp;BANAMEX
-                            </a>
                         </td>
                     </tr>
                 </tbody>

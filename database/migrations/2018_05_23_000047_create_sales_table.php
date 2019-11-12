@@ -20,6 +20,7 @@ class CreateSalesTable extends Migration
             $table->date('date_deposit')->nullable();
             $table->string('status')->default('pendiente');
             $table->string('observations')->nullable();
+            $table->integer('checkup_id');
 
             $table->timestamps();
         });

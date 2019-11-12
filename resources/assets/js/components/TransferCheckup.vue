@@ -33,6 +33,13 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <a @click="add" class="btn btn-success btn-xs"><i class="fa fa-plus"></i></a>
+                        </td>
+                    </tr>                    
+                </tfoot>
             </table>
         </div>
 
@@ -60,12 +67,6 @@
                         <td style="text-align: right">
                             {{ difference | currency }}
                             <input type="hidden" name="transfer_sums[d]" :value="difference">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td style="text-align: right">
-                            <a @click="add" class="btn btn-success btn-xs"><i class="fa fa-plus"></i></a>
                         </td>
                     </tr>
                 </tbody>

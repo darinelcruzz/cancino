@@ -10,7 +10,7 @@ class CreateCheckupsTable extends Migration
     {
         Schema::create('checkups', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->unsignedInteger('store_id');
             $table->string('cash');
             $table->string('cash_sums');
@@ -19,6 +19,7 @@ class CreateCheckupsTable extends Migration
             $table->string('bbva')->nullable();
             $table->string('banamex')->nullable();
             $table->string('card_sums')->nullable();
+            $table->date('date_deposit')->nullable();
 
             $table->timestamps();
         });
