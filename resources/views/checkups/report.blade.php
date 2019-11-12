@@ -87,13 +87,15 @@
                                 <tr>
                                     <td colspan="3"><b>CHEQUES Y TRANSFERENCIAS</b></td>
                                 </tr>
-                                @foreach ($checkup->transfer as $item)
-                                    <tr>
-                                        <td width="18%">{{ $item['t'] }}</td>
-                                        <td width="59%">{{ $item['c'] }}</td>
-                                        <td width="23%">{{ fnumber($item['a']) }}</td>
-                                    </tr>
-                                @endforeach
+                                @if ($checkup->transfer)
+                                    @foreach ($checkup->transfer as $item)
+                                        <tr>
+                                            <td width="18%">{{ $item['t'] }}</td>
+                                            <td width="59%">{{ $item['c'] }}</td>
+                                            <td width="23%">{{ fnumber($item['a']) }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                                 <tr>
                                     <td colspan="2"><b>Total</b></td>
                                     <td><b>{{ fnumber($checkup->transfer_sums['s']) }}</b></td>
@@ -115,12 +117,14 @@
                                 <tr>
                                     <td colspan="2"><b>TERMINAL BBVA</b></td>
                                 </tr>
-                                @foreach ($checkup->bbva as $item)
-                                    <tr>
-                                        <td width="45%">{{ $item['f'] }}</td>
-                                        <td width="55%">{{ fnumber($item['a']) }}</td>
-                                    </tr>
-                                @endforeach
+                                @if ($checkup->bbva)
+                                    @foreach ($checkup->bbva as $item)
+                                        <tr>
+                                            <td width="45%">{{ $item['f'] }}</td>
+                                            <td width="55%">{{ fnumber($item['a']) }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </td>
@@ -130,12 +134,14 @@
                                 <tr>
                                     <td colspan="2"><b>TERMINAL BANAMEX</b></td>
                                 </tr>
-                                @foreach ($checkup->banamex as $item)
-                                    <tr>
-                                        <td width="45%">{{ $item['f'] }}</td>
-                                        <td width="55%">{{ fnumber($item['a']) }}</td>
-                                    </tr>
-                                @endforeach
+                                @if ($checkup->banamex)
+                                    @foreach ($checkup->banamex as $item)
+                                        <tr>
+                                            <td width="45%">{{ $item['f'] }}</td>
+                                            <td width="55%">{{ fnumber($item['a']) }}</td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </td>
@@ -227,19 +233,21 @@
                 @php
                     $sum = 0;
                 @endphp
-                @foreach ($checkup->returns as $item)
-                    <tr>
-                        <td>{{ $item['f'] }}</td>
-                        <td>{{ $item['c'] }}</td>
-                        <td>{{ subtotal($item['a']) }}</td>
-                        <td>{{ iva($item['a']) }}</td>
-                        <td>{{ fnumber($item['a']) }}</td>
-                        <td>{{ $item['o'] }}</td>
-                    </tr>
-                    @php
+                @if ($checkup->returns)
+                    @foreach ($checkup->returns as $item)
+                        <tr>
+                            <td>{{ $item['f'] }}</td>
+                            <td>{{ $item['c'] }}</td>
+                            <td>{{ subtotal($item['a']) }}</td>
+                            <td>{{ iva($item['a']) }}</td>
+                            <td>{{ fnumber($item['a']) }}</td>
+                            <td>{{ $item['o'] }}</td>
+                        </tr>
+                        @php
                         $sum = $sum + $item['a'];
-                    @endphp
-                @endforeach
+                        @endphp
+                    @endforeach
+                @endif
                 <tr>
                     <td colspan="2">SUMAS:--------------------</td>
                     <td>{{ subtotal($sum) }}</td>
