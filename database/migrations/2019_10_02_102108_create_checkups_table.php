@@ -19,7 +19,7 @@ class CreateCheckupsTable extends Migration
             $table->string('bbva')->nullable();
             $table->string('banamex')->nullable();
             $table->string('card_sums')->nullable();
-            $table->date('date_deposit')->nullable();
+            $table->date('date_sale')->nullable();
 
             $table->timestamps();
         });

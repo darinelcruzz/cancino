@@ -22,9 +22,10 @@ class CheckupController extends Controller
     function store(Request $request)
     {
         $request->validate([
-            'cash' => 'required|min:1',
-            'public' => 'required|min:1',
+            'cash' => 'required',
+            'public' => 'required|numeric|min:1',
         ]);
+        
         $checkup = Checkup::create($request->except(['user_id', 'public']));
 
         $sale = Sale::create([

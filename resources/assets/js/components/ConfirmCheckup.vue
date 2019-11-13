@@ -65,7 +65,7 @@
                         <tr>
                             <th>Público/Shop sin I.V.A.</th>
                             <td>
-                                $ <input type="number" name="public" min="0" step="0.01" value="0">
+                                $ <input type="number" name="public" step="0.01" value="0">
                                 
                             </td>
                         </tr>
