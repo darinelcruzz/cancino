@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Store extends Model
 {
-    protected $fillable = ['name', 'color', 'balance'];
+    protected $guarded = [];
 
     function getTabNameAttribute()
     {

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employer extends Model
 {
-    protected $fillable = ['name', 'store_id', 'address', 'birthday', 'ingress', 'job', 'status',
-    'skills', 'weaknesses', 'married', 'sons', 'salary', 'ranking', 'account_number'];
+    protected $guarded = [];
 
     function store()
     {

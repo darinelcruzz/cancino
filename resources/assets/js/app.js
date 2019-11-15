@@ -54,10 +54,18 @@ const app = new Vue({
     data: {
     	binnacle_reason: '',
     	concept: '',
+    	public_amount: 0,
     },
     methods: {
     	submit() {
-            this.$refs.cform.submit()
+            if (this.public_amount > 0) {
+                this.$refs.cform.submit()                
+            }
         }
+    },
+    created(){
+        this.$on('updatepublic', (public_amount) => {
+            this.public_amount = public_amount
+        })
     }
 });

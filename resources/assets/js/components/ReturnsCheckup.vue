@@ -29,7 +29,12 @@
                             <input type="hidden" :name="'returns[' + index + '][a]'" :value="item.amount">
                         </td>
                         <td>
-                            <input type="text" v-model.number="item.observations" class="form-control" min="0" step="0.01">
+                            <select v-model="item.observations" class="form-control">
+                                <option value="">Selecciona tipo</option>
+                                <option value="1">Devolución de efectivo</option>
+                                <option value="2">Cambio de producto</option>
+                                <option value="3">Refacturación</option>
+                            </select>
                             <input type="hidden" :name="'returns[' + index + '][o]'" :value="item.observations">
                         </td>
                     </tr>
@@ -60,7 +65,7 @@ export default {
     },
     computed: {
         total() {
-            return this.returns.reduce((total, item) => total + item.amount, 0)
+            return (this.returns.reduce((total, item) => total + item.amount, 0)).toFixed(2);
         }
     },
     methods: {

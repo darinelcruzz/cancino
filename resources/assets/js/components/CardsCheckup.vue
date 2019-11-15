@@ -122,11 +122,11 @@ export default {
     },
     computed: {
         total() {
-            return this.banamex.reduce((total, item) => total + item.amount, 0)
-                + this.bbva.reduce((total, item) => total + item.amount, 0);
+            return (this.banamex.reduce((total, item) => total + item.amount, 0)
+                + this.bbva.reduce((total, item) => total + item.amount, 0)).toFixed(2);
         },
         difference() {
-            return this.total - this.cut
+            return (this.total - this.cut).toFixed(2);
         }
     },
     methods: {

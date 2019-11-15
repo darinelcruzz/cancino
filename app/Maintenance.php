@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Maintenance extends Model
 {
-    protected $fillable = ['equipment_id', 'type', 'cost', 'provider', 'maintenance_at', 'observations'];
+    protected $guarded = [];
 
     function equipment()
     {

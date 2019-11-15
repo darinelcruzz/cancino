@@ -14319,12 +14319,12 @@ window.Vue = __webpack_require__(39);
 Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_form_wizard___default.a);
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_2_vue_currency_filter___default.a, {
-  symbol: '$',
-  thousandsSeparator: ',',
-  fractionCount: 2,
-  fractionSeparator: '.',
-  symbolPosition: 'front',
-  symbolSpacing: true
+    symbol: '$',
+    thousandsSeparator: ',',
+    fractionCount: 2,
+    fractionSeparator: '.',
+    symbolPosition: 'front',
+    symbolSpacing: true
 });
 
 /**
@@ -14352,16 +14352,26 @@ Vue.component('returns-checkup', __webpack_require__(95));
 Vue.component('confirm-checkup', __webpack_require__(98));
 
 var app = new Vue({
-  el: '#app',
-  data: {
-    binnacle_reason: '',
-    concept: ''
-  },
-  methods: {
-    submit: function submit() {
-      this.$refs.cform.submit();
+    el: '#app',
+    data: {
+        binnacle_reason: '',
+        concept: '',
+        public_amount: 0
+    },
+    methods: {
+        submit: function submit() {
+            if (this.public_amount > 0) {
+                this.$refs.cform.submit();
+            }
+        }
+    },
+    created: function created() {
+        var _this = this;
+
+        this.$on('updatepublic', function (public_amount) {
+            _this.public_amount = public_amount;
+        });
     }
-  }
 });
 
 /***/ }),
@@ -49653,10 +49663,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         total: function total() {
             return this.cash.reduce(function (total, item) {
                 return total + item.name * item.quantity;
-            }, 0);
+            }, 0).toFixed(2);
         },
         difference: function difference() {
-            return this.total - this.cut;
+            return (this.total - this.cut).toFixed(2);
         }
     },
     updated: function updated() {
@@ -49979,10 +49989,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         total: function total() {
             return this.checks.reduce(function (total, item) {
                 return total + item.amount;
-            }, 0);
+            }, 0).toFixed(2);
         },
         difference: function difference() {
-            return this.total - this.cut;
+            return (this.total - this.cut).toFixed(2);
         }
     },
     methods: {
@@ -50453,14 +50463,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         total: function total() {
-            return this.banamex.reduce(function (total, item) {
+            return (this.banamex.reduce(function (total, item) {
                 return total + item.amount;
             }, 0) + this.bbva.reduce(function (total, item) {
                 return total + item.amount;
-            }, 0);
+            }, 0)).toFixed(2);
         },
         difference: function difference() {
-            return this.total - this.cut;
+            return (this.total - this.cut).toFixed(2);
         }
     },
     methods: {
@@ -51150,6 +51160,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51162,7 +51177,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         total: function total() {
             return this.returns.reduce(function (total, item) {
                 return total + item.amount;
-            }, 0);
+            }, 0).toFixed(2);
         }
     },
     methods: {
@@ -51302,35 +51317,56 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model.number",
-                      value: item.observations,
-                      expression: "item.observations",
-                      modifiers: { number: true }
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", min: "0", step: "0.01" },
-                  domProps: { value: item.observations },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.observations,
+                        expression: "item.observations"
                       }
-                      _vm.$set(
-                        item,
-                        "observations",
-                        _vm._n($event.target.value)
-                      )
-                    },
-                    blur: function($event) {
-                      _vm.$forceUpdate()
+                    ],
+                    staticClass: "form-control",
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          item,
+                          "observations",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
                     }
-                  }
-                }),
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Selecciona tipo")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "1" } }, [
+                      _vm._v("Devolución de efectivo")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [
+                      _vm._v("Cambio de producto")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "3" } }, [
+                      _vm._v("Refacturación")
+                    ])
+                  ]
+                ),
                 _vm._v(" "),
                 _c("input", {
                   attrs: { type: "hidden", name: "returns[" + index + "][o]" },
@@ -51530,7 +51566,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51539,7 +51574,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             normal: [],
             notes: [],
             cut: [],
-            difference: []
+            difference: [],
+            public: 0
         };
     },
 
@@ -51571,6 +51607,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$root.$on('checkupdate', function (array) {
             _this.update(array);
         });
+    },
+    updated: function updated() {
+        this.$root.$emit('updatepublic', this.public);
     }
 });
 
@@ -51644,7 +51683,43 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("table", { staticClass: "table table-bordered table-striped" }, [
+          _c("thead", [
+            _c("tr", [
+              _c("th", [_vm._v("Público/Shop sin I.V.A.")]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v("\n                            $ "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: _vm.public,
+                      expression: "public",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  attrs: { type: "number", name: "public", step: "0.01" },
+                  domProps: { value: _vm.public },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.public = _vm._n($event.target.value)
+                    },
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
+        ])
+      ])
     ])
   ])
 }
@@ -51676,33 +51751,6 @@ var staticRenderFns = [
         _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Corte")]),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Diferencia")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6" }, [
-      _c("table", { staticClass: "table table-bordered table-striped" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("Público/Shop sin I.V.A.")]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v("\n                            $ "),
-              _c("input", {
-                attrs: {
-                  type: "number",
-                  name: "public",
-                  min: "0",
-                  step: "0.01",
-                  value: "0"
-                }
-              })
-            ])
-          ])
-        ])
       ])
     ])
   }

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
 {
-    protected $fillable = ['store_id', 'folio', 'amount', 'date_nc',
-    'items', 'observations', 'document', 'date_pos', 'status', 'user_id'];
+    protected $guarded = [];
 
     function store()
     {

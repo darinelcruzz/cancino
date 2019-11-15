@@ -20,6 +20,16 @@ class Checkup extends Model
         'returns' => 'array',
     ];
 
+    function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    function sale()
+    {
+        return $this->hasOne(Sale::class);
+    }
+
     function getAmountAttribute()
     {
         return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'];

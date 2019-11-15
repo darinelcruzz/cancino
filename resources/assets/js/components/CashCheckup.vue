@@ -81,10 +81,10 @@ export default {
     },
     computed: {
         total() {
-            return this.cash.reduce((total, item) => total + (item.name * item.quantity), 0)
+            return (this.cash.reduce((total, item) => total + (item.name * item.quantity), 0)).toFixed(2);
         },
         difference() {
-            return this.total - this.cut
+            return (this.total - this.cut).toFixed(2);
         }
     },
     updated() {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Checkup, Store, Sale};
+use App\{Checkup, Store, Sale, User};
 use Illuminate\Http\Request;
 
 class CheckupController extends Controller
@@ -23,9 +23,9 @@ class CheckupController extends Controller
     {
         $request->validate([
             'cash' => 'required',
-            'public' => 'required|numeric|min:1',
+            'public' => 'required',
         ]);
-        
+
         $checkup = Checkup::create($request->except(['user_id', 'public']));
 
         $sale = Sale::create([
@@ -64,10 +64,10 @@ class CheckupController extends Controller
 
     function report(Checkup $checkup)
     {
-        $store = Store::where('id', $checkup->store_id)->get()->first();
-
+        $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();
+        
         if ($checkup->store_id == auth()->user()->store_id) {
-            return view('checkups.report', compact('checkup', 'store'));
+            return view('checkups.report', compact('checkup', 'manager'));
         }
         return redirect(route('checkup.index'));
     }

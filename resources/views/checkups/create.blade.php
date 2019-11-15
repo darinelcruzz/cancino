@@ -8,17 +8,18 @@
     <div class="row">
         <div class="col-md-12">
 
-          <color-box title="Arqueo" color="success">
-            {!! Form::open(['method' => 'POST', 'route' => 'checkup.store', 'ref' => 'cform']) !!}
+        <color-box title="Arqueo" color="success">
+            {!! Form::open(['method' => 'POST', 'name' => 'test', 'route' => 'checkup.store', 'ref' => 'cform']) !!}
+            {{-- <form action="{{ route('checkup.store') }}" method="post" v-on:submit.prevent="onSubmit" ref="cform"> --}}
 
-              <form-wizard
-                  title=""
-                  subtitle=""
-                  color="#00a65a"
-                  @on-complete="submit"
-                  back-button-text="Anterior"
-                  next-button-text="Siguiente"
-                  finish-button-text="Completado">
+                <form-wizard
+                    title=""
+                    subtitle=""
+                    color="#00a65a"
+                    @on-complete="submit"
+                    back-button-text="Anterior"
+                    next-button-text="Siguiente"
+                    finish-button-text="Completado">
 
                 <tab-content title="Efectivo" icon="fa fa-money">
                     <cash-checkup></cash-checkup>
@@ -49,6 +50,7 @@
               <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
               <input type="hidden" name="date_sale" value="{{ date('Y-m-d') }}">
               <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
+          {{-- </form> --}}
 
             {!! Form::close() !!}
           </color-box>

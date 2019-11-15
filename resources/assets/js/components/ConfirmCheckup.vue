@@ -65,8 +65,7 @@
                         <tr>
                             <th>Público/Shop sin I.V.A.</th>
                             <td>
-                                $ <input type="number" name="public" step="0.01" value="0">
-                                
+                                $ <input type="number" name="public" step="0.01" v-model.number="public">
                             </td>
                         </tr>
                     </thead>
@@ -91,7 +90,8 @@ export default {
             normal: [],
             notes: [],
             cut: [],
-            difference: []
+            difference: [],
+            public: 0
         }
     },
     methods: {
@@ -112,6 +112,9 @@ export default {
         this.$root.$on('checkupdate', (array) => {
             this.update(array)
         })
+    },
+    updated() {
+        this.$root.$emit('updatepublic', this.public)
     },
 }
 </script>

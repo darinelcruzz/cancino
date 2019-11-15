@@ -35,12 +35,12 @@
                 <tr>
                     <td width="6%"></td>
                     <td width="10%"><span style="font-size: 10pt;">Compañía:</span></td>
-                    <td width="84%"><span style="font-size: 10pt;">{{ $store->social }}</span></td>
+                    <td width="84%"><span style="font-size: 10pt;">{{ $checkup->store->social }}</span></td>
                 </tr>
                 <tr>
                     <td width="6%"></td>
                     <td width="10%"><span style="font-size: 10pt;">RFC:</span></td>
-                    <td width="84%"><span style="font-size: 10pt;">{{ $store->rfc }}</span></td>
+                    <td width="84%"><span style="font-size: 10pt;">{{ $checkup->store->rfc }}</span></td>
                 </tr>
             </tbody>
         </table>
@@ -232,6 +232,7 @@
                 </tr>
                 @php
                     $sum = 0;
+                    $options = ['1' => 'DEVOLUCION DE EFECTIVO', '2' => 'CAMBIO DE PRODUCTO', '3' => 'REFACTURACION'];
                 @endphp
                 @if ($checkup->returns)
                     @foreach ($checkup->returns as $item)
@@ -241,7 +242,7 @@
                             <td>{{ subtotal($item['a']) }}</td>
                             <td>{{ iva($item['a']) }}</td>
                             <td>{{ fnumber($item['a']) }}</td>
-                            <td>{{ $item['o'] }}</td>
+                            <td>{{ $options[$item["o"]] }}</td>
                         </tr>
                         @php
                         $sum = $sum + $item['a'];
@@ -264,6 +265,18 @@
                     <th width="17.6%">{{ subtotal($sum + $checkup->notes['a']) }}</th>
                     <th width="17.6%">{{ iva($sum + $checkup->notes['a']) }}</th>
                     <th width="17.6%">{{ fnumber($sum + $checkup->notes['a']) }}</th>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td colspan="10%" align="center"></td>
+                    <td align="center">ELABORÓ:<br>{{ $checkup->sale->user->name }}</td>
+                    <td colspan="10%" align="center"></td>
+                    <td align="center">REVISÓ:<br>{{ $manager->name }}</td>
+                    <td colspan="10%" align="center"></td>
                 </tr>
             </tbody>
         </table>

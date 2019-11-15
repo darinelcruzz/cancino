@@ -38,7 +38,7 @@
                         <td colspan="4">
                             <a @click="add" class="btn btn-success btn-xs"><i class="fa fa-plus"></i></a>
                         </td>
-                    </tr>                    
+                    </tr>
                 </tfoot>
             </table>
         </div>
@@ -85,10 +85,10 @@ export default {
     },
     computed: {
         total() {
-            return this.checks.reduce((total, item) => total + item.amount, 0)
+            return (this.checks.reduce((total, item) => total + item.amount, 0)).toFixed(2);
         },
         difference() {
-            return this.total - this.cut
+            return (this.total - this.cut).toFixed(2);
         }
     },
     methods: {

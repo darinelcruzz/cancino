@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Waste extends Model
 {
-    protected $fillable = [
-        'item', 'description', 'store_id', 'status', 'pos', 'pos_at', 'user_id'
-    ];
+    protected $guarded = [];
 
     function store()
     {

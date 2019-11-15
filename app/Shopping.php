@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shopping extends Model
 {
-    protected $fillable = ['folio', 'date', 'amount', 'type', 'document', 'store_id', 'status', 'user_id'];
+    protected $guarded = [];
 
     function store()
     {

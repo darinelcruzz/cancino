@@ -17,6 +17,11 @@ class Sale extends Model
         return $this->belongsTo(Store::class);
     }
 
+    function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     function checkup()
     {
         return $this->belongsTo(Checkup::class);
