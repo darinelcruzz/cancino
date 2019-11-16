@@ -89,5 +89,19 @@ class UsersTableSeeder extends Seeder
             'level' => 3,
             'store_id' => 1
         ]);
+        factory(\App\User::class)->create([
+            'name' => 'Jaqueline Magañanez',
+            'username' => 'jaque',
+            'password' => Hash::make('jaque'),
+            'level' => 5,
+            'store_id' => 1
+        ]);
+        factory(\App\User::class)->create([
+            'name' => 'Corte',
+            'username' => 'corte',
+            'password' => Hash::make('corte'),
+            'level' => 7,
+            'store_id' => 1
+        ]);
     }
 }

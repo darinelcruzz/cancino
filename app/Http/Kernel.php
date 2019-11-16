@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'high' => \App\Http\Middleware\High::class,
         'helper' => \App\Http\Middleware\Helper::class,
+        'nonCheckup' => \App\Http\Middleware\NonCheckup::class,
     ];
 }

@@ -1,7 +1,7 @@
 @extends('lte.root')
 
 @push('pageTitle')
-    Arqueo
+    Arqueo | Detalles
 @endpush
 
 @section('content')

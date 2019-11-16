@@ -1,6 +1,6 @@
 @extends('lte.root')
 @push('pageTitle')
-    NC | Lista
+    Arqueo | Lista
 @endpush
 
 @push('headerTitle')

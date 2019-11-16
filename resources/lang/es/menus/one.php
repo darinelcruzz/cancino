@@ -36,6 +36,13 @@ return [
             ],
         ],
     ],
+    
+    'Tasks' => [
+        'title' => 'Pendientes',
+        'label' => pendingTasksAll(),
+        'icon' => 'fa fa-tasks',
+        'route' => 'tasks.index'
+    ],
 
     'Expenses' => [
         'title' => 'Saldos',

@@ -36,23 +36,9 @@ class HelperController extends Controller
         return redirect(route('admin.shoppings'));
     }
 
-    function sales()
-    {
-        $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')
-            ->orderBy('month', 'des')
-            ->get()
-            ->groupBy('month')
-            ->take(2);
-        $dates->transform(function ($item, $key) {
-            return $item->groupBy('date_sale');
-        });
-
-        return view('helper.sales', compact('dates'));
-    }
-
     function notes()
     {
-        $notes = Note::all();
+        $notes = Note::where('status', '!=', 'aplicada')->get();
         return view('admin.notes', compact('notes'));
     }
 

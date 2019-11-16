@@ -1,10 +1,18 @@
 <?php
 
 return [
-    'Sales' => [
-        'title' => 'Ventas',
-        'icon' => 'fa fa-money',
-        'route' => 'helper.sales',
+    'NC' => [
+        'title' => 'NC',
+        'label' => pendingNotesAll(),
+        'icon' => 'fa fa-file-excel-o',
+        'route' => 'helper.notes'
+    ],
+
+    'Tasks' => [
+        'title' => 'Pendientes',
+        'label' => pendingTasksAll(),
+        'icon' => 'fa fa-tasks',
+        'route' => 'tasks.index'
     ],
 
     'Employers' => [
@@ -26,12 +34,6 @@ return [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',
         'route' => 'wastes.index'
-    ],
-
-    'NC' => [
-        'title' => 'NC',
-        'icon' => 'fa fa-file-excel-o',
-        'route' => 'helper.notes'
     ],
 
     'logout' => [

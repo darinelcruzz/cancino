@@ -4,7 +4,7 @@ Route::get('/inicio', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::group(['prefix' => 'compras', 'as' => 'shoppings.'], function () {
+Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'ShoppingController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -14,7 +14,7 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.'], function () {
     Route::get('verificar/{store}', usesas($ctrl, 'verify'));
 });
 
-Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
+Route::group(['prefix' => 'gastos', 'as' => 'expenses.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'ExpenseController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -27,7 +27,7 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.'], function () {
     Route::get('eliminar/{path}', usesas($ctrl, 'deleteFile'));
 });
 
-Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
+Route::group(['prefix' => 'ventas', 'as' => 'sales.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'SaleController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'ventas', 'as' => 'sales.'], function () {
     Route::post('publico', usesas($ctrl, 'show'));
 });
 
-Route::group(['prefix' => 'nc', 'as' => 'notes.'], function () {
+Route::group(['prefix' => 'nc', 'as' => 'notes.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'NoteController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -50,7 +50,7 @@ Route::group(['prefix' => 'nc', 'as' => 'notes.'], function () {
     Route::post('capturar', usesas($ctrl, 'add'));
 });
 
-Route::group(['prefix' => '200', 'as' => 'wastes.'], function () {
+Route::group(['prefix' => '200', 'as' => 'wastes.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'WasteController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -59,7 +59,7 @@ Route::group(['prefix' => '200', 'as' => 'wastes.'], function () {
     Route::post('editar', usesas($ctrl, 'update'));
 });
 
-Route::group(['prefix' => 'clientes', 'as' => 'clients.'], function () {
+Route::group(['prefix' => 'clientes', 'as' => 'clients.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'ClientController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -69,7 +69,7 @@ Route::group(['prefix' => 'clientes', 'as' => 'clients.'], function () {
     Route::get('detalles/{client}', usesas($ctrl, 'show'));
 });
 
-Route::group(['prefix' => 'bitacora', 'as' => 'binnacles.'], function () {
+Route::group(['prefix' => 'bitacora', 'as' => 'binnacles.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'BinnacleController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('actividad', usesas($ctrl, 'activity'));
@@ -89,7 +89,7 @@ Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     Route::post('editar', usesas($ctrl, 'pay'));
 });
 
-Route::group(['prefix' => 'facturas', 'as' => 'invoices.'], function () {
+Route::group(['prefix' => 'facturas', 'as' => 'invoices.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'InvoiceController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar/{store}', usesas($ctrl, 'create'));
@@ -108,7 +108,7 @@ Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'middleware' => 'admin']
     Route::post('editar', usesas($ctrl, 'update'));
 });
 
-Route::group(['prefix' => 'metas', 'as' => 'goals.'], function () {
+Route::group(['prefix' => 'metas', 'as' => 'goals.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'GoalController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -117,7 +117,7 @@ Route::group(['prefix' => 'metas', 'as' => 'goals.'], function () {
     Route::post('editar', usesas($ctrl, 'update'));
 });
 
-Route::group(['prefix' => 'empleados', 'as' => 'employers.'], function () {
+Route::group(['prefix' => 'empleados', 'as' => 'employers.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'EmployerController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -148,7 +148,17 @@ Route::group(['prefix' => 'mantenimientos', 'as' => 'maintenances.'], function (
     Route::get('detalles/{maintenance}', usesas($ctrl, 'show'));
 });
 
-Route::group(['prefix' => 'documentos', 'as' => 'documents.'], function () {
+Route::group(['prefix' => 'pendientes', 'as' => 'tasks.', 'middleware' => 'nonCheckup'], function () {
+    $ctrl = 'TaskController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{task}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('detalles/{task}', usesas($ctrl, 'show'));
+});
+
+Route::group(['prefix' => 'documentos', 'as' => 'documents.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'DocumentController';
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
@@ -188,7 +198,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
     $ctrl = 'HelperController';
-    Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('depositos', usesas($ctrl, 'deposits'));
     Route::post('depositos', usesas($ctrl, 'deposits'));
     Route::get('notas', usesas($ctrl, 'notes'));

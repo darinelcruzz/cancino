@@ -1,7 +1,7 @@
 @extends('lte.root')
 
 @push('pageTitle')
-    Arqueo
+    Arqueo | Crear
 @endpush
 
 @section('content')
@@ -10,7 +10,6 @@
 
         <color-box title="Arqueo" color="success">
             {!! Form::open(['method' => 'POST', 'name' => 'test', 'route' => 'checkup.store', 'ref' => 'cform']) !!}
-            {{-- <form action="{{ route('checkup.store') }}" method="post" v-on:submit.prevent="onSubmit" ref="cform"> --}}
 
                 <form-wizard
                     title=""
@@ -50,7 +49,6 @@
               <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
               <input type="hidden" name="date_sale" value="{{ date('Y-m-d') }}">
               <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
-          {{-- </form> --}}
 
             {!! Form::close() !!}
           </color-box>

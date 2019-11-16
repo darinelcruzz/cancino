@@ -79,6 +79,17 @@ function pendingDepositsAll()
     return App\Sale::whereNull('date_deposit')->count();
 }
 
+function pendingTasks()
+{
+    return App\Task::where('store_id', auth()->user()->store_id)
+        ->where('status', '!=', 'completado')->count();
+}
+
+function pendingTasksAll()
+{
+    return App\Task::where('status', '!=', 'completado')->count();
+}
+
 function pendingShoppings()
 {
     return App\Shopping::whereStatus('pendiente')->count();
