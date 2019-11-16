@@ -8,7 +8,12 @@
                 {!! Field::date('date_deposit', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
             </div>
         </div>
-        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <b>Dif Efectivo =</b> ${{ $stores->where('store_id', $store_id)->pluck('checkup')->pluck('cash_sums')->pluck('d')->pop() }}<br>
+                <b>Dif Tarjetas =</b> ${{ $stores->where('store_id', $store_id)->pluck('checkup')->pluck('card_sums')->pluck('d')->pop() }}
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 {!! Form::submit('Depositado', ['class' => 'btn btn-success pull-right']) !!}

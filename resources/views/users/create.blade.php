@@ -14,7 +14,7 @@
                     {!! Field::text('email', ['tpl' => 'lte/oneline'], ['icon' => 'at']) !!}
                     {!! Field::select('level',
                         ['1' => 'Admin', '2' => 'Alta', '3' => 'Supervisor', '4' => 'Gerente', '5' => 'Apoyo',
-                        '6' => 'B2B'], null,
+                        '6' => 'B2B', '7' => 'Corte'], null,
                         ['empty' => 'Seleccione un nivel', 'tpl' => 'lte/oneline'], ['icon' => 'sitemap'])
                     !!}
                     {!! Field::select('store_id', $allArray, null,

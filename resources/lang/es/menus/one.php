@@ -14,6 +14,10 @@ return [
         'icon' => 'fa fa-money',
         'label' => pendingDepositsAll(),
         'submenu' => [
+            'Deposits' => [
+                'title' => 'Depositos',
+                'route' => 'admin.deposits',
+            ],
             'Daily' => [
                 'title' => 'Diarias',
                 'route' => 'admin.sales'
@@ -26,9 +30,9 @@ return [
                 'title' => 'Graficas',
                 'route' => 'admin.public',
             ],
-            'Deposits' => [
-                'title' => 'Depositos',
-                'route' => 'admin.deposits',
+            'Checkups' => [
+                'title' => 'Arqueos',
+                'route' => 'admin.checkups'
             ],
         ],
     ],

@@ -18,6 +18,8 @@
                 @each('lte.items', trans('menus/five'), 'item')
             @elseif (auth()->user()->level == 6)
                 @each('lte.items', trans('menus/six'), 'item')
+            @elseif (auth()->user()->level == 7)
+                @each('lte.items', trans('menus/seven'), 'item')
             @endif
         </ul>
     </section>

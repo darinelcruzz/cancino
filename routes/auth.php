@@ -160,6 +160,7 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('detalles/{checkup}', usesas($ctrl, 'show'));
     Route::get('reporte/{checkup}', usesas($ctrl, 'report'));
 });
 
@@ -182,6 +183,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('documentos', usesas($ctrl, 'documents'));
     Route::get('empleados', usesas($ctrl, 'employers'));
     Route::get('equipos', usesas($ctrl, 'equipments'));
+    Route::get('arqueos', usesas($ctrl, 'checkups'));
 });
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {

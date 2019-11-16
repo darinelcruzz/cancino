@@ -44,7 +44,10 @@ class CheckupController extends Controller
 
     function show(Checkup $checkup)
     {
-        //
+        $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();
+
+        return view('checkups.show', compact('checkup', 'manager'));
+
     }
 
     function edit(Checkup $checkup)
@@ -65,7 +68,7 @@ class CheckupController extends Controller
     function report(Checkup $checkup)
     {
         $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();
-        
+
         if ($checkup->store_id == auth()->user()->store_id) {
             return view('checkups.report', compact('checkup', 'manager'));
         }

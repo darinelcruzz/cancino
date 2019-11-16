@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup};
 
 class AdminController extends Controller
 {
@@ -57,9 +57,10 @@ class AdminController extends Controller
             ->whereYear('date_sale', substr($date, 0, 4))
             ->orWhereMonth('date_sale', substr($date, 5) - 1)
             ->whereYear('date_sale', substr($date, 0, 4))
+            ->with('checkup:id,cash_sums,card_sums')
             ->selectRaw('id, observations, status,
             date_sale, store_id, date_deposit, cash,
-            DATE_FORMAT(date_sale, "%Y-%m") as month')
+            DATE_FORMAT(date_sale, "%Y-%m") as month, checkup_id')
             ->orderBy('month', 'des')
             ->get()
             ->groupBy('month');
@@ -75,6 +76,12 @@ class AdminController extends Controller
     {
         $notes = Note::all();
         return view('admin.notes', compact('notes'));
+    }
+
+    function checkups()
+    {
+        $checkups = Checkup::all();
+        return view('admin.checkups', compact('checkups'));
     }
 
     function balances()

@@ -9,14 +9,14 @@
         <div class="col-md-12">
             <color-box color="primary" title="Arqueos">
                 <data-table example="1">
-                    {{ drawHeader('fecha', 'Corte', 'Efectivo', '') }}
-
+                    {{ drawHeader('fecha', 'Corte', 'Público S/IVA', 'Efectivo', '') }}
                     <template slot="body">
                         @foreach($checkups as $checkup)
                             <tr>
-                                <td>{{ $checkup->created_at->format('d-M-Y') }}</td>
+                                <td>{{ fdate($checkup->date_sale,'d-M-Y', 'Y-m-d') }}</td>
                                 <td>{{ fnumber($checkup->amount) }}</td>
                                 <td>{{ fnumber($checkup->cash_sums['c']) }}</td>
+                                <td>{{ fnumber($checkup->sale->public) }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
