@@ -11,7 +11,6 @@ class ExpenseController extends Controller
 {
     function index()
     {
-
         $store = Store::where('id', auth()->user()->store_id)->first();
         $expenses = Expense::where('store_id', $store->id)->where('type', '0')->get();
         $ingreses = Expense::where('store_id', $store->id)->where('type', '1')->orderByDesc('id')->get()->take(3);
@@ -28,8 +27,9 @@ class ExpenseController extends Controller
 
     function store(Request $request)
     {
+        // dd($request->all());
         $store = auth()->user()->store_id;
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'date' => 'required',
             'amount' => 'required',
             'name' => 'required|sometimes',
@@ -37,16 +37,18 @@ class ExpenseController extends Controller
             'concept' => 'required|sometimes',
             'type' => 'required',
             'store_id' => 'required',
+            'check' => 'required',
+            'group' => 'required',
         ]);
 
         $route = 'public/expenses/store' . $store . "/$request->check";
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
-                $request->file("invoice$i")->store($route, $request->{"name$i"});
+                $request->file("invoice$i")->storeAs($route, $request->{"name$i"});
             }
         }
 
-        $expense = Expense::create($request->all());
+        $expense = Expense::create($validated + ['observations' => $request->observations]);
 
         if (auth()->user()->level < 3) {
             return redirect(route('admin.balances'));
@@ -97,5 +99,14 @@ class ExpenseController extends Controller
         Storage::delete($path);
 
         return back();
+    }
+
+    function concepts()
+    {
+        $concepts = Expense::where('id', '<', 598)->get();
+        foreach ($concepts as $concept) {
+            $concept->update(['group'=>$concept->concept]);
+        }
+        return 'Si se pudo:)(Y)';
     }
 }
