@@ -5,14 +5,14 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'label' => pendingShoppings(),
+        'label' => pendingShoppings() > 0 ? pendingShoppings(): '',
         'route' => 'admin.shoppings',
     ],
 
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'label' => pendingDepositsAll(),
+        'label' => pendingDepositsAll() > 0 ? pendingDepositsAll(): '',
         'submenu' => [
             'Deposits' => [
                 'title' => 'Depositos',
@@ -36,12 +36,12 @@ return [
             ],
         ],
     ],
-    
+
     'Tasks' => [
         'title' => 'Pendientes',
-        'label' => pendingTasksAll(),
+        'label' => pendingTasksAll() > 0 ? pendingTasksAll(): '',
         'icon' => 'fa fa-tasks',
-        'route' => 'tasks.index'
+        'route' => 'admin.tasks'
     ],
 
     'Expenses' => [
@@ -74,7 +74,7 @@ return [
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',
-        'label' => pendingInvoices(),
+        'label' => pendingInvoices() > 0 ? pendingInvoices(): '',
         'submenu' => [
             'Chiapas' => [
                 'title' => 'Chiapas',
@@ -138,14 +138,14 @@ return [
     'Notes' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',
-        'label' => pendingNotesAll(),
+        'label' => pendingNotesAll() > 0 ? pendingNotesAll(): '',
         'route' => 'admin.notes',
     ],
 
     'Waste' => [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',
-        'label' => pendingWastes(),
+        'label' => pendingWastes() > 0 ? pendingWastes(): '',
         'route' => 'admin.wastes'
     ],
 

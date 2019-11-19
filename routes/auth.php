@@ -157,6 +157,7 @@ Route::group(['prefix' => 'pendientes', 'as' => 'tasks.', 'middleware' => 'nonCh
 	Route::get('editar/{task}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('detalles/{task}', usesas($ctrl, 'show'));
+    Route::get('actualizar/{task}', usesas($ctrl, 'agree'));
 });
 
 Route::group(['prefix' => 'documentos', 'as' => 'documents.', 'middleware' => 'nonCheckup'], function () {
@@ -195,6 +196,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('empleados', usesas($ctrl, 'employers'));
     Route::get('equipos', usesas($ctrl, 'equipments'));
     Route::get('arqueos', usesas($ctrl, 'checkups'));
+    Route::get('pendientes', usesas($ctrl, 'tasks'));
 });
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
@@ -213,4 +215,5 @@ Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'],
     Route::get('documentos', usesas($ctrl, 'documents'));
     Route::get('empleados', usesas($ctrl, 'employers'));
     Route::get('equipos', usesas($ctrl, 'equipments'));
+    Route::get('pendientes', usesas($ctrl, 'tasks'));
 });

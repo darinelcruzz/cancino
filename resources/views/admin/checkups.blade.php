@@ -8,15 +8,15 @@
 @endpush
 
 @section('content')
-    @for ($i=2; $i < 7; $i++)
+    @foreach ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ App\Store::find($i)->name }}" color="{{ App\Store::find($i)->color }}" button collapsed>
-                    <data-table example="{{ $i }}">
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}" button collapsed>
+                    <data-table example="{{ $store->id }}">
                         {{ drawHeader('fecha', 'Corte', 'Público S/IVA', 'Efectivo') }}
                         <template slot="body">
                             @foreach($checkups as $checkup)
-                                @if ($checkup->store_id == $i)
+                                @if ($checkup->store_id == $store->id)
                                     <tr>
                                         <td>{{ fdate($checkup->date_sale,'d-M-Y', 'Y-m-d') }}</td>
                                         <td>{{ fnumber($checkup->amount) }}</td>
@@ -27,8 +27,8 @@
                             @endforeach
                         </template>
                     </data-table>
-                </solid-box>
+                </color-box>
             </div>
         </div>
-    @endfor
+    @endforeach
 @endsection

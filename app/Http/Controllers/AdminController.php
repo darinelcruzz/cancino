@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup, Task};
 
 class AdminController extends Controller
 {
@@ -74,19 +74,32 @@ class AdminController extends Controller
 
     function notes()
     {
+        $stores = Store::where('type', '!=', 'c')->get();
         $notes = Note::all();
-        return view('admin.notes', compact('notes'));
+        
+        return view('admin.notes', compact('notes', 'stores'));
     }
 
     function checkups()
     {
+        $stores = Store::where('type', '!=', 'c')->get();
         $checkups = Checkup::all();
-        return view('admin.checkups', compact('checkups'));
+
+        return view('admin.checkups', compact('checkups', 'stores'));
+    }
+
+    function tasks()
+    {
+        $stores = Store::all();
+        $tasks = Task::all();
+
+        return view('admin.tasks', compact('tasks', 'stores'));
     }
 
     function balances()
     {
         $stores = Store::where('type', '!=', 'c')->get();
+
         return view('admin.balances', compact('stores'));
     }
 
@@ -150,7 +163,7 @@ class AdminController extends Controller
     {
         $stores = Employer::where('status', 1)->orderBy('store_id')->get()->groupBy('store_id');
         $employers = Employer::where('status', 1)->get();
-        
+
         return view('admin.employers', compact('stores', 'employers'));
     }
 

@@ -36,22 +36,34 @@ class TaskController extends Controller
         return redirect(route('tasks.index'));
     }
 
-    function show(Tasks $tasks)
+    function show(Task $tasks)
     {
         //
     }
 
-    function edit(Tasks $tasks)
+    function edit(Task $tasks)
     {
         //
     }
 
-    function update(Request $request, Tasks $tasks)
+    function update(Request $request, Task $tasks)
     {
         //
     }
 
-    function destroy(Tasks $tasks)
+    function agree(Task $tasks)
+    {
+        if ($loan->status == 'pendiente') {
+            $loan->update(['status' => 'visto']);
+        }elseif ($loan->status == 'visto') {
+            $loan->update(['status' => 'en proceso']);
+        }elseif ($loan->status == 'en proceso') {
+            $loan->update(['status' => 'finalizada']);
+        }
+        return redirect(route('admin.tasks'));
+    }
+
+    function destroy(Task $tasks)
     {
         //
     }

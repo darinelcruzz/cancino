@@ -8,16 +8,15 @@
 @endpush
 
 @section('content')
-    @for ($i=2; $i < 7; $i++)
+    @foreach ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ App\Store::find($i)->name . ' ' . count($notes->where('store_id', $i)->where('status', '!=', 'aplicada')) }}" color="{{ App\Store::find($i)->color }}" button collapsed>
-                    <data-table example="{{ $i }}">
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $notes->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
+                    <data-table example="{{ $store->id }}">
                         {{ drawHeader('Folio','Fecha NC', 'Monto', 'Productos', 'Doc POS', 'Fecha POS', 'Observaciones', 'Estado', '') }}
                         <template slot="body">
-                            @foreach($notes->where('store_id', $i) as $note)
+                            @foreach($notes->where('store_id', $store->id) as $note)
                                 <tr>
-
                                     <td>{{ $note->folio }}</td>
                                     <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fnumber($note->amount) }}</td>
@@ -44,8 +43,8 @@
                             @endforeach
                         </template>
                     </data-table>
-                </solid-box>
+                </color-box>
             </div>
         </div>
-    @endfor
+    @endforeach
 @endsection
