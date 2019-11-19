@@ -11,7 +11,7 @@ class StoresComposer
     function compose(View $view)
     {
         $view->storesArray = Store::where('type', '!=', 'c')->pluck('name', 'id')->toArray();
-        $view->allArray = Store::pluck('name', 'id')->toArray();
+        $view->allStoresArray = Store::pluck('name', 'id')->toArray();
 
     }
 }

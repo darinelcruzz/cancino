@@ -17,7 +17,7 @@
                         '6' => 'B2B', '7' => 'Corte'], null,
                         ['empty' => 'Seleccione un nivel', 'tpl' => 'lte/oneline'], ['icon' => 'sitemap'])
                     !!}
-                    {!! Field::select('store_id', $allArray, null,
+                    {!! Field::select('store_id', $allStoresArray, null,
                         ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/oneline'], ['icon' => 'map-pin'])
                     !!}
                     <hr>

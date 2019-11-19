@@ -15,8 +15,8 @@
                                 <td>
                                     <div class="col-md-2">
                                         @if(Storage::disk('public')->exists('employers/' . $employer->id . '/FOTO.jpeg'))
-                                            <img src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" 
-                                                alt="foto de {{ $employer->name }}" 
+                                            <img src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}"
+                                                alt="foto de {{ $employer->name }}"
                                                 width="50px" height="50px"
                                                 style="border-radius: 50%;">
                                         @else
@@ -35,7 +35,7 @@
                                         <ddi to="{{ route('employers.show', $employer) }}" icon="eye" text="Detalles"></ddi>
                                         <ddi to="{{ route('employers.explore', $employer) }}" icon="file-pdf" text="Documentos"></ddi>
                                         <ddi to="{{ route('employers.edit', $employer) }}" icon="edit" text="Editar"></ddi>
-                                        <ddi to="#" icon="times" text="Dar de baja"></ddi>
+                                        <ddi to="{{ route('employers.dismiss', $employer) }}" icon="times" text="Dar de baja"></ddi>
                                     </dropdown>
                                 </td>
                                 <td>{{ fdate($employer->birthday, 'd M Y', 'Y-m-d') }}</td>

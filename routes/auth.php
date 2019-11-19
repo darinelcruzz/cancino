@@ -25,7 +25,6 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.', 'middleware' => 'nonChe
     Route::post('subir', usesas($ctrl, 'upFile'));
     Route::get('detalles/{expense}', usesas($ctrl, 'show'));
     Route::get('eliminar/{path}', usesas($ctrl, 'deleteFile'));
-    Route::get('conceptos', usesas($ctrl, 'concepts'));
 });
 
 Route::group(['prefix' => 'ventas', 'as' => 'sales.', 'middleware' => 'nonCheckup'], function () {
@@ -127,6 +126,7 @@ Route::group(['prefix' => 'empleados', 'as' => 'employers.', 'middleware' => 'no
     Route::post('editar/{employer}', usesas($ctrl, 'update'));
     Route::get('detalles/{employer}', usesas($ctrl, 'show'));
     Route::get('documentos/{employer}', usesas($ctrl, 'explore'));
+    Route::get('baja/{employer}', usesas($ctrl, 'dismiss'));
 });
 
 Route::group(['prefix' => 'equipos', 'as' => 'equipments.'], function () {

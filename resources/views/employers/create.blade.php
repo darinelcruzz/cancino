@@ -45,7 +45,7 @@
                                     !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Field::select('store_id', $stores, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
+                                    {!! Field::select('store_id', $allStoresArray, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
                                 </div>
                             </div>
 
@@ -87,7 +87,7 @@
                                     <fu-button fname="address_file" color="primary" ext="application/pdf" bname="COMP. DOM"></fu-button>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-12" align="center">
                                     <fu-button fname="birth_certificate" color="primary" ext="application/pdf" bname="ACTA"></fu-button>

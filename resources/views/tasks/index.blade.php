@@ -21,7 +21,7 @@
                                 <td>{{ fdate($task->start_at,'d-M-Y', 'Y-m-d') }}</td>
                                 <td>{{ $task->description }}</td>
                                 <td>{{ $task->observations }}</td>
-                                <td><span class="label label-{{ $task->label }}">{{ ucfirst($task->status) }}</span></td>
+                                <td>{!! $task->label !!}</span></td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         {{-- <ddi to="{{ route('task.report', $task) }}" icon="file-pdf" text="Reporte"></ddi> --}}

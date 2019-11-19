@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             {!! Field::select('type', ['Imagen' => 'Imagen', 'Sistemas' => 'Sistemas', 'Operacion' => 'Operacion', 'Bancos' => 'Bancos',
-                                'Corporativo' => 'Corporativo', 'Grupo Cancino' => 'Grupo Cancino', 'Compras' => 'Compras'], null,
+                                'Corporativo' => 'Corporativo', 'Grupo Cancino' => 'Grupo Cancino', 'Compras' => 'Compras', 'Publicidad' => 'Publicidad'], null,
                                 ['empty' => 'Selecciona un tipo', 'tpl' => 'lte/withicon'], ['icon' => 'ambulance'])
                             !!}
                         </div>
@@ -25,7 +25,7 @@
                     @if (auth()->user()->store_id == 1 )
                         <div class="row">
                             <div class="col-md-6">
-                                {!! Field::select('store_id', $allArray, null,
+                                {!! Field::select('store_id', $allStoresArray, null,
                                     ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
                                     !!}
                             </div>

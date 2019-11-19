@@ -100,13 +100,4 @@ class ExpenseController extends Controller
 
         return back();
     }
-
-    function concepts()
-    {
-        $concepts = Expense::where('id', '<', 598)->get();
-        foreach ($concepts as $concept) {
-            $concept->update(['group'=>$concept->concept]);
-        }
-        return 'Si se pudo:)(Y)';
-    }
 }

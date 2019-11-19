@@ -29,7 +29,9 @@ class TaskController extends Controller
             'description' => 'required',
         ]);
 
-        Task::create($request->all());
+        $task = Task::create($request->all());
+
+        $task->notify(new \App\Notifications\TaskCreated());
 
         return redirect(route('tasks.index'));
     }

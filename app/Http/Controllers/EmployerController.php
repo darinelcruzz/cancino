@@ -18,9 +18,7 @@ class EmployerController extends Controller
     }
     function create()
     {
-        $stores = Store::pluck('name', 'id')->toArray();
-
-        return view('employers.create', compact('stores'));
+        return view('employers.create');
     }
 
     function store(Request $request)
@@ -42,9 +40,9 @@ class EmployerController extends Controller
         $employer = Employer::create($request->all());
 
         Movement::create([
-            'ingress' => $employer->ingress, 
-            'employer_id' => $employer->id, 
-            'date' => $employer->ingress, 
+            'ingress' => $employer->ingress,
+            'employer_id' => $employer->id,
+            'date' => $employer->ingress,
             'store_id' => $employer->store_id
         ]);
 
@@ -105,9 +103,11 @@ class EmployerController extends Controller
         return redirect(route('employers.index'));
     }
 
-    function destroy(Employer $employer)
+    function dismiss(Employer $employer)
     {
-        //
+        $employer->update(['status' => 0]);
+
+        return redirect(route('employers.index'));
     }
 
 

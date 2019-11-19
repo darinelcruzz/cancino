@@ -39,6 +39,7 @@ class HelperController extends Controller
     function notes()
     {
         $notes = Note::where('status', '!=', 'aplicada')->get();
+        
         return view('admin.notes', compact('notes'));
     }
 
@@ -69,8 +70,9 @@ class HelperController extends Controller
     function employers()
     {
         $stores = Employer::where('status', 1)->orderBy('store_id')->get()->groupBy('store_id');
+        $employers = Employer::where('status', 1)->get();
 
-        return view('admin.employers', compact('stores'));
+        return view('admin.employers', compact('stores', 'employers'));
     }
 
     function equipments()

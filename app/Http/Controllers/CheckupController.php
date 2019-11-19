@@ -33,7 +33,7 @@ class CheckupController extends Controller
             'checkup_id' => $checkup->id,
             'cash' => $checkup->cash_sums['c'],
             'public' => $request->public,
-            'total' => $checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'],
+            'total' => ($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'])/1.16,
             'user_id' => $request->user_id,
             'store_id' => $request->store_id
         ]);
