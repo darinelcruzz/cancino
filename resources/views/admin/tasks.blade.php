@@ -4,7 +4,7 @@
 @endpush
 
 @push('headerTitle')
-    <a href="{{ route('notes.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
+    <a href="{{ route('tasks.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
 @endpush
 
 @section('content')
@@ -14,7 +14,7 @@
                 <data-table example="{{ $store->id }}">
                     {{ drawHeader('urgencia', 'fecha solicitud', 'detalles', 'observaciones', 'estado', '') }}
                     <template slot="body">
-                        @foreach($tasks as $task)
+                        @foreach($tasks->where('store_id', $store->id) as $task)
                             <tr>
                                 <td>{{ $task->level }}</td>
                                 <td>{{ fdate($task->start_at,'d-M-Y', 'Y-m-d') }}</td>
@@ -22,7 +22,7 @@
                                 <td>{{ $task->observations }}</td>
                                 <td>{!! $task->label !!}</span></td>
                                 <td>
-                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
+                                    <dropdown icon="cogs" color="{{ $store->color }}">
                                         <ddi to="{{ route('tasks.agree', $task) }}" icon="check" text="Visto"></ddi>
                                     </dropdown>
                                 </td>

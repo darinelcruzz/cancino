@@ -76,7 +76,7 @@ class AdminController extends Controller
     {
         $stores = Store::where('type', '!=', 'c')->get();
         $notes = Note::all();
-        
+
         return view('admin.notes', compact('notes', 'stores'));
     }
 

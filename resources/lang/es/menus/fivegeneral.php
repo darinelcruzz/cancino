@@ -12,22 +12,13 @@ return [
         'title' => 'Pendientes',
         'label' => pendingTasksAll(),
         'icon' => 'fa fa-tasks',
-        'route' => 'tasks.index'
+        'route' => 'admin.tasks'
     ],
 
     'Employers' => [
         'title' => 'Empleados',
         'icon' => 'fa fa-users',
-        'submenu' => [
-            'create' => [
-                'title' => 'Agregar',
-                'route' => 'employers.create'
-            ],
-            'index' => [
-                'title' => 'Listado',
-                'route' => 'helper.employers'
-            ],
-        ],
+        'route' => 'helper.employers'        
     ],
 
     'Waste' => [

@@ -9,8 +9,7 @@ class TaskController extends Controller
 {
     function index()
     {
-        // $tasks = Task::where('store_id', auth()->user()->store_id)->get();
-        $tasks = Task::all();
+        $tasks = Task::where('store_id', auth()->user()->store_id)->get();
         return view('tasks.index', compact('tasks'));
     }
 
@@ -32,7 +31,9 @@ class TaskController extends Controller
         $task = Task::create($request->all());
 
         $task->notify(new \App\Notifications\TaskCreated());
-
+        if (auth()->user()->store_id == 1) {
+            return redirect(route('admin.tasks'));
+        }
         return redirect(route('tasks.index'));
     }
 

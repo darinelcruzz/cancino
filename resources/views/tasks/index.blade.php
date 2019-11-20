@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <color-box color="primary" title="Pendientes">
                 <data-table example="1">
-                    {{ drawHeader('urgencia', 'fecha solicitud', 'detalles', 'observaciones', 'estado', '') }}
+                    {{ drawHeader('urgencia', 'fecha solicitud', 'detalles', 'observaciones', 'estado') }}
                     <template slot="body">
                         @foreach($tasks as $task)
                             <tr>
@@ -22,11 +22,6 @@
                                 <td>{{ $task->description }}</td>
                                 <td>{{ $task->observations }}</td>
                                 <td>{!! $task->label !!}</span></td>
-                                <td>
-                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
-                                        {{-- <ddi to="{{ route('task.report', $task) }}" icon="file-pdf" text="Reporte"></ddi> --}}
-                                    </dropdown>
-                                </td>
                             </tr>
                         @endforeach
                     </template>
