@@ -9,7 +9,7 @@ class CheckupController extends Controller
 {
     function index()
     {
-        $checkups = Checkup::where('store_id', auth()->user()->store_id)->get()->take(30);
+        $checkups = Checkup::where('store_id', auth()->user()->store_id)->get()->take(60);
 
         return view('checkups.index', compact('checkups'));
     }

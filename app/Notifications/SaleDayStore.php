@@ -21,7 +21,7 @@ class SaleDayStore extends Notification
    {
        return TelegramMessage::create()
            ->to(env('TELEGRAM_GROUP_ID'))
-           ->content("Corte de *" . $sale->store->name . "*, vendió *" . fnumber($sale->total) . "*, público *" . fnumber($sale->public) . "* del " . fdate($sale->date_sale,'d/M','Y-m-d'))
+           ->content("Corte de *" . $sale->store->name . "*, vendió *" . fnumber($sale->total) . "* sin IVA, público *" . fnumber($sale->public) . "* sin IVA del " . fdate($sale->date_sale,'d/M','Y-m-d'))
            ->button('Ver ventas', 'grupocancino.com/admin/ventas');
    }
 }
