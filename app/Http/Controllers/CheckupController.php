@@ -69,7 +69,7 @@ class CheckupController extends Controller
     {
         $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();
 
-        if ($checkup->store_id == auth()->user()->store_id) {
+        if ($checkup->store_id == auth()->user()->store_id || auth()->user()->level == 1) {
             return view('checkups.report', compact('checkup', 'manager'));
         }
         return redirect(route('checkup.index'));

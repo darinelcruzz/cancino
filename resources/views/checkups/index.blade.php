@@ -9,16 +9,19 @@
         <div class="col-md-12">
             <color-box color="primary" title="Arqueos">
                 <data-table example="1">
-                    {{ drawHeader('fecha', 'Corte', 'Público S/IVA', 'Efectivo', '') }}
+                    {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', '') }}
                     <template slot="body">
                         @foreach($checkups as $checkup)
                             <tr>
+                                <td>{{ $checkup->id }}</td>
                                 <td>{{ fdate($checkup->date_sale,'d-M-Y', 'Y-m-d') }}</td>
                                 <td>{{ fnumber($checkup->amount) }}</td>
                                 <td>{{ fnumber($checkup->cash_sums['c']) }}</td>
                                 <td>{{ fnumber($checkup->sale->public) }}</td>
+                                <td>{{ fnumber($checkup->card_sums['c']) }}</td>
+                                <td>{{ fnumber($checkup->transfer_sums['c']) }}</td>
                                 <td>
-                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
+                                    <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                         <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
                                     </dropdown>
                                 </td>
