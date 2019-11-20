@@ -37,8 +37,8 @@ class ExpenseController extends Controller
             'concept' => 'required|sometimes',
             'type' => 'required',
             'store_id' => 'required',
-            'check' => 'required',
-            'group' => 'required',
+            'check' => 'required|sometimes',
+            'group' => 'required|sometimes',
         ]);
 
         $route = 'public/expenses/store' . $store . "/$request->check";

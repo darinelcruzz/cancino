@@ -46,4 +46,26 @@ class Checkup extends Model
         return $sum;
     }
 
+    function getBbvaSumAttribute()
+    {
+        $sum = 0;
+
+        foreach ($this->bbva as $item) {
+            $sum += $item['a'];
+        }
+
+        return $sum;
+    }
+
+    function getBanamexSumAttribute()
+    {
+        $sum = 0;
+
+        foreach ($this->banamex as $item) {
+            $sum += $item['a'];
+        }
+
+        return $sum;
+    }
+
 }
