@@ -18,6 +18,8 @@ class Checkup extends Model
     	'card_sums' => 'array',
         'notes' => 'array',
         'returns' => 'array',
+        'clip' => 'array',
+        'credit' => 'array',
     ];
 
     function store()

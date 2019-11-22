@@ -48,6 +48,7 @@ Vue.component('cards-checkup', require('./components/CardsCheckup.vue'));
 Vue.component('sterencard-checkup', require('./components/SterenCardCheckup.vue'));
 Vue.component('returns-checkup', require('./components/ReturnsCheckup.vue'));
 Vue.component('confirm-checkup', require('./components/ConfirmCheckup.vue'));
+Vue.component('credit-checkup', require('./components/CreditCheckup.vue'));
 
 const app = new Vue({
     el: '#app',
@@ -59,7 +60,7 @@ const app = new Vue({
     methods: {
     	submit() {
             if (this.public_amount > 0) {
-                this.$refs.cform.submit()                
+                this.$refs.cform.submit()
             }
         }
     },

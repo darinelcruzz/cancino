@@ -85,6 +85,7 @@ export default {
                 {method: 'tarjetas', cut: 0, diff: 0},
                 {method: 'steren card', cut: 0, diff: 0},
                 {method: 'devoluciones', cut: 0, diff: 0},
+                {method: 'credito', cut: 0, diff: 0},
                 {method: 'público', cut: 0, diff: 0},
             ],
             normal: [],
@@ -97,7 +98,7 @@ export default {
     methods: {
         update(array) {
             this.items[array[0]] = array[1]
-            this.normal = this.items.slice(0, 3)
+            this.normal = (this.items.slice(0, 3)).concat(this.items.slice(5, 6))
             this.notes = this.items.slice(3, 5)
             this.cut[0] = this.normal.reduce((total, item) => total + item.cut, 0)
             this.cut[1] = this.notes.reduce((total, item) => total + item.cut, 0)

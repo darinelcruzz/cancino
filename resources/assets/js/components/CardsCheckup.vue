@@ -1,7 +1,7 @@
 <template>
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -40,7 +40,7 @@
             </table>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -79,7 +79,46 @@
             </table>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-3">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="3">Terminal Clip <i class="fa fa-plus"></i></th>
+                    </tr>
+                    <tr>
+                        <th><i class="fa fa-times"></i></th>
+                        <th>Folio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in clip">
+                        <td style="width: 5%">
+                            <a @click="popFromClip(index)" style="color: red"><i class="fa fa-times"></i></a>
+                        </td>
+                        <td>
+                            <input type="text" v-model="item.folio" class="form-control">
+                            <input type="hidden" :name="'clip[' + index + '][f]'" :value="item.folio">
+                        </td>
+                        <td>
+                            <input type="number" v-model.number="item.amount" class="form-control" min="0" step="0.01">
+                            <input type="hidden" :name="'clip[' + index + '][a]'" :value="item.amount">
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">
+                            <a @click="addToClip" class="btn btn-warning btn-xs">
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;Clip
+                            </a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="col-md-3">
             <table class="table table-bordered table-striped">
                 <tbody>
                     <tr>
@@ -117,13 +156,15 @@ export default {
         return {
             bbva:[],
             banamex:[],
+            clip:[],
             cut: 0
         };
     },
     computed: {
         total() {
             return (this.banamex.reduce((total, item) => total + item.amount, 0)
-                + this.bbva.reduce((total, item) => total + item.amount, 0)).toFixed(2);
+                + this.bbva.reduce((total, item) => total + item.amount, 0)
+                + this.clip.reduce((total, item) => total + item.amount, 0)).toFixed(2);
         },
         difference() {
             return (this.total - this.cut).toFixed(2);
@@ -136,11 +177,17 @@ export default {
         addToBbva() {
             this.bbva.push({folio:'', amount: 0})
         },
+        addToClip() {
+            this.clip.push({folio:'', amount: 0})
+        },
         popFromBanamex(index) {
             this.banamex.splice(index, 1)
         },
         popFromBbva(index) {
             this.bbva.splice(index, 1)
+        },
+        popFromClip(index) {
+            this.clip.splice(index, 1)
         },
     },
     updated() {

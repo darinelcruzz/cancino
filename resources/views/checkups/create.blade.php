@@ -32,6 +32,12 @@
                     <cards-checkup></cards-checkup>
                 </tab-content>
 
+                @if (auth()->user()->store_id == 2 || auth()->user()->store_id == 3)
+                    <tab-content title="Crédito" icon="fa fa-file-invoice">
+                        <credit-checkup></credit-checkup>
+                    </tab-content>
+                @endif
+
                 <tab-content title="Steren Card" icon="fa fa-gift">
                     <sterencard-checkup></sterencard-checkup>
                 </tab-content>

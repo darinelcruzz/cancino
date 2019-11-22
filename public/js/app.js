@@ -14286,7 +14286,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(101);
+module.exports = __webpack_require__(104);
 
 
 /***/ }),
@@ -14350,6 +14350,7 @@ Vue.component('cards-checkup', __webpack_require__(89));
 Vue.component('sterencard-checkup', __webpack_require__(92));
 Vue.component('returns-checkup', __webpack_require__(95));
 Vue.component('confirm-checkup', __webpack_require__(98));
+Vue.component('credit-checkup', __webpack_require__(101));
 
 var app = new Vue({
     el: '#app',
@@ -50451,12 +50452,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             bbva: [],
             banamex: [],
+            clip: [],
             cut: 0
         };
     },
@@ -50466,6 +50507,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return (this.banamex.reduce(function (total, item) {
                 return total + item.amount;
             }, 0) + this.bbva.reduce(function (total, item) {
+                return total + item.amount;
+            }, 0) + this.clip.reduce(function (total, item) {
                 return total + item.amount;
             }, 0)).toFixed(2);
         },
@@ -50480,11 +50523,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addToBbva: function addToBbva() {
             this.bbva.push({ folio: '', amount: 0 });
         },
+        addToClip: function addToClip() {
+            this.clip.push({ folio: '', amount: 0 });
+        },
         popFromBanamex: function popFromBanamex(index) {
             this.banamex.splice(index, 1);
         },
         popFromBbva: function popFromBbva(index) {
             this.bbva.splice(index, 1);
+        },
+        popFromClip: function popFromClip(index) {
+            this.clip.splice(index, 1);
         }
     },
     updated: function updated() {
@@ -50501,7 +50550,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-4" }, [
+    _c("div", { staticClass: "col-md-3" }, [
       _c("table", { staticClass: "table table-striped table-bordered" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -50609,7 +50658,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-4" }, [
+    _c("div", { staticClass: "col-md-3" }, [
       _c("table", { staticClass: "table table-striped table-bordered" }, [
         _vm._m(1),
         _vm._v(" "),
@@ -50717,7 +50766,115 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-4" }, [
+    _c("div", { staticClass: "col-md-3" }, [
+      _c("table", { staticClass: "table table-striped table-bordered" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.clip, function(item, index) {
+            return _c("tr", [
+              _c("td", { staticStyle: { width: "5%" } }, [
+                _c(
+                  "a",
+                  {
+                    staticStyle: { color: "red" },
+                    on: {
+                      click: function($event) {
+                        _vm.popFromClip(index)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-times" })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: item.folio,
+                      expression: "item.folio"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: item.folio },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(item, "folio", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "clip[" + index + "][f]" },
+                  domProps: { value: item.folio }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: item.amount,
+                      expression: "item.amount",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", min: "0", step: "0.01" },
+                  domProps: { value: item.amount },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(item, "amount", _vm._n($event.target.value))
+                    },
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "clip[" + index + "][a]" },
+                  domProps: { value: item.amount }
+                })
+              ])
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _c("tfoot", [
+          _c("tr", [
+            _c("td", { attrs: { colspan: "3" } }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-warning btn-xs",
+                  on: { click: _vm.addToClip }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-plus" }),
+                  _vm._v("  Clip\n                        ")
+                ]
+              )
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-md-3" }, [
       _c("table", { staticClass: "table table-bordered table-striped" }, [
         _c("tbody", [
           _c("tr", [
@@ -50821,6 +50978,27 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", { attrs: { colspan: "3" } }, [_vm._v("Terminal Banamex")])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", [_c("i", { staticClass: "fa fa-times" })]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Folio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cantidad")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { colspan: "3" } }, [
+          _vm._v("Terminal Clip "),
+          _c("i", { staticClass: "fa fa-plus" })
+        ])
       ]),
       _vm._v(" "),
       _c("tr", [
@@ -51570,7 +51748,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            items: [{ method: 'efectivo', cut: 0, diff: 0 }, { method: 'cheques', cut: 0, diff: 0 }, { method: 'tarjetas', cut: 0, diff: 0 }, { method: 'steren card', cut: 0, diff: 0 }, { method: 'devoluciones', cut: 0, diff: 0 }, { method: 'público', cut: 0, diff: 0 }],
+            items: [{ method: 'efectivo', cut: 0, diff: 0 }, { method: 'cheques', cut: 0, diff: 0 }, { method: 'tarjetas', cut: 0, diff: 0 }, { method: 'steren card', cut: 0, diff: 0 }, { method: 'devoluciones', cut: 0, diff: 0 }, { method: 'credito', cut: 0, diff: 0 }, { method: 'público', cut: 0, diff: 0 }],
             normal: [],
             notes: [],
             cut: [],
@@ -51582,7 +51760,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         update: function update(array) {
             this.items[array[0]] = array[1];
-            this.normal = this.items.slice(0, 3);
+            this.normal = this.items.slice(0, 3).concat(this.items.slice(5, 6));
             this.notes = this.items.slice(3, 5);
             this.cut[0] = this.normal.reduce(function (total, item) {
                 return total + item.cut;
@@ -51766,6 +51944,348 @@ if (false) {
 
 /***/ }),
 /* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(102)
+/* template */
+var __vue_template__ = __webpack_require__(103)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/CreditCheckup.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-286616c3", Component.options)
+  } else {
+    hotAPI.reload("data-v-286616c3", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            credit: [],
+            clients: []
+        };
+    },
+
+    computed: {
+        total: function total() {
+            return this.credit.reduce(function (total, item) {
+                return total + item.amount;
+            }, 0);
+        }
+    },
+    methods: {
+        add: function add() {
+            this.credit.push({ folio: '', client: '', amount: 0 });
+        },
+        pop: function pop(index) {
+            this.credit.splice(index, 1);
+        },
+        round: function round(value) {
+            return Number(Math.round(value + 'e2') + 'e-2');
+        }
+    },
+    updated: function updated() {
+        this.$root.$emit('checkupdate', [5, { method: 'credito', cut: this.round(this.total), diff: 0 }]);
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get("/api/clients").then(function (response) {
+            _this.clients = response.data;
+        });
+    }
+});
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md-12" }, [
+      _c("table", { staticClass: "table table-striped table-bordered" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.credit, function(item, index) {
+            return _c("tr", [
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    staticStyle: { color: "red" },
+                    on: {
+                      click: function($event) {
+                        _vm.pop(index)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-times" })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: item.folio,
+                      expression: "item.folio"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: item.folio },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(item, "folio", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "credit[" + index + "][f]" },
+                  domProps: { value: item.folio }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.client,
+                        expression: "item.client"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "credit[" + index + "][c]" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          item,
+                          "client",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Seleccionar cliente")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.clients, function(client, index) {
+                      return _c("option", { domProps: { value: client.id } }, [
+                        _vm._v(_vm._s(client.business))
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model.number",
+                      value: item.amount,
+                      expression: "item.amount",
+                      modifiers: { number: true }
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number", min: "0", step: "0.01" },
+                  domProps: { value: item.amount },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(item, "amount", _vm._n($event.target.value))
+                    },
+                    blur: function($event) {
+                      _vm.$forceUpdate()
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: { type: "hidden", name: "credit[" + index + "][a]" },
+                  domProps: { value: item.amount }
+                })
+              ])
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _c("tfoot", [
+          _c("tr", [
+            _c("th"),
+            _vm._v(" "),
+            _c("th", [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-success btn-xs",
+                  on: { click: _vm.add }
+                },
+                [_c("i", { staticClass: "fa fa-plus" }), _vm._v(" AGREGAR")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("th", { staticStyle: { "text-align": "right" } }, [
+              _vm._v("Suma")
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(_vm._f("currency")(_vm.total)))])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticStyle: { width: "1%" } }, [
+          _c("i", { staticClass: "fa fa-times" })
+        ]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "14%" } }, [_vm._v("Folio")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "35%" } }, [_vm._v("Cliente")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "15%" } }, [_vm._v("Total")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-286616c3", module.exports)
+  }
+}
+
+/***/ }),
+/* 104 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
