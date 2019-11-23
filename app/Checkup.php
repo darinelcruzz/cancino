@@ -34,7 +34,15 @@ class Checkup extends Model
 
     function getAmountAttribute()
     {
-        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'];
+        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum;
+    }
+
+    function getStatusLabelAttribute()
+    {
+        $color = ['0' => 'danger', '1' => 'success'];
+        $name = ['0' => 'PENDIENTE', '1' => 'REVISADO'];
+
+        return "<span class='label label-" . $color[$this->status] ."'>" . $name[$this->status] . "</span>";
     }
 
     function getReturnsSumAttribute()
@@ -68,6 +76,18 @@ class Checkup extends Model
         }
 
         return $sum;
+    }
+
+    function getCreditSumAttribute()
+    {
+        $sum = 0;
+        if (isset($this->credit)) {
+            foreach ($this->credit as $item) {
+                $sum += $item['a'];
+            }
+
+            return $sum;
+        }
     }
 
 }

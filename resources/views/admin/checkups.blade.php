@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <color-box title="{{ $store->name }}" color="{{ $store->color }}" button collapsed>
                     <data-table example="{{ $store->id }}">
-                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', '') }}
+                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito','') }}
                         <template slot="body">
                             @foreach($checkups as $checkup)
                                 @if ($checkup->store_id == $store->id)
@@ -25,7 +25,9 @@
                                         <td>{{ fnumber($checkup->cash_sums['c']) }}<br><code>{{ $checkup->cash_sums['d'] > 10 || $checkup->cash_sums['d'] < -10 ? fnumber($checkup->cash_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->card_sums['c']) }}<br><code>{{ $checkup->card_sums['d'] > 10 || $checkup->card_sums['d'] < -10 ? fnumber($checkup->card_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->transfer_sums['c']) }}<br><code>{{ $checkup->transfer_sums['d'] > 10 || $checkup->transfer_sums['d'] < -10 ? fnumber($checkup->transfer_sums['d']) : ''  }}</code></td>
+                                        <td>{{ fnumber($checkup->creditSum) }}</td>
                                         <td>
+                                            {!! $checkup->statusLabel !!}<br>
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                                 <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
                                             </dropdown>

@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <color-box color="primary" title="Arqueos">
                 <data-table example="1">
-                    {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', '') }}
+                    {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', '') }}
                     <template slot="body">
                         @foreach($checkups as $checkup)
                             <tr>
@@ -20,6 +20,7 @@
                                 <td>{{ fnumber($checkup->cash_sums['c']) }}<br><code>{{ $checkup->cash_sums['d'] > 10 || $checkup->cash_sums['d'] < -10 ? fnumber($checkup->cash_sums['d']) : ''  }}</code></td>
                                 <td>{{ fnumber($checkup->card_sums['c']) }}<br><code>{{ $checkup->card_sums['d'] > 10 || $checkup->card_sums['d'] < -10 ? fnumber($checkup->card_sums['d']) : ''  }}</code></td>
                                 <td>{{ fnumber($checkup->transfer_sums['c']) }}<br><code>{{ $checkup->transfer_sums['d'] > 10 || $checkup->transfer_sums['d'] < -10 ? fnumber($checkup->transfer_sums['d']) : ''  }}</code></td>
+                                <td>{{ fnumber($checkup->creditSum) }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                         <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>

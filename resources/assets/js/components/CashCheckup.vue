@@ -81,14 +81,19 @@ export default {
     },
     computed: {
         total() {
-            return (this.cash.reduce((total, item) => total + (item.name * item.quantity), 0)).toFixed(2);
+            return this.cash.reduce((total, item) => total + (item.name * item.quantity), 0);
         },
         difference() {
-            return (this.total - this.cut).toFixed(2);
+            return this.total - this.cut;
+        }
+    },
+    methods: {
+        round(value) {
+            return Number(Math.round(value + 'e2')+'e-2')
         }
     },
     updated() {
-        this.$root.$emit('checkupdate', [0, {method: 'efectivo', cut: this.cut, diff: this.difference}])
+        this.$root.$emit('checkupdate', [0, {method: 'efectivo', cut: this.round(this.cut), diff: this.round(this.difference)}])
     }
 }
 </script>

@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Grupo Cancino|Póliza</title>
+    <title>Grupo Cancino|Corte {{ fdate($checkup->date_sale, 'd/m/Y', 'Y-m-d') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('/img/logo.ico') }}" />
@@ -35,12 +35,16 @@
                 <tr>
                     <td width="6%"></td>
                     <td width="10%"><span style="font-size: 10pt;">Compañía:</span></td>
-                    <td width="84%"><span style="font-size: 10pt;">{{ $checkup->store->social }}</span></td>
+                    <td width="74%"><span style="font-size: 10pt;">{{ $checkup->store->social }}</span></td>
+                    <td width="10%"></td>
+                    <td width="4%"></td>
                 </tr>
                 <tr>
                     <td width="6%"></td>
                     <td width="10%"><span style="font-size: 10pt;">RFC:</span></td>
-                    <td width="84%"><span style="font-size: 10pt;">{{ $checkup->store->rfc }}</span></td>
+                    <td width="70%"><span style="font-size: 10pt;">{{ $checkup->store->rfc }}</span></td>
+                    <td width="10%"><span style="font-size: 10pt;">{{ fdate($checkup->date_sale, 'd/M/Y', 'Y-m-d') }}</span></td>
+                    <td width="4%"></td>
                 </tr>
             </tbody>
         </table>
@@ -111,48 +115,69 @@
                             </tbody>
                         </table>
                     </td>
-                    <td valign="TOP" width="18%" height='10%'>
-                        <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
-                            <tbody>
-                                <tr>
-                                    <td colspan="2"><b>TERMINAL BBVA</b></td>
-                                </tr>
-                                @if ($checkup->bbva)
+                    @if ($checkup->bbva)
+                        <td valign="TOP" width="18%">
+                            <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2"><b>TERMINAL BBVA</b></td>
+                                    </tr>
                                     @foreach ($checkup->bbva as $item)
                                         <tr>
                                             <td width="45%">{{ $item['f'] }}</td>
                                             <td width="55%">{{ fnumber($item['a']) }}</td>
                                         </tr>
                                     @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-                    </td>
-                    <td valign="TOP" width="18%" height='10%'>
-                        <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
-                            <tbody>
-                                <tr>
-                                    <td colspan="2"><b>TERMINAL BANAMEX</b></td>
-                                </tr>
-                                @if ($checkup->banamex)
-                                    @foreach ($checkup->banamex as $item)
-                                        <tr>
-                                            <td width="45%">{{ $item['f'] }}</td>
-                                            <td width="55%">{{ fnumber($item['a']) }}</td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    @endif
+                    @if ($checkup->banamex)
+                        <td valign="TOP" width="18%">
+                            <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2"><b>TERMINAL BANAMEX</b></td>
+                                    </tr>
+                                        @foreach ($checkup->banamex as $item)
+                                            <tr>
+                                                <td width="45%">{{ $item['f'] }}</td>
+                                                <td width="55%">{{ fnumber($item['a']) }}</td>
+                                            </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                        </td>
+                    @endif
+                    @if ($checkup->clip)
+                        <td valign="TOP" width="18%">
+                            <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2"><b>TERMINAL CLIP</b></td>
+                                    </tr>
+                                        @foreach ($checkup->clip as $item)
+                                            <tr>
+                                                <td width="45%">{{ $item['f'] }}</td>
+                                                <td width="55%">{{ fnumber($item['a']) }}</td>
+                                            </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                @endif
                 <tr>
                     <td>
                         <table width="80%" style="border-collapse: collapse;" align="center" border="3" class="spaced">
                             <tbody>
                                 <tr>
+                                    <td width="40%"><b>Ventas Crédito</b></td>
+                                    <td width="60%">{{ fnumber($checkup->creditSum) }}</td>
+                                </tr>
+                                <tr>
                                     <td width="40%"><spam style="font-size: 10pt;"><b>Total<br>Corte</b></spam></td>
-                                    <td width="60%"><spam style="font-size: 12pt;"><b><b>{{ fnumber($checkup->amount) }}</b></spam></td>
+                                    <td width="60%"><spam style="font-size: 12pt;">{{ fnumber($checkup->amount) }}</b></spam></td>
                                 </tr>
                             </tbody>
                         </table>

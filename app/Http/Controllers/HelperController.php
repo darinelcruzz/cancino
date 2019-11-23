@@ -38,9 +38,10 @@ class HelperController extends Controller
 
     function notes()
     {
+        $stores = Store::where('type', '!=', 'c')->get();
         $notes = Note::where('status', '!=', 'aplicada')->get();
 
-        return view('admin.notes', compact('notes'));
+        return view('admin.notes', compact('notes', 'stores'));
     }
 
     function tasks()

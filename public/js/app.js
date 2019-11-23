@@ -49664,14 +49664,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         total: function total() {
             return this.cash.reduce(function (total, item) {
                 return total + item.name * item.quantity;
-            }, 0).toFixed(2);
+            }, 0);
         },
         difference: function difference() {
-            return (this.total - this.cut).toFixed(2);
+            return this.total - this.cut;
+        }
+    },
+    methods: {
+        round: function round(value) {
+            return Number(Math.round(value + 'e2') + 'e-2');
         }
     },
     updated: function updated() {
-        this.$root.$emit('checkupdate', [0, { method: 'efectivo', cut: this.cut, diff: this.difference }]);
+        this.$root.$emit('checkupdate', [0, { method: 'efectivo', cut: this.round(this.cut), diff: this.round(this.difference) }]);
     }
 });
 
@@ -49990,10 +49995,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         total: function total() {
             return this.checks.reduce(function (total, item) {
                 return total + item.amount;
-            }, 0).toFixed(2);
+            }, 0);
         },
         difference: function difference() {
-            return (this.total - this.cut).toFixed(2);
+            return this.total - this.cut;
         }
     },
     methods: {
@@ -50002,10 +50007,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         pop: function pop(index) {
             this.checks.splice(index, 1);
+        },
+        round: function round(value) {
+            return Number(Math.round(value + 'e2') + 'e-2');
         }
     },
     updated: function updated() {
-        this.$root.$emit('checkupdate', [1, { method: 'cheques', cut: this.cut, diff: this.difference }]);
+        this.$root.$emit('checkupdate', [1, { method: 'cheques', cut: this.round(this.cut), diff: this.round(this.difference) }]);
     }
 });
 
@@ -50504,16 +50512,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         total: function total() {
-            return (this.banamex.reduce(function (total, item) {
+            return this.banamex.reduce(function (total, item) {
                 return total + item.amount;
             }, 0) + this.bbva.reduce(function (total, item) {
                 return total + item.amount;
             }, 0) + this.clip.reduce(function (total, item) {
                 return total + item.amount;
-            }, 0)).toFixed(2);
+            }, 0);
         },
         difference: function difference() {
-            return (this.total - this.cut).toFixed(2);
+            return this.total - this.cut;
         }
     },
     methods: {
@@ -50534,10 +50542,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         popFromClip: function popFromClip(index) {
             this.clip.splice(index, 1);
+        },
+        round: function round(value) {
+            return Number(Math.round(value + 'e2') + 'e-2');
         }
     },
     updated: function updated() {
-        this.$root.$emit('checkupdate', [2, { method: 'tarjetas', cut: this.cut, diff: this.difference }]);
+        this.$root.$emit('checkupdate', [2, { method: 'tarjetas', cut: this.round(this.cut), diff: this.round(this.difference) }]);
     }
 });
 
@@ -50584,7 +50595,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", maxlength: "4" },
                   domProps: { value: item.folio },
                   on: {
                     input: function($event) {
@@ -50692,7 +50703,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", maxlength: "4" },
                   domProps: { value: item.folio },
                   on: {
                     input: function($event) {
@@ -50800,7 +50811,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
+                  attrs: { type: "text", maxlength: "4" },
                   domProps: { value: item.folio },
                   on: {
                     input: function($event) {
@@ -51120,8 +51131,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             amount: 0
         };
     },
+
+    methods: {
+        round: function round(value) {
+            return Number(Math.round(value + 'e2') + 'e-2');
+        }
+    },
     updated: function updated() {
-        this.$root.$emit('checkupdate', [3, { method: 'steren card', cut: this.amount, diff: 0 }]);
+        this.$root.$emit('checkupdate', [3, { method: 'steren card', cut: this.round(this.amount), diff: 0 }]);
     }
 });
 
@@ -51355,7 +51372,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         total: function total() {
             return this.returns.reduce(function (total, item) {
                 return total + item.amount;
-            }, 0).toFixed(2);
+            }, 0);
         }
     },
     methods: {
@@ -51364,10 +51381,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         pop: function pop(index) {
             this.returns.splice(index, 1);
+        },
+        round: function round(value) {
+            return Number(Math.round(value + 'e2') + 'e-2');
         }
     },
     updated: function updated() {
-        this.$root.$emit('checkupdate', [4, { method: 'devoluciones', cut: this.total, diff: 0 }]);
+        this.$root.$emit('checkupdate', [4, { method: 'devoluciones', cut: this.round(this.total), diff: 0 }]);
     }
 });
 
@@ -51741,9 +51761,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -51842,9 +51859,7 @@ var render = function() {
               return _c("tr", [
                 _c("td", [_vm._v(_vm._s(_vm.capitalize(item.method)))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm._f("currency")(item.cut)))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm._f("currency")(item.diff)))])
+                _c("td", [_vm._v(_vm._s(_vm._f("currency")(item.cut)))])
               ])
             })
           ),
@@ -51853,9 +51868,7 @@ var render = function() {
             _c("tr", [
               _c("th", [_vm._v("Sumas")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm._f("currency")(_vm.cut[1])))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(_vm._f("currency")(_vm.difference[1])))])
+              _c("td", [_vm._v(_vm._s(_vm._f("currency")(_vm.cut[1])))])
             ])
           ])
         ])
@@ -51926,9 +51939,7 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { staticStyle: { width: "40%" } }, [_vm._v("Método")]),
         _vm._v(" "),
-        _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Corte")]),
-        _vm._v(" "),
-        _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Diferencia")])
+        _c("th", { staticStyle: { width: "30%" } }, [_vm._v("Corte")])
       ])
     ])
   }

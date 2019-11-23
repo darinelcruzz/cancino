@@ -19,7 +19,7 @@
                             <a @click="popFromBbva(index)" style="color: red"><i class="fa fa-times"></i></a>
                         </td>
                         <td>
-                            <input type="text" v-model="item.folio" class="form-control">
+                            <input type="text" v-model="item.folio" class="form-control" maxlength="4">
                             <input type="hidden" :name="'bbva[' + index + '][f]'" :value="item.folio">
                         </td>
                         <td>
@@ -58,7 +58,7 @@
                             <a @click="popFromBanamex(index)" style="color: red"><i class="fa fa-times"></i></a>
                         </td>
                         <td>
-                            <input type="text" v-model="item.folio" class="form-control">
+                            <input type="text" v-model="item.folio" class="form-control" maxlength="4">
                             <input type="hidden" :name="'banamex[' + index + '][f]'" :value="item.folio">
                         </td>
                         <td>
@@ -97,7 +97,7 @@
                             <a @click="popFromClip(index)" style="color: red"><i class="fa fa-times"></i></a>
                         </td>
                         <td>
-                            <input type="text" v-model="item.folio" class="form-control">
+                            <input type="text" v-model="item.folio" class="form-control" maxlength="4">
                             <input type="hidden" :name="'clip[' + index + '][f]'" :value="item.folio">
                         </td>
                         <td>
@@ -162,12 +162,12 @@ export default {
     },
     computed: {
         total() {
-            return (this.banamex.reduce((total, item) => total + item.amount, 0)
+            return this.banamex.reduce((total, item) => total + item.amount, 0)
                 + this.bbva.reduce((total, item) => total + item.amount, 0)
-                + this.clip.reduce((total, item) => total + item.amount, 0)).toFixed(2);
+                + this.clip.reduce((total, item) => total + item.amount, 0);
         },
         difference() {
-            return (this.total - this.cut).toFixed(2);
+            return (this.total - this.cut);
         }
     },
     methods: {
@@ -189,9 +189,12 @@ export default {
         popFromClip(index) {
             this.clip.splice(index, 1)
         },
+        round(value) {
+            return Number(Math.round(value + 'e2')+'e-2')
+        }
     },
     updated() {
-        this.$root.$emit('checkupdate', [2, {method: 'tarjetas', cut: this.cut, diff: this.difference}])
+        this.$root.$emit('checkupdate', [2, {method: 'tarjetas', cut: this.round(this.cut), diff: this.round(this.difference)}])
     }
 }
 </script>

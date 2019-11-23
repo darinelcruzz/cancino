@@ -45,8 +45,13 @@ export default {
             amount: 0
         };
     },
+    methods: {
+        round(value) {
+            return Number(Math.round(value + 'e2')+'e-2')
+        }
+    },
     updated() {
-        this.$root.$emit('checkupdate', [3, {method: 'steren card', cut: this.amount, diff: 0}])
+        this.$root.$emit('checkupdate', [3, {method: 'steren card', cut: this.round(this.amount), diff: 0}])
     }
 }
 </script>

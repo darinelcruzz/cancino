@@ -85,10 +85,10 @@ export default {
     },
     computed: {
         total() {
-            return (this.checks.reduce((total, item) => total + item.amount, 0)).toFixed(2);
+            return this.checks.reduce((total, item) => total + item.amount, 0);
         },
         difference() {
-            return (this.total - this.cut).toFixed(2);
+            return this.total - this.cut;
         }
     },
     methods: {
@@ -98,9 +98,12 @@ export default {
         pop(index) {
             this.checks.splice(index, 1)
         },
+        round(value) {
+            return Number(Math.round(value + 'e2')+'e-2')
+        }
     },
     updated() {
-        this.$root.$emit('checkupdate', [1, {method: 'cheques', cut: this.cut, diff: this.difference}])
+        this.$root.$emit('checkupdate', [1, {method: 'cheques', cut: this.round(this.cut), diff: this.round(this.difference)}])
     }
 }
 </script>

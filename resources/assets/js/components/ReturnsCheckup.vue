@@ -65,7 +65,7 @@ export default {
     },
     computed: {
         total() {
-            return (this.returns.reduce((total, item) => total + item.amount, 0)).toFixed(2);
+            return this.returns.reduce((total, item) => total + item.amount, 0);
         }
     },
     methods: {
@@ -75,9 +75,12 @@ export default {
         pop(index) {
             this.returns.splice(index, 1)
         },
+        round(value) {
+            return Number(Math.round(value + 'e2')+'e-2')
+        }
     },
     updated() {
-        this.$root.$emit('checkupdate', [4, {method: 'devoluciones', cut: this.total, diff: 0}])
+        this.$root.$emit('checkupdate', [4, {method: 'devoluciones', cut: this.round(this.total), diff: 0}])
     }
 }
 </script>

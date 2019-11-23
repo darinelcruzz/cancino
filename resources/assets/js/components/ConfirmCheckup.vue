@@ -39,14 +39,12 @@
                         <tr>
                             <th style="width: 40%">Método</th>
                             <th style="width: 30%">Corte</th>
-                            <th style="width: 30%">Diferencia</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(item, index) in notes">
                             <td>{{ capitalize(item.method) }}</td>
                             <td>{{ item.cut | currency }}</td>
-                            <td>{{ item.diff | currency }}</td>
                         </tr>
                     </tbody>
 
@@ -54,7 +52,6 @@
                         <tr>
                             <th>Sumas</th>
                             <td>{{ cut[1] | currency }}</td>
-                            <td>{{ difference[1] | currency }}</td>
                         </tr>
                     </tfoot>
                 </table>

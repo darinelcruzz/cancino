@@ -11,6 +11,7 @@ class AddClipToCheckupsTable extends Migration
         Schema::table('checkups', function (Blueprint $table) {
             $table->string('clip')->nullable();
             $table->string('credit')->nullable();
+            $table->integer('status')->default(0);
         });
     }
 
@@ -19,6 +20,7 @@ class AddClipToCheckupsTable extends Migration
         Schema::table('checkups', function (Blueprint $table) {
             $table->dropColumn('clip');
             $table->dropColumn('credit');
+            $table->dropColumn('status');
         });
     }
 }
