@@ -49801,7 +49801,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("input", {
                   attrs: { type: "hidden", name: "cash_sums[c]" },
-                  domProps: { value: _vm.cut }
+                  domProps: { value: _vm.round(_vm.cut) }
                 })
               ])
             ])
@@ -49818,7 +49818,7 @@ var render = function() {
               ),
               _c("input", {
                 attrs: { type: "hidden", name: "cash_sums[d]" },
-                domProps: { value: _vm.difference }
+                domProps: { value: _vm.round(_vm.difference) }
               })
             ])
           ])
@@ -50237,7 +50237,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("input", {
                   attrs: { type: "hidden", name: "transfer_sums[c]" },
-                  domProps: { value: _vm.cut }
+                  domProps: { value: _vm.round(_vm.cut) }
                 })
               ])
             ])
@@ -50254,7 +50254,7 @@ var render = function() {
               ),
               _c("input", {
                 attrs: { type: "hidden", name: "transfer_sums[d]" },
-                domProps: { value: _vm.difference }
+                domProps: { value: _vm.round(_vm.difference) }
               })
             ])
           ])
@@ -50937,7 +50937,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("input", {
                   attrs: { type: "hidden", name: "card_sums[c]" },
-                  domProps: { value: _vm.cut }
+                  domProps: { value: _vm.round(_vm.cut) }
                 })
               ])
             ])
@@ -50954,7 +50954,7 @@ var render = function() {
               ),
               _c("input", {
                 attrs: { type: "hidden", name: "card_sums[d]" },
-                domProps: { value: _vm.difference }
+                domProps: { value: _vm.round(_vm.difference) }
               })
             ])
           ])

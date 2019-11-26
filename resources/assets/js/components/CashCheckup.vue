@@ -42,7 +42,7 @@
                         <td style="text-align: right">
                             <div class="input-group input-group-sm">
                                 <input type="number" v-model.number="cut" class="form-control" min="0" step="0.01">
-                                <input type="hidden" name="cash_sums[c]" :value="cut">
+                                <input type="hidden" name="cash_sums[c]" :value="round(cut)">
                             </div>
                         </td>
                     </tr>
@@ -50,7 +50,7 @@
                         <th>Diferencia</th>
                         <td style="text-align: right">
                             {{ difference | currency }}
-                            <input type="hidden" name="cash_sums[d]" :value="difference">
+                            <input type="hidden" name="cash_sums[d]" :value="round(difference)">
                         </td>
                     </tr>
                 </tbody>
