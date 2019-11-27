@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'Checkups' => [
+        'title' => 'Arqueos',
+        'label' => pendingCheckupsAll(),
+        'icon' => 'fa fa-cash-register',
+        'route' => 'helper.checkups'
+    ],
     'NC' => [
         'title' => 'NC',
         'label' => pendingNotesAll(),
@@ -18,7 +24,7 @@ return [
     'Employers' => [
         'title' => 'Empleados',
         'icon' => 'fa fa-users',
-        'route' => 'helper.employers'        
+        'route' => 'helper.employers'
     ],
 
     'Waste' => [

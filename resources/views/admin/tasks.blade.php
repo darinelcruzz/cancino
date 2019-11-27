@@ -1,6 +1,6 @@
 @extends('lte.root')
 @push('pageTitle')
-    NC | Lista
+    Pendientes | Lista
 @endpush
 
 @push('headerTitle')
@@ -23,7 +23,15 @@
                                 <td>{!! $task->label !!}</span></td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ $store->color }}">
-                                        <ddi to="{{ route('tasks.agree', $task) }}" icon="check" text="Visto"></ddi>
+                                        @if ($task->status == 'pendiente')
+                                            <ddi to="{{ route('tasks.agree', $task) }}" icon="eye" text="Visto"></ddi>
+                                        @endif
+                                        @if ($task->status == 'visto')
+                                            <ddi to="{{ route('tasks.agree', $task) }}" icon="spinner" text="En proceso"></ddi>
+                                        @endif
+                                        @if ($task->status == 'en proceso')
+                                            <ddi to="{{ route('tasks.agree', $task) }}" icon="check" text="Finalizada"></ddi>
+                                        @endif
                                     </dropdown>
                                 </td>
                             </tr>

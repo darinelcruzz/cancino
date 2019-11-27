@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
                             {!! Field::select('type',
-                                ['1' => 'Ventas', '0' => 'Escuela'], null,
+                                ['0' => 'Escuela', '1' => 'Ventas', '2' => 'Ventas crédito', '3' => 'Crédito'], null,
                                 ['empty' => 'Seleccione el tipo', 'tpl' => 'lte/withicon'], ['icon' => 'map-signs'])
                             !!}
                         </div>

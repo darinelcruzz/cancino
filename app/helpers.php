@@ -116,6 +116,11 @@ function pendingNotesAll()
     return App\Note::whereStatus('pendiente')->count();
 }
 
+function pendingCheckupsAll()
+{
+    return App\Checkup::whereStatus(0)->count();
+}
+
 function pendingLoans()
 {
     $from = App\Loan::where('from', auth()->user()->store_id)

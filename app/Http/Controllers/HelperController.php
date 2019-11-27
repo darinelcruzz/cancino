@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup};
 
 class HelperController extends Controller
 {
@@ -42,6 +42,14 @@ class HelperController extends Controller
         $notes = Note::where('status', '!=', 'aplicada')->get();
 
         return view('admin.notes', compact('notes', 'stores'));
+    }
+
+    function checkups()
+    {
+        $stores = Store::where('type', '!=', 'c')->get();
+        $checkups = Checkup::where('status', 0)->get();
+
+        return view('admin.checkups', compact('checkups', 'stores'));
     }
 
     function tasks()

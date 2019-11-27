@@ -65,6 +65,13 @@ class CheckupController extends Controller
         //
     }
 
+    function agree(Checkup $checkup)
+    {
+        $checkup->update(['status' => 1]);
+
+        return redirect(route('helper.checkups'));
+    }
+
     function report(Checkup $checkup)
     {
         $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();

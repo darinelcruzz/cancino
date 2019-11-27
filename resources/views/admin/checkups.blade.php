@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 <color-box title="{{ $store->name }}" color="{{ $store->color }}" button collapsed>
                     <data-table example="{{ $store->id }}">
-                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito','') }}
+                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'estado', '') }}
                         <template slot="body">
                             @foreach($checkups as $checkup)
                                 @if ($checkup->store_id == $store->id)
@@ -26,10 +26,13 @@
                                         <td>{{ fnumber($checkup->card_sums['c']) }}<br><code>{{ $checkup->card_sums['d'] > 10 || $checkup->card_sums['d'] < -10 ? fnumber($checkup->card_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->transfer_sums['c']) }}<br><code>{{ $checkup->transfer_sums['d'] > 10 || $checkup->transfer_sums['d'] < -10 ? fnumber($checkup->transfer_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->creditSum) }}</td>
-                                        <td>
-                                            {!! $checkup->statusLabel !!}<br>
+                                        <td>{!! $checkup->statusLabel !!}</td>
+                                        <td>                                            
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                                 <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
+                                                @if ($checkup->status == 0)
+                                                    <ddi to="{{ route('checkup.agree', $checkup) }}" icon="check" text="Verificada"></ddi>
+                                                @endif
                                             </dropdown>
                                         </td>
                                     </tr>

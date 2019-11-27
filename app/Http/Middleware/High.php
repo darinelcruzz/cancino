@@ -8,7 +8,7 @@ class High
 {
     function handle($request, Closure $next)
     {
-        if ($request->user()->store_id == 1 || $request->user()->isHelper) {
+        if ($request->user()->level == 1) {
             return $next($request);
         }
         return redirect('/');

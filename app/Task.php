@@ -23,7 +23,7 @@ class Task extends Model
 
     function getLabelAttribute()
     {
-        $label = ['pendiente' => 'danger', 'visto' => 'info', 'en progreso' => 'warning', 'finalizada' => 'success'];
+        $label = ['pendiente' => 'danger', 'visto' => 'info', 'en proceso' => 'warning', 'finalizada' => 'success'];
 
         return "<span class='label label-" . $label[$this->status] ."'>" . strtoupper($this->status) . "</span>";
     }

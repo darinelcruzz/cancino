@@ -2,5 +2,5 @@
 
 Route::get('clients', function ()
 {
-    return App\Client::where('type', '4')->orWhere('type', '3')->get(['business', 'id']);
+    return App\Client::where('type', '3')->orWhere('type', '2')->get(['business', 'id']);
 });
