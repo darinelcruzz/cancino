@@ -195,34 +195,56 @@ class AdminController extends Controller
     {
         $chart = new TestChart;
 
-        DB::raw("SET lc_time_names = 'es_ES'");
+        $black = Goal::where('year', substr($date, 0, 4) - 1)
+            ->where('month', substr($date, 5))
+            ->where('store_id', $store->id)
+            ->pluck('sale')->first();
 
-        $sales = Sale::where('store_id', $store->id)
+        $multiples = Goal::where('year', substr($date, 0, 4))->where('month', substr($date, 5))
+            ->where('store_id', $store->id)
+            ->select('star', 'golden', 'days')
+            ->first()
+            ->toArray();
+
+        $star = $black * $multiples['star'];
+        $golden = $star * $multiples['golden'];
+        $workdays = $multiples['days'];
+        $currentMonth = substr($date, 5) == date('m');
+
+        $sales = Sale::whereYear('date_sale', substr($date, 0, 4))
             ->whereMonth('date_sale', substr($date, 5))
-            ->whereYear('date_sale', substr($date, 0, 4))
-            ->selectRaw('public, DATE_FORMAT(date_sale, "%a %d") as day')
-            ->get();
+            ->where('store_id', $store->id)
+            ->selectRaw('public, DATE_FORMAT(date_sale, "%d") as day')
+            ->get()
+            ->keyBy('day');
 
-        $public = $sales->keyBy('day')->map(function ($sale) {
-            return $sale->public;
-        });
-        $black = $sales->keyBy('day')->map(function ($sale) use ($date, $store) {
-            return $sale->getScale($date, $store->id)[0];
-        });
-        $star = $sales->keyBy('day')->map(function ($sale) use ($date, $store) {
-            return $sale->getScale($date, $store->id)[1];
-        });
-        $golden = $sales->keyBy('day')->map(function ($sale) use ($date, $store) {
-            return $sale->getScale($date, $store->id)[2];
-        });
-
-        $chart->labels($public->keys());
-        $chart->height(400);
-        $chart->dataset('Ventas a público', 'line', $public->values())->options(['borderColor' => '#E03317', 'fill' => false]);
-        $chart->dataset('Punto negro', 'line', $black->values())->options(['borderColor' => '#000000', 'fill' => false]);
-        $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);
-        $chart->dataset('Dorada', 'line', $golden->values())->options(['borderColor' => '#ACAC0D', 'fill' => false]);
+        $keys = $sales->keys()->push('Siguiente');
+        $chart->labels($keys);
+        $chart->dataset('Ventas a público', 'line', $sales->pluck('public')->values())->options(['borderColor' => '#E03317', 'fill' => false]);
+        $chart->dataset('Punto negro', 'line', $this->getPointArray($black, $sales, $workdays, $currentMonth))->options(['borderColor' => '#000000', 'fill' => false]);
+        $chart->dataset('Estrella', 'line', $this->getPointArray($star, $sales, $workdays, $currentMonth))->options(['borderColor' => '#0DAC2A', 'fill' => false]);
+        $chart->dataset('Estrella dorada', 'line', $this->getPointArray($golden, $sales, $workdays, $currentMonth))->options(['borderColor' => '#ACAC0D', 'fill' => false]);
 
         return $chart;
+    }
+
+    function getPointArray($point, $sales, $workdays, $currentMonth)
+    {
+        $i = $salesSum = 0;
+        $returned_sales = [];
+
+        if ($currentMonth) {
+            $sales = $sales->pluck('public')->push(0);
+        } else {
+            $sales = $sales->pluck('public');
+        }
+
+        foreach ($sales as $sale) {
+            array_push($returned_sales, round(($point - $salesSum)/($workdays - $i), 2));
+            $i += 1;
+            $salesSum += $sale;
+        }
+
+        return $returned_sales;
     }
 }

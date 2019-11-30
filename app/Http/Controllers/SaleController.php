@@ -45,37 +45,43 @@ class SaleController extends Controller
     {
         $date = isset($request->date) ? $request->date: date('Y-m');
         $chart = new TestChart;
-        $sales = Sale::where('store_id', auth()->user()->store_id)
+
+        $black = Goal::where('year', substr($date, 0, 4) - 1)
+            ->where('month', substr($date, 5))
+            ->where('store_id', auth()->user()->store_id)
+            ->pluck('sale')->first();
+
+        $multiples = Goal::where('year', substr($date, 0, 4))->where('month', substr($date, 5))
+            ->where('store_id', auth()->user()->store_id)
+            ->select('star', 'golden', 'days')
+            ->first()
+            ->toArray();
+
+        $star = $black * $multiples['star'];
+        $golden = $star * $multiples['golden'];
+        $workdays = $multiples['days'];
+        $currentMonth = substr($date, 5) == date('m');
+
+        $sales = Sale::whereYear('date_sale', substr($date, 0, 4))
             ->whereMonth('date_sale', substr($date, 5))
-            ->whereYear('date_sale', substr($date, 0, 4))
+            ->where('store_id', auth()->user()->store_id)
             ->selectRaw('public, DATE_FORMAT(date_sale, "%d") as day')
-            ->get();
+            ->get()
+            ->keyBy('day');
 
-        $public = $sales->keyBy('day')->map(function ($sale) {
-            return $sale->public;
-        });
-        $black = $sales->keyBy('day')->map(function ($sale) use ($date) {
-            return $sale->getScale($date)[0];
-        });
-        $star = $sales->keyBy('day')->map(function ($sale) use ($date) {
-            return $sale->getScale($date)[1];
-        });
-        $golden = $sales->keyBy('day')->map(function ($sale) use ($date) {
-            return $sale->getScale($date)[2];
-        });
+        $keys = $sales->keys()->push('Siguiente');
+        $chart->labels($keys);
+        $chart->dataset('Ventas a público', 'line', $sales->pluck('public')->values())->options(['borderColor' => '#E03317', 'fill' => false]);
+        $chart->dataset('Punto negro', 'line', $this->getPointArray($black, $sales, $workdays, $currentMonth))->options(['borderColor' => '#000000', 'fill' => false]);
+        $chart->dataset('Estrella', 'line', $this->getPointArray($star, $sales, $workdays, $currentMonth))->options(['borderColor' => '#0DAC2A', 'fill' => false]);
+        $chart->dataset('Estrella dorada', 'line', $this->getPointArray($golden, $sales, $workdays, $currentMonth))->options(['borderColor' => '#ACAC0D', 'fill' => false]);
 
-        $chart->labels($public->keys());
-        $chart->dataset('Ventas a público', 'line', $public->values())->options(['borderColor' => '#E03317', 'fill' => false]);
-        $chart->dataset('Punto negro', 'line', $black->values())->options(['borderColor' => '#000000', 'fill' => false]);
-        $chart->dataset('Estrella', 'line', $star->values())->options(['borderColor' => '#0DAC2A', 'fill' => false]);
-        $chart->dataset('Dorada', 'line', $golden->values())->options(['borderColor' => '#ACAC0D', 'fill' => false]);
+        $total = Store::where('id', auth()->user()->store_id)->get()->first()->getSalesSum($date);
+        $sumBlack = Store::where('id', auth()->user()->store_id)->get()->first()->getPoint($date);
+        $sumStar = Store::where('id', auth()->user()->store_id)->get()->first()->getStar($date);
+        $sumGolden = Store::where('id', auth()->user()->store_id)->get()->first()->getGolden($date);
 
-            $total = Store::where('id', auth()->user()->store_id)->get()->first()->getSalesSum($date);
-            $sumBlack = Store::where('id', auth()->user()->store_id)->get()->first()->getPoint($date);
-            $sumStar = Store::where('id', auth()->user()->store_id)->get()->first()->getStar($date);
-            $sumGolden = Store::where('id', auth()->user()->store_id)->get()->first()->getGolden($date);
-
-        return view('sales.show', compact('sales', 'date', 'perDay', 'chart', 'total', 'sumBlack', 'sumStar', 'sumGolden'));
+        return view('sales.show', compact('date', 'chart', 'total', 'sumBlack', 'sumStar', 'sumGolden'));
     }
 
     function edit(Sales $sales)
@@ -92,6 +98,26 @@ class SaleController extends Controller
     {
         Sale::find($request->id)->update($request->all());
         return back();
+    }
+
+    function getPointArray($point, $sales, $workdays, $currentMonth)
+    {
+        $i = $salesSum = 0;
+        $returned_sales = [];
+
+        if ($currentMonth) {
+            $sales = $sales->pluck('public')->push(0);
+        } else {
+            $sales = $sales->pluck('public');
+        }
+
+        foreach ($sales as $sale) {
+            array_push($returned_sales, round(($point - $salesSum)/($workdays - $i), 2));
+            $i += 1;
+            $salesSum += $sale;
+        }
+
+        return $returned_sales;
     }
 
 }

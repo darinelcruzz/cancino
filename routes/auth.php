@@ -4,6 +4,8 @@ Route::get('/inicio', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/prueba', usesas('SaleController', 'prueba'));
+
 Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'ShoppingController';
     Route::get('/', usesas($ctrl, 'index'));

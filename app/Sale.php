@@ -46,17 +46,21 @@ class Sale extends Model
         }
     }
 
-    function getScale($date, $store = NULL)
+    function getScale($date, $i, $store = NULL)
     {
         if ($store == NULL) {
             $store = auth()->user()->store_id;
         }
         $now = Goal::where('store_id', $store)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->first();
         $pastYear = Goal::where('store_id', $store)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->first();
-        $point = $now == null ? 1 : round($pastYear->sale/$now->days, 2);
-        $star = $now == null ? 1 : round(($pastYear->sale/$now->days) * $now->star, 2);
+        $point = $now == null ? 1 : round(($pastYear->sale - $this->getSalesSum($date, $store, $i))/($now->days - $i), 2);
+        $star = $now == null ? 1 : round((($pastYear->sale - $this->getSalesSum($date, $store, $i))/$now->days) * $now->star, 2);
         $golden = $now == null ? 1 : round($star * $now->golden, 2);
-
         return array($point, $star, $golden);
+    }
+
+    function getSalesSum($date, $store, $i)
+    {
+        return Sale::where('store_id', $store)->whereYear('date_sale', substr($date, 0, 4))->whereMonth('date_sale', substr($date, 5))->get()->take($i)->sum('public');
     }
 }
