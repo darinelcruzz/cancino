@@ -65,7 +65,7 @@
                                 {!! Field::date('date', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                             </div>
                             <div class="col-md-6">
-                                {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
+                                {!! Field::text('group', ['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
                             </div>
                         </div>
                         <input type="hidden" name="type" value="0">
