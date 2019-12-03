@@ -15,8 +15,6 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        html, body { overflow: hidden;}
-
         .spaced td{
             text-align: center;
         }

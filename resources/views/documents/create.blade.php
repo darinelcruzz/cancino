@@ -20,7 +20,7 @@
                 <div class="row">
                     <br>
                     <div class="col-md-12" align="center">
-                        <input type="file" name="doc" accept="application/pdf">
+                        <input type="file" name="doc">
                     </div>
                     <br><br><br>
                 </div>

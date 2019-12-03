@@ -60,7 +60,7 @@ class Checkup extends Model
     {
         $sum = 0;
 
-        foreach ($this->bbva as $item) {
+        foreach ((array) $this->bbva as $item) {
             $sum += $item['a'];
         }
 
@@ -71,7 +71,18 @@ class Checkup extends Model
     {
         $sum = 0;
 
-        foreach ($this->banamex as $item) {
+        foreach ((array) $this->banamex as $item) {
+            $sum += $item['a'];
+        }
+
+        return $sum;
+    }
+
+    function getClipSumAttribute()
+    {
+        $sum = 0;
+
+        foreach ((array) $this->clip as $item) {
             $sum += $item['a'];
         }
 

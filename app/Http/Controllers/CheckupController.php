@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{Checkup, Store, Sale, User};
 use Illuminate\Http\Request;
+use App\Charts\TestChart;
 
 class CheckupController extends Controller
 {
@@ -80,5 +81,32 @@ class CheckupController extends Controller
             return view('checkups.report', compact('checkup', 'manager'));
         }
         return redirect(route('checkup.index'));
+    }
+
+    function cards(Request $request)
+    {
+        $chart = new TestChart;
+
+        $date = isset($request->date) ? $request->date : date('Y-m');
+
+        $sales = Checkup::whereYear('date_sale', substr($date, 0, 4))
+            ->whereMonth('date_sale', substr($date, 5))
+            ->where('store_id', auth()->user()->store_id)
+            ->get();
+
+        $bbva = $banamex = $clip = 0;
+
+        foreach ($sales as $sale) {
+            $bbva += $sale->bbva_sum;
+            $banamex += $sale->banamex_sum;
+            $clip += $sale->clip_sum;
+        }
+
+        $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2)]);
+
+        $chart->labels($data->keys());
+        $chart->dataset('Ventas', 'bar', $data->values())->color(['#1D4B96', '#E03317', '#D67A1D']);
+
+        return view('checkups.cards', compact('date', 'chart'));
     }
 }

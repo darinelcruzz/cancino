@@ -4,10 +4,15 @@
     Arqueo | Lista
 @endpush
 
+@push('headerTitle')
+    <a href="{{ route('checkup.create') }}" class="btn btn-success"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
+    <a href="{{ route('checkup.cards') }}" class="btn btn-{{ auth()->user()->store->color }}"><i class="fa fa-credit-card"></i>&nbsp;&nbsp;Terminales</a>
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box color="primary" title="Arqueos">
+            <color-box color="{{ auth()->user()->store->color }}" title="Arqueos">
                 <data-table example="1">
                     {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', '') }}
                     <template slot="body">

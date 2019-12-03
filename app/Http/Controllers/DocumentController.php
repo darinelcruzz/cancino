@@ -29,7 +29,8 @@ class DocumentController extends Controller
         ]);
 
         $route = 'public/documents/store' . $request->store;
-        $request->file('doc')->storeAs($route, $request->name . '.pdf');
+        $extension = $request->file('doc')->getClientOriginalExtension();
+        $request->file('doc')->storeAs($route, $request->name . '.' . $extension);
 
         return redirect(route('admin.documents'));
     }

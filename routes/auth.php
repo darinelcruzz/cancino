@@ -177,6 +177,8 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::get('detalles/{checkup}', usesas($ctrl, 'show'));
     Route::get('reporte/{checkup}', usesas($ctrl, 'report'));
     Route::get('actualizar/{checkup}', usesas($ctrl, 'agree'));
+    Route::get('terminales', usesas($ctrl, 'cards'));
+    Route::post('terminales', usesas($ctrl, 'cards'));
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
