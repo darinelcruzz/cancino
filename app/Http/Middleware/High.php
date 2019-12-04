@@ -8,7 +8,7 @@ class High
 {
     function handle($request, Closure $next)
     {
-        if ($request->user()->level < 3) {
+        if ($request->user()->level < 4) {
             return $next($request);
         }
         return redirect('/');

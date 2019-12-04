@@ -18,7 +18,7 @@ return [
         'title' => 'Pendientes',
         'label' => pendingTasksAll(),
         'icon' => 'fa fa-tasks',
-        'route' => 'admin.tasks'
+        'route' => 'helper.tasks'
     ],
 
     'Employers' => [
