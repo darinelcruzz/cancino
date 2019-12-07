@@ -169,6 +169,20 @@ Route::group(['prefix' => 'documentos', 'as' => 'documents.', 'middleware' => 'n
     Route::get('/{store}', usesas($ctrl, 'index'));
 });
 
+Route::group(['prefix' => 'deudas', 'as' => 'debts.', 'middleware' => 'high'], function () {
+    $ctrl = 'DebtController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('detalles/{debt}', usesas($ctrl, 'show'));
+});
+
+Route::group(['prefix' => 'abonos', 'as' => 'payments.', 'middleware' => 'nonCheckup'], function () {
+    $ctrl = 'PaymentController';
+    Route::get('agregar/{debt}', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+});
+
 Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     $ctrl = 'CheckupController';
     Route::get('/', usesas($ctrl, 'index'));

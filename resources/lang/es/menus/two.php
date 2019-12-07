@@ -36,7 +36,16 @@ return [
     'Employers' => [
         'title' => 'Empleados',
         'icon' => 'fa fa-users',
-        'route' => 'admin.employers',
+        'submenu' => [
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'admin.employers'
+            ],
+            'debs' => [
+                'title' => 'Deudas',
+                'route' => 'debts.index'
+            ],
+        ],
     ],
 
     'Documents' => [

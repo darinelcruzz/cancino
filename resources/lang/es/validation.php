@@ -227,5 +227,9 @@ return [
         'social_security_number' => 'número de seguro social',
         'letter' => 'letra',
         'group' => 'grupo',
+        'requested_at' => 'solicitado',
+        'payments' => 'pagos',
+        'employer_id' => 'empleado',
+        'employer' => 'empleado',
     ],
 ];

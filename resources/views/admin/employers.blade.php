@@ -3,6 +3,10 @@
     Empleados | Lista
 @endpush
 
+@push('headerTitle')
+    <a href="{{ route('employers.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
+@endpush
+
 @section('content')
     <div class="row">
         @foreach($stores as $store)

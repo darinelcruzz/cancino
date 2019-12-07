@@ -27,7 +27,6 @@ class ExpenseController extends Controller
 
     function store(Request $request)
     {
-        // dd($request->all());
         $store = auth()->user()->store_id;
         $validated = $this->validate($request, [
             'date' => 'required',

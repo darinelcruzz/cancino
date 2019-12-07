@@ -103,13 +103,13 @@ return [
         'title' => 'Empleados',
         'icon' => 'fa fa-users',
         'submenu' => [
-            'create' => [
-                'title' => 'Agregar',
-                'route' => 'employers.create'
-            ],
             'index' => [
                 'title' => 'Listado',
                 'route' => 'admin.employers'
+            ],
+            'debs' => [
+                'title' => 'Deudas',
+                'route' => 'debts.index'
             ],
         ],
     ],
