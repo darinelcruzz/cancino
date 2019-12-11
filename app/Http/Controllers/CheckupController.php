@@ -53,7 +53,7 @@ class CheckupController extends Controller
 
     function edit(Checkup $checkup)
     {
-        //
+        return view('checkups.edit', compact('checkup'));
     }
 
     function update(Request $request, Checkup $checkup)

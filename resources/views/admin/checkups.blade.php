@@ -11,7 +11,7 @@
     @foreach ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ $store->name }}" color="{{ $store->color }}" button collapsed>
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $checkups->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
                     <data-table example="{{ $store->id }}">
                         {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'estado', '') }}
                         <template slot="body">
@@ -27,9 +27,10 @@
                                         <td>{{ fnumber($checkup->transfer_sums['c']) }}<br><code>{{ $checkup->transfer_sums['d'] > 10 || $checkup->transfer_sums['d'] < -10 ? fnumber($checkup->transfer_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->creditSum) }}</td>
                                         <td>{!! $checkup->statusLabel !!}</td>
-                                        <td>                                            
+                                        <td>
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                                 <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
+                                                <ddi to="{{ route('checkup.edit', $checkup) }}" icon="edit" text="Editar"></ddi>
                                                 @if ($checkup->status == 0)
                                                     <ddi to="{{ route('checkup.agree', $checkup) }}" icon="check" text="Verificada"></ddi>
                                                 @endif
