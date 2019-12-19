@@ -50512,16 +50512,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         total: function total() {
-            return this.banamex.reduce(function (total, item) {
+            return this.round(this.banamex.reduce(function (total, item) {
                 return total + item.amount;
             }, 0) + this.bbva.reduce(function (total, item) {
                 return total + item.amount;
             }, 0) + this.clip.reduce(function (total, item) {
                 return total + item.amount;
-            }, 0);
+            }, 0));
         },
         difference: function difference() {
-            return this.total - this.cut;
+            return this.round(this.total - this.cut);
         }
     },
     methods: {

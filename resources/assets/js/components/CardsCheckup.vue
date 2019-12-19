@@ -162,12 +162,12 @@ export default {
     },
     computed: {
         total() {
-            return this.banamex.reduce((total, item) => total + item.amount, 0)
+            return this.round(this.banamex.reduce((total, item) => total + item.amount, 0)
                 + this.bbva.reduce((total, item) => total + item.amount, 0)
-                + this.clip.reduce((total, item) => total + item.amount, 0);
+                + this.clip.reduce((total, item) => total + item.amount, 0));
         },
         difference() {
-            return (this.total - this.cut);
+            return this.round(this.total - this.cut);
         }
     },
     methods: {
