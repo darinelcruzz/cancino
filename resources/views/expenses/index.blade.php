@@ -80,7 +80,7 @@
                                 <td>{{ $expense->check }}</td>
                                 <td>{{ fdate($expense->date, 'd M Y', 'Y-m-d') }}</td>
                                 <td>{{ fnumber($expense->amount) }}</td>
-                                <td>{{ $expense->concept }}</td>
+                                <td>{{ $expense->concept }} <br>  <code>{{ $expense->group }}</code></td>
                                 <td>{{ $expense->observations }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">

@@ -65,10 +65,11 @@
                                 {!! Field::date('date', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                             </div>
                             <div class="col-md-6">
-                                {!! Field::text('group', ['tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
+                                {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
                             </div>
                         </div>
                         <input type="hidden" name="type" value="0">
+                        <input type="hidden" name="group" value="Sin cheque">
                     {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
 
                 {!! Form::close() !!}
