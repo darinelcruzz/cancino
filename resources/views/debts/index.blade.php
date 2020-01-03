@@ -22,7 +22,7 @@
                                 <td>{{ $debt->id }}</td>
                                 <td>{{ $debt->employer->name }}</td>
                                 <td>{{ $debt->store->name }}</td>
-                                <td>{{ fnumber($debt->amount) }}</td>
+                                <td>{{ fnumber($debt->amount) }} <br> {{ fdate($debt->requested_at, , 'd/m/y', 'Y-m-d')}} </td>
                                 <td>{{ fnumber($debt->difference) }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">

@@ -16,7 +16,7 @@
                                 @foreach ($shoppings as $shopping)
                                     <tr>
                                         <td>{!! Form::checkboxes('shoppings', [$shopping->id => $shopping->id]) !!}</td>
-                                        <td>{{ fdate($shopping->date, 'j/M/y', 'Y-d-m') }}</td>
+                                        <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                         <td>{{ $shopping->folio }}</td>
                                         <td>{{ fnumber($shopping->amount) }}</td>
                                     </tr>
