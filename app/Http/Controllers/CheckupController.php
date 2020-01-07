@@ -58,7 +58,20 @@ class CheckupController extends Controller
 
     function update(Request $request, Checkup $checkup)
     {
-        //
+        $request->validate([
+            'cash' => 'required',
+        ]);
+
+        $checkup->update($request->except(['user_id', 'public']));
+
+        $sale = Sale::where('checkup_id', $checkup->id)->get()->first();
+
+        $sale->update([
+            'cash' => $checkup->cash_sums['c'],
+            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum)/1.16,2)
+        ]);
+
+        return redirect(route('admin.checkups'));
     }
 
     function destroy(Checkup $checkup)

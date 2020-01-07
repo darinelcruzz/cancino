@@ -61,6 +61,7 @@
 
 <script>
 export default {
+    props: ['stored'],
     data(){
         return {
             cash:[
@@ -94,6 +95,16 @@ export default {
     },
     updated() {
         this.$root.$emit('checkupdate', [0, {method: 'efectivo', cut: this.round(this.cut), diff: this.round(this.difference)}])
+    },
+    created() {
+        if (this.stored) {
+            for (var i = this.stored.cash.length - 1; i >= 0; i--) {
+                this.cash[i].quantity = this.stored.cash[i]['q']
+                console.log('cantidad', this.stored.cash[i]['q'])
+            }
+
+            this.cut = this.stored.cash_sums.c
+        }
     }
 }
 </script>

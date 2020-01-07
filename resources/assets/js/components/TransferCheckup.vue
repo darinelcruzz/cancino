@@ -77,6 +77,7 @@
 
 <script>
 export default {
+    props: ['stored'],
     data(){
         return {
             checks:[],
@@ -104,6 +105,22 @@ export default {
     },
     updated() {
         this.$root.$emit('checkupdate', [1, {method: 'cheques', cut: this.round(this.cut), diff: this.round(this.difference)}])
+    },
+    created() {
+        if (this.stored) {
+
+            if (this.stored.transfer) {
+                for (var i = this.stored.transfer.length - 1; i >= 0; i--) {
+                    this.checks.push({
+                        type: this.stored.transfer[i]['t'],
+                        client: this.stored.transfer[i]['c'],
+                        amount: this.stored.transfer[i]['a']
+                    })
+                }
+            }
+
+            this.cut = this.stored.transfer_sums.c
+        }
     }
-}
+};
 </script>

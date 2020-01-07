@@ -189,7 +189,7 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{checkup}', usesas($ctrl, 'edit'));
-    Route::post('editar', usesas($ctrl, 'update'));
+    Route::post('editar/{checkup}', usesas($ctrl, 'update'));
     Route::get('detalles/{checkup}', usesas($ctrl, 'show'));
     Route::get('reporte/{checkup}', usesas($ctrl, 'report'));
     Route::get('actualizar/{checkup}/{status}', usesas($ctrl, 'updateStatus'));

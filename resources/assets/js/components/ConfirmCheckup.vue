@@ -74,6 +74,7 @@
 
 <script>
 export default {
+    props: ['stored'],
     data(){
         return {
             items: [
@@ -106,13 +107,15 @@ export default {
             return string.charAt(0).toUpperCase() + string.slice(1)
         }
     },
+    updated() {
+        this.$root.$emit('updatepublic', this.public)
+    },
     created() {
         this.$root.$on('checkupdate', (array) => {
             this.update(array)
         })
-    },
-    updated() {
-        this.$root.$emit('updatepublic', this.public)
+
+        this.public = this.stored
     },
 }
 </script>

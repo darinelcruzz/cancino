@@ -1,7 +1,7 @@
 @extends('lte.root')
 
 @push('pageTitle')
-    Arqueo | Crear
+    Arqueo | Editar
 @endpush
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="col-md-12">
 
         <color-box title="Arqueo" color="success">
-            {!! Form::open(['method' => 'POST', 'name' => 'test', 'route' => 'checkup.store', 'ref' => 'cform']) !!}
+            {!! Form::open(['method' => 'POST', 'name' => 'test', 'route' => ['checkup.update', $checkup], 'ref' => 'cform']) !!}
 
                 <form-wizard
                     title=""
@@ -21,33 +21,33 @@
                     finish-button-text="Completado">
 
                 <tab-content title="Efectivo" icon="fa fa-money">
-                    <cash-checkup></cash-checkup>
+                    <cash-checkup :stored="{{ $checkup->toJson() }}"></cash-checkup>
                 </tab-content>
 
                 <tab-content title="Cheques y transferencias" icon="fa fa-money-check-alt">
-                    <transfer-checkup></transfer-checkup>
+                    <transfer-checkup :stored="{{ $checkup->toJson() }}"></transfer-checkup>
                 </tab-content>
 
                 <tab-content title="Tarjetas" icon="fa fa-credit-card">
-                    <cards-checkup></cards-checkup>
+                    <cards-checkup :stored="{{ $checkup->toJson() }}"></cards-checkup>
                 </tab-content>
 
                 @if (auth()->user()->store_id == 1 || auth()->user()->store_id == 2 || auth()->user()->store_id == 3)
                     <tab-content title="Crédito" icon="fa fa-file-invoice">
-                        <credit-checkup></credit-checkup>
+                        <credit-checkup :stored="{{ $checkup->toJson() }}"></credit-checkup>
                     </tab-content>
                 @endif
 
                 <tab-content title="Steren Card" icon="fa fa-gift">
-                    <sterencard-checkup></sterencard-checkup>
+                    <sterencard-checkup :stored="{{ $checkup->toJson() }}"></sterencard-checkup>
                 </tab-content>
 
                 <tab-content title="Devolución / Cancelación" icon="fa fa-ban">
-                    <returns-checkup></returns-checkup>
+                    <returns-checkup :stored="{{ $checkup->toJson() }}"></returns-checkup>
                 </tab-content>
 
                 <tab-content title="Confirmar" icon="fa fa-check-double">
-                    <confirm-checkup></confirm-checkup>
+                    <confirm-checkup :stored="{{ $checkup->sale->public }}"></confirm-checkup>
                 </tab-content>
 
               </form-wizard>

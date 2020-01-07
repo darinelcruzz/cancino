@@ -13,7 +13,7 @@
           <tbody>
             <tr>
               <td style="width: 25%">
-                <input name="notes[f]" class="form-control" type="text" placeholder="XXXX">
+                <input name="notes[f]" class="form-control" type="text" placeholder="XXXX" v-model="folio">
               </td>
               <td>
                 Cliente mostrador
@@ -40,9 +40,11 @@
 
 <script>
 export default {
+    props: ['stored'],
     data(){
         return {
-            amount: 0
+            amount: 0,
+            folio: ''
         };
     },
     methods: {
@@ -52,6 +54,12 @@ export default {
     },
     updated() {
         this.$root.$emit('checkupdate', [3, {method: 'steren card', cut: this.round(this.amount), diff: 0}])
+    },
+    created() {
+      if (this.stored) {
+        this.amount = Number(this.stored.notes.a)
+        this.folio = this.stored.notes.f
+      }
     }
 }
 </script>

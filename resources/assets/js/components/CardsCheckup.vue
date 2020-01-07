@@ -152,6 +152,7 @@
 
 <script>
 export default {
+    props: ['stored'],
     data(){
         return {
             bbva:[],
@@ -195,6 +196,39 @@ export default {
     },
     updated() {
         this.$root.$emit('checkupdate', [2, {method: 'tarjetas', cut: this.round(this.cut), diff: this.round(this.difference)}])
+    },
+    created() {
+        if (this.stored) {
+
+            if (this.stored.bbva) {
+                for (var i = this.stored.bbva.length - 1; i >= 0; i--) {
+                    this.bbva.push({
+                        folio: this.stored.bbva[i]['f'],
+                        amount: Number(this.stored.bbva[i]['a'])
+                    })
+                }
+            }
+
+            if (this.stored.banamex) {
+                for (var i = this.stored.banamex.length - 1; i >= 0; i--) {
+                    this.banamex.push({
+                        folio: this.stored.banamex[i]['f'],
+                        amount: Number(this.stored.banamex[i]['a'])
+                    })
+                }
+            }
+
+            if (this.stored.clip) {
+                for (var i = this.stored.clip.length - 1; i >= 0; i--) {
+                    this.clip.push({
+                        folio: this.stored.clip[i]['f'],
+                        amount: Number(this.stored.clip[i]['a'])
+                    })
+                }
+            }
+
+            this.cut = this.stored.card_sums.c
+        }
     }
-}
+};
 </script>

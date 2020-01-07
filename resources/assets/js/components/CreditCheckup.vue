@@ -49,6 +49,7 @@
 
 <script>
 export default {
+    props: ['stored'],
     data(){
         return {
             credit:[],
@@ -79,6 +80,19 @@ export default {
             .then((response) => {
                 this.clients = response.data
             })
+
+        if (this.stored) {
+
+            if (this.stored.credit) {
+                for (var i = this.stored.credit.length - 1; i >= 0; i--) {
+                    this.credit.push({
+                        folio: this.stored.credit[i]['f'],
+                        client: this.stored.credit[i]['c'],
+                        amount: Number(this.stored.credit[i]['a'])
+                    })
+                }
+            }
+        }
     }
-}
+};
 </script>

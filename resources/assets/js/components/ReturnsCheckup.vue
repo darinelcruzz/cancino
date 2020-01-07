@@ -58,6 +58,7 @@
 
 <script>
 export default {
+    props: ['stored'],
     data(){
         return {
             returns:[],
@@ -81,6 +82,21 @@ export default {
     },
     updated() {
         this.$root.$emit('checkupdate', [4, {method: 'devoluciones', cut: this.round(this.total), diff: 0}])
+    },
+    created() {
+        if (this.stored) {
+
+            if (this.stored.returns) {
+                for (var i = this.stored.returns.length - 1; i >= 0; i--) {
+                    this.returns.push({
+                        folio: this.stored.returns[i]['f'],
+                        client: this.stored.returns[i]['c'],
+                        amount: Number(this.stored.returns[i]['a']),
+                        observations: this.stored.returns[i]['o']
+                    })
+                }
+            }
+        }
     }
-}
+};
 </script>
