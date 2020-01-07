@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Maintenance, Store};
+use App\{Maintenance, Store, Equipment};
 use Illuminate\Http\Request;
 
 class MaintenanceController extends Controller
@@ -14,11 +14,9 @@ class MaintenanceController extends Controller
         return view('maintenances.index', compact('maintenances'));
     }
 
-    function create()
+    function create(Equipment $equipment)
     {
-        $stores = Store::pluck('name', 'id')->toArray();
-
-        return view('maintenances.create', compact('stores'));
+        return view('maintenances.create', compact('equipment'));
     }
 
     function store(Request $request)

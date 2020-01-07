@@ -144,7 +144,7 @@ Route::group(['prefix' => 'equipos', 'as' => 'equipments.'], function () {
 Route::group(['prefix' => 'mantenimientos', 'as' => 'maintenances.'], function () {
     $ctrl = 'MaintenanceController';
     Route::get('/', usesas($ctrl, 'index'));
-    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::get('agregar/{equipment}', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{maintenance}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
@@ -192,7 +192,7 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('detalles/{checkup}', usesas($ctrl, 'show'));
     Route::get('reporte/{checkup}', usesas($ctrl, 'report'));
-    Route::get('actualizar/{checkup}', usesas($ctrl, 'agree'));
+    Route::get('actualizar/{checkup}/{status}', usesas($ctrl, 'updateStatus'));
     Route::get('terminales', usesas($ctrl, 'cards'));
     Route::post('terminales', usesas($ctrl, 'cards'));
 });

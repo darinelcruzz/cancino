@@ -22,14 +22,12 @@
                                 <td>{{ $debt->id }}</td>
                                 <td>{{ $debt->employer->name }}</td>
                                 <td>{{ $debt->store->name }}</td>
-                                <td>{{ fnumber($debt->amount) }} <br> {{ fdate($debt->requested_at, , 'd/m/y', 'Y-m-d')}} </td>
+                                <td>{{ fnumber($debt->amount) }} <br> {{ fdate($debt->requested_at, 'd/m/y', 'Y-m-d') }} </td>
                                 <td>{{ fnumber($debt->difference) }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         <ddi to="{{ route('payments.create', ['id' => $debt->id]) }}" icon="plus" text="Abonar"></ddi>
                                         <ddi to="{{ route('debts.show', ['id' => $debt->id]) }}" icon="eye" text="Abonos"></ddi>
-                                        {{-- <ddi icon="eye" text="Abonos" target="{{ $debt->id }}"></ddi>
-                                        @include('templates/paymentsModal') --}}
                                     </dropdown>
                                 </td>
                             </tr>

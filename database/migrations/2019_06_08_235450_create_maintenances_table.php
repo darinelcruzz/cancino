@@ -13,7 +13,7 @@ class CreateMaintenancesTable extends Migration
 
             $table->integer('equipment_id');
             $table->string('type')->nullable();
-            $table->string('provider')->nullable();
+            $table->integer('provider_id')->nullable();
             $table->integer('cost')->nullable();
             $table->date('maintenance_at')->nullable();
             $table->string('observations')->nullable();

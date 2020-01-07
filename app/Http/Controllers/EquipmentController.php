@@ -16,9 +16,7 @@ class EquipmentController extends Controller
 
     function create()
     {
-        $stores = Store::where('type', '!=', 'c')->pluck('name', 'id')->toArray();
-
-        return view('equipments.create', compact('stores'));
+        return view('equipments.create');
     }
 
     function store(Request $request)

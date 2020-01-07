@@ -11,7 +11,7 @@
     @foreach ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $checkups->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $checkups->where('store_id', $store->id)->where('status', '!=', 2)->count() }}" button collapsed>
                     <data-table example="{{ $store->id }}">
                         {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'estado', '') }}
                         <template slot="body">
@@ -31,8 +31,11 @@
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                                 <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
                                                 <ddi to="{{ route('checkup.edit', $checkup) }}" icon="edit" text="Editar"></ddi>
+                                                @if ($checkup->status < 2)
+                                                    <ddi to="{{ route('checkup.updateStatus', ['checkup' => $checkup, 'status' => '2']) }}" icon="check" text="Verificada"></ddi>
+                                                @endif
                                                 @if ($checkup->status == 0)
-                                                    <ddi to="{{ route('checkup.agree', $checkup) }}" icon="check" text="Verificada"></ddi>
+                                                    <ddi to="{{ route('checkup.updateStatus', ['checkup' => $checkup, 'status' => '1']) }}" icon="times" text="Error"></ddi>
                                                 @endif
                                             </dropdown>
                                         </td>

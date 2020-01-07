@@ -1,14 +1,14 @@
 @extends('lte.root')
 
 @push('pageTitle')
-    Empleados | Agregar
+    Mantenimientos | Agregar
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <color-box title="Agregar un equipo" color="success">
-                {!! Form::open(['method' => 'POST', 'route' => 'equipments.store']) !!}
+            <color-box title="Agregar un mantenimiento" color="success">
+                {!! Form::open(['method' => 'POST', 'route' => 'maintenances.store']) !!}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">

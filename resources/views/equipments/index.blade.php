@@ -23,8 +23,6 @@
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         <ddi to="{{ route('equipments.show', ['id' => $equipment->id]) }}" icon="eye" text="Detalles"></ddi>
-                                        {{-- <ddi to="#" icon="edit" text="Editar"></ddi>
-                                        <ddi to="#" icon="times" text="Dar de baja"></ddi> --}}
                                     </dropdown>
                                 </td>
                             </tr>

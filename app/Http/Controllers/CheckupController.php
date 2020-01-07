@@ -66,9 +66,9 @@ class CheckupController extends Controller
         //
     }
 
-    function agree(Checkup $checkup)
+    function updateStatus(Checkup $checkup, $status)
     {
-        $checkup->update(['status' => 1]);
+        $checkup->update(['status' => $status]);
 
         return redirect(route('helper.checkups'));
     }

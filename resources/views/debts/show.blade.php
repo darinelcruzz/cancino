@@ -10,8 +10,8 @@
         <div class="small-box bg-danger">
             <div class="inner">
                 <h3>{{ $debt->employer->name }}</h3>
-                <h4><b>Deuda:</b> {{ fnumber($debt->amount) }}</h4>
-                <h4><b>Resta:</b> {{ fnumber($debt->difference) }}</h4>
+                <h4><b>Deuda:</b> {{ fnumber($debt->amount) }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Desde:</b> {{ fdate($debt->requested_at, 'd/m/y', 'Y-m-d') }}</h4>
+                <h4><b>Resta:</b> {{ fnumber($debt->difference) }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Abonos:</b> {{ fnumber($debt->payments) }} </h4>
             </div>
             <div class="icon">
                 <i class="fa fa-user"></i>
