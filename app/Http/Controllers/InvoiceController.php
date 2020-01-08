@@ -24,6 +24,7 @@ class InvoiceController extends Controller
 
     function store(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'folio' => 'required',
             'amount' => 'required',
@@ -56,7 +57,7 @@ class InvoiceController extends Controller
             'status' => 'pagada',
             'payed_at' => date("Y-m-d")
         ]);
-        
+
         return redirect(route('admin.loans', ['id' => $invoice->from]));
     }
 

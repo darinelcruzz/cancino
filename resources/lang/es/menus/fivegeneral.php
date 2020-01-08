@@ -1,6 +1,14 @@
 <?php
 
 return [
+
+    'Shoppings' => [
+        'title' => 'Compras',
+        'icon' => 'fa fa-archive',
+        'label' => pendingShoppings(),
+        'route' => 'helper.shoppings'
+    ],
+
     'Checkups' => [
         'title' => 'Arqueos',
         'label' => pendingCheckupsAll(),

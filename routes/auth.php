@@ -222,10 +222,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
     $ctrl = 'HelperController';
-    Route::get('depositos', usesas($ctrl, 'deposits'));
-    Route::post('depositos', usesas($ctrl, 'deposits'));
+    Route::get('compras', usesas($ctrl, 'shoppings'));
+    Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('notas', usesas($ctrl, 'notes'));
-    Route::get('saldos', usesas($ctrl, 'balances'));
     Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));

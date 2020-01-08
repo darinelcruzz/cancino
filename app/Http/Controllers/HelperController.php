@@ -33,7 +33,7 @@ class HelperController extends Controller
             ]);
         }
 
-        return redirect(route('admin.shoppings'));
+        return redirect(route('helper.shoppings'));
     }
 
     function notes()

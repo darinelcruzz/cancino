@@ -27,17 +27,17 @@
                                 {!! Field::number('amount', ['step' => '0.01', 'min' => '0', 'v-model' => 'total']) !!}
                             </div>
                         </div>
-                        <data-table example="1">
+                        <data-table example="2">
                             {{ drawHeader('ID','Modelo', 'Cantidad', 'Fecha') }}
                             <template slot="body">
-                                @foreach ($items as $item)
+                                {{-- @foreach ($items as $item)
                                     <tr>
                                         <td>{!! Form::checkboxes('items', [$item->id => $item->id]) !!}</td>
                                         <td>{{ $item->item }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ fdate($item->created_at, 'd-M-Y') }}</td>
                                     </tr>
-                                @endforeach
+                                @endforeach --}}
                             </template>
                         </data-table>
                     </div>

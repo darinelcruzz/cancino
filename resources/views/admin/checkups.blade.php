@@ -30,7 +30,9 @@
                                         <td>
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                                 <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
-                                                <ddi to="{{ route('checkup.edit', $checkup) }}" icon="edit" text="Editar"></ddi>
+                                                @if (auth()->user()->level==1)
+                                                    <ddi to="{{ route('checkup.edit', $checkup) }}" icon="edit" text="Editar"></ddi>
+                                                @endif
                                                 @if ($checkup->status < 2)
                                                     <ddi to="{{ route('checkup.updateStatus', ['checkup' => $checkup, 'status' => '2']) }}" icon="check" text="Verificada"></ddi>
                                                 @endif
