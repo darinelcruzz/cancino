@@ -20,6 +20,7 @@ class Checkup extends Model
         'returns' => 'array',
         'clip' => 'array',
         'credit' => 'array',
+        'canceled' => 'array',
     ];
 
     function store()
@@ -34,7 +35,7 @@ class Checkup extends Model
 
     function getAmountAttribute()
     {
-        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum;
+        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum - $this->canceledSum;
     }
 
     function getStatusLabelAttribute()
@@ -94,6 +95,18 @@ class Checkup extends Model
         $sum = 0;
         if (isset($this->credit)) {
             foreach ($this->credit as $item) {
+                $sum += $item['a'];
+            }
+
+            return $sum;
+        }
+    }
+
+    function getCanceledSumAttribute()
+    {
+        $sum = 0;
+        if (isset($this->canceled)) {
+            foreach ($this->canceled as $item) {
                 $sum += $item['a'];
             }
 

@@ -34,6 +34,7 @@
                                 <option value="1">Devolución de efectivo</option>
                                 <option value="2">Cambio de producto</option>
                                 <option value="3">Refacturación</option>
+                                <option value="4">Nota de crédito</option>
                             </select>
                             <input type="hidden" :name="'returns[' + index + '][o]'" :value="item.observations">
                         </td>

@@ -24,20 +24,20 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                {!! Field::number('amount', ['step' => '0.01', 'min' => '0', 'v-model' => 'total']) !!}
+                                {!! Field::number('amount', ['step' => '0.01', 'min' => '0']) !!}
                             </div>
                         </div>
-                        <data-table example="2">
+                        <data-table example="1">
                             {{ drawHeader('ID','Modelo', 'Cantidad', 'Fecha') }}
                             <template slot="body">
-                                {{-- @foreach ($items as $item)
+                                @foreach ($items as $item)
                                     <tr>
                                         <td>{!! Form::checkboxes('items', [$item->id => $item->id]) !!}</td>
                                         <td>{{ $item->item }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ fdate($item->created_at, 'd-M-Y') }}</td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </template>
                         </data-table>
                     </div>
@@ -77,7 +77,7 @@
                         </tr>
                         <tr>
                             <th colspan="2">Gale Tapa</th>
-                            <td>0000</td>
+                            <td>5062</td>
                         </tr>
                     </tbody>
                 </table>

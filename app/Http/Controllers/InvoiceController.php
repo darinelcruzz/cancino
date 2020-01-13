@@ -24,7 +24,6 @@ class InvoiceController extends Controller
 
     function store(Request $request)
     {
-        dd($request->all());
         $this->validate($request, [
             'folio' => 'required',
             'amount' => 'required',
@@ -32,7 +31,7 @@ class InvoiceController extends Controller
             'items' => 'required',
         ]);
 
-        $invoice = Invoice::create($request->except('items'));
+        $invoice = Invoice::create($request->except('items', 'example1_length'));
 
         foreach ($request->items as $item_id) {
             $item = Loan::find($item_id);

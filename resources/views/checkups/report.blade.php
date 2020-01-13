@@ -173,6 +173,10 @@
                                         <td width="60%">{{ fnumber($checkup->creditSum) }}</td>
                                     </tr>
                                     <tr>
+                                        <td width="40%"><b>Cancelaciones</b></td>
+                                        <td width="60%">{{ fnumber($checkup->canceledSum) }}</td>
+                                    </tr>
+                                    <tr>
                                         <td width="40%"><spam style="font-size: 10pt;"><b>Total<br>Corte</b></spam></td>
                                         <td width="60%"><spam style="font-size: 12pt;">{{ fnumber($checkup->amount) }}</b></spam></td>
                                     </tr>
@@ -254,7 +258,7 @@
                     </tr>
                     @php
                         $sum = 0;
-                        $options = ['1' => 'DEVOLUCION DE EFECTIVO', '2' => 'CAMBIO DE PRODUCTO', '3' => 'REFACTURACION'];
+                        $options = ['1' => 'DEVOLUCION DE EFECTIVO', '2' => 'CAMBIO DE PRODUCTO', '3' => 'REFACTURACION', '4' => 'NOTA DE CREDITO'];
                     @endphp
                     @if ($checkup->returns)
                         @foreach ($checkup->returns as $item)
