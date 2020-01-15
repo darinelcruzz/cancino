@@ -10,7 +10,7 @@ class CheckupController extends Controller
 {
     function index()
     {
-        $checkups = Checkup::where('store_id', auth()->user()->store_id)->get()->take(60);
+        $checkups = Checkup::where('store_id', auth()->user()->store_id)->orderBy('id', 'desc')->get()->take(60);
 
         return view('checkups.index', compact('checkups'));
     }
@@ -22,7 +22,6 @@ class CheckupController extends Controller
 
     function store(Request $request)
     {
-        // dd($request->credit);
         $request->validate([
             'cash' => 'required',
             'public' => 'required',
