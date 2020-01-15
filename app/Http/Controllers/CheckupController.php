@@ -39,13 +39,15 @@ class CheckupController extends Controller
             'user_id' => $request->user_id,
             'store_id' => $request->store_id
         ]);
-        foreach ($request->credit as $credit) {
-            $creditSale = CreditSale::create([
-                'checkup_id' => $checkup->id,
-                'folio' => $credit['f'],
-                'client_id' => $credit['c'],
-                'amount' => $credit['a']
-            ]);
+        if ($request->credit != null) {
+            foreach ($request->credit as $credit) {
+                $creditSale = CreditSale::create([
+                    'checkup_id' => $checkup->id,
+                    'folio' => $credit['f'],
+                    'client_id' => $credit['c'],
+                    'amount' => $credit['a']
+                ]);
+            }
         }
 
         $sale->notify(new \App\Notifications\SaleDayStore());
