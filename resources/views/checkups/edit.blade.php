@@ -46,15 +46,13 @@
                     <returns-checkup :stored="{{ $checkup->toJson() }}"></returns-checkup>
                 </tab-content>
 
-                <tab-content title="Confirmar" icon="fa fa-check-double">
-                    <confirm-checkup :stored="{{ $checkup->sale->public }}"></confirm-checkup>
-                </tab-content>
+                @if (auth()->user()->level==1)
+                    <tab-content title="Confirmar" icon="fa fa-check-double">
+                        <confirm-checkup :stored="{{ $checkup->sale->public }}"></confirm-checkup>
+                    </tab-content>
+                @endif
 
               </form-wizard>
-
-              <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-              <input type="hidden" name="date_sale" value="{{ date('Y-m-d') }}">
-              <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
 
             {!! Form::close() !!}
           </color-box>

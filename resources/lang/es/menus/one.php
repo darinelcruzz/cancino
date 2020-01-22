@@ -15,7 +15,7 @@ return [
         'label' => pendingDepositsAll() > 0 ? pendingDepositsAll(): '',
         'submenu' => [
             'Deposits' => [
-                'title' => 'Depositos',
+                'title' => 'Depósitos',
                 'route' => 'admin.deposits',
             ],
             'Daily' => [
@@ -27,7 +27,7 @@ return [
                 'route' => 'admin.goals'
             ],
             'Public' => [
-                'title' => 'Graficas',
+                'title' => 'Gráficas',
                 'route' => 'admin.public',
             ],
             'Checkups' => [
@@ -72,7 +72,7 @@ return [
     ],
 
     'Loans' => [
-        'title' => 'Prestamos',
+        'title' => 'Préstamos',
         'icon' => 'fa fa-random',
         'label' => pendingInvoices() > 0 ? pendingInvoices(): '',
         'submenu' => [
@@ -118,10 +118,6 @@ return [
         'title' => 'B2B',
         'icon' => 'fas fa-hands-helping',
         'submenu' => [
-            'binnacle' => [
-                'title' => 'Bitacora',
-                'route' => 'admin.binnacles',
-            ],
             'client' => [
                 'title' => 'Clientes',
                 'route' => 'clients.index',

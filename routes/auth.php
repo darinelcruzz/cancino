@@ -34,9 +34,9 @@ Route::group(['prefix' => 'ventas', 'as' => 'sales.', 'middleware' => 'nonChecku
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-    Route::post('deposit', usesas($ctrl, 'deposit'));
-	Route::get('editar/{sale}', usesas($ctrl, 'edit'));
+    Route::get('editar/{sale}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+    Route::post('deposit', usesas($ctrl, 'deposit'));
     Route::get('publico', usesas($ctrl, 'show'));
     Route::post('publico', usesas($ctrl, 'show'));
 });
@@ -160,6 +160,17 @@ Route::group(['prefix' => 'pendientes', 'as' => 'tasks.', 'middleware' => 'nonCh
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('detalles/{task}', usesas($ctrl, 'show'));
     Route::get('actualizar/{task}', usesas($ctrl, 'agree'));
+});
+
+Route::group(['prefix' => 'eventos', 'as' => 'tasks.', 'middleware' => 'high'], function () {
+    $ctrl = 'EventController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+	Route::get('editar/{event}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('detalles/{event}', usesas($ctrl, 'show'));
+    Route::get('actualizar/{event}', usesas($ctrl, 'agree'));
 });
 
 Route::group(['prefix' => 'documentos', 'as' => 'documents.', 'middleware' => 'nonCheckup'], function () {

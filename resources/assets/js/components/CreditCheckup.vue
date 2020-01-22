@@ -16,7 +16,7 @@
                             <a @click="pop(index)" style="color: red"><i class="fa fa-times"></i></a>
                         </td>
                         <td>
-                            <input type="text" v-model="item.folio" class="form-control">
+                            <input type="number" min="0" v-model="item.folio" class="form-control">
                             <input type="hidden" :name="'credit[' + index + '][f]'" :value="item.folio">
                         </td>
                         <td>

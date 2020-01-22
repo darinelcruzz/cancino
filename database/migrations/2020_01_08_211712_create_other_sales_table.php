@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCreditSalesTable extends Migration
+class CreateOtherSalesTable extends Migration
 {
     function up()
     {
-        Schema::create('credit_sales', function (Blueprint $table) {
+        Schema::create('other_sales', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('client_id')->nullable();
@@ -26,6 +26,6 @@ class CreateCreditSalesTable extends Migration
 
     function down()
     {
-        Schema::dropIfExists('credit_sales');
+        Schema::dropIfExists('other_sales');
     }
 }

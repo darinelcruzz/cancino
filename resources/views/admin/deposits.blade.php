@@ -38,7 +38,7 @@
                                         <td>
                                             {{ fdate($stores->where('store_id', $store_id)->pluck('date_deposit')->pop(), 'd/M/y', 'Y-m-d') }}<br>
                                             {{ fnumber($stores->where('store_id', $store_id)->sum('cash')) }}
-                                            <span style="color:{{ colorDay($date, $stores->where('store_id', $store_id)->pluck('date_deposit')->pop()) }}">
+                                            <span style="color:{{ colorDay($date, $stores->where('store_id', $store_id)->sum('cash'),$stores->where('store_id', $store_id)->pluck('date_deposit')->pop()) }}">
                                                 <i class="fa fa-circle"></i>
                                             </span><br>
                                             {{ $stores->where('store_id', $store_id)->pluck('observations')->pop() }}

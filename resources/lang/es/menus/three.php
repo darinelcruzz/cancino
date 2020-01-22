@@ -14,16 +14,10 @@ return [
                 'route' => 'admin.goals'
             ],
             'Public' => [
-                'title' => 'Graficas',
+                'title' => 'Gráficas',
                 'route' => 'admin.public',
             ],
         ],
-    ],
-
-    'Binnacle' => [
-        'title' => 'Bitacora',
-        'icon' => 'fa fa-list',
-        'route' => 'admin.binnacles'
     ],
 
     'Clients' => [

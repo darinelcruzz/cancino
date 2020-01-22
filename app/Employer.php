@@ -13,6 +13,11 @@ class Employer extends Model
         return $this->belongsTo(Store::class);
     }
 
+    function payment()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     function storeDocuments($request)
     {
     	$route = 'public/employers/' . $this->id;

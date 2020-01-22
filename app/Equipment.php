@@ -12,4 +12,9 @@ class Equipment extends Model
     {
         return $this->belongsTo(Store::class);
     }
+
+    function maintenance()
+    {
+        return $this->hasMany(Maintenance::class);
+    }
 }

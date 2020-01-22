@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-12">
             <color-box title="Depositados" color="success">
-                <data-table example="1">
+                <data-table example="2">
                     {{ drawHeader('ID','Fecha', 'Efectivo', 'Total', 'Deposito', 'Observaciones', 'Tiempo') }}
 
                     <template slot="body">

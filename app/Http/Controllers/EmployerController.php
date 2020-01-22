@@ -40,7 +40,6 @@ class EmployerController extends Controller
         $employer = Employer::create($request->all());
 
         Movement::create([
-            'ingress' => $employer->ingress,
             'employer_id' => $employer->id,
             'date' => $employer->ingress,
             'store_id' => $employer->store_id
@@ -106,6 +105,14 @@ class EmployerController extends Controller
     function dismiss(Employer $employer)
     {
         $employer->update(['status' => 0]);
+        $date = date('Y-m-d');
+        
+        Movement::create([
+            'employer_id' => $employer->id,
+            'date' => $employer->ingress,
+            'store_id' => $employer->store_id,
+            'type' => 0
+        ]);
 
         return redirect(route('employers.index'));
     }

@@ -14,7 +14,7 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->double('budget');
             $table->date('start_at');
-            $table->date('end_at');
+            $table->date('end_at')->nullable();
 
             $table->timestamps();
         });

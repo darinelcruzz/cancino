@@ -22,7 +22,7 @@
                                         <td>{{ fdate($checkup->date_sale,'d-M-Y', 'Y-m-d') }}</td>
                                         <td>{{ fnumber($checkup->amount) }}</td>
                                         <td>{{ fnumber($checkup->sale->public) }}</td>
-                                        <td>{{ fnumber($checkup->cash_sums['c']) }}<br><code>{{ $checkup->cash_sums['d'] > 10 || $checkup->cash_sums['d'] < -10 ? fnumber($checkup->cash_sums['d']) : ''  }}</code></td>
+                                        <td>{{ fnumber($checkup->cash_sums['c']) }} <br> <code>{{ $checkup->cash_sums['d'] > 10 || $checkup->cash_sums['d'] < -10 ? fnumber($checkup->cash_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->card_sums['c']) }}<br><code>{{ $checkup->card_sums['d'] > 10 || $checkup->card_sums['d'] < -10 ? fnumber($checkup->card_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->transfer_sums['c']) }}<br><code>{{ $checkup->transfer_sums['d'] > 10 || $checkup->transfer_sums['d'] < -10 ? fnumber($checkup->transfer_sums['d']) : ''  }}</code></td>
                                         <td>{{ fnumber($checkup->creditSum) }}</td>
@@ -31,7 +31,8 @@
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                                 <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
                                                 @if (auth()->user()->level==1)
-                                                    <ddi to="{{ route('checkup.edit', $checkup) }}" icon="edit" text="Editar"></ddi>
+                                                    <ddi to="{{ route('checkup.edit', $checkup) }}" icon="edit" text="Editar arqueo"></ddi>
+                                                    <ddi to="{{ route('sales.edit', $checkup->sale) }}" icon="edit" text="Editar venta"></ddi>
                                                 @endif
                                                 @if ($checkup->status < 2)
                                                     <ddi to="{{ route('checkup.updateStatus', ['checkup' => $checkup, 'status' => '2']) }}" icon="check" text="Verificada"></ddi>

@@ -49,7 +49,7 @@ function fileExists($file)
     return $file_headers[0] == 'HTTP/1.1 404 Not Found';
 }
 
-function colorDay($sale, $deposit)
+function colorDay($sale, $amount, $deposit)
 {
     $start = new Date(strtotime($sale));
     $day = $start->format('D');
@@ -61,7 +61,7 @@ function colorDay($sale, $deposit)
         return 'green';
     }elseif($day == 'sáb' && $interval < 3 ){
         return 'green';
-    }elseif($interval < 2){
+    }elseif($interval < 2 || $amount == 0){
         return 'green';
     }else{
         return 'red';

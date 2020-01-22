@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Checkup, Store, Sale, CreditSale, User};
+use App\{Checkup, Store, Sale, OtherSale, User};
 use Illuminate\Http\Request;
 use App\Charts\TestChart;
 
@@ -34,13 +34,13 @@ class CheckupController extends Controller
             'checkup_id' => $checkup->id,
             'cash' => $checkup->cash_sums['c'],
             'public' => $request->public,
-            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum)/1.16,2),
+            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum - $checkup->canceledSum)/1.16,2),
             'user_id' => $request->user_id,
             'store_id' => $request->store_id
         ]);
         if ($request->credit != null) {
             foreach ($request->credit as $credit) {
-                $creditSale = CreditSale::create([
+                $creditSale = OtherSale::create([
                     'checkup_id' => $checkup->id,
                     'folio' => $credit['f'],
                     'client_id' => $credit['c'],
@@ -72,14 +72,13 @@ class CheckupController extends Controller
         $request->validate([
             'cash' => 'required',
         ]);
-
         $checkup->update($request->except(['user_id', 'public']));
 
         $sale = Sale::where('checkup_id', $checkup->id)->get()->first();
 
         $sale->update([
             'cash' => $checkup->cash_sums['c'],
-            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum)/1.16,2)
+            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum - $checkup->canceledSum)/1.16,2)
         ]);
 
         return redirect(route('admin.checkups'));

@@ -2,12 +2,6 @@
 
 return [
 
-    'Binnacle' => [
-        'title' => 'Bitacora',
-        'icon' => 'fa fa-list',
-        'route' => 'binnacles.index'
-    ],
-
     'Clients' => [
         'title' => 'Clientes',
         'icon' => 'fa fa-handshake-o',

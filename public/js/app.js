@@ -51238,7 +51238,12 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { name: "notes[f]", type: "text", placeholder: "XXXX" },
+                attrs: {
+                  name: "notes[f]",
+                  type: "number",
+                  min: "0",
+                  placeholder: "XXXX"
+                },
                 domProps: { value: _vm.folio },
                 on: {
                   input: function($event) {
@@ -51532,7 +51537,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
+                  attrs: { type: "number", min: "0" },
                   domProps: { value: item.folio },
                   on: {
                     input: function($event) {
@@ -51789,6 +51794,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52256,7 +52267,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
+                  attrs: { type: "number", min: "0" },
                   domProps: { value: item.folio },
                   on: {
                     input: function($event) {

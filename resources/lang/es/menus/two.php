@@ -23,11 +23,11 @@ return [
                 'route' => 'admin.goals'
             ],
             'Public' => [
-                'title' => 'Graficas',
+                'title' => 'Gráficas',
                 'route' => 'admin.public',
             ],
             'Deposits' => [
-                'title' => 'Depositos',
+                'title' => 'Depósitos',
                 'route' => 'admin.deposits',
             ],
         ],

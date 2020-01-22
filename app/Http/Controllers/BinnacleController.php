@@ -11,10 +11,7 @@ class BinnacleController extends Controller
 {
     function index()
     {
-        $activitys = Binnacle::where('status', 'realizada')->where('user_id', auth()->user()->id)->get();
-        $plannings = Binnacle::where('status', 'pendiente')->where('user_id', auth()->user()->id)->get();
-
-        return view('binnacles.index', compact('activitys', 'plannings'));
+        //
     }
 
     function planning()
@@ -94,5 +91,5 @@ class BinnacleController extends Controller
     {
         //
     }
-    
+
 }

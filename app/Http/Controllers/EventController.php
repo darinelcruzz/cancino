@@ -9,7 +9,10 @@ class EventController extends Controller
 {
     function index()
     {
-        //
+        $pendings = Event::whereNull('end_at')->get();
+        $end = Event::where('end_at', '!=', null)->get();
+
+        return view('events.index', compact('pendings', 'end'));
     }
 
     function create()

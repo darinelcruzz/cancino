@@ -105,6 +105,6 @@ export default {
 
             this.cut = this.stored.cash_sums.c
         }
-    }
+    },
 }
 </script>

@@ -65,6 +65,12 @@
                                 $ <input type="number" name="public" step="0.01" v-model.number="public">
                             </td>
                         </tr>
+                        <!-- <tr>
+                            <th>Fecha</th>
+                            <td>
+                                $ <input type="date" name="sale_date">
+                            </td>
+                        </tr> -->
                     </thead>
                 </table>
             </div>

@@ -13,7 +13,7 @@ return [
         'label' => pendingDeposits(),
         'submenu' => [
             'total' => [
-                'title' => 'Depositos',
+                'title' => 'Depósitos',
                 'route' => 'sales.index'
             ],
             'public' => [
@@ -63,7 +63,7 @@ return [
     ],
 
     'Loans' => [
-        'title' => 'Prestamos',
+        'title' => 'Préstamos',
         'icon' => 'fa fa-random',
         'label' => pendingLoans(),
         'submenu' => [

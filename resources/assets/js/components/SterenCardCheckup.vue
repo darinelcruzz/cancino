@@ -13,7 +13,7 @@
           <tbody>
             <tr>
               <td style="width: 25%">
-                <input name="notes[f]" class="form-control" type="text" placeholder="XXXX" v-model="folio">
+                <input name="notes[f]" class="form-control" type="number" min="0" placeholder="XXXX" v-model="folio">
               </td>
               <td>
                 Cliente mostrador

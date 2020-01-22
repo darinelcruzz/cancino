@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Sale;
-use App\Goal;
-use App\Date;
-use App\Store;
+use App\{Sale, Goal, Date, Store, Checkup};
 use App\Charts\TestChart;
 use Illuminate\Http\Request;
 
@@ -84,14 +81,25 @@ class SaleController extends Controller
         return view('sales.show', compact('date', 'chart', 'total', 'sumBlack', 'sumStar', 'sumGolden'));
     }
 
-    function edit(Sales $sales)
+    function edit(Sale $sale)
     {
-        //
+        return view('sales.edit', compact('sale'));
     }
 
-    function update(Request $request, Sales $sales)
+    function update(Request $request)
     {
-        //
+        $request->validate([
+            'date_sale' => 'required',
+        ]);
+        $sale = Sale::find($request->id);
+        $sale->update($request->all());
+
+        $checkup = Checkup::find($sale->checkup_id);
+        $checkup->update([
+            'date_sale' => $sale->date_sale
+        ]);
+
+        return redirect(route('admin.deposits'));
     }
 
     function deposit(Request $request)
