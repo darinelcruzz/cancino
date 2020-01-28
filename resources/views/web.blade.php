@@ -11,13 +11,11 @@
 	<body class="is-preload">
 		<div id="wrapper">
 
+			<br><br><br>
 				<header id="header">
-					<div class="logo">
-						<span class="icon fa-building"></span>
-					</div>
 					<div class="content">
 						<div class="inner">
-							<h1>Grupo Cancino</h1>
+							<h1>Administración de negocios</h1>
 						</div>
 					</div>
 					<nav>

@@ -6,7 +6,7 @@
     <body class="hold-transition skin-vks sidebar-mini">
         <div id="app">
             <div class="wrapper">
-                @include('lte.mainheader', ['logoMini' => "<b>G</b>C", 'logoLg' => "<b>Grupo</b> Cancino"])
+                @include('lte.mainheader', ['logoMini' => "<b>VKS</b>", 'logoLg' => "<b>V K S</b>"])
                 @include('lte.sidebar')
 
                 <div class="content-wrapper">
