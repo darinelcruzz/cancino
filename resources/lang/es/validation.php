@@ -231,5 +231,9 @@ return [
         'payments' => 'pagos',
         'employer_id' => 'empleado',
         'employer' => 'empleado',
+        'budget' => 'presupuesto',
+        'start_at' => 'empieza',
+        'end_at' => 'termina',
+        'checker' => 'checador',
     ],
 ];

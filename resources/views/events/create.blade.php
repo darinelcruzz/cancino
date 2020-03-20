@@ -1,28 +1,29 @@
 @extends('lte.root')
 @push('pageTitle')
-    Documentos | Agregar
+    Eventos | Agregar
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-5">
-            <color-box title="Agregar PDFs" color="success">
-                {!! Form::open(['method' => 'POST', 'route' => 'documents.store', 'enctype' => 'multipart/form-data']) !!}
+            <color-box title="Agregar evento" color="success">
+                {!! Form::open(['method' => 'POST', 'route' => 'events.store']) !!}
                 <div class="row">
-                    <div class="col-md-6">
-                        {!! Field::select('store', $storesArray, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
-                            !!}
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::text('name', ['tpl' => 'lte/withicon'], ['icon' => 'calendar-week']) !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Field::number('budget',['tpl' => 'lte/withicon'], ['icon' => 'hand-holding-usd']) !!}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::date('start_at', ['tpl' => 'lte/withicon'], ['icon' => 'calendar-alt']) !!}
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        {!! Field::text('name',['tpl' => 'lte/withicon'], ['icon' => 'file']) !!}
-                    </div>
-                </div>
-                <div class="row">
-                    <br>
-                    <div class="col-md-12" align="center">
-                        <input type="file" name="doc">
-                    </div>
-                    <br><br><br>
                 </div>
                     <hr>
                     {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}

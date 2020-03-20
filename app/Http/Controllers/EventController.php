@@ -17,12 +17,20 @@ class EventController extends Controller
 
     function create()
     {
-        //
+        return view('events.create');
     }
 
     function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'budget' => 'required',
+            'start_at' => 'required',
+        ]);
+
+        Event::create($request->all());
+
+        return redirect(route('events.index'));
     }
 
     function show(Event $event)

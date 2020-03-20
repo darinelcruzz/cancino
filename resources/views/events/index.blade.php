@@ -3,6 +3,12 @@
     Eventos | Lista
 @endpush
 
+@if (auth()->user()->level == 1)
+    @push('headerTitle')
+        <a href="{{ route('events.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
+    @endpush
+@endif
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -15,7 +21,8 @@
                                 <td>{{ $event->id }}</td>
                                 <td>{{ fdate($event->start_at, 'd/M/y', 'Y-m-d') }}</td>
                                 <td>{{ $event->name }}</td>
-                                <td>{{ $event->budget }}</td>
+                                <td>{{ fnumber($event->budget) }}</td>
+                                <td></td>
                             </tr>
                         @endforeach
                     </template>
@@ -32,7 +39,8 @@
                                 <td>{{ $event->id }}</td>
                                 <td>{{ fdate($event->start_at, 'd/M/y', 'Y-m-d') }} <br> {{ fdate($event->end_at, 'd/M/y', 'Y-m-d') }}</td>
                                 <td>{{ $event->name }}</td>
-                                <td>{{ $event->budget }}</td>
+                                <td>{{ fnumber($event->budget) }}</td>
+                                <td></td>
                             </tr>
                         @endforeach
                     </template>

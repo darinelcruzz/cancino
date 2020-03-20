@@ -19,6 +19,7 @@ class CreateOtherSalesTable extends Migration
             $table->string('payed_at')->nullable();
             $table->integer('canceled_id')->nullable();
             $table->integer('canceled_folio')->nullable();
+            $table->integer('type')->nullable();
 
             $table->timestamps();
         });

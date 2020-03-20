@@ -162,7 +162,7 @@ Route::group(['prefix' => 'pendientes', 'as' => 'tasks.', 'middleware' => 'nonCh
     Route::get('actualizar/{task}', usesas($ctrl, 'agree'));
 });
 
-Route::group(['prefix' => 'eventos', 'as' => 'tasks.', 'middleware' => 'high'], function () {
+Route::group(['prefix' => 'eventos', 'as' => 'events.', 'middleware' => 'high'], function () {
     $ctrl = 'EventController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
@@ -175,8 +175,16 @@ Route::group(['prefix' => 'eventos', 'as' => 'tasks.', 'middleware' => 'high'], 
 
 Route::group(['prefix' => 'documentos', 'as' => 'documents.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'DocumentController';
+    Route::get('/{store}', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+});
+
+Route::group(['prefix' => 'formato-de-visita', 'as' => 'checklists.', 'middleware' => 'nonCheckup'], function () {
+    $ctrl = 'ChecklistController';
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('detalles/{checklist}', usesas($ctrl, 'show'));
     Route::get('/{store}', usesas($ctrl, 'index'));
 });
 
@@ -229,6 +237,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('equipos', usesas($ctrl, 'equipments'));
     Route::get('arqueos', usesas($ctrl, 'checkups'));
     Route::get('pendientes', usesas($ctrl, 'tasks'));
+    Route::get('formato-de-visita', usesas($ctrl, 'checklist'));
 });
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {

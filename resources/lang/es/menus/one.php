@@ -44,6 +44,12 @@ return [
         'route' => 'admin.tasks'
     ],
 
+    'Checklist' => [
+        'title' => 'Hoja de visita',
+        'icon' => 'fa fa-clipboard',
+        'route' => 'admin.checklist'
+    ],
+
     'Expenses' => [
         'title' => 'Saldos',
         'icon' => 'fa fa-file-invoice-dollar',

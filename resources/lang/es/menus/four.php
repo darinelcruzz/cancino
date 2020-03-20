@@ -42,6 +42,12 @@ return [
         ],
     ],
 
+    'Checklist' => [
+        'title' => 'Hoja de visita',
+        'icon' => 'fa fa-clipboard',
+        'route' => ['checklists.index', auth()->user()->store_id]
+    ],
+
     'Documents' => [
         'title' => 'Documentos',
         'icon' => 'fa fa-folder',

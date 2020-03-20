@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup, Task};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup, Task, Checklist};
 
 class AdminController extends Controller
 {
@@ -83,7 +83,7 @@ class AdminController extends Controller
     function checkups()
     {
         $stores = Store::where('type', '!=', 'c')->get();
-        $checkups = Checkup::all()->orderBy('id', 'desc');
+        $checkups = Checkup::all();
 
         return view('admin.checkups', compact('checkups', 'stores'));
     }
@@ -172,6 +172,14 @@ class AdminController extends Controller
         $equipments = Equipment::All();
 
         return view('admin.equipments', compact('equipments'));
+    }
+
+    function checklist()
+    {
+        $checklists = Checklist::All();
+        $stores = Store::where('type', '!=', 'c')->get();
+
+        return view('admin.checklists', compact('checklists', 'stores'));
     }
 
     function public(Request $request)

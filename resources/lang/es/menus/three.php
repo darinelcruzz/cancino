@@ -41,6 +41,12 @@ return [
         ],
     ],
 
+    'Checklist' => [
+        'title' => 'Hoja de visita',
+        'icon' => 'fa fa-clipboard',
+        'route' => 'admin.checklist'
+    ],
+
     'Loans' => [
         'title' => 'Prestamos',
         'icon' => 'fa fa-random',

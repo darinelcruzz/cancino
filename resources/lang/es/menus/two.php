@@ -48,6 +48,12 @@ return [
         ],
     ],
 
+    'Checklist' => [
+        'title' => 'Hoja de visita',
+        'icon' => 'fa fa-clipboard',
+        'route' => 'admin.checklist'
+    ],
+
     'Documents' => [
         'title' => 'Documentos',
         'icon' => 'fa fa-folder',
