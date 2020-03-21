@@ -18,16 +18,23 @@ class ExpenseController extends Controller
         return view('expenses.index', compact('expenses', 'ingreses', 'last', 'balance', 'store'));
     }
 
-    function create()
+    function create($store)
     {
-        $store = auth()->user()->store_id;
-        $last = Expense::where('store_id', $store)->orderBy('check', 'desc')->first();
-        return view('expenses.create', compact('last', 'store'));
+        if (auth()->user()->store_id > 1) {
+            $store = auth()->user()->store_id;
+            $type = 0;
+        }else {
+            $type = 3;
+        }
+
+        $last = Expense::where('store_id', $store)->where('type', $type)->orderBy('check', 'desc')->first();
+
+        return view('expenses.create', compact('last', 'store', 'type'));
     }
 
     function store(Request $request)
     {
-        $store = auth()->user()->store_id;
+        $store = $request->store_id;
         $validated = $this->validate($request, [
             'date' => 'required',
             'amount' => 'required',
@@ -51,6 +58,8 @@ class ExpenseController extends Controller
 
         if (auth()->user()->level < 3) {
             return redirect(route('admin.balances'));
+        }elseif (auth()->user()->store_id == 1 ) {
+            return redirect(route('helper.expenses'));
         }
 
         return redirect(route('expenses.index'));

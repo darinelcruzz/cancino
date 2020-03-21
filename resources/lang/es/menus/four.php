@@ -54,6 +54,11 @@ return [
         'route' => ['documents.index', 'store' . auth()->user()->store_id]
     ],
 
+    'Expenses' => [
+        'title' => 'Gastos',
+        'icon' => 'fa fa-file-invoice-dollar',
+        'route' => 'expenses.index'
+    ],
 
     'NC' => [
         'title' => 'NC',
@@ -84,17 +89,10 @@ return [
         ],
     ],
 
-
     'Equipments' => [
         'title' => 'Equipos',
         'icon' => 'fa fa-toolbox',
         'route' => 'equipments.index',
-    ],
-
-    'Expenses' => [
-        'title' => 'Gastos',
-        'icon' => 'fa fa-file-invoice-dollar',
-        'route' => 'expenses.index'
     ],
 
     'Waste' => [

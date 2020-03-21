@@ -51,9 +51,18 @@ return [
     ],
 
     'Expenses' => [
-        'title' => 'Saldos',
+        'title' => 'Gastos',
         'icon' => 'fa fa-file-invoice-dollar',
-        'route' => 'admin.balances',
+        'submenu' => [
+            'balances' => [
+                'title' => 'Saldos',
+                'route' => 'admin.balances',
+            ],
+            'expenses' => [
+                'title' => 'Chequeras',
+                'route' => 'admin.expenses',
+            ],
+        ],
     ],
 
     'Documents' => [

@@ -103,18 +103,12 @@ class AdminController extends Controller
         return view('admin.balances', compact('stores'));
     }
 
-    function expenses(Store $store)
+    function expenses()
     {
-        $expenses = Expense::where('store_id', $store->id)
-            ->where('type', '0')->get();
-        $ingreses = Expense::where('store_id', $store->id)
-            ->where('type', '1')->orderByDesc('id')
-            ->get()->take(3);
-        $last = Expense::where('store_id', $store->id)
-            ->where('type', '0')
-            ->where('check', '!=', NULL)
-            ->get()->last();
-        return view('expenses.index', compact('expenses', 'ingreses', 'last', 'balance', 'store'));
+        $expenses = Expense::where('type', 3)->get();
+        $stores = Store::All();
+
+        return view('admin.expenses', compact('expenses', 'stores'));
     }
 
     function binnacles()

@@ -19,7 +19,7 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonC
 Route::group(['prefix' => 'gastos', 'as' => 'expenses.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'ExpenseController';
     Route::get('/', usesas($ctrl, 'index'));
-    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::get('agregar/{store}', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('poliza/{expense}', usesas($ctrl, 'policy'));
 	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
@@ -225,7 +225,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::post('depositos', usesas($ctrl, 'deposits'));
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('saldos', usesas($ctrl, 'balances'));
-    Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
+    // Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
     Route::get('200', usesas($ctrl, 'wastes'));
@@ -238,6 +238,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('arqueos', usesas($ctrl, 'checkups'));
     Route::get('pendientes', usesas($ctrl, 'tasks'));
     Route::get('formato-de-visita', usesas($ctrl, 'checklist'));
+    Route::get('gastos', usesas($ctrl, 'expenses'));
 });
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
@@ -245,7 +246,6 @@ Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'],
     Route::get('compras', usesas($ctrl, 'shoppings'));
     Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('notas', usesas($ctrl, 'notes'));
-    Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
     Route::get('200', usesas($ctrl, 'wastes'));
@@ -257,4 +257,5 @@ Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'],
     Route::get('equipos', usesas($ctrl, 'equipments'));
     Route::get('arqueos', usesas($ctrl, 'checkups'));
     Route::get('pendientes', usesas($ctrl, 'tasks'));
+    Route::get('gastos', usesas($ctrl, 'expenses'));
 });

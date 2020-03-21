@@ -21,7 +21,7 @@ class Checklist extends Notification
    {
        return TelegramMessage::create()
            ->to(env('TELEGRAM_GROUP_ID'))
-           ->content("Hoja de visita de *" . $checklist->store->name . "*, tuvo " . $checklist->result * 5 . " hoja color *" . $checklist->colorSpanish . "*" . )
+           ->content("Hoja de visita de *" . $checklist->store->name . "*, obtuvo " . $checklist->result * 5 . " puntos " . $checklist->colorNotification)
            ->button('Ver ventas', 'grupocancino.com/formato-de-visita/' . $checklist->id);
    }
 }

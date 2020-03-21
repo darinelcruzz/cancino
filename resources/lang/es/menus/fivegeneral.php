@@ -15,11 +15,18 @@ return [
         'icon' => 'fa fa-cash-register',
         'route' => 'helper.checkups'
     ],
+
     'NC' => [
         'title' => 'NC',
         'label' => pendingNotesAll(),
         'icon' => 'fa fa-file-excel-o',
         'route' => 'helper.notes'
+    ],
+
+    'Expenses' => [
+        'title' => 'Gastos',
+        'icon' => 'fa fa-file-invoice-dollar',
+        'route' => 'helper.expenses'
     ],
 
     'Tasks' => [

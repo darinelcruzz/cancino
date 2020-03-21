@@ -48,6 +48,12 @@ return [
         ],
     ],
 
+    'Expenses' => [
+        'title' => 'Saldos',
+        'icon' => 'fa fa-file-invoice-dollar',
+        'route' => 'admin.balances'
+    ],
+
     'Checklist' => [
         'title' => 'Hoja de visita',
         'icon' => 'fa fa-clipboard',
@@ -64,12 +70,6 @@ return [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel-o',
         'route' => 'admin.notes'
-    ],
-
-    'Expenses' => [
-        'title' => 'Saldos',
-        'icon' => 'fa fa-file-invoice-dollar',
-        'route' => 'admin.balances'
     ],
 
     'logout' => [

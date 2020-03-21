@@ -60,6 +60,14 @@ class HelperController extends Controller
         return view('admin.tasks', compact('tasks', 'stores'));
     }
 
+    function expenses()
+    {
+        $expenses = Expense::where('type', 3)->get();
+        $stores = Store::All();
+
+        return view('admin.expenses', compact('expenses', 'stores'));
+    }
+
     function loans(Store $store)
     {
         $lent = Loan::where('to', $store->id)

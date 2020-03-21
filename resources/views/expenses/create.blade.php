@@ -48,7 +48,7 @@
                         <hr>
                         {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
                         <input type="hidden" name="check" value="{{ $last->check + 1 }}">
-                        <input type="hidden" name="type" value="0">
+                        <input type="hidden" name="type" value="{{ $type }}">
                         <input type="hidden" name="store_id" value="{{ $store }}">
                     {!! Form::close() !!}
                 </color-box>
