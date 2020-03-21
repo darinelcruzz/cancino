@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ route('expenses.create', 0) }}" class="btn btn-success btn-block"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a><br>
+                    <a href="{{ route('expenses.create', $store->id) }}" class="btn btn-success btn-block"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a><br>
                 </div>
             </div>
             <div class="row">

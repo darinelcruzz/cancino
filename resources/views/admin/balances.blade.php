@@ -17,7 +17,7 @@
                         <i class="fa fa-dollar"></i>
                     </div>
                 </div>
-                <a href="{{ route('admin.expenses', ['store' => $store->id])}}" class="btn btn-block btn-{{ $store->color }}">Gastos</a>
+                <a href="{{ route('admin.storeExpenses', ['store' => $store->id])}}" class="btn btn-block btn-{{ $store->color }}">Gastos</a>
                 <br>
             </div>
         @endforeach

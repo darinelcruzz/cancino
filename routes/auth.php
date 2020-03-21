@@ -225,7 +225,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::post('depositos', usesas($ctrl, 'deposits'));
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('saldos', usesas($ctrl, 'balances'));
-    // Route::get('gastos/{store}', usesas($ctrl, 'expenses'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
     Route::get('200', usesas($ctrl, 'wastes'));
@@ -239,6 +238,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('pendientes', usesas($ctrl, 'tasks'));
     Route::get('formato-de-visita', usesas($ctrl, 'checklist'));
     Route::get('gastos', usesas($ctrl, 'expenses'));
+    Route::get('gastos/tienda/{store}', usesas($ctrl, 'storeExpenses'));
 });
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
