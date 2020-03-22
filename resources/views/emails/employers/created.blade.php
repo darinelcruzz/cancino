@@ -6,5 +6,4 @@
     Puesto:  {{ ucfirst($employer->job)}}
     Edad:    {{ $employer->age }} años
 
-    {{-- <img src="{{ $message->embed($employer->photo) }}"> --}}
 @endcomponent

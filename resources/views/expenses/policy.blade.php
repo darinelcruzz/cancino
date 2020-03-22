@@ -28,72 +28,74 @@
 
 <body onload="window.print()">
     <section class="invoice">
-        <table width="100%" style="border-radius: 20px; border: 5px solid black">
-            <thead>
-                <tr>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                    <td width="10%"></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td colspan="3"><span style="font-size: 12pt"><b>POLIZA DE CHEQUE</b></span></td>
-                    <td colspan="4"></td>
-                    <td valign="TOP" colspan="2"><b>Copia del Cheque</b></td>
-                </tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td colspan="7"></td>
-                    <td colspan="2"><b>{{ fdate($expense->date, 'd/M/y', 'Y-m-d') }}</b></td>
-                </tr>
-                <tr><td></td></tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td colspan="5"><b>{{ $expense->name }}</b></td>
-                    <td colspan="2"><b>{{ fnumber($expense->amount)}}</b></td>
-                </tr>
-                <tr><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td></tr>
-                <tr>
-                    <td align="center" colspan="10"><b>({{ $expense->letter }}/100 MXN)</b></td>
-                </tr>
-                <tr><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td></tr>
-                <tr><td>&nbsp;</td></tr>
-            </tbody>
-        </table>
-
+        <div class="row">
+            <table width="100%" style="border-radius: 20px; border: 5px solid black">
+                <thead>
+                    <tr>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                        <td width="10%"></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td colspan="3"><span style="font-size: 12pt"><b>POLIZA DE CHEQUE</b></span></td>
+                        <td colspan="4"></td>
+                        <td valign="TOP" colspan="2"><b>Copia del Cheque</b></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td colspan="7"></td>
+                        <td colspan="2"><b>{{ fdate($expense->date, 'd/M/y', 'Y-m-d') }}</b></td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="5"><b>{{ $expense->name }}</b></td>
+                        <td colspan="2"><b>{{ fnumber($expense->amount)}}</b></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr>
+                        <td align="center" colspan="10"><b>({{ $expense->letter }}/100 MXN)</b></td>
+                    </tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                </tbody>
+            </table>
+        </div>
         <br>
-
-        <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
-            <thead>
-                <tr>
-                    <td width="25%">Entrada Almacen número</td>
-                    <td width="25%">Banco</td>
-                    <td width="25%">Número de Cuenta</td>
-                    <td width="25%">Número de Cheque</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td valign="TOP";><br>&nbsp;</td>
-                    <td valign="TOP";>BANCOMER</td>
-                    <td valign="TOP";>Nº {{ $store->account }}</td>
-                    <td valign="TOP";>{{ $expense->check }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
+                <thead>
+                    <tr>
+                        <td width="25%">Entrada Almacen número</td>
+                        <td width="25%">Banco</td>
+                        <td width="25%">Número de Cuenta</td>
+                        <td width="25%">Número de Cheque</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td valign="TOP";><br>&nbsp;</td>
+                        <td valign="TOP";>BANCOMER</td>
+                        <td valign="TOP";>Nº {{ $expense->type == 3 ? $store->account_tpv : $store->account }}</td>
+                        <td valign="TOP";>{{ $expense->check }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <br>
         <table width="100%">
             <tr>
@@ -243,7 +245,7 @@
                 <tr>
                     <td valign="TOP";>{{ auth()->user()->name }}</td>
                     <td valign="TOP";><br>&nbsp;</td>
-                    <td valign="TOP";>{{ auth()->user()->name }}</td>
+                    <td valign="TOP";>{{ $expense->store->managerr->name }}</td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>

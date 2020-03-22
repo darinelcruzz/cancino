@@ -12,9 +12,15 @@ class Store extends Model
     {
         return str_replace(' ', '_', $this->name);
     }
+
     function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    function managerr()
+    {
+        return $this->belongsTo(User::class, 'manager');
     }
 
     function getSalesSum($date)

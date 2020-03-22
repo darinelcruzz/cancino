@@ -6,6 +6,6 @@ class EmployersTableSeeder extends Seeder
 {
     function run()
     {
-        factory(\App\Employer::class, 10)->create();
+        factory(\App\Employer::class, 1)->create();
     }
 }

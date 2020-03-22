@@ -4,6 +4,6 @@
     Ingreso: {{ fdate($employer->ingress, 'd/m/y', 'Y-m-d') }}
     Nombre:  {{ ucfirst($employer->name) }}
     Puesto:  {{ ucfirst($employer->job)}}
-    Sueldo:    {{ $employer->store->account }}
+    Sueldo:  {{ fnumber($employer->store->salary) }} quincenales
 
 @endcomponent

@@ -10,7 +10,8 @@ class AddSalaryToStoresTable extends Migration
     {
         Schema::table('stores', function (Blueprint $table) {
             $table->integer('salary')->nullable();
-            $table->integer('account_tpv')->nullable();
+            $table->string('account_tpv')->nullable();
+            $table->integer('manager')->nullable();
         });
     }
 
@@ -19,6 +20,7 @@ class AddSalaryToStoresTable extends Migration
         Schema::table('stores', function (Blueprint $table) {
             $table->dropColumn('salary');
             $table->dropColumn('account_tpv');
+            $table->dropColumn('manager');
         });
     }
 }
