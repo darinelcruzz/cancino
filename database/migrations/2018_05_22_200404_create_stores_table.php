@@ -13,7 +13,6 @@ class CreateStoresTable extends Migration
 
             $table->string('name');
             $table->string('color');
-            $table->double('balance')->nullable();
             $table->string('type');
             $table->double('star')->nullable();
             $table->double('golden')->nullable();

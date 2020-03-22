@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Composers\StoresComposer;
+use App\Employer;
+use App\Observers\EmployerObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
             => public_path('adminlte/plugins'), ], 'adminlte');
 
         View::composer('*', StoresComposer::class);
+
+        Employer::observe(EmployerObserver::class);
     }
 
     function register()

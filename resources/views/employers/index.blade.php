@@ -19,7 +19,7 @@
                                 <td>
                                     <div class="col-md-2">
                                         @if(Storage::disk('public')->exists('employers/' . $employer->id . '/FOTO.jpeg'))
-                                            <img src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}"
+                                            <img src="{{ $employer->photo }}"
                                                 alt="foto de {{ $employer->name }}"
                                                 width="50px" height="50px"
                                                 style="border-radius: 50%;">

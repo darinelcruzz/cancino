@@ -5,13 +5,14 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class EmployerCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $employer;
+    public $employer;
 
     public function __construct($employer)
     {
@@ -21,7 +22,8 @@ class EmployerCreated extends Mailable
     function build()
     {
         return $this->from('labtr3s@gmail.com')
-            ->subject('Nuevo empleado (a)')
-            ->markdown('emails.employers.created', ['employer' => $this->employer]);
+            ->subject('Nuevo empleado de ' . $this->employer->store->name)
+            ->markdown('emails.employers.created')
+            ->attach(Storage::path('public/employers/' . $this->employer->id . '/FOTO.jpeg'));
     }
 }

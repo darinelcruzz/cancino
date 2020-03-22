@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Employer extends Model
 {
@@ -16,6 +17,24 @@ class Employer extends Model
     function payment()
     {
         return $this->hasMany(Payment::class);
+    }
+
+    function getPhotoAttribute() {
+        return Storage::url('employers/' . $this->id . '/FOTO.jpeg');
+    }
+
+    function getAgeAttribute()
+    {
+        list($year,$month,$day) = explode("-",$this->birthday);
+        $yearDif  = date("Y") - $year;
+        $monthDif = date("m") - $month;
+        $dayDif   = date("d") - $day;
+
+        if ($dayDif < 0 || $monthDif < 0) {
+            $yearDif--;
+        }
+
+        return $yearDif;
     }
 
     function storeDocuments($request)

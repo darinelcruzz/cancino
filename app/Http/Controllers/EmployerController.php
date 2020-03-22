@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\EmployerCreated;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\{Employer, Store, Movement};
 
@@ -23,7 +21,7 @@ class EmployerController extends Controller
 
     function store(Request $request)
     {
-        $this->validate($request, [
+        $validated = $this->validate($request, [
             'name' => 'required',
             'birthday' => 'required',
             'address' => 'required',
@@ -31,25 +29,21 @@ class EmployerController extends Controller
             'sons' => 'required',
             'job' => 'required',
             'store_id' => 'required',
+            'ingress' => 'required',
             // 'ine' => 'required',
             // 'curp' => 'required',
-            // 'birth_certificate' => 'required',
             // 'address_file' => 'required',
+            // 'birth_certificate' => 'required',
+            // 'photo' => 'required',
         ]);
 
-        $employer = Employer::create($request->all());
+        $employer = Employer::create($validated);
 
         Movement::create([
             'employer_id' => $employer->id,
             'date' => $employer->ingress,
             'store_id' => $employer->store_id
         ]);
-
-        $employer->storeDocuments($request);
-
-        // Mail::to('darinelcruzz@gmail.com')
-        //     ->cc('victorjcg_6@hotmail.com')
-        //     ->queue(new EmployerCreated($employer));
 
         if (auth()->user()->level < 4) {
             return redirect(route('admin.employers'));
@@ -106,7 +100,7 @@ class EmployerController extends Controller
     {
         $employer->update(['status' => 0]);
         $date = date('Y-m-d');
-        
+
         Movement::create([
             'employer_id' => $employer->id,
             'date' => $employer->ingress,
