@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Employer;
+use App\{Employer, User};
 use App\Mail\EmployerCreated;
 use App\Mail\EmployerCreatedToFirm;
 use Illuminate\Support\Facades\Mail;
@@ -13,10 +13,11 @@ class EmployerObserver
     {
         $employer->storeDocuments(request());
 
-        Mail::to('victorjcg_6@hotmail.com')
-            ->queue(new EmployerCreated($employer));
-        Mail::to('victorjcg_6@hotmail.com')
-            ->queue(new EmployerCreatedToFirm($employer));
+        $emails = User::where('level', '<', 5)->pluck('email')->toArray();
+
+        Mail::to($emails)->queue(new EmployerCreated($employer));
+
+        // Mail::to($emails)->queue(new EmployerCreatedToFirm($employer));
     }
 
     function updated(Employer $employer)

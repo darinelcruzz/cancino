@@ -16,7 +16,7 @@ class StoresTableSeeder extends Seeder
             'rfc' => 'VDN123456201A',
             'social' => 'VKS Administración de Negocio SC',
             'salary' => '0',
-            'manger' => '2'
+            'manager' => '2'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Chiapas',
@@ -28,7 +28,7 @@ class StoresTableSeeder extends Seeder
             'rfc' => 'ECI970918G14',
             'social' => 'Electronica Chiapas SA de CV',
             'salary' => '2100',
-            'manger' => '3'
+            'manager' => '3'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Soconusco',
@@ -40,7 +40,7 @@ class StoresTableSeeder extends Seeder
             'rfc' => 'ESO010731CU1',
             'social' => 'Electronica el Soconusco  SA de CV',
             'salary' => '2100',
-            'manger' => '4'
+            'manager' => '4'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Altos',
@@ -52,7 +52,7 @@ class StoresTableSeeder extends Seeder
             'rfc' => 'EAL040830RG8',
             'social' => 'Electronica los Altos SA de CV',
             'salary' => '2100',
-            'manger' => '5'
+            'manager' => '5'
         ]);
         factory(\App\Store::class)->create([
             'name' => 'Gale Tux',
@@ -64,7 +64,7 @@ class StoresTableSeeder extends Seeder
             'rfc' => 'EPC150917R95',
             'social' => 'Electronica Plaza Chiapas SA de CV',
             'salary' => '2300',
-            'manger' => '6'
+            'manager' => '6'
         ]);
 
         factory(\App\Store::class)->create([
@@ -77,7 +77,7 @@ class StoresTableSeeder extends Seeder
             'rfc' => 'EPS190205FR2',
             'social' => 'Electronica Plaza Soconusco SA de CV',
             'salary' => '2300',
-            'manger' => '7'
+            'manager' => '7'
         ]);
     }
 }

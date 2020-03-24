@@ -259,3 +259,15 @@ Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'],
     Route::get('pendientes', usesas($ctrl, 'tasks'));
     Route::get('gastos', usesas($ctrl, 'expenses'));
 });
+
+Route::get('/mailable/employer/to-firm', function () {
+    $employer = App\Employer::find(1);
+
+    return new App\Mail\EmployerCreatedToFirm($employer);
+});
+
+Route::get('/mailable/employer/to-manager', function () {
+    $employer = App\Employer::find(1);
+
+    return new App\Mail\EmployerCreated($employer);
+});

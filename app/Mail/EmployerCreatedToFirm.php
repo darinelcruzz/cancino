@@ -23,7 +23,7 @@ class EmployerCreatedToFirm extends Mailable
     {
         return $this->from('labtr3s@gmail.com')
             ->subject('Nuevo empleado ' . $this->employer->store->social)
-            ->markdown('emails.employers.createdToFirm', ['employer' => $this->employer])
+            ->view('emails.employers.createdToFirm')
             ->attach(Storage::path('public/employers/' . $this->employer->id . '/INE.pdf'))
             ->attach(Storage::path('public/employers/' . $this->employer->id . '/DOMICILIO.pdf'))
             ->attach(Storage::path('public/employers/' . $this->employer->id . '/CURP.pdf'))
