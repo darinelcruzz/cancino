@@ -19,7 +19,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+                            {!! Field::number('retention', $sale->retention, ['tpl' => 'lte/withicon', 'min' => '0'], ['icon' => 'dollar']) !!}
+                        </div>
+                        <div class="col-md-6">
+                            {!! Field::date('ret_date', $sale->ret_date, ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Field::number('sc_dif', $sale->checkup->sc_dif, ['tpl' => 'lte/withicon', 'min' => '0'], ['icon' => 'credit-card']) !!}
+                        </div>
+                        <div class="col-md-6">
                             {!! Field::text('observations', $sale->observations, ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                     </div>

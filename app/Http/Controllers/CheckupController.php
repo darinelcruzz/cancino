@@ -72,15 +72,13 @@ class CheckupController extends Controller
         $request->validate([
             'cash' => 'sometimes|required',
         ]);
-        $checkup->update($request->except(['user_id', 'public']));
+        $checkup->update($request->except(['user_id', 'public', 'ret_date']));
 
         $sale = Sale::where('checkup_id', $checkup->id)->get()->first();
 
         $sale->update([
             'cash' => $checkup->cash_sums['c'],
-            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum - $checkup->canceledSum)/1.16,2),
-            'retention' => $checkup->retention,
-            'ret_date' => $request->deposit
+            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum - $checkup->canceledSum)/1.16,2)
         ]);
 
         return redirect(route('admin.checkups'));

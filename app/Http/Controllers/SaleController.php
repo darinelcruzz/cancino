@@ -92,11 +92,13 @@ class SaleController extends Controller
             'date_sale' => 'required',
         ]);
         $sale = Sale::find($request->id);
-        $sale->update($request->all());
+        $sale->update($request->except(['sc_dif']));
 
         $checkup = Checkup::find($sale->checkup_id);
         $checkup->update([
-            'date_sale' => $sale->date_sale
+            'date_sale' => $sale->date_sale,
+            'retention' => $sale->retention,
+            'sc_dif' => $request->sc_dif
         ]);
 
         return redirect(route('admin.deposits'));

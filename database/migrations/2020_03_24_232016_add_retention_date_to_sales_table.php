@@ -17,7 +17,7 @@ class AddRetentionDateToSalesTable extends Migration
     function down()
     {
         Schema::table('sales', function (Blueprint $table) {
-            $table->dropColumn('ret_date');
+            $table->dropColumn('retention');
             $table->dropColumn('ret_date');
         });
     }

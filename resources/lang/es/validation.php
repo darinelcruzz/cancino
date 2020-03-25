@@ -235,5 +235,8 @@ return [
         'start_at' => 'empieza',
         'end_at' => 'termina',
         'checker' => 'checador',
+        'retention' => 'retención',
+        'ret_date' => 'depósito retención',
+        'sc_dif' => 'diferencia SterenCard',
     ],
 ];
