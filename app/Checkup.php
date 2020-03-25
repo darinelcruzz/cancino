@@ -35,7 +35,7 @@ class Checkup extends Model
 
     function getAmountAttribute()
     {
-        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum - $this->canceledSum;
+        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum - $this->canceledSum + $this->sc_dif;
     }
 
     function getStatusLabelAttribute()

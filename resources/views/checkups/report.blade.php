@@ -169,6 +169,14 @@
                             <table width="80%" style="border-collapse: collapse;" align="center" border="3" class="spaced">
                                 <tbody>
                                     <tr>
+                                        <td width="40%"><b>Dif SterenCard</b></td>
+                                        <td width="60%">{{ fnumber($checkup->sc_dif) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="40%"><b>Retención</b></td>
+                                        <td width="60%">{{ fnumber($checkup->retention) }}</td>
+                                    </tr>
+                                    <tr>
                                         <td width="40%"><b>Ventas Crédito</b></td>
                                         <td width="60%">{{ fnumber($checkup->creditSum) }}</td>
                                     </tr>

@@ -13,7 +13,7 @@ class EmployerObserver
     {
         $employer->storeDocuments(request());
 
-        $emails = User::where('level', '<', 5)->pluck('email')->toArray();
+        $emails = User::where('level', '<', 2)->pluck('email')->toArray();
 
         Mail::to($emails)->queue(new EmployerCreated($employer));
 

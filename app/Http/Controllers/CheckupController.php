@@ -70,7 +70,7 @@ class CheckupController extends Controller
     function update(Request $request, Checkup $checkup)
     {
         $request->validate([
-            'cash' => 'required',
+            'cash' => 'sometimes|required',
         ]);
         $checkup->update($request->except(['user_id', 'public']));
 
@@ -78,7 +78,9 @@ class CheckupController extends Controller
 
         $sale->update([
             'cash' => $checkup->cash_sums['c'],
-            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum - $checkup->canceledSum)/1.16,2)
+            'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum - $checkup->canceledSum)/1.16,2),
+            'retention' => $checkup->retention,
+            'ret_date' => $request->deposit
         ]);
 
         return redirect(route('admin.checkups'));
@@ -100,7 +102,7 @@ class CheckupController extends Controller
     {
         $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();
 
-        if ($checkup->store_id == auth()->user()->store_id || auth()->user()->level == 1) {
+        if ($checkup->store_id == auth()->user()->store_id || auth()->user()->store_id == 1) {
             return view('checkups.report', compact('checkup', 'manager'));
         }
         return redirect(route('checkup.index'));
