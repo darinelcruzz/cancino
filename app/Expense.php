@@ -15,7 +15,7 @@ class Expense extends Model
 
     function scopeBalanceByStore($query, $store_id)
     {
-        $expenses = $query->where('store_id', $store_id)->get();
+        $expenses = $query->where('store_id', $store_id)->where('type', '!=', 3)->get();
         $balance = 0;
         foreach ($expenses as $expense) {
             $balance += $expense->type == 1 ? $expense->amount : - $expense->amount;

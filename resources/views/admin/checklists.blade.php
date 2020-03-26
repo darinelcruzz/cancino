@@ -23,7 +23,7 @@
                                 <div class="icon">
                                     <i class="fa fa-tasks"></i>
                                 </div>
-                                <a href="{{ 'detalles/' . $checklist->id }}" class="small-box-footer">
+                                <a href="{{ route('checklists.show', $checklist->id) }}" class="small-box-footer">
                                     Detalles <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>

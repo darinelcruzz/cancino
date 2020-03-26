@@ -28,12 +28,12 @@ class Checklist extends Model
 
     function getColorAttribute()
     {
-        return $this->result > 13 ? ($this->result > 18 ? 'green': 'red'): 'yellow';
+        return $this->result > 13 ? ($this->result > 18 ? 'green': 'yellow'): 'red';
     }
 
     function getColorNotificationAttribute()
     {
-        return $this->result > 13 ? ($this->result > 18 ? '✅': '⚠️'): '❌';
+        return $this->result > 13 ? ($this->result > 18 ? '✅': '❌'): '⚠️';
     }
 
 }
