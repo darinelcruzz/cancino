@@ -59,6 +59,7 @@ Route::group(['prefix' => '200', 'as' => 'wastes.', 'middleware' => 'nonCheckup'
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{store}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('reporte/{store}', usesas($ctrl, 'report'));
 });
 
 Route::group(['prefix' => 'clientes', 'as' => 'clients.', 'middleware' => 'nonCheckup'], function () {

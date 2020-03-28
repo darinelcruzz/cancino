@@ -45,7 +45,8 @@ return [
     'Waste' => [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',
-        'route' => 'wastes.index'
+        'label' => pendingWastes() > 0 ? pendingWastes(): '',
+        'route' => 'helper.wastes'
     ],
 
     'logout' => [

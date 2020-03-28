@@ -57,8 +57,10 @@ class WasteController extends Controller
         return redirect(route('admin.wastes'));
     }
 
-    function destroy(Waste $waste)
+    function report(Store $store)
     {
-        //
+        $wastes = Waste::where('store_id', $store->id)->where('status', 'pendiente')->get();
+
+        return view('wastes.report', compact('wastes', 'store'));
     }
 }
