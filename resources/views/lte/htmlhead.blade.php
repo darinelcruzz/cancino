@@ -17,6 +17,9 @@
   <link rel="icon" href="{{ asset('/img/logo.ico')}}" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+  <script src="https://unpkg.com/vue-select@latest"></script>
+  <link rel="stylesheet" href="https://unpkg.com/vue-select@latest/dist/vue-select.css">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 
     <style>

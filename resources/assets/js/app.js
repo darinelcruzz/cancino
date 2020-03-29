@@ -9,6 +9,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vue from 'vue'
+import vSelect from 'vue-select'
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import VueCurrencyFilter from 'vue-currency-filter'
@@ -30,6 +32,8 @@ Vue.use(VueCurrencyFilter,
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+Vue.component('v-select', vSelect);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('color-box', require('./components/lte/ColorBox.vue'));
@@ -56,6 +60,8 @@ const app = new Vue({
     	binnacle_reason: '',
     	concept: '',
     	public_amount: 0,
+      products: [],
+      product: {},
     },
     methods: {
     	submit() {
@@ -68,5 +74,10 @@ const app = new Vue({
         this.$on('updatepublic', (public_amount) => {
             this.public_amount = public_amount
         })
+
+        axios.get('/api/products')
+          .then(response => {
+            this.products = response.data
+          })
     }
 });

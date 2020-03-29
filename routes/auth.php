@@ -261,6 +261,33 @@ Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'],
     Route::get('gastos', usesas($ctrl, 'expenses'));
 });
 
+Route::group(['prefix' => 'conteos', 'as' => 'count.'], function () {
+    $ctrl = 'CountController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{count}', usesas($ctrl, 'edit'));
+    Route::post('editar/{count}', usesas($ctrl, 'update'));
+});
+
+Route::group(['prefix' => 'productos', 'as' => 'product.'], function () {
+    $ctrl = 'ProductController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{product}', usesas($ctrl, 'edit'));
+    Route::post('editar/{product}', usesas($ctrl, 'update'));
+});
+
+Route::group(['prefix' => 'ubicaciones', 'as' => 'location.'], function () {
+    $ctrl = 'LocationController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{location}', usesas($ctrl, 'edit'));
+    Route::post('editar/{location}', usesas($ctrl, 'update'));
+});
+
 Route::get('/mailable/employer/to-firm', function () {
     $employer = App\Employer::find(1);
 
