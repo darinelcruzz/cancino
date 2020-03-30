@@ -18,6 +18,13 @@
                                 {!! Field::date('pos_at', Date::now()) !!}
                             </div>
                         </div>
+
+                        @if($errors->has('items'))
+                            <div class="has-error">
+                                <p class="help-block">Por favor marca los IDs a destruir</p>
+                            </div>
+                        @endif
+
                         <data-table example="1">
                             {{ drawHeader('ID','Modelo', 'Fecha') }}
                             <template slot="body">
@@ -33,8 +40,6 @@
                     </div>
                     <div class="box-footer">
                         <input type="hidden" name="status" value="destruido">
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                        <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
                         {!! Form::submit('Destruir', ['class' => 'btn btn-danger btn-block']) !!}
                     </div>
 

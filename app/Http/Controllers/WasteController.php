@@ -21,17 +21,12 @@ class WasteController extends Controller
 
     function store(Request $request)
     {
-        $validated = $this->validate($request, [
-            'items' => 'required',
-            'pos' => 'required',
-            'pos_at' => 'required',
+        $this->validate($request, [
+            'item' => 'required',
             'description' => 'required',
-            'status' => 'required',
-            'user_id' => 'required',
-            'store_id' => 'required',
         ]);
 
-        $waste = Waste::create($validated);
+        $waste = Waste::create($request->all());
 
         return redirect(route('wastes.index'));
     }
@@ -48,17 +43,19 @@ class WasteController extends Controller
         return view('wastes.edit', compact('wastes', 'store'));
     }
 
-    function update(Request $request, Waste $wastes)
+    function update(Request $request)
     {
-        $this->validate($request, [
+        $data = $this->validate($request, [
+            'items' => 'required',
             'pos' => 'required',
             'pos_at' => 'required',
+            'status' => 'required',
         ]);
 
-        foreach ($request->items as $item_id) {
-            $item = Waste::find($item_id);
-            $item->update($request->except('items'));
+        foreach (Waste::find($request->items) as $waste) {
+            $waste->update($request->only(['pos', 'pos_at', 'status']));
         }
+
         return redirect(route('admin.wastes'));
     }
 
