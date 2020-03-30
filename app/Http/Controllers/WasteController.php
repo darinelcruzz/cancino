@@ -45,6 +45,7 @@ class WasteController extends Controller
 
     function update(Request $request)
     {
+        // dd($request->all());
         $data = $this->validate($request, [
             'items' => 'required',
             'pos' => 'required',
@@ -52,11 +53,13 @@ class WasteController extends Controller
             'status' => 'required',
         ]);
 
-        foreach (Waste::find($request->items) as $waste) {
+        $ids = explode(",", $request->items);
+
+        foreach (Waste::find($ids) as $waste) {
             $waste->update($request->only(['pos', 'pos_at', 'status']));
         }
 
-        return redirect(route('admin.wastes'));
+        return redirect(route('helper.wastes'));
     }
 
     function report(Store $store)

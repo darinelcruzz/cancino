@@ -25333,7 +25333,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         concept: '',
         public_amount: 0,
         products: [],
-        product: {}
+        product: {},
+        wastes: []
     },
     methods: {
         submit: function submit() {

@@ -30,7 +30,10 @@
                             <template slot="body">
                                 @foreach ($wastes as $waste)
                                     <tr>
-                                        <td>{!! Form::checkboxes('items', [$waste->id => $waste->id]) !!}</td>
+                                        {{-- <td>{!! Form::checkboxes('items', [$waste->id => $waste->id], ['v-model' => 'wastes']) !!}</td> --}}
+                                        <td>
+                                            <input type="checkbox" value="{{ $waste->id }}" v-model="wastes">&nbsp;{{ $waste->id }}
+                                        </td>
                                         <td>{{ $waste->item }}</td>
                                         <td>{{ fdate($waste->created_at, 'd-M-Y') }}</td>
                                     </tr>
@@ -40,6 +43,9 @@
                     </div>
                     <div class="box-footer">
                         <input type="hidden" name="status" value="destruido">
+                        <div v-if="wastes[0] != null">
+                            <input type="hidden" name="items" :value="wastes">
+                        </div>
                         {!! Form::submit('Destruir', ['class' => 'btn btn-danger btn-block']) !!}
                     </div>
 

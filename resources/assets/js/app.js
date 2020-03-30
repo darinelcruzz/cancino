@@ -62,6 +62,7 @@ const app = new Vue({
     	public_amount: 0,
       products: [],
       product: {},
+      wastes: [],
     },
     methods: {
     	submit() {
