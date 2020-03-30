@@ -21,12 +21,17 @@ class WasteController extends Controller
 
     function store(Request $request)
     {
-        $this->validate($request, [
-            'item' => 'required',
+        $validated = $this->validate($request, [
+            'items' => 'required',
+            'pos' => 'required',
+            'pos_at' => 'required',
             'description' => 'required',
+            'status' => 'required',
+            'user_id' => 'required',
+            'store_id' => 'required',
         ]);
 
-        $waste = Waste::create($request->all());
+        $waste = Waste::create($validated);
 
         return redirect(route('wastes.index'));
     }

@@ -6,6 +6,12 @@
     <div class="row">
         <div class="col-md-12">
             <color-box color="primary" title="Productos">
+                <a href="{{ route('product.export') }}" class="btn btn-xs btn-success">
+                    DESCARGAR &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                </a>
+
+                <hr>
+                
                 <data-table example="1">
                     {{ drawHeader('código', 'descripción', 'antes', 'después', 'diferencia') }}
                     <template slot="body">

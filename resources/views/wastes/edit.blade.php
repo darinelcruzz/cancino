@@ -33,6 +33,8 @@
                     </div>
                     <div class="box-footer">
                         <input type="hidden" name="status" value="destruido">
+                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                        <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
                         {!! Form::submit('Destruir', ['class' => 'btn btn-danger btn-block']) !!}
                     </div>
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Count;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CountsExport;
 
 class CountController extends Controller
 {
@@ -45,6 +47,11 @@ class CountController extends Controller
     function update(Request $request, Count $count)
     {
         //
+    }
+
+    function export()
+    {
+        return Excel::download(new CountsExport, 'conteos.xlsx');
     }
 
     function destroy(Count $count)
