@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\ProductsExport;
+use App\Exports\{ProductsExport, ProductsCSVExport};
 
 class ProductController extends Controller
 {
@@ -15,38 +15,12 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
-    function create()
+    function export($format = 'excel')
     {
-        //
-    }
-
-    function store(Request $request)
-    {
-        //
-    }
-
-    function show(Product $product)
-    {
-        //
-    }
-
-    function edit(Product $product)
-    {
-        //
-    }
-
-    function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    function export()
-    {
-        return Excel::download(new ProductsExport, 'productos.csv', \Maatwebsite\Excel\Excel::CSV);
-    }
-
-    function destroy(Product $product)
-    {
-        //
+        if($format == 'csv') {
+            return Excel::download(new ProductsCSVExport, 'productos.csv', \Maatwebsite\Excel\Excel::CSV);
+        }
+        
+        return Excel::download(new ProductsExport, 'productos.xlsx');
     }
 }

@@ -274,7 +274,7 @@ Route::group(['prefix' => 'conteos', 'as' => 'count.'], function () {
 Route::group(['prefix' => 'productos', 'as' => 'product.'], function () {
     $ctrl = 'ProductController';
     Route::get('/', usesas($ctrl, 'index'));
-    Route::get('exportar', usesas($ctrl, 'export'));
+    Route::get('exportar/{format}', usesas($ctrl, 'export'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{product}', usesas($ctrl, 'edit'));
