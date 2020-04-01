@@ -13,10 +13,11 @@
                 <hr>
 
                 <data-table example="1">
-                    {{ drawHeader('código', 'ubicación', 'usuario', 'fecha y hora', 'cantidad') }}
+                    {{ drawHeader('id', 'código', 'ubicación', 'usuario', 'fecha y hora', 'cantidad') }}
                     <template slot="body">
                         @foreach($counts as $count)
                             <tr>
+                                <td>{{ $count->id }}</td>
                                 <td>{{ $count->product->code }}</td>
                                 <td>{{ $count->location->name }}</td>
                                 <td>{{ $count->user->name }}</td>

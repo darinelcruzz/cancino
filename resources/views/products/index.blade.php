@@ -20,7 +20,12 @@
                     <template slot="body">
                         @foreach($products as $product)
                             <tr>
-                                <td>{{ $product->code }}</td>
+                                <td>
+                                    {{ $product->code }}
+                                    @if($product->status == 'Descontinuado')
+                                        <br><small><code>DESCONTINUADO</code></small>
+                                    @endif
+                                </td>
                                 <td>{{ $product->description }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->counts->sum('quantity') }}</td>
