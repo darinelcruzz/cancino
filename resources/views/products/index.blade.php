@@ -30,7 +30,7 @@
                                 </td>
                             </tr>
                             @php
-                                $sum = ($product->counts->sum('quantity') - $product->quantity) * $product->price
+                                $sum += ($product->counts->sum('quantity') - $product->quantity) * $product->price
                             @endphp
                         @endforeach
                     </template>
