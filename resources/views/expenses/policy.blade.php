@@ -245,7 +245,7 @@
                 <tr>
                     <td valign="TOP";>{{ auth()->user()->name }}</td>
                     <td valign="TOP";><br>&nbsp;</td>
-                    <td valign="TOP";>{{ $expense->store->managerr->name }}</td>
+                    <td valign="TOP";>{{ $expense->type == 3 ? "Victor Cancino" : $expense->store->managerr->name }}</td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>
