@@ -6,16 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCountsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    function up()
     {
         Schema::create('counts', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('helper_id');
             $table->unsignedInteger('location_id');
@@ -26,12 +21,7 @@ class CreateCountsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    function down()
     {
         Schema::dropIfExists('counts');
     }

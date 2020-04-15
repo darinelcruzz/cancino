@@ -18,12 +18,12 @@ class CreateEmployersTable extends Migration
             $table->integer('store_id');
             $table->string('job');
             $table->integer('status')->default(1);
-            $table->string('skills', 1000)->nullable();
-            $table->string('weaknesses', 1000)->nullable();
+            $table->integer('commision')->nullable();
+            $table->integer('points')->nullable();
             $table->integer('married');
             $table->integer('sons');
             $table->integer('salary')->nullable();
-            $table->integer('ranking')->nullable();
+            $table->string('nickname')->nullable();
 
             $table->timestamps();
         });

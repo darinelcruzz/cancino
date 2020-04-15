@@ -238,5 +238,6 @@ return [
         'retention' => 'retención',
         'ret_date' => 'depósito retención',
         'sc_dif' => 'diferencia SterenCard',
+        'location_id' => 'ubicación',
     ],
 ];

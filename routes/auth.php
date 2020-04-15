@@ -4,7 +4,11 @@ Route::get('/inicio', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/prueba', usesas('SaleController', 'prueba'));
+Route::get('/prueba', function () {
+    return view('test');
+})->name('test');
+
+// Route::get('/prueba', usesas('SaleController', 'prueba'));
 
 Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'ShoppingController';
@@ -219,7 +223,7 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
-    Route::get('compras', usesas($ctrl, 'shoppings'));
+    Route::get('compras', usesas($ctrl, 'shoppings'))->middleware('high');
     Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('depositos', usesas($ctrl, 'deposits'));
@@ -288,6 +292,16 @@ Route::group(['prefix' => 'ubicaciones', 'as' => 'location.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{location}', usesas($ctrl, 'edit'));
     Route::post('editar/{location}', usesas($ctrl, 'update'));
+});
+
+Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
+    $ctrl = 'CommisionController';
+    Route::get('/{store}', usesas($ctrl, 'index'));
+    Route::post('/', usesas($ctrl, 'index'));
+    Route::get('agregar/{store}', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{goal}/{week}', usesas($ctrl, 'edit'));
+    Route::post('editar', usesas($ctrl, 'update'));
 });
 
 Route::get('/mailable/employer/to-firm', function () {

@@ -1,6 +1,6 @@
 @extends('lte.root')
 @push('pageTitle')
-    Gastos | Lista
+    Documentos | Lista
 @endpush
 
 @section('content')
