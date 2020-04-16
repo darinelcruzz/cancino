@@ -23,7 +23,7 @@
                                 @foreach ($week as $employer)
                                     <tr>
                                         <td>
-                                            <h3>{{ $employer->employer->nickname }}</h3>
+                                            <h4>{{ $employer->employer->nickname }}</h4>
                                         </td>
                                         <td>
                                             <input class="form-control" type="number" name="sales[{{ $employer->id }}][sale]]" value="{{ $employer->sale }}" step="0.01">

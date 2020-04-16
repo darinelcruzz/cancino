@@ -12,4 +12,9 @@ class Commision extends Model
     {
         return $this->belongsTo(Employer::class);
     }
+
+    function goalr()
+    {
+        return $this->belongsTo(Goal::class, 'goal_id');
+    }
 }

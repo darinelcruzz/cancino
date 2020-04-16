@@ -30,7 +30,7 @@
                     </div>
                     @if (auth()->user()->level ==1)
                         <div class="col-md-6">
-                            {!! Field::select('location_id', $locations, null ,['empty' => 'Seleccione ubicación', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
+                            {!! Field::select('location_id', $locations, auth()->user()->location_id ,['empty' => 'Seleccione ubicación', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin']) !!}
                         </div>
                     @else
                         <input type="hidden" name="location_id" value="{{ auth()->user()->location_id }}">

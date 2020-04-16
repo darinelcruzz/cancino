@@ -296,12 +296,13 @@ Route::group(['prefix' => 'ubicaciones', 'as' => 'location.'], function () {
 
 Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
     $ctrl = 'CommisionController';
-    Route::get('/{store}', usesas($ctrl, 'index'));
+    Route::get('/', usesas($ctrl, 'index'));
     Route::post('/', usesas($ctrl, 'index'));
     Route::get('agregar/{store}', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{goal}/{week}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('reporte/{goal}', usesas($ctrl, 'report'));
 });
 
 Route::get('/mailable/employer/to-firm', function () {

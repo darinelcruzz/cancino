@@ -29,6 +29,17 @@ return [
         'route' => 'helper.expenses'
     ],
 
+    'Commisions' => [
+        'title' => 'Comisiones',
+        'icon' => 'fa fa-archive',
+        'submenu' => [
+            'create' => [
+                'title' => 'Lista',
+                'route' => 'commision.index',
+            ],
+        ],
+    ],
+
     'Tasks' => [
         'title' => 'Pendientes',
         'label' => pendingTasksAll(),

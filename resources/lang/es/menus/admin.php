@@ -17,16 +17,16 @@ return [
         ],
     ],
 
-    // 'Commisions' => [
-    //     'title' => 'Comisiones',
-    //     'icon' => 'fa fa-archive',
-    //     'submenu' => [
-    //         'create' => [
-    //             'title' => 'Lista',
-    //             'route' => '[commision.index, 2]',
-    //         ],
-    //     ],
-    // ],
+    'Commisions' => [
+        'title' => 'Comisiones',
+        'icon' => 'fa fa-archive',
+        'submenu' => [
+            'create' => [
+                'title' => 'Lista',
+                'route' => 'commision.index',
+            ],
+        ],
+    ],
 
     'B2B' => [
         'title' => 'B2B',
