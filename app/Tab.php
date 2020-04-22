@@ -9,14 +9,17 @@ class Tab extends Model
     protected $guarded = [];
 
     protected $casts = [
-    	'black' => 'array',
-    	'star' => 'array',
-    	'golden' => 'array'
+    	'sc_black' => 'array',
+        'sc_star' => 'array',
+    	'sc_golden' => 'array',
+    	'ext_black' => 'array',
+    	'ext_star' => 'array',
+    	'ext_golden' => 'array'
     ];
 
-    function goal()
+    function commision()
     {
-        return $this->belongsTo(Goal::class);
+        return $this->hasMany(Commision::class);
     }
 
 }

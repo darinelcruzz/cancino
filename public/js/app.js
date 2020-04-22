@@ -25252,7 +25252,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(105);
+module.exports = __webpack_require__(117);
 
 
 /***/ }),
@@ -25325,10 +25325,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('sterencard-checkup', __we
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('returns-checkup', __webpack_require__(96));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('confirm-checkup', __webpack_require__(99));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('credit-checkup', __webpack_require__(102));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('employee-week-goal', __webpack_require__(107));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('employee-sum', __webpack_require__(113));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('week-sum', __webpack_require__(116));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('goal-sum', __webpack_require__(119));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('employee-week-goal', __webpack_require__(105));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('employee-sum', __webpack_require__(108));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('week-sum', __webpack_require__(111));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('goal-sum', __webpack_require__(114));
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
@@ -52453,21 +52453,14 @@ if (false) {
 
 /***/ }),
 /* 105 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 106 */,
-/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(108)
+var __vue_script__ = __webpack_require__(106)
 /* template */
-var __vue_template__ = __webpack_require__(109)
+var __vue_template__ = __webpack_require__(107)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52506,7 +52499,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 108 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52536,7 +52529,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 109 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52557,7 +52550,7 @@ var render = function() {
       staticClass: "form-control",
       attrs: {
         type: "number",
-        name: "sellers[" + _vm.employee + "][" + _vm.week + "][goal]",
+        name: "sellers[" + _vm.employee + "][" + _vm.week + "][weekly_goal]",
         value: "0",
         min: "0",
         step: "0.01"
@@ -52612,18 +52605,15 @@ if (false) {
 }
 
 /***/ }),
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(114)
+var __vue_script__ = __webpack_require__(109)
 /* template */
-var __vue_template__ = __webpack_require__(115)
+var __vue_template__ = __webpack_require__(110)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52662,7 +52652,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 114 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52701,7 +52691,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 115 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52723,15 +52713,15 @@ if (false) {
 }
 
 /***/ }),
-/* 116 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(117)
+var __vue_script__ = __webpack_require__(112)
 /* template */
-var __vue_template__ = __webpack_require__(118)
+var __vue_template__ = __webpack_require__(113)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52770,7 +52760,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 117 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52812,7 +52802,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 118 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52834,15 +52824,15 @@ if (false) {
 }
 
 /***/ }),
-/* 119 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(0)
 /* script */
-var __vue_script__ = __webpack_require__(120)
+var __vue_script__ = __webpack_require__(115)
 /* template */
-var __vue_template__ = __webpack_require__(121)
+var __vue_template__ = __webpack_require__(116)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -52881,7 +52871,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 120 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52919,7 +52909,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 121 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -52939,6 +52929,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-0a834a51", module.exports)
   }
 }
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

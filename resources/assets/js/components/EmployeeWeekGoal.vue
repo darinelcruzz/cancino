@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input class="form-control" type="number" :name="'sellers[' + employee + '][' + week + '][goal]'" value="0" min="0" step="0.01" v-model.number="amount">
+        <input class="form-control" type="number" :name="'sellers[' + employee + '][' + week + '][weekly_goal]'" value="0" min="0" step="0.01" v-model.number="amount">
         <input type="hidden" :name="'sellers[' + employee + '][' + week + '][week]'" :value="week">
         <input type="hidden" :name="'sellers[' + employee + '][' + week + '][goal_id]'" :value="goal">
         <input type="hidden" :name="'sellers[' + employee + '][' + week + '][employer_id]'" :value="employee">

@@ -15,7 +15,7 @@
     </div><br>
     @foreach ($stores as $store)
         @php
-            $relation = $store->first()->first()->goalr->store;
+            $relation = $store->first()->first()->goal->store;
         @endphp
         <div class="row">
             <div class="col-md-12">
@@ -33,7 +33,7 @@
                                     </td>
                                     @foreach ($employer as $goal)
                                         <td>
-                                            <span style="color: {{ $goal->goal > 0 ? 'black': 'gray' }};">{{ fnumber($goal->goal) }}</span><br>
+                                            <span style="color: {{ $goal->weekly_goal > 0 ? 'black': 'gray' }};">{{ fnumber($goal->weekly_goal) }}</span><br>
                                             <span style="color: {{ $goal->sale > 0 ? 'black': 'gray' }};">{{ fnumber($goal->sale) }}</span>
                                         </td>
                                     @endforeach

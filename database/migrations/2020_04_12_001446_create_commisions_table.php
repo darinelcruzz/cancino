@@ -14,11 +14,11 @@ class CreateCommisionsTable extends Migration
             $table->integer('employer_id');
             $table->integer('goal_id');
             $table->integer('week');
-            $table->double('goal');
+            $table->double('weekly_goal');
             $table->double('sale')->nullable();
             $table->integer('sterencard')->nullable();
             $table->integer('extensions')->nullable();
-            $table->integer('amount_ext')->nullable();
+            $table->double('amount_ext')->nullable();
             $table->integer('delays')->nullable();
             $table->integer('absences')->nullable();
 

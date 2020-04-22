@@ -11,11 +11,12 @@ class CreateTabsTable extends Migration
         Schema::create('tabs', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('type');
-            $table->integer('goal_id');
-            $table->integer('balck');
-            $table->integer('star');
-            $table->integer('golden');
+            $table->string('sc_black');
+            $table->string('sc_star');
+            $table->string('sc_golden');
+            $table->string('ext_black');
+            $table->string('ext_star');
+            $table->string('ext_golden');
 
             $table->timestamps();
         });

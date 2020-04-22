@@ -19,10 +19,11 @@
             text-align: center;
             font-size: 7pt;
         }
+
     </style>
 </head>
 
-<body onload="window.print()">
+<body>
     <section class="invoice">
         <div class="row">
             <table width="100%">
@@ -53,7 +54,7 @@
                 <thead>
                     <tr>
                         <td>NOMBRE</td>
-                        <td>META AÑO <br> PASADO</td>
+                        <td>MÍNIMO</td>
                         <td>META ACTUAL</td>
                         <td>VENDIDO</td>
                         <td>TOTAL <br> VENDIDO</td>
@@ -62,7 +63,6 @@
                         <td>TOTAL POR <br> VENTAS</td>
                         <td>STEREN <br> CARD</td>
                         <td>EXT <br> GAR</td>
-                        <td>EXT S/IVA</td>
                         <td>A PAGAR</td>
                         <td>R</td>
                         <td>F</td>
@@ -70,18 +70,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($employers as $employer)
-                        <tr>
-                            <td rowspan="6">{{ $employer->first()->employer->nickname }}</td>
-                            @foreach ($employer as $e_goal)
-                                <tr>
-                                    <td>{{ fnumber($e_goal->goal) }}</td>
-                                    <td>{{ fnumber($e_goal->goal * $goal->star) }}</td>
-                                    <td>{{ fnumber($e_goal->sale) }}</td>
-                                </tr>
-                            @endforeach
-                            <td rowspan="6">holi</td>
-                        </tr>
+                    @foreach ($commisions_by_employee as $employee_id => $commisions)
+                        @foreach ($commisions as $commision)
+                            @php
+                                $sales_commision_sum = $commisions->sum(function ($item) {
+                                    return $item->sales_commision;
+                                });
+                                $total_sum = $sales_commision_sum + $commision->scPoint($commisions->sum('sterencard'))[1] + $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]
+                            @endphp
+                            <tr>
+                                @if ($loop->index == 0)
+                                    <td rowspan="5">{{ $commision->employer->nickname }}</td>
+                                @endif
+                                <td>{{ fnumber($commision->weekly_goal) }}</td>
+                                <td>{{ fnumber($commision->weekly_goal * $goal->star) }}</td>
+                                <td>{{ fnumber($commision->sale) }}</td>
+                                @if ($loop->index == 0)
+                                    <td rowspan="5">{{ fnumber($commisions->sum('sale')) }}</td>
+                                @endif
+                                <td>{!! $commision->salePointLabel !!}</td>
+                                <td>{{ fnumber($commision->sales_commision) }}</td>
+                                @if ($loop->index == 0)
+                                    <td rowspan="5">{{ fnumber($sales_commision_sum) }}</td>
+                                    <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!}</td>
+                                    <td rowspan="5">{!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
+                                    <td rowspan="5">{{ fnumber($total_sum) }}</td>
+                                    <td rowspan="5">{{ $commisions->sum('delays') }}</td>
+                                    <td rowspan="5">{{ $commisions->sum('absences') }}</td>
+                                    <td rowspan="5"></td>
+                                @endif
+                            </tr>
+                        @endforeach
                     @endforeach
                 </tbody>
             </table>
