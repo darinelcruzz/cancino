@@ -16,6 +16,9 @@
     @foreach ($stores as $store)
         @php
             $relation = $store->first()->first()->goal->store;
+            $total_sc = 0;
+            $total_ext = 0;
+            $total_amount_ext = 0;
         @endphp
         <div class="row">
             <div class="col-md-12">
@@ -35,13 +38,14 @@
                                         <td>
                                             <span style="color: {{ $goal->weekly_goal > 0 ? 'black': 'gray' }};">{{ fnumber($goal->weekly_goal) }}</span><br>
                                             <span style="color: {{ $goal->sale > 0 ? 'black': 'gray' }};">{{ fnumber($goal->sale) }}</span>
+                                            {!! $goal->salePointLabel !!}
                                         </td>
                                     @endforeach
                                     <td>
-                                        {{ $employer->sum('sterencard')}}
+                                        {{ $employer->sum('sterencard') }}
                                     </td>
                                     <td>
-                                        {{ $employer->sum('extensions')}}
+                                        {{ $employer->sum('extensions') }} <br> {{ fnumber($employer->sum('amount_ext')) }}
                                     </td>
                                     <td>
                                         <dropdown icon="cogs" color="{{ $relation->color }}">
@@ -51,6 +55,11 @@
                                         </dropdown>
                                     </td>
                                 </tr>
+                                @php
+                                $total_sc += $employer->sum('sterencard');
+                                $total_ext += $employer->sum('extensions');
+                                $total_amount_ext += $employer->sum('amount_ext');
+                                @endphp
                             @endforeach
                         </template>
                         @php
@@ -66,7 +75,9 @@
                                 @for ($i=1; $i < 6; $i++)
                                     <td><a href="{{ route('commision.edit', [$goal_id, $i]) }}" class="btn btn-{{ $relation->color }} btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar venta</a></td>
                                 @endfor
-                                <td></td><td></td><td></td>
+                                <td>{{ $total_sc }}</td>
+                                <td>{{ $total_ext }} <br> {{ fnumber($total_amount_ext) }}</td>
+                                <td></td>
                             </tr>
                         </template>
                     </data-table>

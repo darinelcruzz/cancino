@@ -84,7 +84,6 @@ class Commision extends Model
 
     function managerPayment($sale, $past_goal, $goal)
     {
-        // return ($goal->golden);
         if($sale > ($past_goal->sale * $goal->star * $goal->golden)) {
             return "<i style='color:#DCBF32' class='fa fa-star'></i> &nbsp; &nbsp; " . fnumber($sale * 0.0075);
         }if($sale > ($past_goal->sale * $goal->star)) {
