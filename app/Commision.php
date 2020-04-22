@@ -98,7 +98,7 @@ class Commision extends Model
             return  $this->label('dorada') . "&nbsp; &nbsp; " . fnumber($sale * 0.0075);
         }if($sale > ($past_goal->sale * $goal->star)) {
             return $this->label('estrella') . "&nbsp; &nbsp; " . fnumber($sale * 0.005);
-        }if($sale > ($past_goal->sale * $goal->black)) {
+        }if($sale > $past_goal->sale) {
             return $this->label('negro') . "&nbsp; &nbsp; " . fnumber($sale * 0.0025);
         }else {
             return $this->label('rojo') . "&nbsp; &nbsp; " . fnumber(0);
