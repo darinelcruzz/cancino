@@ -38,22 +38,6 @@
             </div>
         </div>
     </div>
-    @if (auth()->user()->level < 4)
-        <div class="col-md-9">
-            <color-box title="Detalles" color="{{ auth()->user()->store->color }}">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h4><b>Habilidades</b></h4>
-                        <p>{{ $employer->skills }}</p>
-                    </div>
-                    <div class="col-md-6">
-                        <h4><b>Debilidades</b></h4>
-                        <p>{{ $employer->weaknesses }}</p>
-                    </div>
-                </div>
-            </color-box>
-        </div>
-    @endif
 </div>
 
 @endsection

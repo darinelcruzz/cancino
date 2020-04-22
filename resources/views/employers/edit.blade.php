@@ -54,17 +54,6 @@
                                     {!! Field::text('account_number', $employer->account_number, ['tpl' => 'lte/withicon'], ['icon' => 'id-card-alt']) !!}
                                 </div>
                             </div>
-
-                            @if (auth()->user()->level < 4)
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {!! Field::textarea('skills', $employer->skills, ['tpl' => 'lte/withicon', 'rows' => '3'], ['icon' => 'smile-wink']) !!}
-                                    </div>
-                                    <div class="col-md-6">
-                                        {!! Field::textarea('weaknesses', $employer->weaknesses, ['tpl' => 'lte/withicon', 'rows' => '3'], ['icon' => 'skull']) !!}
-                                    </div>
-                                </div>
-                            @endif
                         </div>
                         <div class="col-md-3">
                             <div class="row">
@@ -87,7 +76,7 @@
                                     <fu-button fname="address_file" color="primary" ext="application/pdf" bname="COMP. DOM"></fu-button>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-12" align="center">
                                     <fu-button fname="birth_certificate" color="primary" ext="application/pdf" bname="ACTA"></fu-button>

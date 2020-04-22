@@ -54,17 +54,6 @@
                                     {!! Field::text('account_number', ['tpl' => 'lte/withicon'], ['icon' => 'id-card-alt']) !!}
                                 </div>
                             </div>
-
-                            @if (auth()->user()->level < 4)
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {!! Field::textarea('skills', ['tpl' => 'lte/withicon', 'rows' => '3'], ['icon' => 'smile-wink']) !!}
-                                    </div>
-                                    <div class="col-md-6">
-                                        {!! Field::textarea('weaknesses', ['tpl' => 'lte/withicon', 'rows' => '3'], ['icon' => 'skull']) !!}
-                                    </div>
-                                </div>
-                            @endif
                         </div>
                         <div class="col-md-3">
                             <div class="row">

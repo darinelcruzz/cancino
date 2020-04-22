@@ -17,6 +17,17 @@ return [
         ],
     ],
 
+    'Commisions' => [
+        'title' => 'Comisiones',
+        'icon' => 'fa fa-archive',
+        'submenu' => [
+            'create' => [
+                'title' => 'Lista',
+                'route' => 'commision.index',
+            ],
+        ],
+    ],
+
     'B2B' => [
         'title' => 'B2B',
         'icon' => 'fas fa-hands-helping',

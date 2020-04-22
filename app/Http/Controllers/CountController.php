@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Count;
+use App\{Count, Location};
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CountsExport;
@@ -17,7 +17,10 @@ class CountController extends Controller
 
     function create()
     {
-        return view('counts.create');
+        $locations = Location::all()->pluck('name', 'id')->toArray();
+        // dd($locations);
+
+        return view('counts.create', compact('locations'));
     }
 
     function store(Request $request)

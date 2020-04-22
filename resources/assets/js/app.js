@@ -53,6 +53,10 @@ Vue.component('sterencard-checkup', require('./components/SterenCardCheckup.vue'
 Vue.component('returns-checkup', require('./components/ReturnsCheckup.vue'));
 Vue.component('confirm-checkup', require('./components/ConfirmCheckup.vue'));
 Vue.component('credit-checkup', require('./components/CreditCheckup.vue'));
+Vue.component('employee-week-goal', require('./components/EmployeeWeekGoal.vue'));
+Vue.component('employee-sum', require('./components/EmployeeSum.vue'));
+Vue.component('week-sum', require('./components/WeekSum.vue'));
+Vue.component('goal-sum', require('./components/GoalSum.vue'));
 
 const app = new Vue({
     el: '#app',
