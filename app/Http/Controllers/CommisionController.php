@@ -77,8 +77,9 @@ class CommisionController extends Controller
         $past_goal = Goal::where('store_id', $goal->store_id)->where('month', $goal->month)->where('year', $goal->year-1)->first();
 
         $commisions_by_employee = Commision::where('goal_id', $goal->id)->get()->groupBy('employer_id');
+        $commisions_complete = Commision::where('goal_id', $goal->id)->get();
 
-        return view('commisions.report', compact('goal', 'past_goal', 'commisions_by_employee'));
+        return view('commisions.report', compact('goal', 'past_goal', 'commisions_by_employee', 'commisions_complete'));
     }
 
     function destroy(Commision $commision)

@@ -82,4 +82,18 @@ class Commision extends Model
         }
     }
 
+    function managerPayment($sale, $past_goal, $goal)
+    {
+        // return ($goal->golden);
+        if($sale > ($past_goal->sale * $goal->star * $goal->golden)) {
+            return "<i style='color:#DCBF32' class='fa fa-star'></i> &nbsp; &nbsp; " . fnumber($sale * 0.0075);
+        }if($sale > ($past_goal->sale * $goal->star)) {
+            return "<i style='color:#008F39' class='fa fa-star'></i> &nbsp; &nbsp; " . fnumber($sale * 0.005);
+        }if($sale > ($past_goal->sale * $goal->black)) {
+            return "<i style='color:#000000' class='fa fa-circle'></i> &nbsp; &nbsp; " . fnumber($sale * 0.0025);
+        }else {
+            return "<i style='color:#C81D11' class='fa fa-circle'></i> &nbsp; &nbsp; " . fnumber(0);
+        }
+    }
+
 }

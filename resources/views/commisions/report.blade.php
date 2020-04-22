@@ -43,7 +43,7 @@
                     <tr>
                         <td align="center">INCREMENTO MENSUAL DE {{ ($goal->star-1)*100 }}%</td>
                         <td colspan="2" align="right">COMISIÓN DEL MES:</td>
-                        <td align="right">{{ fnumber($goal->id) }}</td>
+                        <td align="right">{!! $commisions_complete->first()->managerPayment($commisions_complete->sum('sale'), $past_goal, $goal) !!}</td>
                     </tr>
                 </tbody>
             </table>
@@ -70,13 +70,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $sales_commisions_total = 0;
+                        $total_sum = 0;
+                    @endphp
                     @foreach ($commisions_by_employee as $employee_id => $commisions)
                         @foreach ($commisions as $commision)
                             @php
                                 $sales_commision_sum = $commisions->sum(function ($item) {
                                     return $item->sales_commision;
                                 });
-                                $total_sum = $sales_commision_sum + $commision->scPoint($commisions->sum('sterencard'))[1] + $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]
+                                $total_employee_sum = $sales_commision_sum + $commision->scPoint($commisions->sum('sterencard'))[1] + $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]
                             @endphp
                             <tr>
                                 @if ($loop->index == 0)
@@ -94,15 +98,37 @@
                                     <td rowspan="5">{{ fnumber($sales_commision_sum) }}</td>
                                     <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!}</td>
                                     <td rowspan="5">{!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
-                                    <td rowspan="5">{{ fnumber($total_sum) }}</td>
+                                    <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
                                     <td rowspan="5">{{ $commisions->sum('delays') }}</td>
                                     <td rowspan="5">{{ $commisions->sum('absences') }}</td>
-                                    <td rowspan="5"></td>
+                                    <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
+                                    @php
+                                        $sales_commisions_total += $sales_commision_sum;
+                                        $total_sum += $total_employee_sum;
+                                    @endphp
                                 @endif
                             </tr>
                         @endforeach
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td><b>Total</b></td>
+                        <td><b>{{ fnumber($commisions_complete->sum('weekly_goal')) }}</b></td>
+                        <td><b>{{ fnumber($commisions_complete->sum('weekly_goal') * $goal->star) }}</b></td>
+                        <td><b>{{ fnumber($commisions_complete->sum('sale')) }}</b></td>
+                        <td><b>{{ fnumber($commisions_complete->sum('sale')) }}</b></td>
+                        <td><b></b></td>
+                        <td><b>{{ fnumber($sales_commisions_total) }}</b></td>
+                        <td><b>{{ fnumber($sales_commisions_total) }}</b></td>
+                        <td><b>{{ $commisions_complete->sum('sterencard') }}</b></td>
+                        <td><b>{{ $commisions_complete->sum('extensions') }}</b></td>
+                        <td><b>{{ fnumber($total_sum) }}</b></td>
+                        <td><b>{{ $commisions_complete->sum('dalays') }}</b></td>
+                        <td><b>{{ $commisions_complete->sum('absences') }}</b></td>
+                        <td><b>{{ fnumber($total_sum) }}</b></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </section>
