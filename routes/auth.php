@@ -68,7 +68,7 @@ Route::group(['prefix' => 'clientes', 'as' => 'clients.', 'middleware' => 'nonCh
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{client}', usesas($ctrl, 'edit'));
-    Route::post('editar', usesas($ctrl, 'update'));
+    Route::post('editar/{client}', usesas($ctrl, 'update'));
     Route::get('detalles/{client}', usesas($ctrl, 'show'));
 });
 

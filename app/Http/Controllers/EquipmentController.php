@@ -36,19 +36,4 @@ class EquipmentController extends Controller
     {
         return view('equipments.show', compact('equipment'));
     }
-
-    function edit(Equipment $equipment)
-    {
-        //
-    }
-
-    function update(Request $request, Equipment $equipment)
-    {
-        //
-    }
-
-    function destroy(Equipment $equipment)
-    {
-        //
-    }
 }

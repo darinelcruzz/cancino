@@ -11,7 +11,7 @@
             <div class="inner">
                 <h3>{{ $debt->employer->name }}</h3>
                 <h4><b>Deuda:</b> {{ fnumber($debt->amount) }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Desde:</b> {{ fdate($debt->requested_at, 'd/m/y', 'Y-m-d') }}</h4>
-                <h4><b>Resta:</b> {{ fnumber($debt->difference) }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Abonos:</b> {{ fnumber($debt->payments) }} </h4>
+                <h4><b>Resta:</b> {{ fnumber($debt->difference) }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Abonos:</b> {{ fnumber($debt->deposits->sum('amount')) }} </h4>
             </div>
             <div class="icon">
                 <i class="fa fa-user"></i>
@@ -26,12 +26,12 @@
                 {{ drawHeader('ID','fecha', 'método', 'Abono') }}
 
                 <template slot="body">
-                    @foreach($payments as $payment)
+                    @foreach($debt->deposits as $deposit)
                         <tr>
-                            <td>{{ $payment->id }}</td>
-                            <td>{{ fdate($payment->paid_at, 'd-M-y', 'Y-m-d') }}</td>
-                            <td>{{ $payment->method }}</td>
-                            <td>{{ fnumber($payment->amount) }}</td>
+                            <td>{{ $deposit->id }}</td>
+                            <td>{{ fdate($deposit->paid_at, 'd-M-y', 'Y-m-d') }}</td>
+                            <td>{{ $deposit->method }}</td>
+                            <td>{{ fnumber($deposit->amount) }}</td>
                         </tr>
                     @endforeach
                 </template>

@@ -34,24 +34,4 @@ class DocumentController extends Controller
 
         return redirect(route('admin.documents'));
     }
-
-    function show(Store $store)
-    {
-        //
-    }
-
-    function edit(Store $store)
-    {
-        //
-    }
-
-    function update(Request $request)
-    {
-        //
-    }
-
-    function destroy(Store $store)
-    {
-        //
-    }
 }

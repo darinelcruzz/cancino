@@ -1,7 +1,6 @@
 @extends('lte.root')
-@push('pageTitle')
-    Checklist | Detalles
-@endpush
+
+@push('pageTitle', 'Checklist | Detalles')
 
 @section('content')
     <div class="row">

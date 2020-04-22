@@ -1,17 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Refactored;
 
-use App\Shopping;
-use App\Store;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\{Shopping, Store};
 
 class ShoppingController extends Controller
 {
-    function index()
+	function index()
     {
-        $stores = [];
-        $shoppings = Shopping::where('store_id', auth()->user()->store_id)->get();
+    	if (isAdmin()) {
+    		$stores = Store::where('type', '!=', 'c')->get();
+    		$shoppings = Shopping::all();
+    	} else {
+    		$stores = [];
+        	$shoppings = Shopping::where('store_id', auth()->user()->store_id)->get();
+    	}
+        
         return view('shoppings.index', compact('shoppings', 'stores'));
     }
 
@@ -35,24 +40,9 @@ class ShoppingController extends Controller
         return redirect(route('shoppings.index'));
     }
 
-    function show(Shopping $shopping)
-    {
-        //
-    }
-
     function verify(Store $store)
     {
         $shoppings = Shopping::where('store_id', $store->id)->where('status', 'pendiente')->get();
         return view('shoppings.verify', compact('store', 'shoppings'));
-    }
-
-    function update(Request $request, Shopping $shopping)
-    {
-        //
-    }
-
-    function destroy(Shopping $shopping)
-    {
-        //
     }
 }

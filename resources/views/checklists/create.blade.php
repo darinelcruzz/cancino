@@ -1,7 +1,6 @@
 @extends('lte.root')
-@push('pageTitle')
-    Checklist | Agregar
-@endpush
+
+@push('pageTitle', 'Checklist | Agregar')
 
 @section('content')
     <div class="row">

@@ -34,28 +34,8 @@ class CountController extends Controller
         return redirect(route('count.create'))->with('status', '¡' . $count->quantity . ' de ' . $count->product->code . ' añadido(s)!');
     }
 
-    function show(Count $count)
-    {
-        //
-    }
-
-    function edit(Count $count)
-    {
-        //
-    }
-
-    function update(Request $request, Count $count)
-    {
-        //
-    }
-
     function export()
     {
         return Excel::download(new CountsExport, 'conteos.xlsx');
-    }
-
-    function destroy(Count $count)
-    {
-        //
     }
 }

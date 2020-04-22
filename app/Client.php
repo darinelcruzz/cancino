@@ -13,7 +13,7 @@ class Client extends Model
         return $this->hasMany(CreditSale::class);
     }
 
-    function getTypeAttribute()
+    function getTypeNameAttribute()
     {
         $type = ['0' => 'Crédito', '1' =>'escuela', '2' => 'B2B', '3' => 'B2B crédito'];
 

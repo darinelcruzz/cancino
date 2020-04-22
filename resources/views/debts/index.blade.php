@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <color-box title="Pendientes" color="danger">
                 <data-table example="1">
-                    {{ drawHeader('ID','Empleado', 'Tienda', 'Duda', 'Pendiente', '<i class="fa fa-cogs"></i>') }}
+                    {{ drawHeader('ID','Empleado', 'Tienda', 'Deuda', 'Pendiente', '<i class="fa fa-cogs"></i>') }}
 
                     <template slot="body">
                         @foreach($debts->where('status', 'pendiente') as $debt)

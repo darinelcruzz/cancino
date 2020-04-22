@@ -10,7 +10,9 @@ class EmployerController extends Controller
 {
     function index()
     {
-        $employers = Employer::where('status', 1)->where('store_id', auth()->user()->store_id)->get();
+        $employers = Employer::where('status', 1)
+            ->where('store_id', auth()->user()->store_id)
+            ->get();
 
         return view('employers.index', compact('employers'));
     }

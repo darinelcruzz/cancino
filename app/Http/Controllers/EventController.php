@@ -32,24 +32,4 @@ class EventController extends Controller
 
         return redirect(route('events.index'));
     }
-
-    function show(Event $event)
-    {
-        //
-    }
-
-    function edit(Event $event)
-    {
-        //
-    }
-
-    function update(Request $request, Event $event)
-    {
-        //
-    }
-
-    function destroy(Event $event)
-    {
-        //
-    }
 }

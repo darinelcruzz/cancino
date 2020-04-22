@@ -18,13 +18,13 @@ class Debt extends Model
         return $this->belongsTo(Employer::class);
     }
 
-    function payment()
+    function deposits()
     {
         return $this->hasMany(Payment::class);
     }
 
     function getDifferenceAttribute()
     {
-        return $this->amount - $this->payment->sum('amount');
+        return $this->amount - $this->deposits->sum('amount');
     }
 }

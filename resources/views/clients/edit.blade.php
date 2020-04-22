@@ -1,14 +1,12 @@
 @extends('lte.root')
 
-@push('pageTitle')
-    Cliente | Editar
-@endpush
+@push('pageTitle', 'Cliente | Editar')
 
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <color-box title="Agregar cliente" color="success" solid>
-                {!! Form::open(['method' => 'POST', 'route' => 'clients.update']) !!}
+                {!! Form::open(['method' => 'POST', 'route' => ['clients.update', $client]]) !!}
 
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">

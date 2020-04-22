@@ -11,6 +11,7 @@
         "eduardokum/laravel-mail-auto-embed": "^1.0",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
+        "itsgoingd/clockwork": "^4.1",
         "jenssegers/date": "^3.4",
         "laravel-notification-channels/telegram": "^0.1.1",
         "laravel/framework": "5.6.*",

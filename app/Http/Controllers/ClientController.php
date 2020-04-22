@@ -46,7 +46,7 @@ class ClientController extends Controller
         return view('clients.edit', compact('client'));
     }
 
-    function update(Request $request)
+    function update(Request $request, Client $client)
     {
         $this->validate($request, [
             'business' => 'required',
@@ -58,12 +58,8 @@ class ClientController extends Controller
             'position' => 'required',
         ]);
 
-        Client::find($request->id)->update($request->all());
-        return redirect(route('clients.index'));
-    }
+        $client->update($request->all());
 
-    function destroy(Client $client)
-    {
-        //
+        return redirect(route('clients.index'));
     }
 }

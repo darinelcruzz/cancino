@@ -38,19 +38,4 @@ class ChecklistController extends Controller
     {
         return view('checklists.show', compact('checklist'));
     }
-
-    function edit(Checklist $checklist)
-    {
-        //
-    }
-
-    function update(Request $request, Checklist $checklist)
-    {
-        //
-    }
-
-    function destroy(Checklist $checklist)
-    {
-        //
-    }
 }

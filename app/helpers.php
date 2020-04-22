@@ -9,6 +9,11 @@ function usesas($ctrl, $fun, $as = null)
     return ['uses' => "$ctrl@$fun", 'as' => $fun];
 }
 
+function isAdmin()
+{
+    return auth()->user()->level == 1;
+}
+
 function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s')
 {
     if ($original_date == NULL) {

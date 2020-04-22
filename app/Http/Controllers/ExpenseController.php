@@ -23,7 +23,7 @@ class ExpenseController extends Controller
         if (auth()->user()->store_id > 1) {
             $store = auth()->user()->store_id;
             $type = 0;
-        }else {
+        } else {
             $type = 3;
         }
 

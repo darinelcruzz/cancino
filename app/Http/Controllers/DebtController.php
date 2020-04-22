@@ -9,7 +9,7 @@ class DebtController extends Controller
 {
     function index()
     {
-        $debts = Debt::all();
+        $debts = Debt::with('store', 'employer', 'deposits')->get();
         return view('debts.index', compact('debts'));
     }
 
@@ -21,12 +21,13 @@ class DebtController extends Controller
 
     function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'store_id' => 'required',
             'employer_id' => 'required',
             'requested_at' => 'required',
             'description' => 'required',
             'amount' => 'required',
+            'payments' => 'required',
         ]);
 
         $debt = Debt::create($request->all());
@@ -36,7 +37,6 @@ class DebtController extends Controller
 
     function show(Debt $debt)
     {
-        $payments = Payment::where('debt_id', $debt->id)->get();
-        return view('debts.show', compact('debt', 'payments'));
+        return view('debts.show', compact('debt'));
     }
 }

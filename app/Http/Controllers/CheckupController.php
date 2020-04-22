@@ -10,7 +10,10 @@ class CheckupController extends Controller
 {
     function index()
     {
-        $checkups = Checkup::where('store_id', auth()->user()->store_id)->orderBy('id', 'desc')->get()->take(60);
+        $checkups = Checkup::where('store_id', auth()->user()->store_id)
+            ->orderBy('id', 'desc')
+            ->get()
+            ->take(60);
 
         return view('checkups.index', compact('checkups'));
     }
@@ -38,6 +41,7 @@ class CheckupController extends Controller
             'user_id' => $request->user_id,
             'store_id' => $request->store_id
         ]);
+
         if ($request->credit != null) {
             foreach ($request->credit as $credit) {
                 $creditSale = OtherSale::create([
@@ -56,9 +60,9 @@ class CheckupController extends Controller
 
     function show(Checkup $checkup)
     {
-        $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();
+        if(auth()->user()->can('report', $checkup)) return view('checkups.show', compact('checkup'));
 
-        return view('checkups.show', compact('checkup', 'manager'));
+        return back();
 
     }
 
@@ -72,6 +76,7 @@ class CheckupController extends Controller
         $request->validate([
             'cash' => 'sometimes|required',
         ]);
+
         $checkup->update($request->except(['user_id', 'public', 'ret_date']));
 
         $sale = Sale::where('checkup_id', $checkup->id)->get()->first();
@@ -84,11 +89,6 @@ class CheckupController extends Controller
         return redirect(route('admin.checkups'));
     }
 
-    function destroy(Checkup $checkup)
-    {
-        //
-    }
-
     function updateStatus(Checkup $checkup, $status)
     {
         $checkup->update(['status' => $status]);
@@ -98,12 +98,9 @@ class CheckupController extends Controller
 
     function report(Checkup $checkup)
     {
-        $manager = User::whereLevel('4')->where('store_id', $checkup->store_id)->first();
+        if(auth()->user()->can('report', $checkup)) return view('checkups.report', compact('checkup'));
 
-        if ($checkup->store_id == auth()->user()->store_id || auth()->user()->store_id == 1) {
-            return view('checkups.report', compact('checkup', 'manager'));
-        }
-        return redirect(route('checkup.index'));
+        return back();
     }
 
     function cards(Request $request)

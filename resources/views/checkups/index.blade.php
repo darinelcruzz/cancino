@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <color-box color="{{ auth()->user()->store->color }}" title="Arqueos">
                 <data-table example="1">
-                    {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'otros', '') }}
+                    {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'otros', 'estado', '') }}
                     <template slot="body">
                         @foreach($checkups as $checkup)
                             <tr>
@@ -30,6 +30,9 @@
                                     {!! $checkup->retention > 0 ? '<b>Retención:</b> <br><code>' . fnumber($checkup->retention) . '</code><br>' : '' !!}
                                     {!! $checkup->sc_dif != 0 ? '<b>StrenCard:</b> <br><code>' . fnumber($checkup->sc_dif) . '</code>' : '' !!}
                                 </td>
+
+                                <td>{!! $checkup->statusLabel !!}</td>
+                                
                                 <td>
                                     <dropdown icon="cogs" color="{{ $checkup->store->color }}">
                                         <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>

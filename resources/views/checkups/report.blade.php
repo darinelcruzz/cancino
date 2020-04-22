@@ -309,7 +309,7 @@
                         <td colspan="10%" align="center"></td>
                         <td align="center">ELABORÓ:<br>{{ $checkup->sale->user->name }}</td>
                         <td colspan="10%" align="center"></td>
-                        <td align="center">REVISÓ:<br>{{ $manager->name }}</td>
+                        <td align="center">REVISÓ:<br>{{ $checkup->store->managerr->name or 'SIN REVISAR' }}</td>
                         <td colspan="10%" align="center"></td>
                     </tr>
                 </tbody>
