@@ -36,4 +36,11 @@ class Checklist extends Model
         return $this->result > 13 ? ($this->result > 18 ? '✅': '❌'): '⚠️';
     }
 
+    function reset()
+    {
+        for ($i = 1; $i <= 20 ; $i++) { 
+            $this->update(["q$i" => 0]);
+        }
+    }
+
 }

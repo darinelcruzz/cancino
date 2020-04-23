@@ -16,14 +16,36 @@
                         <div class="icon">
                             <i class="fa fa-tasks"></i>
                         </div>
+                        @if($checklist->status == 'pendiente')
+                        <a href="{{ route('checklists.edit', $checklist) }}" class="small-box-footer">
+                            Editar <i class="fa fa-edit"></i>
+                        </a>
+                        @endif
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <body>
-                        {{ $checklist->observations }}
-                    </body>
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                          <i class="fa fa-eye"></i>
+
+                          <h3 class="box-title">Observaciones</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                        {!! Form::open(['method' => 'POST', 'route' => ['checklists.update', $checklist]]) !!}
+                            <p>{{ $checklist->observations }}</p>
+                            <input type="hidden" name="status" value="confirmado">
+                            @if($checklist->status == 'pendiente')
+                                <small>{!! Form::submit('CONFIRMAR', ['class' => 'btn btn-success btn-xs']) !!}</small>
+                            @else
+                                <small style="color: green; font-weight: bold;">CONFIRMADO</small>
+                            @endif
+                        {!! Form::close() !!}
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
                 </div>
             </div>
         </div>

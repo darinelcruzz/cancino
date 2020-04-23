@@ -189,6 +189,8 @@ Route::group(['prefix' => 'formato-de-visita', 'as' => 'checklists.', 'middlewar
     $ctrl = 'ChecklistController';
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{checklist}', usesas($ctrl, 'edit'));
+    Route::post('editar/{checklist}', usesas($ctrl, 'update'));
     Route::get('detalles/{checklist}', usesas($ctrl, 'show'));
     Route::get('/{store}', usesas($ctrl, 'index'));
 });

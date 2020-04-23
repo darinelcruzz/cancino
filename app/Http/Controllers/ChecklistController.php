@@ -28,8 +28,6 @@ class ChecklistController extends Controller
         ]);
 
         $checklist = Checklist::create($request->all());
-        
-        $checklist->notify(new \App\Notifications\Checklist());
 
         return redirect(route('checklists.index', $request->store_id));
     }
@@ -37,5 +35,24 @@ class ChecklistController extends Controller
     function show(Checklist $checklist)
     {
         return view('checklists.show', compact('checklist'));
+    }
+
+    function edit(Checklist $checklist)
+    {
+        return view('checklists.edit', compact('checklist'));
+    }
+
+    function update(Request $request, Checklist $checklist)
+    {
+
+        if (isset($request->status)) {
+            $checklist->update(['status' => 'confirmado']);
+            $checklist->notify(new \App\Notifications\Checklist());
+        } else {
+            $checklist->reset();
+            $checklist->update($request->all());
+        }
+
+        return redirect(route('checklists.show', $checklist));
     }
 }
