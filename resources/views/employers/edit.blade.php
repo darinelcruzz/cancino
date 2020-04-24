@@ -53,50 +53,16 @@
                                 <div class="col-md-6">
                                     {!! Field::text('account_number', $employer->account_number, ['tpl' => 'lte/withicon'], ['icon' => 'id-card-alt']) !!}
                                 </div>
+                                @if(auth()->user()->store_id == 1)
+                                    <div class="col-md-6">
+                                        {!! Field::number('salary', $salary, ['tpl' => 'lte/withicon', 'step' => '0.01', 'min' => $salary], ['icon' => 'usd']) !!}
+                                    </div>
+                                @else
+                                    <input type="hidden" name="salary" value="{{ $salary }}">
+                                @endif
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="row">
-                                <b>Archivos</b>
-                                <br>
-                                <div class="col-md-12" align="center">
-                                    <fu-button fname="ine" color="primary" ext="application/pdf" bname="INE"></fu-button>
-                                </div>
-                                <br><br><br>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12" align="center">
-                                    <fu-button fname="curp" color="primary" ext="application/pdf" bname="CURP"></fu-button>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12" align="center">
-                                    <fu-button fname="address_file" color="primary" ext="application/pdf" bname="COMP. DOM"></fu-button>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12" align="center">
-                                    <fu-button fname="birth_certificate" color="primary" ext="application/pdf" bname="ACTA"></fu-button>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12" align="center">
-                                    <fu-button fname="social_security_number" color="primary" ext="application/pdf" bname="NUM. SEG. SOCIAL"></fu-button>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12" align="center">
-                                    <fu-button fname="photo" color="primary" ext="image/*" bname="FOTO"></fu-button>
-                                </div>
-                            </div>
-
-
-                        </div>
+                        
                     </div>
                     <hr>
                     {!! Form::submit('GUARDAR CAMBIOS', ['class' => 'btn btn-success btn-block']) !!}

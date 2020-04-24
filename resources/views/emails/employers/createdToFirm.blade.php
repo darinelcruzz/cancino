@@ -13,6 +13,7 @@
 <body>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
+			<h2><code>ESTO ES UNA PRUEBA, IGNORAR (así llegarán los correos cuando se agregue un empleado)</code></h2>
 			<h3>Nuevo empleado en: {{ ucfirst($employer->store->social) }}</h3>
 			<table class="table table-striped table-bordered">
 				<tr>

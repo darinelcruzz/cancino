@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\{Employer, Store, Movement};
+use App\{Employer, Store, Movement, User};
+use App\Mail\EmployerCreated;
+use Illuminate\Support\Facades\Mail;
 
 class EmployerController extends Controller
 {
@@ -18,7 +20,8 @@ class EmployerController extends Controller
     }
     function create()
     {
-        return view('employers.create');
+        $salary = Store::find(auth()->user()->store_id)->salary;
+        return view('employers.create', compact('salary'));
     }
 
     function store(Request $request)
@@ -32,6 +35,7 @@ class EmployerController extends Controller
             'job' => 'required',
             'store_id' => 'required',
             'ingress' => 'required',
+            'salary' => 'required',
             // 'ine' => 'required',
             // 'curp' => 'required',
             // 'address_file' => 'required',
@@ -40,6 +44,10 @@ class EmployerController extends Controller
         ]);
 
         $employer = Employer::create($validated);
+
+        $employer->update([
+            'salary' => $employer->store->salary
+        ]);
 
         Movement::create([
             'employer_id' => $employer->id,
@@ -89,11 +97,10 @@ class EmployerController extends Controller
             'curp' => 'sometimes|required',
             'birth_certificate' => 'sometimes|required',
             'address_file' => 'sometimes|required',
+            'salary' => 'sometimes|required',
         ]);
 
         $employer->update($request->all());
-
-        $employer->storeDocuments($request);
 
         return redirect(route('employers.index'));
     }
@@ -109,6 +116,15 @@ class EmployerController extends Controller
             'store_id' => $employer->store_id,
             'type' => 0
         ]);
+
+        return redirect(route('employers.index'));
+    }
+
+    function notify(Employer $employer)
+    {
+        $emails = User::where('level', '<', 2)->pluck('email')->toArray();
+        
+        Mail::to($emails)->queue(new EmployerCreated($employer));
 
         return redirect(route('employers.index'));
     }

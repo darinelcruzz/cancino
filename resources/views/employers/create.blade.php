@@ -35,26 +35,52 @@
                                     {!! Field::number('sons', 0,['tpl' => 'lte/withicon', 'min' => '0'], ['icon' => 'baby']) !!}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {!!
-                                        Field::select('job',
-                                        ['Supervisor' => 'Supervisor', 'Gerente' => 'Gerente', 'Vendedor' => 'Ventas',
-                                        'B2B' => 'B2B', 'Bodega' => 'Bodega', 'Apoyo' => 'Apoyo'],
-                                        null, ['empty' => 'Seleccione el puesto', 'tpl' => 'lte/withicon'], ['icon' => 'bezier-curve'])
-                                    !!}
+                            
+                            @if(auth()->user()->store_id == 1)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {!!
+                                            Field::select('job',
+                                            ['Supervisor' => 'Supervisor', 'Gerente' => 'Gerente', 'Vendedor' => 'Ventas',
+                                            'B2B' => 'B2B', 'Bodega' => 'Bodega', 'Apoyo' => 'Apoyo'],
+                                            null, ['empty' => 'Seleccione el puesto', 'tpl' => 'lte/withicon'], ['icon' => 'bezier-curve'])
+                                        !!}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {!! Field::select('store_id', $allStoresArray, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    {!! Field::select('store_id', $allStoresArray, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
+                            @else
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {!!
+                                            Field::select('job', ['Vendedor' => 'Ventas', 'Bodega' => 'Bodega', 'Apoyo' => 'Apoyo'],
+                                            null, ['empty' => 'Seleccione el puesto', 'tpl' => 'lte/withicon'], ['icon' => 'bezier-curve'])
+                                        !!}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
                             <div class="row">
                                 <div class="col-md-6">
                                     {!! Field::text('account_number', ['tpl' => 'lte/withicon'], ['icon' => 'id-card-alt']) !!}
                                 </div>
+
+                                @if(auth()->user()->store_id == 1)
+                                    <div class="col-md-6">
+                                        {!! Field::number('salary', $salary, ['tpl' => 'lte/withicon', 'step' => '0.01', 'min' => $salary], ['icon' => 'usd']) !!}
+                                    </div>
+                                @else
+                                    <input type="hidden" name="salary" value="{{ $salary }}">
+                                @endif
                             </div>
                         </div>
+
+
+
                         <div class="col-md-3">
                             <div class="row">
                                 <b>Archivos</b>
