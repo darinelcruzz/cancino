@@ -53,7 +53,7 @@ class UserController extends Controller
     }
 
     function update(Request $request, User $user)
-    {;
+    {
         $user->update($request->all());
 
         return redirect(route('location.create'));

@@ -45,7 +45,7 @@
                                     !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Field::select('store_id', $stores, $employer->store_id, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
+                                    {!! Field::select('store_id', $storesArray, $employer->store_id, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
                                 </div>
                             </div>
 
@@ -55,14 +55,12 @@
                                 </div>
                                 @if(auth()->user()->store_id == 1)
                                     <div class="col-md-6">
-                                        {!! Field::number('salary', $salary, ['tpl' => 'lte/withicon', 'step' => '0.01', 'min' => $salary], ['icon' => 'usd']) !!}
+                                        {!! Field::number('salary', $employer->salary, ['tpl' => 'lte/withicon', 'step' => '0.01', 'min' => '0'], ['icon' => 'usd']) !!}
                                     </div>
-                                @else
-                                    <input type="hidden" name="salary" value="{{ $salary }}">
                                 @endif
                             </div>
                         </div>
-                        
+
                     </div>
                     <hr>
                     {!! Form::submit('GUARDAR CAMBIOS', ['class' => 'btn btn-success btn-block']) !!}

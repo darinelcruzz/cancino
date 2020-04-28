@@ -17,7 +17,7 @@ class CreateEmployersTable extends Migration
             $table->date('ingress');
             $table->integer('store_id');
             $table->string('job');
-            $table->integer('status')->default(1);
+            $table->string('status')->default('capacitacion');
             $table->integer('commision')->nullable();
             $table->integer('points')->nullable();
             $table->integer('married');

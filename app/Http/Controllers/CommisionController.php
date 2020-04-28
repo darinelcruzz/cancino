@@ -33,7 +33,7 @@ class CommisionController extends Controller
         $year = date('m') == 12 ? date('Y') - 1 : date('Y');
         $pastYear = date('Y') - 1;
 
-        $employers = Employer::where('status', 1)->where('commision', 1)->where('store_id', $store->id)->get()->pluck('id', 'nickname');
+        $employers = Employer::where('status', '!=', 'inactivo')->where('commision', 1)->where('store_id', $store->id)->get()->pluck('id', 'nickname');
         $goal = Goal::where('store_id', $store->id)->where('year', $pastYear)->where('month', $month)->get()->last()->sale;
         $now = Goal::where('store_id', $store->id)->where('year', $year)->where('month', $month)->get()->last();
 

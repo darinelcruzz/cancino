@@ -12,7 +12,7 @@ class EmployerController extends Controller
 {
     function index()
     {
-        $employers = Employer::where('status', 1)
+        $employers = Employer::where('status', '!=', 'inactivo')
             ->where('store_id', auth()->user()->store_id)
             ->get();
 
@@ -73,9 +73,7 @@ class EmployerController extends Controller
 
     function edit(Employer $employer)
     {
-        $stores = Store::pluck('name', 'id')->toArray();
-
-        return view('employers.edit', compact('employer', 'stores'));
+        return view('employers.edit', compact('employer'));
     }
 
     function update(Request $request, Employer $employer)
@@ -102,7 +100,7 @@ class EmployerController extends Controller
 
     function dismiss(Employer $employer)
     {
-        $employer->update(['status' => 0]);
+        $employer->update(['status' => 'inactivo']);
         $date = date('Y-m-d');
 
         Movement::create([
