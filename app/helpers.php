@@ -136,3 +136,22 @@ function pendingLoans()
         ->where('status', '!=', 'cancelado')->count();
     return $from + $to;
 }
+
+function checkEmployeeIngress()
+{
+    $employees = App\Employer::whereIn('status', ['primera capacitacion', 'segunda capacitacion', 'tercera capacitacion'])->get();
+
+    foreach ($employees as $employee) {
+        if ($employee->status == 'primera capacitacion' && time() > strtotime('+1 month', strtotime($employee->ingress))) {
+            $employee->update(['status' => 'evaluacion uno']);
+        }
+
+        if ($employee->status == 'segunda capacitacion' && time() > strtotime('+2 month', strtotime($employee->ingress))) {
+            $employee->update(['status' => 'evaluacion dos']);
+        }
+
+        if ($employee->status == 'tercera capacitacion' && time() > strtotime('+3 month', strtotime($employee->ingress))) {
+            $employee->update(['status' => 'evaluacion tres']);
+        }
+    }
+}
