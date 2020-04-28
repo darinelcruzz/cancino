@@ -112,7 +112,7 @@ Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'middleware' => 'admin']
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{user}', usesas($ctrl, 'edit'));
-    Route::post('editar', usesas($ctrl, 'update'));
+    Route::post('editar/{user}', usesas($ctrl, 'update'));
 });
 
 Route::group(['prefix' => 'metas', 'as' => 'goals.', 'middleware' => 'nonCheckup'], function () {

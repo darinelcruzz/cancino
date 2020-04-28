@@ -36,11 +36,6 @@ class EmployerController extends Controller
             'store_id' => 'required',
             'ingress' => 'required',
             'salary' => 'required',
-            // 'ine' => 'required',
-            // 'curp' => 'required',
-            // 'address_file' => 'required',
-            // 'birth_certificate' => 'required',
-            // 'photo' => 'required',
         ]);
 
         $employer = Employer::create($validated);
@@ -123,7 +118,7 @@ class EmployerController extends Controller
     function notify(Employer $employer)
     {
         $emails = User::where('level', '<', 2)->pluck('email')->toArray();
-        
+
         Mail::to($emails)->queue(new EmployerCreated($employer));
 
         return redirect(route('employers.index'));

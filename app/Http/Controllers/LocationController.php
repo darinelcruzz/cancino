@@ -2,83 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Location;
+use App\{Location, User};
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    function create()
+    {
+        $locations = Location::all()->pluck('name', 'id')->toArray();
+        $users = User::where('level', '8')->get();
+
+
+        return view('locations.create', compact('locations', 'users'));
+    }
+
+    function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        Location::create($request->all());
+
+        return redirect(route('location.create'));
+    }
+
+    function show(Location $location)
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    function edit(Location $location)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Location $location)
+    function update(Request $request, Location $location)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Location $location)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Location $location)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Location $location)
+    function destroy(Location $location)
     {
         //
     }

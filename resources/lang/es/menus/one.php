@@ -40,13 +40,13 @@ return [
     'Tasks' => [
         'title' => 'Pendientes',
         'label' => pendingTasksAll() > 0 ? pendingTasksAll(): '',
-        'icon' => 'fa fa-tasks',
+        'icon' => 'fa fa-calendar-check',
         'route' => 'admin.tasks'
     ],
 
     'Checklist' => [
         'title' => 'Hoja de visita',
-        'icon' => 'fa fa-clipboard',
+        'icon' => 'fa fa-clipboard-list',
         'route' => 'admin.checklist'
     ],
 
@@ -65,10 +65,25 @@ return [
         ],
     ],
 
-    'Documents' => [
-        'title' => 'Documentos',
-        'icon' => 'fa fa-folder',
-        'route' => 'admin.documents',
+    'Commisions' => [
+        'title' => 'Comisiones',
+        'icon' => 'fa fa-handshake',
+        'route' => 'commision.index',
+    ],
+
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'submenu' => [
+            'index' => [
+                'title' => 'Listado',
+                'route' => 'admin.employers'
+            ],
+            'debs' => [
+                'title' => 'Deudas',
+                'route' => 'debts.index'
+            ],
+        ],
     ],
 
     'Documents' => [
@@ -114,30 +129,11 @@ return [
         ],
     ],
 
-    'Employers' => [
-        'title' => 'Empleados',
-        'icon' => 'fa fa-users',
-        'submenu' => [
-            'index' => [
-                'title' => 'Listado',
-                'route' => 'admin.employers'
-            ],
-            'debs' => [
-                'title' => 'Deudas',
-                'route' => 'debts.index'
-            ],
-        ],
-    ],
-
-    'B2B' => [
-        'title' => 'B2B',
-        'icon' => 'fas fa-hands-helping',
-        'submenu' => [
-            'client' => [
-                'title' => 'Clientes',
-                'route' => 'clients.index',
-            ],
-        ],
+    'Notes' => [
+        'title' => 'NC',
+        'icon' => 'fa fa-file-excel-o',
+        'label' => pendingNotesAll() > 0 ? pendingNotesAll(): '',
+        'route' => 'admin.notes',
     ],
 
     'Equipments' => [
@@ -146,18 +142,40 @@ return [
         'route' => 'admin.equipments',
     ],
 
-    'Notes' => [
-        'title' => 'NC',
-        'icon' => 'fa fa-file-excel-o',
-        'label' => pendingNotesAll() > 0 ? pendingNotesAll(): '',
-        'route' => 'admin.notes',
-    ],
-
     'Waste' => [
         'title' => '-$200',
         'icon' => 'fa fa-boxes',
         'label' => pendingWastes() > 0 ? pendingWastes(): '',
         'route' => 'admin.wastes'
+    ],
+
+    'Inventory' => [
+        'title' => 'Inventarios',
+        'icon' => 'fa fa-people-carry',
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'count.create'
+            ],
+            'index' => [
+                'title' => 'Conteos',
+                'route' => 'count.index'
+            ],
+            'products' => [
+                'title' => 'Productos',
+                'route' => 'product.index'
+            ],
+            'locations' => [
+                'title' => 'Ubicaciones',
+                'route' => 'location.create'
+            ],
+        ],
+    ],
+
+    'Clients' => [
+        'title' => 'Lista',
+        'icon' => 'fas fa-hands-helping',
+        'route' => 'clients.index',
     ],
 
     'Users' => [

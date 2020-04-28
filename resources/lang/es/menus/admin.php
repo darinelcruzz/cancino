@@ -17,40 +17,6 @@ return [
         ],
     ],
 
-    'Commisions' => [
-        'title' => 'Comisiones',
-        'icon' => 'fa fa-archive',
-        'submenu' => [
-            'create' => [
-                'title' => 'Lista',
-                'route' => 'commision.index',
-            ],
-        ],
-    ],
-
-    'B2B' => [
-        'title' => 'B2B',
-        'icon' => 'fas fa-hands-helping',
-        'submenu' => [
-            'Binnacle' => [
-                'title' => 'Bitacora',
-                'route' => 'binnacles.index',
-            ],
-            'Clients' => [
-                'title' => 'Clientes',
-                'route' => 'clients.index',
-            ],
-            'Admin' => [
-                'title' => 'Admin',
-                'route' => 'admin.binnacles',
-            ],
-            'Public' => [
-                'title' => 'Depositos',
-                'route' => 'admin.deposits',
-            ],
-        ],
-    ],
-
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
@@ -63,6 +29,10 @@ return [
                 'title' => 'Admin',
                 'route' => 'admin.sales',
             ],
+            'Public' => [
+                'title' => 'Depositos',
+                'route' => 'admin.deposits',
+            ],
             'Goals' => [
                 'title' => 'Metas Tienda',
                 'route' => 'goals.index',
@@ -71,9 +41,76 @@ return [
                 'title' => 'Metas Admin',
                 'route' => 'admin.goals',
             ],
-            'Public' => [
+            'Charts' => [
                 'title' => 'Graficas',
                 'route' => 'admin.public',
+            ],
+        ],
+    ],
+
+    'Tasks' => [
+        'title' => 'Pendientes',
+        'icon' => 'fa fa-calendar-check',
+        'route' => 'admin.tasks'
+    ],
+
+    'Checklist' => [
+        'title' => 'Lista visita',
+        'icon' => 'fa fa-clipboard-list',
+        'submenu' => [
+            'Store' => [
+                'title' => 'Tienda',
+                'route' => ['checklists.index', 2],
+            ],
+            'Admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.checklist',
+            ],
+        ],
+    ],
+
+    'Expenses' => [
+        'title' => 'Gastos',
+        'icon' => 'fa fa-money-check',
+        'submenu' => [
+            'Store' => [
+                'title' => 'Tienda',
+                'route' => 'expenses.index',
+            ],
+            'Admin' => [
+                'title' => 'Admin',
+                'route' => 'admin.balances',
+            ],
+        ],
+    ],
+
+    'Commisions' => [
+        'title' => 'Comisiones',
+        'icon' => 'fa fa-handshake',
+        'submenu' => [
+            'index' => [
+                'title' => 'Lista',
+                'route' => 'commision.index',
+            ],
+            'Chiapas' => [
+                'title' => 'Chiapas',
+                'route' => ['commision.create', 2]
+            ],
+            'Soconusco' => [
+                'title' => 'Soconusco',
+                'route' => ['commision.create', 3]
+            ],
+            'Altos' => [
+                'title' => 'Altos',
+                'route' => ['commision.create', 4]
+            ],
+            'GaleTux' => [
+                'title' => 'Gale Tuxtla',
+                'route' => ['commision.create', 5]
+            ],
+            'GaleTapa' => [
+                'title' => 'Gale Tapa',
+                'route' => ['commision.create', 6]
             ],
         ],
     ],
@@ -108,6 +145,25 @@ return [
             'admin' => [
                 'title' => 'Admin',
                 'route' => 'admin.employers'
+            ],
+            'debs' => [
+                'title' => 'Deudas',
+                'route' => 'debts.index'
+            ],
+        ],
+    ],
+
+    'Documents' => [
+        'title' => 'Documentos',
+        'icon' => 'fa fa-folder',
+        'submenu' => [
+            'create' => [
+                'title' => 'Lista',
+                'route' => 'admin.documents',
+            ],
+            'index' => [
+                'title' => 'Agregar',
+                'route' => 'documents.create'
             ],
         ],
     ],
@@ -158,17 +214,52 @@ return [
         ],
     ],
 
-    'Expenses' => [
-        'title' => 'Gastos',
-        'icon' => 'fa fa-money',
+    'Equipments' => [
+        'title' => 'Equipos',
+        'icon' => 'fa fa-toolbox',
+        'route' => 'admin.equipments',
+    ],
+
+    'Waste' => [
+        'title' => '-$200',
+        'icon' => 'fa fa-boxes',
+        'route' => 'admin.wastes'
+    ],
+
+    'Inventory' => [
+        'title' => 'Inventarios',
+        'icon' => 'fa fa-people-carry',
         'submenu' => [
-            'Store' => [
-                'title' => 'Tienda',
-                'route' => 'expenses.index',
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'count.create'
             ],
-            'Admin' => [
-                'title' => 'Admin',
-                'route' => 'admin.balances',
+            'index' => [
+                'title' => 'Conteos',
+                'route' => 'count.index'
+            ],
+            'products' => [
+                'title' => 'Productos',
+                'route' => 'product.index'
+            ],
+            'locations' => [
+                'title' => 'Ubicaciones',
+                'route' => 'location.create'
+            ],
+        ],
+    ],
+
+    'Clients' => [
+        'title' => 'Clientes',
+        'icon' => 'fas fa-hands-helping',
+        'submenu' => [
+            'index' => [
+                'title' => 'Lista',
+                'route' => 'clients.index',
+            ],
+            'create' => [
+                'title' => 'Agregar',
+                'route' => 'clients.create',
             ],
         ],
     ],

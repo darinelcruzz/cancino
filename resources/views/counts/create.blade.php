@@ -55,7 +55,7 @@
                         <input type="hidden" name="helper_id" value="{{ auth()->user()->id }}">
                         <input type="hidden" name="product_id" :value="product.id">
 
-                        {!! Form::submit('Siguiente', ['class' => 'btn btn-primary pull-right']) !!}
+                        <button type="submit" class="btn btn-primary pull-right" onclick="submitForm(this);">Siguiente</button>
                     </div>
                 </div>
             </color-box>
