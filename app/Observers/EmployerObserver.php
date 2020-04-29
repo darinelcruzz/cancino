@@ -12,12 +12,13 @@ class EmployerObserver
     function created(Employer $employer)
     {
         $employer->storeDocuments(request());
-        
+
         $emails = User::where('level', '<', 5)->where('level', '>', 1)->pluck('email')->toArray();
-        
+        $firm = User::where('name', 'Despacho')->pluck('email')->toArray();
+
         Mail::to($emails)->queue(new EmployerCreated($employer));
 
-        Mail::to(['victorjcg_6@hotmail.com', 'ceaf94@hotmail.com'])->queue(new EmployerCreatedToFirm($employer));
+        Mail::to($firm)->queue(new EmployerCreatedToFirm($employer));
     }
 
     function updated(Employer $employer)

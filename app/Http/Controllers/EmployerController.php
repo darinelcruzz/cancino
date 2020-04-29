@@ -98,6 +98,20 @@ class EmployerController extends Controller
         return redirect(route('employers.index'));
     }
 
+    function updateStatus(Employer $employer, $newStatus)
+    {
+        if ($newStatus == 'activo') {
+            $employer->update([
+                'status' => $newStatus,
+                'commision' => 1,
+            ]);
+            return redirect(route('admin.employers'));
+        }else {
+            $employer->update(['status' => $newStatus]);
+            return redirect(route('admin.employers'));
+        }
+    }
+
     function dismiss(Employer $employer)
     {
         $employer->update(['status' => 'inactivo']);
@@ -121,6 +135,4 @@ class EmployerController extends Controller
 
         return redirect(route('employers.index'));
     }
-
-
 }

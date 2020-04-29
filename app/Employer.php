@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 
 class Employer extends Model
 {
+    use Notifiable;
+    
     protected $guarded = [];
 
     function store()

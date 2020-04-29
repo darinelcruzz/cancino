@@ -11,17 +11,17 @@
     <div class="row">
         @foreach($stores as $store)
             <div class="col-md-12">
-                <color-box title="Empleados de {{ $store->first()->store->name . ' ' . count($store) }}" color="{{ $store->first()->store->color }}" button collapsed>
+                <color-box title="Empleados de {{ $store->first()->store->name }}" label="{{ count($store) }}" color="{{ $store->first()->store->color }}" button collapsed>
                     <data-table example="{{ $store->first()->store->id }}">
-                        {{ drawHeader('nombre', '<i class="fa fa-cogs"></i>', 'cumpleaños') }}
+                        {{ drawHeader('foto', 'nombre', 'cumpleaños', '<i class="fa fa-cogs"></i>') }}
                         <template slot="body">
-                            @foreach ($store as $employer)
+                            @foreach ($store as $employee)
                                 <tr>
                                     <td>
                                         <div class="col-md-2">
-                                            @if(Storage::disk('public')->exists('employers/' . $employer->id . '/FOTO.jpeg'))
-                                                <img src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}"
-                                                    alt="foto de {{ $employer->name }}"
+                                            @if(Storage::disk('public')->exists('employees/' . $employee->id . '/FOTO.jpeg'))
+                                                <img src="{{ Storage::url('employees/' . $employee->id . '/FOTO.jpeg') }}"
+                                                    alt="foto de {{ $employee->name }}"
                                                     width="50px" height="50px"
                                                     style="border-radius: 50%;">
                                             @else
@@ -30,20 +30,20 @@
                                                     style="border-radius: 50%;">
                                             @endif
                                         </div>
-                                        <div class="col-md-4">
-                                            {{ $employer->name }} <br>
-                                            <code>{{ $employer->job }}</code>
-                                        </div>
                                     </td>
                                     <td>
-                                        <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
-                                            <ddi to="{{ route('employers.show', ['id' => $employer->id]) }}" icon="eye" text="Detalles"></ddi>
-                                            <ddi to="{{ route('employers.explore', $employer) }}" icon="file-pdf" text="Documentos"></ddi>
-                                            <ddi to="{{ route('employers.edit', $employer) }}" icon="edit" text="Editar"></ddi>
-                                            <ddi to="{{ route('employers.dismiss', $employer) }}" icon="times" text="Dar de baja"></ddi>
+                                        {{ $employee->name }} <br>
+                                        <code>{{ $employee->job }}</code>
+                                    </td>
+                                    <td>{{ fdate($employee->birthday, 'd M Y', 'Y-m-d') }}</td>
+                                    <td>
+                                        <dropdown icon="cogs" color="{{ $employee->store->color }}">
+                                            <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
+                                            <ddi to="{{ route('employers.explore', $employee) }}" icon="file-pdf" text="Documentos"></ddi>
+                                            <ddi to="{{ route('employers.edit', $employee) }}" icon="edit" text="Editar"></ddi>
+                                            <ddi to="{{ route('employers.dismiss', $employee) }}" icon="times" text="Dar de baja"></ddi>
                                         </dropdown>
                                     </td>
-                                    <td>{{ fdate($employer->birthday, 'd M Y', 'Y-m-d') }}</td>
                                 </tr>
                             @endforeach
                         </template>
@@ -51,11 +51,49 @@
                 </solid-box>
             </div>
         @endforeach
+        <div class="col-md-12">
+            <color-box title="Empleados en capacitación" label="{{ count($training) }}" color="warning" button collapsed>
+                <data-table example="10">
+                    {{ drawHeader('nombre', 'tienda', 'estado', '<i class="fa fa-cogs"></i>') }}
+                    <template slot="body">
+                        @foreach ($training as $employee)
+                            <tr>
+                                <td>
+                                    <div class="col-md-2">
+                                        @if(Storage::disk('public')->exists('employees/' . $employee->id . '/FOTO.jpeg'))
+                                            <img src="{{ Storage::url('employees/' . $employee->id . '/FOTO.jpeg') }}"
+                                            alt="foto de {{ $employee->name }}"
+                                            width="50px" height="50px"
+                                            style="border-radius: 50%;">
+                                        @else
+                                            <img src="{{ asset('images/default-avatar.png') }}"
+                                            width="50px" height="50px"
+                                            style="border-radius: 50%;">
+                                        @endif
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{ $employee->name }} <br>
+                                        <code>{{ $employee->job }}</code>
+                                    </div>
+                                </td>
+                                <td>{{ $employee->store->name }}</td>
+                                <td>{{ $employee->status }}</td>
+                                <td>
+                                    <dropdown icon="cogs" color="warning">
+                                        <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
+                                    </dropdown>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </template>
+                </data-table>
+            </solid-box>
+        </div>
         <div class="col-lg-3 col-md-4">
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4><b>Gerentes</b></h4>
-                    <h3 align="center"><b>{{ count($employers->where('job', 'Gerente')) }}</b></h3>
+                    <h3 align="center"><b>{{ count($employees->where('job', 'Gerente')) }}</b></h3>
                 </div>
                 <div class="icon">
                     <i class="fa fa-users"></i>
@@ -66,7 +104,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4><b>Vendedores</b></h4>
-                    <h3 align="center"><b>{{ count($employers->where('job', 'Vendedor')) }}</b></h3>
+                    <h3 align="center"><b>{{ count($employees->where('job', 'Vendedor')) }}</b></h3>
                 </div>
                 <div class="icon">
                     <i class="fa fa-users"></i>
@@ -77,7 +115,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4><b>Apoyo y bodega</b></h4>
-                    <h3 align="center"><b>{{ count($employers->where('job', 'Apoyo')) + count($employers->where('job', 'Bodega')) }}</b></h3>
+                    <h3 align="center"><b>{{ count($employees->where('job', 'Apoyo')) + count($employees->where('job', 'Bodega')) }}</b></h3>
                 </div>
                 <div class="icon">
                     <i class="fa fa-users"></i>
@@ -88,7 +126,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4><b>B2B</b></h4>
-                    <h3 align="center"><b>{{ count($employers->where('job', 'B2B')) }}</b></h3>
+                    <h3 align="center"><b>{{ count($employees->where('job', 'B2B')) }}</b></h3>
                 </div>
                 <div class="icon">
                     <i class="fa fa-users"></i>
@@ -99,7 +137,7 @@
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4><b>Total</b></h4>
-                    <h3 align="center"><b>{{ count($employers) }}</b></h3>
+                    <h3 align="center"><b>{{ count($employees) }}</b></h3>
                 </div>
                 <div class="icon">
                     <i class="fa fa-users"></i>

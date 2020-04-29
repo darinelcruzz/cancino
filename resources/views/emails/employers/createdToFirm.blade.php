@@ -13,14 +13,13 @@
 <body>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
-			<h2><code>ESTO ES UNA PRUEBA, IGNORAR (así llegarán los correos cuando se agregue un empleado)</code></h2>
 			<h3>Nuevo empleado en: {{ ucfirst($employer->store->social) }}</h3>
 			<table class="table table-striped table-bordered">
 				<tr>
 					<td style="text-align: center;">
 						<img src="{{ env('APP_URL') . $employer->photo }}" alt="nuevo colaborador" border="0" width="100px" style="border-radius: 50%;"/>
 					</td>
-					<td style="width: 75%">
+					<td style="width: 70%">
 						Ingreso: {{ fdate($employer->ingress, 'd/m/y', 'Y-m-d') }} <br>
 					    Nombre:  {{ ucfirst($employer->name) }} <br>
 					    Puesto:  {{ ucfirst($employer->job)}} <br>
@@ -30,5 +29,5 @@
 			</table>
 		</div>
 	</div>
-    
+
 </body>

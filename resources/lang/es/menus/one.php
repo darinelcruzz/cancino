@@ -71,8 +71,9 @@ return [
         'route' => 'commision.index',
     ],
 
-    'Employers' => [
+    'Employees' => [
         'title' => 'Empleados',
+        'label' => evaluationEmployeeAll() > 0 ? evaluationEmployeeAll(): '',
         'icon' => 'fa fa-users',
         'submenu' => [
             'index' => [

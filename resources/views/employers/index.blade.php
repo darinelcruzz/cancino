@@ -10,17 +10,17 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Empleados de {{ auth()->user()->store->name }}" color="{{ auth()->user()->store->color }}">
+            <color-box title="Empleados de {{ $employers->first()->store->name }}" color="{{ $employers->first()->store->color }}">
                 <data-table example="1">
-                    {{ drawHeader('nombre', '<i class="fa fa-cogs"></i>', 'cumpleaños') }}
+                    {{ drawHeader('foto', 'nombre', 'cumpleaños', '<i class="fa fa-cogs"></i>') }}
                     <template slot="body">
-                        @foreach($employers as $employer)
+                        @foreach($employers as $employee)
                             <tr>
                                 <td>
                                     <div class="col-md-2">
-                                        @if(Storage::disk('public')->exists('employers/' . $employer->id . '/FOTO.jpeg'))
-                                            <img src="{{ $employer->photo }}"
-                                                alt="foto de {{ $employer->name }}"
+                                        @if(Storage::disk('public')->exists('employers/' . $employee->id . '/FOTO.jpeg'))
+                                            <img src="{{ $employee->photo }}"
+                                                alt="foto de {{ $employee->name }}"
                                                 width="50px" height="50px"
                                                 style="border-radius: 50%;">
                                         @else
@@ -29,20 +29,20 @@
                                                 style="border-radius: 50%;">
                                         @endif
                                     </div>
-                                    <div class="col-md-4">
-                                        {{ $employer->name }} <br>
-                                        <code>{{ $employer->job }}</code>
-                                    </div>
                                 </td>
                                 <td>
+                                    {{ $employee->name }} <br>
+                                    <code>{{ $employee->job }}</code>
+                                </td>
+                                <td>{{ fdate($employee->birthday, 'd M Y', 'Y-m-d') }}</td>
+                                <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
-                                        <ddi to="{{ route('employers.show', $employer) }}" icon="eye" text="Detalles"></ddi>
-                                        <ddi to="{{ route('employers.explore', $employer) }}" icon="file-pdf" text="Documentos"></ddi>
-                                        <ddi to="{{ route('employers.edit', $employer) }}" icon="edit" text="Editar"></ddi>
-                                        <ddi to="{{ route('employers.dismiss', $employer) }}" icon="times" text="Dar de baja"></ddi>
+                                        <ddi to="{{ route('employers.show', $employee) }}" icon="eye" text="Detalles"></ddi>
+                                        <ddi to="{{ route('employers.explore', $employee) }}" icon="file-pdf" text="Documentos"></ddi>
+                                        <ddi to="{{ route('employers.edit', $employee) }}" icon="edit" text="Editar"></ddi>
+                                        <ddi to="{{ route('employers.dismiss', $employee) }}" icon="times" text="Dar de baja"></ddi>
                                     </dropdown>
                                 </td>
-                                <td>{{ fdate($employer->birthday, 'd M Y', 'Y-m-d') }}</td>
                             </tr>
                         @endforeach
                     </template>

@@ -10,14 +10,13 @@ class UsersTableSeeder extends Seeder
         factory(\App\User::class)->create([
             'name' => 'Lab 3',
             'username' => 'admin',
-            'password' => Hash::make('helefante')
+            'password' => Hash::make('helefante'),
+            'email' => 'labtr3s@gmail.com'
         ]);
         factory(\App\User::class)->create([
             'name' => 'Victor Cancino',
             'username' => 'victor',
-            'password' => Hash::make('victor'),
-            'level' => 1,
-            'store_id' => 1
+            'password' => Hash::make('victor')
         ]);
         factory(\App\User::class)->create([
             'name' => 'Aparicio Serrano',
@@ -102,6 +101,14 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('corte'),
             'level' => 7,
             'store_id' => 1
+        ]);
+        factory(\App\User::class)->create([
+            'name' => 'Despacho',
+            'username' => 'despacho',
+            'password' => Hash::make('despacho'),
+            'level' => 1,
+            'store_id' => 1,
+            'email' => 'victorjcg_6@hotmail.com'
         ]);
     }
 }

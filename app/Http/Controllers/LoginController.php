@@ -12,8 +12,8 @@ class LoginController extends Controller
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            
-            checkEmployeeIngress()
+
+            checkEmployeeIngress();
 
             return redirect()->intended('/inicio');
         }

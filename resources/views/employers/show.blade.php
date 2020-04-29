@@ -7,12 +7,8 @@
 @section('content')
 
 <div class="row">
-    @if (auth()->user()->level < 4)
-        <div class="col-md-3">
-    @else
-        <div class="col-md-4 col-md-offset-4">
-    @endif
-        <div class="box box-{{ auth()->user()->store->color }}">
+    <div class="col-md-4">
+        <div class="box box-{{ $employer->store->color }}">
             <div class="box-body box-profile">
                 <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" alt="User profile picture">
                 <h3 class="profile-username text-center">{{ $employer->name }}</h3>
@@ -37,6 +33,29 @@
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="col-md-4">
+        <color-box title="{{ $employer->status }}" color="{{ $employer->store->color }}">
+            @if ($employer->status == 'evaluacion uno')
+
+
+                @if (auth()->user()->level < 4)
+                    <a href="{{ route('employers.updateStatus', [$employer->id, 'segunda capacitacion']) }}" class="btn btn-{{ $employer->store->color }} btn-xs"><i class="fa fa-user-check"></i>&nbsp;&nbsp;Autorizar</a>
+                @endif
+            @elseif ($employer->status == 'evaluacion dos')
+
+
+                @if (auth()->user()->level < 4)
+                    <a href="{{ route('employers.updateStatus', [$employer->id, 'tercera capacitacion']) }}" class="btn btn-{{ $employer->store->color }} btn-xs"><i class="fa fa-user-check"></i>&nbsp;&nbsp;Autorizar</a>
+                @endif
+            @elseif ($employer->status == 'evaluacion tres')
+
+
+                @if (auth()->user()->level < 4)
+                    <a href="{{ route('employers.updateStatus', [$employer->id, 'activo']) }}" class="btn btn-{{ $employer->store->color }} btn-xs"><i class="fa fa-user-check"></i>&nbsp;&nbsp;Empieza a comisionar</a>
+                @endif
+            @endif
+        </color-box>
     </div>
 </div>
 

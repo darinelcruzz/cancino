@@ -126,6 +126,11 @@ function pendingCheckupsAll()
     return App\Checkup::whereStatus(0)->count();
 }
 
+function evaluationEmployeeAll()
+{
+    return App\Employer::whereIn('status', ['evaluacion uno', 'evaluacion dos', 'evaluacion tres'])->count();
+}
+
 function pendingLoans()
 {
     $from = App\Loan::where('from', auth()->user()->store_id)
@@ -143,14 +148,17 @@ function checkEmployeeIngress()
 
     foreach ($employees as $employee) {
         if ($employee->status == 'primera capacitacion' && time() > strtotime('+1 month', strtotime($employee->ingress))) {
+            $employee->notify(new \App\Notifications\EmployerTraining());
             $employee->update(['status' => 'evaluacion uno']);
         }
 
         if ($employee->status == 'segunda capacitacion' && time() > strtotime('+2 month', strtotime($employee->ingress))) {
+            $employee->notify(new \App\Notifications\EmployerTraining());
             $employee->update(['status' => 'evaluacion dos']);
         }
 
         if ($employee->status == 'tercera capacitacion' && time() > strtotime('+3 month', strtotime($employee->ingress))) {
+            $employee->notify(new \App\Notifications\EmployerTraining());
             $employee->update(['status' => 'evaluacion tres']);
         }
     }
