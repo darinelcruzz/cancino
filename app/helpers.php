@@ -148,18 +148,23 @@ function checkEmployeeIngress()
 
     foreach ($employees as $employee) {
         if ($employee->status == 'primera capacitacion' && time() > strtotime('+1 month', strtotime($employee->ingress))) {
-            $employee->notify(new \App\Notifications\EmployerTraining());
             $employee->update(['status' => 'evaluacion uno']);
+            $employee->notify(new \App\Notifications\EmployerTraining());
         }
 
         if ($employee->status == 'segunda capacitacion' && time() > strtotime('+2 month', strtotime($employee->ingress))) {
-            $employee->notify(new \App\Notifications\EmployerTraining());
             $employee->update(['status' => 'evaluacion dos']);
+            $employee->notify(new \App\Notifications\EmployerTraining());
         }
 
         if ($employee->status == 'tercera capacitacion' && time() > strtotime('+3 month', strtotime($employee->ingress))) {
-            $employee->notify(new \App\Notifications\EmployerTraining());
             $employee->update(['status' => 'evaluacion tres']);
+            $employee->notify(new \App\Notifications\EmployerTraining());
+        }
+
+        if ($employee->status == 'primer año' && time() > strtotime('+1 year', strtotime($employee->ingress))) {
+            $employee->update(['status' => 'evaluacion año']);
+            $employee->notify(new \App\Notifications\EmployerTraining());
         }
     }
 }

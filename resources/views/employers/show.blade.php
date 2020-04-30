@@ -1,8 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle')
-    Empleados | Detalles
-@endpush
+@push('pageTitle', 'Empleados | Detalles')
 
 @section('content')
 
@@ -19,7 +17,7 @@
                         <b>Ingreso</b> <a class="pull-right">{{ fdate($employer->ingress, 'd/M/y', 'Y-m-d') }}</a>
                     </li>
                     <li class="list-group-item">
-                        <b>Cumpeaños</b> <a class="pull-right">{{ fdate($employer->birthday, 'd/M/y', 'Y-m-d') }}</a>
+                        <b>Cumpeaños</b> <a class="pull-right">{{ fdate($employer->birthday, 'd M', 'Y-m-d') }}</a>
                     </li>
                     <div class="col-md-6">
 
@@ -35,26 +33,51 @@
         </div>
     </div>
     <div class="col-md-4">
-        <color-box title="{{ $employer->status }}" color="{{ $employer->store->color }}">
-            @if ($employer->status == 'evaluacion uno')
+        <color-box title="{{ ucfirst($employer->status) }}" color="{{ $employer->store->color }}">
 
+        @switch($employer->status)
 
-                @if (auth()->user()->level < 4)
-                    <a href="{{ route('employers.updateStatus', [$employer->id, 'segunda capacitacion']) }}" class="btn btn-{{ $employer->store->color }} btn-xs"><i class="fa fa-user-check"></i>&nbsp;&nbsp;Autorizar</a>
+            @case('primera capacitacion' || 'evaluacion uno')
+                <ul>
+                    <li>Curso SC</li>
+                    <li>Curso atención a clientes</li>
+                    <li>Curso garantías</li>
+                </ul>
+                @break
+
+            @case('segunda capacitacion' || 'evaluacion dos')
+                <ul>
+                    <li>Curso SC *</li>
+                    <li>Curso atención a clientes</li>
+                    <li>Curso garantías</li>
+                </ul>
+                @break
+
+            @default
+                <ul>
+                    <li>Curso SC</li>
+                    <li>Curso atención a clientes</li>
+                    <li>Curso garantías</li>
+                </ul>               
+
+        @endswitch
+
+        @if (auth()->user()->level < 4)
+            {!! Form::open(['method' => 'POST', 'route' => ['employers.update', $employer]]) !!}
+
+                @php
+                    $values = ['evaluacion uno' => 'segunda capacitacion', 'evaluacion dos' => 'tercera capacitacion', 'evaluacion tres' => 'primer año']
+                @endphp
+
+                <input type="hidden" name="status" value="{{ $values[$employer->status] or $employer->status }}">
+
+                @if($employer->status == 'evaluacion uno' || $employer->status == 'evaluacion dos' || $employer->status == 'evaluacion tres')
+                    {!! Form::submit('Autorizar', ['class' => 'btn btn-' . $employer->store->color . ' btn-xs']) !!}
                 @endif
-            @elseif ($employer->status == 'evaluacion dos')
 
+            {!! Form::close() !!}
+        @endif
 
-                @if (auth()->user()->level < 4)
-                    <a href="{{ route('employers.updateStatus', [$employer->id, 'tercera capacitacion']) }}" class="btn btn-{{ $employer->store->color }} btn-xs"><i class="fa fa-user-check"></i>&nbsp;&nbsp;Autorizar</a>
-                @endif
-            @elseif ($employer->status == 'evaluacion tres')
-
-
-                @if (auth()->user()->level < 4)
-                    <a href="{{ route('employers.updateStatus', [$employer->id, 'activo']) }}" class="btn btn-{{ $employer->store->color }} btn-xs"><i class="fa fa-user-check"></i>&nbsp;&nbsp;Empieza a comisionar</a>
-                @endif
-            @endif
         </color-box>
     </div>
 </div>
