@@ -100,23 +100,12 @@ class EmployerController extends Controller
         return redirect(route('employers.show', $employer));
     }
 
-    function updateStatus(Employer $employer, $newStatus)
+    function dismiss(Request $request, Employer $employer)
     {
-        if ($newStatus == 'activo') {
-            $employer->update([
-                'status' => $newStatus,
-                'commision' => 1,
-            ]);
-            return redirect(route('admin.employers'));
-        }else {
-            $employer->update(['status' => $newStatus]);
-            return redirect(route('admin.employers'));
-        }
-    }
-
-    function dismiss(Employer $employer)
-    {
-        $employer->update(['status' => 'inactivo']);
+        $employer->update($request->only('status'));
+        
+        $employer->storeDocuments(request());
+        
         $date = date('Y-m-d');
 
         Movement::create([

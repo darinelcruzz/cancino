@@ -62,5 +62,8 @@ class Employer extends Model
         if ($request->file('photo')) {
             $request->file('photo')->storeAs($route, 'FOTO.' . $request->photo->extension());
         }
+        if ($request->file('resignation')) {
+            $request->file('resignation')->storeAs($route, 'RENUNCIA.' . $request->resignation->extension());
+        }
     }
 }

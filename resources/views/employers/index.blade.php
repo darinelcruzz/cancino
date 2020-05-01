@@ -40,8 +40,27 @@
                                         <ddi to="{{ route('employers.show', $employee) }}" icon="eye" text="Detalles"></ddi>
                                         <ddi to="{{ route('employers.explore', $employee) }}" icon="file-pdf" text="Documentos"></ddi>
                                         <ddi to="{{ route('employers.edit', $employee) }}" icon="edit" text="Editar"></ddi>
-                                        <ddi to="{{ route('employers.dismiss', $employee) }}" icon="times" text="Dar de baja"></ddi>
+                                        <ddi to="#" data-toggle="modal" data-target="#employee{{ $employee->id }}" icon="times" text="Dar de baja"></ddi>
                                     </dropdown>
+                                    
+                                    {!! Form::open(['method' => 'POST', 'route' => ['employers.dismiss', $employee], 'enctype' => 'multipart/form-data']) !!}
+                                    <modal id="employee{{ $employee->id }}" title="Dar de baja a {{ $employee->name }}">
+
+                                        <div class="row">
+                                            <div class="col-md-12" align="center">
+                                                <b>Carta renuncia (opcional)</b>
+                                                <br>
+                                                <fu-button fname="resignation" color="primary" ext="application/pdf" bname="RENUNCIA"></fu-button>
+                                                <input type="hidden" name="status" value="inactivo">
+                                            </div>
+                                        </div>
+
+                                        <template slot="footer">
+                                            {!! Form::submit('Dar de baja', ['class' => 'btn btn-sm btn-danger pull-right']) !!}
+                                        </template>
+                                        
+                                    </modal>
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                         @endforeach

@@ -135,7 +135,7 @@ Route::group(['prefix' => 'empleados', 'as' => 'employers.', 'middleware' => 'no
     Route::get('editar/estado/{employer}/{status}', usesas($ctrl, 'updateStatus'));
     Route::get('detalles/{employer}', usesas($ctrl, 'show'));
     Route::get('documentos/{employer}', usesas($ctrl, 'explore'));
-    Route::get('baja/{employer}', usesas($ctrl, 'dismiss'));
+    Route::post('baja/{employer}', usesas($ctrl, 'dismiss'));
 });
 
 Route::group(['prefix' => 'equipos', 'as' => 'equipments.'], function () {

@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\{Employer, User};
 use App\Mail\EmployerCreated;
+use App\Mail\EmployerDismissed;
 use App\Mail\EmployerCreatedToFirm;
 use Illuminate\Support\Facades\Mail;
 
@@ -23,7 +24,11 @@ class EmployerObserver
 
     function updated(Employer $employer)
     {
-        //
+        if ($employer->status == 'inactivo') {
+            $emails = User::where('level', '<', 5)->where('level', '>', 1)->pluck('email')->toArray();
+
+            Mail::to($emails)->queue(new EmployerDismissed($employer));
+        }
     }
 
     function deleted(Employer $employer)
