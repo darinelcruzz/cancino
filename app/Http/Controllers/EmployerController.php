@@ -95,7 +95,9 @@ class EmployerController extends Controller
             'commision' => 'sometimes|required',
         ]);
 
-        $employer->update($request->all());
+        $employer->update($request->except('photo'));
+
+        $employer->storeDocuments(request());
 
         return redirect(route('employers.show', $employer));
     }
@@ -105,12 +107,10 @@ class EmployerController extends Controller
         $employer->update($request->only('status'));
         
         $employer->storeDocuments(request());
-        
-        $date = date('Y-m-d');
 
         Movement::create([
             'employer_id' => $employer->id,
-            'date' => $employer->ingress,
+            'date' => date('Y-m-d'),
             'store_id' => $employer->store_id,
             'type' => 0
         ]);
@@ -125,5 +125,21 @@ class EmployerController extends Controller
         Mail::to($emails)->queue(new EmployerCreated($employer));
 
         return redirect(route('employers.index'));
+    }
+
+    function restore(Request $request, Employer $employer)
+    {
+        $validated = $request->validate(['store_id' => 'required', 'status' => 'required']);
+        
+        $employer->update($validated);
+
+        Movement::create([
+            'employer_id' => $employer->id,
+            'date' => date('Y-m-d'),
+            'store_id' => $employer->store_id,
+            'type' => 1
+        ]);
+
+        return redirect(route('admin.employers'));
     }
 }

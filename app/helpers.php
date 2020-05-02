@@ -168,3 +168,25 @@ function checkEmployeeIngress()
         }
     }
 }
+
+function pluralize($singular, $apply = true)
+{
+    if (!$apply) return $singular;
+
+    $last_letter = strtolower($singular[strlen($singular)-1]);
+    
+    switch($last_letter) {
+        case 'a':
+            return $singular.'s';
+        case 'e':
+            return $singular.'s';
+        case 'i':
+            return $singular.'s';
+        case 'o':
+            return $singular.'s';
+        case 'u':
+            return $singular.'s';
+        default:
+            return $singular.'es';
+    }
+}

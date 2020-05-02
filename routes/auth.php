@@ -136,6 +136,7 @@ Route::group(['prefix' => 'empleados', 'as' => 'employers.', 'middleware' => 'no
     Route::get('detalles/{employer}', usesas($ctrl, 'show'));
     Route::get('documentos/{employer}', usesas($ctrl, 'explore'));
     Route::post('baja/{employer}', usesas($ctrl, 'dismiss'));
+    Route::post('alta/{employer}', usesas($ctrl, 'restore'));
 });
 
 Route::group(['prefix' => 'equipos', 'as' => 'equipments.'], function () {

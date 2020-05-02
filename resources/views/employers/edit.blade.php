@@ -61,6 +61,17 @@
                             </div>
                         </div>
 
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12" align="center">
+                                    <b>FOTO</b>
+                                    <br>
+                                    <fu-button fname="photo" color="primary" ext="image/*" bname="FOTO"></fu-button>
+                                </div>
+                                <br><br><br>
+                            </div>
+                        </div>
+
                     </div>
                     <hr>
                     {!! Form::submit('GUARDAR CAMBIOS', ['class' => 'btn btn-success btn-block']) !!}

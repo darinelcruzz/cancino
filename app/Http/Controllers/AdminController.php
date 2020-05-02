@@ -170,10 +170,12 @@ class AdminController extends Controller
     function employers()
     {
         $stores = Employer::where('status', '!=', 'inactivo')->orderBy('store_id')->get()->groupBy('store_id');
-        $employees = Employer::where('status', '!=', 'inactivo')->get();
+        $departments = Employer::where('status', '!=', 'inactivo')->get()->groupBy('job');
         $training = Employer::whereIn('status', ['evaluacion uno', 'evaluacion dos', 'evaluacion tres'])->get();
+        $inactive = Employer::where('status', 'inactivo')->get();
+        $storesArray = Store::pluck('name', 'id')->toArray();
 
-        return view('admin.employers', compact('stores', 'employees', 'training'));
+        return view('admin.employers', compact('stores', 'departments', 'training', 'inactive', 'storesArray'));
     }
 
     function equipments()

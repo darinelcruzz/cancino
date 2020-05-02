@@ -8,7 +8,11 @@
     <div class="col-md-4">
         <div class="box box-{{ $employer->store->color }}">
             <div class="box-body box-profile">
-                <img class="profile-user-img img-responsive img-circle" src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" alt="User profile picture">
+                <p class="text-center">
+                    <img width="100px;" height="100px" style="border-radius: 50%;"
+                        src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" 
+                        alt="User profile picture">
+                </p>
                 <h3 class="profile-username text-center">{{ $employer->name }}</h3>
                 <p class="text-muted text-center">{{ $employer->store->name . ' - ' . $employer->job }}</p>
 

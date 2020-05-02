@@ -48,7 +48,7 @@
                             @endforeach
                         </template>
                     </data-table>
-                </solid-box>
+                </color-box>
             </div>
         @endforeach
         <div class="col-md-12">
@@ -87,62 +87,84 @@
                         @endforeach
                     </template>
                 </data-table>
-            </solid-box>
+            </color-box>
         </div>
-        <div class="col-lg-3 col-md-4">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4><b>Gerentes</b></h4>
-                    <h3 align="center"><b>{{ count($employees->where('job', 'Gerente')) }}</b></h3>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-users"></i>
+
+        @foreach($departments as $department => $employees)
+            <div class="col-lg-3 col-md-4">
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h4><b>{{ ucfirst(pluralize($department, $department != 'B2B')) }}</b></h4>
+                        <h3 align="center"><b>{{ count($employees) }}</b></h3>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 col-md-4">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4><b>Vendedores</b></h4>
-                    <h3 align="center"><b>{{ count($employees->where('job', 'Vendedor')) }}</b></h3>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-users"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4><b>Apoyo y bodega</b></h4>
-                    <h3 align="center"><b>{{ count($employees->where('job', 'Apoyo')) + count($employees->where('job', 'Bodega')) }}</b></h3>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-users"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4">
-            <div class="small-box bg-info">
-                <div class="inner">
-                    <h4><b>B2B</b></h4>
-                    <h3 align="center"><b>{{ count($employees->where('job', 'B2B')) }}</b></h3>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-users"></i>
-                </div>
-            </div>
-        </div>
+        @endforeach
+
         <div class="col-lg-3 col-md-4">
             <div class="small-box bg-info">
                 <div class="inner">
                     <h4><b>Total</b></h4>
-                    <h3 align="center"><b>{{ count($employees) }}</b></h3>
+                    <h3 align="center"><b>{{ $departments->sum(function ($item) { return collect($item)->count();}) }}</b></h3>
                 </div>
                 <div class="icon">
                     <i class="fa fa-users"></i>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <color-box title="Empleados dados de baja" label="{{ count($inactive) }}" color="default" button collapsed>
+                <data-table example="10">
+                    {{ drawHeader('<i class="fa fa-photo"></i>', '<i class="fa fa-cogs"></i>', 'nombre', 'puesto', 'tienda') }}
+                    <template slot="body">
+                        @foreach ($inactive as $employee)
+                            <tr>
+                                <td style="width: 5%">
+                                    @if(Storage::disk('public')->exists('employees/' . $employee->id . '/FOTO.jpeg'))
+                                        <img src="{{ Storage::url('employees/' . $employee->id . '/FOTO.jpeg') }}"
+                                        alt="foto de {{ $employee->name }}"
+                                        width="40px" height="40px"
+                                        style="border-radius: 50%;">
+                                    @else
+                                        <img src="{{ asset('images/default-avatar.png') }}"
+                                        width="40px" height="40px"
+                                        style="border-radius: 50%;">
+                                    @endif
+                                </td>
+                                <td style="width: 5%">
+                                    <dropdown icon="cogs" color="default">
+                                        <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
+                                        <ddi to="#" data-toggle="modal" data-target="#employee{{ $employee->id }}" icon="arrow-circle-up" text="Dar de alta"></ddi>
+                                    </dropdown>
+                                    
+                                    {!! Form::open(['method' => 'POST', 'route' => ['employers.restore', $employee]]) !!}
+                                    <modal id="employee{{ $employee->id }}" title="Dar de alta a {{ $employee->name }}">
+
+                                        {!! Field::select('store_id', $storesArray, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
+
+                                        <input type="hidden" name="status" value="primera capacitacion">
+
+                                        <template slot="footer">
+                                            {!! Form::submit('Dar de alta', ['class' => 'btn btn-sm btn-success pull-right']) !!}
+                                        </template>
+                                        
+                                    </modal>
+                                    {!! Form::close() !!}
+                                </td>
+                                <td>{{ $employee->name }}</td>
+                                <td>{{ $employee->job }}</td>
+                                <td>{{ $employee->store->name }}</td>
+                            </tr>
+                        @endforeach
+                    </template>
+                </data-table>
+            </color-box>
         </div>
     </div>
 @endsection
