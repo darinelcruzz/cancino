@@ -18,6 +18,11 @@ class Store extends Model
         return $this->hasMany(Sale::class);
     }
 
+    function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
+
     function managerr()
     {
         return $this->belongsTo(User::class, 'manager');

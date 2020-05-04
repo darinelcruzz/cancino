@@ -29,26 +29,17 @@ class GoalController extends Controller
             'month' => 'required',
             'year' => 'required',
             'daysshop' => 'required',
+            'daysprofessional' => 'required',
         ]);
-        $stores = Store::All();
-        foreach ($stores as $store) {
-            if ($store->type == 'p') {
-                $goal = Goal::create($request->except(['daysshop', 'daysprofessional']));
-                $goal->update(['star' => $store->star, 'golden' => $store->golden,
-                                'store_id' => $store->id, 'days' => $request->daysprofessional]);
-            }elseif ($store->type == 's') {
-                $goal = Goal::create($request->except(['daysshop', 'daysprofessional']));
-                $goal->update(['star' => $store->star, 'golden' => $store->golden,
-                                'store_id' => $store->id, 'days' => $request->daysshop]);
-            }
+
+        foreach (Store::where('type', '!=', 'c')->get() as $store) {
+            $store->goals()->create($request->only(['month', 'year']) + 
+                ['star' => $store->star, 'golden' => $store->golden, 
+                'days' => $store->type == 'p' ? $request->daysprofessional: $request->daysshop]
+            );
         }
 
         return redirect(route('admin.goals'));
-    }
-
-    function show(Goal $goal)
-    {
-        //
     }
 
     function edit($month, $year)
@@ -59,19 +50,15 @@ class GoalController extends Controller
 
     function update(Request $request)
     {
-        $stores = Store::where('type', '!=', 'c')->get();
-        foreach ($stores as $store) {
-            $sale = $request->{'sale' . $store->id};
-            $point = $request->{'point' . $store->id};
-            $goal = Goal::where('month', $request->month)->where('year', $request->year)->where('store_id', $store->id)->take(1);
-            $goal->update(['sale' => $sale, 'point' => $point]);
+        foreach (Store::where('type', '!=', 'c')->get() as $store) {
+            $goal = $store->goals->where('month', $request->month)->where('year', $request->year)->first();
+            
+            $goal->update([
+                'sale' => $request->{'sale' . $store->id}, 
+                'point' => $request->{'point' . $store->id}
+            ]);
         }
 
         return redirect(route('admin.goals'));
-    }
-
-    function destroy(Goal $goal)
-    {
-        //
     }
 }
