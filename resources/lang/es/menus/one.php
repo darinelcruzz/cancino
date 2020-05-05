@@ -93,7 +93,7 @@ return [
         'submenu' => [
             'create' => [
                 'title' => 'Lista',
-                'route' => 'admin.documents',
+                'route' => 'documents.index',
             ],
             'index' => [
                 'title' => 'Agregar',

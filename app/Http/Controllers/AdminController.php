@@ -9,15 +9,6 @@ use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, G
 
 class AdminController extends Controller
 {
-    function documents()
-    {
-        $labels = ['Todas', 'Chiapas', 'Soconusco', 'Altos', 'Galerías Tuxtla', 'Galerías Tapachula'];
-        $route = 'public/documents';
-        $folders = Storage::directories($route);
-
-        return view('documents.show', compact('folders', 'route', 'labels'));
-    }
-
     function shoppings()
     {
         $stores = Store::where('type', '!=', 'c')->get();

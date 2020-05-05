@@ -1,20 +1,23 @@
 @extends('lte.root')
-@push('pageTitle')
-    Documentos | Lista
-@endpush
+
+@push('pageTitle', 'Documentos | Lista')
 
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <color-box title="Tiendas" color="primary">
+            <color-box title="Archivos" color="primary">
                 <ul>
-                    @foreach($folders as $folder)
+                    @foreach($files as $file)
                         <li>
-                            <a href="{{ route('documents.index', substr($folder, strlen('public/documents/'))) }}">
-                                <i class="fa fa-folder-open fa-2x"></i>
+                            <a href="{{ Storage::url($file) }}" target="_blank">
+                                @if (explode('.', $file)[1] == 'pdf')
+                                    <i style="color:red;" class="fa fa-file-pdf-o fa-2x"></i>
+                                @else
+                                    <i style="color:blue;" class="fa fa-file-word fa-2x"></i>
+                                @endif
                                 &nbsp;
                                 <span style="font-size: 24px;">
-                                    {{ $labels[substr($folder, strlen('public/documents/store')) - 1] }}
+                                    {{ substr($file, strlen('public/documents/store0/')) }}
                                 </span>
                             </a>
                         </li>

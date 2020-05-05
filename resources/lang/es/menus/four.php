@@ -51,7 +51,7 @@ return [
     'Documents' => [
         'title' => 'Documentos',
         'icon' => 'fa fa-folder',
-        'route' => ['documents.index', 'store' . auth()->user()->store_id]
+        'route' => 'documents.index'
     ],
 
     'Expenses' => [

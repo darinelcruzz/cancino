@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
-
-    function index($store)
+    function index()
     {
-        $route = 'public/documents/' . $store;
-        $files = Storage::files($route);
+        $labels = ['Generales', 'Todas', 'Chiapas', 'Soconusco', 'Altos', 'Galerías Tuxtla', 'Galerías Tapachula'];
+        $route = 'public/documents';
+        $folders = Storage::directories($route);
 
-        return view('documents.folder', compact('files', 'route'));
+        return view('documents.index', compact('folders', 'route', 'labels'));
     }
 
     function create()
@@ -32,6 +32,14 @@ class DocumentController extends Controller
         $extension = $request->file('doc')->getClientOriginalExtension();
         $request->file('doc')->storeAs($route, $request->name . '.' . $extension);
 
-        return redirect(route('admin.documents'));
+        return redirect(route('documents.index'));
+    }
+    
+    function show($store)
+    {
+        $route = 'public/documents/' . $store;
+        $files = Storage::files($route);
+
+        return view('documents.show', compact('files', 'route'));
     }
 }

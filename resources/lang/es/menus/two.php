@@ -63,7 +63,7 @@ return [
     'Documents' => [
         'title' => 'Documentos',
         'icon' => 'fa fa-folder',
-        'route' => 'admin.documents',
+        'route' => 'documents.index',
     ],
 
     'NC' => [
