@@ -5,15 +5,7 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'submenu' => [
-            'manager' => [
-                'title' => 'Tienda',
-                'route' => 'shoppings.index',
-            ],
-            'admin' => [
-                'title' => 'Admin',
-                'route' => 'admin.shoppings',
-            ],
+        'route' => 'shoppings.index',
         ],
     ],
 

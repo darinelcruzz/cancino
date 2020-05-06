@@ -4,19 +4,14 @@
 @endpush
 
 @push('headerTitle')
-    @if (auth()->user()->isHelper)
-        <a href="{{ route('sales.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
-    @endif
-@endpush
-
-@section('content')
-
     <div class="row">
         <div class="col-md-3">
             @include('templates/month_select', ['route' => 'admin.deposits', 'date' => $date])
         </div>
-    </div><br>
+    </div>
+@endpush
 
+@section('content')
     @foreach ($months as $month => $days)
         <div class="row">
             @php

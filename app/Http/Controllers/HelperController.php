@@ -9,24 +9,6 @@ use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, G
 
 class HelperController extends Controller
 {
-    function shoppings()
-    {
-        $stores = Store::where('type', '!=', 'c')->get();
-        $shoppings = Shopping::all();
-        return view('admin.shoppings', compact('shoppings', 'stores'));
-    }
-
-    function verify(Request $request)
-    {
-        foreach (Shopping::find($request->shoppings) as $shopping) {
-            $shopping->update([
-                'status' => 'verificado'
-            ]);
-        }
-
-        return redirect(route('helper.shoppings'));
-    }
-
     function notes()
     {
         $stores = Store::where('type', '!=', 'c')->get();

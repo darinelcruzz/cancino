@@ -13,11 +13,12 @@ Route::get('/prueba', function () {
 Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonCheckup'], function () {
     $ctrl = 'ShoppingController';
     Route::get('/', usesas($ctrl, 'index'));
+    Route::post('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
+    Route::get('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
     Route::post('editar', usesas($ctrl, 'update'));
-    Route::get('verificar/{store}', usesas($ctrl, 'verify'));
 });
 
 Route::group(['prefix' => 'gastos', 'as' => 'expenses.', 'middleware' => 'nonCheckup'], function () {
@@ -229,8 +230,6 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
     $ctrl = 'AdminController';
-    Route::get('compras', usesas($ctrl, 'shoppings'))->middleware('high');
-    Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('ventas', usesas($ctrl, 'sales'));
     Route::get('depositos', usesas($ctrl, 'deposits'));
     Route::post('depositos', usesas($ctrl, 'deposits'));
@@ -254,8 +253,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
     $ctrl = 'HelperController';
-    Route::get('compras', usesas($ctrl, 'shoppings'));
-    Route::post('compras/verificar', usesas($ctrl, 'verify'));
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));

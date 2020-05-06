@@ -6,7 +6,7 @@ return [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
         'label' => pendingShoppings() > 0 ? pendingShoppings(): '',
-        'route' => 'admin.shoppings',
+        'route' => 'shoppings.index',
     ],
 
     'Sales' => [
