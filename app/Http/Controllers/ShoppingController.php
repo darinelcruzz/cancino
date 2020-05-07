@@ -10,7 +10,7 @@ class ShoppingController extends Controller
     function index(Request $request)
     {
         $date = $request->date ? $request->date: date('Y-m');
-    	if (isAdmin()) {
+    	if (isVKS()) {
     		$stores = Store::where('type', '!=', 'c')->get();
     		$shoppings = Shopping::whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
     	} else {

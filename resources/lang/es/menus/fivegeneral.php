@@ -5,8 +5,8 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'label' => pendingShoppings(),
-        'route' => 'helper.shoppings'
+        'label' => pendingShoppings() > 0 ? pendingShoppings(): '',
+        'route' => 'shoppings.index',
     ],
 
     'Checkups' => [
@@ -16,11 +16,11 @@ return [
         'route' => 'helper.checkups'
     ],
 
-    'NC' => [
-        'title' => 'NC',
-        'label' => pendingNotesAll(),
+    'Notes' => [
+        'title' => 'Notas',
         'icon' => 'fa fa-file-excel-o',
-        'route' => 'helper.notes'
+        'label' => pendingNotesAll() > 0 ? pendingNotesAll(): '',
+        'route' => 'notes.index',
     ],
 
     'Expenses' => [

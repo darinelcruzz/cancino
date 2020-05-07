@@ -9,14 +9,6 @@ use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, G
 
 class HelperController extends Controller
 {
-    function notes()
-    {
-        $stores = Store::where('type', '!=', 'c')->get();
-        $notes = Note::where('status', '!=', 'aplicada')->get();
-
-        return view('admin.notes', compact('notes', 'stores'));
-    }
-
     function checkups()
     {
         $stores = Store::where('type', '!=', 'c')->get();

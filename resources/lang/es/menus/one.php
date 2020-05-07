@@ -131,10 +131,10 @@ return [
     ],
 
     'Notes' => [
-        'title' => 'NC',
+        'title' => 'Notas',
         'icon' => 'fa fa-file-excel-o',
         'label' => pendingNotesAll() > 0 ? pendingNotesAll(): '',
-        'route' => 'admin.notes',
+        'route' => 'notes.index',
     ],
 
     'Equipments' => [

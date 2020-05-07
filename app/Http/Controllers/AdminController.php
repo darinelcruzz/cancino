@@ -45,14 +45,6 @@ class AdminController extends Controller
         return view('admin.deposits', compact('months', 'date'));
     }
 
-    function notes()
-    {
-        $stores = Store::where('type', '!=', 'c')->get();
-        $notes = Note::all();
-
-        return view('admin.notes', compact('notes', 'stores'));
-    }
-
     function checkups()
     {
         $stores = Store::where('type', '!=', 'c')->get();

@@ -20,12 +20,12 @@
 @endpush
 
 @section('content')
-    <div class="row">
-        @forelse ($stores as $store)
+    @forelse ($stores as $store)
+        <div class="row">
             <div class="col-md-12">
                 <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $shoppings->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
-                    <data-table example="{{ $loop->iteration }}">
-                        {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado'. '') }}
+                    <data-table example="{{ $store->id }}">
+                        {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado', '') }}
                         <template slot="body">
                             @foreach($shoppings->where('store_id', $store->id) as $shopping)
                                 <tr>
@@ -53,7 +53,9 @@
                         <a class="btn btn-xs btn-success btn-block" href="{{ route('shoppings.verify', ['store' => $store]) }}">Verificar</a>
                 </color-box>
             </div>
-        @empty
+        </div>
+    @empty
+        <div class="row">
             <div class="col-md-12">
                 <color-box title="Compras" color="primary">
                     <data-table example="1">
@@ -74,6 +76,6 @@
                     </data-table>
                 </solid-box>
             </div>
-        @endforelse
-    </div>
+        </div>
+    @endforelse
 @endsection
