@@ -5,8 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Composers\StoresComposer;
-use App\Employer;
-use App\Observers\EmployerObserver;
+use App\{Employer, Check};
+use App\Observers\{EmployerObserver, CheckObserver};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', StoresComposer::class);
 
         Employer::observe(EmployerObserver::class);
+        Check::observe(CheckObserver::class);
     }
 
     function register()

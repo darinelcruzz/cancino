@@ -15,7 +15,7 @@ class ExpenseController extends Controller
         $expenses = Expense::where('store_id', $store->id)->where('type', '0')->get();
         $ingreses = Expense::where('store_id', $store->id)->where('type', '1')->orderByDesc('id')->get()->take(3);
         $last = Expense::where('store_id', $store->id)->where('type', '0')->where('check', '!=', NULL)->get()->last();
-        return view('expenses.index', compact('expenses', 'ingreses', 'last', 'balance', 'store'));
+        return view('expenses.index', compact('expenses', 'ingreses', 'last', 'store'));
     }
 
     function create($store)

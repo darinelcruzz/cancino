@@ -69,13 +69,24 @@ return [
         ],
     ],
 
-    'Expenses' => [
+    'bank_accounts' => [
+        'title' => 'Bancos',
+        'icon' => 'fa fa-university',
+        'submenu' => [
+            'index' => [
+                'title' => 'Movimientos',
+                'route' => 'account_movements.index',
+            ],
+        ],
+    ],
+
+    'checks' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-money-check',
         'submenu' => [
             'Store' => [
                 'title' => 'Tienda',
-                'route' => 'expenses.index',
+                'route' => 'checks.index',
             ],
             'Admin' => [
                 'title' => 'Admin',

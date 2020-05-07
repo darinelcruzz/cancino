@@ -28,6 +28,16 @@ class Store extends Model
         return $this->belongsTo(User::class, 'manager');
     }
 
+    function bank_accounts()
+    {
+        return $this->hasMany(BankAccount::class);
+    }
+
+    function getExpensesAccountAttribute()
+    {
+        return $this->bank_accounts->where('type', 'gastos')->first();
+    }
+
     function getSalesSum($date)
     {
         return Sale::where('store_id', $this->id)

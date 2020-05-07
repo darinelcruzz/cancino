@@ -14,6 +14,11 @@ function isAdmin()
     return auth()->user()->level == 1;
 }
 
+function getStore()
+{
+    return auth()->user()->store;
+}
+
 function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s')
 {
     if ($original_date == NULL) {

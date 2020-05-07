@@ -240,5 +240,10 @@ return [
         'sc_dif' => 'diferencia SterenCard',
         'location_id' => 'ubicación',
         'salary' => 'salario',
+        'expenses_group_id' => 'grupo',
+        'bank_account_id' => 'cuenta bancaria',
+        'provider_id' => 'proveedor',
+        'added_at' => 'fecha',
+        'emitted_at' => 'fecha',
     ],
 ];
