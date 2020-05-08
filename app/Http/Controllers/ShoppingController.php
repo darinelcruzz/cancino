@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Shopping;
-use App\Store;
+use App\{Shopping, Store, Note};
 use Illuminate\Http\Request;
 
 class ShoppingController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
-        $stores = [];
-        $shoppings = Shopping::where('store_id', auth()->user()->store_id)->get();
-        return view('shoppings.index', compact('shoppings', 'stores'));
+        $date = $request->date ? $request->date: date('Y-m');
+    	if (isVKS()) {
+    		$stores = Store::where('type', '!=', 'c')->get();
+    		$shoppings = Shopping::whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+    		$notes = note::whereYear('date_nc', substr($date, 0, 4))->whereMonth('date_nc', substr($date, 5))->get();
+    	} else {
+    		$stores = [];
+        	$shoppings = Shopping::where('store_id', auth()->user()->store_id)->whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+            $notes = 0;
+    	}
+
+        return view('shoppings.index', compact('shoppings', 'stores', 'date', 'notes'));
     }
 
     function create()
@@ -40,15 +48,25 @@ class ShoppingController extends Controller
         //
     }
 
+    function edit(Shopping $shopping)
+    {
+        //
+    }
+
     function verify(Store $store)
     {
         $shoppings = Shopping::where('store_id', $store->id)->where('status', 'pendiente')->get();
         return view('shoppings.verify', compact('store', 'shoppings'));
     }
 
-    function update(Request $request, Shopping $shopping)
+    function update(Request $request)
     {
-        //
+        foreach (Shopping::find($request->shoppings) as $shopping) {
+            $shopping->update([
+                'status' => $request->status
+            ]);
+        }
+        return redirect(route('shoppings.index'));
     }
 
     function destroy(Shopping $shopping)

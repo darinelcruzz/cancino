@@ -6,7 +6,7 @@ return [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
         'label' => pendingShoppings() > 0 ? pendingShoppings(): '',
-        'route' => 'admin.shoppings',
+        'route' => 'shoppings.index',
     ],
 
     'Sales' => [
@@ -131,10 +131,10 @@ return [
     ],
 
     'Notes' => [
-        'title' => 'NC',
+        'title' => 'Notas',
         'icon' => 'fa fa-file-excel-o',
         'label' => pendingNotesAll() > 0 ? pendingNotesAll(): '',
-        'route' => 'admin.notes',
+        'route' => 'notes.index',
     ],
 
     'Equipments' => [

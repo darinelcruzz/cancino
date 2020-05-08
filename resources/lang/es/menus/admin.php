@@ -5,15 +5,7 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'submenu' => [
-            'manager' => [
-                'title' => 'Tienda',
-                'route' => 'shoppings.index',
-            ],
-            'admin' => [
-                'title' => 'Admin',
-                'route' => 'admin.shoppings',
-            ],
+        'route' => 'shoppings.index',
         ],
     ],
 
@@ -208,16 +200,7 @@ return [
     'Notes' => [
         'title' => 'Notas',
         'icon' => 'fa fa-file-excel-o',
-        'submenu' => [
-            'Store' => [
-                'title' => 'Tienda',
-                'route' => 'notes.index',
-            ],
-            'Admin' => [
-                'title' => 'Admin',
-                'route' => 'admin.notes',
-            ],
-        ],
+        'route' => 'notes.index',
     ],
 
     'Equipments' => [

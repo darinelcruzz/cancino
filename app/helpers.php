@@ -19,6 +19,11 @@ function getStore()
     return auth()->user()->store;
 }
 
+function isVKS()
+{
+    return auth()->user()->store_id == 1;
+}
+
 function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s')
 {
     if ($original_date == NULL) {
@@ -179,7 +184,7 @@ function pluralize($singular, $apply = true)
     if (!$apply) return $singular;
 
     $last_letter = strtolower($singular[strlen($singular)-1]);
-    
+
     switch($last_letter) {
         case 'a':
             return $singular.'s';

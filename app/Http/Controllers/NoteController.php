@@ -2,15 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Note;
+use App\{Note, Store};
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
     function index()
     {
-        $notes = Note::where('store_id', auth()->user()->store_id)->get();
-        return view('notes.index', compact('notes'));
+        if (isVKS()) {
+            $stores = Store::where('type', '!=', 'c')->get();
+            $notes = Note::all();
+        } else {
+            $stores = [];
+            $notes = Note::where('store_id', auth()->user()->store_id)->get();
+        }
+
+        return view('notes.index', compact('notes', 'stores'));
     }
 
     function create()
