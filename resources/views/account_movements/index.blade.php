@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-12">
             <color-box color="primary" title="Movimientos de cuentas">
-                <table class="table table-striped table-bordered">
+                <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th><i class="fa fa-hashtag"></i></th>

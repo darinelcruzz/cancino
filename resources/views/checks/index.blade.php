@@ -1,6 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Cheques | Lista')
+@push('pageTitle', 'Cheques/Gastos | Lista')
 
 @section('content')
     <div class="row">
@@ -37,12 +37,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($ingreses as $ingres)
+                                @foreach ($movements as $movement)
                                     <tr>
-                                        <td>{{ fdate($ingres->date, 'd M Y', 'Y-m-d') }}</td>
-                                        <td>{{ fnumber($ingres->amount) }}</td>
+                                        <td>{{ fdate($movement->added_at, 'd M Y', 'Y-m-d') }}</td>
+                                        <td>{{ number_format($movement->amount, 2) }}</td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </color-box>
@@ -55,11 +55,11 @@
                             <tbody>
                                     <tr>
                                         <th>Gastos</td>
-                                        <td>{{-- {{ fnumber($store->expense) }} --}}</td>
+                                        <td>{{ number_format(getStore()->expense, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <th>Cambio</td>
-                                        <td>{{-- {{ fnumber($store->cash) }} --}}</td>
+                                        <td>{{ number_format(getStore()->cash, 2) }}</td>
                                     </tr>
                             </tbody>
                         </table>

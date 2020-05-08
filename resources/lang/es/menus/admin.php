@@ -70,14 +70,9 @@ return [
     ],
 
     'bank_accounts' => [
-        'title' => 'Bancos',
+        'title' => 'Cuentas',
         'icon' => 'fa fa-university',
-        'submenu' => [
-            'index' => [
-                'title' => 'Movimientos',
-                'route' => 'account_movements.index',
-            ],
-        ],
+        'route' => 'account_movements.choose',
     ],
 
     'checks' => [

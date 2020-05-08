@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\AccountMovement;
-use App\{ExpensesGroup, Provider, BankAccount};
+use App\{ExpensesGroup, Provider, BankAccount, Store};
 use Illuminate\Http\Request;
 
 class AccountMovementController extends Controller
 {
-    function index()
+    function choose()
     {
-        $movements = AccountMovement::all();
+        $stores = Store::where('type', '!=', 'c')->get();
+        return view('account_movements.choose', compact('stores'));
+    }
+
+    function index(Store $store)
+    {
+        $movements = AccountMovement::where('bank_account_id', $store->terminal_account->id)->get();
         return view('account_movements.index', compact('movements'));
     }
 

@@ -12,7 +12,10 @@ class CheckController extends Controller
         $balance = getStore()->expenses_account->balance;
         $checks = Check::fromStore()->get();
         $last = Check::fromStore()->get()->last();
-        $movements = AccountMovement::all()->take(3);
+        $movements = AccountMovement::where('bank_account_id', getStore()->expenses_account->id)
+            ->whereNull('check_id')
+            ->get()
+            ->take(3);
         return view('checks.index', compact('checks', 'movements', 'balance', 'last'));
     }
 

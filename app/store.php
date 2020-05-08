@@ -38,6 +38,11 @@ class Store extends Model
         return $this->bank_accounts->where('type', 'gastos')->first();
     }
 
+    function getTerminalAccountAttribute()
+    {
+        return $this->bank_accounts->where('type', 'terminal')->first();
+    }
+
     function getSalesSum($date)
     {
         return Sale::where('store_id', $this->id)

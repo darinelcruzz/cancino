@@ -66,7 +66,7 @@
                     <tr><td>&nbsp;</td></tr>
                     <tr><td>&nbsp;</td></tr>
                     <tr>
-                        <td align="center" colspan="10"><b>({{ $check->amountAsText }}/100 MXN)</b></td>
+                        <td align="center" colspan="10"><b>({{ $check->amountAsText }} pesos {{ $check->decimals }}/100 MXN)</b></td>
                     </tr>
                     <tr><td>&nbsp;</td></tr>
                     <tr><td>&nbsp;</td></tr>

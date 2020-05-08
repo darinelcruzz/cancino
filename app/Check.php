@@ -25,12 +25,18 @@ class Check extends Model
 
     function getAmountAsTextAttribute()
     {
-    	return $this->thousands($this->amount);
+    	return $this->thousands(floor($this->amount));
+    }
+
+    function getDecimalsAttribute()
+    {
+    	$decimals = $this->amount - floor($this->amount);
+    	return substr("0$decimals", -2);
     }
 
     function basic($number)
     {
-    	$base = ['cero', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez',
+    	$base = ['cero', 'un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez',
     		'once', 'doce', 'trece', 'catorce', 'quince', 'dieciseis', 'diecisiete', 'dieciocho', 'diecinueve', 
     		'veinte', 'veintiuno', 'veintidos', 'veintitres', 'veinticuatro','veinticinco', 'veintiséis','veintisiete',
     		'veintiocho','veintinueve'];
@@ -48,7 +54,7 @@ class Check extends Model
     	$ten = $number % 10;
 
     	if($ten == 0) {
-    		return $ten[$number];
+    		return $tens[$number];
     	}
     	else return $tens[$number - $ten] . ' y '. $this->basic($ten);
     }
@@ -72,20 +78,20 @@ class Check extends Model
 
     function thousands($number)
     {
+        // return (int)substr($number, 0, strlen($number) - 3);
 		if($number > 999) {
 			if($number == 1000) {
-				return 'mil';
+				return 'un mil';
 			} else {
-				$length = strlen($number);
-				$firstDigit = (int)substr($number, 0, $length - 3);
+				$firstDigits = (int)substr($number, 0, strlen($number) - 3);
 				$hundreds = (int)substr($number,-3);
 
-				if($firstDigit == 1) {
-					$text = 'mil '. $this->hundreds($hundreds);
-				} else if($hundreds != 0) {
-					$text = $this->hundreds($firstDigit) .' mil '.$this->hundreds($hundreds);
+				if($firstDigits == 1) {
+					$text = 'un mil '. $this->hundreds($hundreds);
+				} else if($hundreds == 0) {
+					$text = $this->hundreds($firstDigits) . ' mil';
 				} else {
-					$text = $this->hundreds($firstDigit) . ' mil';
+					$text = $this->hundreds($firstDigits) . ' mil ' . $this->hundreds($hundreds);
 				}
 				
 				return $text;
