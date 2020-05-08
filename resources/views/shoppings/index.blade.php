@@ -25,12 +25,11 @@
             <div class="col-md-12">
                 <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $shoppings->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
                     <data-table example="{{ $store->id }}">
-                        {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado', '') }}
+                        {{ drawHeader('Folio','Fecha', 'Monto', 'Tipo', 'Doc POS', 'Estado', '') }}
                         <template slot="body">
                             @foreach($shoppings->where('store_id', $store->id) as $shopping)
                                 <tr>
-                                    <td>{{ $shopping->id }}</td>
-                                    <td>{{ $shopping->folio }}</td>
+                                    <td>{{ $shopping->prefix }}{{ $shopping->folio }}</td>
                                     <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fnumber($shopping->amount) }}</td>
                                     <td>{{ $shopping->type }}</td>
@@ -47,6 +46,28 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @foreach($notes->where('store_id', $store->id) as $note)
+                                <tr>
+                                    <td>ANSM{{ $note->folio }}</td>
+                                    <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
+                                    <td>{{ fnumber($note->amount) }}</td>
+                                    <td>nota producto</td>
+                                    <td>{{ $note->document }}</td>
+                                    <td>
+                                        <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'danger' : 'warning') }}">
+                                            {{ ucfirst($note->status) }}
+                                        </span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        </template>
+                        <template slot="footer">
+                            <tr>
+                                <td colspan="3" align="right"><b>Total</b></td>
+                                <td>{{ fnumber($shoppings->where('store_id', $store->id)->sum('amount')) }}</td>
+                                <td colspan="4"></td>
+                            </tr>
                         </template>
                     </data-table>
                     <br>

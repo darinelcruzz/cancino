@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Shopping, Store};
+use App\{Shopping, Store, Note};
 use Illuminate\Http\Request;
 
 class ShoppingController extends Controller
@@ -13,12 +13,14 @@ class ShoppingController extends Controller
     	if (isVKS()) {
     		$stores = Store::where('type', '!=', 'c')->get();
     		$shoppings = Shopping::whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+    		$notes = note::whereYear('date_nc', substr($date, 0, 4))->whereMonth('date_nc', substr($date, 5))->get();
     	} else {
     		$stores = [];
         	$shoppings = Shopping::where('store_id', auth()->user()->store_id)->whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+            $notes = 0;
     	}
 
-        return view('shoppings.index', compact('shoppings', 'stores', 'date'));
+        return view('shoppings.index', compact('shoppings', 'stores', 'date', 'notes'));
     }
 
     function create()
@@ -61,7 +63,7 @@ class ShoppingController extends Controller
     {
         foreach (Shopping::find($request->shoppings) as $shopping) {
             $shopping->update([
-                'status' => 'verificado'
+                'status' => $request->status
             ]);
         }
         return redirect(route('shoppings.index'));

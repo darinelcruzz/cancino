@@ -25,6 +25,7 @@
                         </data-table>
                     </div>
                     <div class="box-footer">
+                        <input type="hidden" name="status" value="verificado">
                         {!! Form::submit('Verificar', ['class' => 'btn btn-success btn-block']) !!}
                     </div>
 
