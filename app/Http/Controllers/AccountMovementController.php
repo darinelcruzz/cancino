@@ -11,7 +11,7 @@ class AccountMovementController extends Controller
     function choose()
     {
         $stores = Store::where('type', '!=', 'c')->get();
-        $bank_accounts = BankAccount::where('type', 'gastos')->pluck('number', 'id')->toArray();
+        $bank_accounts = BankAccount::all()->where('type', 'gastos')->pluck('full_name', 'id')->toArray();
         $groupA = ExpensesGroup::where('type', 'abono')->pluck('name', 'id')->toArray();
         $groupB = ExpensesGroup::where('type', 'cargo')->pluck('name', 'id')->toArray();
         return view('account_movements.choose', compact('stores', 'bank_accounts', 'groupA', 'groupB'));

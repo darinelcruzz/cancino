@@ -13,10 +13,20 @@ class BankAccount extends Model
     	return $this->hasMany(AccountMovement::class);
     }
 
+    function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
     function getBalanceAttribute()
     {
     	return $this->account_movements->sum(function ($item) {
     		return $item->type == 'abono' ? $item->amount : $item->amount * (-1);
     	});
+    }
+
+    function getFullNameAttribute()
+    {
+        return ucfirst($this->type) . ' de ' . $this->store->name;
     }
 }
