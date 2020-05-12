@@ -315,18 +315,17 @@ Route::group(['prefix' => 'movimientos-bancarios', 'as' => 'account_movements.']
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{account_movement}', usesas($ctrl, 'edit'));
     Route::post('editar/{account_movement}', usesas($ctrl, 'update'));
-    Route::get('/{store}', usesas($ctrl, 'index'));
+    Route::get('/{store?}', usesas($ctrl, 'index'));
 });
 
 Route::group(['prefix' => 'cheques', 'as' => 'checks.'], function () {
     $ctrl = 'CheckController';
-    Route::get('/', usesas($ctrl, 'index'));
-    Route::post('/', usesas($ctrl, 'index'));
     Route::get('agregar/{store}', usesas($ctrl, 'create'));
     Route::post('agregar/{store}', usesas($ctrl, 'store'));
     Route::get('editar/{check}', usesas($ctrl, 'edit'));
     Route::post('editar/{check}', usesas($ctrl, 'update'));
     Route::get('poliza/{check}', usesas($ctrl, 'policy'));
+    Route::get('/{store?}', usesas($ctrl, 'index'));
 });
 
 Route::get('/mailable/employer/to-firm', function () {

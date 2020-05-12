@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class CheckController extends Controller
 {
-    function index()
+    function index(Store $store = null)
     {
-        $balance = getStore()->expenses_account->balance;
-        $checks = Check::fromStore()->get();
-        $last = Check::fromStore()->get()->last();
+        if ($store == null) $store = getStore();
+
+        $balance = $store->expenses_account->balance ?? 0;
+        $checks = Check::fromStore($store->id)->get();
+        $last = Check::fromStore($store->id)->get()->last();
         $movements = AccountMovement::where('bank_account_id', getStore()->expenses_account->id)
             ->whereNull('check_id')
             ->get()
@@ -19,9 +21,10 @@ class CheckController extends Controller
         return view('checks.index', compact('checks', 'movements', 'balance', 'last'));
     }
 
-    function create()
+    function create(Store $store = null)
     {
-        $last = Check::fromStore()->get()->last();
+        if ($store == null) $store = getStore();
+        $last = Check::fromStore($store->id)->get()->last();
         $groups = ExpensesGroup::pluck('name', 'id')->toArray();
         return view('checks.create', compact('last', 'groups'));
     }

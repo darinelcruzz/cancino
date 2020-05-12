@@ -27,4 +27,14 @@ class AccountMovement extends Model
     {
         return $this->belongsTo(Provider::class);
     }
+
+    function getNextRegisterExistsAttribute()
+    {
+        return AccountMovement::find($this->id + 1) ? true: false;
+    }
+
+    function getNextRouteAttribute()
+    {
+        return route('account_movements.edit', $this->id + 1);
+    }
 }

@@ -6,7 +6,6 @@ return [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
         'route' => 'shoppings.index',
-        ],
     ],
 
     'Sales' => [
@@ -61,14 +60,8 @@ return [
         ],
     ],
 
-    'bank_accounts' => [
-        'title' => 'Cuentas',
-        'icon' => 'fa fa-university',
-        'route' => 'account_movements.choose',
-    ],
-
     'checks' => [
-        'title' => 'Gastos',
+        'title' => 'Chequera',
         'icon' => 'fa fa-money-check',
         'submenu' => [
             'Store' => [
@@ -77,7 +70,7 @@ return [
             ],
             'Admin' => [
                 'title' => 'Admin',
-                'route' => 'admin.balances',
+                'route' => 'account_movements.choose',
             ],
         ],
     ],

@@ -11,11 +11,18 @@ class AccountMovementController extends Controller
     function choose()
     {
         $stores = Store::where('type', '!=', 'c')->get();
-        return view('account_movements.choose', compact('stores'));
+        $bank_accounts = BankAccount::where('type', 'gastos')->pluck('number', 'id')->toArray();
+        $groupA = ExpensesGroup::where('type', 'abono')->pluck('name', 'id')->toArray();
+        $groupB = ExpensesGroup::where('type', 'cargo')->pluck('name', 'id')->toArray();
+        return view('account_movements.choose', compact('stores', 'bank_accounts', 'groupA', 'groupB'));
     }
 
-    function index(Store $store)
+    function index(Store $store = null)
     {
+        if ($store == null) {
+            $store = getStore();
+        }
+
         $movements = AccountMovement::where('bank_account_id', $store->terminal_account->id)->get();
         return view('account_movements.index', compact('movements'));
     }
@@ -36,13 +43,12 @@ class AccountMovementController extends Controller
             'added_at' => 'required',
             'amount' => 'required',
             'bank_account_id' => 'required',
-            'provider_id' => 'required',
             'expenses_group_id' => 'required',
         ]);
 
         AccountMovement::create($attributes);
 
-        return redirect(route('account_movements.index'));
+        return redirect(route('account_movements.choose'));
     }
 
     function show(AccountMovement $accountMovement)
@@ -62,15 +68,15 @@ class AccountMovementController extends Controller
     {
         $attributes = $request->validate([
             'concept' => 'required',
-            'type' => 'required',
-            'added_at' => 'required',
-            'amount' => 'required',
-            'bank_account_id' => 'required',
             'provider_id' => 'required',
             'expenses_group_id' => 'required',
         ]);
 
         $accountMovement->update($attributes);
+
+        if ($accountMovement->next_register_exists) {
+            return redirect($account_movement->next_route);
+        }
 
         return redirect(route('account_movements.index'));
     }

@@ -5,8 +5,7 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'label' => pendingShoppings(),
-        'route' => 'admin.shoppings'
+        'route' => 'shoppings.index',
     ],
 
     'Sales' => [
