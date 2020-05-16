@@ -45,8 +45,8 @@
                         
                         <input type="hidden" name="folio" value="{{ $last ? $last->folio + 1: 1 }}">
 
-                        <input type="hidden" name="store_id" value="{{ getStore()->id }}">
-                        <input type="hidden" name="bank_account_id" value="{{ getStore()->expenses_account->id }}">
+                        <input type="hidden" name="store_id" value="{{ $store->id }}">
+                        <input type="hidden" name="bank_account_id" value="{{ $store->expenses_account->id }}">
                     {!! Form::close() !!}
                 </color-box>
             </div>

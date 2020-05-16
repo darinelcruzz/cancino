@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <color-box title="Agregar un movimiento" color="primary">
+            <color-box title="Editar movimiento {{ $accountMovement->id }}" color="primary">
                 {!! Form::open(['method' => 'POST', 'route' => ['account_movements.update', $accountMovement]]) !!}
                     <div class="row">
                         <div class="col-md-12">

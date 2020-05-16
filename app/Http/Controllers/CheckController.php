@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\{Check, Store, ExpensesGroup, AccountMovement};
 use Illuminate\Http\Request;
+use App\Imports\ChecksImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CheckController extends Controller
 {
@@ -12,21 +14,20 @@ class CheckController extends Controller
         if ($store == null) $store = getStore();
 
         $balance = $store->expenses_account->balance ?? 0;
-        $checks = Check::fromStore($store->id)->get();
-        $last = Check::fromStore($store->id)->get()->last();
+        $checks = Check::fromBankAccount($store->expenses_account->id)->get();
+        $last = Check::fromBankAccount($store->expenses_account->id)->get()->last();
         $movements = AccountMovement::where('bank_account_id', getStore()->expenses_account->id)
-            ->whereNull('check_id')
-            ->get()
-            ->take(3);
-        return view('checks.index', compact('checks', 'movements', 'balance', 'last'));
+            ->whereNull('check_id')->where('type', 'abono')
+            ->get()->take(3);
+        return view('checks.index', compact('checks', 'movements', 'balance', 'last', 'store'));
     }
 
     function create(Store $store = null)
     {
         if ($store == null) $store = getStore();
-        $last = Check::fromStore($store->id)->get()->last();
+        $last = Check::fromBankAccount($store->expenses_account->id)->get()->last();
         $groups = ExpensesGroup::pluck('name', 'id')->toArray();
-        return view('checks.create', compact('last', 'groups'));
+        return view('checks.create', compact('last', 'groups', 'store'));
     }
 
     function store(Request $request)
@@ -36,12 +37,12 @@ class CheckController extends Controller
             'amount' => 'required',
             'name' => 'sometimes|required',
             'concept' => 'sometimes|required',
-            'store_id' => 'required',
+            'bank_account_id' => 'required',
             'folio' => 'sometimes|required',
             'expenses_group_id' => 'sometimes|required',
         ]);
         
-        Check::create($request->except(['expenses_group_id', 'bank_account_id']));
+        Check::create($request->except(['expenses_group_id', 'store_id']));
 
         if ($request->file("invoice0")) {
             $route = 'public/expenses/store' . $request->store_id . "/$request->folio";
@@ -71,6 +72,18 @@ class CheckController extends Controller
     function policy(Check $check)
     {
         return view('checks.policy', compact('check'));
+    }
+
+    function import(Request $request)
+    {
+        if ($request->checks) {
+            // dd($request->all());
+            Excel::import(new ChecksImport, $request->file('checks'));
+        
+            return "HECHO, SIN PROBLEMAS";
+        }
+
+        return view('checks.import');
     }
 
     function destroy(Check $check)

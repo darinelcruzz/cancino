@@ -8,19 +8,19 @@ class Check extends Model
 {
     protected $guarded = [];
 
-    function store()
+    function bank_account()
     {
-    	return $this->belongsTo(Store::class);
+    	return $this->belongsTo(BankAccount::class);
     }
 
     function account_movement()
     {
-    	return $this->hasOne(AccountMovement::class);
+        return $this->hasOne(AccountMovement::class);
     }
 
-    function scopeFromStore($query, $store_id = null)
+    function scopeFromBankAccount($query, $bank_account_id)
     {
-    	return $query->where('store_id', $store_id ?? getStore()->id);
+    	return $query->where('bank_account_id', $bank_account_id);
     }
 
     function getAmountAsTextAttribute()
@@ -30,7 +30,7 @@ class Check extends Model
 
     function getDecimalsAttribute()
     {
-    	$decimals = $this->amount - floor($this->amount);
+        $decimals = number_format($this->amount - floor($this->amount), 2);
     	return substr("0$decimals", -2);
     }
 

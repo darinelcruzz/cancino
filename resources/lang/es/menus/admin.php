@@ -64,13 +64,17 @@ return [
         'title' => 'Chequera',
         'icon' => 'fa fa-money-check',
         'submenu' => [
-            'Store' => [
+            'checks' => [
                 'title' => 'Tienda',
                 'route' => 'checks.index',
             ],
-            'Admin' => [
+            'admin' => [
                 'title' => 'Admin',
                 'route' => 'account_movements.choose',
+            ],
+            'accounts' => [
+                'title' => 'Cuentas',
+                'route' => 'stores.index',
             ],
         ],
     ],

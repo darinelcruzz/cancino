@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ route('checks.create', getStore()) }}" class="btn btn-success btn-block"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a><br>
+                    <a href="{{ route('checks.create', $store) }}" class="btn btn-success btn-block"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a><br>
                 </div>
             </div>
             <div class="row">
@@ -83,7 +83,7 @@
                                 <td>{{ $check->observations }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
-                                        <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza"></ddi>
+                                        <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza" target="_blank"></ddi>
                                         @if ($check->group == 'Otros gastos')
                                             <ddi to="{{ route('checks.show', $expense)}}" icon="eye" text="Detalles"></ddi>
                                         @endif

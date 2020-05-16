@@ -64,7 +64,7 @@ class AccountMovementController extends Controller
         return view('account_movements.edit', compact('accountMovement', 'groups', 'providers', 'bank_accounts'));
     }
 
-    function update(Request $request, AccountMovement $accountMovement)
+    function update(Request $request, AccountMovement $account_movement)
     {
         $attributes = $request->validate([
             'concept' => 'required',
@@ -72,9 +72,9 @@ class AccountMovementController extends Controller
             'expenses_group_id' => 'required',
         ]);
 
-        $accountMovement->update($attributes);
+        $account_movement->update($attributes);
 
-        if ($accountMovement->next_register_exists) {
+        if ($account_movement->next_register_exists) {
             return redirect($account_movement->next_route);
         }
 

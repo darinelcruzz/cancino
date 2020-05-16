@@ -16,7 +16,7 @@ class CreateChecksTable extends Migration
             $table->double('amount');
             $table->string('concept')->nullable();
             $table->text('observations')->nullable();
-            $table->unsignedInteger('store_id');
+            $table->unsignedInteger('bank_account_id');
             $table->string('name')->nullable();
 
             $table->timestamps();

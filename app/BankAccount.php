@@ -13,6 +13,11 @@ class BankAccount extends Model
     	return $this->hasMany(AccountMovement::class);
     }
 
+    function pending_movements()
+    {
+        return $this->hasMany(AccountMovement::class)->whereNull('updated_at');
+    }
+
     function store()
     {
         return $this->belongsTo(Store::class);

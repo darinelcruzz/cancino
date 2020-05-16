@@ -1,5 +1,4 @@
-
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Póliza</title>
@@ -245,8 +244,7 @@
                 <tr>
                     <td valign="TOP";>{{ auth()->user()->name }}</td>
                     <td valign="TOP";><br>&nbsp;</td>
-                    {{-- <td valign="TOP";>{{ $check->type == 3 ? "Victor Cancino" : $check->store->managerr->name }}</td> --}}
-                    <td valign="TOP";>{{ $check->store->managerr->name }}</td>
+                    <td valign="TOP";>{{ $check->bank_account->type == 'gastos' ? $check->store->managerr->name : "Victor Cancino"  }}</td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>
@@ -256,3 +254,4 @@
 
     </section>
 </body>
+</html>

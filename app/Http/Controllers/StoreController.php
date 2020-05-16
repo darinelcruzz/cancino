@@ -10,7 +10,8 @@ class StoreController extends Controller
 {
     function index()
     {
-        //
+        $stores = Store::with('bank_accounts')->get();
+        return view('stores.index', compact('stores'));
     }
 
     function create()

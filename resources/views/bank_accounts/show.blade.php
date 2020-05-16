@@ -1,18 +1,18 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Movimientos | Lista')
+@push('pageTitle', 'Movimientos')
 
 @push('headerTitle')
-    <a href="{{ route('account_movements.create') }}" class="btn btn-primary btn-sm">
+    {{-- <a href="{{ route('account_movements.create') }}" class="btn btn-primary btn-sm">
         <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
-    </a>
+    </a> --}}
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box color="primary" title="Movimientos de cuentas">
-                <table id="example1" class="table table-striped table-bordered">
+            <color-box color="primary" title="Movimientos de la cuenta ...{{ substr($bank_account->number, -4) }}">
+                <table class="table table-striped table-bordered ascending">
                     <thead>
                         <tr>
                             <th><i class="fa fa-hashtag"></i></th>
@@ -28,6 +28,10 @@
                     </thead>
 
                     <tbody>
+                        @php
+                            $movements = auth()->user()->level <= 2 ? $bank_account->account_movements: $bank_account->pending_movements
+                        @endphp
+
                         @foreach($movements as $movement)
                             <tr>
                                 <td>{{ $movement->id }}</td>

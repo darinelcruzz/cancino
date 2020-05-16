@@ -30,11 +30,19 @@ class AccountMovement extends Model
 
     function getNextRegisterExistsAttribute()
     {
-        return AccountMovement::find($this->id + 1) ? true: false;
+        return $this->next_register ? true: false;
+    }
+
+    function getNextRegisterAttribute()
+    {
+        return AccountMovement::where('bank_account_id', $this->bank_account_id)
+            ->where('id', '>', $this->id)
+            ->whereNull('updated_at')
+            ->first();
     }
 
     function getNextRouteAttribute()
     {
-        return route('account_movements.edit', $this->id + 1);
+        return route('account_movements.edit', $this->next_register);
     }
 }
