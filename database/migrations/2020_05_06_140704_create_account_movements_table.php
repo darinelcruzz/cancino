@@ -23,7 +23,7 @@ class CreateAccountMovementsTable extends Migration
             $table->double('amount');
             $table->unsignedInteger('provider_id')->nullable();
             $table->unsignedInteger('check_id')->nullable();
-            $table->unsignedInteger('expenses_group_id');
+            $table->unsignedInteger('expenses_group_id')->nullable();
 
             $table->timestamps();
         });

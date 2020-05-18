@@ -315,6 +315,8 @@ Route::group(['prefix' => 'movimientos-bancarios', 'as' => 'account_movements.']
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{account_movement}', usesas($ctrl, 'edit'));
     Route::post('editar/{account_movement}', usesas($ctrl, 'update'));
+    Route::post('importar', usesas($ctrl, 'import'));
+    Route::get('importar', usesas($ctrl, 'import'));
     Route::get('/{store?}', usesas($ctrl, 'index'));
 });
 

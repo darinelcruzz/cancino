@@ -4,9 +4,14 @@
 
 @section('content')
 
-    <div class="row">
     @foreach ($stores as $store)
-            <div class="col-lg-4 col-md-6">
+        
+        @if($loop->index == 0)
+            <div class="row">
+        @endif
+
+
+            <div class="col-md-4">
 
                 <div class="box box-{{ $store->color }}">
                     <div class="box-header">
@@ -24,6 +29,11 @@
                     </div>
                 </div>
             </div>
+
+        @if($loop->iteration % 3 == 0)
+            </div>
+            <div class="row">
+        @endif
     @endforeach
     </div>
 

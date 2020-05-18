@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\AccountMovement;
 use App\{ExpensesGroup, Provider, BankAccount, Store};
 use Illuminate\Http\Request;
+use App\Imports\AccountMovementsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AccountMovementController extends Controller
 {
@@ -79,6 +81,17 @@ class AccountMovementController extends Controller
         }
 
         return redirect(route('account_movements.index'));
+    }
+
+    function import(Request $request)
+    {
+        if ($request->account_movements) {
+            Excel::import(new AccountMovementsImport, $request->file('account_movements'));
+        
+            return "HECHO, SIN PROBLEMAS";
+        }
+
+        return view('account_movements.import');
     }
 
     function destroy(AccountMovement $accountMovement)

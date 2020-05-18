@@ -15,7 +15,7 @@ class BankAccount extends Model
 
     function pending_movements()
     {
-        return $this->hasMany(AccountMovement::class)->whereNull('updated_at');
+        return $this->hasMany(AccountMovement::class)->whereNull('expenses_group_id');
     }
 
     function store()

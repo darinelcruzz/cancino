@@ -24,8 +24,8 @@ class ChecksImport implements ToCollection
             ]);
 
             $check->account_movement->update([
-                'expenses_group_id' => contiene($row[3], 'COM') ? 1: null,
-                'provider_id' => contiene($row[3], 'COM') ? 1: null,
+                'expenses_group_id' => $row[9],
+                'provider_id' => $row[10],
             ]);
         }
     }
