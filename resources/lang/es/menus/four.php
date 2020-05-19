@@ -57,7 +57,7 @@ return [
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-file-invoice-dollar',
-        'route' => 'expenses.index'
+        'route' => 'checks.index',
     ],
 
     'NC' => [

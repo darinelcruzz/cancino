@@ -12,7 +12,7 @@ class AccountMovementsImport implements ToCollection
     {
         foreach ($rows as $row) {
             if (substr($row[1], 0, strpos($row[1], '/')) != 'CHEQUE PAGADO NO.') {
-                $account_movement = AccountMovement::create([
+                AccountMovement::create([
                     'added_at' => $row[0],
                     'concept' => $row[1],
                     'type' => $row[2] == '' ? 'abono' : 'cargo',

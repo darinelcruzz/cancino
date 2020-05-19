@@ -45,8 +45,8 @@
                                 <td>{{ $movement->concept }}</td>
                                 <td>{{ number_format($movement->amount, 2) }}</td>
                                 <td>{{ ucfirst($movement->type) }}</td>
-                                <td>{{ $movement->provider->social or 'No se ha elegido'}}</td>
-                                <td>{{ $movement->expenses_group->name }}</td>
+                                <td>{{ $movement->provider->social or 'Pendiente' }}</td>
+                                <td>{{ $movement->expenses_group->name or 'Pendiente' }}</td>
                             </tr>
                         @endforeach
                     </tbody>

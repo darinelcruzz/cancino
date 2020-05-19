@@ -37,7 +37,7 @@ class AccountMovement extends Model
     {
         return AccountMovement::where('bank_account_id', $this->bank_account_id)
             ->where('id', '>', $this->id)
-            ->whereNull('updated_at')
+            ->whereNull('expenses_group_id')
             ->first();
     }
 

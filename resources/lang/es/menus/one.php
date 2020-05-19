@@ -50,17 +50,17 @@ return [
         'route' => 'admin.checklist'
     ],
 
-    'Expenses' => [
-        'title' => 'Gastos',
-        'icon' => 'fa fa-file-invoice-dollar',
+    'bank_accounts' => [
+        'title' => 'Bancos',
+        'icon' => 'fa fa-university',
         'submenu' => [
-            'balances' => [
-                'title' => 'Saldos',
-                'route' => 'admin.balances',
+            'admin' => [
+                'title' => 'Gerentes',
+                'route' => 'account_movements.choose',
             ],
-            'expenses' => [
-                'title' => 'Chequeras',
-                'route' => 'admin.expenses',
+            'accounts' => [
+                'title' => 'Cuentas',
+                'route' => 'stores.index',
             ],
         ],
     ],

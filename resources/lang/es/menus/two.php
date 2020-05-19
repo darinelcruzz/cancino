@@ -50,7 +50,7 @@ return [
     'Expenses' => [
         'title' => 'Saldos',
         'icon' => 'fa fa-file-invoice-dollar',
-        'route' => 'admin.balances'
+        'route' => 'account_movements.choose'
     ],
 
     'Checklist' => [

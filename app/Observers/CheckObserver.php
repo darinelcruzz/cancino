@@ -13,7 +13,7 @@ class CheckObserver
             'concept' => 'Cheque pagado',
             'type' => 'cargo',
             'amount' => $check->amount,
-            'expenses_group_id' => 1,
+            'expenses_group_id' => request('expenses_group_id'),
             'bank_account_id' => $check->bank_account_id,
             'provider_id' => 1,
         ]);

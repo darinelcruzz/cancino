@@ -332,6 +332,16 @@ Route::group(['prefix' => 'cheques', 'as' => 'checks.'], function () {
     Route::get('/{store?}', usesas($ctrl, 'index'));
 });
 
+Route::group(['prefix' => 'terminal', 'as' => 'terminal.'], function () {
+    $ctrl = 'TerminalCheckController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar/{bank_account}', usesas($ctrl, 'create'));
+    Route::post('agregar/{bank_account}', usesas($ctrl, 'store'));
+    Route::get('editar/{check}', usesas($ctrl, 'edit'));
+    Route::post('editar/{check}', usesas($ctrl, 'update'));
+    Route::get('poliza/{check}', usesas($ctrl, 'policy'));
+});
+
 Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {
     $ctrl = 'StoreController';
     Route::get('/', usesas($ctrl, 'index'));

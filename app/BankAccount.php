@@ -18,6 +18,11 @@ class BankAccount extends Model
         return $this->hasMany(AccountMovement::class)->whereNull('expenses_group_id');
     }
 
+    function checks()
+    {
+        return $this->hasMany(Check::class);
+    }
+
     function store()
     {
         return $this->belongsTo(Store::class);

@@ -23,10 +23,19 @@ return [
         'route' => 'notes.index',
     ],
 
-    'Expenses' => [
-        'title' => 'Gastos',
-        'icon' => 'fa fa-file-invoice-dollar',
-        'route' => 'helper.expenses'
+    'bank_accounts' => [
+        'title' => 'Bancos',
+        'icon' => 'fa fa-university',
+        'submenu' => [
+            'admin' => [
+                'title' => 'Chequeras',
+                 'route' => 'terminal.index'
+            ],
+            'accounts' => [
+                'title' => 'Movimientos',
+                'route' => 'stores.index',
+            ],
+        ],
     ],
 
     'Commisions' => [

@@ -1,0 +1,91 @@
+@extends('lte.root')
+
+@push('pageTitle', 'Chequeras')
+
+@section('content')
+    @foreach ($stores->where('type', 'c')->first()->bank_accounts as $bank_account)
+        <div class="row">
+            <div class="col-md-12">
+                <color-box title="{{ ucfirst($bank_account->type) }} ({{ $bank_account->checks->count() }})" color="{{ $bank_account->store->color }}" solid button collapsed>
+
+                    <table class="table table-striped table-bordered ascending">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">Folio</th>
+                                <th style="width: 5%"><i class="fa fa-cogs"></i></th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Concepto</th>
+                                <th>A nombre de</th>
+                                <th>Observaciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach($bank_account->checks as $check)
+                                <tr>
+                                    <td style="width: 5%">{{ $check->folio }}</td>
+                                    <td style="width: 5%">
+                                        <dropdown icon="cogs" color="github">
+                                            <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza"></ddi>
+                                        </dropdown>
+                                    </td>
+                                    <td>{{ fdate($check->emitted_at, 'd M Y', 'Y-m-d') }}</td>
+                                    <td style="text-align: right;">{{ number_format($check->amount, 2) }}</td>
+                                    <td><small>{{ strtoupper($check->concept) }}</small></td>
+                                    <td>{{ ucfirst($check->name) }}</td>
+                                    <td>{{ $check->observations }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    
+                    <a href="{{ route('terminal.create', $bank_account) }}" class="btn btn-github btn-xs btn-block">AGREGAR</a>
+                </color-box>
+            </div>
+        </div>
+    @endforeach
+
+    @foreach ($stores->where('type', '!=', 'c') as $store)
+        <div class="row">
+            <div class="col-md-12">
+                <color-box title="{{ ucfirst($store->name) }} ({{ $store->terminal_account->checks->count() }})" color="{{ $store->color }}" solid button collapsed>
+
+                    <table class="table table-striped table-bordered ascending">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">Folio</th>
+                                <th style="width: 5%"><i class="fa fa-cogs"></i></th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Concepto</th>
+                                <th>A nombre de</th>
+                                <th>Observaciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach($store->terminal_account->checks as $check)
+                                <tr>
+                                    <td style="width: 5%">{{ $check->folio }}</td>
+                                    <td style="width: 5%">
+                                        <dropdown icon="cogs" color="{{ $store->color }}">
+                                            <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza"></ddi>
+                                        </dropdown>
+                                    </td>
+                                    <td>{{ fdate($check->emitted_at, 'd M Y', 'Y-m-d') }}</td>
+                                    <td style="text-align: right;">{{ number_format($check->amount, 2) }}</td>
+                                    <td><small>{{ strtoupper($check->concept) }}</small></td>
+                                    <td>{{ ucfirst($check->name) }}</td>
+                                    <td>{{ $check->observations }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    
+                    <a href="{{ route('terminal.create', $store->terminal_account) }}" class="btn btn-{{ $store->color }} btn-xs btn-block">AGREGAR</a>
+                </color-box>
+            </div>
+        </div>
+    @endforeach
+@endsection
