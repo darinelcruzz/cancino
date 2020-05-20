@@ -33,9 +33,10 @@ class TerminalCheckController extends Controller
             'bank_account_id' => 'required',
             'folio' => 'sometimes|required',
             'expenses_group_id' => 'sometimes|required',
+            'provider_id' => 'sometimes|required',
         ]);
         
-        Check::create($request->except(['expenses_group_id', 'store_id', ]));
+        Check::create($request->except(['expenses_group_id', 'store_id', 'provider_id']));
 
         if ($request->file("invoice0")) {
             $route = 'public/expenses/store' . $request->store_id . "/T$request->folio";

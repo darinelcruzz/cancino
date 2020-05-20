@@ -7,3 +7,4 @@ Route::get('clients', function ()
 
 
 Route::apiResource('products', 'API\ProductController');
+Route::apiResource('expenses-groups', 'API\ExpensesGroupController');

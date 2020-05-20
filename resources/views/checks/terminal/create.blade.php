@@ -29,11 +29,20 @@
                                 {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'pen']) !!}
                             </div>
                             <div class="col-md-6">
-                                {!! Field::select('expenses_group_id', $groups, null, ['empty' => 'Seleccione el grupo', 'tpl' => 'lte/withicon', 'v-model' => 'concept'], ['icon' => 'map-pin'])
+                                {!! Field::select('expenses_group_id', $groups, null, ['empty' => 'Seleccione el grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept'], ['icon' => 'group'])
                                     !!}
                             </div>
                         </div>
-                        {!! Field::text('observations', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::text('observations', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
+                            </div>
+                            <div class="col-md-6">
+                                <provider-select :group="concept" icon="truck" label="Proveedor" name="provider_id"></provider-select>
+                            </div>
+                        </div>
+
                         <file-input v-if='concept==7'></file-input>
                         <hr>
                         {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}

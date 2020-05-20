@@ -16,7 +16,8 @@
                                 <th>Fecha</th>
                                 <th>Monto</th>
                                 <th>Concepto</th>
-                                <th>A nombre de</th>
+                                <th>Nombre</th>
+                                <th>Proveedor</th>
                                 <th>Observaciones</th>
                             </tr>
                         </thead>
@@ -34,6 +35,7 @@
                                     <td style="text-align: right;">{{ number_format($check->amount, 2) }}</td>
                                     <td><small>{{ strtoupper($check->concept) }}</small></td>
                                     <td>{{ ucfirst($check->name) }}</td>
+                                    <td>{{ ucfirst($check->account_movement->provider->social) }}</td>
                                     <td>{{ $check->observations }}</td>
                                 </tr>
                             @endforeach
@@ -59,7 +61,8 @@
                                 <th>Fecha</th>
                                 <th>Monto</th>
                                 <th>Concepto</th>
-                                <th>A nombre de</th>
+                                <th>Nombre</th>
+                                <th>Proveedor</th>
                                 <th>Observaciones</th>
                             </tr>
                         </thead>
@@ -77,6 +80,7 @@
                                     <td style="text-align: right;">{{ number_format($check->amount, 2) }}</td>
                                     <td><small>{{ strtoupper($check->concept) }}</small></td>
                                     <td>{{ ucfirst($check->name) }}</td>
+                                    <td>{{ ucfirst($check->account_movement->provider->social) }}</td>
                                     <td>{{ $check->observations }}</td>
                                 </tr>
                             @endforeach

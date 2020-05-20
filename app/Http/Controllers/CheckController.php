@@ -16,8 +16,9 @@ class CheckController extends Controller
         $balance = $store->expenses_account->balance ?? 0;
         $checks = Check::fromBankAccount($store->expenses_account->id)->get();
         $last = Check::fromBankAccount($store->expenses_account->id)->get()->last();
-        $movements = AccountMovement::where('bank_account_id', getStore()->expenses_account->id)
-            ->whereNull('check_id')->where('type', 'abono')
+        $movements = AccountMovement::where('bank_account_id', $store->expenses_account->id)
+            ->where('type', 'abono')
+            ->orderBy('added_at', 'desc')
             ->get()->take(3);
         return view('checks.index', compact('checks', 'movements', 'balance', 'last', 'store'));
     }
@@ -40,9 +41,10 @@ class CheckController extends Controller
             'bank_account_id' => 'required',
             'folio' => 'sometimes|required',
             'expenses_group_id' => 'sometimes|required',
+            'provider_id' => 'sometimes|required',
         ]);
         
-        Check::create($request->except(['expenses_group_id', 'store_id']));
+        Check::create($request->except(['expenses_group_id', 'store_id', 'provider_id']));
 
         if ($request->file("invoice0")) {
             $route = 'public/expenses/store' . $request->store_id . "/$request->folio";

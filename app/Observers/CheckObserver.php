@@ -15,7 +15,7 @@ class CheckObserver
             'amount' => $check->amount,
             'expenses_group_id' => request('expenses_group_id'),
             'bank_account_id' => $check->bank_account_id,
-            'provider_id' => 1,
+            'provider_id' => request('provider_id'),
         ]);
     }
 

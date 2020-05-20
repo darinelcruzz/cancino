@@ -57,6 +57,7 @@ Vue.component('employee-week-goal', require('./components/EmployeeWeekGoal.vue')
 Vue.component('employee-sum', require('./components/EmployeeSum.vue'));
 Vue.component('week-sum', require('./components/WeekSum.vue'));
 Vue.component('goal-sum', require('./components/GoalSum.vue'));
+Vue.component('provider-select', require('./components/ProviderSelect.vue'));
 
 const app = new Vue({
     el: '#app',
