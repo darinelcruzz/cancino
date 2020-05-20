@@ -48,7 +48,7 @@
                             @endforeach
                             @foreach($notes->where('store_id', $store->id) as $note)
                                 <tr>
-                                    <td>ANSM{{ $note->folio }}</td>
+                                    <td>ANSM-{{ $note->folio }}</td>
                                     <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fnumber($note->amount) }}</td>
                                     <td>nota producto</td>
@@ -64,7 +64,7 @@
                         </template>
                         <template slot="footer">
                             <tr>
-                                <td colspan="3" align="right"><b>Total</b></td>
+                                <td colspan="2" align="right"><b>Total</b></td>
                                 <td>{{ fnumber($shoppings->where('store_id', $store->id)->sum('amount')) }}</td>
                                 <td colspan="4"></td>
                             </tr>

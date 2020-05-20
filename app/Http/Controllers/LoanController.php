@@ -66,7 +66,7 @@ class LoanController extends Controller
         }elseif ($loan->status == 'aceptado') {
             $loan->update(['status' => 'recibido']);
         }
-        return redirect(route('loans.index'));
+        return redirect(route('loans.groups'));
     }
 
     function pay(Request $request)
