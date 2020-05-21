@@ -48,15 +48,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             {!! Field::select('expenses_group_id', $groupA, null,
-                                ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
+                                ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept'], ['icon' => 'map-pin'])
                             !!}
                         </div>
                         <div class="col-md-6">
-                            <label for="">&nbsp;</label><br>
+                            <provider-select :group="concept" icon="truck" label="Proveedor" name="provider_id"></provider-select>
                             <input type="hidden" name="type" value="abono">
-                            {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
                         </div>
                     </div>
+                    {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
 
                 {!! Form::close() !!}
             </color-box>
@@ -87,15 +87,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             {!! Field::select('expenses_group_id', $groupB, null,
-                                ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
+                                ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept2'], ['icon' => 'map-pin'])
                             !!}
                         </div>
                         <div class="col-md-6">
-                            <label for="">&nbsp;</label><br>
+                            <provider-select :group="concept2" icon="truck" label="Proveedor" name="provider_id"></provider-select>
                             <input type="hidden" name="type" value="cargo">
-                            {!! Form::submit('Agregar', ['class' => 'btn btn-danger pull-right']) !!}
                         </div>
                     </div>
+                    
+                    {!! Form::submit('Agregar', ['class' => 'btn btn-danger pull-right']) !!}
 
                 {!! Form::close() !!}
             </color-box>

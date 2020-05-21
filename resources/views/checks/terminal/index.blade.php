@@ -24,11 +24,14 @@
 
                         <tbody>
                             @foreach($bank_account->checks as $check)
-                                <tr>
+                                <tr style="{{ $check->account_movement->provider_id == 10 ? 'color: gray; text-decoration: line-through': '' }}">
                                     <td style="width: 5%">{{ $check->folio }}</td>
                                     <td style="width: 5%">
                                         <dropdown icon="cogs" color="github">
                                             <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza"></ddi>
+                                            @if (isAdmin() && $check->account_movement->provider_id != 10)
+                                                <ddi to="{{ route('terminal.destroy', $check)}}" icon="times" text="Cancelar"></ddi>
+                                            @endif
                                         </dropdown>
                                     </td>
                                     <td>{{ fdate($check->emitted_at, 'd M Y', 'Y-m-d') }}</td>
@@ -69,11 +72,14 @@
 
                         <tbody>
                             @foreach($store->terminal_account->checks as $check)
-                                <tr>
+                                <tr style="{{ $check->account_movement->provider_id == 10 ? 'color: gray; text-decoration: line-through': '' }}">
                                     <td style="width: 5%">{{ $check->folio }}</td>
                                     <td style="width: 5%">
                                         <dropdown icon="cogs" color="{{ $store->color }}">
                                             <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza"></ddi>
+                                            @if (isAdmin() && $check->account_movement->provider_id != 10)
+                                                <ddi to="{{ route('terminal.destroy', $check)}}" icon="times" text="Cancelar"></ddi>
+                                            @endif
                                         </dropdown>
                                     </td>
                                     <td>{{ fdate($check->emitted_at, 'd M Y', 'Y-m-d') }}</td>

@@ -36,13 +36,17 @@
                                     {!! Field::text('concept', $accountMovement->concept, ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Field::select('provider_id', $providers, $accountMovement->provider_id, ['empty' => 'Seleccione el proveedor', 'tpl' => 'lte/withicon'], ['icon' => 'truck']) !!}
+                                    {!! Field::select('expenses_group_id', $groups, null, ['empty' => 'Seleccione el grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept'], ['icon' => 'group'])
+                                        !!}
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    {!! Field::select('expenses_group_id', $groups, $accountMovement->expenses_group_id, ['empty' => 'Seleccione el grupo', 'tpl' => 'lte/withicon'], ['icon' => 'cubes']) !!}
+                                    {!! Field::text('observations', $accountMovement->observations, ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
+                                </div>
+                                <div class="col-md-6">
+                                    <provider-select :group="concept" icon="truck" label="Proveedor" name="provider_id"></provider-select>
                                 </div>
                             </div>
 
@@ -51,12 +55,19 @@
                     <hr>
                     
                     <div class="row">
-                        <div class="col-md-6">
-                            {!! Form::submit('Guardar y siguiente', ['class' => 'btn btn-success btn-block']) !!}
+                        <div class="col-md-4">
+                            <a href="{{ route('bank_accounts.show', $accountMovement->bank_account) }}" class="btn btn-danger btn-block">
+                                <small>REGRESAR</small>
+                            </a>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            {!! Form::submit('GUARDAR + SIG', ['class' => 'btn btn-success btn-block']) !!}
+                        </div>
+                        <div class="col-md-4">
                             @if($accountMovement->next_register_exists)
-                                <a href="{{ $accountMovement->next_route }}" class="btn btn-primary btn-block">Siguiente</a>
+                                <a href="{{ $accountMovement->next_route }}" class="btn btn-primary btn-block">
+                                    <small>SIGUIENTE</small>
+                                </a>
                             @endif
                         </div>
                     </div>

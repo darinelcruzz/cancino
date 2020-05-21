@@ -13,7 +13,10 @@ import Vue from 'vue'
 import vSelect from 'vue-select'
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
-import VueCurrencyFilter from 'vue-currency-filter'
+import VueCurrencyFilter from 'vue-currency-filter';
+import VueImg from 'v-img';
+
+Vue.use(VueImg);
 
 Vue.use(VueFormWizard)
 
@@ -64,6 +67,7 @@ const app = new Vue({
     data: {
     	binnacle_reason: '',
     	concept: '',
+      concept2: '',
     	public_amount: 0,
       products: [],
       product: {},

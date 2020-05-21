@@ -327,6 +327,7 @@ Route::group(['prefix' => 'cheques', 'as' => 'checks.'], function () {
     Route::get('editar/{check}', usesas($ctrl, 'edit'));
     Route::post('editar/{check}', usesas($ctrl, 'update'));
     Route::get('poliza/{check}', usesas($ctrl, 'policy'));
+    Route::get('cancelar/{check}', usesas($ctrl, 'destroy'));
     Route::post('importar', usesas($ctrl, 'import'));
     Route::get('importar', usesas($ctrl, 'import'));
     Route::get('/{store?}', usesas($ctrl, 'index'));
@@ -340,6 +341,14 @@ Route::group(['prefix' => 'terminal', 'as' => 'terminal.'], function () {
     Route::get('editar/{check}', usesas($ctrl, 'edit'));
     Route::post('editar/{check}', usesas($ctrl, 'update'));
     Route::get('poliza/{check}', usesas($ctrl, 'policy'));
+    Route::get('cancelar/{check}', usesas($ctrl, 'destroy'));
+});
+
+Route::group(['prefix' => 'pos', 'as' => 'pos.'], function () {
+    $ctrl = 'POSController';
+    Route::get('subir-foto/{pos}', usesas($ctrl, 'upload'));
+    Route::post('subir-foto/{pos}', usesas($ctrl, 'save'));
+    Route::get('{pos}', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {

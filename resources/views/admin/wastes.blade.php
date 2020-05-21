@@ -26,30 +26,41 @@
                 </color-box>
             </div>
         @endforeach
-        @foreach ($complete as $store_id => $wastes)
-            <div class="col-md-6">
-                <color-box title="Destruidos de {{ App\Store::find($store_id)->name }}" color="{{ App\Store::find($store_id)->color }}" button collapsed>
-                    <data-table example="{{ $store_id }}">
-                        {{ drawHeader('Folio','Modelo', 'Descripción', 'Pos') }}
-                        <template slot="body">
-                            @foreach($wastes as $waste)
-                                <tr>
-                                    <td>{{ $waste->id }}</td>
-                                    <td>{{ $waste->item }}</td>
-                                    <td>
-                                        {{ $waste->description }}<br>
-                                        {{ fdate($waste->created_at, 'd-M-y') }}
-                                    </td>
-                                    <td>
-                                        {{ $waste->pos }}<br>
-                                        {{ fdate($waste->pos_at, 'd-M-y', 'Y-m-d') }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </template>
-                    </data-table>
-                </color-box>
-            </div>
-        @endforeach
+
+        <div class="col-md-6">
+            <color-box title="Destruidos" color="vks" button collapsed>
+                <data-table example="{{ $store_id }}">
+                    {{ drawHeader('POS', '<i class="fa fa-cogs"></i>', 'fecha', 'tienda', '<i class="fa fa-photo"></i>') }}
+                    <template slot="body">
+                        @foreach($complete as $pos => $wastes)
+                            <tr>
+                                <td>{{ $pos }}</td>
+                                <td>
+                                    <dropdown icon="cogs" color="github">
+                                        <ddi icon="eye" to="{{ route('pos.show', $pos) }}" text="Detalles"></ddi>
+                                        <ddi icon="photo" to="{{ route('pos.upload', $pos) }}" text="Subir foto"></ddi>
+                                    </dropdown>
+                                </td>
+                                <td>
+                                    {{ fdate($wastes->first()->pos_at, 'd-M-y', 'Y-m-d') }}
+                                </td>
+                                <td>{{ $wastes->first()->store->name }}</td>
+                                <td>
+                                    @if(Storage::disk('public')->exists('pos/' . $pos . '.jpg'))
+                                        <img v-img src="{{ Storage::disk('public')->url('pos/' . $pos . '.jpg') }}"
+                                            alt="foto de {{ $pos }}"
+                                            width="50px" height="50px"
+                                            style="border-radius: 50%;">
+                                    @else
+                                        <img src="{{ asset('images/placeholder_image.png') }}"
+                                            width="50px" height="40px">
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </template>
+                </data-table>
+            </color-box>
+        </div>
     </div>
 @endsection

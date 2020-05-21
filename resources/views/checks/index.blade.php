@@ -71,24 +71,24 @@
         <div class="col-md-9">
             <color-box title="Gastos" color="primary">
                 <data-table example="1">
-                    {{ drawHeader('folio','Fecha', 'Monto', 'Concepto', 'Observaciones', '') }}
+                    {{ drawHeader('folio', '<i class="fa fa-cogs"></i>', 'Fecha', 'Monto', 'Concepto', 'Observaciones') }}
 
                     <template slot="body">
                         @foreach($checks as $check)
-                            <tr>
+                            <tr style="{{ $check->account_movement->provider_id == 10 ? 'color: gray; text-decoration: line-through': '' }}">
                                 <td>{{ $check->folio }}</td>
+                                <td>
+                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
+                                        <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza" target="_blank"></ddi>
+                                        @if (isAdmin() && $check->account_movement->provider_id != 10)
+                                            <ddi to="{{ route('checks.destroy', $check)}}" icon="times" text="Cancelar"></ddi>
+                                        @endif
+                                    </dropdown>
+                                </td>
                                 <td>{{ fdate($check->emitted_at, 'd/F/Y', 'Y-m-d') }}</td>
                                 <td>{{ number_format($check->amount, 2) }}</td>
                                 <td>{{ $check->concept }} <br>  <code>{{ $check->group }}</code></td>
                                 <td>{{ $check->observations }}</td>
-                                <td>
-                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
-                                        <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza" target="_blank"></ddi>
-                                        @if ($check->group == 'Otros gastos')
-                                            <ddi to="{{ route('checks.show', $expense)}}" icon="eye" text="Detalles"></ddi>
-                                        @endif
-                                    </dropdown>
-                                </td>
                             </tr>
                         @endforeach
                     </template>

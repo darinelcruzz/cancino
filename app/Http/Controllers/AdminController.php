@@ -117,7 +117,9 @@ class AdminController extends Controller
     function wastes()
     {
         $pendings = Waste::where('status', 'pendiente')->get()->groupBy('store_id');
-        $complete = Waste::where('status', 'destruido')->get()->groupBy('store_id');
+        $complete = Waste::where('status', 'destruido')->get()->groupBy('pos');
+
+        // dd($complete);
 
         return view('admin.wastes', compact('pendings', 'complete'));
     }

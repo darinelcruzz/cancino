@@ -5,13 +5,12 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box color="primary" title="Movimientos de la cuenta ...{{ substr($bank_account->number, -4) }}">
+            <color-box color="{{ $bank_account->store->color }}" title="Movimientos de la cuenta ...{{ substr($bank_account->number, -4) }}">
                 <table class="table table-striped table-bordered ascending">
                     <thead>
                         <tr>
-                            <th><i class="fa fa-cogs"></i></th>
                             <th>Fecha</th>
-                            <th>Cuenta</th>
+                            <th><i class="fa fa-cogs"></i></th>
                             <th>Concepto</th>
                             <th>Monto</th>
                             <th>Tipo</th>
@@ -27,13 +26,12 @@
 
                         @foreach($movements as $movement)
                             <tr>
-                                <td>{{ $movement->added_at }}</td>
+                                <td style="width: 10%">{{ $movement->added_at }}</td>
                                 <td>
-                                    <dropdown icon="cogs" color="primary">
+                                    <dropdown icon="cogs" color="{{ $bank_account->store_id == 1 ? 'github':  $bank_account->store->color }}">
                                         <ddi to="{{ route('account_movements.edit', $movement) }}" icon="edit" text="Editar"></ddi>
                                     </dropdown>
                                 </td>
-                                <td>{{ $movement->bank_account->number }}</td>
                                 <td>{{ $movement->concept }}{{ $movement->check_id ? ' / ' . $movement->check->concept : '' }}</td>
                                 <td>{{ number_format($movement->amount, 2) }}</td>
                                 <td>{{ ucfirst($movement->type) }}</td>

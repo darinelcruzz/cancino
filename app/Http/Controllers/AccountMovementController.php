@@ -46,6 +46,7 @@ class AccountMovementController extends Controller
             'amount' => 'required',
             'bank_account_id' => 'required',
             'expenses_group_id' => 'required',
+            'provider_id' => 'required',
         ]);
 
         AccountMovement::create($attributes);
@@ -60,7 +61,7 @@ class AccountMovementController extends Controller
 
     function edit(AccountMovement $accountMovement)
     {
-        $groups = ExpensesGroup::pluck('name', 'id')->toArray();
+        $groups = ExpensesGroup::where('type', $accountMovement->type)->pluck('name', 'id')->toArray();
         $providers = Provider::pluck('social', 'id')->toArray();
         $bank_accounts = BankAccount::pluck('number', 'id')->toArray();
         return view('account_movements.edit', compact('accountMovement', 'groups', 'providers', 'bank_accounts'));
@@ -72,6 +73,7 @@ class AccountMovementController extends Controller
             'concept' => 'required',
             'provider_id' => 'required',
             'expenses_group_id' => 'required',
+            'provider_id' => 'required',
         ]);
 
         $account_movement->update($attributes);

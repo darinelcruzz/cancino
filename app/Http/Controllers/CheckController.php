@@ -90,6 +90,13 @@ class CheckController extends Controller
 
     function destroy(Check $check)
     {
-        //
+        $check->update(['amount' => 0]);
+        $check->account_movement->update([
+            'amount' => 10,
+            'provider_id' => 10,
+            'expenses_group_id' => 10,
+        ]);
+
+        return redirect(route('checks.index', $check->bank_account->store));
     }
 }
