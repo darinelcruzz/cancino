@@ -11,14 +11,18 @@ class CountController extends Controller
 {
     function index()
     {
-        $counts = Count::with('product', 'user', 'location')->get();
+        if (isAdmin()) {
+            $counts = Count::with('product', 'user', 'location')->get();
+        }else {
+            $counts = Count::where('user_id', auth()->user()->id)->with('product', 'user', 'location')->get();
+        }
+
         return view('counts.index', compact('counts'));
     }
 
     function create()
     {
         $locations = Location::all()->pluck('name', 'id')->toArray();
-        // dd($locations);
 
         return view('counts.create', compact('locations'));
     }
