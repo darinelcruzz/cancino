@@ -5,7 +5,7 @@
 @section('content')
 
     @foreach ($stores as $store)
-        
+
         @if($loop->index == 0)
             <div class="row">
         @endif
@@ -20,9 +20,15 @@
                     <div class="box-body">
                         @foreach($store->bank_accounts as $bank_account)
                             <a href="{{ route('bank_accounts.show', $bank_account) }}" class="btn btn-{{ $store->id == 1 ? 'github': $store->color }} btn-block btn-sm">
-                                {{ strtoupper($bank_account->type) }} ($ {{ number_format($bank_account->balance, 2) }}) | ...{{ substr($bank_account->number, -4) }} 
+                                {{ strtoupper($bank_account->type) }}
+                                @if (isAdmin())
+                                    <h4>$ {{ number_format($bank_account->balance, 2) }}</h4>
+                                @else
+                                    |
+                                @endif
+                                {{ substr($bank_account->number, -4) }}
                                 @if($bank_account->pending_movements->count())
-                                &nbsp;&nbsp;&nbsp;<small class="badge label-default">{{ $bank_account->pending_movements->count() }}</small>
+                                    &nbsp;&nbsp;&nbsp;<small class="badge label-default">{{ $bank_account->pending_movements->count() }}</small>
                                 @endif
                             </a>
                         @endforeach

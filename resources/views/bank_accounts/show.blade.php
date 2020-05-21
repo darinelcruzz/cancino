@@ -2,12 +2,6 @@
 
 @push('pageTitle', 'Movimientos')
 
-@push('headerTitle')
-    {{-- <a href="{{ route('account_movements.create') }}" class="btn btn-primary btn-sm">
-        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
-    </a> --}}
-@endpush
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -15,7 +9,6 @@
                 <table class="table table-striped table-bordered ascending">
                     <thead>
                         <tr>
-                            <th><i class="fa fa-hashtag"></i></th>
                             <th><i class="fa fa-cogs"></i></th>
                             <th>Fecha</th>
                             <th>Cuenta</th>
@@ -34,15 +27,14 @@
 
                         @foreach($movements as $movement)
                             <tr>
-                                <td>{{ $movement->id }}</td>
+                                <td>{{ $movement->added_at }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="primary">
                                         <ddi to="{{ route('account_movements.edit', $movement) }}" icon="edit" text="Editar"></ddi>
                                     </dropdown>
                                 </td>
-                                <td>{{ $movement->added_at }}</td>
                                 <td>{{ $movement->bank_account->number }}</td>
-                                <td>{{ $movement->concept }}</td>
+                                <td>{{ $movement->concept }}{{ $movement->check_id ? ' / ' . $movement->check->concept : '' }}</td>
                                 <td>{{ number_format($movement->amount, 2) }}</td>
                                 <td>{{ ucfirst($movement->type) }}</td>
                                 <td>{{ $movement->provider->social or 'Pendiente' }}</td>
