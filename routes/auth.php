@@ -95,6 +95,7 @@ Route::group(['prefix' => 'prestamos', 'as' => 'loans.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{loan}', usesas($ctrl, 'agree'));
     Route::post('editar', usesas($ctrl, 'pay'));
+    Route::get('imprimir-formato/{store}', usesas($ctrl, 'print'));
 });
 
 Route::group(['prefix' => 'facturas', 'as' => 'invoices.', 'middleware' => 'nonCheckup'], function () {

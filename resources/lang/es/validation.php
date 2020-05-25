@@ -245,5 +245,7 @@ return [
         'provider_id' => 'proveedor',
         'added_at' => 'fecha',
         'emitted_at' => 'fecha',
+        'authorized_by' => 'autoriza',
+        'received_by' => 'recibe',
     ],
 ];
