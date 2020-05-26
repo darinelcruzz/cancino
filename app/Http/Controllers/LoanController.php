@@ -57,7 +57,7 @@ class LoanController extends Controller
 
     function print(Store $store)
     {
-        $loans = Loan::where('status', 'solicitado')->where('to', $store->id)->get();
+        $loans = Loan::where('status', 'solicitado')->where('to', getStore()->id)->where('from', $store->id)->get();
 
         return view('loans.print', compact('loans'));
     }

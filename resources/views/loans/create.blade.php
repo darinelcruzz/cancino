@@ -58,7 +58,7 @@
                                     @if ($loop->index == 0)
                                         <td rowspan="{{ count($loans) }}">
                                             {{ $loan->fromr->name }} &nbsp;&nbsp;
-                                            <a href="{{ route('loans.print', $loan->to) }}" target="_blank"><i class="fa fa-print"></i></a>
+                                            <a href="{{ route('loans.print', $loan->from) }}" target="_blank"><i class="fa fa-print"></i></a>
                                         </td>
                                     @endif
                                     <td>{{ $loan->id }}</td>

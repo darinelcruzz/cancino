@@ -244,7 +244,7 @@
                 <tr>
                     <td valign="TOP";>{{ auth()->user()->name }}</td>
                     <td valign="TOP";><br>&nbsp;</td>
-                    <td valign="TOP";>{{ $check->bank_account->type == 'gastos' ? $check->store->managerr->name : "Victor Cancino"  }}</td>
+                    <td valign="TOP";>{{ $check->bank_account->type == 'gastos' ? $check->bank_account->store->managerr->name : "Victor Cancino"  }}</td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>
                     <td valign="TOP";></td>

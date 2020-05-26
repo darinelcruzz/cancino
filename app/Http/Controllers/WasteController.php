@@ -62,10 +62,16 @@ class WasteController extends Controller
         return redirect(route('helper.wastes'));
     }
 
-    function report(Store $store)
+    function print(Store $store)
     {
-        $wastes = Waste::where('store_id', $store->id)->where('status', 'pendiente')->get();
+        $chunks = Waste::where('store_id', $store->id)
+            ->where('status', 'pendiente')
+            ->get()
+            ->groupBy('item')
+            ->chunk(3);
 
-        return view('wastes.report', compact('wastes', 'store'));
+        // dd($chunks);
+
+        return view('wastes.print', compact('chunks', 'store'));
     }
 }

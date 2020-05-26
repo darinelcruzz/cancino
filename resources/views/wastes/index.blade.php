@@ -26,7 +26,11 @@
                     <button type="submit" class="btn btn-danger  btn-block" onclick="submitForm(this);">Agregar</button>
 
                 {!! Form::close() !!}
-            </solid-box>
+            </color-box>
+
+            <a href="{{ route('wastes.print', getStore()->id) }}" class="btn btn-github btn-sm btn-block" target="_blank">
+                <i class="fa fa-print"></i>&nbsp;&nbsp;IMPRIMIR PENDIENTES
+            </a>
         </div>
         <div class="col-md-8">
             <div class="row">
