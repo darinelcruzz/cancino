@@ -54,13 +54,17 @@ return [
         'title' => 'Bancos',
         'icon' => 'fa fa-university',
         'submenu' => [
-            'admin' => [
+            'expenses' => [
                 'title' => 'Gerentes',
                 'route' => 'account_movements.choose',
             ],
             'accounts' => [
                 'title' => 'Cuentas',
                 'route' => 'stores.index',
+            ],
+            'terminal' => [
+                'title' => 'Chequeras',
+                 'route' => 'terminal.index'
             ],
         ],
     ],
