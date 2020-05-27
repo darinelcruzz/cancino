@@ -36,7 +36,7 @@
                                     {!! Field::text('concept', $accountMovement->concept, ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Field::select('expenses_group_id', $groups, null, ['empty' => 'Seleccione el grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept'], ['icon' => 'group'])
+                                    {!! Field::select('expenses_group_id', $groups, $accountMovement->expenses_group_id, ['empty' => 'Seleccione el grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept'], ['icon' => 'group'])
                                         !!}
                                 </div>
                             </div>

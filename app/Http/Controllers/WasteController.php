@@ -66,6 +66,7 @@ class WasteController extends Controller
     {
         $chunks = Waste::where('store_id', $store->id)
             ->where('status', 'pendiente')
+            ->orderBy('item')
             ->get()
             ->groupBy('item')
             ->chunk(3);

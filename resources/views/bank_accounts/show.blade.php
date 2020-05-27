@@ -2,6 +2,21 @@
 
 @push('pageTitle', 'Movimientos')
 
+@push('headerTitle')
+    <div class="row">
+        <div class="col-md-3">
+            {!! Form::open(['method' => 'post', 'route' => ['bank_accounts.show', $bank_account]]) !!}
+                <div class="input-group input-group-sm">
+                    <input type="date" name="date" class="form-control" value="{{ $date }}">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-{{ $bank_account->store_id == 1 ? 'github':  $bank_account->store->color }} btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            {!! Form::close() !!}
+        </div>
+    </div>
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +36,7 @@
 
                     <tbody>
                         @php
-                            $movements = auth()->user()->level <= 2 ? $bank_account->account_movements: $bank_account->pending_movements
+                            $movements = auth()->user()->level <= 2 ? $bank_account->account_movements->where('added_at', $date): $bank_account->pending_movements->where('added_at', $date)
                         @endphp
 
                         @foreach($movements as $movement)

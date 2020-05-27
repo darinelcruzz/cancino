@@ -19,13 +19,17 @@ class AccountMovementController extends Controller
         return view('account_movements.choose', compact('stores', 'bank_accounts', 'groupA', 'groupB'));
     }
 
-    function index(Store $store = null)
+    function index(Request $request, Store $store = null)
     {
         if ($store == null) {
             $store = getStore();
         }
 
-        $movements = AccountMovement::where('bank_account_id', $store->terminal_account->id)->get();
+        $date = $request->date ? $request->date: date('Y-m-d');
+
+        $movements = AccountMovement::where('bank_account_id', $store->terminal_account->id)
+            ->get();
+            
         return view('account_movements.index', compact('movements'));
     }
 

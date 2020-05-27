@@ -37,6 +37,6 @@ class BankAccount extends Model
 
     function getFullNameAttribute()
     {
-        return ucfirst($this->type) . ' de ' . $this->store->name;
+        return ucfirst($this->store->name);
     }
 }

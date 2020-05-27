@@ -37,69 +37,86 @@
                             {!! Field::number('amount', ['tpl' => 'lte/withicon', 'min' => '0', 'step' => '0.01'], ['icon' => 'dollar']) !!}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::date('added_at', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                    @if(auth()->user()->level != 2)
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::date('added_at', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::select('expenses_group_id', $groupA, null,
+                                    ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept'], ['icon' => 'map-pin'])
+                                !!}
+                            </div>
+                            <div class="col-md-6">
+                                <provider-select :group="concept" icon="truck" label="Proveedor" name="provider_id"></provider-select>
+                                <input type="hidden" name="type" value="abono">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::select('expenses_group_id', $groupA, null,
-                                ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept'], ['icon' => 'map-pin'])
-                            !!}
+                    @else
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::date('added_at', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                                <input type="hidden" name="concept" value="Entre cuentas">
+                                <input type="hidden" name="expenses_group_id" value="1">
+                                <input type="hidden" name="provider_id" value="1">
+                                <input type="hidden" name="type" value="abono">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <provider-select :group="concept" icon="truck" label="Proveedor" name="provider_id"></provider-select>
-                            <input type="hidden" name="type" value="abono">
-                        </div>
-                    </div>
+                    @endif
                     {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
 
                 {!! Form::close() !!}
             </color-box>
         </div>
-        <div class="col-md-12 col-lg-6">
-            <color-box title="Gastos sin cheque" color="danger">
-                {!! Form::open(['method' => 'POST', 'route' => 'account_movements.store']) !!}
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::select('bank_account_id', $bank_accounts, null,
-                                ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
-                            !!}
-                        </div>
-                        <div class="col-md-6">
-                            {!! Field::number('amount', ['tpl' => 'lte/withicon', 'min' => '0', 'step' => '0.01'], ['icon' => 'dollar']) !!}
-                        </div>
-                    </div>
+        
+        @if(auth()->user()->level != 2)
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::date('added_at', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+            <div class="col-md-12 col-lg-6">
+                <color-box title="Gastos sin cheque" color="danger">
+                    {!! Form::open(['method' => 'POST', 'route' => 'account_movements.store']) !!}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::select('bank_account_id', $bank_accounts, null,
+                                    ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'map-pin'])
+                                !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Field::number('amount', ['tpl' => 'lte/withicon', 'min' => '0', 'step' => '0.01'], ['icon' => 'dollar']) !!}
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Field::select('expenses_group_id', $groupB, null,
-                                ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept2'], ['icon' => 'map-pin'])
-                            !!}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::date('added_at', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <provider-select :group="concept2" icon="truck" label="Proveedor" name="provider_id"></provider-select>
-                            <input type="hidden" name="type" value="cargo">
-                        </div>
-                    </div>
-                    
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-danger pull-right']) !!}
 
-                {!! Form::close() !!}
-            </color-box>
-        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {!! Field::select('expenses_group_id', $groupB, null,
+                                    ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon', 'v-model.number' => 'concept2'], ['icon' => 'map-pin'])
+                                !!}
+                            </div>
+                            <div class="col-md-6">
+                                <provider-select :group="concept2" icon="truck" label="Proveedor" name="provider_id"></provider-select>
+                                <input type="hidden" name="type" value="cargo">
+                            </div>
+                        </div>
+                        
+                        {!! Form::submit('Agregar', ['class' => 'btn btn-danger pull-right']) !!}
+
+                    {!! Form::close() !!}
+                </color-box>
+            </div>
+
+        @endif
     </div>
 @endsection

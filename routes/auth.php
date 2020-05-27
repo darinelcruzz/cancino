@@ -319,6 +319,7 @@ Route::group(['prefix' => 'movimientos-bancarios', 'as' => 'account_movements.']
     Route::post('importar', usesas($ctrl, 'import'));
     Route::get('importar', usesas($ctrl, 'import'));
     Route::get('/{store?}', usesas($ctrl, 'index'));
+    Route::post('/{store?}', usesas($ctrl, 'index'));
 });
 
 Route::group(['prefix' => 'cheques', 'as' => 'checks.'], function () {
@@ -361,6 +362,7 @@ Route::group(['prefix' => 'cuentas', 'as' => 'bank_accounts.'], function () {
     $ctrl = 'BankAccountController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('/{bank_account}', usesas($ctrl, 'show'));
+    Route::post('/{bank_account}', usesas($ctrl, 'show'));
 });
 
 Route::get('/mailable/employer/to-firm', function () {

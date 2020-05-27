@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BankAccount;
+use App\{BankAccount, AccountMovement};
 use Illuminate\Http\Request;
 
 class BankAccountController extends Controller
@@ -22,9 +22,11 @@ class BankAccountController extends Controller
         //
     }
 
-    function show(BankAccount $bank_account)
+    function show(Request $request, BankAccount $bank_account)
     {
-        return view('bank_accounts.show', compact('bank_account'));
+        $date = $request->date ? $request->date: date('Y-m-d');
+
+        return view('bank_accounts.show', compact('bank_account', 'date'));
     }
 
     function edit(BankAccount $bankAccount)
