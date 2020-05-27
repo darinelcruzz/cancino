@@ -24,9 +24,17 @@ class BankAccountController extends Controller
 
     function show(Request $request, BankAccount $bank_account)
     {
-        $date = $request->date ? $request->date: date('Y-m-d');
+        $date = $request->date ? $request->date: date('Y-m');
 
-        return view('bank_accounts.show', compact('bank_account', 'date'));
+        $movements = AccountMovement::where('bank_account_id', $bank_account->id)
+            ->whereMonth('added_at', substr($date, 5))
+            ->whereYear('added_at', substr($date, 0, 4))
+            ->when(auth()->user()->level > 2, function ($query) {
+                return $query->whereNull('expenses_group_id');
+            })
+            ->get();
+
+        return view('bank_accounts.show', compact('bank_account', 'date', 'movements'));
     }
 
     function edit(BankAccount $bankAccount)

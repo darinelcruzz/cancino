@@ -42,7 +42,7 @@
                                 <td>{{ number_format($movement->amount, 2) }}</td>
                                 <td>{{ ucfirst($movement->type) }}</td>
                                 <td>{{ $movement->provider->social or 'No se ha elegido'}}</td>
-                                <td>{{ $movement->expenses_group->name }}</td>
+                                <td>{{ $movement->expenses_group->name or 'No se ha elegido' }}</td>
                             </tr>
                         @endforeach
                     </tbody>
