@@ -6,6 +6,7 @@ use App\{Check, Store, ExpensesGroup, AccountMovement, BankAccount};
 use Illuminate\Http\Request;
 use App\Imports\ChecksImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class TerminalCheckController extends Controller
 {
@@ -25,6 +26,11 @@ class TerminalCheckController extends Controller
 
     function store(Request $request)
     {
+        $this->validate($request, [
+            'expenses_group_id' => 'sometimes|required',
+            'provider_id' => 'sometimes|required',
+        ]);
+
         $validated = $this->validate($request, [
             'emitted_at' => 'required',
             'amount' => 'required',
@@ -32,11 +38,10 @@ class TerminalCheckController extends Controller
             'concept' => 'sometimes|required',
             'bank_account_id' => 'required',
             'folio' => 'sometimes|required',
-            'expenses_group_id' => 'sometimes|required',
-            'provider_id' => 'sometimes|required',
+            'observations' => 'sometimes',
         ]);
         
-        Check::create($request->except(['expenses_group_id', 'store_id', 'provider_id']));
+        $check = Check::create($validated);
 
         if ($request->file("invoice0")) {
             $route = 'public/expenses/store' . $request->store_id . "/T$request->folio";
@@ -50,17 +55,9 @@ class TerminalCheckController extends Controller
 
     function show(Check $check)
     {
-        //
-    }
-
-    function edit(Check $check)
-    {
-        //
-    }
-
-    function update(Request $request, Check $check)
-    {
-        //
+        $route = 'public/expenses/store' . $check->bank_account->store_id . "/T$check->folio";
+        $files = Storage::files($route);
+        return view('checks.show', compact('files', 'check', 'route'));
     }
 
     function policy(Check $check)

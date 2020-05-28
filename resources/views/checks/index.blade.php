@@ -78,8 +78,11 @@
                             <tr style="{{ $check->account_movement->provider_id == 10 ? 'color: gray; text-decoration: line-through': '' }}">
                                 <td>{{ $check->folio }}</td>
                                 <td>
-                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
+                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color != 'vks' ?? 'github' }}">
                                         <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza" target="_blank"></ddi>
+                                        @if ($check->account_movement->expenses_group_id == 7)
+                                            <ddi to="{{ route('checks.show', $check)}}" icon="eye" text="Detalles"></ddi>
+                                        @endif
                                         @if (isAdmin() && $check->account_movement->provider_id != 10)
                                             <ddi to="{{ route('checks.destroy', $check)}}" icon="times" text="Cancelar"></ddi>
                                         @endif

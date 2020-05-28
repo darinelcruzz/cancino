@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\{Check, Store, ExpensesGroup, AccountMovement};
 use Illuminate\Http\Request;
 use App\Imports\ChecksImport;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CheckController extends Controller
@@ -33,6 +34,11 @@ class CheckController extends Controller
 
     function store(Request $request)
     {
+        $this->validate($request, [
+            'expenses_group_id' => 'sometimes|required',
+            'provider_id' => 'sometimes|required',
+        ]);
+
         $validated = $this->validate($request, [
             'emitted_at' => 'required',
             'amount' => 'required',
@@ -40,35 +46,46 @@ class CheckController extends Controller
             'concept' => 'sometimes|required',
             'bank_account_id' => 'required',
             'folio' => 'sometimes|required',
-            'expenses_group_id' => 'sometimes|required',
-            'provider_id' => 'sometimes|required',
+            'observations' => 'sometimes',
         ]);
         
-        Check::create($request->except(['expenses_group_id', 'store_id', 'provider_id']));
+        $check = Check::create($validated);
 
         if ($request->file("invoice0")) {
-            $route = 'public/expenses/store' . $request->store_id . "/$request->folio";
+            $route = 'public/expenses/store' . $request->store_id . "/$check->folio";
             for ($i=0; $i <= $request->quantity; $i++) {
                 $request->file("invoice$i")->storeAs($route, $request->{"name$i"});
             }
         }
 
-        return redirect(route('checks.index'));
+        return redirect(route('checks.index', $request->store_id));
     }
 
     function show(Check $check)
     {
-        //
+        $route = 'public/expenses/store' . $check->bank_account->store_id . "/$check->folio";
+        $files = Storage::files($route);
+        return view('checks.show', compact('files', 'check', 'route'));
     }
 
-    function edit(Check $check)
+    function upload(Request $request, Check $check)
     {
-        //
+        if ($request->file("invoice0")) {
+            for ($i=0; $i <= $request->quantity; $i++) {
+                $request->file("invoice$i")->storeAs($request->route, $request->{"name$i"});
+            }
+        }
+
+        return redirect(route('checks.show', $check));
     }
 
-    function update(Request $request, Check $check)
+    function remove($path)
     {
-        //
+        $path = str_replace('-', '/', $path);
+
+        Storage::delete($path);
+
+        return back();
     }
 
     function policy(Check $check)

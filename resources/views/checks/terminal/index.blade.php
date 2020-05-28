@@ -29,6 +29,9 @@
                                     <td style="width: 5%">
                                         <dropdown icon="cogs" color="github">
                                             <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza"></ddi>
+                                            @if ($check->account_movement->expenses_group_id == 7)
+                                                <ddi to="{{ route('terminal.show', $check)}}" icon="eye" text="Detalles"></ddi>
+                                            @endif
                                             @if (isAdmin() && $check->account_movement->provider_id != 10)
                                                 <ddi to="{{ route('terminal.destroy', $check)}}" icon="times" text="Cancelar"></ddi>
                                             @endif
@@ -77,6 +80,9 @@
                                     <td style="width: 5%">
                                         <dropdown icon="cogs" color="{{ $store->color }}">
                                             <ddi to="{{ route('checks.policy', $check) }}" icon="file-pdf" text="Póliza"></ddi>
+                                            @if ($check->account_movement->expenses_group_id == 7)
+                                                <ddi to="{{ route('terminal.show', $check)}}" icon="eye" text="Detalles"></ddi>
+                                            @endif
                                             @if (isAdmin() && $check->account_movement->provider_id != 10)
                                                 <ddi to="{{ route('terminal.destroy', $check)}}" icon="times" text="Cancelar"></ddi>
                                             @endif

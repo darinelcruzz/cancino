@@ -326,10 +326,13 @@ Route::group(['prefix' => 'cheques', 'as' => 'checks.'], function () {
     $ctrl = 'CheckController';
     Route::get('agregar/{store}', usesas($ctrl, 'create'));
     Route::post('agregar/{store}', usesas($ctrl, 'store'));
+    Route::get('detalles/{check}', usesas($ctrl, 'show'));
     Route::get('editar/{check}', usesas($ctrl, 'edit'));
     Route::post('editar/{check}', usesas($ctrl, 'update'));
     Route::get('poliza/{check}', usesas($ctrl, 'policy'));
     Route::get('cancelar/{check}', usesas($ctrl, 'destroy'));
+    Route::post('subir/{check}', usesas($ctrl, 'upload'));
+    Route::get('eliminar/{path}', usesas($ctrl, 'remove'));
     Route::post('importar', usesas($ctrl, 'import'));
     Route::get('importar', usesas($ctrl, 'import'));
     Route::get('/{store?}', usesas($ctrl, 'index'));
@@ -341,6 +344,7 @@ Route::group(['prefix' => 'terminal', 'as' => 'terminal.'], function () {
     Route::get('agregar/{bank_account}', usesas($ctrl, 'create'));
     Route::post('agregar/{bank_account}', usesas($ctrl, 'store'));
     Route::get('editar/{check}', usesas($ctrl, 'edit'));
+    Route::get('detalles/{check}', usesas($ctrl, 'show'));
     Route::post('editar/{check}', usesas($ctrl, 'update'));
     Route::get('poliza/{check}', usesas($ctrl, 'policy'));
     Route::get('cancelar/{check}', usesas($ctrl, 'destroy'));
