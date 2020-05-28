@@ -27,7 +27,7 @@ class AccountMovementController extends Controller
 
         $date = $request->date ? $request->date: date('Y-m-d');
 
-        $movements = AccountMovement::where('bank_account_id', $store->terminal_account->id)
+        $movements = AccountMovement::where('bank_account_id', $store->bank_account->id)
             ->get();
             
         return view('account_movements.index', compact('movements'));
@@ -86,7 +86,7 @@ class AccountMovementController extends Controller
             return redirect($account_movement->next_route);
         }
 
-        return redirect(route('account_movements.index'));
+        return redirect(route('bank_accounts.show', $account_movement->bank_account));
     }
 
     function import(Request $request)

@@ -31,6 +31,7 @@
                             <th>Tipo</th>
                             <th>Proveedor</th>
                             <th>Grupo</th>
+                            <th>Observaciones</th>
                         </tr>
                     </thead>
 
@@ -47,8 +48,9 @@
                                 <td>{{ $movement->concept }}{{ $movement->check_id ? ' / ' . $movement->check->concept : '' }}</td>
                                 <td>{{ number_format($movement->amount, 2) }}</td>
                                 <td>{{ ucfirst($movement->type) }}</td>
-                                <td>{{ $movement->provider->social or 'Pendiente' }}</td>
-                                <td>{{ $movement->expenses_group->name or 'Pendiente' }}</td>
+                                <td>{!! $movement->provider->social or '<code>PENDIENTE</code>' !!}</td>
+                                <td>{!! $movement->expenses_group->name or '<code>PENDIENTE</code>' !!}</td>
+                                <td>{{ $movement->check->observations or 'Ninguna' }}</td>
                             </tr>
                         @endforeach
                     </tbody>
