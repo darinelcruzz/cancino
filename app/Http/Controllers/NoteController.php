@@ -43,7 +43,7 @@ class NoteController extends Controller
             $note->update(['status'=>'aplicada']);
         }
 
-        return redirect(route('admin.notes'));
+        return redirect(route('notes.index'));
     }
 
     function show(Note $note)
@@ -59,7 +59,7 @@ class NoteController extends Controller
     function update(Request $request)
     {
         Note::find($request->id)->update($request->all());
-        return redirect(route('admin.notes'));
+        return redirect(route('notes.index'));
     }
 
     function capture(Note $note)
@@ -77,7 +77,7 @@ class NoteController extends Controller
                 'date_pos' => $request->date_pos,
                 'observations' => $request->observations
             ]);
-            return redirect(route('admin.notes'));
+            return redirect(route('notes.index'));
         }else if(isset($_POST['pending'])){
             $note->update([
                 'status' => 'faltante',
@@ -85,7 +85,7 @@ class NoteController extends Controller
                 'date_pos' => $request->date_pos,
                 'observations' => $request->observations
             ]);
-            return redirect(route('admin.notes'));
+            return redirect(route('notes.index'));
         }
     }
 

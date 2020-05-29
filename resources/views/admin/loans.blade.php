@@ -107,7 +107,30 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Pagadas {{ count($payed) }}" color="primary" solid button collapsed>
+            <color-box title="Facturó {{ count($added) }}" color="primary" solid button collapsed>
+                <data-table example="4">
+                    {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', 'Pago', '<i class="fa fa-eye"></i>') }}
+                    <template slot="body">
+                        @foreach($added as $row)
+                            <tr>
+                                <td>{{ $row->id }}</td>
+                                <td>{{ fdate($row->date, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ $row->folio }}</td>
+                                <td>{{ $row->fromr->name }}</td>
+                                <td>{{ fnumber($row->amount) }}</td>
+                                <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ fdate($row->payed_at, 'd-M-y', 'Y-m-d') }} </td>
+                                <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
+                            </tr>
+                        @endforeach
+                    </template>
+                </data-table>
+            </color-box>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <color-box title="Pagó {{ count($payed) }}" color="primary" solid button collapsed>
                 <data-table example="4">
                     {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', 'Pago', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">
@@ -121,7 +144,6 @@
                                 <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
                                 <td>{{ fdate($row->payed_at, 'd-M-y', 'Y-m-d') }} </td>
                                 <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
-                            </tr>
                             </tr>
                         @endforeach
                     </template>

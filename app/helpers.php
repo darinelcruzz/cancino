@@ -97,12 +97,12 @@ function pendingDepositsAll()
 function pendingTasks()
 {
     return App\Task::where('store_id', auth()->user()->store_id)
-        ->where('status', '!=', 'completado')->count();
+        ->where('status', '!=', 'finalizada')->count();
 }
 
 function pendingTasksAll()
 {
-    return App\Task::where('status', '!=', 'completado')->count();
+    return App\Task::where('status', '!=', 'finalizada')->count();
 }
 
 function pendingShoppings()
