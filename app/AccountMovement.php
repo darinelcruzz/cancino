@@ -45,4 +45,9 @@ class AccountMovement extends Model
     {
         return route('account_movements.edit', $this->next_register);
     }
+
+    function getCleanConceptAttribute()
+    {
+        return substr($this->concept, 0, strpos($this->concept, '/'));
+    }
 }

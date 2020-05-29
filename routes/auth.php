@@ -314,12 +314,34 @@ Route::group(['prefix' => 'movimientos-bancarios', 'as' => 'account_movements.']
     Route::get('tiendas', usesas($ctrl, 'choose'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('detalles/{account_movement}', usesas($ctrl, 'show'));
     Route::get('editar/{account_movement}', usesas($ctrl, 'edit'));
     Route::post('editar/{account_movement}', usesas($ctrl, 'update'));
     Route::post('importar', usesas($ctrl, 'import'));
     Route::get('importar', usesas($ctrl, 'import'));
+    Route::get('arreglar', usesas($ctrl, 'fix'));
     Route::get('/{store?}', usesas($ctrl, 'index'));
     Route::post('/{store?}', usesas($ctrl, 'index'));
+});
+
+Route::group(['prefix' => 'proveedores', 'as' => 'providers.'], function () {
+    $ctrl = 'ProviderController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{provider}', usesas($ctrl, 'edit'));
+    Route::post('editar/{provider}', usesas($ctrl, 'update'));
+    Route::get('eliminar/{provider}', usesas($ctrl, 'destroy'));
+});
+
+Route::group(['prefix' => 'grupos-de-gastos', 'as' => 'expenses_groups.'], function () {
+    $ctrl = 'ExpensesGroupController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{expenses_group}', usesas($ctrl, 'edit'));
+    Route::post('editar/{expenses_group}', usesas($ctrl, 'update'));
+    Route::get('eliminar/{expenses_group}', usesas($ctrl, 'destroy'));
 });
 
 Route::group(['prefix' => 'cheques', 'as' => 'checks.'], function () {
@@ -348,6 +370,16 @@ Route::group(['prefix' => 'terminal', 'as' => 'terminal.'], function () {
     Route::post('editar/{check}', usesas($ctrl, 'update'));
     Route::get('poliza/{check}', usesas($ctrl, 'policy'));
     Route::get('cancelar/{check}', usesas($ctrl, 'destroy'));
+});
+
+Route::group(['prefix' => 'conceptos', 'as' => 'concepts.'], function () {
+    $ctrl = 'ConceptController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{concept}', usesas($ctrl, 'edit'));
+    Route::post('editar/{concept}', usesas($ctrl, 'update'));
+    Route::get('{concept}', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'pos', 'as' => 'pos.'], function () {

@@ -66,6 +66,10 @@ return [
                 'title' => 'Chequeras',
                  'route' => 'terminal.index'
             ],
+            'providers' => [
+                'title' => 'Grupos y proveedores',
+                 'route' => 'providers.index'
+            ],
         ],
     ],
 

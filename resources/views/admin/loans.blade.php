@@ -107,7 +107,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Facturó {{ count($added) }}" color="primary" solid button collapsed>
+            <color-box title="Le facturaron {{ count($added) }}" color="primary" solid button collapsed>
                 <data-table example="4">
                     {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', 'Pago', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">

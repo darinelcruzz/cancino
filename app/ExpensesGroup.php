@@ -12,4 +12,9 @@ class ExpensesGroup extends Model
     {
     	return $this->hasMany(Provider::class);
     }
+
+    function getDescriptionAttribute()
+    {
+    	return $this->name . " (" . $this->type . ")";
+    }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AccountMovement;
-use App\{ExpensesGroup, Provider, BankAccount, Store};
+use App\{ExpensesGroup, Provider, BankAccount, Store, Concept};
 use Illuminate\Http\Request;
 use App\Imports\AccountMovementsImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -58,9 +58,9 @@ class AccountMovementController extends Controller
         return redirect(route('account_movements.choose'));
     }
 
-    function show(AccountMovement $accountMovement)
+    function show(AccountMovement $account_movement)
     {
-        //
+        
     }
 
     function edit(AccountMovement $accountMovement)
@@ -103,5 +103,23 @@ class AccountMovementController extends Controller
     function destroy(AccountMovement $accountMovement)
     {
         //
+    }
+
+    function fix()
+    {
+        foreach (AccountMovement::all() as $account_movement) {
+            if ($account_movement->clean_concept != '') {
+                $concept = Concept::where('description', $account_movement->clean_concept)->first();
+
+                if ($concept) {
+                    $account_movement->update([
+                        'provider_id' => $concept->provider_id,
+                        'concept' => $concept->description
+                    ]);
+                }
+            }
+        }
+
+        return 'LISTO';
     }
 }

@@ -14,30 +14,44 @@ class ExpensesGroupController extends Controller
 
     function create()
     {
-        //
+        return view('expenses_groups.create');
     }
 
     function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'type' => 'required'
+        ]);
+
+        ExpensesGroup::create($validated);
+
+        return redirect(route('providers.index'));
     }
 
-    function show(ExpenseGroup $expenseGroup)
+    function show(ExpensesGroup $expenses_group)
     {
         //
     }
 
-    function edit(ExpenseGroup $expenseGroup)
+    function edit(ExpensesGroup $expenses_group)
     {
-        //
+        return view('expenses_groups.edit', compact('expenses_group'));
     }
 
-    function update(Request $request, ExpenseGroup $expenseGroup)
+    function update(Request $request, ExpensesGroup $expenses_group)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'type' => 'required'
+        ]);
+
+        $expenses_group->update($validated);
+
+        return redirect(route('providers.index'));
     }
 
-    function destroy(ExpenseGroup $expenseGroup)
+    function destroy(ExpensesGroup $expenses_group)
     {
         //
     }
