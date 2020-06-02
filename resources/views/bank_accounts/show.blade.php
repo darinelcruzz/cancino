@@ -45,7 +45,7 @@
                                         <ddi to="{{ route('account_movements.edit', $movement) }}" icon="edit" text="Editar"></ddi>
                                     </dropdown>
                                 </td>
-                                <td>{{ $movement->concept }}{{ $movement->check_id ? ' / ' . $movement->check->concept : '' }}</td>
+                                <td>{{ $movement->concept }} {{ $movement->check_id ? ' / ' . $movement->check->folio . ' / ' . $movement->check->concept : '' }}</td>
                                 <td>{{ number_format($movement->amount, 2) }}</td>
                                 <td>{{ ucfirst($movement->type) }}</td>
                                 <td>{!! $movement->provider->social or '<code>PENDIENTE</code>' !!}</td>

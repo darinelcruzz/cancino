@@ -41,6 +41,18 @@
             <div class="row">
         @endif
     @endforeach
+
+
     </div>
+
+    @if(isAdmin())
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <a href="{{ route('account_movements.import') }}" class="btn btn-github btn-block btn-sm">
+                <i class="fa fa-2x fa-upload"></i>
+            </a>
+        </div>
+    </div>
+    @endif
 
 @endsection
