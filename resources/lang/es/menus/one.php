@@ -34,6 +34,10 @@ return [
                 'title' => 'Arqueos',
                 'route' => 'admin.checkups'
             ],
+            'transfers' => [
+                'title' => 'Transferencias y cheques',
+                'route' => 'checkup.transfers'
+            ],
         ],
     ],
 

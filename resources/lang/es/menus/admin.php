@@ -36,6 +36,10 @@ return [
                 'title' => 'Graficas',
                 'route' => 'admin.public',
             ],
+            'transfers' => [
+                'title' => 'Transferencias y cheques',
+                'route' => 'checkup.transfers'
+            ],
         ],
     ],
 

@@ -23,6 +23,9 @@
                     </data-table>
                     <hr>
                     <a href="{{ route('wastes.edit', ['store' => $store_id])}}" class="btn btn-block btn-danger">Destruir</a><br>
+                    <a href="{{ route('wastes.print', $store_id) }}" class="btn btn-github btn-sm btn-block" target="_blank">
+                        <i class="fa fa-print"></i>&nbsp;&nbsp;IMPRIMIR PENDIENTES
+                    </a>
                 </color-box>
             </div>
         @endforeach

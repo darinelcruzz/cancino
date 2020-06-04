@@ -24,6 +24,10 @@ return [
                 'title' => 'Metas',
                 'route' => 'goals.index'
             ],
+            'transfers' => [
+                'title' => 'Transferencias y cheques',
+                'route' => 'checkup.transfers'
+            ],
         ],
     ],
 

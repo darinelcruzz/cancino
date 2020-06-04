@@ -129,4 +129,34 @@ class CheckupController extends Controller
 
         return view('checkups.cards', compact('date', 'chart'));
     }
+
+    function transfers(Request $request)
+    {
+        $from = isset($request->from) ? $request->from : date('Y-m-d', strtotime("2020-01-01"));
+        $to = isset($request->to) ? $request->to : date('Y-m-d');
+        $store = isset($request->store) ? Store::find($request->store) : getStore();
+
+        $checkups = Checkup::where('store_id', $store->id)
+            ->whereNotNull('transfer')
+            ->whereBetween('date_sale', [$from, $to])
+            ->get();
+
+        $stores = Store::where('type', '!=', 'c')->pluck('name', 'id')->toArray();
+
+        return view('checkups.transfers', compact('checkups', 'from', 'to', 'store', 'stores'));
+    }
+
+    function print(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+        $store = Store::find($request->store);
+
+        $checkups = Checkup::where('store_id', $store->id)
+            ->whereNotNull('transfer')
+            ->whereBetween('date_sale', [$from, $to])
+            ->get();
+
+        return view('checkups.print', compact('checkups', 'from', 'to', 'store'));
+    }
 }

@@ -14,7 +14,7 @@ class Shopping extends Model
     }
     function getPrefixAttribute()
     {
-        if ($this->type == 'mercancia' || $this->type == 'varfra' ) {
+        if ($this->type == 'mercancia' || $this->type == 'varfra' || $this->type == 'nc') {
             return 'AFSM-';
         }elseif ($this->type == 'regalias') {
             return 'AFFF-';

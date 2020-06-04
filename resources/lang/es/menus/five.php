@@ -24,7 +24,11 @@ return [
             'index' => [
                 'title' => 'Listado',
                 'route' => 'checkup.index'
-            ]
+            ],
+            'transfers' => [
+                'title' => 'Transferencias y cheques',
+                'route' => 'checkup.transfers'
+            ],
         ],
     ],
 

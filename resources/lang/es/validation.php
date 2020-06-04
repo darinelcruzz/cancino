@@ -247,5 +247,7 @@ return [
         'emitted_at' => 'fecha',
         'authorized_by' => 'autoriza',
         'received_by' => 'recibe',
+        'to' => 'hasta',
+        'from' => 'desde',
     ],
 ];

@@ -227,6 +227,9 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::get('actualizar/{checkup}/{status}', usesas($ctrl, 'updateStatus'));
     Route::get('terminales', usesas($ctrl, 'cards'));
     Route::post('terminales', usesas($ctrl, 'cards'));
+    Route::get('transferencias-y-cheques', usesas($ctrl, 'transfers'));
+    Route::post('transferencias-y-cheques', usesas($ctrl, 'transfers'));
+    Route::post('transferencias-y-cheques/imprimir', usesas($ctrl, 'print'));
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {
