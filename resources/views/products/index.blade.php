@@ -25,7 +25,8 @@
                 <hr>
                 
                 @php
-                    $sum = 0
+                    $sum = 0;
+                    $online = 0;
                 @endphp
                 <data-table example="1">
                     {{ drawHeader('código', 'descripción', 'antes', 'después', 'diferencia', 'costo') }}
@@ -47,12 +48,17 @@
                                 </td>
                             </tr>
                             @php
-                                $sum += ($product->counts->sum('quantity') - $product->quantity) * $product->price
+                                $sum += ($product->counts->sum('quantity') - $product->quantity) * $product->price;
+                                $online += $product->status != 'Descontinuado' ? ($product->counts->sum('quantity') - $product->quantity) * $product->price: 0;
                             @endphp
                         @endforeach
                     </template>
 
                     <template slot="footer">
+                        <tr>
+                            <th colspan="5" style="text-align: right">COSTO TOTAL DIFERENCIAS EN LÍNEA</th>
+                            <td>{{ number_format($online, 2) }}</td>
+                        </tr>
                         <tr>
                             <th colspan="5" style="text-align: right">COSTO TOTAL DIFERENCIAS</th>
                             <td>{{ number_format($sum, 2) }}</td>
