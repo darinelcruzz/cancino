@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <color-box title="{{ ucfirst($bank_account->type) }} ({{ $bank_account->checks->count() }})" color="{{ $bank_account->store->color }}" solid button collapsed>
 
-                    <table class="table table-striped table-bordered ascending">
+                    <table class="table table-striped table-bordered descending">
                         <thead>
                             <tr>
                                 <th style="width: 5%">Folio</th>
@@ -59,7 +59,7 @@
             <div class="col-md-12">
                 <color-box title="{{ ucfirst($store->name) }} ({{ $store->terminal_account->checks->count() }})" color="{{ $store->color }}" solid button collapsed>
 
-                    <table class="table table-striped table-bordered ascending">
+                    <table class="table table-striped table-bordered descending">
                         <thead>
                             <tr>
                                 <th style="width: 5%">Folio</th>

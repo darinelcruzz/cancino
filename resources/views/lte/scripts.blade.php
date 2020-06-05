@@ -61,8 +61,8 @@
       "order":[[ 0 , "desc"]]
     });
 
-    $(".ascending").DataTable({
-      "order":[[ 0 , "asc"]]
+    $(".descending").DataTable({
+      "order":[[ 0 , "desc"]]
     });
 
     $(".no-pagination").DataTable({

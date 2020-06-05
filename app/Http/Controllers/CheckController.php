@@ -76,7 +76,10 @@ class CheckController extends Controller
             }
         }
 
-        return redirect(route('checks.show', $check));
+        if($check->bank_account->type == 'gastos')
+            return redirect(route('checks.show', $check));
+        
+        return redirect(route('terminal.show', $check));
     }
 
     function remove($path)
