@@ -12,4 +12,9 @@ class Product extends Model
     {
     	return $this->hasMany(Count::class);
     }
+
+    function getDifferenceAttribute()
+    {
+    	return $this->counts->sum('quantity') - $this->quantity;
+    }
 }

@@ -6,8 +6,16 @@
     <div class="row">
         <div class="col-md-12">
             <color-box color="primary" title="Productos">
+                <a href="{{ route('product.export', 'no-descontinuado') }}" class="btn btn-xs btn-github">
+                    EN LINEA &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                </a>
+
+                <a href="{{ route('product.export', 'descontinuado') }}" class="btn btn-xs btn-default">
+                    DESCONTINUADO &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                </a>
+
                 <a href="{{ route('product.export', 'excel') }}" class="btn btn-xs btn-success">
-                    EXCEL &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                    TODOS &nbsp;&nbsp;<i class="fa fa-file-download"></i>
                 </a>
 
                 <a href="{{ route('product.export', 'csv') }}" class="btn btn-xs btn-warning">
