@@ -33,6 +33,7 @@ class CountController extends Controller
             'quantity' => 'required',
             'helper_id' => 'required',
             'user_id' => 'required',
+            'team' => 'required',
             'location_id' => 'required'
         ]);
 

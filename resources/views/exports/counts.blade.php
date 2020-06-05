@@ -13,7 +13,7 @@
 
         <tr>
             <td>{{ $count->product->code }}</td>
-            <td>{{ $count->user->name }}</td>
+            <td>{{ $count->team }}</td>
             <td>{{ $count->location->name }}</td>
             <td>{{ $count->quantity }}</td>
         </tr>

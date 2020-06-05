@@ -20,7 +20,7 @@
                                 <td>{{ $count->id }}</td>
                                 <td>{{ $count->product->code }}</td>
                                 <td>{{ $count->location->name }}</td>
-                                <td>{{ $count->user->name }}</td>
+                                <td>{{ $count->team }}</td>
                                 <td>{{ $count->created_at->format('d/m/Y | h:i:s a') }}</td>
                                 <td>{{ $count->quantity }}</td>
                             </tr>

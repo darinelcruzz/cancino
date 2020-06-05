@@ -53,6 +53,7 @@
                     <div class="col-md-12">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <input type="hidden" name="helper_id" value="{{ auth()->user()->id }}">
+                        <input type="hidden" name="team" value="{{ auth()->user()->name }}">
                         <input type="hidden" name="product_id" :value="product.id">
 
                         <button type="submit" class="btn btn-primary pull-right" onclick="submitForm(this);">Siguiente</button>
