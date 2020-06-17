@@ -141,6 +141,11 @@ function evaluationEmployeeAll()
     return App\Employer::whereIn('status', ['evaluacion uno', 'evaluacion dos', 'evaluacion tres'])->count();
 }
 
+function evaluationImssEmployeesAll()
+{
+    return App\Employer::where('imss', 0)->count();
+}
+
 function pendingLoans()
 {
     $from = App\Loan::where('from', auth()->user()->store_id)

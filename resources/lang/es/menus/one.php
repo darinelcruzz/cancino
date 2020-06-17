@@ -9,6 +9,18 @@ return [
         'route' => 'shoppings.index',
     ],
 
+    'covid' => [
+        'title' => 'Covid',
+        'icon' => 'fa fa-medkit',
+        'label' => evaluationImssEmployeesAll() > 0 ? evaluationImssEmployeesAll(): '',
+        'submenu' => [
+            'imss' => [
+                'title' => 'IMSS',
+                'route' => 'covid.imss',
+            ],
+        ],
+    ],
+
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',

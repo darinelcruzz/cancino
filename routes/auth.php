@@ -404,6 +404,11 @@ Route::group(['prefix' => 'cuentas', 'as' => 'bank_accounts.'], function () {
     Route::post('/{bank_account}', usesas($ctrl, 'show'));
 });
 
+Route::group(['prefix' => 'covid', 'as' => 'covid.'], function () {
+    $ctrl = 'CovidController';
+    Route::get('/imss', usesas($ctrl, 'imss'));
+});
+
 Route::get('/mailable/employer/to-firm', function () {
     $employer = App\Employer::find(1);
 

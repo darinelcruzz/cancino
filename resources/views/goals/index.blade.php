@@ -33,7 +33,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </solid-box>
+            </color-box>
         </div>
         @if ($loop->iteration % 2 == 0)
             </div>
