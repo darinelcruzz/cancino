@@ -53,11 +53,20 @@ return [
         ],
     ],
 
-    'Tasks' => [
-        'title' => 'Pendientes',
+    'admin' => [
+        'title' => 'Admin',
         'label' => pendingTasksAll() > 0 ? pendingTasksAll(): '',
-        'icon' => 'fa fa-calendar-check',
-        'route' => 'admin.tasks'
+        'icon' => 'fa fa-eye',
+        'submenu' => [
+            'tasks' => [
+                'title' => 'Pendientes',
+                'route' => 'admin.tasks'
+            ],
+            'services' => [
+                'title' => 'Servicios',
+                'route' => 'services.index',
+            ],
+        ],
     ],
 
     'Checklist' => [

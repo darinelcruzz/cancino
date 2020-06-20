@@ -385,6 +385,26 @@ Route::group(['prefix' => 'conceptos', 'as' => 'concepts.'], function () {
     Route::get('{concept}', usesas($ctrl, 'show'));
 });
 
+Route::group(['prefix' => 'servicios', 'as' => 'services.'], function () {
+    $ctrl = 'ServiceController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{service}', usesas($ctrl, 'edit'));
+    Route::post('editar/{service}', usesas($ctrl, 'update'));
+    Route::get('{service}', usesas($ctrl, 'show'));
+});
+
+Route::group(['prefix' => 'pago-de-servicios', 'as' => 'service_payments.'], function () {
+    $ctrl = 'ServicePaymentController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{service_payment}', usesas($ctrl, 'edit'));
+    Route::post('editar/{service_payment}', usesas($ctrl, 'update'));
+    Route::get('{service_payment}', usesas($ctrl, 'show'));
+});
+
 Route::group(['prefix' => 'pos', 'as' => 'pos.'], function () {
     $ctrl = 'POSController';
     Route::get('subir-foto/{pos}', usesas($ctrl, 'upload'));

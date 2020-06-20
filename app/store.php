@@ -23,6 +23,11 @@ class Store extends Model
         return $this->hasMany(Goal::class);
     }
 
+    function services()
+    {
+        return $this->morphMany(Service::class, 'serviceable');
+    }
+
     function managerr()
     {
         return $this->belongsTo(User::class, 'manager');

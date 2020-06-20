@@ -249,5 +249,6 @@ return [
         'received_by' => 'recibe',
         'to' => 'hasta',
         'from' => 'desde',
+        'period' => 'periodo',
     ],
 ];
