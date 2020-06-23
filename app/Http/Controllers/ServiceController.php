@@ -38,7 +38,7 @@ class ServiceController extends Controller
 
     function show(Service $service)
     {
-        //
+        return view('services.show', compact('service'));
     }
 
     function edit(Service $service)

@@ -2,83 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\ServicePayment;
+use App\{ServicePayment, Service};
 use Illuminate\Http\Request;
+use Jenssegers\Date\Date;
 
 class ServicePaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    function index()
+    {
+        $payments = ServicePayment::all();
+        return view('services.payments.index', compact('payments'));
+    }
+
+    function create(Service $service)
+    {
+        return view('services.payments.create', compact('service'));
+    }
+
+    function store(Request $request, Service $service)
+    {
+        $validated = $request->validate([
+            'amount' => 'required',
+            'paid_at' => 'required',
+            'method' => 'required',
+        ]);
+
+        $service->payments()->create($validated);
+
+        $invoiced_at = Date::createFromFormat('Y-m-d', $service->invoiced_at);
+        $expired_at = Date::createFromFormat('Y-m-d', $service->expired_at);
+
+        $service->update([
+            'invoiced_at' => $invoiced_at->add($service->period . " month"),
+            'expired_at' => $expired_at->add($service->period . " month")
+        ]);
+
+        return redirect(route('service_payments.index'));
+    }
+
+    function show(ServicePayment $servicePayment)
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    function edit(ServicePayment $servicePayment)
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    function update(Request $request, ServicePayment $servicePayment)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ServicePayment  $servicePayment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ServicePayment $servicePayment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ServicePayment  $servicePayment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ServicePayment $servicePayment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ServicePayment  $servicePayment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ServicePayment $servicePayment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ServicePayment  $servicePayment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ServicePayment $servicePayment)
+    function destroy(ServicePayment $servicePayment)
     {
         //
     }

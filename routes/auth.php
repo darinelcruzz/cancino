@@ -398,8 +398,8 @@ Route::group(['prefix' => 'servicios', 'as' => 'services.'], function () {
 Route::group(['prefix' => 'pago-de-servicios', 'as' => 'service_payments.'], function () {
     $ctrl = 'ServicePaymentController';
     Route::get('/', usesas($ctrl, 'index'));
-    Route::get('agregar', usesas($ctrl, 'create'));
-    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('agregar/{service}', usesas($ctrl, 'create'));
+    Route::post('agregar/{service}', usesas($ctrl, 'store'));
     Route::get('editar/{service_payment}', usesas($ctrl, 'edit'));
     Route::post('editar/{service_payment}', usesas($ctrl, 'update'));
     Route::get('{service_payment}', usesas($ctrl, 'show'));

@@ -13,7 +13,7 @@
                             {!! Field::text('description', ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::select('group', ['telefono' => 'Teléfono', 'luz' => 'Luz', 'renta' => 'Renta'], null,
+                            {!! Field::select('group', ['telefono' => 'Teléfono', 'luz' => 'Luz', 'agua' => 'Agua', 'seguro' => 'Seguro', 'basura' => 'Basura', 'predial' => 'Predial'], null,
                                 ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon'], ['icon' => 'group'])
                             !!}
                         </div>
@@ -30,9 +30,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::select('period', ['semanal', 'quincenal', 'mensual', 'bimensual', 'anual'], null,
-                                ['empty' => 'Seleccione una opción', 'tpl' => 'lte/withicon'], ['icon' => 'sync-alt'])
-                            !!}
+                            {!! Field::number('period', 1, ['label' => '¿Cada cuántos meses?', 'tpl' => 'lte/withicon', 'min' => '1'], ['icon' => 'sync-alt']) !!}
                         </div>
                         <div class="col-md-6">
                             {!! Field::date('expired_at', date('Y-m-d'), ['label' => 'Fecha vencimiento', 'tpl' => 'lte/withicon'], ['icon' => 'calendar-alt']) !!}
