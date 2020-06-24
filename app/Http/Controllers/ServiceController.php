@@ -31,7 +31,7 @@ class ServiceController extends Controller
             'store_id' => 'required',
         ]);
 
-        Service::create($request->except('store_id') + ['serviceable_type' => 'App\Store', 'serviceable_id' => 1]);
+        Service::create($request->except('store_id') + ['serviceable_type' => 'App\Store', 'serviceable_id' => $request->store_id]);
 
         return redirect(route('services.index'));
     }
