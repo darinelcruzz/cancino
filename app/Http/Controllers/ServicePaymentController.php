@@ -37,7 +37,7 @@ class ServicePaymentController extends Controller
             'expired_at' => $expired_at->add($service->period . " month")
         ]);
 
-        return redirect(route('service_payments.index'));
+        return redirect(route('service.show', $service));
     }
 
     function show(ServicePayment $servicePayment)

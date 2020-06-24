@@ -25,19 +25,13 @@ class Service extends Model
 
     function getStatusAttribute()
     {
-    	$payment = ServicePayment::whereMonth('paid_at', substr($this->invoiced_at, 5, 7))->get()->last();
-
-    	if ($payment) {
-    		if ($payment->paid_at >= $this->invoiced_at && $payment->paid_at <= $this->expired_at) {
-    			return 'PAGADO';
-    		} else if($payment->paid_at > $this->expired_at) {
-    			return 'VENCIDO';
-    		} else {
-    			return 'PENDIENTE';
-    		}
-    	}
-
-    	return 'PAGADO';
+		if (date('Y-m-d') >= $this->invoiced_at && date('Y-m-d') <= $this->expired_at) {
+			return 'PENDIENTE';
+		} else if(date('Y-m-d') > $this->expired_at) {
+			return 'VENCIDO';
+		} else {
+			return 'PAGADO';
+		}
     }
 
     function getStatusColorAttribute()
