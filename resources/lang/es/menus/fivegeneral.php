@@ -38,6 +38,12 @@ return [
         ],
     ],
 
+    'services' => [
+        'title' => 'Servicios',
+        'icon' => 'fa fa-file-invoice-dollar',
+        'route' => 'services.index',
+    ],
+
     'Commisions' => [
         'title' => 'Comisiones',
         'icon' => 'fa fa-archive',
