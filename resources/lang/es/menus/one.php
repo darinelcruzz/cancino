@@ -66,6 +66,10 @@ return [
                 'title' => 'Servicios',
                 'route' => 'services.index',
             ],
+            'websites' => [
+                'title' => 'Portales',
+                'route' => 'websites.index',
+            ],
         ],
     ],
 

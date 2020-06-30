@@ -405,6 +405,16 @@ Route::group(['prefix' => 'pago-de-servicios', 'as' => 'service_payments.'], fun
     Route::get('{service_payment}', usesas($ctrl, 'show'));
 });
 
+Route::group(['prefix' => 'portales', 'as' => 'websites.'], function () {
+    $ctrl = 'WebsiteController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{website}', usesas($ctrl, 'edit'));
+    Route::post('editar/{website}', usesas($ctrl, 'update'));
+    Route::get('{website}', usesas($ctrl, 'show'));
+});
+
 Route::group(['prefix' => 'pos', 'as' => 'pos.'], function () {
     $ctrl = 'POSController';
     Route::get('subir-foto/{pos}', usesas($ctrl, 'upload'));

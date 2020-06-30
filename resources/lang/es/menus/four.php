@@ -52,10 +52,19 @@ return [
         'route' => ['checklists.index', auth()->user()->store_id]
     ],
 
-    'Documents' => [
-        'title' => 'Documentos',
+    'admin' => [
+        'title' => 'Admin',
         'icon' => 'fa fa-folder',
-        'route' => 'documents.index'
+        'submenu' => [
+            'documents' => [
+                'title' => 'Documentos',
+                'route' => 'documents.index',
+            ],
+            'websites' => [
+                'title' => 'Portales',
+                'route' => 'websites.index',
+            ],
+        ],
     ],
 
     'Expenses' => [
