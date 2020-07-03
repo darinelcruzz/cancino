@@ -1,10 +1,9 @@
 @extends('lte.root')
-@push('pageTitle')
-    Empleados | Lista
-@endpush
+
+@push('pageTitle', 'Empleados | Lista')
 
 @push('headerTitle')
-    <a href="{{ route('employers.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
+    <a href="{{ route('employers.create') }}" class="btn btn-github btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
 @endpush
 
 @section('content')
@@ -37,7 +36,7 @@
                                     </td>
                                     <td>{{ fdate($employee->birthday, 'd M Y', 'Y-m-d') }}</td>
                                     <td>
-                                        <dropdown icon="cogs" color="{{ $employee->store->color }}">
+                                        <dropdown icon="cogs" color="{{ $employee->store->id == 1 ? 'github': $employee->store->color }}">
                                             <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
                                             <ddi to="{{ route('employers.explore', $employee) }}" icon="file-pdf" text="Documentos"></ddi>
                                             <ddi to="{{ route('employers.edit', $employee) }}" icon="edit" text="Editar"></ddi>

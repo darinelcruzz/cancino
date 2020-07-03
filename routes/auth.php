@@ -245,6 +245,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('metas', usesas($ctrl, 'goals'));
     Route::get('publico', usesas($ctrl, 'public'));
     Route::post('publico', usesas($ctrl, 'public'));
+    Route::get('terminales', usesas($ctrl, 'terminals'));
+    Route::post('terminales', usesas($ctrl, 'terminals'));
     Route::get('documentos', usesas($ctrl, 'documents'));
     Route::get('empleados', usesas($ctrl, 'employers'));
     Route::get('equipos', usesas($ctrl, 'equipments'));

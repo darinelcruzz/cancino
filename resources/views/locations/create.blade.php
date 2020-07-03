@@ -25,8 +25,13 @@
                     @foreach ($users as $user)
                         {!! Form::open(['method' => 'POST', 'route' => ['users.update', $user->id]]) !!}
                             {!!
+                                Field::text('name', $user->name,
+                                ['tpl' => 'lte/withicon', $user->id == 2 ? 'disabled': ''], ['icon' => 'users'])
+                            !!}
+
+                            {!!
                                 Field::select('location_id', $locations, $user->location_id,
-                                ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon', 'label' => $user->name], ['icon' => 'map-pin'])
+                                ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon', 'label' => ''], ['icon' => 'map-pin'])
                             !!}
 
                             <button type="submit" class="btn btn-primary pull-right" onclick="submitForm(this);">Actualizar</button>

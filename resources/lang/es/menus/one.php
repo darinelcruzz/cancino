@@ -50,6 +50,10 @@ return [
                 'title' => 'Transferencias y cheques',
                 'route' => 'checkup.transfers'
             ],
+            'terminal' => [
+                'title' => 'Terminales',
+                'route' => 'admin.terminals'
+            ],
         ],
     ],
 
@@ -115,7 +119,7 @@ return [
         'submenu' => [
             'index' => [
                 'title' => 'Listado',
-                'route' => 'admin.employers'
+                'route' => 'employers.index'
             ],
             'debs' => [
                 'title' => 'Deudas',

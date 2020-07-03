@@ -24,7 +24,7 @@ class BankAccountController extends Controller
 
     function show(Request $request, BankAccount $bank_account)
     {
-        $date = $request->date ? $request->date: date('Y-m');
+        $date = $request->date ? $request->date: date('Y-m', strtotime("-1 month"));
 
         $movements = AccountMovement::where('bank_account_id', $bank_account->id)
             ->whereMonth('added_at', substr($date, 5))

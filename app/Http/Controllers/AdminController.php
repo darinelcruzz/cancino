@@ -179,6 +179,39 @@ class AdminController extends Controller
         return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'sales', 'points', 'stars', 'goldens'));
     }
 
+    function terminals(Request $request)
+    {
+        $date = isset($request->date) ? $request->date : date('Y-m');
+
+        $stores = Store::where('type', '!=', 'c')->get();
+
+        foreach ($stores as $store) {
+            $chart = new TestChart;
+
+            $sales = Checkup::whereYear('date_sale', substr($date, 0, 4))
+                ->whereMonth('date_sale', substr($date, 5))
+                ->where('store_id', $store->id)
+                ->get();
+
+            $bbva = $banamex = $clip = 0;
+
+            foreach ($sales as $sale) {
+                $bbva += $sale->bbva_sum;
+                $banamex += $sale->banamex_sum;
+                $clip += $sale->clip_sum;
+            }
+
+            $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2)]);
+
+            $chart->labels($data->keys());
+            $chart->dataset('Ventas', 'bar', $data->values())->color(['#1D4B96', '#E03317', '#D67A1D']);
+
+            ${strtolower($store->tabName)} = $chart;
+        }
+
+        return view('admin.terminals', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa'));
+    }
+
     function buildChart(Store $store, $date)
     {
         $chart = new TestChart;

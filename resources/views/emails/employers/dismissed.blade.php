@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 
-			<h3>A partir del día de hoy {{ ucfirst($employer->name) }} deja de trabajar con nosotros.</h3>
+			<h3>A partir del día de hoy {{ ucfirst($employer->name) }} deja de trabajar en {{ $employer->store->name }}.</h3>
 			<table class="table">
 				<tr>
 					<td style="text-align: center;">

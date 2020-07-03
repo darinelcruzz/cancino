@@ -83,6 +83,8 @@
         @endif
 
         </color-box>
+
+        <a href="{{ route('employers.index') }}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-backward"></i>&nbsp;&nbsp;REGRESAR</a>
     </div>
 </div>
 

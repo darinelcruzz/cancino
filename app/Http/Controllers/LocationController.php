@@ -14,9 +14,10 @@ class LocationController extends Controller
 
     function create()
     {
-        $locations = Location::all()->pluck('name', 'id')->toArray();
-        $users = User::where('level', '8')->get();
-
+        $locations = Location::all()->pluck('name', 'id')->transform(function ($item, $key) {
+            return ucfirst($item);
+        })->toArray();
+        $users = User::where('level', '8')->orWhere('id', '2')->get();
 
         return view('locations.create', compact('locations', 'users'));
     }

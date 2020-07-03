@@ -12,6 +12,16 @@ class EmployerController extends Controller
 {
     function index()
     {
+        if (getStore()->id == 1) {
+            $stores = Employer::where('status', '!=', 'inactivo')->orderBy('store_id')->get()->groupBy('store_id');
+            $departments = Employer::where('status', '!=', 'inactivo')->get()->groupBy('job');
+            $training = Employer::whereIn('status', ['evaluacion uno', 'evaluacion dos', 'evaluacion tres'])->get();
+            $inactive = Employer::where('status', 'inactivo')->get();
+            $storesArray = Store::pluck('name', 'id')->toArray();
+
+            return view('admin.employers', compact('stores', 'departments', 'training', 'inactive', 'storesArray'));
+        }
+
         $employers = Employer::where('status', '!=', 'inactivo')
             ->where('store_id', auth()->user()->store_id)
             ->get();
