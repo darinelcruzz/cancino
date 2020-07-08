@@ -63,7 +63,7 @@ class Check extends Model
     {
     	$hundreds = ['100' => 'cien', '200' => 'doscientos', '300' => 'trecientos', '400' => 'cuatrocientos',
     		'500' => 'quinientos', '600' => 'seiscientos', '700' => 'setecientos', '800' => 'ochocientos',
-    		'900 ' => 'novecientos'];
+    		'900' => 'novecientos'];
 
     	if($number >= 100) {
 			if ($number % 100 == 0 ) {

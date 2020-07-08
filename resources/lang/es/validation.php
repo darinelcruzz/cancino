@@ -250,5 +250,10 @@ return [
         'to' => 'hasta',
         'from' => 'desde',
         'period' => 'periodo',
+        'code' => 'código',
+        'sat_key' => 'clave SAT',
+        'unit' => 'unidad',
+        'purchase_price' => 'precio compra',
+        'sale_price' => 'precio venta',
     ],
 ];

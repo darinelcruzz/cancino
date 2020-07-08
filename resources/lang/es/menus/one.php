@@ -128,6 +128,25 @@ return [
         ],
     ],
 
+    'supplies' => [
+        'title' => 'Insumos',
+        'icon' => 'fa fa-broom',
+        'submenu' => [
+            'sales' => [
+                'title' => 'Ventas',
+                'route' => 'supplies.sales.index'
+            ],
+            'purchases' => [
+                'title' => 'Compras',
+                'route' => 'supplies.purchases.index'
+            ],
+            'products' => [
+                'title' => 'Productos',
+                'route' => 'supplies.index'
+            ],
+        ],
+    ],
+
     'Documents' => [
         'title' => 'Documentos',
         'icon' => 'fa fa-folder',

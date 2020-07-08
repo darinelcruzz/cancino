@@ -417,6 +417,36 @@ Route::group(['prefix' => 'portales', 'as' => 'websites.'], function () {
     Route::get('{website}', usesas($ctrl, 'show'));
 });
 
+Route::group(['prefix' => 'insumos', 'as' => 'supplies.'], function () {
+    $ctrl = 'SupplyController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{supply}', usesas($ctrl, 'edit'));
+    Route::post('editar/{supply}', usesas($ctrl, 'update'));
+    Route::get('{supply}', usesas($ctrl, 'show'));
+});
+
+Route::group(['prefix' => 'compras-de-insumos', 'as' => 'supplies.purchases.'], function () {
+    $ctrl = 'SupplyPurchaseController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{supply_purchase}', usesas($ctrl, 'edit'));
+    Route::post('editar/{supply_purchase}', usesas($ctrl, 'update'));
+    Route::get('{supply_purchase}', usesas($ctrl, 'show'));
+});
+
+Route::group(['prefix' => 'ventas-de-insumos', 'as' => 'supplies.sales.'], function () {
+    $ctrl = 'SupplySaleController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{supply_sale}', usesas($ctrl, 'edit'));
+    Route::post('editar/{supply_sale}', usesas($ctrl, 'update'));
+    Route::get('{supply_sale}', usesas($ctrl, 'show'));
+});
+
 Route::group(['prefix' => 'pos', 'as' => 'pos.'], function () {
     $ctrl = 'POSController';
     Route::get('subir-foto/{pos}', usesas($ctrl, 'upload'));

@@ -62,6 +62,11 @@ Vue.component('week-sum', require('./components/WeekSum.vue'));
 Vue.component('goal-sum', require('./components/GoalSum.vue'));
 Vue.component('provider-select', require('./components/ProviderSelect.vue'));
 
+Vue.component('supplies', require('./components/Supplies.vue'));
+Vue.component('supply', require('./components/Supply.vue'));
+Vue.component('supplies-list', require('./components/SuppliesList.vue'));
+Vue.component('supplies-list-item', require('./components/SuppliesListItem.vue'));
+
 const app = new Vue({
     el: '#app',
     data: {

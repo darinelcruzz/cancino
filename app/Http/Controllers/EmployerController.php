@@ -36,6 +36,7 @@ class EmployerController extends Controller
 
     function store(Request $request)
     {
+        // dd($request->all());
         $validated = $this->validate($request, [
             'name' => 'required',
             'birthday' => 'required',
