@@ -32,7 +32,7 @@
 
         <div class="col-md-6">
             <color-box title="Destruidos" color="vks" button collapsed>
-                <data-table example="{{ $store_id }}">
+                <data-table example="1">
                     {{ drawHeader('POS', '<i class="fa fa-cogs"></i>', 'fecha', 'tienda', '<i class="fa fa-photo"></i>') }}
                     <template slot="body">
                         @foreach($complete as $pos => $wastes)
