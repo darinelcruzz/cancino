@@ -44,6 +44,17 @@ return [
         'route' => 'services.index',
     ],
 
+    'supplies' => [
+        'title' => 'Insumos',
+        'icon' => 'fa fa-broom',
+        'submenu' => [
+            'sales' => [
+                'title' => 'Ventas',
+                'route' => 'supplies.sales.index'
+            ],
+        ],
+    ],
+
     'Commisions' => [
         'title' => 'Comisiones',
         'icon' => 'fa fa-archive',
