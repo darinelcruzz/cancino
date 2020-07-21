@@ -30,17 +30,21 @@
 
                 <tab-content title="Tarjetas" icon="fa fa-credit-card">
                     <cards-checkup></cards-checkup>
-                </tab-content>
+                </tab-content>               
 
-                @if (auth()->user()->store_id == 1 || auth()->user()->store_id == 2 || auth()->user()->store_id == 3)
+                @if (auth()->user()->store_id <= 3)
                     <tab-content title="Crédito" icon="fa fa-file-invoice">
                         <credit-checkup></credit-checkup>
+                    </tab-content>
+
+                    <tab-content title="Pago en línea" icon="fa fa-wifi">
+                        <online-checkup></online-checkup>
                     </tab-content>
                 @endif
 
                 <tab-content title="Steren Card" icon="fa fa-gift">
                     <sterencard-checkup></sterencard-checkup>
-                </tab-content>
+                </tab-content> 
 
                 <tab-content title="Devolución / Cancelación" icon="fa fa-ban">
                     <returns-checkup></returns-checkup>

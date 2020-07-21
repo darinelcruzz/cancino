@@ -25,6 +25,7 @@ class CheckupController extends Controller
 
     function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'cash' => 'required',
             'public' => 'required',

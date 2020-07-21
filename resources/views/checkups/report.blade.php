@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Grupo Cancino|Corte {{ fdate($checkup->date_sale, 'd/m/Y', 'Y-m-d') }}</title>
+    <title>Grupo Cancino | Corte {{ fdate($checkup->date_sale, 'd/m/Y', 'Y-m-d') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('/img/logo.ico') }}" />
@@ -169,16 +169,20 @@
                             <table width="80%" style="border-collapse: collapse;" align="center" border="3" class="spaced">
                                 <tbody>
                                     <tr>
+                                        <td width="40%"><b>Ventas Crédito</b></td>
+                                        <td width="60%">{{ fnumber($checkup->creditSum) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="40%"><b>Ventas Pago Web</b></td>
+                                        <td width="60%">{{ fnumber($checkup->online['web']) }}</td>
+                                    </tr>
+                                    <tr>
                                         <td width="40%"><b>Dif SterenCard</b></td>
                                         <td width="60%">{{ fnumber($checkup->sc_dif) }}</td>
                                     </tr>
                                     <tr>
                                         <td width="40%"><b>Retención</b></td>
                                         <td width="60%">{{ fnumber($checkup->retention) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td width="40%"><b>Ventas Crédito</b></td>
-                                        <td width="60%">{{ fnumber($checkup->creditSum) }}</td>
                                     </tr>
                                     <tr>
                                         <td width="40%"><b>Cancelaciones</b></td>
@@ -242,6 +246,14 @@
                         <td>{{ iva($checkup->notes['a']) }}</td>
                         <td>{{ fnumber($checkup->notes['a']) }}</td>
                         <td>BONIF STEREN CARD</td>
+                    </tr>
+                    <tr>
+                        <td>{{ $checkup->online['folio'] }}</td>
+                        <td>CLIENTE MOSTRADOR</td>
+                        <td>{{ subtotal($checkup->online['card']) }}</td>
+                        <td>{{ iva($checkup->online['card']) }}</td>
+                        <td>{{ fnumber($checkup->online['card']) }}</td>
+                        <td>BONIF STEREN CARD WEB</td>
                     </tr>
                 </tbody>
             </table>

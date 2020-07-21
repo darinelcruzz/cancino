@@ -18,6 +18,7 @@ class Checkup extends Model
     	'card_sums' => 'array',
         'notes' => 'array',
         'returns' => 'array',
+        'online' => 'array',
         'clip' => 'array',
         'credit' => 'array',
         'canceled' => 'array',
@@ -35,7 +36,8 @@ class Checkup extends Model
 
     function getAmountAttribute()
     {
-        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum - $this->canceledSum + $this->sc_dif;
+        return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum - $this->canceledSum + $this->sc_dif
+            + $this->online['web'] + $this->retention;
     }
 
     function getStatusLabelAttribute()

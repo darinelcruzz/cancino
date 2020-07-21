@@ -32,9 +32,13 @@
                     <cards-checkup :stored="{{ $checkup->toJson() }}"></cards-checkup>
                 </tab-content>
 
-                @if (auth()->user()->store_id == 1 || auth()->user()->store_id == 2 || auth()->user()->store_id == 3)
+                @if (auth()->user()->store_id <= 3)
                     <tab-content title="Crédito" icon="fa fa-file-invoice">
                         <credit-checkup :stored="{{ $checkup->toJson() }}"></credit-checkup>
+                    </tab-content>
+
+                    <tab-content title="Pago en línea" icon="fa fa-wifi">
+                        <online-checkup :stored="{{ $checkup->toJson() }}"></online-checkup>
                     </tab-content>
                 @endif
 
