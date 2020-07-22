@@ -243,14 +243,14 @@
                         <td>{{ fnumber($checkup->notes['a']) }}</td>
                         <td>BONIF STEREN CARD</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td>{{ $checkup->online['folio'] }}</td>
                         <td>CLIENTE MOSTRADOR</td>
                         <td>{{ subtotal($checkup->online['card']) }}</td>
                         <td>{{ iva($checkup->online['card']) }}</td>
                         <td>{{ fnumber($checkup->online['card']) }}</td>
                         <td>BONIF STEREN CARD WEB</td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
             <br>
