@@ -52,6 +52,14 @@ return [
                 'title' => 'Ventas',
                 'route' => 'supplies.sales.index'
             ],
+            'purchases' => [
+                'title' => 'Compras',
+                'route' => 'supplies.purchases.index'
+            ],
+            'products' => [
+                'title' => 'Productos',
+                'route' => 'supplies.index'
+            ],
         ],
     ],
 

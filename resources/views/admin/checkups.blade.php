@@ -7,7 +7,7 @@
     @foreach ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $checkups->where('store_id', $store->id)->where('status', '!=', 2)->count() }}" button collapsed>
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $checkups->where('store_id', $store->id)->where('status', '<', 2)->count() }}" button collapsed>
                     <data-table example="{{ $store->id }}">
                         {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'web', 'Otros', 'estado', '') }}
                         <template slot="body">

@@ -173,10 +173,6 @@
                                         <td width="60%">{{ fnumber($checkup->creditSum) }}</td>
                                     </tr>
                                     <tr>
-                                        <td width="40%"><b>Ventas Pago Web</b></td>
-                                        <td width="60%">{{ fnumber($checkup->online['web']) }}</td>
-                                    </tr>
-                                    <tr>
                                         <td width="40%"><b>Dif SterenCard</b></td>
                                         <td width="60%">{{ fnumber($checkup->sc_dif) }}</td>
                                     </tr>

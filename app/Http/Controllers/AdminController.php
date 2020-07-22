@@ -48,7 +48,7 @@ class AdminController extends Controller
     function checkups()
     {
         $stores = Store::where('type', '!=', 'c')->get();
-        $checkups = Checkup::all();
+        $checkups = Checkup::orderBy('id', 'desc')->get()->take(400);
 
         return view('admin.checkups', compact('checkups', 'stores'));
     }

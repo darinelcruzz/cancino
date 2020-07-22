@@ -4,14 +4,14 @@
         <table class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th>Folio</th>
+              <!-- <th>Folio</th> -->
               <th>Método</th>
               <th>Importe</th>
             </tr>
           </thead>
 
           <tbody>
-            <tr>
+            <!-- <tr>
               <td>
                 <input name="online[folio]" type="text" v-model="folio" class="form-control">
               </td>
@@ -22,9 +22,9 @@
                     <input name="online[status]" type="hidden" v-model="status">
                 </div>
               </td>
-            </tr>
+            </tr> -->
             <tr>
-              <td>&nbsp;</td>
+              <!-- <td>&nbsp;</td> -->
               <td>Pago Web</td>
               <td style="width: 25%">
                 <div class="input-group input-group-sm">
