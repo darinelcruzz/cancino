@@ -38,12 +38,15 @@
                                     <dropdown icon="cogs" color="github">
                                         {{-- <ddi icon="edit" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Editar"></ddi> --}}
                                         <ddi icon="eye" to="{{ route('supplies.sales.show', $supply_sale) }}" text="Ver"></ddi>
+                                        @if(auth()->user()->level == 1 && $supply_sale->status != 'cancelada')
+                                        <ddi icon="times" to="{{ route('supplies.sales.destroy', $supply_sale) }}" text="Cancelar"></ddi>
+                                        @endif
                                     </dropdown>
                                 </td>
                                 <td>{{ $supply_sale->sold_at }}</td>
                                 <td>{{ $supply_sale->store->name }}</td>
                                 <td>{{ number_format($supply_sale->amount, 2) }}</td>
-                                <td><span class="label label-{{ $supply_sale->status == 'pendiente' ? 'warning': 'success'}}">{{ strtoupper($supply_sale->status) }}</span></td>
+                                <td><span class="label label-{{ $supply_sale->statusColor }}">{{ strtoupper($supply_sale->status) }}</span></td>
                                 <td>{{ $supply_sale->user->name }}</td>
                             </tr>
                         @endforeach

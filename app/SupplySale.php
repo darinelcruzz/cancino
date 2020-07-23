@@ -22,4 +22,9 @@ class SupplySale extends Model
     {
     	return $this->morphMany(SupplyMovement::class, 'movable');
     }
+
+    function getStatusColorAttribute()
+    {
+        return ['cancelada' => 'danger', 'pendiente' => 'warning', 'pagada' => 'success'][$this->status];
+    }
 }

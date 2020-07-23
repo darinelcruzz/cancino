@@ -51,6 +51,8 @@ class SupplySaleController extends Controller
 
     function destroy(SupplySale $supply_sale)
     {
-        //
+        $supply_sale->update(['status' => 'cancelada']);
+
+        return back();
     }
 }
