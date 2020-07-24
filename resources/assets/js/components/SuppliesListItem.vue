@@ -15,7 +15,7 @@
 		</td>
 		<td>
 			<div class="input-group input-group-sm">
-                <input :name="'supplies[' + index + '][quantity]'" type="number" v-model="quantity" @change="update" class="form-control" min="1" :max="supply.quantity">
+                <input :name="'supplies[' + index + '][quantity]'" type="number" v-model="quantity" @change="update" class="form-control" min="1" :max=" model == 'sale' ? supply.quantity: 999">
             </div>
 		</td>
 		<td>

@@ -54136,7 +54136,7 @@ var render = function() {
             name: "supplies[" + _vm.index + "][quantity]",
             type: "number",
             min: "1",
-            max: _vm.supply.quantity
+            max: _vm.model == "sale" ? _vm.supply.quantity : 999
           },
           domProps: { value: _vm.quantity },
           on: {
