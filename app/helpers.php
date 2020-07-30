@@ -157,6 +157,11 @@ function pendingLoans()
     return $from + $to;
 }
 
+function uncheckedCheckups()
+{
+    return App\Checkup::where('status', '<', 2)->count();
+}
+
 function checkEmployeeIngress()
 {
     $employees = App\Employer::whereIn('status', ['primera capacitacion', 'segunda capacitacion', 'tercera capacitacion'])->get();

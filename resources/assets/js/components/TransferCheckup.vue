@@ -66,7 +66,7 @@
                         <th>Diferencia</th>
                         <td style="text-align: right">
                             {{ difference | currency }}
-                            <input type="hidden" name="transfer_sums[d]" :value="round(difference)">
+                            <input type="hidden" name="transfer_sums[d]" :value="difference">
                         </td>
                     </tr>
                 </tbody>
@@ -89,7 +89,7 @@ export default {
             return this.checks.reduce((total, item) => total + item.amount, 0);
         },
         difference() {
-            return this.total - this.cut;
+            return this.round(this.total - this.cut)
         }
     },
     methods: {
@@ -104,7 +104,7 @@ export default {
         }
     },
     updated() {
-        this.$root.$emit('checkupdate', [1, {method: 'cheques', cut: this.round(this.cut), diff: this.round(this.difference)}])
+        this.$root.$emit('checkupdate', [1, {method: 'cheques', cut: this.round(this.cut), diff: this.difference}])
     },
     created() {
         if (this.stored) {

@@ -8,7 +8,13 @@
             <a href="{{ route($item['route']) }}">
                 <i class="{{ $item['icon'] }}"></i><span>{{ $item['title'] }}</span>
                 @if (isset($item['label']))
-                    &nbsp;&nbsp;<span class="label label-danger">{{ $item['label'] }}</span>
+                    @if (is_array($item['label']))
+                        @foreach($item['label'] as $color => $value)
+                            &nbsp;<span class="label label-{{ $color }}">{{ $value }}</span>
+                        @endforeach
+                    @else
+                        &nbsp;&nbsp;<span class="label label-danger">{{ $item['label'] }}</span>
+                    @endif
                 @endif
             </a>
         @endif
@@ -18,7 +24,13 @@
         <a href="#">
             <i class="{{ $item['icon'] }}"></i> <span>{{ $item['title'] }}</span>
             @if (isset($item['label']))
-                &nbsp;&nbsp;<span class="label label-danger">{{ $item['label'] }}</span>
+                @if (is_array($item['label']))
+                    @foreach($item['label'] as $color => $value)
+                        &nbsp;&nbsp;<span class="label label-{{ $color }}">{{ $value }}</span>
+                    @endforeach
+                @else
+                    &nbsp;&nbsp;<span class="label label-danger">{{ $item['label'] }}</span>
+                @endif
             @endif
             <i class="fa fa-angle-left pull-right"></i>
         </a>

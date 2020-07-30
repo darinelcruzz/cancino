@@ -50057,7 +50057,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, 0);
         },
         difference: function difference() {
-            return this.total - this.cut;
+            return this.round(this.total - this.cut);
         }
     },
     methods: {
@@ -50072,7 +50072,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     updated: function updated() {
-        this.$root.$emit('checkupdate', [1, { method: 'cheques', cut: this.round(this.cut), diff: this.round(this.difference) }]);
+        this.$root.$emit('checkupdate', [1, { method: 'cheques', cut: this.round(this.cut), diff: this.difference }]);
     },
     created: function created() {
         if (this.stored) {
@@ -50329,7 +50329,7 @@ var render = function() {
               ),
               _c("input", {
                 attrs: { type: "hidden", name: "transfer_sums[d]" },
-                domProps: { value: _vm.round(_vm.difference) }
+                domProps: { value: _vm.difference }
               })
             ])
           ])
