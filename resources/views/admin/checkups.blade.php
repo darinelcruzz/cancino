@@ -24,7 +24,7 @@
                                         <td>{{ fnumber($checkup->creditSum) }} <br> {!! $checkup->canceledSum ? '<code> -' . fnumber($checkup->canceledSum) : '' !!}</code></td>
                                         <td>{{ fnumber($checkup->online['web']) }}</td>
                                         <td>
-                                            {!! $checkup->retention > 0 ? '<b>Retención:</b> <br><code>' . fnumber($checkup->retention) . '</code><br>' : '' !!}
+                                            {!! $checkup->retention != 0 ? '<b>Retención:</b> <br><code>' . fnumber($checkup->retention) . '</code><br>' : '' !!}
                                             {!! $checkup->sc_dif != 0 ? '<b>StrenCard:</b> <br><code>' . fnumber($checkup->sc_dif) . '</code>' : '' !!}
                                         </td>
                                         <td>{!! $checkup->statusLabel !!}</td>
