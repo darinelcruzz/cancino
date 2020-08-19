@@ -12,4 +12,9 @@ class SupplyMovement extends Model
     {
     	return $this->belongsTo(Supply::class);
     }
+
+    function movable()
+    {
+    	return $this->morphTo();
+    }
 }

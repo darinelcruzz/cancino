@@ -445,6 +445,7 @@ Route::group(['prefix' => 'ventas-de-insumos', 'as' => 'supplies.sales.'], funct
     Route::get('editar/{supply_sale}', usesas($ctrl, 'edit'));
     Route::post('editar/{supply_sale}', usesas($ctrl, 'update'));
     Route::get('cancelar/{supply_sale}', usesas($ctrl, 'destroy'));
+    Route::get('pendientes/{store}', usesas($ctrl, 'pending'));
     Route::get('{supply_sale}', usesas($ctrl, 'show'));
 });
 

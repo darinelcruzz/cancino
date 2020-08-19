@@ -53418,6 +53418,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['color'],
@@ -53620,6 +53621,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Descripción")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Existencia")]),
+        _vm._v(" "),
         _c("th", { staticStyle: { width: "30%", "text-align": "right" } }, [
           _vm._v("Precio")
         ])
@@ -53703,6 +53706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['supply'],
@@ -53734,6 +53738,10 @@ var render = function() {
       _c("span", { staticStyle: { color: "purple" } }, [
         _vm._v(_vm._s(_vm.supply.sat_key))
       ])
+    ]),
+    _vm._v(" "),
+    _c("td", { staticStyle: { "text-align": "center" } }, [
+      _vm._v(_vm._s(_vm.supply.quantity))
     ]),
     _vm._v(" "),
     _c("td", { staticStyle: { "text-align": "right" } }, [

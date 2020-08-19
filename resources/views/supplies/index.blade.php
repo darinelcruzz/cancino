@@ -43,7 +43,7 @@
                                 <td>{{ $supply->description }}</td>
                                 <td><code>{{ $supply->code }}</code></td>
                                 <td>{{ $supply->sat_key }}</td>
-                                <td>{{ $supply->quantity }} {{ $supply->unit }}</td>
+                                <td>{{ $supply->quantity }} {{ $supply->unit . ($supply->quantity != 1 ? 's': '') }}</td>
                                 <td>{{ number_format($supply->purchase_price, 2) }}</td>
                                 <td>{{ number_format($supply->sale_price, 2) }}</td>
                             </tr>

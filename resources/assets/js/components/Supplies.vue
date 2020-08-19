@@ -41,6 +41,7 @@
                     <tr>
                         <th><i class="fa fa-barcode"></i></th>
                         <th>Descripción</th>
+                        <th>Existencia</th>
                         <th style="width: 30%; text-align: right">Precio</th>
                     </tr>
                 </thead>

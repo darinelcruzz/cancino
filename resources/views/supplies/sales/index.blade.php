@@ -44,7 +44,11 @@
                                     </dropdown>
                                 </td>
                                 <td>{{ $supply_sale->sold_at }}</td>
-                                <td>{{ $supply_sale->store->name }}</td>
+                                <td>
+                                    <a href="{{ route('supplies.sales.pending', $supply_sale->store) }}">
+                                        {{ $supply_sale->store->name }}
+                                    </a>
+                                </td>
                                 <td>{{ number_format($supply_sale->amount, 2) }}</td>
                                 <td><span class="label label-{{ $supply_sale->statusColor }}">{{ strtoupper($supply_sale->status) }}</span></td>
                                 <td>{{ $supply_sale->user->name }}</td>
