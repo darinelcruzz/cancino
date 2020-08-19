@@ -53907,7 +53907,7 @@ var render = function() {
             "tbody",
             _vm._l(_vm.supplies, function(supply, index) {
               return _c("supplies-list-item", {
-                key: index,
+                key: supply,
                 tag: "tr",
                 attrs: { supply: supply, model: _vm.model, index: index }
               })

@@ -12,7 +12,7 @@
 			</thead>
 
 			<tbody>
-				<tr v-for="(supply, index) in supplies" :key="index" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
+				<tr v-for="(supply, index) in supplies" :key="supply" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
 			</tbody>
 
 			<tfoot>
