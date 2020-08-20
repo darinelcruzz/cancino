@@ -44,7 +44,12 @@ class SupplySaleController extends Controller
         $sales = SupplySale::where('store_id', $store->id)
             ->with('movements')
             ->get();
-        return view('supplies.sales.pending', compact('sales', 'store'));
+
+        $supplies = $supplies2 = [];
+
+        $amount = 0;
+
+        return view('supplies.sales.pending', compact('sales', 'store', 'supplies', 'supplies2', 'amount'));
     }
 
     function edit(SupplySale $supply_sale)
