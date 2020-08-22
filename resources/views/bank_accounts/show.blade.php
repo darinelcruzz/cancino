@@ -51,7 +51,7 @@
                                     <td>{{ ucfirst($movement->type) }}</td>
                                     <td>{!! $movement->provider->social or '<code>PENDIENTE</code>' !!}</td>
                                     <td>{!! $movement->expenses_group->name or '<code>PENDIENTE</code>' !!}</td>
-                                    <td>{{ $movement->check->observations or 'Ninguna' }}</td>
+                                    <td>{{ $movement->check->observations ?? ($movement->observations ?? 'Ninguna') }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

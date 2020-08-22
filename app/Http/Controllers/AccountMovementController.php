@@ -76,6 +76,7 @@ class AccountMovementController extends Controller
         $attributes = $request->validate([
             'concept' => 'required',
             'provider_id' => 'required',
+            'observations' => 'required',
             'expenses_group_id' => 'required',
             'provider_id' => 'required',
         ]);
