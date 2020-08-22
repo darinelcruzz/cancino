@@ -14,6 +14,11 @@
                 </div>
             {!! Form::close() !!}
         </div>
+        <div class="col-md-9">
+            <a href="{{ route('stores.index') }}" class="pull-right btn btn-sm btn-primary">
+                <i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;REGRESAR
+            </a>
+        </div>
     </div>
 @endpush
 

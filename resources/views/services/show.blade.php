@@ -2,6 +2,16 @@
 
 @push('pageTitle', 'Servicios | Detalles')
 
+@push('headerTitle')
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ route('services.index') }}" class="btn btn-github btn-xs pull-left">
+                <i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;REGRESAR
+            </a>
+        </div>
+    </div>
+@endpush
+
 @section('content')
 
 <div class="row">
