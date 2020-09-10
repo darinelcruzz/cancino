@@ -24,21 +24,21 @@
             <div class="col-md-12">
                 <color-box title="Comisiones de {{ $relation->name }}" color="{{ $relation->color }}">
                     <data-table example="{{ $relation->id }}">
-                        {{ drawHeader('Nombre', '<i class="fa fa-flag"></i> | <i class="fa fa-money-bill-wave"></i>','Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'SC', 'Extensiones') }}
+                        {{ drawHeader('Nombre', '<i class="fa fa-info"></i>','Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'SC', 'Extensiones') }}
 
                         <template slot="body">
                             @foreach($store as $employer)
                                 <tr>
                                     <td>{{ $employer->first()->employer->nickname }}</td>
                                     <td>
-                                        <b>Meta:</b><br>
-                                        <b>Venta:</b>
+                                        <i class="fa fa-flag"></i><br>
+                                        <i class="fa fa-usd"></i>
                                     </td>
                                     @foreach ($employer as $goal)
                                         <td>
                                             <span style="color: {{ $goal->weekly_goal > 0 ? 'black': 'gray' }};">{{ fnumber($goal->weekly_goal) }}</span><br>
-                                            <span style="color: {{ $goal->sale > 0 ? 'black': 'gray' }};">{{ fnumber($goal->sale) }}</span>
-                                            {!! $goal->salePointLabel !!}
+                                            <span style="color: {{ $goal->sale > 0 ? 'black': 'gray' }};"><strong>{{ fnumber($goal->sale) }}</strong></span>
+                                            &nbsp;&nbsp;&nbsp;{!! $goal->salePointLabel !!}
                                         </td>
                                     @endforeach
                                     <td style="text-align: center;">
