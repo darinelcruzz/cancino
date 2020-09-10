@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <color-box title="Comisiones de {{ $relation->name }}" color="{{ $relation->color }}">
                     <data-table example="{{ $relation->id }}">
-                        {{ drawHeader('Nombre', '','Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'SC', 'Ext', '<i class="fa fa-cogs"></i>') }}
+                        {{ drawHeader('Nombre', '<i class="fa fa-flag"></i> | <i class="fa fa-money-bill-wave"></i>','Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'SC', 'Extensiones') }}
 
                         <template slot="body">
                             @foreach($store as $employer)
@@ -41,18 +41,11 @@
                                             {!! $goal->salePointLabel !!}
                                         </td>
                                     @endforeach
-                                    <td>
+                                    <td style="text-align: center;">
                                         {{ $employer->sum('sterencard') }}
                                     </td>
-                                    <td>
-                                        {{ $employer->sum('extensions') }} <br> {{ fnumber($employer->sum('amount_ext')) }}
-                                    </td>
-                                    <td>
-                                        <dropdown icon="cogs" color="{{ $relation->color }}">
-                                            {{-- <ddi to="{{ route('clients.show', ['id' => $client->id]) }}" icon="eye" text="Detalles"></ddi>
-                                            <ddi to="{{ route('clients.edit', ['id' => $client->id]) }}" icon="edit" text="Editar"></ddi>
-                                            <ddi to="#" icon="times" text="Dar de baja"></ddi> --}}
-                                        </dropdown>
+                                    <td style="text-align: center;">
+                                        {{ $employer->sum('extensions') }} | {{ fnumber($employer->sum('amount_ext')) }}
                                     </td>
                                 </tr>
                                 @php
@@ -71,13 +64,17 @@
                         @endphp
                         <template slot="footer">
                             <tr>
-                                <td></td><td></td>
+                                <td>
+                                    <a href="{{ route('commision.report', $goal_id) }}" class="btn btn-success btn-xs" target="_blank">
+                                        <i class="fa fa-print"></i>&nbsp;&nbsp;REPORTE
+                                    </a>
+                                </td>
+                                <td></td>
                                 @for ($i=1; $i < 6; $i++)
                                     <td><a href="{{ route('commision.edit', [$goal_id, $i]) }}" class="btn btn-{{ $relation->color }} btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar venta</a></td>
                                 @endfor
-                                <td>{{ $total_sc }}</td>
-                                <td>{{ $total_ext }} <br> {{ fnumber($total_amount_ext) }}</td>
-                                <td></td>
+                                <th style="text-align: center;">{{ $total_sc }}</th>
+                                <th style="text-align: center;">{{ $total_ext }} | {{ fnumber($total_amount_ext) }}</th>
                             </tr>
                         </template>
                     </data-table>
