@@ -20,6 +20,14 @@
             font-size: 7pt;
         }
 
+        .main td{
+            border: 1px solid black;
+        }
+
+        .main th{
+            border: 1px solid black;
+        }
+
     </style>
 </head>
 
@@ -50,8 +58,8 @@
         </div>
         <br>
         <div class="row">
-            <table width="100%" style="border-collapse: collapse; border-bottom: none; border-left: none; border-right: none;" border="3" class="spaced">
-                <thead style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;">
+            <table width="100%" style="border-collapse: collapse; border-bottom: none; border-left: none; border-right: none;" class="spaced">
+                <thead style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black; border-top: 3px solid black;" class="main">
                     <tr>
                         <td>NOMBRE</td>
                         <td>MÍNIMO</td>
@@ -69,7 +77,7 @@
                         <td>TOTAL</td>
                     </tr>
                 </thead>
-                <tbody style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;">
+                <tbody style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;" class="main">
                     @php
                         $sales_commisions_total = 0;
                         $total_sum = 0;
@@ -112,7 +120,7 @@
                     @endforeach
                 </tbody>
                 <tfoot>
-                    <tr style="border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black;">
+                    <tr style="border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black;" class="main">
                         <td><b>Total</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal')) }}</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal') * $goal->star) }}</b></td>
@@ -229,7 +237,7 @@
                     <tr style="border: none;">
                         <td></td>
                         <th colspan="2" style="text-align: right"><small>VENTAS TOTALES</small></th>
-                        <td style="border: 2px solid black;">{{ fnumber($goal->sellers + $commisions_complete->sum('sale') + $goal->discounts + $goal->steren_card + $extras) }}</td>
+                        <td style="border: 2px solid black;">{{ fnumber($goal->sellers + $commisions_complete->sum('sale') - $goal->discounts - $goal->steren_card + $extras) }}</td>
                         <td colspan="10"></td>
                     </tr>
                 </tfoot>
