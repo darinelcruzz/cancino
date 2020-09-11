@@ -63,6 +63,18 @@ class CommisionController extends Controller
         return view('commisions.edit', compact('week'));
     }
 
+    function extras(Goal $goal)
+    {
+        return view('commisions.extras', compact('goal'));
+    }
+
+    function add(Request $request, Goal $goal)
+    {
+        $goal->update($request->all());
+
+        return redirect(route('commision.index'));
+    }
+
     function update(Request $request)
     {
         foreach ($request->sales as $id => $commision) {

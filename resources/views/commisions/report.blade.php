@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Grupo Cancino|Comisiones</title>
+    <title>Comisiones | Reporte</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('/img/logo.ico') }}" />
@@ -38,7 +38,7 @@
                     <tr>
                         <td colspan="2"></td>
                         <td align="right">META DEL MES:</td>
-                        <td align="right">{{ fnumber($past_goal->sale * $goal->star) }}</td>
+                        <td align="right">{{ fnumber(($past_goal->sale + $past_goal->public) * $goal->star) }}</td>
                     </tr>
                     <tr>
                         <td align="center">INCREMENTO MENSUAL DE {{ ($goal->star-1)*100 }}%</td>
@@ -50,8 +50,8 @@
         </div>
         <br>
         <div class="row">
-            <table width="100%" style="border-collapse: collapse;" border="3" class="spaced">
-                <thead>
+            <table width="100%" style="border-collapse: collapse; border-bottom: none; border-left: none; border-right: none;" border="3" class="spaced">
+                <thead style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;">
                     <tr>
                         <td>NOMBRE</td>
                         <td>MÍNIMO</td>
@@ -69,7 +69,7 @@
                         <td>TOTAL</td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;">
                     @php
                         $sales_commisions_total = 0;
                         $total_sum = 0;
@@ -112,7 +112,7 @@
                     @endforeach
                 </tbody>
                 <tfoot>
-                    <tr>
+                    <tr style="border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black;">
                         <td><b>Total</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal')) }}</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal') * $goal->star) }}</b></td>
@@ -127,6 +127,110 @@
                         <td><b>{{ $commisions_complete->sum('dalays') }}</b></td>
                         <td><b>{{ $commisions_complete->sum('absences') }}</b></td>
                         <td><b>{{ fnumber($total_sum) }}</b></td>
+                    </tr>
+
+                    <tr style="border: none;">
+                        <td colspan="14">&nbsp;</td>
+                    </tr>
+
+                    <tr style="border: none;">
+                        <td></td>
+                        <td colspan="2" style="text-align: right">OTROS VENDEDORES</td>
+                        <td style="border-bottom: 1px solid black;">{{ fnumber($goal->sellers) }}</td>
+                        <td colspan="10"></td>
+                    </tr>
+
+                    <tr style="border: none;">
+                        <td></td>
+                        <th colspan="2" style="text-align: right"><small>TOTAL PÚBLICO</small></th>
+                        <td>{{ fnumber($goal->sellers + $commisions_complete->sum('sale')) }}</td>
+                        <td></td>
+                        <th>Inv</th>
+                        <td>{{ fnumber($goal->stock) }}</td>
+                        <td colspan="7"></td>
+                    </tr>
+
+                    @php
+                        $extras = 0
+                    @endphp
+
+                    @if($goal->store->type == 's')
+                        <tr style="border: none;">
+                            <td style="text-align: right">PÚBLICO</td>
+                            <td>{{ fnumber($goal->public) }}</td>
+                            <td colspan="12"></td>
+                        </tr>
+                        <tr style="border: none;">
+                            <td style="text-align: right">OTROS</td>
+                            <td>{{ fnumber($goal->other) }}</td>
+                            <td colspan="12"></td>
+                        </tr>
+                        <tr style="border: none;">
+                            <td style="text-align: right"><small>TOTAL</small></td>
+                            <td>{{ fnumber($goal->public + $goal->other) }}</td>
+                            <td></td>
+                            <td style="border-bottom: 1px solid black;">{{ fnumber($goal->public + $goal->other) }}</td>
+                            <td colspan="10"></td>
+                        </tr>
+
+                        @php
+                            $extras = $goal->public + $goal->other
+                        @endphp
+                    @else
+                        <tr style="border: none;">
+                            <td style="text-align: right">ESPECIAL</td>
+                            <td>{{ fnumber($goal->special) }}</td>
+                            <td colspan="12"></td>
+                        </tr>
+                        <tr style="border: none;">
+                            <td style="text-align: right">DISTRIBUIDOR</td>
+                            <td>{{ fnumber($goal->distributor) }}</td>
+                            <td colspan="12"></td>
+                        </tr>
+                        <tr style="border: none;">
+                            <td style="text-align: right">MAYOREO</td>
+                            <td>{{ fnumber($goal->wholesale) }}</td>
+                            <td colspan="12"></td>
+                        </tr>
+                        <tr style="border: none;">
+                            <td style="text-align: right">OTROS</td>
+                            <td style="border-bottom: 1px solid black;">{{ fnumber($goal->other) }}</td>
+                            <td colspan="12"></td>
+                        </tr>
+                        <tr style="border: none;">
+                            <th style="text-align: right"><small>TOTAL</small></th>
+                            <td>{{ fnumber($goal->special + $goal->distributor + $goal->other + $goal->wholesale) }}</td>
+                            <td></td>
+                            <td style="border-bottom: 1px solid black;">{{ fnumber($goal->special + $goal->distributor + $goal->other + $goal->wholesale) }}</td>
+                            <td colspan="10"></td>
+                        </tr>
+
+                        @php
+                            $extras = $goal->special + $goal->distributor + $goal->other + $goal->wholesale
+                        @endphp
+                    @endif
+
+                    <tr style="border: none;">
+                        <td colspan="14">&nbsp;</td>
+                    </tr>
+
+                    <tr style="border: none;">
+                        <td></td><td></td>
+                        <td style="text-align: right">DESCUENTOS</td>
+                        <td>{{ fnumber($goal->discounts) }}</td>
+                        <td colspan="10"></td>
+                    </tr>
+                    <tr style="border: none;">
+                        <td></td><td></td>
+                        <td style="text-align: right">STERENCARD</td>
+                        <td>{{ fnumber($goal->steren_card) }}</td>
+                        <td colspan="10"></td>
+                    </tr>
+                    <tr style="border: none;">
+                        <td></td>
+                        <th colspan="2" style="text-align: right"><small>VENTAS TOTALES</small></th>
+                        <td style="border: 2px solid black;">{{ fnumber($goal->sellers + $commisions_complete->sum('sale') + $goal->discounts + $goal->steren_card + $extras) }}</td>
+                        <td colspan="10"></td>
                     </tr>
                 </tfoot>
             </table>

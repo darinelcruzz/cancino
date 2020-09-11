@@ -29,7 +29,7 @@
                         <template slot="body">
                             @foreach($store as $employer)
                                 <tr>
-                                    <td>{{ $employer->first()->employer->nickname }}</td>
+                                    <td style="width: 12%;">{{ $employer->first()->employer->nickname }}</td>
                                     <td>
                                         <i class="fa fa-flag"></i><br>
                                         <i class="fa fa-usd"></i>
@@ -65,9 +65,20 @@
                         <template slot="footer">
                             <tr>
                                 <td>
+                                    @if(auth()->user()->level == 1)
+                                    <div class="btn-group">
+                                        <a href="{{ route('commision.report', $goal_id) }}" class="btn btn-success btn-xs" target="_blank">
+                                            <i class="fa fa-print"></i>&nbsp;&nbsp;REP
+                                        </a>
+                                        <a href="{{ route('commision.extras', $goal_id) }}" class="btn btn-warning btn-xs">
+                                            <i class="fa fa-plus"></i>&nbsp;&nbsp;EXT
+                                        </a>
+                                    </div>
+                                    @else
                                     <a href="{{ route('commision.report', $goal_id) }}" class="btn btn-success btn-xs" target="_blank">
                                         <i class="fa fa-print"></i>&nbsp;&nbsp;REPORTE
                                     </a>
+                                    @endif
                                 </td>
                                 <td></td>
                                 @for ($i=1; $i < 6; $i++)

@@ -311,6 +311,8 @@ Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{goal}/{week}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
+    Route::get('extras/{goal}', usesas($ctrl, 'extras'));
+    Route::post('extras/{goal}', usesas($ctrl, 'add'));
     Route::get('reporte/{goal}', usesas($ctrl, 'report'));
 });
 
