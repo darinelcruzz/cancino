@@ -51,7 +51,7 @@
                     <tr>
                         <td align="center">INCREMENTO MENSUAL DE {{ ($goal->star-1)*100 }}%</td>
                         <td colspan="2" align="right">COMISIÓN DEL MES:</td>
-                        <td align="right">{!! $commisions_complete->first()->managerPayment($commisions_complete->sum('sale'), $past_goal, $goal) !!}</td>
+                        <td align="right">{!! $commisions_complete->first()->managerPayment($commisions_complete->sum('sale') + $goal->sellers, $past_goal, $goal) !!}</td>
                     </tr>
                 </tbody>
             </table>

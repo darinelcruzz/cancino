@@ -20,13 +20,14 @@
                 <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th>Clave</th>
                             <th>Descripción</th>
                             <th style="text-align: center;">Cantidad</th>
                             <th style="text-align: center;">Precio</th>
                             <th style="text-align: center;">Importe</th>
                         </tr>
                     </thead>
-                    
+
                     @foreach($sales as $sale)
                         @foreach($sale->movements as $movement)
                             @if(array_key_exists($movement->supply->id, $supplies))
@@ -46,13 +47,14 @@
                     @foreach($sales as $sale)
                         @foreach($sale->movements as $movement)
                             @if(array_key_exists($movement->supply->id, $supplies2))
-                                
+
                             @else
                                 @php
                                     $supplies2[$movement->supply->id] = 1;
                                     $amount += $supplies[$movement->supply->id] * $movement->price;
                                 @endphp
                                 <tr>
+                                    <td>{{ $movement->supply->sat_key }}</td>
                                     <td>{{ $movement->supply->description }}</td>
                                     <td style="text-align: center;">{{ $supplies[$movement->supply->id] }}</td>
                                     <td style="text-align: right;">{{ number_format($movement->price, 2) }}</td>
@@ -73,6 +75,6 @@
                 </table>
             </color-box>
         </div>
-        
+
     </div>
 @endsection
