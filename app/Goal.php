@@ -13,6 +13,11 @@ class Goal extends Model
         return $this->belongsTo(Store::class);
     }
 
+    function commisions()
+    {
+        return $this->hasMany(Commision::class);
+    }
+
     function getPointLabelAttribute()
     {
         $colors = ['rojo' => '#C81D11', 'negro' => '#000000', 'estrella' => '#008F39', 'dorada' => '#DCBF32'];

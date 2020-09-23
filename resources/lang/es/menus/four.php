@@ -67,6 +67,17 @@ return [
         ],
     ],
 
+    'Commisions' => [
+        'title' => 'Comisiones',
+        'icon' => 'fa fa-handshake',
+        'submenu' => [
+            'index' => [
+                'title' => 'Metas semanales',
+                'route' => ['commision.show', getStore()],
+            ],
+        ],
+    ],
+
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-file-invoice-dollar',

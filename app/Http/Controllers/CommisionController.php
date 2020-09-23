@@ -29,15 +29,13 @@ class CommisionController extends Controller
 
     function create(Store $store)
     {
-        $month = date('m') == 12 ? 1 : date('m') - 1;
-        $year = date('m') == 12 ? date('Y') - 1 : date('Y');
-        $pastYear = date('Y') - 1;
+        $date = date('Y-m');
 
         $employers = Employer::where('status', '!=', 'inactivo')->where('commision', 1)->where('store_id', $store->id)->get()->pluck('id', 'nickname');
-        $goal = Goal::where('store_id', $store->id)->where('year', $pastYear)->where('month', $month)->get()->last()->sale;
-        $now = Goal::where('store_id', $store->id)->where('year', $year)->where('month', $month)->get()->last();
+        $goal = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->get()->last()->sale;
+        $now = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->get()->last();
 
-        return view('commisions.create', compact('employers', 'goal', 'now'));
+        return view('commisions.create', compact('employers', 'goal', 'now', 'store', 'date'));
     }
 
     function store(Request $request)
@@ -51,9 +49,26 @@ class CommisionController extends Controller
         return redirect(route('commision.index'));
     }
 
-    function show(Commision $commision)
+    function show(Request $request, Store $store)
     {
-        //
+        $date = $request->date ? $request->date: date('Y-m');
+
+        $goals = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->get();
+        $past_goal = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->get()->first();
+
+        // dd($goal->commisions->groupBy('week'));
+
+        if ($goals->count()) {
+            $msg = '';
+            $goal = $goals->last();
+            if ($goal->commisions->count() == 0) return redirect(route('commision.create', $store));
+        } else {
+            $msg = 'No se han establecido metas para este mes';
+            $goal = null;
+        }
+        
+        return view('commisions.show', compact('store', 'date', 'msg', 'goal', 'past_goal'));
+
     }
 
     function edit(Goal $goal, $week)

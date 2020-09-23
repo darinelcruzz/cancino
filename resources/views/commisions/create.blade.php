@@ -5,27 +5,40 @@
 
 @section('content')
     <div class="row">
+        <div class="col-md-3">
+            {!! Form::open(['method' => 'post', 'route' => ['commision.show', $store]]) !!}
+                <div class="input-group input-group-sm">
+                    <input type="month" name="date" class="form-control" value="{{ $date }}">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-github btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            {!! Form::close() !!}
+        </div>
+    </div><br>
+
+    <div class="row">
         <div class="col-md-12">
-            <color-box title="Agregar metas individuales de {{ fdate($now->month, 'F', 'm') . ' ' . $now->year }} "  color="success">
+            <color-box title="Agregar metas individuales de {{ fdate($now->month, 'F', 'm') . ' ' . $now->year }}" solid color="vks">
                 {!! Form::open(['method' => 'POST', 'route' => 'commision.store', 'enctype' => 'multipart/form-data']) !!}
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th><h4>Semana 1</h4></th>
-                                    <th><h4>Semana 2</h4></th>
-                                    <th><h4>Semana 3</h4></th>
-                                    <th><h4>Semana 4</h4></th>
-                                    <th><h4>Semana 5</h4></th>
+                                    <th style="text-align: center;"><big>SEMANA 1</big></th>
+                                    <th style="text-align: center;"><big>SEMANA 2</big></th>
+                                    <th style="text-align: center;"><big>SEMANA 3</big></th>
+                                    <th style="text-align: center;"><big>SEMANA 4</big></th>
+                                    <th style="text-align: center;"><big>SEMANA 5</big></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($employers as $name => $employer_id)
                                     <tr>
-                                        <td>
-                                            <h3>{{ $name }}</h3>
-                                        </td>
+                                        <th>
+                                            <big>{{ strtoupper($name) }}</big>
+                                        </th>
                                         @foreach ([1, 2, 3, 4, 5] as $week)
                                             <td>
                                                 <employee-week-goal :week="{{ $week }}" :employee="{{ $employer_id }}" :goal="{{ $now->id }}"></employee-week-goal>
@@ -39,13 +52,13 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><h4>Sumas</h4></td>
-                                    <td><h4><week-sum week="1"></week-sum></h4></td>
-                                    <td><h4><week-sum week="2"></week-sum></h4></td>
-                                    <td><h4><week-sum week="3"></week-sum></h4></td>
-                                    <td><h4><week-sum week="4"></week-sum></h4></td>
-                                    <td><h4><week-sum week="5"></week-sum></h4></td>
-                                    <td><h4><b><goal-sum></goal-sum></b></h4></td>
+                                    <td><big>SUMAS</big></td>
+                                    <td><big><week-sum week="1"></week-sum></big></td>
+                                    <td><big><week-sum week="2"></week-sum></big></td>
+                                    <td><big><week-sum week="3"></week-sum></big></td>
+                                    <td><big><week-sum week="4"></week-sum></big></td>
+                                    <td><big><week-sum week="5"></week-sum></big></td>
+                                    <th><big><goal-sum></goal-sum></big></th>
                                 </tr>
                             </tfoot>                    
                         </table>
@@ -62,8 +75,7 @@
                             <h4 align="center">{{ $now->days }}</h4>
                         </div>
                     </div>
-                    <hr>
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
+                    {!! Form::submit('A G R E G A R', ['class' => 'btn btn-github pull-right']) !!}
                 {!! Form::close() !!}
             </color-box>
         </div>

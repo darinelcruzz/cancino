@@ -314,6 +314,8 @@ Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
     Route::get('extras/{goal}', usesas($ctrl, 'extras'));
     Route::post('extras/{goal}', usesas($ctrl, 'add'));
     Route::get('reporte/{goal}', usesas($ctrl, 'report'));
+    Route::get('/{store}', usesas($ctrl, 'show'));
+    Route::post('/{store}', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'movimientos-bancarios', 'as' => 'account_movements.'], function () {
