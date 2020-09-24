@@ -303,7 +303,7 @@ Route::group(['prefix' => 'ubicaciones', 'as' => 'location.'], function () {
     Route::post('editar/{location}', usesas($ctrl, 'update'));
 });
 
-Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
+Route::group(['prefix' => 'comisiones', 'as' => 'commision.', 'middleware' => ['commissions']], function () {
     $ctrl = 'CommisionController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::post('/', usesas($ctrl, 'index'));

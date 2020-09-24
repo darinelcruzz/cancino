@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'high' => \App\Http\Middleware\High::class,
         'helper' => \App\Http\Middleware\Helper::class,
         'nonCheckup' => \App\Http\Middleware\NonCheckup::class,
+        'commissions' => \App\Http\Middleware\Commissions::class,
     ];
 }
