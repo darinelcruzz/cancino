@@ -44,37 +44,6 @@ return [
         'route' => 'wastes.index'
     ],
 
-    'Commisions' => [
-        'title' => 'Comisiones',
-        'icon' => 'fa fa-handshake',
-        'submenu' => [
-            'index' => [
-                'title' => 'Lista',
-                'route' => 'commision.index',
-            ],
-            'Chiapas' => [
-                'title' => 'Chiapas',
-                'route' => ['commision.create', 2]
-            ],
-            'Soconusco' => [
-                'title' => 'Soconusco',
-                'route' => ['commision.create', 3]
-            ],
-            'Altos' => [
-                'title' => 'Altos',
-                'route' => ['commision.create', 4]
-            ],
-            'GaleTux' => [
-                'title' => 'Gale Tuxtla',
-                'route' => ['commision.create', 5]
-            ],
-            'GaleTapa' => [
-                'title' => 'Gale Tapa',
-                'route' => ['commision.create', 6]
-            ],
-        ],
-    ],
-
     'logout' => [
         'title' => 'Salir',
         'icon' => 'fa fa-sign-out-alt',

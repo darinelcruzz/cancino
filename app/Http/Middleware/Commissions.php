@@ -8,7 +8,7 @@ class Commissions
 {
     function handle($request, Closure $next)
     {
-        if (getStore() == $request->route('store') || isAdmin()) {
+        if (getStore() == $request->route('store') || isVKS()) {
             return $next($request);
         }
 

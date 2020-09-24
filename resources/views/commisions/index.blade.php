@@ -65,7 +65,7 @@
                         <template slot="footer">
                             <tr>
                                 <td>
-                                    @if(auth()->user()->level == 1)
+                                    @if(isAdmin())
                                     <div class="btn-group">
                                         <a href="{{ route('commision.report', $goal_id) }}" class="btn btn-success btn-xs" target="_blank">
                                             <i class="fa fa-print"></i>&nbsp;&nbsp;REP
@@ -74,10 +74,6 @@
                                             <i class="fa fa-plus"></i>&nbsp;&nbsp;EXT
                                         </a>
                                     </div>
-                                    @else
-                                    <a href="{{ route('commision.report', $goal_id) }}" class="btn btn-success btn-xs" target="_blank">
-                                        <i class="fa fa-print"></i>&nbsp;&nbsp;REPORTE
-                                    </a>
                                     @endif
                                 </td>
                                 <td></td>
