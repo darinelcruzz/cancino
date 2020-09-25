@@ -303,19 +303,19 @@ Route::group(['prefix' => 'ubicaciones', 'as' => 'location.'], function () {
     Route::post('editar/{location}', usesas($ctrl, 'update'));
 });
 
-Route::group(['prefix' => 'comisiones', 'as' => 'commision.', 'middleware' => ['commissions']], function () {
+Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
     $ctrl = 'CommisionController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::post('/', usesas($ctrl, 'index'));
-    Route::get('agregar/{store}', usesas($ctrl, 'create'));
+    Route::get('agregar/{store}', usesas($ctrl, 'create'))->middleware('commissions');
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{goal}/{week}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('extras/{goal}', usesas($ctrl, 'extras'));
     Route::post('extras/{goal}', usesas($ctrl, 'add'));
     Route::get('reporte/{goal}', usesas($ctrl, 'report'));
-    Route::get('/{store}', usesas($ctrl, 'show'));
-    Route::post('/{store}', usesas($ctrl, 'show'));
+    Route::get('/{store}', usesas($ctrl, 'show'))->middleware('commissions');
+    Route::post('/{store}', usesas($ctrl, 'show'))->middleware('commissions');
 });
 
 Route::group(['prefix' => 'movimientos-bancarios', 'as' => 'account_movements.'], function () {
