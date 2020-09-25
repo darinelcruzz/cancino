@@ -59,7 +59,7 @@ return [
 
     'admin' => [
         'title' => 'Admin',
-        'label' => pendingTasksAll() > 0 ? pendingTasksAll(): '',
+        'label' => ['warning' => pendingServices() > 0 ? pendingServices(): '', 'danger' => expiredServices() > 0 ? expiredServices(): ''],
         'icon' => 'fa fa-eye',
         'submenu' => [
             'tasks' => [

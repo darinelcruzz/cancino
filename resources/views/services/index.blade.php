@@ -27,6 +27,7 @@
                                 <td>
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="usd" to="{{ route('service_payments.create', $service) }}" text="Pagar"></ddi>
+                                        <ddi icon="clock" to="{{ route('services.show', $service) }}" text="Historial pagos"></ddi>
                                     </dropdown>
                                 </td>
                                 <td>{{ $service->description }}</td>

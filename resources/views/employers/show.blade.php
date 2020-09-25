@@ -32,6 +32,11 @@
                     <li class="list-group-item">
                         <b>Casado</b> <a class="pull-right">{{ $employer->married ? 'Si' : 'No' }}</a>
                     </li>
+                    @if(isAdmin())
+                    <li class="list-group-item">
+                        <b>Salario</b> <a class="pull-right">$ {{ number_format($employer->salary, 2) }}</a>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>

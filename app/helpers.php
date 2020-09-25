@@ -105,6 +105,16 @@ function pendingTasksAll()
     return App\Task::where('status', '!=', 'finalizada')->count();
 }
 
+function pendingServices()
+{
+    return App\Service::all()->where('status', 'PENDIENTE')->count();
+}
+
+function expiredServices()
+{
+    return App\Service::all()->where('status', 'VENCIDO')->count();
+}
+
 function pendingShoppings()
 {
     return App\Shopping::whereStatus('pendiente')->count();
