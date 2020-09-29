@@ -29,7 +29,9 @@ class CommisionController extends Controller
 
     function create(Store $store)
     {
-        $date = date('Y-m');
+        $date = session('date') ? session('date') : date('Y-m');
+
+        // dd($date);
 
         $employers = Employer::where('status', '!=', 'inactivo')->where('commision', 1)->where('store_id', $store->id)->get()->pluck('id', 'nickname');
         $goal = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->get()->last()->sale;
@@ -56,12 +58,12 @@ class CommisionController extends Controller
         $goals = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->get();
         $past_goal = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->get()->first();
 
-        // dd($goal->commisions->groupBy('week'));
+        // dd($goals->count());
 
         if ($goals->count()) {
             $msg = '';
             $goal = $goals->last();
-            if ($goal->commisions->count() == 0) return redirect(route('commision.create', $store));
+            if ($goal->commisions->count() == 0) return redirect(route('commision.create', $store))->with('date', $date);
         } else {
             $msg = 'No se han establecido metas para este mes';
             $goal = null;

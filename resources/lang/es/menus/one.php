@@ -116,23 +116,23 @@ return [
             ],
             'Chiapas' => [
                 'title' => 'Chiapas',
-                'route' => ['commision.create', 2]
+                'route' => ['commision.show', 2]
             ],
             'Soconusco' => [
                 'title' => 'Soconusco',
-                'route' => ['commision.create', 3]
+                'route' => ['commision.show', 3]
             ],
             'Altos' => [
                 'title' => 'Altos',
-                'route' => ['commision.create', 4]
+                'route' => ['commision.show', 4]
             ],
             'GaleTux' => [
                 'title' => 'Gale Tuxtla',
-                'route' => ['commision.create', 5]
+                'route' => ['commision.show', 5]
             ],
             'GaleTapa' => [
                 'title' => 'Gale Tapa',
-                'route' => ['commision.create', 6]
+                'route' => ['commision.show', 6]
             ],
         ],
     ],
