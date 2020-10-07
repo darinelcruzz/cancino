@@ -22,8 +22,9 @@
                         <tr>
                             <th>Clave</th>
                             <th>Descripción</th>
+                            <th style="text-align: center;">Unidad</th>
                             <th style="text-align: center;">Cantidad</th>
-                            <th style="text-align: center;">Precio</th>
+                            <th style="text-align: center;">PU sin IVA</th>
                             <th style="text-align: center;">Importe</th>
                         </tr>
                     </thead>
@@ -56,9 +57,10 @@
                                 <tr>
                                     <td>{{ $movement->supply->sat_key }}</td>
                                     <td>{{ $movement->supply->description }}</td>
+                                    <td>{{ $movement->supply->unit }}</td>
                                     <td style="text-align: center;">{{ $supplies[$movement->supply->id] }}</td>
-                                    <td style="text-align: right;">{{ number_format($movement->price, 2) }}</td>
-                                    <td style="text-align: right;">{{ number_format($supplies[$movement->supply->id] * $movement->price, 2) }}</td>
+                                    <td style="text-align: right;">{{ number_format($movement->price/1.16, 2) }}</td>
+                                    <td style="text-align: right;">{{ number_format($supplies[$movement->supply->id] * $movement->price/1.16, 2) }}</td>
                                 </tr>
                             @endif
                         @endforeach
@@ -67,7 +69,17 @@
 
                     <tfoot>
                         <tr>
-                            <th colspan="2"></th>
+                            <th colspan="4"></th>
+                            <th style="text-align: right;"><em><b>Subtotal</b></em></th>
+                            <td style="text-align: right;">{{ number_format($amount/1.16, 2) }}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="4"></th>
+                            <th style="text-align: right;"><em><b>IVA</b></em></th>
+                            <td style="text-align: right;">{{ number_format($amount - $amount/1.16, 2) }}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="4"></th>
                             <th style="text-align: right;"><em><b>Total</b></em></th>
                             <td style="text-align: right;">{{ number_format($amount, 2) }}</td>
                         </tr>
