@@ -29,7 +29,7 @@ class AccountMovementController extends Controller
 
         $movements = AccountMovement::where('bank_account_id', $store->bank_account->id)
             ->get();
-            
+
         return view('account_movements.index', compact('movements'));
     }
 
@@ -60,7 +60,7 @@ class AccountMovementController extends Controller
 
     function show(AccountMovement $account_movement)
     {
-        
+
     }
 
     function edit(AccountMovement $accountMovement)
@@ -76,7 +76,6 @@ class AccountMovementController extends Controller
         $attributes = $request->validate([
             'concept' => 'required',
             'provider_id' => 'required',
-            'observations' => 'required',
             'expenses_group_id' => 'required',
             'provider_id' => 'required',
         ]);
@@ -94,7 +93,7 @@ class AccountMovementController extends Controller
     {
         if ($request->account_movements) {
             Excel::import(new AccountMovementsImport, $request->file('account_movements'));
-        
+
             return "HECHO, SIN PROBLEMAS";
         }
 
