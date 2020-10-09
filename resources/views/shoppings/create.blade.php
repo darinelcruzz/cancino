@@ -23,22 +23,33 @@
                         <div class="col-md-6">
                             {!! Field::number('amount', ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
                         </div>
-                        <div class="col-md-6">
-                            {!! Field::select('type',
-                            	['mercancia' => 'Mercancia', 'varfra' => 'Varfra'], null,
-                            	['empty' => 'Seleccione tipo', 'tpl' => 'lte/withicon'], ['icon' => 'archive'])
-                            !!}
-                        </div>
-                        <div class="col-md-6">
-                            {!! Field::number('document',['tpl' => 'lte/withicon'   ], ['icon' => 'desktop']) !!}
-                        </div>
+                        @if (isVKS())
+                            <div class="col-md-6">
+                                {!! Field::select('type',
+                                    ['regalias' => 'Regalias', 'cargo' => 'NCargo'], null,
+                                    ['empty' => 'Seleccione tipo', 'tpl' => 'lte/withicon'], ['icon' => 'archive'])
+                                !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Field::select('store_id', $storesArray, null,
+                                    ['empty' => 'Seleccione tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
+                                !!}
+                            </div>
+                            <input type="hidden" name="document" value="0">
+                        @else
+                            <div class="col-md-6">
+                                {!! Field::select('type',
+                                    ['mercancia' => 'Mercancia', 'varfra' => 'Varfra'], null,
+                                    ['empty' => 'Seleccione tipo', 'tpl' => 'lte/withicon'], ['icon' => 'archive'])
+                                !!}
+                            </div>
+                            <div class="col-md-6">
+                                {!! Field::number('document',['tpl' => 'lte/withicon'   ], ['icon' => 'desktop']) !!}
+                            </div>
+                            <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
+                        @endif
                     </div>
                     <hr>
-                    @if (auth()->user()->username == 'cynthia')
-                        <input type="hidden" name="store_id" value="2">
-                    @else
-                        <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
-                    @endif
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="status" value="pendiente">
                     <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>

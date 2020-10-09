@@ -4,15 +4,12 @@
 
 @push('headerTitle')
     <div class="row">
-        @empty ($stores)
-            <div class="col-md-2">
-                <a href="{{ route('shoppings.create') }}" class="btn btn-success btn-xs">
-                    <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
-                </a>
-            </div>
-            <div class="col-md-6">
-            </div>
-        @endempty
+        <div class="col-md-2">
+            <a href="{{ route('shoppings.create') }}" class="btn btn-success btn-xs">
+                <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
+            </a>
+        </div>
+        <div class="col-md-6"></div>
         <div class="col-md-4">
             @include('templates/month_select', ['route' => 'shoppings.index', 'date' => $date])
         </div>
