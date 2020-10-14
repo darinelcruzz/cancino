@@ -472,6 +472,16 @@ Route::group(['prefix' => 'cuentas', 'as' => 'bank_accounts.'], function () {
     Route::post('/{bank_account}', usesas($ctrl, 'show'));
 });
 
+Route::group(['prefix' => 'inventarios', 'as' => 'inventory.'], function () {
+    $ctrl = 'InventoryController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{inventory}', usesas($ctrl, 'edit'));
+    Route::post('editar/{inventory}', usesas($ctrl, 'update'));
+    Route::get('/{inventory}', usesas($ctrl, 'show'));
+});
+
 Route::group(['prefix' => 'covid', 'as' => 'covid.'], function () {
     $ctrl = 'CovidController';
     Route::get('/imss', usesas($ctrl, 'imss'));

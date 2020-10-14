@@ -239,6 +239,10 @@ return [
         'title' => 'Inventarios',
         'icon' => 'fa fa-people-carry',
         'submenu' => [
+            'new' => [
+                'title' => 'Nuevo',
+                'route' => 'inventory.create'
+            ],
             'create' => [
                 'title' => 'Agregar',
                 'route' => 'count.create'

@@ -1,9 +1,15 @@
 <?php
 
 return [
+    'inventory' => [
+        'title' => 'Inventario',
+        'icon' => 'fa fa--people-carry',
+        'route' => 'inventory.create'
+    ],
+
     'counts' => [
         'title' => 'Agregar',
-        'icon' => 'fa fa-people-carry',
+        'icon' => 'fa fa-calculator',
         'route' => 'count.create'
     ],
 
