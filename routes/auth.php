@@ -288,6 +288,7 @@ Route::group(['prefix' => 'productos', 'as' => 'product.'], function () {
     $ctrl = 'ProductController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('exportar/{format}', usesas($ctrl, 'export'));
+    Route::post('importar', usesas($ctrl, 'import'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{product}', usesas($ctrl, 'edit'));

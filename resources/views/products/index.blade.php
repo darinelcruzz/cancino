@@ -6,30 +6,51 @@
     <div class="row">
         <div class="col-md-12">
             <color-box color="primary" title="Productos">
-                <a href="{{ route('product.export', 'no-descontinuado') }}" class="btn btn-xs btn-github">
-                    EN LINEA &nbsp;&nbsp;<i class="fa fa-file-download"></i>
-                </a>
+                <div class="row">
 
-                <a href="{{ route('product.export', 'descontinuado') }}" class="btn btn-xs btn-default">
-                    DESCONTINUADO &nbsp;&nbsp;<i class="fa fa-file-download"></i>
-                </a>
+                    <div class="col-md-6">
+                        <a href="{{ route('product.export', 'no-descontinuado') }}" class="btn btn-xs btn-github">
+                            EN LINEA &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                        </a>
 
-                <a href="{{ route('product.export', 'excel') }}" class="btn btn-xs btn-success">
-                    TODOS &nbsp;&nbsp;<i class="fa fa-file-download"></i>
-                </a>
+                        <a href="{{ route('product.export', 'descontinuado') }}" class="btn btn-xs btn-default">
+                            DESCONTINUADO &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                        </a>
 
-                <a href="{{ route('product.export', 'csv') }}" class="btn btn-xs btn-warning">
-                    CSV &nbsp;&nbsp;<i class="fa fa-file-download"></i>
-                </a>
+                        <a href="{{ route('product.export', 'excel') }}" class="btn btn-xs btn-success">
+                            TODOS &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                        </a>
 
-                <hr>
+                        <a href="{{ route('product.export', 'csv') }}" class="btn btn-xs btn-warning">
+                            CSV &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                        </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        {!! Form::open(['method' => 'post', 'route' => 'product.import', 'enctype' => 'multipart/form-data']) !!}
+
+                        <div class="input-group input-group-sm">
+                            <input type="file" name="excel" class="form-control">
+                            <span class="input-group-btn">
+                              <button type="submit" class="btn btn-success btn-flat btn-sm">
+                                  <i class="fa fa-upload"></i>
+                              </button>
+                            </span>
+                        </div>
+
+                        {!! Form::close() !!}
+                    </div>
+
+                </div>
+
+                <br>
                 
                 @php
                     $sum = 0;
                     $online = 0;
                 @endphp
                 <data-table example="1">
-                    {{ drawHeader('código', 'descripción', 'antes', 'después', 'diferencia', 'costo') }}
+                    {{ drawHeader('modelo', 'descripción', 'código', 'antes', 'después', 'diferencia', 'costo') }}
                     <template slot="body">
                         @foreach($products as $product)
                             <tr>
@@ -40,6 +61,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $product->description }}</td>
+                                <td>{{ $product->barcode }}</td>
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->counts->sum('quantity') }}</td>
                                 <td>{{ $product->counts->sum('quantity') - $product->quantity }}</td>
@@ -56,11 +78,11 @@
 
                     <template slot="footer">
                         <tr>
-                            <th colspan="5" style="text-align: right">COSTO TOTAL DIFERENCIAS EN LÍNEA</th>
+                            <th colspan="6" style="text-align: right">COSTO TOTAL DIFERENCIAS EN LÍNEA</th>
                             <td>{{ number_format($online, 2) }}</td>
                         </tr>
                         <tr>
-                            <th colspan="5" style="text-align: right">COSTO TOTAL DIFERENCIAS</th>
+                            <th colspan="6" style="text-align: right">COSTO TOTAL DIFERENCIAS</th>
                             <td>{{ number_format($sum, 2) }}</td>
                         </tr>
                     </template>

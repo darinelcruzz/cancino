@@ -16,17 +16,17 @@
 
             {!! Form::open(['method' => 'POST', 'route' => 'count.store']) !!}
 
-            <color-box title="Agregar conteo en {{ auth()->user()->location->name }}" color="primary" solid>
+            <color-box title="Agregar conteo en {{ auth()->user()->location->name }}" color="vks" solid>
                 <div class="row">
                     <div class="col-md-6">
                         <label for="product_id">Producto</label><br>
-                        <v-select label="code" :options="products" v-model="product" placeholder="Seleccione un producto">
+                        <v-select label="barcode" :options="products" v-model="product" placeholder="Seleccione un producto" autofocus>
                             <template slot="option" slot-scope="option">
-                                @{{ option.code }}
+                                @{{ option.barcode }}
                             </template>
                         </v-select>
                         <br>
-                        {!! Field::number('quantity', ['tpl' => 'lte/withicon', 'required' => 'true'], ['icon' => 'plus-square']) !!}
+                        {!! Field::number('quantity', 1, ['tpl' => 'lte/withicon', 'required' => 'true'], ['icon' => 'plus-square']) !!}
                     </div>
                     @if (auth()->user()->level ==1)
                         <div class="col-md-6">
@@ -37,10 +37,10 @@
                     @endif
 
                     <div class="col-md-6">
-                        <h2>@{{ product.code }}</h2>
+                        <h2>@{{ product.code }} <span class="label label-vks pull-right">@{{ product.quantity }} @{{ product.quantity > 1 ? 'pzas': 'pza' }}</span></h2>
                         <h4>@{{ product.description }}</h4>
                         <h4>
-                            <code v-if="product.status == 'Descontinuado'">
+                            <code v-if="product.status != 'Linea'">
                                 @{{ product.status }}
                             </code>
                         </h4>
@@ -56,7 +56,7 @@
                         <input type="hidden" name="team" value="{{ auth()->user()->name }}">
                         <input type="hidden" name="product_id" :value="product.id">
 
-                        <button type="submit" class="btn btn-primary pull-right" onclick="submitForm(this);">Siguiente</button>
+                        <button type="submit" class="btn btn-github pull-right" onclick="submitForm(this);">Siguiente</button>
                     </div>
                 </div>
             </color-box>

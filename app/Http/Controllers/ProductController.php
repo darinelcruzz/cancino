@@ -6,6 +6,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\{ProductsExport, ProductsCSVExport, NotDiscontinuedProductsExport, DiscontinuedProductsExport};
+use App\Imports\ProductBarcodesImport;
 
 class ProductController extends Controller
 {
@@ -30,5 +31,18 @@ class ProductController extends Controller
         }
         
         return Excel::download(new ProductsExport, 'productos.xlsx');
+    }
+
+    function import(Request $request)
+    {
+        // dd($request->all());
+
+        $request->validate([
+            'excel' => 'required',
+        ]);
+
+        Excel::import(new ProductBarcodesImport, $request->file('excel'));
+
+        return redirect(route('product.index'));
     }
 }
