@@ -5,16 +5,14 @@ namespace App\Imports;
 use App\Product;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class ProductsImport implements ToCollection
+class ProductsImport implements ToCollection, WithChunkReading
 {
     public function collection(Collection $rows)
     {
         foreach ($rows->splice(1, $rows->count() - 6) as $row) 
         {
-            // dd($row[0], $row[2], $row[5], $row[6], $row[7], $row[8]);
-
             if ($product = Product::where('code', $row[0])->first()) {
                 $product->update([
                     'status' => $row[6],
@@ -32,5 +30,10 @@ class ProductsImport implements ToCollection
                 ]);
             }
         }
+    }
+
+    public function chunkSize(): int
+    {
+        return 750;
     }
 }
