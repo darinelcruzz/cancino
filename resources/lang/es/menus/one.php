@@ -244,8 +244,12 @@ return [
                 'route' => 'inventory.create'
             ],
             'create' => [
-                'title' => 'Agregar',
-                'route' => 'count.create'
+                'title' => 'Agregar normal',
+                'route' => ['count.create', 'normal']
+            ],
+            'create2' => [
+                'title' => 'Agregar con código de barras',
+                'route' => ['count.create', 'codigo-de-barras']
             ],
             'index' => [
                 'title' => 'Conteos',

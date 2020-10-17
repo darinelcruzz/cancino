@@ -27,4 +27,9 @@ class Count extends Model
     {
     	return $this->belongsTo(Product::class);
     }
+
+    function inventory()
+    {
+        return $this->belongsTo(Inventory::class);
+    }
 }

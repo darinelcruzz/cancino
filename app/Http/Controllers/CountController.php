@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Count, Location};
+use App\{Count, Location, Product, Inventory};
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CountsExport;
@@ -20,26 +20,42 @@ class CountController extends Controller
         return view('counts.index', compact('counts'));
     }
 
-    function create()
+    function create($mode = 'normal')
     {
         $locations = Location::all()->pluck('name', 'id')->toArray();
+        $inventory = Inventory::all()->last();
 
-        return view('counts.create', compact('locations'));
+        return view('counts.create', compact('locations', 'mode', 'inventory'));
     }
 
-    function store(Request $request)
+    function store(Request $request, $mode = 'normal')
     {
-        $attributes = $request->validate([
+        // dd($request->all());
+
+        $request->validate([
             'quantity' => 'required',
             'helper_id' => 'required',
+            'inventory_id' => 'required',
             'user_id' => 'required',
+            'product_id' => 'required',
             'team' => 'required',
             'location_id' => 'required'
         ]);
 
-        $count = Count::create($request->all());
+        if ($mode == 'normal') {
+            $count = Count::create($request->all());
+            return redirect(route('count.create', 'normal'))->with('status', '¡' . $count->quantity . ' de ' . $count->product->code . ' añadido(s)!');
+        }
 
-        return redirect(route('count.create'))->with('status', '¡' . $count->quantity . ' de ' . $count->product->code . ' añadido(s)!');
+        
+
+        if ($product = Product::where('barcode', $request->product_id)->first()) {
+            Count::create($request->except('product_id') + ['product_id' => $product->id]);
+
+            return redirect(route('count.create', 'codigo-de-barras'));
+        }
+
+        return back();
     }
 
     function export()

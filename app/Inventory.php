@@ -12,4 +12,9 @@ class Inventory extends Model
     {
     	return $this->belongsTo(Store::class);
     }
+
+    function counts()
+    {
+    	return $this->hasMany(Count::class);
+    }
 }

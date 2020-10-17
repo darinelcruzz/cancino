@@ -278,8 +278,8 @@ Route::group(['prefix' => 'conteos', 'as' => 'count.'], function () {
     $ctrl = 'CountController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('exportar', usesas($ctrl, 'export'));
-    Route::get('agregar', usesas($ctrl, 'create'));
-    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('agregar/{mode?}', usesas($ctrl, 'create'));
+    Route::post('agregar/{mode?}', usesas($ctrl, 'store'));
     Route::get('editar/{count}', usesas($ctrl, 'edit'));
     Route::post('editar/{count}', usesas($ctrl, 'update'));
 });

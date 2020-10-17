@@ -3,14 +3,23 @@
 return [
     'inventory' => [
         'title' => 'Inventario',
-        'icon' => 'fa fa--people-carry',
+        'icon' => 'fa fa-people-carry',
         'route' => 'inventory.create'
     ],
 
     'counts' => [
-        'title' => 'Agregar',
+        'title' => 'Conteos',
         'icon' => 'fa fa-calculator',
-        'route' => 'count.create'
+        'submenu' => [
+            'create' => [
+                'title' => 'Agregar normal',
+                'route' => ['count.create', 'normal']
+            ],
+            'create2' => [
+                'title' => 'Agregar con código de barras',
+                'route' => ['count.create', 'codigo-de-barras']
+            ],
+        ]
     ],
 
     'index' => [
