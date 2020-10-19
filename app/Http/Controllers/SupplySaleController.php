@@ -42,6 +42,7 @@ class SupplySaleController extends Controller
     function pending(Store $store)
     {
         $sales = SupplySale::where('store_id', $store->id)
+            ->where('status', 'pendiente')
             ->with('movements')
             ->get();
 

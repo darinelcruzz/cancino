@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-10">
             <color-box title="Pendientes de {{ $store->name }}" color="vks">
 
                 <table id="example1" class="table table-striped table-bordered">
