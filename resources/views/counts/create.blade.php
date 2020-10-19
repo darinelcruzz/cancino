@@ -54,7 +54,7 @@
 
                     <input type="hidden" name="location_id" value="{{ auth()->user()->location_id }}">
                     <input type="hidden" name="quantity" value="1">
-                    {!! Field::text('product_id', ['label'=> 'Producto', 'tpl' => 'lte/withicon', 'required' => 'true'], ['icon' => 'barcode']) !!}
+                    {!! Field::text('product_id', ['label'=> 'Producto', 'tpl' => 'lte/withicon', 'required' => 'true', 'autofocus' => 'autofocus'], ['icon' => 'barcode']) !!}
 
                 @endif
 
