@@ -1,6 +1,6 @@
 <template>
 	<div id="supplies-list">
-		<table v-if="supplies.length > 0" class="table table-striped table-bordered">
+		<table v-if="supplies.length > 0 || old" class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th><i class="fa fa-times"></i></th>
@@ -12,7 +12,8 @@
 			</thead>
 
 			<tbody>
-				<tr v-for="(supply, index) in supplies" :key="supply" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
+				<tr v-for="(supply, index) in old" :key="index" is="supplies-list-old-item" :supply="supply"></tr>
+				<tr v-for="(supply, index) in supplies" :key="index" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
 			</tbody>
 
 			<tfoot>
@@ -35,16 +36,17 @@
 
 <script>
 	export default {
-		props: ['model'],
+		props: ['model', 'old'],
 		data() {
 			return {
 				supplies: [],
 				subtotals: [],
+				amount: 0,
 			}
 		},
 		computed: {
 			total() {
-				return this.subtotals.reduce((total, subtotal) => total + subtotal.amount, 0)
+				return this.amount + this.subtotals.reduce((total, subtotal) => total + subtotal.amount, 0)
 			}
 		},
 		methods: {
@@ -65,6 +67,10 @@
 			}
 		},
 		created() {
+			if (this.old) {
+				this.amount = this.old.reduce((total, item) => total + (item.price * item.quantity), 0)
+			}
+
 			this.$root.$on('add', (item) => {
 				this.push(item)
 			})

@@ -9,7 +9,7 @@ class SupplySaleController extends Controller
 {
     function index()
     {
-        $supply_sales = SupplySale::all();
+        $supply_sales = SupplySale::where('status', 'pendiente')->get();
         return view('supplies.sales.index', compact('supply_sales'));
     }
 
@@ -55,12 +55,22 @@ class SupplySaleController extends Controller
 
     function edit(SupplySale $supply_sale)
     {
-        //
+        return view('supplies.sales.edit', compact('supply_sale'));
     }
 
     function update(Request $request, SupplySale $supply_sale)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'supplies' => 'required|array|min:1',
+            'amount' => 'required',
+        ]);
+
+        $supply_sale->update($request->only('amount'));
+        
+        $supply_sale->movements()->createMany($request->supplies);
+
+        return redirect(route('supplies.sales.show', $supply_sale));
     }
 
     function destroy(SupplySale $supply_sale)

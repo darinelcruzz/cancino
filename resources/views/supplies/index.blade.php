@@ -37,6 +37,7 @@
                                 <td>{{ $supply->id }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="github">
+                                        <ddi icon="eye" to="{{ route('supplies.show', $supply) }}" text="Ver"></ddi>
                                         <ddi icon="edit" to="{{ route('supplies.edit', $supply) }}" text="Editar"></ddi>
                                     </dropdown>
                                 </td>

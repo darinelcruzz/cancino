@@ -67,6 +67,7 @@ Vue.component('supplies', require('./components/Supplies.vue'));
 Vue.component('supply', require('./components/Supply.vue'));
 Vue.component('supplies-list', require('./components/SuppliesList.vue'));
 Vue.component('supplies-list-item', require('./components/SuppliesListItem.vue'));
+Vue.component('supplies-list-old-item', require('./components/SuppliesListOldItem.vue'));
 
 const app = new Vue({
     el: '#app',

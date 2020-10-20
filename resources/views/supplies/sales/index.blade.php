@@ -36,8 +36,8 @@
                                 <td>{{ $supply_sale->id }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="github">
-                                        {{-- <ddi icon="edit" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Editar"></ddi> --}}
                                         <ddi icon="eye" to="{{ route('supplies.sales.show', $supply_sale) }}" text="Ver"></ddi>
+                                        <ddi icon="plus" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Agregar insumos"></ddi>
                                         @if(auth()->user()->level == 1 && $supply_sale->status != 'cancelada')
                                         <ddi icon="times" to="{{ route('supplies.sales.destroy', $supply_sale) }}" text="Cancelar"></ddi>
                                         @endif

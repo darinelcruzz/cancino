@@ -37,7 +37,7 @@ class SupplyController extends Controller
 
     function show(Supply $supply)
     {
-        //
+        return view('supplies.show', compact('supply'));
     }
 
     function edit(Supply $supply)

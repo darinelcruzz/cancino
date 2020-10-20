@@ -10,6 +10,7 @@
                 <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
+                            <th>Fecha</th>
                             <th>Producto</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
@@ -20,6 +21,7 @@
                     <tbody>
                         @foreach($supply_sale->movements as $movement)
                             <tr>
+                                <td>{{ $movement->created_at->format('d/m/Y') }}</td>
                                 <td>{{ $movement->supply->description }}</td>
                                 <td>{{ $movement->quantity }}</td>
                                 <td>{{ number_format($movement->price, 2) }}</td>
@@ -30,7 +32,7 @@
 
                     <tfoot>
                         <tr>
-                            <td colspan="2"></td>
+                            <td colspan="3"></td>
                             <th>Total:</th>
                             <th>{{ number_format($supply_sale->amount, 2) }}</th>
                         </tr>
