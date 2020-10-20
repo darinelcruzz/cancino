@@ -108,9 +108,8 @@ class AdminController extends Controller
             ->where('status', '!=', 'cancelado')->get();
         $invoiced = Invoice::where('from', $store->id)
             ->where('status', 'pendiente')->get();
+        $added = Invoice::where('to', $store->id)->get();
         $payed = Invoice::where('from', $store->id)
-            ->where('status', 'pagada')->get();
-        $added = Invoice::where('to', $store->id)
             ->where('status', 'pagada')->get();
 
         return view('admin.loans', compact('lent', 'borrowed', 'store', 'invoiced', 'payed', 'added'));
