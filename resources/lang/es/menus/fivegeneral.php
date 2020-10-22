@@ -84,7 +84,7 @@ return [
     'Employers' => [
         'title' => 'Empleados',
         'icon' => 'fa fa-users',
-        'route' => 'helper.employers'
+        'route' => 'employer.index'
     ],
 
     'Waste' => [
