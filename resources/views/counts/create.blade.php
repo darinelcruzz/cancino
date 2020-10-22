@@ -4,9 +4,9 @@
 
 @section('content')
 
-    @if(session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
+    @if(session('status') && $mode == 'normal')
+        <div class="alert alert-{{ session('status') == 'ARTÍCULO NO ENCONTRADO' ? 'danger': 'success'}}">
+            {!! session('status') !!}
         </div>
     @endif
 
@@ -36,8 +36,9 @@
                         </div>
                     @else
                         <input type="hidden" name="location_id" value="{{ auth()->user()->location_id }}">
-                        <input type="hidden" name="product_id" :value="product.id">
                     @endif
+
+                    <input type="hidden" name="product_id" :value="product.id">
 
                     <div class="col-md-6">
                         <h2>@{{ product.code }} <span class="label label-vks pull-right">@{{ product.quantity }} @{{ product.quantity > 1 ? 'pzas': 'pza' }}</span></h2>
@@ -54,19 +55,26 @@
 
                     <input type="hidden" name="location_id" value="{{ auth()->user()->location_id }}">
                     <input type="hidden" name="quantity" value="1">
-                    {!! Field::text('product_id', ['label'=> 'Producto', 'tpl' => 'lte/withicon', 'required' => 'true', 'autofocus' => 'autofocus'], ['icon' => 'barcode']) !!}
+                    {!! Field::number('product_id', ['label'=> 'Producto', 'tpl' => 'lte/withicon', 'required' => 'true', 'autofocus' => 'autofocus'], ['icon' => 'barcode']) !!}
 
                 @endif
 
                 <hr>
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-5">
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                         <input type="hidden" name="helper_id" value="{{ auth()->user()->id }}">
                         <input type="hidden" name="inventory_id" value="{{ $inventory->id }}">
                         <input type="hidden" name="team" value="{{ auth()->user()->name }}">
+                        @if(session('status') && $mode != 'normal')
+                            <div class="alert alert-{{ session('status') == 'ARTÍCULO NO ENCONTRADO' ? 'danger': 'success'}}">
+                                {!! session('status') !!}
+                            </div>
+                        @endif
+                    </div>
 
+                    <div class="col-md-7">
                         <button type="submit" class="btn btn-github pull-right" onclick="submitForm(this);">GUARDAR</button>
                     </div>
                 </div>

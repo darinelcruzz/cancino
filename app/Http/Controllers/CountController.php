@@ -52,10 +52,19 @@ class CountController extends Controller
         if ($product = Product::where('barcode', $request->product_id)->first()) {
             Count::create($request->except('product_id') + ['product_id' => $product->id]);
 
-            return redirect(route('count.create', 'codigo-de-barras'));
+            $counts = Count::latest()->take(5)->get();
+
+            $message = 'Últimos añadidos: <br>';
+
+            foreach ($counts as $count) {
+                $message .= "{$count->product->barcode}<br>";
+            }
+
+            return redirect(route('count.create', 'codigo-de-barras'))
+                ->with('status', $message);
         }
 
-        return back();
+        return back()->with('status', 'ARTÍCULO NO ENCONTRADO');
     }
 
     function export()
