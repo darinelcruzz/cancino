@@ -40,7 +40,7 @@
                 <h3>Total vendido</h3>
 
                 <div class="row">
-                @foreach($supply->movements()->where('movable_type', 'App\SupplySale')->with('movable')->get()->groupBy('movable.store_id') as $store_id => $movements)
+                @foreach($supply->movements()->where('movable_type', 'App\SupplySale')->with('movable')->get()->where('movable.status', '!=', 'cancelada')->groupBy('movable.store_id') as $store_id => $movements)
                     <div class="col-md-6">
                         {!! Field::text(App\Store::find($store_id)->name, $movements->sum('quantity'), ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'store']) !!}
                     </div>

@@ -15,6 +15,6 @@ class Supply extends Model
 
     function getTotalSoldAttribute()
     {
-    	return $this->movements()->where('movable_type', 'App\SupplySale')->sum('quantity');
+    	return $this->movements()->where('movable_type', 'App\SupplySale')->with('movable')->get()->where('movable.status', '!=', 'cancelada')->sum('quantity');
     }
 }
