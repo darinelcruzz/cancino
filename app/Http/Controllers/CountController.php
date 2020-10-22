@@ -57,7 +57,7 @@ class CountController extends Controller
             $message = 'Últimos añadidos: <br>';
 
             foreach ($counts as $count) {
-                $message .= "{$count->product->barcode}<br>";
+                $message .= "{$count->product->code}<br>";
             }
 
             return redirect(route('count.create', 'codigo-de-barras'))
