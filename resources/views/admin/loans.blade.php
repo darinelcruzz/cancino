@@ -80,7 +80,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Facturó {{ count($invoiced) }}" color="info" solid button>
+            <color-box title="Pendientes de pago {{ count($invoiced) }}" color="info" solid button>
                 <data-table example="3">
                     {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">
