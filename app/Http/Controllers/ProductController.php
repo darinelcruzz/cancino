@@ -23,13 +23,13 @@ class ProductController extends Controller
         }
 
         if($format == 'no-descontinuado') {
-           return Excel::download(new NotDiscontinuedProductsExport, 'enlinea.xlsx'); 
+           return Excel::download(new NotDiscontinuedProductsExport, 'enlinea.xlsx');
         }
 
         if($format == 'descontinuado') {
-           return Excel::download(new DiscontinuedProductsExport, 'descontinuados.xlsx'); 
+           return Excel::download(new DiscontinuedProductsExport, 'descontinuados.xlsx');
         }
-        
+
         return Excel::download(new ProductsExport, 'productos.xlsx');
     }
 

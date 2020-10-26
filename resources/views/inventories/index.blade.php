@@ -2,10 +2,20 @@
 
 @push('pageTitle', 'Inventarios')
 
+@push('headerTitle')
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ route('inventory.create') }}" class="btn btn-github btn-xs pull-left">
+                <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
+            </a>
+        </div>
+    </div>
+@endpush
+
 @section('content')
     <div class="col-md-8">
         <color-box title="Inventarios" color="vks" solid>
-            <table class="table table-striped table-bordered no-pagination">
+            <table id="example1" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>

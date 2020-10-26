@@ -1,16 +1,38 @@
 <?php
 
 return [
-    'inventory' => [
-        'title' => 'Inventario',
+
+    'Inventory' => [
+        'title' => 'Inventarios',
         'icon' => 'fa fa-people-carry',
-        'route' => 'inventory.create'
+        'submenu' => [
+            'new' => [
+                'title' => 'Listado',
+                'route' => 'inventory.index'
+            ],
+            'index' => [
+                'title' => 'Conteos',
+                'route' => 'count.index'
+            ],
+            'products' => [
+                'title' => 'Productos',
+                'route' => 'product.index'
+            ],
+            'locations' => [
+                'title' => 'Ubicaciones',
+                'route' => 'location.create'
+            ],
+        ],
     ],
 
     'counts' => [
         'title' => 'Conteos',
         'icon' => 'fa fa-calculator',
         'submenu' => [
+            'index' => [
+                'title' => 'Historial',
+                'route' => 'count.index'
+            ],
             'create' => [
                 'title' => 'Agregar normal',
                 'route' => ['count.create', 'normal']
@@ -22,10 +44,23 @@ return [
         ]
     ],
 
-    'index' => [
-        'title' => 'Historial',
-        'icon' => 'fa fa-search-location',
-        'route' => 'count.index'
+    'supplies' => [
+        'title' => 'Insumos',
+        'icon' => 'fa fa-broom',
+        'submenu' => [
+            'sales' => [
+                'title' => 'Ventas',
+                'route' => 'supplies.sales.index'
+            ],
+            'purchases' => [
+                'title' => 'Compras',
+                'route' => 'supplies.purchases.index'
+            ],
+            'products' => [
+                'title' => 'Productos',
+                'route' => 'supplies.index'
+            ],
+        ],
     ],
 
     'logout' => [

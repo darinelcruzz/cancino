@@ -11,11 +11,13 @@ class CountController extends Controller
 {
     function index()
     {
-        if (isAdmin()) {
-            $counts = Count::with('product', 'user', 'location')->get();
-        }else {
-            $counts = Count::where('user_id', auth()->user()->id)->with('product', 'user', 'location')->get();
-        }
+        // if (isAdmin()) {
+        //     $counts = Count::with('product', 'user', 'location')->get();
+        // }else {
+        //     $counts = Count::where('user_id', auth()->user()->id)->with('product', 'user', 'location')->get();
+        // }
+        $inventory = Inventory::all()->last();
+        $counts = Count::where('inventory_id', $inventory->id)->get();
 
         return view('counts.index', compact('counts'));
     }
@@ -47,7 +49,7 @@ class CountController extends Controller
             return redirect(route('count.create', 'normal'))->with('status', '¡' . $count->quantity . ' de ' . $count->product->code . ' añadido(s)!');
         }
 
-        
+
 
         if ($product = Product::where('barcode', $request->product_id)->first()) {
             Count::create($request->except('product_id') + ['product_id' => $product->id]);

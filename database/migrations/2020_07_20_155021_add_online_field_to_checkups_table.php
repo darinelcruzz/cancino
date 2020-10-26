@@ -16,7 +16,7 @@ class AddOnlineFieldToCheckupsTable extends Migration
     function down()
     {
         Schema::table('checkups', function (Blueprint $table) {
-            $table->dropColumn('imss');
+            $table->dropColumn('online');
         });
     }
 }
