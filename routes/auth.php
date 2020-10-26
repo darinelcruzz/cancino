@@ -478,6 +478,8 @@ Route::group(['prefix' => 'inventarios', 'as' => 'inventory.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('actualizar', usesas($ctrl, 'upload'));
+    Route::post('actualizar', usesas($ctrl, 'upload'));
     Route::get('editar/{inventory}', usesas($ctrl, 'edit'));
     Route::post('editar/{inventory}', usesas($ctrl, 'update'));
     Route::get('/{inventory}', usesas($ctrl, 'show'));

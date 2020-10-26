@@ -255,6 +255,10 @@ return [
                 'title' => 'Conteos',
                 'route' => 'count.index'
             ],
+            'upload' => [
+                'title' => 'Excel',
+                'route' => 'inventory.upload'
+            ],
             'products' => [
                 'title' => 'Productos',
                 'route' => 'product.index'

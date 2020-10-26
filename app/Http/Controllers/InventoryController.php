@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\{Inventory, Store};
 use App\Imports\ProductsImport;
+use App\Imports\ProductBarcodesImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -34,6 +35,22 @@ class InventoryController extends Controller
         Excel::import(new ProductsImport, $request->file('excel'));
 
         return redirect(route('inventory.index'));
+    }
+
+    function upload(Request $request)
+    {
+
+        if (!isset($request->type)) return view('inventories.upload');
+
+        $request->validate(['excel' => 'required']);
+
+        if ($request->type == 'product') {
+            Excel::import(new ProductsImport, $request->file('excel'));
+        } else {
+            Excel::import(new ProductBarcodesImport, $request->file('excel'));
+        }
+
+        return redirect(route('inventory.upload'))->with('status', '¡Carga exitosa!');
     }
 
     function show(Inventory $inventory)

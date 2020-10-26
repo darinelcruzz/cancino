@@ -259,6 +259,10 @@ return [
                 'title' => 'Productos',
                 'route' => 'product.index'
             ],
+            'uploads' => [
+                'title' => 'Excel',
+                'route' => 'inventory.upload'
+            ],
             'locations' => [
                 'title' => 'Ubicaciones',
                 'route' => 'location.create'

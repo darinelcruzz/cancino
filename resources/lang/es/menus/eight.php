@@ -60,6 +60,10 @@ return [
                 'title' => 'Productos',
                 'route' => 'supplies.index'
             ],
+            'upload' => [
+                'title' => 'Excel',
+                'route' => 'inventory.upload'
+            ],
         ],
     ],
 
