@@ -4,29 +4,33 @@
 @endpush
 
 @push('headerTitle')
-    <a href="{{ route('users.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
+    <a href="{{ route('users.create') }}" class="btn btn-github btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR</a>
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Usuarios" color="primary">
+            <color-box title="Usuarios" color="vks">
                 <data-table example="1">
-                    {{ drawHeader('ID', 'Nombre','Usuario', 'Nivel', 'Tienda') }}
+                    {{ drawHeader('ID', '<i class="fa fa-cogs"></i>', 'Usuario', 'Nivel', 'Tienda') }}
 
                     <template slot="body">
                         @foreach($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->username }}</td>
+                                <td style="width: 5%;">{{ $user->id }}</td>
+                                <td style="width: 5%;">
+                                    <dropdown icon="cogs" color="github">
+                                        <ddi icon="edit" to="{{ route('users.edit', $user) }}" text="Editar"></ddi>
+                                    </dropdown>
+                                </td>
+                                <td>{{ $user->name }} <br> <code>{{ $user->username }}</code></td>
                                 <td>{{ $user->level }}</td>
                                 <td>{{ $user->store->name }}</td>
                             </tr>
                         @endforeach
                     </template>
                 </data-table>
-            </solid-box>
+            </color-box>
         </div>
     </div>
 

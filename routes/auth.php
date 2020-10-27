@@ -302,6 +302,7 @@ Route::group(['prefix' => 'ubicaciones', 'as' => 'location.'], function () {
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{location}', usesas($ctrl, 'edit'));
     Route::post('editar/{location}', usesas($ctrl, 'update'));
+    Route::post('asignar/{user}', usesas($ctrl, 'assign'));
 });
 
 Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {

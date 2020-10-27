@@ -43,9 +43,11 @@ class LocationController extends Controller
         //
     }
 
-    function update(Request $request, Location $location)
+    function assign(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+
+        return redirect(route('location.create'));
     }
 
     function destroy(Location $location)

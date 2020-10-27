@@ -49,14 +49,27 @@ class UserController extends Controller
 
     function edit(User $user)
     {
-        //
+        return view('users.edit', compact('user'));
     }
 
     function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        $this->validate($request, [
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'level' => 'required',
+            'store_id' => 'required',
+            'password' => 'confirmed',
+        ]);
 
-        return redirect(route('location.create'));
+        $user->update($request->except('password'));
+
+        if ($request->password) {
+            $user->update(['password' => Hash::make($request->password)]);
+        }
+        
+        return redirect(route('users.index'));
     }
 
     function destroy(User $user)

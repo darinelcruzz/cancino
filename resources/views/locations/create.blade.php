@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <color-box title="Ubicación por usuarios" color="primary" solid>
                     @foreach ($users as $user)
-                        {!! Form::open(['method' => 'POST', 'route' => ['users.update', $user->id]]) !!}
+                        {!! Form::open(['method' => 'POST', 'route' => ['location.assign', $user]]) !!}
                             {!!
                                 Field::text('name', $user->name,
                                 ['tpl' => 'lte/withicon', $user->id == 2 ? 'disabled': ''], ['icon' => 'users'])
