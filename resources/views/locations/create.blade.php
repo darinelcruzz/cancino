@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-6">
             <color-box title="Ubicación por usuarios" color="primary" solid>
-                @if (isAdmin())                
+                @if (isAdmin())
                     @foreach ($users as $user)
                         {!! Form::open(['method' => 'POST', 'route' => ['location.assign', $user]]) !!}
                         {!!
@@ -36,6 +36,10 @@
                         Field::select('location_id', $locations, auth()->user()->location_id,
                         ['empty' => 'Seleccione una tienda', 'tpl' => 'lte/withicon', 'label' => ''], ['icon' => 'map-pin'])
                     !!}
+
+                    <button type="submit" class="btn btn-primary pull-right" onclick="submitForm(this);">Actualizar</button>
+                    <br>
+                    {!! Form::close() !!}
                 @endif
             </color-box>
         </div>
