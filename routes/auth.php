@@ -484,6 +484,10 @@ Route::group(['prefix' => 'inventarios', 'as' => 'inventory.'], function () {
     Route::get('editar/{inventory}', usesas($ctrl, 'edit'));
     Route::post('editar/{inventory}', usesas($ctrl, 'update'));
     Route::get('/{inventory}', usesas($ctrl, 'show'));
+
+    Route::group(['prefix' => 'parciales', 'as' => 'partial.'], function () {
+        Route::get('inicio', usesas('PartialInventoryController', 'index'));
+    });
 });
 
 Route::group(['prefix' => 'covid', 'as' => 'covid.'], function () {

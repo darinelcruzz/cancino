@@ -22,9 +22,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="product_id">Producto</label><br>
-                        <v-select label="barcode" :options="products" v-model="product" placeholder="Seleccione un producto" autofocus>
+                        <v-select label="code" :options="products" v-model="product" placeholder="Seleccione un producto" autofocus>
                             <template slot="option" slot-scope="option">
-                                @{{ option.code }} &nbsp; @{{ option.barcode }}
+                                @{{ option.code }}
                             </template>
                         </v-select>
                         <br>

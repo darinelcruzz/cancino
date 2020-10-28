@@ -267,6 +267,10 @@ return [
                 'title' => 'Ubicaciones',
                 'route' => 'location.create'
             ],
+            'partials' => [
+                'title' => 'Parciales',
+                'route' => 'inventory.partial.index'
+            ],
         ],
     ],
 

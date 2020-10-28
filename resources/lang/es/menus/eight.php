@@ -18,6 +18,10 @@ return [
                 'title' => 'Productos',
                 'route' => 'product.index'
             ],
+            'partials' => [
+                'title' => 'Parciales',
+                'route' => 'inventory.partial.index'
+            ],
             'locations' => [
                 'title' => 'Ubicaciones',
                 'route' => 'location.create'

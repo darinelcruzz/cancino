@@ -15,7 +15,7 @@ class ProductBarcodesImport implements ToCollection
         {
             if ($product = Product::where('code', $row[0])->first()) {
                 $product->update([
-                    'barcode' => $row[1],
+                    'barcode' => $row[3],
                 ]);
             }
         }
