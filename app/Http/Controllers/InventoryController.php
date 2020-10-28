@@ -27,12 +27,12 @@ class InventoryController extends Controller
         $request->validate([
             'started_at' => 'required',
             'store_id' => 'required',
-            'excel' => 'required',
+            // 'excel' => 'required',
         ]);
 
         Inventory::create($request->except('excel'));
 
-        Excel::import(new ProductsImport, $request->file('excel'));
+        // Excel::import(new ProductsImport, $request->file('excel'));
 
         return redirect(route('inventory.index'));
     }

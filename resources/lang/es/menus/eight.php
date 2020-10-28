@@ -7,7 +7,7 @@ return [
         'icon' => 'fa fa-people-carry',
         'submenu' => [
             'new' => [
-                'title' => 'Listado',
+                'title' => 'Historial',
                 'route' => 'inventory.index'
             ],
             'index' => [
@@ -22,6 +22,10 @@ return [
                 'title' => 'Ubicaciones',
                 'route' => 'location.create'
             ],
+            'upload' => [
+                'title' => 'Excel',
+                'route' => 'inventory.upload'
+            ],
         ],
     ],
 
@@ -29,10 +33,7 @@ return [
         'title' => 'Conteos',
         'icon' => 'fa fa-calculator',
         'submenu' => [
-            'index' => [
-                'title' => 'Historial',
-                'route' => 'count.index'
-            ],
+
             'create' => [
                 'title' => 'Agregar normal',
                 'route' => ['count.create', 'normal']

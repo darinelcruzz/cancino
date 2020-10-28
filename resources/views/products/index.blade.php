@@ -26,25 +26,10 @@
                         </a>
                     </div>
 
-                    <div class="col-md-6">
-                        {!! Form::open(['method' => 'post', 'route' => 'product.import', 'enctype' => 'multipart/form-data']) !!}
-
-                        <div class="input-group input-group-sm">
-                            <input type="file" name="excel" class="form-control">
-                            <span class="input-group-btn">
-                              <button type="submit" class="btn btn-success btn-flat btn-sm">
-                                  <i class="fa fa-upload"></i>
-                              </button>
-                            </span>
-                        </div>
-
-                        {!! Form::close() !!}
-                    </div>
-
                 </div>
 
                 <br>
-                
+
                 @php
                     $sum = 0;
                     $online = 0;
