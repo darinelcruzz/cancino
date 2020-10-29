@@ -4,10 +4,22 @@
 
 @push('headerTitle')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <a href="{{ route('supplies.create') }}" class="btn btn-github btn-xs pull-left">
                 <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
             </a>
+        </div>
+        <div class="col-md-4">
+            {!! Form::open(['method' => 'POST', 'route' => 'supplies.print']) !!}
+              <div class="input-group input-group-sm">
+                  <input type="date" name="date" class="form-control" required>
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-github btn-flat btn-xs">
+                        <i class="fa fa-print"></i>
+                    </button>
+                  </span>
+              </div>
+            {!! Form::close() !!}
         </div>
     </div>
 @endpush
@@ -42,7 +54,7 @@
                                     </dropdown>
                                 </td>
                                 <td>{{ $supply->description }}</td>
-                                <td><code>{{ $supply->code }}</code></td>
+                                <td><code>{{ $supply->code or 'TEST' }}</code></td>
                                 <td>{{ $supply->sat_key }}</td>
                                 <td>{{ $supply->quantity }} {{ $supply->unit . ($supply->quantity != 1 ? 's': '') }}</td>
                                 <td>{{ number_format($supply->purchase_price, 2) }}</td>

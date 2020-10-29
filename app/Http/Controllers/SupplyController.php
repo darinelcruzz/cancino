@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Supply;
+use App\{Supply, SupplyMovement};
 use Illuminate\Http\Request;
 
 class SupplyController extends Controller
@@ -60,6 +60,23 @@ class SupplyController extends Controller
         $supply->update($validated);
 
         return redirect(route('supplies.index'));
+    }
+
+    function print(Request $request)
+    {
+        $date = $request->date;
+        $sum = 0;
+
+        $supplies = SupplyMovement::whereHasMorph('movable', ['App\SupplySale', 'App\SupplyPurchase'], function ($query, $type) use ($date) {
+            if ($type === 'App\SupplyPurchase') {
+                $query->where('purchased_at', '<=', $date);
+            } else {
+                $query->where('sold_at', '<=', $date)
+                    ->where('status', 'pagada');
+            }
+        })->get()->groupBy('supply_id');
+
+        return view('supplies.print', compact('supplies', 'date', 'sum'));
     }
 
     function destroy(Supply $supply)

@@ -428,6 +428,7 @@ Route::group(['prefix' => 'insumos', 'as' => 'supplies.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::post('imprimir', usesas($ctrl, 'print'));
     Route::get('editar/{supply}', usesas($ctrl, 'edit'));
     Route::post('editar/{supply}', usesas($ctrl, 'update'));
     Route::get('{supply}', usesas($ctrl, 'show'));
