@@ -34,7 +34,7 @@ class AdminController extends Controller
             ->selectRaw('id, observations, status,
             date_sale, store_id, date_deposit, cash,
             DATE_FORMAT(date_sale, "%Y-%m") as month, checkup_id')
-            ->orderBy('month', 'des')
+            ->orderBy('month', 'desc')
             ->get()
             ->groupBy('month');
 
