@@ -12,7 +12,7 @@ class AdminController extends Controller
     function sales()
     {
         $dates = Sale::selectRaw('date_sale, store_id, total, DATE_FORMAT(date_sale, "%Y-%m") as month')
-            ->orderBy('month', 'des')
+            ->orderBy('month', 'desc')
             ->get()->groupBy('month')
             ->take(12);
         $dates->transform(function ($item, $key) {
