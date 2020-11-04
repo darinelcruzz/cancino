@@ -28,6 +28,9 @@
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="usd" to="{{ route('service_payments.create', $service) }}" text="Pagar"></ddi>
                                         <ddi icon="clock" to="{{ route('services.show', $service) }}" text="Historial pagos"></ddi>
+                                        @if($service->status != 'impresa')
+                                            <ddi icon="print" to="{{ route('services.mark', $service) }}" text="Marcar como impreso"></ddi>
+                                        @endif
                                     </dropdown>
                                 </td>
                                 <td>{{ $service->description }}</td>
@@ -37,7 +40,7 @@
                                 <td>{{ $service->period_text }}</td>
                                 <td>{{ fdate($service->invoiced_at, 'D, d M Y', 'Y-m-d') }}</td>
                                 <td>{{ fdate($service->expired_at, 'D, d M Y', 'Y-m-d') }}</td>
-                                <td><span class="label label-{{ $service->status_color }}">{{ $service->status }}</span></td>
+                                <td><span class="label label-{{ $service->status_color }}">{{ strtoupper($service->status) }}</span></td>
                             </tr>
                             @endif
                         @endforeach

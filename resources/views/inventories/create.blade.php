@@ -12,6 +12,8 @@
                         ['empty' => 'Elija una tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
                     !!}
 
+                    {!! Field::text('description', ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
+
                     <div class="row">
                         <div class="col-md-6">
                             {!! Field::date('started_at', date('Y-m-d'), ['label' => 'Fecha inicio', 'tpl' => 'lte/withicon'], ['icon' => 'calendar-plus']) !!}

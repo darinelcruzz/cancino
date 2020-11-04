@@ -11,7 +11,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::date('sold_at', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            {!! Field::date('sold_at', date('Y-m-d'), ['label' => 'Fecha', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                         <div class="col-md-6">
                             {!! Field::select('store_id', $stores, null, ['tpl' => 'lte/withicon', 'empty' => 'Seleccione tienda'], ['icon' => 'store']) !!}

@@ -41,6 +41,13 @@ class ServiceController extends Controller
         return view('services.show', compact('service'));
     }
 
+    function mark(Service $service)
+    {
+        $service->update(['status' => 'impreso']);
+
+        return redirect(route('services.index'));
+    }
+
     function edit(Service $service)
     {
         //

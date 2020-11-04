@@ -398,6 +398,7 @@ Route::group(['prefix' => 'servicios', 'as' => 'services.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('marcar-impresa/{service}', usesas($ctrl, 'mark'));
     Route::get('editar/{service}', usesas($ctrl, 'edit'));
     Route::post('editar/{service}', usesas($ctrl, 'update'));
     Route::get('{service}', usesas($ctrl, 'show'));
@@ -451,6 +452,7 @@ Route::group(['prefix' => 'ventas-de-insumos', 'as' => 'supplies.sales.'], funct
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{supply_sale}', usesas($ctrl, 'edit'));
     Route::post('editar/{supply_sale}', usesas($ctrl, 'update'));
+    Route::post('pagar/{supply_sale}', usesas($ctrl, 'pay'));
     Route::get('cancelar/{supply_sale}', usesas($ctrl, 'destroy'));
     Route::get('pendientes/{store}', usesas($ctrl, 'pending'));
     Route::get('{supply_sale}', usesas($ctrl, 'show'));

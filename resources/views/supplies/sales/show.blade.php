@@ -2,6 +2,16 @@
 
 @push('pageTitle', 'Insumos | Ventas')
 
+@push('headerTitle')
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ route('supplies.sales.index') }}" class="btn btn-github btn-xs pull-left">
+                <i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;ATRÁS
+            </a>
+        </div>
+    </div>
+@endpush
+
 @section('content')
     <div class="row">
         <div class="col-md-12">

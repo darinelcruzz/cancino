@@ -40,7 +40,8 @@ return [
 
     'services' => [
         'title' => 'Servicios',
-        'icon' => 'fa fa-file-invoice-dollar',
+        'icon' => 'fa fa-file',
+        'label' => ['warning' => pendingServices() > 0 ? pendingServices(): '', 'danger' => expiredServices() > 0 ? expiredServices(): ''],
         'route' => 'services.index',
     ],
 

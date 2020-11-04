@@ -11,7 +11,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::text('sold_at', $supply_sale->sold_at, ['label' => 'Fecha creación', 'tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'calendar']) !!}
+                            {!! Field::date('sold_at', $supply_sale->sold_at, ['label' => 'Fecha creación', 'tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'calendar']) !!}
                         </div>
                         <div class="col-md-6">
                             {!! Field::text('store_id', $supply_sale->store->name, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'store']) !!}

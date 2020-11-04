@@ -9,8 +9,9 @@ class SupplySaleController extends Controller
 {
     function index()
     {
-        $supply_sales = SupplySale::where('status', 'pendiente')->get();
-        return view('supplies.sales.index', compact('supply_sales'));
+        $pending_sales = SupplySale::where('status', 'pendiente')->get();
+        $paid_sales = SupplySale::where('status', 'pagada')->get();
+        return view('supplies.sales.index', compact('pending_sales', 'paid_sales'));
     }
 
     function create()
@@ -71,6 +72,19 @@ class SupplySaleController extends Controller
         $supply_sale->movements()->createMany($request->supplies);
 
         return redirect(route('supplies.sales.show', $supply_sale));
+    }
+
+    function pay(Request $request, SupplySale $supply_sale)
+    {
+        $attributes = $request->validate([
+            'invoice' => 'required',
+            'sold_at' => 'required',
+            'status' => 'required',
+        ]);
+
+        $supply_sale->update($attributes);
+
+        return redirect(route('supplies.sales.index'));
     }
 
     function destroy(SupplySale $supply_sale)

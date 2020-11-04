@@ -2,15 +2,15 @@
 
 @push('pageTitle', 'Insumos | Pendientes')
 
-{{-- @push('headerTitle')
+@push('headerTitle')
     <div class="row">
         <div class="col-md-12">
-            <a href="{{ route('supplies.sales.create') }}" class="btn btn-github btn-xs pull-left">
-                <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
+            <a href="{{ route('supplies.sales.index') }}" class="btn btn-github btn-xs pull-left">
+                <i class="fa fa-angle-double-left"></i>&nbsp;&nbsp;ATRÁS
             </a>
         </div>
     </div>
-@endpush --}}
+@endpush
 
 @section('content')
     <div class="row">

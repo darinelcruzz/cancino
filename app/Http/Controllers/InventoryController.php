@@ -27,6 +27,7 @@ class InventoryController extends Controller
         $request->validate([
             'started_at' => 'required',
             'store_id' => 'required',
+            'description' => 'required',
             // 'excel' => 'required',
         ]);
 
