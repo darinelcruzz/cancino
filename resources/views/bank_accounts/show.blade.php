@@ -54,8 +54,8 @@
                                     <td>{{ $movement->concept }} {{ $movement->check_id ? ' / ' . $movement->check->folio . ' / ' . $movement->check->concept : '' }}</td>
                                     <td>{{ number_format($movement->amount, 2) }}</td>
                                     <td>{{ ucfirst($movement->type) }}</td>
-                                    <td>{!! $movement->provider->social or '<code>PENDIENTE</code>' !!}</td>
-                                    <td>{!! $movement->expenses_group->name or '<code>PENDIENTE</code>' !!}</td>
+                                    <td>{!! $movement->provider->social ?? '<code>PENDIENTE</code>' !!}</td>
+                                    <td>{!! $movement->expenses_group->name ?? '<code>PENDIENTE</code>' !!}</td>
                                     <td>{{ $movement->check->observations ?? ($movement->observations ?? 'Ninguna') }}</td>
                                 </tr>
                             @endforeach
