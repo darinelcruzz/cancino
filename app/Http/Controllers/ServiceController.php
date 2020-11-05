@@ -55,7 +55,7 @@ class ServiceController extends Controller
 
     function update(Request $request, Service $service)
     {
-        //
+        
     }
 
     function destroy(Service $service)

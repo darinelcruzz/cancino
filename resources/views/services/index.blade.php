@@ -15,13 +15,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Pendientes" color="vks">
+            <color-box title="Pendientes" color="vks" solid>
                 <data-table example="1">
                     {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda', 'pago', 'periodo', 'próximo pago', 'vencimiento', 'estado') }}
 
                     <template slot="body">
                         @foreach($services as $service)
-                            @if($service->status != 'PAGADO')
+                            @if($service->status != 'pagado')
                             <tr>
                                 <td>{{ substr(strtotime($service->expired_at), 0, 5) }}</td>
                                 <td>
@@ -52,13 +52,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Pagados" color="success" collapsed button>
+            <color-box title="Pagados" color="success" collapsed button solid>
                 <data-table example="2">
                     {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda', 'pago', 'periodo', 'próximo pago', 'vencimiento') }}
 
                     <template slot="body">
                         @foreach($services as $service)
-                            @if($service->status == 'PAGADO')
+                            @if($service->status == 'pagado')
                             <tr>
                                 <td>{{ substr(strtotime($service->expired_at), 0, 5) }}</td>
                                 <td>

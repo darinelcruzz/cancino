@@ -34,6 +34,7 @@ class ServicePaymentController extends Controller
 
         $service->update([
             'invoiced_at' => $invoiced_at->add($service->period . " month"),
+            'status' => 'pagado',
             'expired_at' => $expired_at->add($service->period . " month")
         ]);
 

@@ -29,14 +29,12 @@ class Service extends Model
 			return 'pendiente';
 		} else if(date('Y-m-d') > $this->expired_at) {
 			return 'vencido';
-		} else {
-			return 'pagado';
 		}
     }
 
     function getStatusColorAttribute()
     {
-        if ($this->status != 'impreso' && $this->isExpired == 'pagado') {
+        if ($this->status != 'impreso' && $this->isExpired != 'pendiente') {
             $this->update(['status' => $this->isExpired]);
         }
 

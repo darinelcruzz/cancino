@@ -59,6 +59,11 @@ class Checkup extends Model
         return $sum;
     }
 
+    function getNotesSumAttribute()
+    {
+        return $this->notes['a'] ?? 0;
+    }
+
     function getBbvaSumAttribute()
     {
         $sum = 0;
