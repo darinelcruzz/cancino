@@ -13,12 +13,12 @@
     @foreach ($dates as $month => $days)
         <div class="row">
             @php
-                $chiapas = $soconusco = $altos = $galeTux = $galeTapa = $total = 0;
+                $chiapas = $soconusco = $altos = $galeTux = $galeTapa = $comitan = $sancris = $total = 0;
             @endphp
             <div class="col-md-12">
                 <color-box title="{{ ucfirst(fdate("$month-1", 'F \(Y\)', 'Y-m-j')) }}" color="primary" solid button {{ $loop->index == 0 ? '': 'collapsed' }}>
                     <data-table example="{{ $loop->iteration }}">
-                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa', 'Total') }}
+                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa', 'Comitán', 'San Cristóbal', 'Total') }}
                         <template slot="body">
                             @foreach ($days as $date => $stores)
                                 <tr>
@@ -28,6 +28,8 @@
                                     <td>{{ fnumber($stores->where('store_id', 4)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->where('store_id', 5)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->where('store_id', 6)->sum('total')) }}</td>
+                                    <td>{{ fnumber($stores->where('store_id', 7)->sum('total')) }}</td>
+                                    <td>{{ fnumber($stores->where('store_id', 8)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->sum('total')) }}</td>
                                 </tr>
                                 @php
@@ -36,6 +38,8 @@
                                     $altos = $altos + $stores->where('store_id', 4)->sum('total');
                                     $galeTux = $galeTux + $stores->where('store_id', 5)->sum('total');
                                     $galeTapa = $galeTapa + $stores->where('store_id', 6)->sum('total');
+                                    $comitan = $comitan + $stores->where('store_id', 7)->sum('total');
+                                    $sancris = $sancris + $stores->where('store_id', 8)->sum('total');
                                     $total = $total + $stores->sum('total');
                                 @endphp
                             @endforeach
@@ -48,6 +52,8 @@
                                 <td><b>{{ fnumber($altos) }}</b></td>
                                 <td><b>{{ fnumber($galeTux) }}</b></td>
                                 <td><b>{{ fnumber($galeTapa) }}</b></td>
+                                <td><b>{{ fnumber($comitan) }}</b></td>
+                                <td><b>{{ fnumber($sancris) }}</b></td>
                                 <td><b>{{ fnumber($total) }}</b></td>
                             </tr>
                         </template>

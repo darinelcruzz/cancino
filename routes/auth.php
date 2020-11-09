@@ -468,6 +468,8 @@ Route::group(['prefix' => 'pos', 'as' => 'pos.'], function () {
 Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {
     $ctrl = 'StoreController';
     Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
 });
 
 Route::group(['prefix' => 'cuentas', 'as' => 'bank_accounts.'], function () {

@@ -74,6 +74,10 @@ return [
                 'title' => 'Portales',
                 'route' => 'websites.index',
             ],
+            'stores' => [
+                'title' => 'Agregar tienda',
+                'route' => 'stores.create',
+            ],
         ],
     ],
 

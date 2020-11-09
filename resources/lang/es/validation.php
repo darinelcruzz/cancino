@@ -255,5 +255,12 @@ return [
         'unit' => 'unidad',
         'purchase_price' => 'precio compra',
         'sale_price' => 'precio venta',
+        'sale_price' => 'precio venta',
+        'manager' => 'gerente',
+        'account' => 'Cuenta principal',
+        'rfc' => 'R.F.C.',
+        'star' => 'punto estrella',
+        'golden' => 'punto dorado',
+        'expense' => 'gasto',
     ],
 ];
