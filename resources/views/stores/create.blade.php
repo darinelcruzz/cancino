@@ -58,10 +58,10 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('cash', 0, ['tpl' => 'lte/withicon'], ['icon' => 'cash-register']) !!}
+                            {!! Field::number('cash', 0, ['label' => 'Dinero para monedas', 'tpl' => 'lte/withicon'], ['icon' => 'cash-register']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('expense', 0, ['tpl' => 'lte/withicon'], ['icon' => 'wallet']) !!}
+                            {!! Field::number('expense', 0, ['label' => 'Dinero para gastos', 'tpl' => 'lte/withicon'], ['icon' => 'wallet']) !!}
                         </div>
                     </div> 
 
