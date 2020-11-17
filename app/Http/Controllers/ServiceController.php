@@ -9,7 +9,18 @@ class ServiceController extends Controller
 {
     function index()
     {
-        $services = Service::all();
+        $services = Service::all()->each(function ($item, $key) {
+            if ($item->status != 'impreso') {
+                if (date('Y-m-d') >= $item->invoiced_at && date('Y-m-d') <= $item->expired_at) {
+                    $item->update(['status' => 'pendiente']);
+                } else if(date('Y-m-d') > $item->expired_at) {
+                    $item->update(['status' => 'vencido']);
+                }
+            }
+        });
+
+        // dd($services);
+
         return view('services.index', compact('services'));
     }
 

@@ -23,22 +23,9 @@ class Service extends Model
     	return "Cada " . ($this->period == 1 ? "mes": "$this->period meses");
     }
 
-    function getIsExpiredAttribute()
-    {
-		if (date('Y-m-d') >= $this->invoiced_at && date('Y-m-d') <= $this->expired_at) {
-			return 'pendiente';
-		} else if(date('Y-m-d') > $this->expired_at) {
-			return 'vencido';
-		}
-    }
-
     function getStatusColorAttribute()
     {
-        if ($this->status != 'impreso' && $this->isExpired != 'pendiente') {
-            $this->update(['status' => $this->isExpired]);
-        }
-
-    	$colors = ['pendiente' => 'warning', 'pagado' => 'success', 'vencido' => 'danger', 'impreso' => 'primary'];
+        $colors = ['pendiente' => 'warning', 'pagado' => 'success', 'vencido' => 'danger', 'impreso' => 'primary'];
 
     	return $colors[strtolower($this->status)];
     }

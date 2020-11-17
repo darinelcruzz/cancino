@@ -54,7 +54,7 @@
         <div class="col-md-12">
             <color-box title="Pagados" color="success" collapsed button solid>
                 <data-table example="2">
-                    {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda', 'pago', 'periodo', 'próximo pago', 'vencimiento') }}
+                    {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda', 'pago', 'periodo', 'próximo pago', 'vencimiento', 'estado') }}
 
                     <template slot="body">
                         @foreach($services as $service)
@@ -73,6 +73,7 @@
                                 <td>{{ $service->period_text }}</td>
                                 <td>{{ fdate($service->invoiced_at, 'D, d M Y', 'Y-m-d') }}</td>
                                 <td>{{ fdate($service->expired_at, 'D, d M Y', 'Y-m-d') }}</td>
+                                <td><span class="label label-{{ $service->status_color }}">{{ strtoupper($service->status) }}</span></td>
                             </tr>
                             @endif
                         @endforeach
