@@ -195,6 +195,10 @@ return [
                 'title' => 'Gale Tapa',
                 'route' => ['admin.loans', 6]
             ],
+            'comitan' => [
+                'title' => 'Comitán',
+                'route' => ['admin.loans', 7]
+            ],
         ],
     ],
 

@@ -13,12 +13,12 @@
     <div class="row">
         <div class="col-md-12">
 
-            @foreach(['chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa'] as $store_name)
+            @foreach($charts as $name)
                 
-                <color-box title="Ventas {{ ucwords(str_replace('_', ' ', $store_name)) }}" 
+                <color-box title="Ventas {{ ucwords(str_replace('_', ' ', $name)) }}" 
                     color="{{ $loop->index < 3 ? 'primary': 'danger' }}">
                     
-                    <div>{!! $$store_name->container() !!}</div>
+                    <div>{!! $$name->container() !!}</div>
 
                     @include('templates/progress', ['num' => $loop->index + 2])
 
@@ -36,4 +36,5 @@
     {!! $altos->script() !!}
     {!! $gale_tux->script() !!}
     {!! $gale_tapa->script() !!}
+    {!! $comitan->script() !!}
 @endsection

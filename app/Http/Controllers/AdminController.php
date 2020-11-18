@@ -26,6 +26,8 @@ class AdminController extends Controller
     {
         $date = $request->date ? $request->date: date('Y-m');
 
+        $storesCollection = Store::where('type', '!=', 'c')->pluck('name', 'id');
+
         $months = Sale::whereMonth('date_sale', substr($date, 5))
             ->whereYear('date_sale', substr($date, 0, 4))
             ->orWhereMonth('date_sale', substr($date, 5) - 1)
@@ -42,7 +44,7 @@ class AdminController extends Controller
             return $item->groupBy('date_sale');
         });
 
-        return view('admin.deposits', compact('months', 'date'));
+        return view('admin.deposits', compact('months', 'date', 'storesCollection'));
     }
 
     function checkups()
@@ -169,13 +171,14 @@ class AdminController extends Controller
 
         foreach ($stores as $store) {
             ${strtolower($store->tabName)} = $this->buildChart($store, $date);
+            $charts[$store->id] = strtolower($store->tabName);
             $sales[$store->id]= $store->getSalesSum($date);
             $points[$store->id]= $store->getPoint($date);
             $stars[$store->id]= $store->getStar($date);
             $goldens[$store->id]= $store->getGolden($date);
         }
 
-        return view('admin.public', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'sales', 'points', 'stars', 'goldens'));
+        return view('admin.public', compact('date', 'charts', 'sales', 'points', 'stars', 'goldens', 'chiapas','soconusco','altos','gale_tux','gale_tapa','comitan'));
     }
 
     function terminals(Request $request)
