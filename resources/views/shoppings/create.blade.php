@@ -26,7 +26,7 @@
                         @if (isVKS())
                             <div class="col-md-6">
                                 {!! Field::select('type',
-                                    ['regalias' => 'Regalias', 'cargo' => 'NCargo'], null,
+                                    ['regalias' => 'Regalias', 'nota cargo' => 'Nota cargo', 'comisión' => 'Comisión'], null,
                                     ['empty' => 'Seleccione tipo', 'tpl' => 'lte/withicon'], ['icon' => 'archive'])
                                 !!}
                             </div>

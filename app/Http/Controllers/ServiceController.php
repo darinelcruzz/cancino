@@ -17,6 +17,10 @@ class ServiceController extends Controller
                 } else if(date('Y-m-d') > $item->expired_at) {
                     $item->update(['status' => $printed . 'vencido']);
                 }
+
+                if ($printed == 'impreso ') {
+                    $item->update(['status' => 'impreso']);
+                }
             }
         });
 
