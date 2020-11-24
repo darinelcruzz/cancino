@@ -112,7 +112,7 @@ function pendingServices()
 
 function expiredServices()
 {
-    return App\Service::where('status', 'vencido')->orWhere('impreso vencido')->count();
+    return App\Service::where('status', 'vencido')->orWhere('status', 'impreso vencido')->count();
 }
 
 function pendingShoppings()
