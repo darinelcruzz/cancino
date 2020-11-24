@@ -107,12 +107,12 @@ function pendingTasksAll()
 
 function pendingServices()
 {
-    return App\Service::all()->where('status', 'pendiente')->count();
+    return App\Service::where('status', 'pendiente')->count();
 }
 
 function expiredServices()
 {
-    return App\Service::all()->where('status', 'vencido')->orWhere('impreso vencido')->count();
+    return App\Service::where('status', 'vencido')->orWhere('impreso vencido')->count();
 }
 
 function pendingShoppings()
