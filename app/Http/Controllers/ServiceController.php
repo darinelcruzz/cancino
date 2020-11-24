@@ -10,11 +10,12 @@ class ServiceController extends Controller
     function index()
     {
         $services = Service::all()->each(function ($item, $key) {
-            if ($item->status != 'impreso') {
+            $printed = $item->status == 'impreso' ? 'impreso ': '';
+            if ($item->status != 'impreso vencido') {
                 if (date('Y-m-d') >= $item->invoiced_at && date('Y-m-d') <= $item->expired_at) {
                     $item->update(['status' => 'pendiente']);
                 } else if(date('Y-m-d') > $item->expired_at) {
-                    $item->update(['status' => 'vencido']);
+                    $item->update(['status' => $printed . 'vencido']);
                 }
             }
         });

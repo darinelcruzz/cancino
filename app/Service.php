@@ -25,7 +25,7 @@ class Service extends Model
 
     function getStatusColorAttribute()
     {
-        $colors = ['pendiente' => 'warning', 'pagado' => 'success', 'vencido' => 'danger', 'impreso' => 'primary'];
+        $colors = ['pendiente' => 'warning', 'pagado' => 'success', 'vencido' => 'danger', 'impreso' => 'primary', 'impreso vencido' => 'danger'];
 
     	return $colors[strtolower($this->status)];
     }
