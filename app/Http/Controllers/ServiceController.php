@@ -19,7 +19,7 @@ class ServiceController extends Controller
                 }
 
                 if ($printed == 'impreso ') {
-                    $item->update(['status' => 'impreso']);
+                    $item->update(['status' => 'impreso' . (date('Y-m-d') > $item->expired_at ? ' vencido': '')]);
                 }
             }
         });
@@ -59,7 +59,8 @@ class ServiceController extends Controller
 
     function mark(Service $service)
     {
-        $service->update(['status' => 'impreso']);
+
+        $service->update(['status' => 'impreso' . (date('Y-m-d') > $service->expired_at ? ' vencido': '')]);
 
         return redirect(route('services.index'));
     }
