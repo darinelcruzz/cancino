@@ -5,9 +5,21 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-3">
-            @include('templates/month_select', ['route' => 'admin.terminals', 'date' => $date])
-        </div>
+        {!! Form::open(['method' => 'post', 'route' => 'admin.results']) !!}
+            <div class="col-md-3">
+                <div class="input-group-sm">
+                    <input type="date" name="start" class="form-control" value="{{ $start }}">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group input-group-sm">
+                    <input type="date" name="end" class="form-control" value="{{ $end }}">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        {!! Form::close() !!}
     </div><br>
 
     <div class="row">

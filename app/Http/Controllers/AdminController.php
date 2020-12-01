@@ -211,7 +211,35 @@ class AdminController extends Controller
             ${strtolower($store->tabName)} = $chart;
         }
 
-        return view('admin.terminals', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa'));
+        return view('admin.terminals', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan'));
+    }
+
+    function results(Request $request)
+    {
+        $start = isset($request->start) ? $request->start : date('Y-m-d');
+        $end = isset($request->end) ? $request->end : date('Y-m-d');
+
+        $stores = Store::where('type', '!=', 'c')->get();
+
+        foreach ($stores as $store) {
+            $chart = new TestChart;
+
+            $bank_accounts = $store->bank_accounts()->where('type', '!=', 'gastos')->get();
+            $in = $out = 0;
+
+            foreach ($bank_accounts as $bank_account) {
+                // dd($bank_account->account_movements->where('type', 'abono')->whereBetween('added_at', [$start, $end])->pluck('id'));
+                $in += $bank_account->account_movements->where('type', 'abono')->whereBetween('added_at', [$start, $end])->sum('amount');
+                $out += $bank_account->account_movements->where('type', 'cargo')->whereBetween('added_at', [$start, $end])->sum('amount');
+            }
+
+            $chart->labels(['abonos', 'cargos']);
+            $chart->dataset('Resultados (dif: ' . number_format($in - $out, 2) . ')', 'bar', [round($in, 2), round($out, 2)])->color(['#1D4B96', '#E03317']);
+
+            ${strtolower($store->tabName)} = $chart;
+        }
+
+        return view('admin.results', compact('start', 'end', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan'));
     }
 
     function buildChart(Store $store, $date)

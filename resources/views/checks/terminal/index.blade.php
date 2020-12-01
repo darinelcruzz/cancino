@@ -6,7 +6,7 @@
     @foreach ($stores->where('type', 'c')->first()->bank_accounts as $bank_account)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ ucfirst($bank_account->type) }} ({{ $bank_account->checks->count() }})" color="{{ $bank_account->store->color }}" solid button collapsed>
+                <color-box title="{{ ucfirst($bank_account->type) }} ({{ $bank_account->checks->count() }})" color="vks" solid button collapsed>
 
                     <table class="table table-striped table-bordered descending">
                         <thead>
