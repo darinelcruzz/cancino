@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <color-box title="Pendientes" color="vks" solid>
-                <data-table example="1">
+                <data-table example="11">
                     {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda', 'pago', 'periodo', 'próximo pago', 'vencimiento', 'estado') }}
 
                     <template slot="body">
@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-md-12">
             <color-box title="Pagados" color="success" collapsed button solid>
-                <data-table example="2">
+                <data-table example="12">
                     {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda', 'pago', 'periodo', 'próximo pago', 'vencimiento', 'estado') }}
 
                     <template slot="body">

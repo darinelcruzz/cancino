@@ -59,7 +59,17 @@
                                     <td>{{ $movement->check->observations ?? ($movement->observations ?? 'Ninguna') }}</td>
                                 </tr>
                             @endforeach
+                            <tfoot>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Abonos</b></td>
+                                <td><b>{{ fnumber($movements->where('type', 'abono')->sum('amount')) }}</b></td>
+                                <td><b>Cargo</b></td>
+                                <td><b>{{ fnumber($movements->where('type', 'cargo')->sum('amount')) }}</b></td>
+                            </tfoot>
                         </tbody>
+
                     </table>
                 </div>
             </color-box>
