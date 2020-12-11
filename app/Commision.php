@@ -66,11 +66,11 @@ class Commision extends Model
     {
         $tab = Tab::all()->last();
 
-        if($sum_sc > $tab->sc_golden['q']) {
+        if($sum_sc >= $tab->sc_golden['q']) {
             return array("$sum_sc </br>" . $this->label('dorada') . "<br>", $tab->sc_golden['a'] * $sum_sc);
-        }if($sum_sc > $tab->sc_star['q']) {
+        }if($sum_sc >= $tab->sc_star['q']) {
             return array("$sum_sc </br>" . $this->label('estrella') . "<br>", $tab->sc_star['a'] * $sum_sc);
-        }if($sum_sc > $tab->sc_black['q']) {
+        }if($sum_sc >= $tab->sc_black['q']) {
             return array("$sum_sc </br>" . $this->label('negro') . "<br>", $tab->sc_black['a'] * $sum_sc);
         }else {
             return array("$sum_sc </br>" . $this->label('rojo') . "<br>", 0);
