@@ -10,7 +10,7 @@
             <div class="box-body box-profile">
                 <p class="text-center">
                     <img width="100px;" height="100px" style="border-radius: 50%;"
-                        src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}" 
+                        src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}"
                         alt="User profile picture">
                 </p>
                 <h3 class="profile-username text-center">{{ $employer->name }}</h3>
@@ -67,7 +67,7 @@
                     <li>Curso SC</li>
                     <li>Curso atención a clientes</li>
                     <li>Curso garantías</li>
-                </ul>               
+                </ul>
 
         @endswitch
 
@@ -75,12 +75,15 @@
             {!! Form::open(['method' => 'POST', 'route' => ['employers.update', $employer]]) !!}
 
                 @php
-                    $values = ['evaluacion uno' => 'segunda capacitacion', 'evaluacion dos' => 'tercera capacitacion', 'evaluacion tres' => 'primer año']
+                    $values = ['evaluacion uno' => 'segunda capacitacion', 'evaluacion dos' => 'tercera capacitacion', 'evaluacion tres' => 'primer año'];
                 @endphp
 
-                <input type="hidden" name="status" value="{{ $values[$employer->status] or $employer->status }}">
 
                 @if($employer->status == 'evaluacion uno' || $employer->status == 'evaluacion dos' || $employer->status == 'evaluacion tres')
+                    @if ($employer->status == 'evaluacion tres')
+                        <input type="hidden" name="commision" value="1">
+                    @endif
+                    <input type="hidden" name="status" value="{{ $values[$employer->status] }}">
                     {!! Form::submit('Autorizar', ['class' => 'btn btn-' . $employer->store->color . ' btn-xs']) !!}
                 @endif
 
