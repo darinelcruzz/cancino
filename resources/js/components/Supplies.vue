@@ -39,7 +39,6 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th><i class="fa fa-barcode"></i></th>
                         <th>Descripción</th>
                         <th>Existencia</th>
                         <th style="width: 30%; text-align: right">Precio</th>
@@ -57,12 +56,17 @@
 
 <script>
     export default {
-        props: ['color'],
+        props: ['color', 'store'],
         data() {
             return {
                 supplies: [],
                 pagination: {},
                 keyword: ''
+            }
+        },
+        watch: {
+            store(value) {
+                this.fetch();
             }
         },
         methods: {
@@ -77,7 +81,7 @@
                 }
             },
             fetch(page_url) {
-                page_url = page_url || '/api/supplies/' + this.keyword
+                page_url = page_url || '/api/supplies/' + this.store + '/' + this.keyword
 
                 console.log(page_url)
 

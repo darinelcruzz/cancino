@@ -169,6 +169,10 @@ return [
                 'title' => 'Compras',
                 'route' => 'supplies.purchases.index'
             ],
+            'transfers' => [
+                'title' => 'Transferencias',
+                'route' => 'supplies.transfers.index'
+            ],
             'products' => [
                 'title' => 'Productos',
                 'route' => 'supplies.index'

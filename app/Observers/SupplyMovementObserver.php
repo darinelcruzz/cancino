@@ -8,10 +8,17 @@ class SupplyMovementObserver
 {
     function created(SupplyMovement $supplyMovement)
     {
+        $destination = $supplyMovement->supply->stocks()->where('store_id', $supplyMovement->destination->id)->first();
+        $origin = $supplyMovement->supply->stocks()->where('store_id', $supplyMovement->origin->id)->first();
+        $quantity = $origin->quantity;
+
         if ($supplyMovement->movable_type == 'App\SupplyPurchase') {
-            $supplyMovement->supply->update(['quantity' => $supplyMovement->supply->quantity + $supplyMovement->quantity]);
-        } else {
-            $supplyMovement->supply->update(['quantity' => $supplyMovement->supply->quantity - $supplyMovement->quantity]);
+            $destination->update(['quantity' => $quantity + $supplyMovement->quantity]);
+        } else if ($supplyMovement->movable_type == 'App\SupplySale') {
+            $origin->update(['quantity' => $quantity - $supplyMovement->quantity]);
+        } else if ($supplyMovement->movable_type == 'App\SupplyTransfer') {
+            $destination->update(['quantity' => $destination->quantity + $supplyMovement->quantity]);
+            $origin->update(['quantity' => $quantity - $supplyMovement->quantity]);
         }
     }
 

@@ -16,7 +16,7 @@ class SupplySaleController extends Controller
 
     function create()
     {
-        $stores = Store::where('type', '!=', 'c')->pluck('name', 'id')->toArray();
+        $stores = Store::pluck('name', 'id')->toArray();
         return view('supplies.sales.create', compact('stores'));
     }
 

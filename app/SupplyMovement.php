@@ -17,4 +17,22 @@ class SupplyMovement extends Model
     {
     	return $this->morphTo();
     }
+
+    function getOriginAttribute()
+    {
+    	if ($this->movable_type == 'App\SupplyTransfer') {
+            return $this->movable->origin;
+        }
+
+        return Store::find(1);
+    }
+
+    function getDestinationAttribute()
+    {
+    	if ($this->movable_type == 'App\SupplyTransfer') {
+            return $this->movable->destination;
+        }
+
+        return Store::find(1);
+    }
 }

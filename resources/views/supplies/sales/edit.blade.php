@@ -32,7 +32,7 @@
 
         <div class="col-md-6">
             <color-box title="Productos" color="vks">
-                <supplies color="github"></supplies>
+                <supplies color="github" store="{{ $supply_sale->store_id % 3 == 0 ? 3: 1 }}"></supplies>
             </color-box>
         </div>
         

@@ -6,8 +6,8 @@
 			</a>
 		</td>
 		<td>
-			{{ supply.description }}
-			<input type="hidden" :name="'supplies[' + index + '][supply_id]'" :value="supply.id">
+			{{ supply.supply.description }}
+			<input type="hidden" :name="'supplies[' + index + '][supply_id]'" :value="supply.supply.id">
 		</td>
 		<td>
 			{{ price.toFixed(2) }}
@@ -15,7 +15,7 @@
 		</td>
 		<td>
 			<div class="input-group input-group-sm">
-                <input :name="'supplies[' + index + '][quantity]'" type="number" v-model="quantity" @change="update" class="form-control" min="1" :max=" model == 'sale' ? supply.quantity: 999">
+                <input :name="'supplies[' + index + '][quantity]'" type="number" v-model.number="quantity" @change="update" class="form-control" min="1" :max=" model == 'sale' ? supply.quantity: 999">
             </div>
 		</td>
 		<td>
@@ -48,7 +48,7 @@
 			},
 		},
 		created() {
-			this.price = this.model == 'sale' ? this.supply.sale_price: this.supply.purchase_price
+			this.price = this.model == 'sale' ? this.supply.supply.sale_price: this.supply.supply.purchase_price
 		}
 	};
 </script>

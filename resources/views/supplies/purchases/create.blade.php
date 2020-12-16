@@ -11,7 +11,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::date('purchased_at', date('Y-m-d'), ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            {!! Field::date('purchased_at', date('Y-m-d'), ['label' => 'Fecha', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                         <div class="col-md-6">
                             {!! Field::select('provider_id', $providers, null, ['tpl' => 'lte/withicon', 'empty' => 'Seleccione un proveedor'], ['icon' => 'truck']) !!}
@@ -32,7 +32,7 @@
 
         <div class="col-md-6">
             <color-box title="Productos" color="vks">
-                <supplies color="github"></supplies>
+                <supplies color="github" store="1"></supplies>
             </color-box>
         </div>
         

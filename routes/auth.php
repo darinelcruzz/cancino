@@ -430,6 +430,7 @@ Route::group(['prefix' => 'insumos', 'as' => 'supplies.'], function () {
     $ctrl = 'SupplyController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
+    Route::get('migrar', usesas($ctrl, 'migrate'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::post('imprimir', usesas($ctrl, 'print'));
     Route::get('editar/{supply}', usesas($ctrl, 'edit'));
@@ -458,6 +459,14 @@ Route::group(['prefix' => 'ventas-de-insumos', 'as' => 'supplies.sales.'], funct
     Route::get('cancelar/{supply_sale}', usesas($ctrl, 'destroy'));
     Route::get('pendientes/{store}', usesas($ctrl, 'pending'));
     Route::get('{supply_sale}', usesas($ctrl, 'show'));
+});
+
+Route::group(['prefix' => 'transferencias-de-insumos', 'as' => 'supplies.transfers.'], function () {
+    $ctrl = 'SupplyTransferController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('{supply_transfer}', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'pos', 'as' => 'pos.'], function () {

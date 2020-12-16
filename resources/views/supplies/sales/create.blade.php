@@ -14,7 +14,7 @@
                             {!! Field::date('sold_at', date('Y-m-d'), ['label' => 'Fecha', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::select('store_id', $stores, null, ['tpl' => 'lte/withicon', 'empty' => 'Seleccione tienda'], ['icon' => 'store']) !!}
+                            {!! Field::select('store_id', $stores, null, ['tpl' => 'lte/withicon', 'empty' => 'Seleccione tienda', 'v-model.number' => 'store_id'], ['icon' => 'store']) !!}
                         </div>
                     </div>
 
@@ -32,7 +32,7 @@
 
         <div class="col-md-6">
             <color-box title="Productos" color="vks">
-                <supplies color="github"></supplies>
+                <supplies color="github" :store="store_id % 3 == 0 ? 3: 1"></supplies>
             </color-box>
         </div>
         

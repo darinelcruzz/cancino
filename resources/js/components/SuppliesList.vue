@@ -12,8 +12,8 @@
 			</thead>
 
 			<tbody>
-				<tr v-for="(supply, index) in old" :key="index" is="supplies-list-old-item" :supply="supply"></tr>
-				<tr v-for="(supply, index) in supplies" :key="index" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
+				<tr v-for="(supply, index) in old" :key="supply.id" is="supplies-list-old-item" :supply="supply"></tr>
+				<tr v-for="(supply, index) in supplies" :key="supply.id" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
 			</tbody>
 
 			<tfoot>
@@ -53,9 +53,9 @@
 			push(item) {
 				this.supplies.push(item)
 				if (this.model == 'sale') {
-					this.subtotals.push({amount: item.sale_price})
+					this.subtotals.push({amount: item.supply.sale_price})
 				} else {
-					this.subtotals.push({amount: item.purchase_price})
+					this.subtotals.push({amount: item.supply.purchase_price})
 				}
 			},
 			pop(index) {
@@ -81,6 +81,11 @@
 
 			this.$root.$on('sum', (index, amount) => {
 				this.sum(index, amount)
+			})
+
+			this.$root.$on('reset', () => {
+				this.supplies = [];
+				this.subtotals = [];
 			})
 		}
 	}

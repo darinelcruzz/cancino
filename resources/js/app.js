@@ -79,6 +79,14 @@ const app = new Vue({
       products: [],
       product: {},
       wastes: [],
+      store_id: 1,
+    },
+    watch: {
+      store_id(value) {
+        if (value % 3 == 0) {
+          this.$root.$emit('reset');
+        }
+      }
     },
     methods: {
     	submit() {

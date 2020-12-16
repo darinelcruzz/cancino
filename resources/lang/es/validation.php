@@ -262,5 +262,8 @@ return [
         'star' => 'punto estrella',
         'golden' => 'punto dorado',
         'expense' => 'gasto',
+        'transferred_at' => 'fecha',
+        'transferred_from' => 'origen',
+        'transferred_to' => 'destino',
     ],
 ];

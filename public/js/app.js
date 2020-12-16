@@ -25351,7 +25351,15 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     public_amount: 0,
     products: [],
     product: {},
-    wastes: []
+    wastes: [],
+    store_id: 1
+  },
+  watch: {
+    store_id: function store_id(value) {
+      if (value % 3 == 0) {
+        this.$root.$emit('reset');
+      }
+    }
   },
   methods: {
     submit: function submit() {
@@ -53419,10 +53427,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['color'],
+    props: ['color', 'store'],
     data: function data() {
         return {
             supplies: [],
@@ -53431,6 +53438,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    watch: {
+        store: function store(value) {
+            this.fetch();
+        }
+    },
     methods: {
         paginate: function paginate(data) {
             return {
@@ -53445,7 +53457,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         fetch: function fetch(page_url) {
             var _this = this;
 
-            page_url = page_url || '/api/supplies/' + this.keyword;
+            page_url = page_url || '/api/supplies/' + this.store + '/' + this.keyword;
 
             console.log(page_url);
 
@@ -53618,8 +53630,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_c("i", { staticClass: "fa fa-barcode" })]),
-        _vm._v(" "),
         _c("th", [_vm._v("Descripción")]),
         _vm._v(" "),
         _c("th", [_vm._v("Existencia")]),
@@ -53727,17 +53737,23 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", [
-    _c("td", [_vm._v(_vm._s(_vm.supply.code))]),
-    _vm._v(" "),
     _c("td", [
       _c("a", { on: { click: _vm.add } }, [
         _c("i", { staticClass: "fa fa-plus" })
       ]),
-      _vm._v("  \n            " + _vm._s(_vm.supply.description) + " "),
+      _vm._v(
+        "  \n            " + _vm._s(_vm.supply.supply.code) + "\n            "
+      ),
+      _c(
+        "span",
+        { staticClass: "pull-right", staticStyle: { color: "navy" } },
+        [_vm._v(_vm._s(_vm.supply.supply.sat_key))]
+      ),
+      _vm._v(" "),
       _c("br"),
       _vm._v(" "),
       _c("span", { staticStyle: { color: "purple" } }, [
-        _vm._v(_vm._s(_vm.supply.sat_key))
+        _c("em", [_vm._v(_vm._s(_vm.supply.supply.description))])
       ])
     ]),
     _vm._v(" "),
@@ -53746,7 +53762,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", { staticStyle: { "text-align": "right" } }, [
-      _vm._v("$ " + _vm._s(_vm.supply.sale_price.toFixed(2)))
+      _vm._v(_vm._s(_vm.supply.supply.sale_price.toFixed(2)))
     ])
   ])
 }
@@ -53871,9 +53887,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		push: function push(item) {
 			this.supplies.push(item);
 			if (this.model == 'sale') {
-				this.subtotals.push({ amount: item.sale_price });
+				this.subtotals.push({ amount: item.supply.sale_price });
 			} else {
-				this.subtotals.push({ amount: item.purchase_price });
+				this.subtotals.push({ amount: item.supply.purchase_price });
 			}
 		},
 		pop: function pop(index) {
@@ -53904,6 +53920,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		this.$root.$on('sum', function (index, amount) {
 			_this.sum(index, amount);
 		});
+
+		this.$root.$on('reset', function () {
+			_this.supplies = [];
+			_this.subtotals = [];
+		});
 	}
 });
 
@@ -53925,7 +53946,7 @@ var render = function() {
             [
               _vm._l(_vm.old, function(supply, index) {
                 return _c("supplies-list-old-item", {
-                  key: index,
+                  key: supply.id,
                   tag: "tr",
                   attrs: { supply: supply }
                 })
@@ -53933,7 +53954,7 @@ var render = function() {
               _vm._v(" "),
               _vm._l(_vm.supplies, function(supply, index) {
                 return _c("supplies-list-item", {
-                  key: index,
+                  key: supply.id,
                   tag: "tr",
                   attrs: { supply: supply, model: _vm.model, index: index }
                 })
@@ -54110,7 +54131,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}
 	},
 	created: function created() {
-		this.price = this.model == 'sale' ? this.supply.sale_price : this.supply.purchase_price;
+		this.price = this.model == 'sale' ? this.supply.supply.sale_price : this.supply.supply.purchase_price;
 	}
 });
 
@@ -54130,13 +54151,13 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", [
-      _vm._v("\n\t\t\t" + _vm._s(_vm.supply.description) + "\n\t\t\t"),
+      _vm._v("\n\t\t\t" + _vm._s(_vm.supply.supply.description) + "\n\t\t\t"),
       _c("input", {
         attrs: {
           type: "hidden",
           name: "supplies[" + _vm.index + "][supply_id]"
         },
-        domProps: { value: _vm.supply.id }
+        domProps: { value: _vm.supply.supply.id }
       })
     ]),
     _vm._v(" "),
@@ -54154,9 +54175,10 @@ var render = function() {
           directives: [
             {
               name: "model",
-              rawName: "v-model",
+              rawName: "v-model.number",
               value: _vm.quantity,
-              expression: "quantity"
+              expression: "quantity",
+              modifiers: { number: true }
             }
           ],
           staticClass: "form-control",
@@ -54173,7 +54195,10 @@ var render = function() {
               if ($event.target.composing) {
                 return
               }
-              _vm.quantity = $event.target.value
+              _vm.quantity = _vm._n($event.target.value)
+            },
+            blur: function($event) {
+              _vm.$forceUpdate()
             }
           }
         })

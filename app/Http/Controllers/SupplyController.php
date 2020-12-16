@@ -83,4 +83,18 @@ class SupplyController extends Controller
     {
         //
     }
+
+    function migrate()
+    {
+        $supplies = Supply::all();
+
+        foreach ($supplies as $supply) {
+            if ($supply->stocks->count() == 0) {
+                \App\SupplyStock::create(['supply_id' => $supply->id, 'store_id' => 1, 'quantity' => $supply->quantity]);
+                \App\SupplyStock::create(['supply_id' => $supply->id, 'store_id' => 3, 'quantity' => 0]);
+            }
+        }
+
+        return "LISTO";
+    }
 }

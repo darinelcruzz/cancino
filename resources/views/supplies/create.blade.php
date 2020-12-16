@@ -22,8 +22,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('quantity', 0, ['tpl' => 'lte/withicon', 'disabled'], ['icon' => 'sort-numeric-up']) !!}
-                            <input type="hidden" value="0" name="quantity">
+                            {!! Field::number('ratio', 1, ['label' => 'Relación', 'tpl' => 'lte/withicon'], ['icon' => 'sort-numeric-up']) !!}
                         </div>
                         <div class="col-md-6">
                             {!! Field::text('unit', ['tpl' => 'lte/withicon'], ['icon' => 'balance-scale']) !!}
