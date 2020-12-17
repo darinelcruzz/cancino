@@ -32,7 +32,7 @@
                         </div>
                     </div>
 
-                    <supplies-list model="sale"></supplies-list>
+                    <supplies-list model="purchase"></supplies-list>
 
                     <hr>
 

@@ -35,11 +35,11 @@
                             <th>ID</th>
                             <th><i class="fa fa-cogs"></i></th>
                             <th>Descripción</th>
-                            <th>Código</th>
                             <th>Clave SAT</th>
-                            <th>Cantidad</th>
-                            <th>P. Compra</th>
-                            <th>P. Venta</th>
+                            <th>Tuxtla</th>
+                            <th>Tapachula</th>
+                            <th>Compra</th>
+                            <th>Venta</th>
                         </tr>
                     </thead>
 
@@ -53,10 +53,14 @@
                                         <ddi icon="edit" to="{{ route('supplies.edit', $supply) }}" text="Editar"></ddi>
                                     </dropdown>
                                 </td>
-                                <td>{{ $supply->description }}</td>
-                                <td><code>{{ $supply->code or 'TEST' }}</code></td>
+                                <td>
+                                    {{ $supply->description }}<br>
+                                    <code>{{ $supply->code ?? 'TEST' }}</code><span style="color: purple">{{ $supply->sat_key }}</span>
+                                </td>
                                 <td>{{ $supply->sat_key }}</td>
-                                <td>{{ $supply->quantity }} {{ $supply->unit . ($supply->quantity != 1 ? 's': '') }}</td>
+                                @foreach($supply->stocks as $stock)
+                                    <td>{{ $stock->quantity }} {{ $supply->unit . ($stock->quantity != 1 ? 's': '') }}</td>
+                                @endforeach
                                 <td>{{ number_format($supply->purchase_price, 2) }}</td>
                                 <td>{{ number_format($supply->sale_price, 2) }}</td>
                             </tr>

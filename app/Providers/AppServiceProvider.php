@@ -5,8 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Http\Composers\StoresComposer;
-use App\{Employer, Check, SupplySale, SupplyPurchase, SupplyMovement, SupplyTransfer};
-use App\Observers\{EmployerObserver, CheckObserver, SupplySaleObserver, SupplyPurchaseObserver, SupplyMovementObserver, SupplyTransferObserver};
+use App\{Employer, Check, Supply, SupplySale, SupplyPurchase, SupplyMovement, SupplyTransfer};
+use App\Observers\{EmployerObserver, CheckObserver, SupplyObserver, SupplySaleObserver, SupplyPurchaseObserver, SupplyMovementObserver, SupplyTransferObserver};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Employer::observe(EmployerObserver::class);
         Check::observe(CheckObserver::class);
+        Supply::observe(SupplyObserver::class);
         SupplySale::observe(SupplySaleObserver::class);
         SupplyPurchase::observe(SupplyPurchaseObserver::class);
         SupplyMovement::observe(SupplyMovementObserver::class);

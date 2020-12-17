@@ -8,7 +8,7 @@
             <span style="color: navy;" class="pull-right">{{ supply.supply.sat_key }}</span> <br>
             <span style="color: purple;"><em>{{ supply.supply.description }}</em></span>
         </td>
-        <td style="text-align: center">{{ supply.quantity }}</td>
+        <td style="text-align: center">{{ supply.quantity * supply.supply.ratio }}</td>
         <td style="text-align: right">{{ supply.supply.sale_price.toFixed(2) }}</td>
 	</tr>
 </template>

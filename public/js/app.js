@@ -53635,7 +53635,7 @@ var staticRenderFns = [
         _c("th", [_vm._v("Existencia")]),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "30%", "text-align": "right" } }, [
-          _vm._v("Precio")
+          _vm._v("Compra")
         ])
       ])
     ])
@@ -53758,7 +53758,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", { staticStyle: { "text-align": "center" } }, [
-      _vm._v(_vm._s(_vm.supply.quantity))
+      _vm._v(_vm._s(_vm.supply.quantity * _vm.supply.supply.ratio))
     ]),
     _vm._v(" "),
     _c("td", { staticStyle: { "text-align": "right" } }, [
@@ -54186,7 +54186,10 @@ var render = function() {
             name: "supplies[" + _vm.index + "][quantity]",
             type: "number",
             min: "1",
-            max: _vm.model == "sale" ? _vm.supply.quantity : 999
+            max:
+              _vm.model == "sale"
+                ? _vm.supply.quantity * _vm.supply.supply.ratio
+                : 999
           },
           domProps: { value: _vm.quantity },
           on: {

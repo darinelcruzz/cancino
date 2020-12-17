@@ -41,7 +41,7 @@
                     <tr>
                         <th>Descripción</th>
                         <th>Existencia</th>
-                        <th style="width: 30%; text-align: right">Precio</th>
+                        <th style="width: 30%; text-align: right">Compra</th>
                     </tr>
                 </thead>
 

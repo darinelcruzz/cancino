@@ -1,4 +1,5 @@
 <?php
+<?php
 
 namespace App\Http\Controllers;
 
@@ -24,8 +25,8 @@ class SupplyController extends Controller
             'description' => 'required',
             'code' => 'required',
             'sat_key' => 'required',
-            'quantity' => 'required',
             'unit' => 'required',
+            'ratio' => 'required',
             'purchase_price' => 'required',
             'sale_price' => 'required'
         ]);
