@@ -3,7 +3,7 @@
 namespace App\Http\Composers;
 
 use Illuminate\View\View;
-use App\{Store};
+use App\Store;
 
 class StoresComposer
 {
