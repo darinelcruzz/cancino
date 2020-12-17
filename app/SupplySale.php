@@ -27,4 +27,9 @@ class SupplySale extends Model
     {
         return ['cancelada' => 'danger', 'pendiente' => 'warning', 'pagada' => 'success'][$this->status];
     }
+
+    function getModelNameAttribute()
+    {
+        return 'venta';
+    }
 }

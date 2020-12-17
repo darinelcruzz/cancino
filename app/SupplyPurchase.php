@@ -22,4 +22,9 @@ class SupplyPurchase extends Model
     {
     	return $this->morphMany(SupplyMovement::class, 'movable');
     }
+
+    function getModelNameAttribute()
+    {
+        return 'compra';
+    }
 }

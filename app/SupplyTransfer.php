@@ -22,4 +22,9 @@ class SupplyTransfer extends Model
     {
     	return $this->morphMany(SupplyMovement::class, 'movable');
     }
+
+    function getModelNameAttribute()
+    {
+        return 'transferencia';
+    }
 }

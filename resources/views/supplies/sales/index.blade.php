@@ -85,8 +85,9 @@
                 <table id="example2" class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th><i class="fa fa-cogs"></i></th>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 5%"><i class="fa fa-cogs"></i></th>
+                            <th>Factura</th>
                             <th>Pago</th>
                             <th>Tienda</th>
                             <th>Importe</th>
@@ -101,18 +102,14 @@
                                 <td>
                                     <dropdown icon="cogs" color="success">
                                         <ddi icon="eye" to="{{ route('supplies.sales.show', $supply_sale) }}" text="Ver"></ddi>
-                                        <ddi icon="plus" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Agregar insumos"></ddi>
                                         @if(auth()->user()->level == 1 && $supply_sale->status != 'cancelada')
                                             <ddi icon="times" to="{{ route('supplies.sales.destroy', $supply_sale) }}" text="Cancelar"></ddi>
                                         @endif
                                     </dropdown>
                                 </td>
+                                <td style="text-align: center;">{{ $supply_sale->invoice }}</td>
                                 <td>{{ $supply_sale->sold_at }}</td>
-                                <td>
-                                    <a href="{{ route('supplies.sales.pending', $supply_sale->store) }}">
-                                        {{ $supply_sale->store->name }}
-                                    </a>
-                                </td>
+                                <td>{{ $supply_sale->store->name }}</td>
                                 <td>{{ number_format($supply_sale->amount, 2) }}</td>
                                 <td>{{ $supply_sale->user->name }}</td>
                             </tr>

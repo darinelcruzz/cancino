@@ -29,10 +29,15 @@ class SupplyMovement extends Model
 
     function getDestinationAttribute()
     {
-    	if ($this->movable_type == 'App\SupplyTransfer') {
-            return $this->movable->destination;
+    	if ($this->movable_type == 'App\SupplyTransfer' || $this->movable_type == 'App\SupplySale') {
+            return $this->movable->destination ?? $this->movable->store;
         }
 
         return Store::find(1);
+    }
+
+    function getTypeAttribute()
+    {
+        return $this->movable->modelName;
     }
 }

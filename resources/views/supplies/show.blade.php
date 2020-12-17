@@ -7,11 +7,9 @@
         <div class="col-md-8">
             <color-box title="{{ $supply->description }}" color="vks">
 
-                {!! Field::text('description', $supply->description, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'comment']) !!}
-
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Field::text('code', $supply->code, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'barcode']) !!}
+                        {!! Field::text('description', $supply->description, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'comment']) !!}
                     </div>
                     <div class="col-md-6">
                         {!! Field::text('sat_key', $supply->sat_key, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'qrcode']) !!}
@@ -20,12 +18,19 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        {!! Field::text('quantity', $supply->quantity, ['tpl' => 'lte/withicon', 'disabled' => 'true', 'disabled'], ['icon' => 'sort-numeric-up']) !!}
-                        <input type="hidden" value="0" name="quantity">
+                        {!! Field::text('code', $supply->code, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'barcode']) !!}
                     </div>
                     <div class="col-md-6">
                         {!! Field::text('unit', $supply->unit, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'balance-scale']) !!}
                     </div>
+                </div>
+
+                <div class="row">
+                    @foreach($supply->stocks as $stock)
+                        <div class="col-md-6">
+                            {!! Field::text($stock->store_id == 1 ? 'tuxtla': 'tapachula', $stock->quantity, ['tpl' => 'lte/withicon', 'disabled' => 'true', 'disabled'], ['icon' => 'sort-numeric-up']) !!}
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="row">
@@ -37,16 +42,31 @@
                     </div>
                 </div>
 
-                <h3>Total vendido</h3>
+                <h4><em>Últimos 10 movimientos</em></h4>
 
                 <div class="row">
-                @foreach($supply->movements()->where('movable_type', 'App\SupplySale')->with('movable')->get()->where('movable.status', '!=', 'cancelada')->groupBy('movable.store_id') as $store_id => $movements)
-                    <div class="col-md-6">
-                        {!! Field::text(App\Store::find($store_id)->name, $movements->sum('quantity'), ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'store']) !!}
-                    </div>
-                @endforeach
-                    <div class="col-md-6">
-                        {!! Field::text('Todas', $supply->totalSold, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'store']) !!}
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Cantidad</th>
+                                    <th>Tienda</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach($supply->movements()->take(10)->get() as $movement)
+                                    <tr>
+                                        <td>{{ $movement->created_at->format('d/m/Y') }}</td>
+                                        <td>{{ ucfirst($movement->type) }}</td>
+                                        <td>{{ $movement->quantity }}</td>
+                                        <td>{{ $movement->destination->id != 3 ? $movement->destination->name : 'Tapachula'}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </color-box>

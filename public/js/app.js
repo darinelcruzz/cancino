@@ -53865,9 +53865,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['model', 'old'],
+	props: {
+		model: String,
+		old: Array,
+		editable: { type: Boolean, default: false }
+	},
 	data: function data() {
 		return {
 			supplies: [],
@@ -53941,27 +53950,44 @@ var render = function() {
       ? _c("table", { staticClass: "table table-striped table-bordered" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c(
-            "tbody",
-            [
-              _vm._l(_vm.old, function(supply, index) {
-                return _c("supplies-list-old-item", {
-                  key: supply.id,
-                  tag: "tr",
-                  attrs: { supply: supply }
-                })
-              }),
-              _vm._v(" "),
-              _vm._l(_vm.supplies, function(supply, index) {
-                return _c("supplies-list-item", {
-                  key: supply.id,
-                  tag: "tr",
-                  attrs: { supply: supply, model: _vm.model, index: index }
-                })
-              })
-            ],
-            2
-          ),
+          _c("tbody", [
+            _vm.editable
+              ? _c(
+                  "div",
+                  _vm._l(_vm.old, function(supply, index) {
+                    return _c("supplies-list-old-item", {
+                      key: supply.id,
+                      tag: "tr",
+                      attrs: { supply: supply }
+                    })
+                  })
+                )
+              : _c(
+                  "div",
+                  [
+                    _vm._l(_vm.old, function(supply, index) {
+                      return _c("supplies-list-old-item", {
+                        key: supply.id,
+                        tag: "tr",
+                        attrs: { supply: supply }
+                      })
+                    }),
+                    _vm._v(" "),
+                    _vm._l(_vm.supplies, function(supply, index) {
+                      return _c("supplies-list-item", {
+                        key: supply.id,
+                        tag: "tr",
+                        attrs: {
+                          supply: supply,
+                          model: _vm.model,
+                          index: index
+                        }
+                      })
+                    })
+                  ],
+                  2
+                )
+          ]),
           _vm._v(" "),
           _c("tfoot", [
             _c("tr", [

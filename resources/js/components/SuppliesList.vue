@@ -12,8 +12,13 @@
 			</thead>
 
 			<tbody>
-				<tr v-for="(supply, index) in old" :key="supply.id" is="supplies-list-old-item" :supply="supply"></tr>
-				<tr v-for="(supply, index) in supplies" :key="supply.id" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
+				<div v-if="editable">
+					<tr v-for="(supply, index) in old" :key="supply.id" is="supplies-list-old-item" :supply="supply"></tr>
+				</div>
+				<div v-else>
+					<tr v-for="(supply, index) in old" :key="supply.id" is="supplies-list-old-item" :supply="supply"></tr>
+					<tr v-for="(supply, index) in supplies" :key="supply.id" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
+				</div>
 			</tbody>
 
 			<tfoot>
@@ -36,7 +41,11 @@
 
 <script>
 	export default {
-		props: ['model', 'old'],
+		props: {
+			model: String, 
+			old: Array, 
+			editable: {type: Boolean, default: false}
+		},
 		data() {
 			return {
 				supplies: [],

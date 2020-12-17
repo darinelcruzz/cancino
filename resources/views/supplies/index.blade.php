@@ -38,8 +38,8 @@
                             <th>Clave SAT</th>
                             <th>Tuxtla</th>
                             <th>Tapachula</th>
-                            <th>Compra</th>
-                            <th>Venta</th>
+                            <th>Comprados</th>
+                            <th>Vendidos</th>
                         </tr>
                     </thead>
 
@@ -61,8 +61,10 @@
                                 @foreach($supply->stocks as $stock)
                                     <td>{{ $stock->quantity }} {{ $supply->unit . ($stock->quantity != 1 ? 's': '') }}</td>
                                 @endforeach
-                                <td>{{ number_format($supply->purchase_price, 2) }}</td>
-                                <td>{{ number_format($supply->sale_price, 2) }}</td>
+                                {{-- <td>{{ number_format($supply->purchase_price, 2) }}</td>
+                                <td>{{ number_format($supply->sale_price, 2) }}</td> --}}
+                                <td>{{ $supply->total_purchased }}</td>
+                                <td>{{ $supply->total_sold }}</td>
                             </tr>
                         @endforeach
                     </tbody>

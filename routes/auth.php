@@ -466,6 +466,8 @@ Route::group(['prefix' => 'transferencias-de-insumos', 'as' => 'supplies.transfe
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{supply_transfer}', usesas($ctrl, 'edit'));
+    Route::post('editar/{supply_transfer}', usesas($ctrl, 'update'));
     Route::get('{supply_transfer}', usesas($ctrl, 'show'));
 });
 
