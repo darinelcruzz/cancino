@@ -1,13 +1,13 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Venta | Editar')
+@push('pageTitle', 'Venta | Agregar insumos')
 
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <color-box title="Editar venta" color="vks">
+            <color-box title="Agregar insumos" color="vks">
 
-                {!! Form::open(['method' => 'POST', 'route' => ['supplies.sales.update', $supply_sale]]) !!}
+                {!! Form::open(['method' => 'POST', 'route' => ['supplies.sales.persist', $supply_sale]]) !!}
 
                     <div class="row">
                         <div class="col-md-6">
@@ -20,11 +20,11 @@
 
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
-                    <supplies-list model="sale" :old="{{ $supply_sale->movements()->with('supply')->get() }}" :editable="true"></supplies-list>
+                    <supplies-list model="sale" :old="{{ $supply_sale->movements()->with('supply')->get() }}" :editable="false"></supplies-list>
 
                     <hr>
 
-                    {!! Form::submit('E D I T A R', ['class' => 'btn btn-github pull-right']) !!}
+                    {!! Form::submit('A G R E G A R', ['class' => 'btn btn-github pull-right']) !!}
 
                 {!! Form::close() !!}
             </color-box>

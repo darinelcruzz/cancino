@@ -30,7 +30,6 @@
 		data() {
 			return {
 				quantity: 1,
-				sizes: [],
 				price: 0
 			}
 		},

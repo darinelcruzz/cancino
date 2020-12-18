@@ -36,8 +36,8 @@
                                 <td>{{ $supply_purchase->id }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="github">
-                                        {{-- <ddi icon="edit" to="{{ route('supplies.purchases.edit', $supply_purchase) }}" text="Editar"></ddi> --}}
                                         <ddi icon="eye" to="{{ route('supplies.purchases.show', $supply_purchase) }}" text="Ver"></ddi>
+                                        <ddi icon="edit" to="{{ route('supplies.purchases.edit', $supply_purchase) }}" text="Editar"></ddi>
                                     </dropdown>
                                 </td>
                                 <td>{{ $supply_purchase->purchased_at }}</td>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{SupplyPurchase, Provider};
+use App\{SupplyPurchase, SupplyMovement, Provider};
 use Illuminate\Http\Request;
 
 class SupplyPurchaseController extends Controller
@@ -40,12 +40,25 @@ class SupplyPurchaseController extends Controller
 
     function edit(SupplyPurchase $supply_purchase)
     {
-        //
+        return view('supplies.purchases.edit', compact('supply_purchase'));
     }
 
     function update(Request $request, SupplyPurchase $supply_purchase)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'supplies' => 'required|array|min:1',
+            'amount' => 'required',
+        ]);
+
+        $supply_purchase->update($request->only('amount'));
+
+        foreach ($request->supplies as $supply) {
+            $movement = SupplyMovement::find($supply['id']);
+            $movement->update(['quantity' => $supply['quantity']]);
+        }
+
+        return redirect(route('supplies.purchases.show', $supply_purchase));
     }
 
     function destroy(SupplyPurchase $supply_purchase)

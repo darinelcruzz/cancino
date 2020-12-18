@@ -24,7 +24,17 @@ class SupplyMovementObserver
 
     function updated(SupplyMovement $supplyMovement)
     {
-        //
+        $destination = $supplyMovement->supply->stocks()->where('store_id', $supplyMovement->destination->id)->first();
+        $origin = $supplyMovement->supply->stocks()->where('store_id', $supplyMovement->origin->id)->first();
+        $quantity = $supplyMovement->quantity - $supplyMovement->getOriginal('quantity');
+
+        if ($supplyMovement->movable_type != 'App\SupplySale') {
+            $destination->update(['quantity' => $destination->quantity + $quantity]);
+        }
+
+        if ($supplyMovement->movable_type != 'App\SupplyPurchase') {
+            $origin->update(['quantity' => $origin->quantity - $quantity]);
+        }
     }
 
     function deleted(SupplyMovement $supplyMovement)

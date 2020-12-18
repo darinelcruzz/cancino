@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{SupplySale, Store};
+use App\{SupplySale, SupplyMovement, Store};
 use Illuminate\Http\Request;
 
 class SupplySaleController extends Controller
@@ -62,6 +62,28 @@ class SupplySaleController extends Controller
     function update(Request $request, SupplySale $supply_sale)
     {
         // dd($request->all());
+        $request->validate([
+            'supplies' => 'required|array|min:1',
+            'amount' => 'required',
+        ]);
+
+        $supply_sale->update($request->only('amount'));
+
+        foreach ($request->supplies as $supply) {
+            $movement = SupplyMovement::find($supply['id']);
+            $movement->update(['quantity' => $supply['quantity']]);
+        }
+
+        return redirect(route('supplies.sales.show', $supply_sale));
+    }
+
+    function add(SupplySale $supply_sale)
+    {
+        return view('supplies.sales.edit', compact('supply_sale'));
+    }
+
+    function persist(Request $request, SupplySale $supply_sale)
+    {
         $request->validate([
             'supplies' => 'required|array|min:1',
             'amount' => 'required',

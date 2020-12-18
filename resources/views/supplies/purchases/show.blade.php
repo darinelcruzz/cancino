@@ -1,6 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Insumos | Ventas')
+@push('pageTitle', 'Insumos | Compra')
 
 @section('content')
     <div class="row">

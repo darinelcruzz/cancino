@@ -12,13 +12,8 @@
 			</thead>
 
 			<tbody>
-				<div v-if="editable">
-					<tr v-for="(supply, index) in old" :key="supply.id" is="supplies-list-old-item" :supply="supply"></tr>
-				</div>
-				<div v-else>
-					<tr v-for="(supply, index) in old" :key="supply.id" is="supplies-list-old-item" :supply="supply"></tr>
-					<tr v-for="(supply, index) in supplies" :key="supply.id" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
-				</div>
+				<tr v-for="(supply, index) in old" :key="supply.id" is="supplies-list-old-item" :supply="supply" :editable="editable" :index="index"></tr>
+				<tr v-for="(supply, index) in supplies" :key="supply.id" is="supplies-list-item" :supply="supply" :model="model" :index="index"></tr>
 			</tbody>
 
 			<tfoot>
@@ -77,7 +72,14 @@
 		},
 		created() {
 			if (this.old) {
-				this.amount = this.old.reduce((total, item) => total + (item.price * item.quantity), 0)
+				if (this.editable) {
+					for (var i = this.old.length - 1; i >= 0; i--) {
+						let old = this.old[i];
+						this.subtotals.push({amount: old.price * old.quantity});
+					}
+				} else {
+					this.amount = this.old.reduce((total, item) => total + (item.price * item.quantity), 0)
+				}
 			}
 
 			this.$root.$on('add', (item) => {

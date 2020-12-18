@@ -53865,11 +53865,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
@@ -53913,9 +53908,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		var _this = this;
 
 		if (this.old) {
-			this.amount = this.old.reduce(function (total, item) {
-				return total + item.price * item.quantity;
-			}, 0);
+			if (this.editable) {
+				for (var i = this.old.length - 1; i >= 0; i--) {
+					var old = this.old[i];
+					this.subtotals.push({ amount: old.price * old.quantity });
+				}
+			} else {
+				this.amount = this.old.reduce(function (total, item) {
+					return total + item.price * item.quantity;
+				}, 0);
+			}
 		}
 
 		this.$root.$on('add', function (item) {
@@ -53950,44 +53952,31 @@ var render = function() {
       ? _c("table", { staticClass: "table table-striped table-bordered" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("tbody", [
-            _vm.editable
-              ? _c(
-                  "div",
-                  _vm._l(_vm.old, function(supply, index) {
-                    return _c("supplies-list-old-item", {
-                      key: supply.id,
-                      tag: "tr",
-                      attrs: { supply: supply }
-                    })
-                  })
-                )
-              : _c(
-                  "div",
-                  [
-                    _vm._l(_vm.old, function(supply, index) {
-                      return _c("supplies-list-old-item", {
-                        key: supply.id,
-                        tag: "tr",
-                        attrs: { supply: supply }
-                      })
-                    }),
-                    _vm._v(" "),
-                    _vm._l(_vm.supplies, function(supply, index) {
-                      return _c("supplies-list-item", {
-                        key: supply.id,
-                        tag: "tr",
-                        attrs: {
-                          supply: supply,
-                          model: _vm.model,
-                          index: index
-                        }
-                      })
-                    })
-                  ],
-                  2
-                )
-          ]),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.old, function(supply, index) {
+                return _c("supplies-list-old-item", {
+                  key: supply.id,
+                  tag: "tr",
+                  attrs: {
+                    supply: supply,
+                    editable: _vm.editable,
+                    index: index
+                  }
+                })
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.supplies, function(supply, index) {
+                return _c("supplies-list-item", {
+                  key: supply.id,
+                  tag: "tr",
+                  attrs: { supply: supply, model: _vm.model, index: index }
+                })
+              })
+            ],
+            2
+          ),
           _vm._v(" "),
           _c("tfoot", [
             _c("tr", [
@@ -54138,7 +54127,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			quantity: 1,
-			sizes: [],
 			price: 0
 		};
 	},
@@ -54322,9 +54310,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ['supply']
+	props: { supply: Object, editable: { type: Boolean, default: false }, index: Number },
+	data: function data() {
+		return {
+			quantity: 1,
+			price: 0
+		};
+	},
+
+	computed: {
+		total: function total() {
+			return this.quantity * this.price;
+		}
+	},
+	methods: {
+		destroy: function destroy() {
+			this.$root.$emit('delete', this.index);
+		},
+		update: function update() {
+			this.$root.$emit('sum', this.index, this.total);
+		}
+	},
+	created: function created() {
+		this.price = this.supply.price;
+		this.quantity = this.supply.quantity;
+	}
 });
 
 /***/ }),
@@ -54336,23 +54354,68 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("tr", [
-    _vm._m(0),
+    _vm.editable ? _c("td", [_vm._m(0)]) : _c("td", [_vm._m(1)]),
     _vm._v(" "),
     _c("td", [
-      _vm._v("\n\t\t" + _vm._s(_vm.supply.supply.description) + "\n\t")
+      _vm._v("\n\t\t\t" + _vm._s(_vm.supply.supply.description) + "\n\t\t\t"),
+      _vm.editable
+        ? _c("input", {
+            attrs: { name: "supplies[" + _vm.index + "][id]", type: "hidden" },
+            domProps: { value: _vm.supply.id }
+          })
+        : _vm._e()
     ]),
     _vm._v(" "),
-    _c("td", [_vm._v("\n\t\t" + _vm._s(_vm.supply.price.toFixed(2)) + "\n\t")]),
-    _vm._v(" "),
-    _c("td", [_vm._v("\n\t\t" + _vm._s(_vm.supply.quantity) + "\n\t")]),
-    _vm._v(" "),
     _c("td", [
-      _vm._v(
-        "\n\t\t" +
-          _vm._s((_vm.supply.price * _vm.supply.quantity).toFixed(2)) +
-          "\n\t"
-      )
-    ])
+      _vm._v("\n\t\t\t" + _vm._s(_vm.supply.price.toFixed(2)) + "\n\t\t")
+    ]),
+    _vm._v(" "),
+    _vm.editable
+      ? _c("td", [
+          _c("div", { staticClass: "input-group input-group-sm" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model.number",
+                  value: _vm.quantity,
+                  expression: "quantity",
+                  modifiers: { number: true }
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                name: "supplies[" + _vm.index + "][quantity]",
+                type: "number",
+                min: "1"
+              },
+              domProps: { value: _vm.quantity },
+              on: {
+                change: _vm.update,
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.quantity = _vm._n($event.target.value)
+                },
+                blur: function($event) {
+                  _vm.$forceUpdate()
+                }
+              }
+            })
+          ])
+        ])
+      : _c("td", [_vm._v("\n\t\t\t" + _vm._s(_vm.supply.quantity) + "\n\t\t")]),
+    _vm._v(" "),
+    _vm.editable
+      ? _c("td", [_vm._v("\n\t\t\t" + _vm._s(_vm.total.toFixed(2)) + "\n\t\t")])
+      : _c("td", [
+          _vm._v(
+            "\n\t\t\t" +
+              _vm._s((_vm.supply.price * _vm.supply.quantity).toFixed(2)) +
+              "\n\t\t"
+          )
+        ])
   ])
 }
 var staticRenderFns = [
@@ -54360,10 +54423,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("span", { staticStyle: { color: "green" } }, [
-        _c("i", { staticClass: "fa fa-check" })
-      ])
+    return _c("span", { staticStyle: { color: "navy" } }, [
+      _c("i", { staticClass: "fa fa-edit" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticStyle: { color: "green" } }, [
+      _c("i", { staticClass: "fa fa-check" })
     ])
   }
 ]

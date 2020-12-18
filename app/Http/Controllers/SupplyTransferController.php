@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{SupplyTransfer, Store};
+use App\{SupplyTransfer, Store, SupplyMovement};
 use Illuminate\Http\Request;
 
 class SupplyTransferController extends Controller
@@ -26,6 +26,7 @@ class SupplyTransferController extends Controller
             'transferred_at' => 'required',
             'transferred_from' => 'required',
             'transferred_to' => 'required',
+            'amount' => 'required',
             'supplies' => 'required|array|min:1',
         ]);
 
@@ -53,8 +54,11 @@ class SupplyTransferController extends Controller
         ]);
 
         $supply_transfer->update($request->only('amount'));
-        
-        $supply_transfer->movements()->createMany($request->supplies);
+
+        foreach ($request->supplies as $supply) {
+            $movement = SupplyMovement::find($supply['id']);
+            $movement->update(['quantity' => $supply['quantity']]);
+        }        
 
         return redirect(route('supplies.transfers.show', $supply_transfer));
     }
