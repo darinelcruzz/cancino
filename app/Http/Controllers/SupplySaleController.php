@@ -79,7 +79,7 @@ class SupplySaleController extends Controller
 
     function add(SupplySale $supply_sale)
     {
-        return view('supplies.sales.edit', compact('supply_sale'));
+        return view('supplies.sales.add', compact('supply_sale'));
     }
 
     function persist(Request $request, SupplySale $supply_sale)
