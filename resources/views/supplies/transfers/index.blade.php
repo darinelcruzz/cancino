@@ -36,7 +36,9 @@
                                 <td>
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="eye" to="{{ route('supplies.transfers.show', $transfer) }}" text="Ver"></ddi>
-                                        <ddi icon="edit" to="{{ route('supplies.transfers.edit', $transfer) }}" text="Editar"></ddi>
+                                        @if(isAdmin())
+                                            <ddi icon="edit" to="{{ route('supplies.transfers.edit', $transfer) }}" text="Editar"></ddi>
+                                        @endif
                                     </dropdown>
                                 </td>
                                 <td>{{ $transfer->transferred_at }}</td>

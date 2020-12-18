@@ -37,7 +37,9 @@
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="eye" to="{{ route('supplies.sales.show', $supply_sale) }}" text="Ver"></ddi>
                                         <ddi icon="plus" to="{{ route('supplies.sales.add', $supply_sale) }}" text="Agregar insumos"></ddi>
-                                        <ddi icon="edit" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Editar"></ddi>
+                                        @if(isAdmin())
+                                            <ddi icon="edit" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Editar"></ddi>
+                                        @endif
                                         <li>
                                             <a href="" data-toggle="modal" data-target="#modal-{{ $supply_sale->id }}"><i class="fa fa-usd"></i> Pagar</a>
                                         </li>
