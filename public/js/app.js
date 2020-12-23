@@ -53635,7 +53635,7 @@ var staticRenderFns = [
         _c("th", [_vm._v("Existencia")]),
         _vm._v(" "),
         _c("th", { staticStyle: { width: "30%", "text-align": "right" } }, [
-          _vm._v("Compra")
+          _vm._v("Precio")
         ])
       ])
     ])
@@ -53762,7 +53762,11 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", { staticStyle: { "text-align": "right" } }, [
-      _vm._v(_vm._s(_vm.supply.supply.sale_price.toFixed(2)))
+      _vm._v(
+        _vm._s(_vm.supply.supply.purchase_price.toFixed(2)) +
+          "/" +
+          _vm._s(_vm.supply.supply.sale_price.toFixed(2))
+      )
     ])
   ])
 }
@@ -54121,6 +54125,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['supply', 'index', 'model'],
@@ -54133,7 +54141,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	computed: {
 		total: function total() {
-			return this.quantity * this.price;
+			return this.quantity / this.supply.supply.ratio * this.price;
 		}
 	},
 	methods: {
@@ -54146,6 +54154,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	created: function created() {
 		this.price = this.model == 'sale' ? this.supply.supply.sale_price : this.supply.supply.purchase_price;
+		this.quantity = this.supply.supply.ratio;
 	}
 });
 
@@ -54175,13 +54184,50 @@ var render = function() {
       })
     ]),
     _vm._v(" "),
-    _c("td", [
-      _vm._v("\n\t\t\t" + _vm._s(_vm.price.toFixed(2)) + "\n            "),
-      _c("input", {
-        attrs: { name: "supplies[" + _vm.index + "][price]", type: "hidden" },
-        domProps: { value: _vm.price }
-      })
-    ]),
+    _vm.model == "purchase"
+      ? _c("td", [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.number",
+                value: _vm.price,
+                expression: "price",
+                modifiers: { number: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "number",
+              name: "supplies[" + _vm.index + "][price]",
+              min: "1",
+              step: "0.01"
+            },
+            domProps: { value: _vm.price },
+            on: {
+              change: _vm.update,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.price = _vm._n($event.target.value)
+              },
+              blur: function($event) {
+                _vm.$forceUpdate()
+              }
+            }
+          })
+        ])
+      : _c("td", [
+          _vm._v("\n\t\t\t" + _vm._s(_vm.price.toFixed(2)) + "\n\t\t\t"),
+          _c("input", {
+            attrs: {
+              name: "supplies[" + _vm.index + "][price]",
+              type: "hidden"
+            },
+            domProps: { value: _vm.price }
+          })
+        ]),
     _vm._v(" "),
     _c("td", [
       _c("div", { staticClass: "input-group input-group-sm" }, [
@@ -54197,9 +54243,9 @@ var render = function() {
           ],
           staticClass: "form-control",
           attrs: {
-            name: "supplies[" + _vm.index + "][quantity]",
             type: "number",
-            min: "1",
+            step: _vm.supply.supply.ratio,
+            min: _vm.supply.supply.ratio,
             max:
               _vm.model == "sale"
                 ? _vm.supply.quantity * _vm.supply.supply.ratio
@@ -54218,6 +54264,14 @@ var render = function() {
               _vm.$forceUpdate()
             }
           }
+        }),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            name: "supplies[" + _vm.index + "][quantity]",
+            type: "hidden"
+          },
+          domProps: { value: _vm.quantity / _vm.supply.supply.ratio }
         })
       ])
     ]),

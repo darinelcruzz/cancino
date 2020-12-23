@@ -9,7 +9,7 @@
             <span style="color: purple;"><em>{{ supply.supply.description }}</em></span>
         </td>
         <td style="text-align: center">{{ supply.quantity * supply.supply.ratio }}</td>
-        <td style="text-align: right">{{ supply.supply.sale_price.toFixed(2) }}</td>
+        <td style="text-align: right">{{ supply.supply.purchase_price.toFixed(2) }}/{{ supply.supply.sale_price.toFixed(2) }}</td>
 	</tr>
 </template>
 

@@ -33,8 +33,10 @@
                             <tr>
                                 <td>{{ $movement->created_at->format('d/m/Y') }}</td>
                                 <td>{{ $movement->supply->description }}</td>
-                                <td>{{ $movement->quantity }}</td>
-                                <td>{{ number_format($movement->price, 2) }}</td>
+                                <td>{{ $movement->quantity * $movement->supply->ratio }}</td>
+                                <td>
+                                    {{ number_format($movement->price, 2) }} {{ $movement->supply->ratio > 1 ? '(por c/' . $movement->supply->ratio . ')': ''}}
+                                </td>
                                 <td>{{ number_format($movement->quantity * $movement->price, 2) }}</td>
                             </tr>
                         @endforeach

@@ -24,7 +24,7 @@ class SupplyMovement extends Model
             return $this->movable->origin;
         }
 
-        return Store::find(1);
+        return $this->movable->store ?? Store::find(1);
     }
 
     function getDestinationAttribute()

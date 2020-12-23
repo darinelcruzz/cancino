@@ -9,13 +9,17 @@
 			{{ supply.supply.description }}
 			<input type="hidden" :name="'supplies[' + index + '][supply_id]'" :value="supply.supply.id">
 		</td>
-		<td>
+		<td v-if="model == 'purchase'">
+			<input type="number" :name="'supplies[' + index + '][price]'" v-model.number="price" @change="update" class="form-control" min="1" step="0.01">
+		</td>
+		<td v-else>
 			{{ price.toFixed(2) }}
-            <input :name="'supplies[' + index + '][price]'" type="hidden" :value="price">
+			<input :name="'supplies[' + index + '][price]'" type="hidden" :value="price">
 		</td>
 		<td>
 			<div class="input-group input-group-sm">
-                <input :name="'supplies[' + index + '][quantity]'" type="number" v-model.number="quantity" @change="update" class="form-control" min="1" :max=" model == 'sale' ? supply.quantity * supply.supply.ratio: 999">
+                <input type="number" v-model.number="quantity" @change="update" class="form-control" :step="supply.supply.ratio" :min="supply.supply.ratio" :max="model == 'sale' ? supply.quantity * supply.supply.ratio: 999">
+                <input :name="'supplies[' + index + '][quantity]'" type="hidden" :value="quantity / supply.supply.ratio">
             </div>
 		</td>
 		<td>
@@ -35,7 +39,7 @@
 		},
 		computed: {
 			total() {
-				return this.quantity * this.price
+				return (this.quantity / this.supply.supply.ratio) * this.price
 			}
 		},
 		methods: {
@@ -48,6 +52,7 @@
 		},
 		created() {
 			this.price = this.model == 'sale' ? this.supply.supply.sale_price: this.supply.supply.purchase_price
+			this.quantity = this.supply.supply.ratio
 		}
 	};
 </script>
