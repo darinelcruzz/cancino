@@ -107,7 +107,7 @@ function pendingTasksAll()
 
 function pendingServices()
 {
-    return App\Service::where('status', 'pendiente')->count();
+    return App\Service::where('status', 'pendiente')->orWhere('status', 'impreso')->count();
 }
 
 function expiredServices()
