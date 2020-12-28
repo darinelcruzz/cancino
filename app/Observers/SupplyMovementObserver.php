@@ -9,7 +9,7 @@ class SupplyMovementObserver
     function created(SupplyMovement $supplyMovement)
     {
         $destination = $supplyMovement->supply->stocks()->where('store_id', $supplyMovement->destination->id)->first();
-        $origin = $supplyMovement->supply->stocks()->where('store_id', $supplyMovement->origin->id == 1 ? 1: 3)->first();
+        $origin = $supplyMovement->supply->stocks()->where('store_id', $supplyMovement->origin->id % 3 == 0 ? 3: 1)->first();
         $quantity = $origin->quantity;
 
         if ($supplyMovement->movable_type == 'App\SupplyPurchase') {
