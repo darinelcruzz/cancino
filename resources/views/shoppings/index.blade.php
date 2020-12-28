@@ -5,7 +5,7 @@
 @push('headerTitle')
     <div class="row">
         <div class="col-md-2">
-            <a href="{{ route('shoppings.create') }}" class="btn btn-success btn-xs">
+            <a href="{{ route('shoppings.create') }}" class="btn btn-github btn-xs">
                 <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
             </a>
         </div>
@@ -75,19 +75,37 @@
     @empty
         <div class="row">
             <div class="col-md-12">
-                <color-box title="Compras" color="primary">
+                <color-box title="Compras" color="vks">
                     <data-table example="1">
-                        {{ drawHeader('ID', 'Folio','Fecha', 'Monto', 'Tipo', 'Doc POS') }}
+
+                        <template slot="header">
+                            <tr>
+                                <th style="width: 5%">ID</th>
+                                <th style="width: 5%"><i class="fa fa-cogs"></i></th>
+                                <th>Folio</th>
+                                <th>Fecha</th>
+                                <th style="text-align: center;">Tipo</th>
+                                <th>POS</th>
+                                <th style="text-align: center;">Monto</th>
+                                <th style="text-align: center;">Estado</th>
+                            </tr>
+                        </template>
 
                         <template slot="body">
                             @foreach($shoppings as $shopping)
                                 <tr>
                                     <td>{{ $shopping->id }}</td>
+                                    <td>
+                                        <dropdown icon="cogs" color="github">
+                                            <ddi icon="edit" to="{{ route('shoppings.edit', $shopping) }}" text="Editar"></ddi>
+                                        </dropdown>
+                                    </td>
                                     <td>{{ $shopping->folio }}</td>
                                     <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
-                                    <td>{{ fnumber($shopping->amount) }}</td>
-                                    <td>{{ $shopping->type }}</td>
+                                    <td style="text-align: center;">{{ strtoupper($shopping->type) }}</td>
                                     <td>{{ $shopping->document }}</td>
+                                    <td style="text-align: right;">{{ number_format($shopping->amount, 2) }}</td>
+                                    <td style="text-align: center;"><span class="label label-{{ $shopping->status == 'verificado' ? 'success': 'warning' }}"><small>{{ strtoupper($shopping->status) }}</span></small></td>
                                 </tr>
                             @endforeach
                         </template>

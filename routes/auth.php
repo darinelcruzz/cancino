@@ -17,6 +17,7 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonC
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
+    Route::post('editar/{shopping}', usesas($ctrl, 'update'));
     Route::get('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
     Route::post('editar', usesas($ctrl, 'update'));
 });

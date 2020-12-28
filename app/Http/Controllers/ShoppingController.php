@@ -50,7 +50,7 @@ class ShoppingController extends Controller
 
     function edit(Shopping $shopping)
     {
-        //
+        return view('shoppings.edit', compact('shopping'));
     }
 
     function verify(Store $store)
