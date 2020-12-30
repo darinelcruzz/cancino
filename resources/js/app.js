@@ -80,6 +80,7 @@ const app = new Vue({
       product: {},
       wastes: [],
       store_id: 1,
+      items: [],
     },
     watch: {
       store_id(value) {

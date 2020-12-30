@@ -30,15 +30,25 @@ class ShoppingController extends Controller
 
     function store(Request $request)
     {
+        // dd($request->all());
         $this->validate($request, [
-            'folio' => 'required',
+            'items' => 'required|array|min:1',
             'date' => 'required',
-            'amount' => 'required',
-            'document' => 'required',
-            'type' => 'required',
+            'store_id' => 'required',
         ]);
 
-        Shopping::create($request->all());
+        foreach ($request->items as $item) {
+            Shopping::create([
+                'folio' => $item['folio'],
+                'amount' => $item['amount'],
+                'type' => $item['type'],
+                'status' => $request->status,
+                'store_id' => $request->store_id,
+                'date' => $request->date,
+                'store_id' => $request->store_id,
+                'user_id' => $request->user_id,
+            ]);
+        }
 
         return redirect(route('shoppings.index'));
     }
@@ -50,7 +60,22 @@ class ShoppingController extends Controller
 
     function edit(Shopping $shopping)
     {
+        // dd($shopping);
         return view('shoppings.edit', compact('shopping'));
+    }
+
+    function update(Request $request, Shopping $shopping)
+    {
+        // dd($request->all(), $shopping->id);
+        $attributes = $request->validate([
+            'document' => 'required',
+            'invoiced_at' => 'required',
+            'type' => 'sometimes|required',
+        ]);
+
+        $shopping->update($attributes);
+
+        return redirect(route('shoppings.index'));
     }
 
     function verify(Store $store)
@@ -59,15 +84,6 @@ class ShoppingController extends Controller
         return view('shoppings.verify', compact('store', 'shoppings'));
     }
 
-    function update(Request $request)
-    {
-        foreach (Shopping::find($request->shoppings) as $shopping) {
-            $shopping->update([
-                'status' => $request->status
-            ]);
-        }
-        return redirect(route('shoppings.index'));
-    }
 
     function destroy(Shopping $shopping)
     {

@@ -24,10 +24,10 @@ function isVKS()
     return auth()->user()->store_id == 1;
 }
 
-function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s')
+function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s', $alt = 'N/A')
 {
     if ($original_date == NULL) {
-        return 'N/A';
+        return $alt;
     }
     $date = Date::createFromFormat($original_format, $original_date);
     return $date->format($format);

@@ -25352,7 +25352,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     products: [],
     product: {},
     wastes: [],
-    store_id: 1
+    store_id: 1,
+    items: []
   },
   watch: {
     store_id: function store_id(value) {

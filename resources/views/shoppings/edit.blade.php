@@ -38,13 +38,13 @@
                             </div>
                         @else
                             <div class="col-md-6">
-                                {!! Field::text('type', $shopping->type, ['tpl' => 'lte/withicon', 'disabled'], ['icon' => 'archive'])
+                                {!! Field::text('type', ucfirst($shopping->type), ['tpl' => 'lte/withicon', 'disabled'], ['icon' => 'archive'])
                                 !!}
                             </div>
                         @endif
 
                         <div class="col-md-6">
-                            {!! Field::number('document',['tpl' => 'lte/withicon'   ], ['icon' => 'desktop']) !!}
+                            {!! Field::number('document', ['tpl' => 'lte/withicon'   ], ['icon' => 'desktop']) !!}
                         </div>
                     </div>
                     <hr>

@@ -12,6 +12,7 @@ class Shopping extends Model
     {
         return $this->belongsTo(Store::class);
     }
+    
     function getPrefixAttribute()
     {
         if ($this->type == 'mercancia' || $this->type == 'varfra' || $this->type == 'nc') {
