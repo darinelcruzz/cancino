@@ -68,7 +68,7 @@
                         </template>
                     </data-table>
                     <br>
-                        <a class="btn btn-xs btn-success btn-block" href="{{ route('shoppings.verify', ['store' => $store]) }}">Verificar</a>
+                        <a class="btn btn-xs btn-success btn-block" href="{{ route('shoppings.verify', $store) }}">Verificar</a>
                 </color-box>
             </div>
         </div>

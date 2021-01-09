@@ -78,8 +78,17 @@ class ShoppingController extends Controller
         return redirect(route('shoppings.index'));
     }
 
-    function verify(Store $store)
+    function verify(Request $request, Store $store)
     {
+        if ($request->shoppings) {
+            foreach (Shopping::find($request->shoppings) as $shopping) {
+                $shopping->update([
+                    'status' => $request->status
+                ]);
+            }
+            return redirect(route('shoppings.index'));
+        }
+
         $shoppings = Shopping::where('store_id', $store->id)->where('status', 'pendiente')->get();
         return view('shoppings.verify', compact('store', 'shoppings'));
     }

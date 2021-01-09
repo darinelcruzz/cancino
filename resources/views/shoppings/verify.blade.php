@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <color-box title="Compras de {{ $store->name }}" label="{{ count($shoppings) }}" color="success" solid>
-                {!! Form::open(['method' => 'POST', 'route' => 'shoppings.update']) !!}
+                {!! Form::open(['method' => 'POST', 'route' => ['shoppings.verify', $store]]) !!}
                     <div class="box-body">
                         <data-table example='1'>
                             {{ drawHeader('id', 'Fecha', 'Folio', 'Monto') }}
