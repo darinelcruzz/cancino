@@ -52,7 +52,7 @@
                                     <td style="text-align: center;">{{ strtoupper($shopping->type) }}</td>
                                     <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fdate($shopping->invoiced_at, 'd M Y', 'Y-m-d') }}</td>
-                                    <td>{{ $shopping->document }}</td>
+                                    <td>{{ $shopping->document }}{{ $shopping->pos ? ", $shopping->pos": '' }}</td>
                                     <td style="text-align: right;">{{ number_format($shopping->amount, 2) }}</td>
                                 </tr>
                             @endforeach

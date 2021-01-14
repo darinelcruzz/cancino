@@ -47,6 +47,12 @@
                             {!! Field::number('document', ['tpl' => 'lte/withicon'   ], ['icon' => 'desktop']) !!}
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Field::text('pos', ['label' => 'Documento POS (opcional)', 'tpl' => 'lte/withicon'], ['icon' => 'laptop']) !!}
+                        </div>
+                    </div>
                     <hr>
                     <button type="submit" class="btn btn-github pull-right" onclick="submitForm(this);">Editar</button>
 

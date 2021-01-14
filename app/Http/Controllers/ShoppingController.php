@@ -71,6 +71,7 @@ class ShoppingController extends Controller
         // dd($request->all(), $shopping->id);
         $attributes = $request->validate([
             'document' => 'required',
+            'pos' => 'nullable',
             'invoiced_at' => 'required',
             'type' => 'sometimes|required',
         ]);
