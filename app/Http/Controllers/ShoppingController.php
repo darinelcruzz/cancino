@@ -13,14 +13,16 @@ class ShoppingController extends Controller
     	if (isVKS()) {
     		$stores = Store::where('type', '!=', 'c')->get();
     		$shoppings = Shopping::whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+            $captured = [];
     		$notes = note::whereYear('date_nc', substr($date, 0, 4))->whereMonth('date_nc', substr($date, 5))->get();
     	} else {
     		$stores = [];
-        	$shoppings = Shopping::where('store_id', auth()->user()->store_id)->whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+        	$shoppings = Shopping::whereNull('document')->where('store_id', auth()->user()->store_id)->whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+            $captured = Shopping::whereNotNull('document')->where('store_id', auth()->user()->store_id)->whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
             $notes = 0;
     	}
 
-        return view('shoppings.index', compact('shoppings', 'stores', 'date', 'notes'));
+        return view('shoppings.index', compact('shoppings', 'stores', 'date', 'notes', 'captured'));
     }
 
     function create()

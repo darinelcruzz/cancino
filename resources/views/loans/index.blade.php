@@ -17,8 +17,8 @@
                                 <td>{{ $row->item }}</td>
                                 <td>{{ $row->quantity }}</td>
                                 <td>{{ fdate($row->created_at, 'd/M/y') }}</td>
-                                <td>{{ $row->invoice->folio }} <br>
-                                    {{ fdate($row->invoice->date, 'd/M/y', 'Y-m-d') }}
+                                <td>{{ $row->invoice->folio ?? 'PENDIENTE' }} <br>
+                                    {{ fdate($row->invoice->date ?? 0, 'd/M/y', 'Y-m-d') }}
                                 </td>
                             </tr>
                         @endforeach

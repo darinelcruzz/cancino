@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="row">
-                        @if ($shopping->type == 'mercancia')
+                        @if ($shopping->type == 'no definido')
                             <div class="col-md-6">
                                 {!! Field::select('type',
                                     ['mercancia' => 'Mercancía', 'varfra' => 'Varfra'], $shopping->type,

@@ -66,7 +66,7 @@
                                         <td>
                                             <div class="input-group input-group-sm">
                                                 <select class="form-control" :name="'items[' + index + '][type]'">
-                                                    <option value="mercancia">Mercancía</option>
+                                                    <option value="no definido">No definido</option>
                                                     <option value="regalias">Regalías</option>
                                                     <option value="nota cargo">Nota cargo</option>
                                                     <option value="comision">Comisión</option>
