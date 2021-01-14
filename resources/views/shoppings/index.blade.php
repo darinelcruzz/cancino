@@ -58,17 +58,18 @@
                             @endforeach
                             @foreach($notes->where('store_id', $store->id) as $note)
                                 <tr>
+                                    <td>{{ $note->id }}</td>
+                                    <td></td>
                                     <td>ANSM-{{ $note->folio }}</td>
+                                    <td>Nota Producto</td>
                                     <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
-                                    <td>{{ fnumber($note->amount) }}</td>
-                                    <td>nota producto</td>
-                                    <td>{{ $note->document }}</td>
                                     <td>
                                         <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'danger' : 'warning') }}">
                                             {{ ucfirst($note->status) }}
                                         </span>
                                     </td>
-                                    <td></td>
+                                    <td>{{ $note->document }}</td>
+                                    <td>{{ fnumber($note->amount) }}</td>
                                 </tr>
                             @endforeach
                         </template>
