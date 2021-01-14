@@ -14,6 +14,7 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonC
     $ctrl = 'ShoppingController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::post('/', usesas($ctrl, 'index'));
+    Route::get('llenar/fecha/factura', usesas($ctrl, 'invoices'));
     Route::get('agregar', usesas($ctrl, 'create'))->middleware('helper');
     Route::post('agregar', usesas($ctrl, 'store'));
 	Route::get('editar/{shopping}', usesas($ctrl, 'edit'));

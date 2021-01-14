@@ -81,6 +81,19 @@ class ShoppingController extends Controller
         return redirect(route('shoppings.index'));
     }
 
+    function invoices()
+    {
+        $shoppings = Shopping::all();
+
+        foreach ($shoppings as $shopping) {
+            $shopping->update([
+                'invoiced_at' => $shopping->date
+            ]);
+        }
+
+        return 'FINALIZADO';
+    }
+
     function verify(Request $request, Store $store)
     {
         if ($request->shoppings) {
