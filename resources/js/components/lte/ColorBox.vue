@@ -3,7 +3,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{ title }}</h3>
             &nbsp;&nbsp;&nbsp;
-            <span v-if="showLabel" class="label label-danger">
+            <span v-if="showLabel" :class="'label label-' + color">
                 {{ label }}
             </span>
             <div v-if="showButton" class="box-tools pull-right">

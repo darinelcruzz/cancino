@@ -24,7 +24,7 @@
     @forelse ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $shoppings->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button {{ $loop->index == 0 ? '': 'collapsed'}}>
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $shoppings->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
                     <data-table example="{{ $store->id }}">
                         <template slot="header">
                             <tr>
@@ -35,6 +35,7 @@
                                 <th>F. Pago</th>
                                 <th>F. Factura</th>
                                 <th>POS</th>
+                                <th>Estado</th>
                                 <th style="text-align: right;">Monto</th>
                             </tr>
                         </template>
@@ -53,31 +54,40 @@
                                     <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fdate($shopping->invoiced_at, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ $shopping->document }}{{ $shopping->pos ? ", $shopping->pos": '' }}</td>
+                                    <td>
+                                        <span class="label label-{{ $shopping->status == 'pendiente' ? 'warning' : 'success' }}">
+                                            {{ ucfirst($shopping->status) }}
+                                        </span>
+                                    </td>
                                     <td style="text-align: right;">{{ number_format($shopping->amount, 2) }}</td>
                                 </tr>
                             @endforeach
                             @foreach($notes->where('store_id', $store->id) as $note)
                                 <tr>
                                     <td>{{ $note->id }}</td>
-                                    <td></td>
-                                    <td>ANSM-{{ $note->folio }}</td>
-                                    <td>Nota Producto</td>
-                                    <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
                                     <td>
-                                        <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'danger' : 'warning') }}">
+                                        <dropdown icon="cogs" color="{{ $store->color }}">
+                                        </dropdown>
+                                    </td>
+                                    <td>ANSM-{{ $note->folio }}</td>
+                                    <td style="text-align: center;">NOTA PRODUCTO</td>
+                                    <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
+                                    <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
+                                    <td>{{ $note->document }}</td>
+                                    <td>
+                                        <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'warning' : 'danger') }}">
                                             {{ ucfirst($note->status) }}
                                         </span>
                                     </td>
-                                    <td>{{ $note->document }}</td>
-                                    <td>{{ fnumber($note->amount) }}</td>
+                                    <td style="text-align: right;">{{ number_format($note->amount, 2) }}</td>
                                 </tr>
                             @endforeach
                         </template>
                         <template slot="footer">
                             <tr>
-                                <td colspan="2" align="right"><b>Total</b></td>
+                                <td colspan="6"></td>
+                                <td align="right"><b>Total</b></td>
                                 <td>{{ fnumber($shoppings->where('store_id', $store->id)->sum('amount')) }}</td>
-                                <td colspan="4"></td>
                             </tr>
                         </template>
                     </data-table>

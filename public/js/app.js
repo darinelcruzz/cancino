@@ -48436,7 +48436,7 @@ var render = function() {
         _c("h3", { staticClass: "box-title" }, [_vm._v(_vm._s(_vm.title))]),
         _vm._v("\n           \n        "),
         _vm.showLabel
-          ? _c("span", { staticClass: "label label-danger" }, [
+          ? _c("span", { class: "label label-" + _vm.color }, [
               _vm._v("\n            " + _vm._s(_vm.label) + "\n        ")
             ])
           : _vm._e(),
