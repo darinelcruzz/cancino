@@ -253,7 +253,7 @@
                 <td colspan="10%" align="center"></td>
                 <td align="center">ELABORÓ:<br>{{ empty($checkup->sale->user->name) ? "" : $checkup->sale->user->nam }}</td>
                 <td colspan="10%" align="center"></td>
-                <td align="center">REVISÓ:<br>{{ $manager->name }}</td>
+                <td align="center">REVISÓ:<br>{{ $checkup->store->managerr->name }}</td>
                 <td colspan="10%" align="center"></td>
             </tr>
         </tbody>

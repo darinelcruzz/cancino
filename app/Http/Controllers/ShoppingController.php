@@ -12,13 +12,45 @@ class ShoppingController extends Controller
         $date = $request->date ? $request->date: date('Y-m');
     	if (isVKS()) {
     		$stores = Store::where('type', '!=', 'c')->get();
-    		$shoppings = Shopping::whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+    		$shoppings = Shopping::where(function ($query) use ($date) {
+                    $query->whereYear('invoiced_at', substr($date, 0, 4))
+                        ->orWhereYear('date', substr($date, 0, 4));
+                })
+                ->where(function ($query) use ($date) {
+                    $query->whereMonth('invoiced_at', substr($date, 5))
+                        ->orWhereMonth('date', substr($date, 5));
+                })
+                ->get();
             $captured = [];
     		$notes = Note::whereYear('date_nc', substr($date, 0, 4))->whereMonth('date_nc', substr($date, 5))->get();
+
     	} else {
     		$stores = [];
-        	$shoppings = Shopping::whereNull('document')->where('store_id', auth()->user()->store_id)->whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
-            $captured = Shopping::whereNotNull('document')->where('store_id', auth()->user()->store_id)->whereYear('date', substr($date, 0, 4))->whereMonth('date', substr($date, 5))->get();
+        	$shoppings = Shopping::where(function ($query) use ($date) {
+                    $query->whereYear('invoiced_at', substr($date, 0, 4))
+                        ->orWhereYear('date', substr($date, 0, 4));
+                })
+                ->where(function ($query) use ($date) {
+                    $query->whereMonth('invoiced_at', substr($date, 5))
+                        ->orWhereMonth('date', substr($date, 5));
+                })
+                ->where('type', 'no definido')
+                ->whereNull('document')
+                ->where('store_id', auth()->user()->store_id)
+                ->get();
+
+            $captured = Shopping::where(function ($query) use ($date) {
+                    $query->whereYear('invoiced_at', substr($date, 0, 4))
+                        ->orWhereYear('date', substr($date, 0, 4));
+                })
+                ->where(function ($query) use ($date) {
+                    $query->whereMonth('invoiced_at', substr($date, 5))
+                        ->orWhereMonth('date', substr($date, 5));
+                })
+                ->whereNotNull('document')
+                ->where('store_id', auth()->user()->store_id)
+                ->get();
+
             $notes = 0;
     	}
 

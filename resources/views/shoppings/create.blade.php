@@ -11,7 +11,7 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'shoppings.store']) !!}
 
                     <div class="row">
-                        @if(auth()->user()->level > 2)
+                        @if(!isVks())
                             <div class="col-md-6">
                                 {!! Field::select('store_id', $storesArray, auth()->user()->store_id,
                                     ['empty' => 'Seleccione tienda', 'tpl' => 'lte/withicon', 'disabled'], ['icon' => 'store'])

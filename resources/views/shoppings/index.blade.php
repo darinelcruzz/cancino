@@ -98,19 +98,14 @@
         </div>
     @empty
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5">
                 <color-box title="Pendientes" color="warning" solid>
                     <data-table example="1">
 
                         <template slot="header">
                             <tr>
-                                <th style="width: 5%">ID</th>
-                                <th style="width: 5%"><i class="fa fa-cogs"></i></th>
                                 <th>Folio</th>
-                                <th style="text-align: center;">Tipo</th>
-                                <th>F. Pago</th>
-                                <th>F. Factura</th>
-                                <th>POS</th>
+                                <th style="width: 25%"><i class="fa fa-plus"></i> POS</th>
                                 <th style="text-align: right;">Monto</th>
                             </tr>
                         </template>
@@ -118,17 +113,12 @@
                         <template slot="body">
                             @foreach($shoppings as $shopping)
                                 <tr>
-                                    <td>{{ $shopping->id }}</td>
-                                    <td>
-                                        <dropdown icon="cogs" color="warning">
-                                            <ddi icon="edit" to="{{ route('shoppings.edit', $shopping) }}" text="Editar"></ddi>
-                                        </dropdown>
-                                    </td>
                                     <td>{{ $shopping->folio }}</td>
-                                    <td style="text-align: center;">{{ strtoupper($shopping->type) }}</td>
-                                    <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
-                                    <td>{{ fdate($shopping->invoiced_at, 'd M Y', 'Y-m-d', '') }}</td>
-                                    <td>{{ $shopping->document }}</td>
+                                    <td>
+                                        <a href="{{ route('shoppings.edit', $shopping) }}" class="btn btn-xs btn-warning" title="Agregar POS">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </td>
                                     <td style="text-align: right;">{{ number_format($shopping->amount, 2) }}</td>
                                 </tr>
                             @endforeach
@@ -136,20 +126,15 @@
                     </data-table>
                 </color-box>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-7">
                 <color-box title="Capturadas" color="vks" solid>
                     <data-table example="2">
 
                         <template slot="header">
                             <tr>
-                                <th style="width: 5%">ID</th>
-                                <th style="width: 5%"><i class="fa fa-cogs"></i></th>
                                 <th>Folio</th>
                                 <th style="text-align: center;">Tipo</th>
-                                <th>F. Pago</th>
                                 <th>F. Factura</th>
                                 <th>POS</th>
                                 <th style="text-align: right;">Monto</th>
@@ -159,17 +144,10 @@
                         <template slot="body">
                             @foreach($captured as $shopping)
                                 <tr>
-                                    <td>{{ $shopping->id }}</td>
-                                    <td>
-                                        <dropdown icon="cogs" color="github">
-                                            <ddi icon="edit" to="{{ route('shoppings.edit', $shopping) }}" text="Editar"></ddi>
-                                        </dropdown>
-                                    </td>
                                     <td>{{ $shopping->folio }}</td>
                                     <td style="text-align: center;">{{ strtoupper($shopping->type) }}</td>
-                                    <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fdate($shopping->invoiced_at, 'd M Y', 'Y-m-d', '') }}</td>
-                                    <td>{{ $shopping->document }}</td>
+                                    <td><code>{{ $shopping->document }}{{ $shopping->pos ? ", $shopping->pos": '' }}</code></td>
                                     <td style="text-align: right;">{{ number_format($shopping->amount, 2) }}</td>
                                 </tr>
                             @endforeach
