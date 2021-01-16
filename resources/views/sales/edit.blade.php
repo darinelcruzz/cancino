@@ -1,13 +1,13 @@
 @extends('lte.root')
 
 @push('pageTitle')
-    Ventas | Agregar
+    Ventas | Editar
 @endpush
 
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <color-box title="Agregar venta {{ $sale->store->name }}" color="success" solid>
+            <color-box title="Editar venta {{ $sale->id }} de {{ $sale->store->name }}" color="vks" solid>
                 {!! Form::open(['method' => 'POST', 'route' => 'sales.update']) !!}
 
                     <div class="row">
@@ -28,15 +28,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('sc_dif', $sale->checkup->sc_dif, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'credit-card']) !!}
+                            {!! Field::number('compensation', $sale->compensation, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'usd']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::text('observations', $sale->observations, ['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            {!! Field::number('sc_dif', $sale->checkup->sc_dif, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'credit-card']) !!}
                         </div>
                     </div>
+                    {!! Field::text('observations', $sale->observations, ['tpl' => 'lte/withicon'], ['icon' => 'eye']) !!}
                     <hr>
                     <input type="hidden" name="id" value="{{ $sale->id }}">
-                    {!! Form::submit('Editar', ['class' => 'btn btn-success pull-right']) !!}
+                    {!! Form::submit('E D I T A R', ['class' => 'btn btn-github pull-right']) !!}
 
                 {!! Form::close() !!}
             </solid-box>

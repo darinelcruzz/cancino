@@ -32,11 +32,11 @@
                     <cards-checkup></cards-checkup>
                 </tab-content>               
 
-                @if (auth()->user()->store_id <= 3)
-                    <tab-content title="Crédito" icon="fa fa-file-invoice">
-                        <credit-checkup></credit-checkup>
-                    </tab-content>
+                <tab-content title="Crédito" icon="fa fa-file-invoice">
+                    <credit-checkup></credit-checkup>
+                </tab-content>
 
+                @if (auth()->user()->store_id <= 3)
                     <tab-content title="Pago en línea" icon="fa fa-wifi">
                         <online-checkup></online-checkup>
                     </tab-content>

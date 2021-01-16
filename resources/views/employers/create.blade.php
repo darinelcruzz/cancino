@@ -125,7 +125,9 @@
                         </div>
                     </div>
                     <hr>
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
+                    {{-- {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!} --}}
+
+                    <button type="submit" class='btn btn-success btn-block' onclick="submitForm(this);">AGREGAR</button>
 
                 {!! Form::close() !!}
             </color-box>

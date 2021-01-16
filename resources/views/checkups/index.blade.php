@@ -20,7 +20,7 @@
                             <tr>
                                 <td>{{ $checkup->id }}</td>
                                 <td>{{ fdate($checkup->date_sale,'d-M-Y', 'Y-m-d') }}</td>
-                                <td>{{ fnumber($checkup->amount) }}</td>
+                                <td>{{ fnumber($checkup->amount + $checkup->sale->compensation) }}</td>
                                 <td>{{ fnumber($checkup->sale->public) }}</td>
                                 <td>{{ fnumber($checkup->cash_sums['c']) }} <br> {!! $checkup->cash_sums['d'] > 10 || $checkup->cash_sums['d'] < -10 ? '<code>' . fnumber($checkup->cash_sums['d']) : ''  !!}</code></td>
                                 <td>{{ fnumber($checkup->card_sums['c']) }}<br> {!! $checkup->card_sums['d'] > 10 || $checkup->card_sums['d'] < -10 ? '<code>' . fnumber($checkup->card_sums['d']) : ''  !!}</code></td>

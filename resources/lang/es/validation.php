@@ -265,5 +265,6 @@ return [
         'transferred_at' => 'fecha',
         'transferred_from' => 'origen',
         'transferred_to' => 'destino',
+        'compensation' => 'compensación',
     ],
 ];
