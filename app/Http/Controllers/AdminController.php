@@ -254,12 +254,11 @@ class AdminController extends Controller
         $multiples = Goal::where('year', substr($date, 0, 4))->where('month', substr($date, 5))
             ->where('store_id', $store->id)
             ->select('star', 'golden', 'days')
-            ->first()
-            ->toArray();
+            ->first();
 
-        $star = $black * $multiples['star'];
-        $golden = $star * $multiples['golden'];
-        $workdays = $multiples['days'];
+        $star = $black * $multiples->star ?? 1;
+        $golden = $star * $multiples->golden ?? 1;
+        $workdays = $multiples->days ?? 31;
         $currentMonth = substr($date, 5) == date('m');
 
         $sales = Sale::whereYear('date_sale', substr($date, 0, 4))
