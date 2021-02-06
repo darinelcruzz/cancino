@@ -264,7 +264,7 @@ class AdminController extends Controller
         $sales = Sale::whereYear('date_sale', substr($date, 0, 4))
             ->whereMonth('date_sale', substr($date, 5))
             ->where('store_id', $store->id)
-            ->with('checkup:id,notes')
+            // ->with('checkup:id,notes')
             ->get()
             ->keyBy('date_sale');
 
@@ -307,9 +307,9 @@ class AdminController extends Controller
         $values = [];
 
         foreach ($sales as $sale) {
-            array_push($values, $sale->public + $sale->checkup->notesSum);
+            array_push($values, $sale->public);
         }
-        
+
         return $values;
     }
 }

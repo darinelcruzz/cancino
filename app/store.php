@@ -55,7 +55,7 @@ class Store extends Model
             ->whereMonth('date_sale', substr($date, 5))
             ->with('checkup:id,notes')->get())
             ->sum(function ($sale) {
-                return ($sale->public + $sale->checkup->notesSum);
+                return ($sale->public);
             });
     }
 
