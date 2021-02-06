@@ -1,6 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Ventas | Lista')
+@push('pageTitle', 'Ventas | Gráfias')
 
 @section('content')
 
@@ -14,10 +14,10 @@
         <div class="col-md-12">
 
             @foreach($charts as $name)
-                
-                <color-box title="Ventas {{ ucwords(str_replace('_', ' ', $name)) }}" 
+
+                <color-box title="Ventas {{ ucwords(str_replace('_', ' ', $name)) }}"
                     color="{{ $loop->index < 3 ? 'primary': 'danger' }}">
-                    
+
                     <div>{!! $$name->container() !!}</div>
 
                     @include('templates/progress', ['num' => $loop->index + 2])
