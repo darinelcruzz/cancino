@@ -14,11 +14,13 @@ class ShoppingController extends Controller
     		$stores = Store::where('type', '!=', 'c')->get();
     		$shoppings = Shopping::where(function ($query) use ($date) {
                     $query->whereYear('invoiced_at', substr($date, 0, 4))
-                        ->orWhereYear('date', substr($date, 0, 4));
+                        ->whereMonth('invoiced_at', substr($date, 5));
+                      //  ->orWhereYear('date', substr($date, 0, 4));
                 })
-                ->where(function ($query) use ($date) {
-                    $query->whereMonth('invoiced_at', substr($date, 5))
-                        ->orWhereMonth('date', substr($date, 5));
+                ->orwhere(function ($query) use ($date) {
+                    //$query->whereMonth('invoiced_at', substr($date, 5))
+                    $query->WhereYear('date', substr($date, 0, 4))
+                        ->WhereMonth('date', substr($date, 5));
                 })
                 ->get();
             $captured = [];
@@ -100,7 +102,7 @@ class ShoppingController extends Controller
 
     function update(Request $request, Shopping $shopping)
     {
-        // dd($request->all(), $shopping->id);
+        //dd($request->all(), $shopping->id);
         $attributes = $request->validate([
             'document' => 'required',
             'pos' => 'nullable',
@@ -137,7 +139,10 @@ class ShoppingController extends Controller
             return redirect(route('shoppings.index'));
         }
 
-        $shoppings = Shopping::where('store_id', $store->id)->where('status', 'pendiente')->get();
+        $shoppings = Shopping::where('store_id', $store->id)
+          ->where('status', 'pendiente')
+          ->where('document', '!=', NULL)
+          ->get();
         return view('shoppings.verify', compact('store', 'shoppings'));
     }
 

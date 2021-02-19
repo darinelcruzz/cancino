@@ -4,13 +4,14 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
+        'label' => pendingShoppingsStore() > 0 ? pendingShoppingsStore() : '',
         'route' => 'shoppings.index'
     ],
 
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money-bill-alt',
-        'label' => pendingDeposits(),
+        'label' => pendingDeposits() > 0 ? pendingDeposits() : '',
         'submenu' => [
             'total' => [
                 'title' => 'Depósitos',
@@ -87,7 +88,7 @@ return [
     'NC' => [
         'title' => 'NC',
         'icon' => 'fa fa-file-excel',
-        'label' => pendingNotes(),
+        'label' => pendingNotes() > 0 ? pendingNotes() : '',
         'route' => 'notes.index'
     ],
 
@@ -100,7 +101,7 @@ return [
     'Loans' => [
         'title' => 'Préstamos',
         'icon' => 'fa fa-random',
-        'label' => pendingLoans(),
+        'label' => pendingLoans() > 0 ? pendingLoans() : '',
         'submenu' => [
             'current' => [
                 'title' => 'Actuales',

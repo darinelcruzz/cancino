@@ -5,21 +5,9 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'label' => pendingShoppings() > 0 ? pendingShoppings(): '',
+        'label' => ['danger' => pendingShoppings() > 0 ? pendingShoppings(): '', 'primary' => pendingShoppingsStores() > 0 ? pendingShoppingsStores() : ''],
         'route' => 'shoppings.index',
     ],
-
-    // 'covid' => [
-    //     'title' => 'Covid',
-    //     'icon' => 'fa fa-medkit',
-    //     'label' => evaluationImssEmployeesAll() > 0 ? evaluationImssEmployeesAll(): '',
-    //     'submenu' => [
-    //         'imss' => [
-    //             'title' => 'IMSS',
-    //             'route' => 'covid.imss',
-    //         ],
-    //     ],
-    // ],
 
     'Sales' => [
         'title' => 'Ventas',

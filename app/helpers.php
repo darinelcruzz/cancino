@@ -117,7 +117,17 @@ function expiredServices()
 
 function pendingShoppings()
 {
-    return App\Shopping::whereStatus('pendiente')->count();
+    return App\Shopping::whereStatus('pendiente')->where('type', '!=', 'no definido')->count();
+}
+
+function pendingShoppingsStores()
+{
+    return App\Shopping::whereType('no definido')->count();
+}
+
+function pendingShoppingsStore()
+{
+    return App\Shopping::where('store_id', auth()->user()->store_id)->whereType('no definido')->count();
 }
 
 function pendingInvoices()

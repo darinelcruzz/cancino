@@ -32,8 +32,8 @@
                                 <th style="width: 5%"><i class="fa fa-cogs"></i></th>
                                 <th>Folio</th>
                                 <th style="text-align: center;">Tipo</th>
-                                <th>F. Pago</th>
-                                <th>F. Factura</th>
+                                <th>Fecha</th>
+                                <th>Fecha Pago</th>
                                 <th>POS</th>
                                 <th>Estado</th>
                                 <th style="text-align: right;">Monto</th>
@@ -51,15 +51,21 @@
                                     </td>
                                     <td>{{ $shopping->prefix }}{{ $shopping->folio }}</td>
                                     <td style="text-align: center;">{{ strtoupper($shopping->type) }}</td>
-                                    <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ fdate($shopping->invoiced_at, 'd M Y', 'Y-m-d') }}</td>
+                                    <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ $shopping->document }}{{ $shopping->pos ? ", $shopping->pos": '' }}</td>
                                     <td>
                                         <span class="label label-{{ $shopping->status == 'pendiente' ? 'warning' : 'success' }}">
                                             {{ ucfirst($shopping->status) }}
                                         </span>
                                     </td>
-                                    <td style="text-align: right;">{{ number_format($shopping->amount, 2) }}</td>
+                                    <td style="text-align: right;">
+                                      {{ number_format($shopping->amount, 2) }}
+                                      @if ($shopping->prefix == "AFSM-")
+                                        <br>
+                                        <code>{{ number_format($shopping->amount * 0.02, 2) }} </code>
+                                      @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             @foreach($notes->where('store_id', $store->id) as $note)
@@ -79,7 +85,9 @@
                                             {{ ucfirst($note->status) }}
                                         </span>
                                     </td>
-                                    <td style="text-align: right;">{{ number_format($note->amount, 2) }}</td>
+                                    <td style="text-align: right;">
+                                      {{ number_format($note->amount, 2)}}
+                                    </td>
                                 </tr>
                             @endforeach
                         </template>
