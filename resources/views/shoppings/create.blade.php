@@ -56,7 +56,7 @@
                                         <td>
                                             <div class="input-group input-group-sm">
                                                 <input type="text" :name="'items[' + index + '][folio]'" class="form-control" placeholder="XXX0X0X">
-                                            </div>                                            
+                                            </div>
                                         </td>
                                         <td>
                                             <div class="input-group input-group-sm">
@@ -101,7 +101,7 @@
 
                     <hr>
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                    <input type="hidden" name="status" value="pendiente">
+                    {{-- <input type="hidden" name="status" value="pendiente"> --}}
                     <button type="submit" class="btn btn-github pull-right" onclick="submitForm(this);">Agregar</button>
 
                 {!! Form::close() !!}

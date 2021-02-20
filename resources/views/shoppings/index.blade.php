@@ -93,9 +93,9 @@
                         </template>
                         <template slot="footer">
                             <tr>
-                                <td colspan="6"></td>
+                                <td colspan="7"></td>
                                 <td align="right"><b>Total</b></td>
-                                <td>{{ fnumber($shoppings->where('store_id', $store->id)->sum('amount')) }}</td>
+                                <td>{{ fnumber($shoppings->where('store_id', $store->id)->where('type', '!=', 'pronto pago')->where('type', '!=', 'carrito')->sum('amount')) }}</td>
                             </tr>
                         </template>
                     </data-table>

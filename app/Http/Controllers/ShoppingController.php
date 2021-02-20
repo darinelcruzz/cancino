@@ -66,7 +66,6 @@ class ShoppingController extends Controller
 
     function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'items' => 'required|array|min:1',
             'date' => 'required',
@@ -74,11 +73,13 @@ class ShoppingController extends Controller
         ]);
 
         foreach ($request->items as $item) {
+          $status = $item['type'] == 'no definido' ? 'pendiente' : 'verificado';
+
             Shopping::create([
                 'folio' => $item['folio'],
                 'amount' => $item['amount'],
                 'type' => $item['type'],
-                'status' => $request->status,
+                'status' => $status,
                 'store_id' => $request->store_id,
                 'date' => $request->date,
                 'store_id' => $request->store_id,
