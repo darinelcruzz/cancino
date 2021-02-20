@@ -17,8 +17,8 @@
                                     <tr>
                                         <td>{!! Form::checkboxes('shoppings', [$shopping->id => $shopping->id]) !!}</td>
                                         <td>{{ $shopping->folio }}</td>
-                                        <td>{{ $shopping->document }} <br> {{ $shopping->pos }} </td>
                                         <td>{{ fnumber($shopping->amount) }}</td>
+                                        <td>{{ $shopping->document }} <br> {{ $shopping->pos }} </td>
                                         <td>{{ fdate($shopping->invoiced_at, 'd M y', 'Y-m-d') }}</td>
                                     </tr>
                                 @endforeach
