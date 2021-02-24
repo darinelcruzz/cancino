@@ -17,7 +17,13 @@
                                     <tr>
                                         <td>{!! Form::checkboxes('shoppings', [$shopping->id => $shopping->id]) !!}</td>
                                         <td>{{ $shopping->folio }}</td>
-                                        <td>{{ fnumber($shopping->amount) }}</td>
+                                        <td>
+                                          {{ fnumber($shopping->amount) }}
+                                          @if ($shopping->prefix == "AFSM-")
+                                            <br>
+                                            <code>{{ number_format($shopping->amount * 0.02, 2) }} </code>
+                                          @endif
+                                        </td>
                                         <td>{{ fdate($shopping->invoiced_at, 'd M y', 'Y-m-d') }}</td>
                                         <td>
                                           @if ($shopping->type == 'varfra')
