@@ -264,20 +264,21 @@ class AdminController extends Controller
         $sales = Sale::whereYear('date_sale', substr($date, 0, 4))
             ->whereMonth('date_sale', substr($date, 5))
             ->where('store_id', $store->id)
-            // ->with('checkup:id,notes')
+            ->with('checkup:id,notes')
             ->get()
             ->keyBy('date_sale');
 
-        // dd($sales, $this->getPublicArray($sales));
+        //dd($sales, $this->getPublicArray($sales));
 
         $keys = $sales->keys();
         $keys->transform(function ($item, $key) { return substr($item, -2);});
 
         $chart->labels($keys->push('Siguiente'));
-        $chart->dataset('Ventas a público', 'line', $this->getPublicArray($sales))->options(['borderColor' => '#E03317', 'fill' => false]);
-        $chart->dataset('Punto negro', 'line', $this->getPointArray($black, $sales, $workdays, $currentMonth))->options(['borderColor' => '#000000', 'fill' => false]);
-        $chart->dataset('Estrella', 'line', $this->getPointArray($star, $sales, $workdays, $currentMonth))->options(['borderColor' => '#0DAC2A', 'fill' => false]);
-        $chart->dataset('Estrella dorada', 'line', $this->getPointArray($golden, $sales, $workdays, $currentMonth))->options(['borderColor' => '#ACAC0D', 'fill' => false]);
+        $chart->dataset('Ventas Totales ', 'line', $this->getAllSalesArray($sales))->options(['borderColor' => '#E03317', 'fill' => false]);
+        $chart->dataset('Ventas sin SterenCard ', 'line', $this->getPublicArray($sales))->options(['borderColor' => '#E69DF8', 'fill' => false]);
+        $chart->dataset('Punto negro ', 'line', $this->getPointArray($black, $sales, $workdays, $currentMonth))->options(['borderColor' => '#000000', 'fill' => false]);
+        $chart->dataset('Estrella ', 'line', $this->getPointArray($star, $sales, $workdays, $currentMonth))->options(['borderColor' => '#0DAC2A', 'fill' => false]);
+        $chart->dataset('Estrella dorada ', 'line', $this->getPointArray($golden, $sales, $workdays, $currentMonth))->options(['borderColor' => '#ACAC0D', 'fill' => false]);
 
         return $chart;
     }
@@ -300,6 +301,18 @@ class AdminController extends Controller
         }
 
         return $returned_sales;
+    }
+
+    function getAllSalesArray($sales)
+    {
+        $values = [];
+
+        foreach ($sales as $sale) {
+          $sale = number_format($sale->public + $sale->checkup->notesSum/1.16, 2, '.','');
+            array_push($values, $sale);
+        }
+
+        return $values;
     }
 
     function getPublicArray($sales)
