@@ -5,6 +5,9 @@
                 <span class="pull-left"><b>Vendido {{ fnumber($sales[$num]) }}</b></span>
             </div>
             <div class="progress">
+              {{-- @php
+                dd($sales[5]);
+              @endphp --}}
                 <div class="progress-bar progress-bar-red" style="width: {{ $sales[$num] * 100 / $points[$num] }}%;"></div>
             </div>
         </div>

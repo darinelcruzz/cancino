@@ -1,6 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Ventas | Gráfias')
+@push('pageTitle', 'Ventas | Gráficas')
 
 @section('content')
 

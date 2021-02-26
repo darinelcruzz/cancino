@@ -267,8 +267,9 @@ class AdminController extends Controller
             ->with('checkup:id,notes')
             ->get()
             ->keyBy('date_sale');
-
-        //dd($sales, $this->getPublicArray($sales));
+            // if ($store->id == 5) {
+            //   dd($sales);
+            // }
 
         $keys = $sales->keys();
         $keys->transform(function ($item, $key) { return substr($item, -2);});
@@ -297,7 +298,6 @@ class AdminController extends Controller
         foreach ($sales as $sale) {
             array_push($returned_sales, max(round(($point - $salesSum)/($workdays - $i), 0), 2));
             $i += 1;
-            $salesSum += $sale;
         }
 
         return $returned_sales;
@@ -309,7 +309,7 @@ class AdminController extends Controller
 
         foreach ($sales as $sale) {
           $sale = number_format($sale->public + $sale->checkup->notesSum/1.16, 2, '.','');
-            array_push($values, $sale);
+          array_push($values, $sale);
         }
 
         return $values;
