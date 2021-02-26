@@ -172,7 +172,7 @@ class AdminController extends Controller
         foreach ($stores as $store) {
             ${strtolower($store->tabName)} = $this->buildChart($store, $date);
             $charts[$store->id] = strtolower($store->tabName);
-            $sales[$store->id]= $store->getSalesSum($date);
+            $sales[$store->id]= $this->getSalesSum($store->id, $date);
             $points[$store->id]= $store->getPoint($date);
             $stars[$store->id]= $store->getStar($date);
             $goldens[$store->id]= $store->getGolden($date);
@@ -321,5 +321,17 @@ class AdminController extends Controller
         }
 
         return $values;
+    }
+
+    function getSalesSum($store_id, $date)
+    {
+        return Sale::where('store_id', $store_id)
+            ->whereYear('date_sale', substr($date, 0,4))
+            ->whereMonth('date_sale', substr($date, 5, 2))
+            ->with('checkup:id,notes')
+            ->get()
+            ->sum(function ($sale) {
+                return ($sale->public + $sale->checkup->notesSum/1.16);
+            });
     }
 }
