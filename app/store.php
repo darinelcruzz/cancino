@@ -56,7 +56,7 @@ class Store extends Model
             ->with('checkup:id,notes')
             ->get()
             ->sum(function ($sale) {
-                return ($sale->public + $sale->checkup->notesSum/1.16);
+                return ($sale->public + ($sale->checkup->notes != null ? $sale->checkup->notes['a']/1.16: 0));
             });
     }
 
