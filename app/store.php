@@ -52,11 +52,11 @@ class Store extends Model
     {
         return Sale::where('store_id', $this->id)
             ->whereYear('date_sale', substr($date, 0,4))
-            ->whereMonth('date_sale', substr($date, 5))
+            ->whereMonth('date_sale', substr($date, 5, 2))
             ->with('checkup:id,notes')
             ->get()
             ->sum(function ($sale) {
-                return ($sale->public + ($sale->checkup->notes != null ? $sale->checkup->notes['a']/1.16: 0));
+                return ($sale->public + $sale->checkup->notesSum/1.16);
             });
     }
 
