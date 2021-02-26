@@ -50,10 +50,11 @@ class Store extends Model
 
     function getSalesSum($date)
     {
-        return collect(Sale::where('store_id', $this->id)
+        return Sale::where('store_id', $this->id)
             ->whereYear('date_sale', substr($date, 0,4))
             ->whereMonth('date_sale', substr($date, 5))
-            ->with('checkup:id,notes')->get())
+            ->with('checkup:id,notes')
+            ->get()
             ->sum(function ($sale) {
                 return ($sale->public + $sale->checkup->notesSum/1.16);
             });

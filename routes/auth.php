@@ -245,8 +245,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
     Route::get('200', usesas($ctrl, 'wastes'));
     Route::get('metas', usesas($ctrl, 'goals'));
-    Route::get('publico', usesas($ctrl, 'public'));
-    Route::post('publico', usesas($ctrl, 'public'));
+    Route::get('publico', usesas($ctrl, 'public_sales', 'public'));
+    Route::post('publico', usesas($ctrl, 'public_sales', 'public'));
     Route::get('terminales', usesas($ctrl, 'terminals'));
     Route::post('terminales', usesas($ctrl, 'terminals'));
     Route::get('resultados', usesas($ctrl, 'results'));
