@@ -114,18 +114,12 @@ class SaleController extends Controller
     {
         $i = $salesSum = 0;
         $returned_sales = [];
-
-        if ($currentMonth) {
-            $sales = $sales->pluck('public')->push(0);
-        } else {
-            $sales = $sales->pluck('public');
-        }
-
         foreach ($sales as $sale) {
-            array_push($returned_sales, round(($point - $salesSum)/($workdays - $i), 2));
+            array_push($returned_sales, max(round(($point - $salesSum)/($workdays - $i), 2), 0));
             $i += 1;
-            $salesSum += $sale;
+            $salesSum += $sale->public + $sale->checkup->notesSum/1.16;
         }
+        array_push($returned_sales, $currentMonth ? max(round(($point - $salesSum)/($workdays - $i), 2), 0):0);
 
         return $returned_sales;
     }
