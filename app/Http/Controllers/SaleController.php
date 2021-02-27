@@ -117,7 +117,8 @@ class SaleController extends Controller
         foreach ($sales as $sale) {
             array_push($returned_sales, max(round(($point - $salesSum)/($workdays - $i), 2), 0));
             $i += 1;
-            $salesSum += $sale->public + $sale->checkup->notesSum/1.16;
+            // $salesSum += $sale->public + $sale->checkup->notesSum/1.16;
+            $salesSum += $sale->public + ($sale->checkup ? $sale->checkup->notesSum/1.16: 0);
         }
         array_push($returned_sales, $currentMonth ? max(round(($point - $salesSum)/($workdays - $i), 2), 0):0);
 
