@@ -295,11 +295,13 @@ class AdminController extends Controller
             $i += 1;
             $salesSum += $sale->public + $sale->checkup->notesSum/1.16;
         }
-        if ($workdays - $i == 0 ) {
-          array_push($returned_sales, 0);
+        if ($workdays - $i == 0) {
+          $div = 1;
         }else {
-          array_push($returned_sales, $currentMonth ? max(round(($point - $salesSum)/($workdays - $i), 2), 0):0);
+          $div = $workdays - $i;
         }
+
+        array_push($returned_sales, $currentMonth ? max(round(($point - $salesSum)/($div), 2), 0):0);
 
         return $returned_sales;
     }
