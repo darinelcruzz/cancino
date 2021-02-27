@@ -73,7 +73,7 @@ class SaleController extends Controller
         $chart->dataset('Estrella', 'line', $this->getPointArray($star, $sales, $workdays, $currentMonth))->options(['borderColor' => '#0DAC2A', 'fill' => false]);
         $chart->dataset('Estrella dorada', 'line', $this->getPointArray($golden, $sales, $workdays, $currentMonth))->options(['borderColor' => '#ACAC0D', 'fill' => false]);
 
-        $total = Store::where('id', auth()->user()->store_id)->get()->first()->getSalesSum($date);
+        $total = $this->getSalesSum(auth()->user()->store_id, $date);
         $sumBlack = Store::where('id', auth()->user()->store_id)->get()->first()->getPoint($date);
         $sumStar = Store::where('id', auth()->user()->store_id)->get()->first()->getStar($date);
         $sumGolden = Store::where('id', auth()->user()->store_id)->get()->first()->getGolden($date);
@@ -128,6 +128,18 @@ class SaleController extends Controller
         }
 
         return $returned_sales;
+    }
+
+    function getSalesSum($store_id, $date)
+    {
+        return Sale::where('store_id', $store_id)
+            ->whereYear('date_sale', substr($date, 0,4))
+            ->whereMonth('date_sale', substr($date, 5, 2))
+            ->with('checkup:id,notes')
+            ->get()
+            ->sum(function ($sale) {
+                return ($sale->public + $sale->checkup->notesSum/1.16);
+            });
     }
 
 }
