@@ -50,13 +50,13 @@ return [
         'label' => ['warning' => pendingServices() > 0 ? pendingServices(): '', 'danger' => expiredServices() > 0 ? expiredServices(): ''],
         'icon' => 'fa fa-eye',
         'submenu' => [
+            'services' => [
+              'title' => 'Servicios',
+              'route' => 'services.index',
+            ],
             'tasks' => [
                 'title' => 'Pendientes',
                 'route' => 'admin.tasks'
-            ],
-            'services' => [
-                'title' => 'Servicios',
-                'route' => 'services.index',
             ],
             'websites' => [
                 'title' => 'Portales',

@@ -32,6 +32,41 @@ return [
         ],
     ],
 
+    'NC' => [
+        'title' => 'NC',
+        'icon' => 'fa fa-file-excel',
+        'label' => pendingNotes() > 0 ? pendingNotes() : '',
+        'route' => 'notes.index'
+    ],
+
+    'Employers' => [
+        'title' => 'Empleados',
+        'icon' => 'fa fa-users',
+        'route' => 'employers.index',
+    ],
+
+    'Loans' => [
+        'title' => 'Préstamos',
+        'icon' => 'fa fa-random',
+        'label' => pendingLoans() > 0 ? pendingLoans() : '',
+        'submenu' => [
+            'current' => [
+                'title' => 'Actuales',
+                'route' => 'loans.groups'
+            ],
+            'past' => [
+                'title' => 'Anteriores',
+                'route' => 'loans.index'
+            ],
+        ],
+    ],
+
+    'Documents' => [
+        'title' => 'Documentos',
+        'icon' => 'fa fa-folder',
+        'route' => 'documents.index',
+    ],
+
     'Expenses' => [
         'title' => 'Gastos',
         'icon' => 'fa fa-file-invoice-dollar',
