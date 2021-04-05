@@ -17,7 +17,8 @@
         <div class="col-md-6">
             <color-box title="Transferencia #{{ $supply_transfer->id }} de insumos" color="vks">
 
-                <table id="example1" class="table table-striped table-bordered">
+                <div class="table-responsive">
+                    <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>Fecha</th>
@@ -48,6 +49,7 @@
                         </tr>
                     </tfoot>
                 </table>
+                </div>
             </color-box>
         </div>
         

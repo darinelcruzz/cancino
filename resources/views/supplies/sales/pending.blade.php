@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-10">
             <color-box title="Pendientes de {{ $store->name }}" color="vks">
-
+                <div class="table-responsive">
                 <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -85,6 +85,7 @@
                         </tr>
                     </tfoot>
                 </table>
+                </div>
             </color-box>
         </div>
 

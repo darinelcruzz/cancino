@@ -46,27 +46,29 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Fecha</th>
-                                    <th>Tipo</th>
-                                    <th>Cantidad</th>
-                                    <th>Tienda</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach($supply->movements()->take(10)->get() as $movement)
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead>
                                     <tr>
-                                        <td>{{ $movement->created_at->format('d/m/Y') }}</td>
-                                        <td>{{ ucfirst($movement->type) }}</td>
-                                        <td>{{ $movement->quantity }}</td>
-                                        <td>{{ $movement->destination->id != 3 ? $movement->destination->name : 'Tapachula'}}</td>
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                        <th>Cantidad</th>
+                                        <th>Tienda</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    @foreach($supply->movements()->take(10)->get() as $movement)
+                                        <tr>
+                                            <td>{{ $movement->created_at->format('d/m/Y') }}</td>
+                                            <td>{{ ucfirst($movement->type) }}</td>
+                                            <td>{{ $movement->quantity }}</td>
+                                            <td>{{ $movement->destination->id != 3 ? $movement->destination->name : 'Tapachula'}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            </div>
                     </div>
                 </div>
             </color-box>

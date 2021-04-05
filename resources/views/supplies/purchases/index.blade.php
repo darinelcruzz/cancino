@@ -17,7 +17,8 @@
         <div class="col-md-12">
             <color-box title="Compras de insumos" color="vks">
 
-                <table id="example1" class="table table-striped table-bordered">
+                <div class="table-responsive">
+                    <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -51,6 +52,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
             </color-box>
         </div>
         
