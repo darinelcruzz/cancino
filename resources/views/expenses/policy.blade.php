@@ -1,5 +1,4 @@
-
-<html>
+{{-- <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Grupo Cancino|Póliza</title>
@@ -80,7 +79,7 @@
             <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
                 <thead>
                     <tr>
-                        <td width="25%">Entrada Almacen número</td>
+                        <td width="25%">Entrada Almacen número sad</td>
                         <td width="25%">Banco</td>
                         <td width="25%">Número de Cuenta</td>
                         <td width="25%">Número de Cheque</td>
@@ -255,3 +254,4 @@
 
     </section>
 </body>
+</html> --}}

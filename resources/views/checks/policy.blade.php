@@ -15,8 +15,6 @@
             font-family: 'Roboto', sans-serif;
         }
 
-        html, body { overflow: hidden;}
-
         .spaced td{
             text-align: center;
         }
@@ -166,7 +164,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for ($i=0; $i < 11; $i++)
+                @for ($i=0; $i < 10; $i++)
                     <tr>
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>

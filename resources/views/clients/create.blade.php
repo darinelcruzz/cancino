@@ -64,7 +64,9 @@
 
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
-                    <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
+                    @if (isAdmin())
+                      <button type="submit" class="btn btn-success pull-right" onclick="submitForm(this);">Agregar</button>
+                    @endif
 
                 {!! Form::close() !!}
             </solid-box>

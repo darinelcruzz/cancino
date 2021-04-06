@@ -1,6 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Cheques/Gastos | Lista')
+@push('pageTitle', 'Cheques | Lista')
 
 @section('content')
     <div class="row">
@@ -55,11 +55,15 @@
                             <tbody>
                                     <tr>
                                         <th>Gastos</td>
-                                        <td>{{ number_format(getStore()->expense, 2) }}</td>
+                                        <td>$ {{ number_format($store->expense, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <th>Cambio</td>
-                                        <td>{{ number_format(getStore()->cash, 2) }}</td>
+                                        <td>$ {{ number_format($store->cash, 2) }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th><b>Total</b></td>
+                                        <td><b>$ {{ number_format($store->cash + $store->expense, 2) }}</b></td>
                                     </tr>
                             </tbody>
                         </table>

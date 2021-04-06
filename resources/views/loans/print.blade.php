@@ -28,7 +28,7 @@
             border-bottom: 2px solid black;
         }
 
-        .dashed-line { 
+        .dashed-line {
             width: 100%;
             margin: auto;
             margin-top: 5%;
@@ -96,14 +96,14 @@
                     </tr>
 
                     <tr>
-                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->authorized_by or '' }}</td>
+                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->authorized_by }}</td>
                         <td style="width: 20%"></td>
-                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->received_by or '' }}</td>
+                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->received_by }}</td>
                     </tr>
                     <tr>
-                        <th style="width: 40%" colspan="2">AUTORIZA ({{ $loan->fromr->name or '' }})</th>
+                        <th style="width: 40%" colspan="2">AUTORIZA<br>({{ $loan->fromr->name }})</th>
                         <td style="width: 20%"></td>
-                        <th style="width: 40%" colspan="2">RECIBE ({{ $loan->tor->name or '' }})</th>
+                        <th style="width: 40%" colspan="2">RECIBE<br>({{ $loan->tor->name }})</th>
                     </tr>
 
                     <tr>
@@ -171,14 +171,14 @@
                     </tr>
 
                     <tr>
-                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->authorized_by or '' }}</td>
+                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->authorized_by }}</td>
                         <td style="width: 20%"></td>
-                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->received_by or '' }}</td>
+                        <td style="width: 40%" colspan="2" class="bbottom">{{ $loan->received_by }}</td>
                     </tr>
                     <tr>
-                        <th style="width: 40%" colspan="2">AUTORIZA ({{ $loan->fromr->name or '' }})</th>
+                        <th style="width: 40%" colspan="2">AUTORIZA <br> ({{ $loan->fromr->name }})</th>
                         <td style="width: 20%"></td>
-                        <th style="width: 40%" colspan="2">RECIBE ({{ $loan->tor->name or '' }})</th>
+                        <th style="width: 40%" colspan="2">RECIBE <br> ({{ $loan->tor->name }})</th>
                     </tr>
 
                     <tr>

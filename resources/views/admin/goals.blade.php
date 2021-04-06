@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <color-box title="{{ ucfirst(fdate($month, 'F', 'm')) }}" color="primary" solid button {{ date('m') == $month ? '': 'collapsed' }}>
                     <data-table classes="ordered">
-                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa', '<i class="far fa-edit"></i>') }}
+                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa', 'Comitán', '<i class="far fa-edit"></i>') }}
                         <template slot="body">
                             @foreach ($years as $date => $stores)
                                 <tr>
@@ -28,6 +28,7 @@
                                     <td>{{ fnumber($stores->where('store_id', 4)->sum('sale')) }} {!! empty($stores->where('store_id', 4)->first()) ? '' : $stores->where('store_id', 4)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 5)->sum('sale')) }} {!! empty($stores->where('store_id', 5)->first()) ? '' : $stores->where('store_id', 5)->first()->pointLabel !!}</td>
                                     <td>{{ fnumber($stores->where('store_id', 6)->sum('sale')) }} {!! empty($stores->where('store_id', 6)->first()) ? '' : $stores->where('store_id', 6)->first()->pointLabel !!}</td>
+                                    <td>{{ fnumber($stores->where('store_id', 7)->sum('sale')) }} {!! empty($stores->where('store_id', 7)->first()) ? '' : $stores->where('store_id', 7)->first()->pointLabel !!}</td>
                                     <td>
                                         @if ($stores->where('store_id', 2)->sum('sale') == NULL)
                                             <a href="{{ route('goals.edit', [$month, $date])}}"><i class="fa fa-edit"></i></a>

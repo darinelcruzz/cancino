@@ -126,6 +126,10 @@ return [
                 'title' => 'Gale Tapa',
                 'route' => ['commision.show', 6]
             ],
+            'Comitan' => [
+                'title' => 'Comitán',
+                'route' => ['commision.show', 7]
+            ],
         ],
     ],
 
