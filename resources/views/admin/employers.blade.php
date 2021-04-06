@@ -18,7 +18,10 @@
                                 <tr>
                                     <td>
                                         <div class="col-md-2">
-                                            @if(Storage::disk('public')->exists('employees/' . $employee->id . '/FOTO.jpeg'))
+                                            <img width="50px;" height="50px" style="border-radius: 50%;" 
+                                            src="{{ Storage::url('employers/' . $employee->id . '/FOTO.jpeg') }}" 
+                                            alt="Foto de {{ $employee->name }}">
+                                            {{-- @if(Storage::disk('public')->exists('employees/' . $employee->id . '/FOTO.jpeg'))
                                                 <img src="{{ Storage::url('employees/' . $employee->id . '/FOTO.jpeg') }}"
                                                     alt="foto de {{ $employee->name }}"
                                                     width="50px" height="50px"
@@ -27,7 +30,7 @@
                                                 <img src="{{ asset('images/default-avatar.png') }}"
                                                     width="50px" height="50px"
                                                     style="border-radius: 50%;">
-                                            @endif
+                                            @endif --}}
                                         </div>
                                     </td>
                                     <td>

@@ -1,7 +1,6 @@
 @extends('lte.root')
-@push('pageTitle')
-    Empleados | Lista
-@endpush
+
+@push('pageTitle', 'Empleados | Lista')
 
 @push('headerTitle')
     <a href="{{ route('employers.create') }}" class="btn btn-success btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar</a>
