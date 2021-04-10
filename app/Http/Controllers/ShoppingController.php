@@ -28,15 +28,15 @@ class ShoppingController extends Controller
 
     	} else {
     		$stores = [];
-        	$shoppings = Shopping::where(function ($query) use ($date) {
-                    $query->whereYear('invoiced_at', substr($date, 0, 4))
-                        ->orWhereYear('date', substr($date, 0, 4));
-                })
-                ->where(function ($query) use ($date) {
-                    $query->whereMonth('invoiced_at', substr($date, 5))
-                        ->orWhereMonth('date', substr($date, 5));
-                })
-                ->where('type', 'no definido')
+        	$shoppings = Shopping::where('type', 'no definido')
+                // where(function ($query) use ($date) {
+                //     $query->whereYear('invoiced_at', substr($date, 0, 4))
+                //         ->orWhereYear('date', substr($date, 0, 4));
+                // })
+                // ->where(function ($query) use ($date) {
+                //     $query->whereMonth('invoiced_at', substr($date, 5))
+                //         ->orWhereMonth('date', substr($date, 5));
+                // })
                 ->whereNull('document')
                 ->where('store_id', auth()->user()->store_id)
                 ->get();
@@ -108,6 +108,10 @@ class ShoppingController extends Controller
             'document' => 'required',
             'pos' => 'nullable',
             'invoiced_at' => 'required',
+            'type' => 'sometimes|required',
+            'store_id' => 'sometimes|required',
+            'folio' => 'sometimes|required',
+            'amount' => 'sometimes|required',
             'type' => 'sometimes|required',
         ]);
 

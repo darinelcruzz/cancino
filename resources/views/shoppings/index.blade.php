@@ -113,7 +113,8 @@
                         <template slot="header">
                             <tr>
                                 <th>Folio</th>
-                                <th style="width: 25%"><i class="fa fa-plus"></i> POS</th>
+                                <th style="width: 5%"><i class="fa fa-plus"></i> POS</th>
+                                <th>Fecha</th>
                                 <th style="text-align: right;">Monto</th>
                             </tr>
                         </template>
@@ -127,6 +128,7 @@
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </td>
+                                    <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d', '') }}</td>
                                     <td style="text-align: right;">{{ number_format($shopping->amount, 2) }}</td>
                                 </tr>
                             @endforeach
