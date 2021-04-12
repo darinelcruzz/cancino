@@ -145,10 +145,28 @@ class ShoppingController extends Controller
         }
 
         $shoppings = Shopping::where('store_id', $store->id)
-          ->where('status', 'pendiente')
+          ->where('status', 'impreso')
           ->where('document', '!=', NULL)
           ->get();
         return view('shoppings.verify', compact('store', 'shoppings'));
+    }
+
+    function mark(Request $request, Store $store)
+    {
+        if ($request->shoppings) {
+            foreach (Shopping::find($request->shoppings) as $shopping) {
+                $shopping->update([
+                    'status' => 'impreso'
+                ]);
+            }
+            return redirect(route('shoppings.index'));
+        }
+
+        $shoppings = Shopping::where('store_id', $store->id)
+          ->where('status', 'pendiente')
+          ->where('document', '!=', NULL)
+          ->get();
+        return view('shoppings.mark', compact('store', 'shoppings'));
     }
 
 

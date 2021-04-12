@@ -5,7 +5,7 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'label' => ['danger' => pendingShoppings() > 0 ? pendingShoppings(): '', 'primary' => pendingShoppingsStores() > 0 ? pendingShoppingsStores() : ''],
+        'label' => ['danger' => undefinedShoppings() > 0 ? undefinedShoppings(): '', 'warning' => pendingShoppings() > 0 ? pendingShoppings() : '', 'primary' => printedShoppingsStores() > 0 ? printedShoppingsStores() : ''],
         'route' => 'shoppings.index',
     ],
 

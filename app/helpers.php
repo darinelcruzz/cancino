@@ -115,19 +115,24 @@ function expiredServices()
     return App\Service::where('status', 'vencido')->orWhere('status', 'impreso vencido')->count();
 }
 
-function pendingShoppings()
-{
-    return App\Shopping::whereStatus('pendiente')->where('type', '!=', 'no definido')->count();
-}
-
 function pendingShoppingsStores()
 {
     return App\Shopping::whereType('no definido')->count();
 }
 
-function pendingShoppingsStore()
+function undefinedShoppings()
 {
-    return App\Shopping::where('store_id', auth()->user()->store_id)->whereType('no definido')->count();
+    return App\Shopping::whereType('no definido')->count();
+}
+
+function pendingShoppings()
+{
+    return App\Shopping::whereStatus('pendiente')->count();
+}
+
+function printedShoppings()
+{
+    return App\Shopping::whereStatus('impreso')->count();
 }
 
 function pendingInvoices()

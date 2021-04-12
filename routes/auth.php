@@ -21,6 +21,8 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonC
     Route::post('editar/{shopping}', usesas($ctrl, 'update'));
     Route::get('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
     Route::post('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
+    Route::get('marcar-impreso/{store}', usesas($ctrl, 'mark'))->middleware('helper');
+    Route::post('marcar-impreso/{store}', usesas($ctrl, 'mark'))->middleware('helper');
 });
 
 Route::group(['prefix' => 'gastos', 'as' => 'expenses.', 'middleware' => 'nonCheckup'], function () {

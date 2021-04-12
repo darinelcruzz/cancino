@@ -25,4 +25,9 @@ class Shopping extends Model
             return 'ANFF-';
         }
     }
+
+    function getStatusColorAttribute()
+    {
+        return ['pendiente' => 'warning', 'verificado' => 'success', 'impreso' => 'primary'][$this->status];
+    }
 }

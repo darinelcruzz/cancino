@@ -55,7 +55,7 @@
                                     <td>{{ fdate($shopping->date, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ $shopping->document }}{{ $shopping->pos ? ", $shopping->pos": '' }}</td>
                                     <td>
-                                        <span class="label label-{{ $shopping->status == 'pendiente' ? 'warning' : 'success' }}">
+                                        <span class="label label-{{ $shopping->status_color }}">
                                             {{ ucfirst($shopping->status) }}
                                         </span>
                                     </td>
@@ -100,7 +100,11 @@
                         </template>
                     </data-table>
                     <br>
+                    @if(auth()->user()->isHelper)
+                        <a class="btn btn-xs btn-primary btn-block" href="{{ route('shoppings.mark', $store) }}">Marcar como impreso</a>
+                    @else
                         <a class="btn btn-xs btn-success btn-block" href="{{ route('shoppings.verify', $store) }}">Verificar</a>
+                    @endif
                 </color-box>
             </div>
         </div>
