@@ -4,7 +4,7 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'label' => pendingShoppingsStore() > 0 ? pendingShoppingsStore() : '',
+        'label' => pendingShoppingsStores() > 0 ? pendingShoppingsStores() : '',
         'route' => 'shoppings.index'
     ],
 

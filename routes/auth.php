@@ -17,7 +17,7 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonC
     Route::get('llenar/fecha/factura', usesas($ctrl, 'invoices'));
     Route::get('agregar', usesas($ctrl, 'create'))->middleware('helper');
     Route::post('agregar', usesas($ctrl, 'store'));
-	Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
+	  Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
     Route::post('editar/{shopping}', usesas($ctrl, 'update'));
     Route::get('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
     Route::post('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
@@ -31,7 +31,7 @@ Route::group(['prefix' => 'gastos', 'as' => 'expenses.', 'middleware' => 'nonChe
     Route::get('agregar/{store}', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('poliza/{expense}', usesas($ctrl, 'policy'));
-	Route::get('editar/{expense}', usesas($ctrl, 'edit'));
+	  Route::get('editar/{expense}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::post('subir', usesas($ctrl, 'upFile'));
     Route::get('detalles/{expense}', usesas($ctrl, 'show'));
