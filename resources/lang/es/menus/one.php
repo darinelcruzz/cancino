@@ -66,6 +66,10 @@ return [
                 'title' => 'Agregar tienda',
                 'route' => 'stores.create',
             ],
+            'homes' => [
+                'title' => 'Agregar casa',
+                'route' => 'homes.create',
+            ],
         ],
     ],
 

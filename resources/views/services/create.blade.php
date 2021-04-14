@@ -39,7 +39,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::select('store_id', $stores, null,
+                            {!! Field::select('store_id', ['Tiendas' => $stores, 'Casas' => $homes], null,
                                 ['label' => 'Corresponde a', 'empty' => 'Seleccione una opción', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
                             !!}
                         </div>

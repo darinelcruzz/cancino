@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <color-box title="Pendientes" color="vks" solid>
                 <data-table example="11">
-                    {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda', 'pago', 'periodo', 'próximo pago', 'vencimiento', 'estado') }}
+                    {{ drawHeader('<i class="fa fa-clock"></i>', '<i class="fa fa-cogs"></i>' ,'descripción', 'grupo', 'tienda/Casa', 'pago', 'periodo', 'próximo pago', 'vencimiento', 'estado') }}
 
                     <template slot="body">
                         @foreach($services as $service)
@@ -28,6 +28,9 @@
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="usd" to="{{ route('service_payments.create', $service) }}" text="Pagar"></ddi>
                                         <ddi icon="clock" to="{{ route('services.show', $service) }}" text="Historial pagos"></ddi>
+                                        @if(auth()->user()->id == 2)
+                                            <ddi icon="edit" to="{{ route('services.edit', $service) }}" text="Editar"></ddi>
+                                        @endif
                                         @if($service->status != 'impresa')
                                             <ddi icon="print" to="{{ route('services.mark', $service) }}" text="Marcar como impreso"></ddi>
                                         @endif
@@ -64,6 +67,9 @@
                                 <td>
                                     <dropdown icon="cogs" color="success">
                                         <ddi icon="clock" to="{{ route('services.show', $service) }}" text="Historial pagos"></ddi>
+                                        @if(auth()->user()->id == 2)
+                                            <ddi icon="edit" to="{{ route('services.edit', $service) }}" text="Editar"></ddi>
+                                        @endif
                                     </dropdown>
                                 </td>
                                 <td>{{ $service->description }}</td>

@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/inicio', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/inicio', usesas('WelcomeController', 'index'));
 
 Route::get('/prueba', function () {
     return view('test');
@@ -489,6 +487,15 @@ Route::group(['prefix' => 'tiendas', 'as' => 'stores.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+});
+
+Route::group(['prefix' => 'casas', 'as' => 'homes.'], function () {
+    $ctrl = 'HomeController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/{home}', usesas($ctrl, 'edit'));
+    Route::post('editar/{home}', usesas($ctrl, 'update'));
 });
 
 Route::group(['prefix' => 'cuentas', 'as' => 'bank_accounts.'], function () {

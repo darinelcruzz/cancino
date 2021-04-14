@@ -38,6 +38,11 @@ class Store extends Model
         return $this->hasMany(BankAccount::class);
     }
 
+    function getModelInitialAttribute()
+    {
+        return "S$this->id";
+    }
+
     function getExpensesAccountAttribute()
     {
         return $this->bank_accounts->where('type', 'gastos')->first();

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Service, Store};
+use App\{Service, Store, Home};
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -31,12 +31,14 @@ class ServiceController extends Controller
 
     function create()
     {
-        $stores = Store::pluck('name', 'id')->toArray();
-        return view('services.create', compact('stores'));
+        $stores = Store::get()->pluck('name', 'modelInitial')->toArray();
+        $homes = Home::get()->pluck('name', 'modelInitial')->toArray();
+        return view('services.create', compact('stores', 'homes'));
     }
 
     function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'description' => 'required',
             'group' => 'required',
@@ -47,7 +49,10 @@ class ServiceController extends Controller
             'store_id' => 'required',
         ]);
 
-        Service::create($request->except('store_id') + ['serviceable_type' => 'App\Store', 'serviceable_id' => $request->store_id]);
+        Service::create($request->except('store_id') + [
+            'serviceable_type' => substr($request->store_id, 0, 1) == 'S' ? 'App\Store': 'App\Home',
+            'serviceable_id' => substr($request->store_id, 1)
+        ]);
 
         return redirect(route('services.index'));
     }
@@ -67,12 +72,21 @@ class ServiceController extends Controller
 
     function edit(Service $service)
     {
-        //
+        return view('services.edit', compact('service'));
     }
 
     function update(Request $request, Service $service)
     {
-        
+        $service->update($request->validate([
+            'description' => 'required',
+            'group' => 'required',
+            'amount' => 'required',
+            'invoiced_at' => 'required',
+            'expired_at' => 'required',
+            'period' => 'required',
+        ]));
+
+        return redirect(route('services.index'));
     }
 
     function destroy(Service $service)
