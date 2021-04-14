@@ -31,8 +31,8 @@ class ServiceController extends Controller
 
     function create()
     {
-        $stores = Store::get()->pluck('name', 'modelInitial')->toArray();
-        $homes = Home::get()->pluck('name', 'modelInitial')->toArray();
+        $stores = Store::all()->pluck('name', 'modelInitial')->toArray();
+        $homes = Home::all()->pluck('name', 'modelInitial')->toArray();
         return view('services.create', compact('stores', 'homes'));
     }
 

@@ -21,7 +21,7 @@ class EmployeeBirthday extends Notification
    {
       $employer->update(['notified' => 1]);
       return TelegramMessage::create()
-        ->to(env('TELEGRAM_TASKS_CHANNEL_ID'))
+        ->to(env('TELEGRAM_GROUP_ID'))
         ->content("¡" . $employer->name . " cumple años hoy! 🎈🎂🎁🎉");
    }
 }
