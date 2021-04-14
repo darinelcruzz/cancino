@@ -31,8 +31,8 @@ class ServiceController extends Controller
 
     function create()
     {
-        $stores = Store::all()->pluck('modelAndName', 'modelInitial');
-        $homes = Home::all()->pluck('modelAndName', 'modelInitial');
+        $stores = Store::selectRaw("name, CONCAT('S',id) as model_id")->pluck('name', 'model_id');
+        $homes = Home::selectRaw("name, CONCAT('H',id) as model_id")->pluck('name', 'model_id');
         return view('services.create', compact('stores', 'homes'));
     }
 
