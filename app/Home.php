@@ -12,4 +12,9 @@ class Home extends Model
     {
     	return "H$this->id";
     }
+
+    function getModelAndNameAttribute()
+    {
+        return "$this->name - Vivienda";
+    }
 }

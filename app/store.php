@@ -38,6 +38,11 @@ class Store extends Model
         return $this->hasMany(BankAccount::class);
     }
 
+    function getModelAndNameAttribute()
+    {
+        return "$this->name - Tienda";
+    }
+
     function getModelInitialAttribute()
     {
         return "S$this->id";
