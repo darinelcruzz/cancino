@@ -70,7 +70,7 @@ class Commision extends Model
             return array("$sum_sc </br>" . $this->label('dorada') . "<br>", $tab->sc_golden['a'] * $sum_sc);
         }if($sum_sc >= $tab->sc_star['q']) {
             return array("$sum_sc </br>" . $this->label('estrella') . "<br>", $tab->sc_star['a'] * $sum_sc);
-        }if($sum_sc >= $tab->sc_black['q']) {
+        }if($sum_sc >= $tab->sc_black['q'] || $this->employer->commision == 2) {
             return array("$sum_sc </br>" . $this->label('negro') . "<br>", $tab->sc_black['a'] * $sum_sc);
         }else {
             return array("$sum_sc </br>" . $this->label('rojo') . "<br>", 0);
@@ -85,11 +85,23 @@ class Commision extends Model
             return array("$sum_ext </br>" . $this->label('dorada') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_golden['p'] * $sum_amount);
         }if($sum_ext >= $tab->ext_star['q']) {
             return array("$sum_ext </br>" . $this->label('estrella') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_star['p'] * $sum_amount);
-        }if($sum_ext >= $tab->ext_black['q']) {
+        }if($sum_ext >= $tab->ext_black['q'] || $this->employer->commision == 2) {
             return array("$sum_ext </br>" . $this->label('negro') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_black['p'] * $sum_amount);
         }else {
             return array("$sum_ext </br>" . $this->label('rojo') . "</br>", 0);
         }
+    }
+
+    function absencesSum($total)
+    {
+        return $total > 2000 ? $this->absences * 200: $this->absences * $total * 0.10;
+    }
+
+    function delaysSum($total)
+    {
+        $absences = $total > 2000 ? intdiv($this->delays, 3) * 200: (intdiv($this->delays, 3) * $total * 0.10);
+        $delays = ($this->delays % 3) * ($total > 2000 ? 60: ($total * 0.03));
+        return $delays + $absences;
     }
 
     function managerPayment($sale, $past_goal, $goal)

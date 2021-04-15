@@ -7,7 +7,8 @@
                         <button @click="deleteRow(index)" type="button" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button>
                     </div>
                     <div class="col-md-10" align="center">
-                        <input type="text" :name="'name' + index" required>
+                        <input type="text" class="form-control input-sm" :name="'name' + index" required placeholder="Gastos por...">
+                        <input type="number" class="form-control input-sm" step="0.01" :name="'amount' + index" required min="0">
                         <input type="file" :name="'invoice' + index" accept="application/pdf">
                         <input type="hidden" name="quantity" :value="index">
                     </div>

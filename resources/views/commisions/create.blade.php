@@ -1,7 +1,6 @@
 @extends('lte.root')
-@push('pageTitle')
-    Metas | Agregar
-@endpush
+
+@push('pageTitle', 'Metas | Agregar')
 
 @section('content')
     <div class="row">

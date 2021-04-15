@@ -88,7 +88,9 @@
                                 $sales_commision_sum = $commisions->sum(function ($item) {
                                     return $item->sales_commision;
                                 });
-                                $total_employee_sum = $sales_commision_sum + $commision->scPoint($commisions->sum('sterencard'))[1] + $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]
+                                $total_employee_sum = $sales_commision_sum
+                                    + $commision->scPoint($commisions->sum('sterencard'))[1]
+                                    + $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]
                             @endphp
                             <tr>
                                 @if ($loop->index == 0)
@@ -109,7 +111,7 @@
                                     <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
                                     <td rowspan="5">{{ $commisions->sum('delays') }}</td>
                                     <td rowspan="5">{{ $commisions->sum('absences') }}</td>
-                                    <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
+                                    <td rowspan="5">{{ fnumber($total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum)) }}</td>
                                     @php
                                         $sales_commisions_total += $sales_commision_sum;
                                         $total_sum += $total_employee_sum;

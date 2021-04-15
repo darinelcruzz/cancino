@@ -7,20 +7,37 @@
         <div class="col-md-7">
             <color-box title="Cheque # {{ $check->folio }}" color="primary">
                 <data-table example="1">
-                    {{ drawHeader('Archivo','Ver') }}
+                    {{ drawHeader('Archivo', 'Ver', 'Importe') }}
+
+                    @php
+                        $total = 0;
+                    @endphp
 
                     <template slot="body">
                         @foreach($files as $file)
+                            @php
+                                $fileArray = explode("___", substr($file, strlen($route) + 1));
+                                $total += $fileArray[1] ?? 0;
+                            @endphp
                             <tr>
-                                <td>{{ substr($file, strlen($route) + 1) }}</td>
+                                <td>{{ $fileArray[0] }}</td>
                                 <td>
                                     <a href="{{ Storage::url($file) }}" target="_blank"><i class="fa fa-file-pdf-o"></i></a> &nbsp; &nbsp;
                                     @if (auth()->user()->level ==1)
                                         <a href="{{ route('checks.remove', str_replace('/', '-', $file))}}"><i class="fa fa-trash"></i></a>
                                     @endif
                                 </td>
+                                <td style="text-align: right;">{{ number_format($fileArray[1] ?? 0, 2) }}</td>
                             </tr>
                         @endforeach
+                    </template>
+
+                    <template slot="footer">
+                        <tr>
+                            <td></td>
+                            <th style="text-align: right;"><small>TOTAL</small></th>
+                            <td style="text-align: right;">{{ number_format($total, 2) }}</td>
+                        </tr>
                     </template>
                 </data-table>
             </color-box>

@@ -1,7 +1,6 @@
 @extends('lte.root')
-@push('pageTitle')
-    Metas | Agregar
-@endpush
+
+@push('pageTitle', 'Metas | Agregar')
 
 @section('content')
     <div class="row">
@@ -12,11 +11,13 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th><h4>Nombre</h4></th>
-                                    <th><h4>Venta</h4></th>
-                                    <th><h4>SterenCard</h4></th>
-                                    <th><h4>Extensiones</h4></th>
-                                    <th><h4>Valor Ext</h4></th>
+                                    <th style="text-align: center;"><h4>Nombre</h4></th>
+                                    <th style="text-align: center;"><h4>Venta</h4></th>
+                                    <th style="text-align: center;"><h4>SterenCard</h4></th>
+                                    <th style="text-align: center;"><h4>Extensiones</h4></th>
+                                    <th style="text-align: center;"><h4>Valor Ext</h4></th>
+                                    <th style="text-align: center;"><h4>Retrasos</h4></th>
+                                    <th style="text-align: center;"><h4>Faltas</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -26,16 +27,22 @@
                                             <h4>{{ $employer->employer->nickname }}</h4>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][sale]]" value="{{ $employer->sale }}" step="0.01">
+                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][sale]]" value="{{ $employer->sale ?? 0 }}" step="0.01">
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][sterencard]" value="{{ $employer->sterencard }}">
+                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][sterencard]" value="{{ $employer->sterencard ?? 0 }}">
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][extensions]" value="{{ $employer->extensions }}">
+                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][extensions]" value="{{ $employer->extensions ?? 0 }}">
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][amount_ext]" value="{{ $employer->amount_ext }}" step="0.01">
+                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][amount_ext]" value="{{ $employer->amount_ext ?? 0 }}" step="0.01">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][delays]" value="{{ $employer->delays ?? 0 }}" step="1">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][absences]" value="{{ $employer->absences ?? 0 }}" step="1">
                                         </td>
                                     </tr>
                                 @endforeach

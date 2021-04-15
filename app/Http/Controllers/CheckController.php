@@ -72,7 +72,7 @@ class CheckController extends Controller
     {
         if ($request->file("invoice0")) {
             for ($i=0; $i <= $request->quantity; $i++) {
-                $request->file("invoice$i")->storeAs($request->route, $request->{"name$i"});
+                $request->file("invoice$i")->storeAs($request->route, $request->{"name$i"} . "___" . $request->{"amount$i"} );
             }
         }
 

@@ -133,7 +133,7 @@ class CheckupController extends Controller
 
     function transfers(Request $request)
     {
-        $from = isset($request->from) ? $request->from : date('Y-m-d', strtotime("2020-01-01"));
+        $from = isset($request->from) ? $request->from : date('Y-m-d');
         $to = isset($request->to) ? $request->to : date('Y-m-d');
         $store = isset($request->store) ? Store::find($request->store) : getStore();
 
