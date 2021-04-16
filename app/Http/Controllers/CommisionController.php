@@ -80,6 +80,22 @@ class CommisionController extends Controller
         return view('commisions.edit', compact('week'));
     }
 
+    function editEmployer(Employer $employer, Goal $goal)
+    {
+        return view('commisions.employee.edit', compact('employer', 'goal'));
+    }
+
+    function updateEmployer(Request $request)
+    {
+        // dd($request->items);
+        foreach($request->items as $item) {
+            $commision = Commision::find($item['id']);
+            $commision->update(['weekly_goal' => $item['weekly_goal']]);
+        }
+
+        return redirect(route('commision.show', $commision->goal->store_id));
+    }
+
     function extras(Goal $goal)
     {
         return view('commisions.extras', compact('goal'));

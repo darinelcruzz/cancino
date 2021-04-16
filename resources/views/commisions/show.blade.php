@@ -40,6 +40,9 @@
                                         <tr>
                                             <th>
                                                <big>{{ App\Employer::find($employer_id)->nickname }}</big>
+                                               @if(auth()->user()->id == 2)
+                                               <a href="{{ route('commision.editEmployer', [$employer_id, $goal]) }}"><i class="fa fa-edit"></i></a>
+                                               @endif
                                             </th>
                                             @foreach($commisions as $commision)
                                                 <td>{{ number_format($commision->weekly_goal, 2) }}</td>

@@ -315,6 +315,8 @@ Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
     Route::post('/', usesas($ctrl, 'index'));
     Route::get('agregar/{store}', usesas($ctrl, 'create'))->middleware('commissions');
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('editar/trabajador/{employer}/{goal}', usesas($ctrl, 'editEmployer'));
+    Route::post('editar/trabajador', usesas($ctrl, 'updateEmployer'));
     Route::get('editar/{goal}/{week}', usesas($ctrl, 'edit'));
     Route::post('editar', usesas($ctrl, 'update'));
     Route::get('extras/{goal}', usesas($ctrl, 'extras'));
