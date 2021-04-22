@@ -140,9 +140,9 @@ function pendingInvoices()
     return App\Invoice::whereStatus('pendiente')->count();
 }
 
-function pendingWastes()
+function takenProducts()
 {
-    return App\Waste::whereStatus('pendiente')->count();
+    return App\TakenProduct::whereNull('pos')->count();
 }
 
 function pendingNotes()

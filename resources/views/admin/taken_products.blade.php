@@ -1,30 +1,31 @@
 @extends('lte.root')
-@push('pageTitle')
-    -$200 | Lista
-@endpush
+
+@push('pageTitle', 'Productos en uso')
 
 @section('content')
     <div class="row">
-        @foreach ($pendings as $store_id => $wastes)
+        @foreach ($pending as $store_id => $taken_products)
             <div class="col-md-6">
-                <color-box title="Pendientes de {{ App\Store::find($store_id)->name . ' ' . count($wastes) }}" color="danger" button collapsed>
+                <color-box title="Pendientes de {{ App\Store::find($store_id)->name . ' (' . count($taken_products) }})" color="danger" button collapsed solid>
                     <data-table example="{{ $store_id }}">
-                        {{ drawHeader('Folio','Modelo', 'Descripción', 'Fecha') }}
+                        {{ drawHeader('fecha', 'modelo', 'motivo', 'usuario') }}
                         <template slot="body">
-                            @foreach($wastes as $waste)
+                            @foreach($taken_products as $taken_product)
                                 <tr>
-                                    <td>{{ $waste->id }}</td>
-                                    <td>{{ $waste->item }}</td>
-                                    <td>{{ $waste->description }}</td>
-                                    <td>{{ fdate($waste->created_at, 'd-M-y') }}</td>
+                                    <td>{{ fdate($taken_product->taken_at, 'd/M/y', 'Y-m-d') }}</td>
+                                    <td>{{ $taken_product->code }}</td>
+                                    <td>{{ $taken_product->observations }}</td>
+                                    <td>{{ $taken_product->user->name }}</td>
                                 </tr>
                             @endforeach
                         </template>
                     </data-table>
                     <hr>
-                    <a href="{{ route('wastes.edit', ['store' => $store_id])}}" class="btn btn-block btn-danger">Destruir</a><br>
-                    <a href="{{ route('wastes.print', $store_id) }}" class="btn btn-github btn-sm btn-block" target="_blank">
-                        <i class="fa fa-print"></i>&nbsp;&nbsp;IMPRIMIR PENDIENTES
+                    <a href="{{ route('taken_products.edit', $store_id)}}" class="btn pull-right btn-danger">
+                        <i class="fa fa-trash"></i>&nbsp;&nbsp;DESTRUIR
+                    </a>
+                    <a href="{{ route('taken_products.print', $store_id) }}" class="btn btn-github pull-left" target="_blank">
+                        <i class="fa fa-print"></i>&nbsp;&nbsp;IMPRIMIR
                     </a>
                 </color-box>
             </div>
@@ -35,7 +36,7 @@
                 <data-table example="1">
                     {{ drawHeader('POS', '<i class="fa fa-cogs"></i>', 'fecha', 'tienda', '<i class="fa fa-photo"></i>') }}
                     <template slot="body">
-                        @foreach($complete as $pos => $wastes)
+                        @foreach($deleted as $pos => $taken_products)
                             <tr>
                                 <td>{{ $pos }}</td>
                                 <td>
@@ -45,9 +46,9 @@
                                     </dropdown>
                                 </td>
                                 <td>
-                                    {{ fdate($wastes->first()->pos_at, 'd-M-y', 'Y-m-d') }}
+                                    {{ fdate($taken_products->first()->deleted_at, 'd/M/y', 'Y-m-d') }}
                                 </td>
-                                <td>{{ $wastes->first()->store->name }}</td>
+                                <td>{{ $taken_products->first()->store->name }}</td>
                                 <td>
                                     @if(Storage::disk('public')->exists('pos/' . $pos . '.jpg'))
                                         <img v-img src="{{ Storage::disk('public')->url('pos/' . $pos . '.jpg') }}"

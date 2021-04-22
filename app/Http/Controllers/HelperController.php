@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup, Task};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup, Task, TakenProduct};
 
 class HelperController extends Controller
 {
@@ -49,12 +49,12 @@ class HelperController extends Controller
         return view('admin.loans', compact('lent', 'borrowed', 'store', 'invoiced', 'payed'));
     }
 
-    function wastes()
+    function taken_products()
     {
-        $pendings = Waste::where('status', 'pendiente')->get()->groupBy('store_id');
-        $complete = Waste::where('status', 'destruido')->get()->groupBy('store_id');
+        $pending = TakenProduct::whereNull('pos')->get()->groupBy('store_id');
+        $deleted = TakenProduct::whereNotNull('pos')->get()->groupBy('pos');
 
-        return view('admin.wastes', compact('pendings', 'complete'));
+        return view('admin.taken_products', compact('pending', 'deleted'));
     }
 
     function employers()

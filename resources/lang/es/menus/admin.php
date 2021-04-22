@@ -238,10 +238,11 @@ return [
         ],
     ],
 
-    'Waste' => [
-        'title' => '-$200',
-        'icon' => 'fa fa-boxes',
-        'route' => 'admin.wastes'
+    'taken_products' => [
+        'title' => 'En uso',
+        'icon' => 'fa fa-car-battery',
+        'label' => takenProducts() > 0 ? takenProducts(): '',
+        'route' => 'admin.taken_products'
     ],
 
     'Inventory' => [

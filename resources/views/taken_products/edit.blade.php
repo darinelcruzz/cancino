@@ -1,21 +1,19 @@
 @extends('lte.root')
 
-@push('pageTitle')
-    -$200 | Destruir
-@endpush
+@push('pageTitle', 'En uso | Destruir')
 
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <color-box title="Destrucción de {{ $store->name }}" color="danger">
-                {!! Form::open(['method' => 'POST', 'route' => 'wastes.update']) !!}
+            <color-box title="Destrucción de {{ $store->name }}" color="danger" solid>
+                {!! Form::open(['method' => 'POST', 'route' => 'taken_products.update']) !!}
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-6">
-                                {!! Field::number('pos') !!}
+                                {!! Field::number('pos', ['label' => 'Número POS']) !!}
                             </div>
                             <div class="col-md-6">
-                                {!! Field::date('pos_at', Date::now()) !!}
+                                {!! Field::date('deleted_at', now(), ['label' => 'Fecha [POS]']) !!}
                             </div>
                         </div>
 
@@ -25,17 +23,18 @@
                             </div>
                         @endif
 
-                        <data-table example="1">
-                            {{ drawHeader('ID','Modelo', 'Fecha') }}
+                        <data-table>
+                            {{ drawHeader('<i class="fa fa-check"></i>', 'modelo', 'fecha', 'usuario') }}
                             <template slot="body">
-                                @foreach ($wastes as $waste)
+                                @foreach ($taken_products as $taken_product)
                                     <tr>
-                                        {{-- <td>{!! Form::checkboxes('items', [$waste->id => $waste->id], ['v-model' => 'wastes']) !!}</td> --}}
+                                        {{-- <td>{!! Form::checkboxes('items', [$taken_product->id => $taken_product->id], ['v-model' => 'taken_products']) !!}</td> --}}
                                         <td>
-                                            <input type="checkbox" value="{{ $waste->id }}" v-model="wastes">&nbsp;{{ $waste->id }}
+                                            <input type="checkbox" value="{{ $taken_product->id }}" v-model="wastes">
                                         </td>
-                                        <td>{{ $waste->item }}</td>
-                                        <td>{{ fdate($waste->created_at, 'd-M-Y') }}</td>
+                                        <td>{{ $taken_product->code }}</td>
+                                        <td>{{ fdate($taken_product->taken_at, 'd/M/Y', 'Y-m-d') }}</td>
+                                        <td>{{ $taken_product->user->name }}</td>
                                     </tr>
                                 @endforeach
                             </template>

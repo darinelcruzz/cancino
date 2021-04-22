@@ -20,7 +20,7 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                {!! Field::text('amount', number_format($shopping->amount, 2), ['tpl' => 'lte/withicon'], ['icon' => 'money']) !!}
+                                {!! Field::number('amount', $shopping->amount, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
                             </div>
                             <div class="col-md-6">
                                 {!! Field::date('invoiced_at', date('Y-m-d'), ['label' => 'Fecha factura', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}

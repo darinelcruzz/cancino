@@ -73,10 +73,10 @@ return [
         'route' => 'checks.index',
     ],
 
-    'Waste' => [
-        'title' => '-$200',
-        'icon' => 'fa fa-boxes',
-        'route' => 'wastes.index'
+    'taken_products' => [
+        'title' => 'En uso',
+        'icon' => 'fa fa-car-battery',
+        'route' => 'taken_products.index'
     ],
 
     'logout' => [

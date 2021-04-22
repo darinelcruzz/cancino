@@ -59,8 +59,8 @@ Route::group(['prefix' => 'nc', 'as' => 'notes.', 'middleware' => 'nonCheckup'],
     Route::post('capturar', usesas($ctrl, 'add'));
 });
 
-Route::group(['prefix' => '200', 'as' => 'wastes.', 'middleware' => 'nonCheckup'], function () {
-    $ctrl = 'WasteController';
+Route::group(['prefix' => 'productos-en-uso', 'as' => 'taken_products.', 'middleware' => 'nonCheckup'], function () {
+    $ctrl = 'TakenProductController';
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
@@ -243,7 +243,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('saldos', usesas($ctrl, 'balances'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
-    Route::get('200', usesas($ctrl, 'wastes'));
+    Route::get('productos-en-uso', usesas($ctrl, 'taken_products'));
     Route::get('metas', usesas($ctrl, 'goals'));
     Route::get('publico', usesas($ctrl, 'public_sales', 'public'));
     Route::post('publico', usesas($ctrl, 'public_sales', 'public'));
@@ -266,7 +266,7 @@ Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'],
     Route::get('notas', usesas($ctrl, 'notes'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
-    Route::get('200', usesas($ctrl, 'wastes'));
+    Route::get('productos-en-uso', usesas($ctrl, 'taken_products'));
     Route::get('metas', usesas($ctrl, 'goals'));
     Route::get('publico', usesas($ctrl, 'public'));
     Route::post('publico', usesas($ctrl, 'public'));

@@ -92,11 +92,11 @@ return [
         'route' => 'employers.index'
     ],
 
-    'Waste' => [
-        'title' => '-$200',
-        'icon' => 'fa fa-boxes',
-        'label' => pendingWastes() > 0 ? pendingWastes(): '',
-        'route' => 'helper.wastes'
+    'taken_products' => [
+        'title' => 'En uso',
+        'icon' => 'fa fa-car-battery',
+        'label' => takenProducts() > 0 ? takenProducts(): '',
+        'route' => 'taken_products.index'
     ],
 
     'logout' => [

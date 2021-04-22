@@ -7,14 +7,14 @@
         <div class="col-md-10 col-md-offset-1">
             <color-box title="POS {{ $pos }}" color="vks">
                 <data-table example="1">
-                    {{ drawHeader('Folio','Modelo', 'Descripción', 'Fecha') }}
+                    {{ drawHeader('fecha', 'modelo', 'motivo', 'usuario') }}
                     <template slot="body">
-                        @foreach($wastes as $waste)
+                        @foreach($taken_products as $taken_product)
                             <tr>
-                                <td>{{ $waste->id }}</td>
-                                <td>{{ $waste->item }}</td>
-                                <td>{{ $waste->description }}</td>
-                                <td>{{ fdate($waste->created_at, 'd-M-y') }}</td>
+                                <td>{{ fdate($taken_product->taken_at, 'd/M/y', 'Y-m-d') }}</td>
+                                <td>{{ $taken_product->code }}</td>
+                                <td>{{ $taken_product->observations }}</td>
+                                <td>{{ $taken_product->user->name }}</td>
                             </tr>
                         @endforeach
                     </template>

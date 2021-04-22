@@ -15,7 +15,14 @@ class EmployerObserver
         $employer->storeDocuments(request());
 
         if (env('APP_ENV') != 'local') {
-            $emails = User::where('level', '<', 5)->where('level', '>', 1)->pluck('email')->toArray();
+            $emails = User::where('level', '<', 5)
+                ->where('level', '>', 1)
+                ->where('username', '!=', 'cheko')
+                ->where('password', '!=', 'cancelado')
+                ->pluck('email')
+                ->pluck('email')
+                ->toArray();
+                
             $firm = User::where('name', 'Despacho')->pluck('email')->toArray();
 
             Mail::to($emails)->queue(new EmployerCreated($employer));
@@ -27,9 +34,16 @@ class EmployerObserver
     function updated(Employer $employer)
     {
         if ($employer->status == 'inactivo') {
-            $emails = User::where('level', '<', 5)->where('level', '>', 1)->pluck('email')->toArray();
+            $emails = User::where('level', '<', 5)
+                ->where('level', '>', 1)
+                ->where('username', '!=', 'cheko')
+                ->where('password', '!=', 'cancelado')
+                ->pluck('email')
+                ->toArray();
 
-            Mail::to($emails)->queue(new EmployerDismissed($employer));
+            if (env('APP_ENV') != 'local') {
+                Mail::to($emails)->queue(new EmployerDismissed($employer));
+            }
         }
     }
 

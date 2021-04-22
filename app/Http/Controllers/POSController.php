@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\{Waste, Store};
+use App\{TakenProduct, Store};
 use Illuminate\Http\Request;
 
 class POSController extends Controller
 {
     function show($pos)
     {
-        $wastes = Waste::where('pos', $pos)->get();
-        return view('pos.show', compact('wastes', 'pos'));
+        $taken_products = TakenProduct::where('pos', $pos)->get();
+        return view('pos.show', compact('taken_products', 'pos'));
     }
 
     function upload($pos)

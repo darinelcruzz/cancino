@@ -1,7 +1,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>-$200 | Reporte</title>
+    <title>Productos en uso</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('/img/logo.ico') }}" />
@@ -46,7 +46,7 @@
                         <td colspan="3">
                             <h3>
                                 {{ strtoupper($store->name) }} <br>
-                                <small>(PRODUCTOS MENORES A $ 200.00)</small>
+                                <small>(PRODUCTOS EN USO)</small>
                             </h3>
                         </td>
                         <td colspan="3" rowspan="2">
@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <td colspan="9">&nbsp;</td>
-                    </tr>
+                    </tr>                    
                     <tr>
                         <th class="box">MODELO</th>
                         <th class="box">CANT</th>
@@ -73,7 +73,6 @@
                 </thead>
                 
                 <tbody>
-
                     @foreach($chunks as $chunk)
 
                         <tr>

@@ -236,11 +236,11 @@ return [
         'route' => 'admin.equipments',
     ],
 
-    'Waste' => [
-        'title' => '-$200',
-        'icon' => 'fa fa-boxes',
-        'label' => pendingWastes() > 0 ? pendingWastes(): '',
-        'route' => 'admin.wastes'
+    'taken_products' => [
+        'title' => 'En uso',
+        'icon' => 'fa fa-car-battery',
+        'label' => takenProducts() > 0 ? takenProducts(): '',
+        'route' => 'admin.taken_products'
     ],
 
     'Inventory' => [
