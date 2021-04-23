@@ -9,7 +9,7 @@
         <div class="box box-{{ $employer->store->color }}">
             <div class="box-body box-profile">
                 <p class="text-center">
-                    <img width="100px;" height="100px" style="border-radius: 50%;"
+                    <img v-img width="100px;" height="100px" style="border-radius: 50%;"
                         src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}"
                         alt="User profile picture">
                 </p>

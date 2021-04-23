@@ -17,7 +17,7 @@
                             <tr>
                                 <td>
                                     <div class="col-md-2">
-                                        <img width="50px;" height="50px" style="border-radius: 50%;" 
+                                        <img v-img width="50px;" height="50px" style="border-radius: 50%;" 
                                             src="{{ Storage::url('employers/' . $employee->id . '/FOTO.jpeg') }}" 
                                             alt="User profile picture">
                                         {{-- @if(Storage::disk('public')->exists('employers/' . $employee->id . '/FOTO.jpeg'))
