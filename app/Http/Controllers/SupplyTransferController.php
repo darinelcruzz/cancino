@@ -40,6 +40,11 @@ class SupplyTransferController extends Controller
         return view('supplies.transfers.show', compact('supply_transfer'));
     }
 
+    function print(SupplyTransfer $supply_transfer)
+    {
+        return view('supplies.transfers.print', compact('supply_transfer'));
+    }
+
     function edit(SupplyTransfer $supply_transfer)
     {
         return view('supplies.transfers.edit', compact('supply_transfer'));

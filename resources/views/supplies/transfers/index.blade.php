@@ -37,6 +37,7 @@
                                 <td>
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="eye" to="{{ route('supplies.transfers.show', $transfer) }}" text="Ver"></ddi>
+                                        <ddi icon="print" to="{{ route('supplies.transfers.print', $transfer) }}" text="Imprimir"></ddi>
                                         @if(isAdmin())
                                             <ddi icon="edit" to="{{ route('supplies.transfers.edit', $transfer) }}" text="Editar"></ddi>
                                         @endif

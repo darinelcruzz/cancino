@@ -457,6 +457,7 @@ Route::group(['prefix' => 'ventas-de-insumos', 'as' => 'supplies.sales.'], funct
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('marcar-entregada/{supply_sale}', usesas($ctrl, 'mark'))->middleware('admin');
     Route::get('editar/{supply_sale}', usesas($ctrl, 'edit'))->middleware('admin');
     Route::post('editar/{supply_sale}', usesas($ctrl, 'update'))->middleware('admin');
     Route::get('sumar/{supply_sale}', usesas($ctrl, 'add'));
@@ -464,6 +465,8 @@ Route::group(['prefix' => 'ventas-de-insumos', 'as' => 'supplies.sales.'], funct
     Route::post('pagar/{supply_sale}', usesas($ctrl, 'pay'));
     Route::get('cancelar/{supply_sale}', usesas($ctrl, 'destroy'));
     Route::get('pendientes/{store}', usesas($ctrl, 'pending'));
+    Route::get('entregadas/{store}', usesas($ctrl, 'delivered'));
+    Route::get('imprimir/{supply_sale}', usesas($ctrl, 'print'));
     Route::get('{supply_sale}', usesas($ctrl, 'show'));
 });
 
@@ -474,6 +477,7 @@ Route::group(['prefix' => 'transferencias-de-insumos', 'as' => 'supplies.transfe
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('editar/{supply_transfer}', usesas($ctrl, 'edit'))->middleware('admin');
     Route::post('editar/{supply_transfer}', usesas($ctrl, 'update'))->middleware('admin');
+    Route::get('imprimir/{supply_transfer}', usesas($ctrl, 'print'));
     Route::get('{supply_transfer}', usesas($ctrl, 'show'));
 });
 

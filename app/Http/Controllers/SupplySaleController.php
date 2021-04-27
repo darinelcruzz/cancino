@@ -9,7 +9,7 @@ class SupplySaleController extends Controller
 {
     function index()
     {
-        $pending_sales = SupplySale::where('status', 'pendiente')->get();
+        $pending_sales = SupplySale::where('status', '!=', 'pagada')->get();
         $paid_sales = SupplySale::where('status', 'pagada')->get();
         return view('supplies.sales.index', compact('pending_sales', 'paid_sales'));
     }
@@ -40,6 +40,11 @@ class SupplySaleController extends Controller
         return view('supplies.sales.show', compact('supply_sale'));
     }
 
+    function print(SupplySale $supply_sale)
+    {
+        return view('supplies.sales.print', compact('supply_sale'));
+    }
+
     function pending(Store $store)
     {
         $sales = SupplySale::where('store_id', $store->id)
@@ -52,6 +57,27 @@ class SupplySaleController extends Controller
         $amount = 0;
 
         return view('supplies.sales.pending', compact('sales', 'store', 'supplies', 'supplies2', 'amount'));
+    }
+
+    function delivered(Store $store)
+    {
+        $sales = SupplySale::where('store_id', $store->id)
+            ->where('status', 'entregada')
+            ->with('movements')
+            ->get();
+
+        $supplies = $supplies2 = [];
+
+        $amount = 0;
+
+        return view('supplies.sales.delivered', compact('sales', 'store', 'supplies', 'supplies2', 'amount'));
+    }
+
+    function mark(SupplySale $supply_sale)
+    {
+        $supply_sale->update(['status' => 'entregada']);
+
+        return redirect(route('supplies.sales.index'));
     }
 
     function edit(SupplySale $supply_sale)

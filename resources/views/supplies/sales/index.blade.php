@@ -17,6 +17,7 @@
         <div class="col-md-12">
             <color-box title="Ventas pendientes" color="vks" solid>
                 <div class="table-responsive">
+                    <h6><i class="fa fa-check"></i> Entregada</h6>
                     <table id="example1" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -32,17 +33,26 @@
                         <tbody>
                             @foreach($pending_sales as $supply_sale)
                                 <tr>
-                                    <td>{{ $supply_sale->id }}</td>
+                                    <td>
+                                        {{ $supply_sale->id }}
+                                        {!! $supply_sale->status == 'entregada' ? '<i class="fa fa-check"></i>': '' !!}
+                                    </td>
                                     <td>
                                         <dropdown icon="cogs" color="github">
                                             <ddi icon="eye" to="{{ route('supplies.sales.show', $supply_sale) }}" text="Ver"></ddi>
-                                            <ddi icon="plus" to="{{ route('supplies.sales.add', $supply_sale) }}" text="Agregar insumos"></ddi>
-                                            @if(isAdmin())
-                                                <ddi icon="edit" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Editar"></ddi>
+                                            <ddi icon="print" to="{{ route('supplies.sales.print', $supply_sale) }}" text="Imprimir" target="_blank"></ddi>
+                                            @if($supply_sale->status == 'pendiente')
+                                                <ddi icon="plus" to="{{ route('supplies.sales.add', $supply_sale) }}" text="Agregar insumos"></ddi>
                                             @endif
+                                            @if(isAdmin() && $supply_sale->status == 'pendiente')
+                                                <ddi icon="edit" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Editar"></ddi>
+                                                <ddi icon="check" to="{{ route('supplies.sales.mark', $supply_sale) }}" text="Entregada"></ddi>
+                                            @endif
+                                            @if($supply_sale->status == 'entregada')
                                             <li>
                                                 <a href="" data-toggle="modal" data-target="#modal-{{ $supply_sale->id }}"><i class="fa fa-usd"></i> Pagar</a>
                                             </li>
+                                            @endif
                                             @if(auth()->user()->level == 1 && $supply_sale->status != 'cancelada')
                                                 <ddi icon="times" to="{{ route('supplies.sales.destroy', $supply_sale) }}" text="Cancelar"></ddi>
                                             @endif
@@ -65,7 +75,7 @@
                                     </td>
                                     <td>{{ $supply_sale->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('supplies.sales.pending', $supply_sale->store) }}">
+                                        <a href="{{ route('supplies.sales.delivered', $supply_sale->store) }}">
                                             {{ $supply_sale->store->name }}
                                         </a>
                                     </td>
