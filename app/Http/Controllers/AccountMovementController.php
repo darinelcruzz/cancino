@@ -114,6 +114,7 @@ class AccountMovementController extends Controller
                 if ($concept) {
                     $account_movement->update([
                         'provider_id' => $concept->provider_id,
+                        'expenses_group_id' => $concept->provider->expenses_group_id,
                         'concept' => $concept->description
                     ]);
                 }
