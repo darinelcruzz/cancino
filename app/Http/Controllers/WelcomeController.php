@@ -9,12 +9,14 @@ class WelcomeController extends Controller
 {
     function index()
     {
-        $employees = Employer::whereMonth('birthday', '=', now()->month)
+        $employees = Employer::where('status', '!=', 'inactivo')
+            ->whereMonth('birthday', '=', now()->month)
             ->whereDay('birthday', '=', now()->day)
             ->where('notified', 0)
             ->get();
 
-        Employer::whereMonth('birthday', '!=', now()->month)
+        Employer::where('status', '!=', 'inactivo')
+            ->whereMonth('birthday', '!=', now()->month)
             ->whereDay('birthday', '!=', now()->day)
             ->update(['notified' => 0]);
 
