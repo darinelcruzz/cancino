@@ -45,7 +45,7 @@
                                     !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Field::select('store_id', $storesArray, $employer->store_id, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
+                                    {!! Field::select('store_id', $allStoresArray, $employer->store_id, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
                                 </div>
                             </div>
 

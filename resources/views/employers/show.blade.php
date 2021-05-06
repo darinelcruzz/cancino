@@ -94,6 +94,30 @@
 
         <a href="{{ route('employers.index') }}" class="btn btn-primary btn-sm btn-block"><i class="fa fa-backward"></i>&nbsp;&nbsp;REGRESAR</a>
     </div>
+    @if (isAdmin())
+        <div class="col-md-4">
+            <color-box title="Editar" color="success" button collapsed>
+                {!! Form::open(['method' => 'POST', 'route' => ['employers.update', $employer], 'enctype' => 'multipart/form-data']) !!}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {!! Field::select('commision',
+                                ['0' => 'No', '1' => 'Normal', '2' => 'Extraordinario'],
+                                $employer->commision, ['empty' => 'Seleccione el tipo', 'tpl' => 'lte/withicon'], ['icon' => 'business-time'])
+                            !!}
+                        </div>
+                        <div class="col-md-12">
+                            {!! Field::select('store_id',
+                                $allStoresArray,
+                                $employer->store_id, ['empty' => 'Seleccione el tipo', 'tpl' => 'lte/withicon'], ['icon' => 'store'])
+                            !!}
+                        </div>
+                    </div>
+                    <hr>
+                    {!! Form::submit('GUARDAR CAMBIOS', ['class' => 'btn btn-success btn-block']) !!}
+                {!! Form::close() !!}
+            </color-box>
+        </div>
+    @endif
 </div>
 
 @endsection
