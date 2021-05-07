@@ -50,6 +50,7 @@
                             <table id="example1" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Fecha</th>
                                         <th>Tipo</th>
                                         <th>Cantidad</th>
@@ -59,12 +60,13 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach($supply->movements()->take(10)->get() as $movement)
+                                    @foreach($supply->movements()->orderBy('id', 'desc')->take(20)->get() as $movement)
                                         <tr>
+                                            <td>{{ $movement->id }}</td>
                                             <td>{{ $movement->created_at->format('d/m/Y') }}</td>
-                                            <td>{{ ucfirst($movement->type) }}</td>
+                                            <td>{{ ucfirst($movement->type) }} | {{ $movement->movable_id }}</td>
                                             <td>{{ $movement->quantity }}</td>
-                                            <td>{{ $movement->destination->id != 3 ? $movement->destination->name : 'Tapachula'}}</td>
+                                            <td>{{ $movement->type != 'transferencia' ? $movement->destination->name : 'Bodega Tapachula'}}</td>
                                             <td>{{ fnumber($movement->price) }}</td>
                                         </tr>
                                     @endforeach
