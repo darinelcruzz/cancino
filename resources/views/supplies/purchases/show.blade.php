@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <color-box title="Compra #{{ $supply_purchase->id }} de insumos" color="vks">
 
                 <div class="table-responsive">
@@ -40,6 +40,27 @@
                 </div>
             </color-box>
         </div>
-        
+        <div class="col-md-3">
+            <color-box title="Datos" color="vks">
+
+                <div class="table-responsive">
+                    <table id="example1" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Proveedor</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $supply_purchase->provider->name }}</td>
+                            <td>{{ fdate($supply_purchase->purchased_at, 'd-M-y', 'Y-m-d') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </color-box>
+        </div>
+
     </div>
 @endsection

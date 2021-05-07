@@ -47,13 +47,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table id="example1" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Tipo</th>
                                         <th>Cantidad</th>
                                         <th>Tienda</th>
+                                        <th>Precio</th>
                                     </tr>
                                 </thead>
 
@@ -64,6 +65,7 @@
                                             <td>{{ ucfirst($movement->type) }}</td>
                                             <td>{{ $movement->quantity }}</td>
                                             <td>{{ $movement->destination->id != 3 ? $movement->destination->name : 'Tapachula'}}</td>
+                                            <td>{{ fnumber($movement->price) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -73,6 +75,6 @@
                 </div>
             </color-box>
         </div>
-        
+
     </div>
 @endsection

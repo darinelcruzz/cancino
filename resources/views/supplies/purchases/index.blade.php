@@ -26,8 +26,8 @@
                             <th>Fecha</th>
                             <th>Proveedor</th>
                             <th>Importe</th>
-                            <th>Estado</th>
-                            <th>Usuario</th>
+                            {{-- <th>Estado</th>
+                            <th>Usuario</th> --}}
                         </tr>
                     </thead>
 
@@ -43,11 +43,11 @@
                                         @endif
                                     </dropdown>
                                 </td>
-                                <td>{{ $supply_purchase->purchased_at }}</td>
+                                <td>{{ fdate($supply_purchase->purchased_at, 'd-M-y', 'Y-m-d') }}</td>
                                 <td>{{ $supply_purchase->provider->social }}</td>
                                 <td>{{ number_format($supply_purchase->amount, 2) }}</td>
-                                <td><span class="label label-{{ $supply_purchase->status == 'pendiente' ? 'warning': 'success'}}">{{ strtoupper($supply_purchase->status) }}</span></td>
-                                <td>{{ $supply_purchase->user->name }}</td>
+                                {{-- <td><span class="label label-{{ $supply_purchase->status == 'pendiente' ? 'warning': 'success'}}">{{ strtoupper($supply_purchase->status) }}</span></td>
+                                <td>{{ $supply_purchase->user->name }}</td> --}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -55,6 +55,6 @@
                 </div>
             </color-box>
         </div>
-        
+
     </div>
 @endsection
