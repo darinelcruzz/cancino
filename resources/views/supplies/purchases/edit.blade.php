@@ -14,7 +14,7 @@
                             {!! Field::date('purchased_at', $supply_purchase->purchased_at, ['label' => 'Fecha creación', 'tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'calendar']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::text('provider_id', $supply_purchase->provider->name, ['tpl' => 'lte/withicon', 'disabled' => 'true'], ['icon' => 'truck']) !!}
+                            {!! Field::select('provider_id', $providers, $supply_purchase->provider->id, ['tpl' => 'lte/withicon', 'empty' => 'Seleccione uno'], ['icon' => 'truck']) !!}
                         </div>
                     </div>
 
