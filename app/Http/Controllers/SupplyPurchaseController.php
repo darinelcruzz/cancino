@@ -56,7 +56,10 @@ class SupplyPurchaseController extends Controller
 
         foreach ($request->supplies as $supply) {
             $movement = SupplyMovement::find($supply['id']);
-            $movement->update(['quantity' => $supply['quantity']]);
+            $movement->update([
+                'quantity' => $supply['quantity'],
+                'price' => $supply['price']
+            ]);
         }
 
         return redirect(route('supplies.purchases.show', $supply_purchase));
