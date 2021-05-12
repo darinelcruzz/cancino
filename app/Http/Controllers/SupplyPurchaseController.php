@@ -52,7 +52,7 @@ class SupplyPurchaseController extends Controller
             'amount' => 'required',
         ]);
 
-        $supply_purchase->update($request->only('amount'));
+        $supply_purchase->update($request->only('amount', 'provider_id'));
 
         foreach ($request->supplies as $supply) {
             $movement = SupplyMovement::find($supply['id']);
