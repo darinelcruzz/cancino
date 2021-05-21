@@ -9,7 +9,7 @@ class DocumentController extends Controller
 {
     function index()
     {
-        $labels = ['Generales', 'Todas', 'Chiapas', 'Soconusco', 'Altos', 'Galerías Tuxtla', 'Galerías Tapachula'];
+        $labels = ['Generales', 'Todas', 'Chiapas', 'Soconusco', 'Altos', 'Galerías Tuxtla', 'Galerías Tapachula', 'Comitán'];
         $route = 'public/documents';
         $folders = Storage::directories($route);
 
