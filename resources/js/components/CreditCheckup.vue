@@ -49,7 +49,7 @@
 
 <script>
 export default {
-    props: ['stored'],
+    props: ['stored', 'store'],
     data(){
         return {
             credit:[],
@@ -76,7 +76,7 @@ export default {
         this.$root.$emit('checkupdate', [5, {method: 'credito', cut: this.round(this.total), diff: 0}])
     },
     created() {
-        axios.get("/api/clients")
+        axios.get("/api/clients/" + this.store)
             .then((response) => {
                 this.clients = response.data
             })

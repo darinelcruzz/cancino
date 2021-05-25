@@ -1,8 +1,12 @@
 <?php
 
-Route::get('clients', function ()
+use Illuminate\Support\Facades\Auth;
+
+Route::get('clients/{store}', function ($store)
 {
-    return App\Client::where('type', '3')->orWhere('type', '2')->get(['business', 'id']);
+	return App\Client::where('store_id', $store)
+    	->whereIn('type', ['3', '2'])
+    	->get(['business', 'id']);
 });
 
 

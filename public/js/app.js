@@ -54567,7 +54567,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['stored'],
+    props: ['stored', 'store'],
     data: function data() {
         return {
             credit: [],
@@ -54599,7 +54599,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        axios.get("/api/clients").then(function (response) {
+        axios.get("/api/clients/" + this.store).then(function (response) {
             _this.clients = response.data;
         });
 

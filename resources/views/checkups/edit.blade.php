@@ -34,7 +34,7 @@
 
                 @if (auth()->user()->store_id <= 3)
                     <tab-content title="Crédito" icon="fa fa-file-invoice">
-                        <credit-checkup :stored="{{ $checkup->toJson() }}"></credit-checkup>
+                        <credit-checkup :stored="{{ $checkup->toJson() }}" :store="{{ getStore()->id }}"></credit-checkup>
                     </tab-content>
 
                     <tab-content title="Pago en línea" icon="fa fa-wifi">

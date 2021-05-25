@@ -33,7 +33,7 @@
                 </tab-content>               
 
                 <tab-content title="Crédito" icon="fa fa-file-invoice">
-                    <credit-checkup></credit-checkup>
+                    <credit-checkup :store="{{ getStore()->id }}"></credit-checkup>
                 </tab-content>
 
                 @if (auth()->user()->store_id <= 3)
