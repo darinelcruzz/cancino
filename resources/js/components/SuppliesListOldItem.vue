@@ -7,8 +7,9 @@
 			<input v-if="editable" :name="'supplies[' + index + '][id]'" type="hidden" :value="supply.id">
 		</td>
 		<td>
-			<!-- {{ supply.price.toFixed(2) }} -->
-			<input type="number" :name="'supplies[' + index + '][price]'" v-model.number="price" @change="update" class="form-control" min="1" step="0.01">
+			
+			<input v-if="editable" type="number" :name="'supplies[' + index + '][price]'" v-model.number="price" @change="update" class="form-control" min="1" step="0.01">
+			<span v-else>{{ supply.price.toFixed(2) }}</span>
 		</td>
 		<td v-if="editable">
 			<div class="input-group input-group-sm">

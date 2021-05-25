@@ -115,6 +115,8 @@ class SupplySaleController extends Controller
             'amount' => 'required',
         ]);
 
+        // dd($request->supplies);
+
         $supply_sale->update($request->only('amount'));
         
         $supply_sale->movements()->createMany($request->supplies);

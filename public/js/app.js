@@ -56506,6 +56506,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: { supply: Object, editable: { type: Boolean, default: false }, index: Number },
@@ -56557,37 +56558,39 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model.number",
-            value: _vm.price,
-            expression: "price",
-            modifiers: { number: true }
-          }
-        ],
-        staticClass: "form-control",
-        attrs: {
-          type: "number",
-          name: "supplies[" + _vm.index + "][price]",
-          min: "1",
-          step: "0.01"
-        },
-        domProps: { value: _vm.price },
-        on: {
-          change: _vm.update,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _vm.editable
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model.number",
+                value: _vm.price,
+                expression: "price",
+                modifiers: { number: true }
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              type: "number",
+              name: "supplies[" + _vm.index + "][price]",
+              min: "1",
+              step: "0.01"
+            },
+            domProps: { value: _vm.price },
+            on: {
+              change: _vm.update,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.price = _vm._n($event.target.value)
+              },
+              blur: function($event) {
+                return _vm.$forceUpdate()
+              }
             }
-            _vm.price = _vm._n($event.target.value)
-          },
-          blur: function($event) {
-            return _vm.$forceUpdate()
-          }
-        }
-      })
+          })
+        : _c("span", [_vm._v(_vm._s(_vm.supply.price.toFixed(2)))])
     ]),
     _vm._v(" "),
     _vm.editable
