@@ -458,8 +458,8 @@ Route::group(['prefix' => 'ventas-de-insumos', 'as' => 'supplies.sales.'], funct
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('marcar-entregada/{supply_sale}', usesas($ctrl, 'mark'))->middleware('admin');
-    Route::get('editar/{supply_sale}', usesas($ctrl, 'edit'))->middleware('admin');
-    Route::post('editar/{supply_sale}', usesas($ctrl, 'update'))->middleware('admin');
+    Route::get('editar/{supply_sale}', usesas($ctrl, 'edit'));
+    Route::post('editar/{supply_sale}', usesas($ctrl, 'update'));
     Route::get('sumar/{supply_sale}', usesas($ctrl, 'add'));
     Route::post('sumar/{supply_sale}', usesas($ctrl, 'persist'));
     Route::post('pagar/{supply_sale}', usesas($ctrl, 'pay'));

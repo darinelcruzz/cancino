@@ -38,14 +38,14 @@
                                 <td>
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="eye" to="{{ route('supplies.purchases.show', $supply_purchase) }}" text="Ver"></ddi>
-                                        <ddi icon="edit" to="{{ route('supplies.purchases.edit', $supply_purchase) }}" text="Editar"></ddi>
+                                        @if(isAdmin())
+                                            <ddi icon="edit" to="{{ route('supplies.purchases.edit', $supply_purchase) }}" text="Editar"></ddi>
+                                        @endif
                                     </dropdown>
                                 </td>
                                 <td>{{ fdate($supply_purchase->purchased_at, 'd-M-y', 'Y-m-d') }}</td>
                                 <td>{{ $supply_purchase->provider->social }}</td>
                                 <td>{{ number_format($supply_purchase->amount, 2) }}</td>
-                                {{-- <td><span class="label label-{{ $supply_purchase->status == 'pendiente' ? 'warning': 'success'}}">{{ strtoupper($supply_purchase->status) }}</span></td>
-                                <td>{{ $supply_purchase->user->name }}</td> --}}
                             </tr>
                         @endforeach
                     </tbody>

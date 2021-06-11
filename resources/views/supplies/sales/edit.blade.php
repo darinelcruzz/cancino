@@ -24,7 +24,11 @@
 
                     <hr>
 
+                    @if($supply_sale->status == 'pendiente')
+
                     {!! Form::submit('E D I T A R', ['class' => 'btn btn-github pull-right']) !!}
+
+                    @endif
 
                 {!! Form::close() !!}
             </color-box>
