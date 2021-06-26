@@ -9,7 +9,7 @@ class SupplyController extends Controller
 {
     function index()
     {
-        $supplies = Supply::all();
+        $supplies = Supply::whereStatus(1)->get();
         return view('supplies.index', compact('supplies'));
     }
 
