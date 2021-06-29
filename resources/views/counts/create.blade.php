@@ -20,6 +20,14 @@
                         <div class="col-md-6">
                             <label for="product_id">Producto</label><br>
                             <v-select label="code" :options="products" v-model="product" placeholder="Seleccione un producto">
+                                <template #search="{ attributes, events }">
+                                  <input
+                                    v-focus
+                                    class="vs__search"
+                                    v-bind="attributes"
+                                    v-on="events"
+                                  >
+                                </template>
                                 <template slot="option" slot-scope="option">
                                     @{{ option.code }}
                                 </template>

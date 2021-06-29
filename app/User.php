@@ -29,6 +29,6 @@ class User extends Authenticatable
 
     function getIsHelperAttribute()
     {
-        return $this->user->store_id == 1 && $this->user->level == 5;
+        return $this->store_id == 1 && $this->level == 5;
     }
 }
