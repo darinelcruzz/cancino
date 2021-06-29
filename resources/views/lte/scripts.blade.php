@@ -75,4 +75,6 @@
       "order":[[ 0 , "desc"]],
       paging: false
     });
+
+    document.getElementById("inputFocus").focus();
 </script>

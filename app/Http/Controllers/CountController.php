@@ -11,13 +11,12 @@ class CountController extends Controller
 {
     function index()
     {
-        // if (isAdmin()) {
-        //     $counts = Count::with('product', 'user', 'location')->get();
-        // }else {
-        //     $counts = Count::where('user_id', auth()->user()->id)->with('product', 'user', 'location')->get();
-        // }
         $inventory = Inventory::all()->last();
-        $counts = Count::where('inventory_id', $inventory->id)->get();
+        if (isAdmin()) {
+            $counts = Count::where('inventory_id', $inventory->id)->get();
+        }else {
+            $counts = Count::where('user_id', auth()->user()->id)->where('inventory_id', $inventory->id)->get();
+        }
 
         return view('counts.index', compact('counts'));
     }
@@ -26,8 +25,9 @@ class CountController extends Controller
     {
         $locations = Location::all()->pluck('name', 'id')->toArray();
         $inventory = Inventory::all()->last();
+        $counts = Count::where('user_id', auth()->user()->id)->where('inventory_id', $inventory->id)->orderBy('id', 'desc')->take(5)->get();
 
-        return view('counts.create', compact('locations', 'mode', 'inventory'));
+        return view('counts.create', compact('locations', 'mode', 'inventory', 'counts'));
     }
 
     function store(Request $request, $mode = 'normal')

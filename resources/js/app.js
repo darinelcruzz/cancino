@@ -105,5 +105,7 @@ const app = new Vue({
           .then(response => {
             this.products = response.data
           })
+
+         this.$refs['selectFocus'].focus();
     }
 });

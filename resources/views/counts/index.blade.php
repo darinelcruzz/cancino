@@ -6,9 +6,11 @@
     <div class="row">
         <div class="col-md-12">
             <color-box color="primary" title="Conteos">
-                <a href="{{ route('count.export') }}" class="btn btn-xs btn-success">
-                    DESCARGAR &nbsp;&nbsp;<i class="fa fa-file-download"></i>
-                </a>
+                @if (auth()->user()->level == 1)
+                    <a href="{{ route('count.export') }}" class="btn btn-xs btn-success">
+                        DESCARGAR &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                    </a>
+                @endif
 
                 <hr>
 
