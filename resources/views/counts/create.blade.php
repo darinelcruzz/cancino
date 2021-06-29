@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="product_id">Producto</label><br>
-                            <v-select label="code" :options="products" v-model="product" placeholder="Seleccione un producto" ref='selectFocus' inputId="inputFocus">
+                            <v-select label="code" :options="products" v-model="product" placeholder="Seleccione un producto">
                                 <template slot="option" slot-scope="option">
                                     @{{ option.code }}
                                 </template>
@@ -52,7 +52,7 @@
 
                         <input type="hidden" name="location_id" value="{{ auth()->user()->location_id }}">
                         <input type="hidden" name="quantity" value="1">
-                        {!! Field::number('product_id', ['label'=> 'Producto', 'tpl' => 'lte/withicon', 'required' => 'true', 'id' => 'inputFocus'], ['icon' => 'barcode']) !!}
+                        {!! Field::number('product_id', ['label'=> 'Producto', 'tpl' => 'lte/withicon', 'required' => 'true', 'v-focus'], ['icon' => 'barcode']) !!}
 
                     @endif
 

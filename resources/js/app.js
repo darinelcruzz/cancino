@@ -28,7 +28,7 @@ Vue.use(VueCurrencyFilter,
   fractionSeparator: '.',
   symbolPosition: 'front',
   symbolSpacing: true
-})
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -69,6 +69,12 @@ Vue.component('supplies-list', require('./components/SuppliesList.vue'));
 Vue.component('supplies-list-item', require('./components/SuppliesListItem.vue'));
 Vue.component('supplies-list-old-item', require('./components/SuppliesListOldItem.vue'));
 
+Vue.directive('focus', {
+    inserted: function (el) {
+        el.focus()
+    }
+});
+
 const app = new Vue({
     el: '#app',
     data: {
@@ -106,6 +112,6 @@ const app = new Vue({
             this.products = response.data
           })
 
-         this.$refs['selectFocus'].focus();
+         // this.$refs['selectFocus'].focus();
     }
 });

@@ -3325,17 +3325,17 @@ Popper.Defaults = Defaults;
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.6.0
+ * jQuery JavaScript Library v3.5.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
  * https://sizzlejs.com/
  *
- * Copyright OpenJS Foundation and other contributors
+ * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2021-03-02T17:08Z
+ * Date: 2020-05-04T22:49Z
  */
 ( function( global, factory ) {
 
@@ -3402,16 +3402,12 @@ var support = {};
 
 var isFunction = function isFunction( obj ) {
 
-		// Support: Chrome <=57, Firefox <=52
-		// In some browsers, typeof returns "function" for HTML <object> elements
-		// (i.e., `typeof document.createElement( "object" ) === "function"`).
-		// We don't want to classify *any* DOM node as a function.
-		// Support: QtWeb <=3.8.5, WebKit <=534.34, wkhtmltopdf tool <=0.12.5
-		// Plus for old WebKit, typeof returns "function" for HTML collections
-		// (e.g., `typeof document.getElementsByTagName("div") === "function"`). (gh-4756)
-		return typeof obj === "function" && typeof obj.nodeType !== "number" &&
-			typeof obj.item !== "function";
-	};
+      // Support: Chrome <=57, Firefox <=52
+      // In some browsers, typeof returns "function" for HTML <object> elements
+      // (i.e., `typeof document.createElement( "object" ) === "function"`).
+      // We don't want to classify *any* DOM node as a function.
+      return typeof obj === "function" && typeof obj.nodeType !== "number";
+  };
 
 
 var isWindow = function isWindow( obj ) {
@@ -3477,7 +3473,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.6.0",
+	version = "3.5.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -3731,7 +3727,7 @@ jQuery.extend( {
 			if ( isArrayLike( Object( arr ) ) ) {
 				jQuery.merge( ret,
 					typeof arr === "string" ?
-						[ arr ] : arr
+					[ arr ] : arr
 				);
 			} else {
 				push.call( ret, arr );
@@ -3826,9 +3822,9 @@ if ( typeof Symbol === "function" ) {
 
 // Populate the class2type map
 jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
-	function( _i, name ) {
-		class2type[ "[object " + name + "]" ] = name.toLowerCase();
-	} );
+function( _i, name ) {
+	class2type[ "[object " + name + "]" ] = name.toLowerCase();
+} );
 
 function isArrayLike( obj ) {
 
@@ -3848,14 +3844,14 @@ function isArrayLike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.3.6
+ * Sizzle CSS Selector Engine v2.3.5
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
  *
- * Date: 2021-02-16
+ * Date: 2020-03-14
  */
 ( function( window ) {
 var i,
@@ -4438,8 +4434,8 @@ support = Sizzle.support = {};
  * @returns {Boolean} True iff elem is a non-HTML XML node
  */
 isXML = Sizzle.isXML = function( elem ) {
-	var namespace = elem && elem.namespaceURI,
-		docElem = elem && ( elem.ownerDocument || elem ).documentElement;
+	var namespace = elem.namespaceURI,
+		docElem = ( elem.ownerDocument || elem ).documentElement;
 
 	// Support: IE <=8
 	// Assume HTML when documentElement doesn't yet exist, such as inside loading iframes
@@ -6354,9 +6350,9 @@ var rneedsContext = jQuery.expr.match.needsContext;
 
 function nodeName( elem, name ) {
 
-	return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+  return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 
-}
+};
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
@@ -7327,8 +7323,8 @@ jQuery.extend( {
 			resolveContexts = Array( i ),
 			resolveValues = slice.call( arguments ),
 
-			// the primary Deferred
-			primary = jQuery.Deferred(),
+			// the master Deferred
+			master = jQuery.Deferred(),
 
 			// subordinate callback factory
 			updateFunc = function( i ) {
@@ -7336,30 +7332,30 @@ jQuery.extend( {
 					resolveContexts[ i ] = this;
 					resolveValues[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
 					if ( !( --remaining ) ) {
-						primary.resolveWith( resolveContexts, resolveValues );
+						master.resolveWith( resolveContexts, resolveValues );
 					}
 				};
 			};
 
 		// Single- and empty arguments are adopted like Promise.resolve
 		if ( remaining <= 1 ) {
-			adoptValue( singleValue, primary.done( updateFunc( i ) ).resolve, primary.reject,
+			adoptValue( singleValue, master.done( updateFunc( i ) ).resolve, master.reject,
 				!remaining );
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
-			if ( primary.state() === "pending" ||
+			if ( master.state() === "pending" ||
 				isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
 
-				return primary.then();
+				return master.then();
 			}
 		}
 
 		// Multiple arguments are aggregated like Promise.all array elements
 		while ( i-- ) {
-			adoptValue( resolveValues[ i ], updateFunc( i ), primary.reject );
+			adoptValue( resolveValues[ i ], updateFunc( i ), master.reject );
 		}
 
-		return primary.promise();
+		return master.promise();
 	}
 } );
 
@@ -7510,8 +7506,8 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 			for ( ; i < len; i++ ) {
 				fn(
 					elems[ i ], key, raw ?
-						value :
-						value.call( elems[ i ], i, fn( elems[ i ], key ) )
+					value :
+					value.call( elems[ i ], i, fn( elems[ i ], key ) )
 				);
 			}
 		}
@@ -8419,7 +8415,10 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 }
 
 
-var rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
+var
+	rkeyEvent = /^key/,
+	rmouseEvent = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
+	rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
 
 function returnTrue() {
 	return true;
@@ -8714,8 +8713,8 @@ jQuery.event = {
 			event = jQuery.event.fix( nativeEvent ),
 
 			handlers = (
-				dataPriv.get( this, "events" ) || Object.create( null )
-			)[ event.type ] || [],
+					dataPriv.get( this, "events" ) || Object.create( null )
+				)[ event.type ] || [],
 			special = jQuery.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
@@ -8839,12 +8838,12 @@ jQuery.event = {
 			get: isFunction( hook ) ?
 				function() {
 					if ( this.originalEvent ) {
-						return hook( this.originalEvent );
+							return hook( this.originalEvent );
 					}
 				} :
 				function() {
 					if ( this.originalEvent ) {
-						return this.originalEvent[ name ];
+							return this.originalEvent[ name ];
 					}
 				},
 
@@ -8983,13 +8982,7 @@ function leverageNative( el, type, expectSync ) {
 						// Cancel the outer synthetic event
 						event.stopImmediatePropagation();
 						event.preventDefault();
-
-						// Support: Chrome 86+
-						// In Chrome, if an element having a focusout handler is blurred by
-						// clicking outside of it, it invokes the handler synchronously. If
-						// that handler calls `.remove()` on the element, the data is cleared,
-						// leaving `result` undefined. We need to guard against this.
-						return result && result.value;
+						return result.value;
 					}
 
 				// If this is an inner synthetic event for an event with a bubbling surrogate
@@ -9154,7 +9147,34 @@ jQuery.each( {
 	targetTouches: true,
 	toElement: true,
 	touches: true,
-	which: true
+
+	which: function( event ) {
+		var button = event.button;
+
+		// Add which for key events
+		if ( event.which == null && rkeyEvent.test( event.type ) ) {
+			return event.charCode != null ? event.charCode : event.keyCode;
+		}
+
+		// Add which for click: 1 === left; 2 === middle; 3 === right
+		if ( !event.which && button !== undefined && rmouseEvent.test( event.type ) ) {
+			if ( button & 1 ) {
+				return 1;
+			}
+
+			if ( button & 2 ) {
+				return 3;
+			}
+
+			if ( button & 4 ) {
+				return 2;
+			}
+
+			return 0;
+		}
+
+		return event.which;
+	}
 }, jQuery.event.addProp );
 
 jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
@@ -9177,12 +9197,6 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 			leverageNative( this, type );
 
 			// Return non-false to allow normal event-path propagation
-			return true;
-		},
-
-		// Suppress native focus or blur as it's already being fired
-		// in leverageNative.
-		_default: function() {
 			return true;
 		},
 
@@ -9853,10 +9867,6 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		// set in CSS while `offset*` properties report correct values.
 		// Behavior in IE 9 is more subtle than in newer versions & it passes
 		// some versions of this test; make sure not to make it pass there!
-		//
-		// Support: Firefox 70+
-		// Only Firefox includes border widths
-		// in computed dimensions. (gh-4529)
 		reliableTrDimensions: function() {
 			var table, tr, trChild, trStyle;
 			if ( reliableTrDimensionsVal == null ) {
@@ -9864,22 +9874,9 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				tr = document.createElement( "tr" );
 				trChild = document.createElement( "div" );
 
-				table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
-				tr.style.cssText = "border:1px solid";
-
-				// Support: Chrome 86+
-				// Height set through cssText does not get applied.
-				// Computed height then comes back as 0.
+				table.style.cssText = "position:absolute;left:-11111px";
 				tr.style.height = "1px";
 				trChild.style.height = "9px";
-
-				// Support: Android 8 Chrome 86+
-				// In our bodyBackground.html iframe,
-				// display for all div elements is set to "inline",
-				// which causes a problem only in Android 8 Chrome 86.
-				// Ensuring the div is display: block
-				// gets around this issue.
-				trChild.style.display = "block";
 
 				documentElement
 					.appendChild( table )
@@ -9887,9 +9884,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 					.appendChild( trChild );
 
 				trStyle = window.getComputedStyle( tr );
-				reliableTrDimensionsVal = ( parseInt( trStyle.height, 10 ) +
-					parseInt( trStyle.borderTopWidth, 10 ) +
-					parseInt( trStyle.borderBottomWidth, 10 ) ) === tr.offsetHeight;
+				reliableTrDimensionsVal = parseInt( trStyle.height ) > 3;
 
 				documentElement.removeChild( table );
 			}
@@ -10353,10 +10348,10 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 					// Running getBoundingClientRect on a disconnected node
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
-					swap( elem, cssShow, function() {
-						return getWidthOrHeight( elem, dimension, extra );
-					} ) :
-					getWidthOrHeight( elem, dimension, extra );
+						swap( elem, cssShow, function() {
+							return getWidthOrHeight( elem, dimension, extra );
+						} ) :
+						getWidthOrHeight( elem, dimension, extra );
 			}
 		},
 
@@ -10415,7 +10410,7 @@ jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 					swap( elem, { marginLeft: 0 }, function() {
 						return elem.getBoundingClientRect().left;
 					} )
-			) + "px";
+				) + "px";
 		}
 	}
 );
@@ -10554,7 +10549,7 @@ Tween.propHooks = {
 			if ( jQuery.fx.step[ tween.prop ] ) {
 				jQuery.fx.step[ tween.prop ]( tween );
 			} else if ( tween.elem.nodeType === 1 && (
-				jQuery.cssHooks[ tween.prop ] ||
+					jQuery.cssHooks[ tween.prop ] ||
 					tween.elem.style[ finalPropName( tween.prop ) ] != null ) ) {
 				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
 			} else {
@@ -10799,7 +10794,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 			anim.done( function() {
 
-				/* eslint-enable no-loop-func */
+			/* eslint-enable no-loop-func */
 
 				// The final step of a "hide" animation is actually hiding the element
 				if ( !hidden ) {
@@ -10919,7 +10914,7 @@ function Animation( elem, properties, options ) {
 			tweens: [],
 			createTween: function( prop, end ) {
 				var tween = jQuery.Tween( elem, animation.opts, prop, end,
-					animation.opts.specialEasing[ prop ] || animation.opts.easing );
+						animation.opts.specialEasing[ prop ] || animation.opts.easing );
 				animation.tweens.push( tween );
 				return tween;
 			},
@@ -11092,8 +11087,7 @@ jQuery.fn.extend( {
 					anim.stop( true );
 				}
 			};
-
-		doAnimation.finish = doAnimation;
+			doAnimation.finish = doAnimation;
 
 		return empty || optall.queue === false ?
 			this.each( doAnimation ) :
@@ -11733,8 +11727,8 @@ jQuery.fn.extend( {
 				if ( this.setAttribute ) {
 					this.setAttribute( "class",
 						className || value === false ?
-							"" :
-							dataPriv.get( this, "__className__" ) || ""
+						"" :
+						dataPriv.get( this, "__className__" ) || ""
 					);
 				}
 			}
@@ -11749,7 +11743,7 @@ jQuery.fn.extend( {
 		while ( ( elem = this[ i++ ] ) ) {
 			if ( elem.nodeType === 1 &&
 				( " " + stripAndCollapse( getClass( elem ) ) + " " ).indexOf( className ) > -1 ) {
-				return true;
+					return true;
 			}
 		}
 
@@ -12039,7 +12033,9 @@ jQuery.extend( jQuery.event, {
 				special.bindType || type;
 
 			// jQuery handler
-			handle = ( dataPriv.get( cur, "events" ) || Object.create( null ) )[ event.type ] &&
+			handle = (
+					dataPriv.get( cur, "events" ) || Object.create( null )
+				)[ event.type ] &&
 				dataPriv.get( cur, "handle" );
 			if ( handle ) {
 				handle.apply( cur, data );
@@ -12186,7 +12182,7 @@ var rquery = ( /\?/ );
 
 // Cross-browser xml parsing
 jQuery.parseXML = function( data ) {
-	var xml, parserErrorElem;
+	var xml;
 	if ( !data || typeof data !== "string" ) {
 		return null;
 	}
@@ -12195,17 +12191,12 @@ jQuery.parseXML = function( data ) {
 	// IE throws on parseFromString with invalid input.
 	try {
 		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
-	} catch ( e ) {}
+	} catch ( e ) {
+		xml = undefined;
+	}
 
-	parserErrorElem = xml && xml.getElementsByTagName( "parsererror" )[ 0 ];
-	if ( !xml || parserErrorElem ) {
-		jQuery.error( "Invalid XML: " + (
-			parserErrorElem ?
-				jQuery.map( parserErrorElem.childNodes, function( el ) {
-					return el.textContent;
-				} ).join( "\n" ) :
-				data
-		) );
+	if ( !xml || xml.getElementsByTagName( "parsererror" ).length ) {
+		jQuery.error( "Invalid XML: " + data );
 	}
 	return xml;
 };
@@ -12306,14 +12297,16 @@ jQuery.fn.extend( {
 			// Can add propHook for "elements" to filter or add form elements
 			var elements = jQuery.prop( this, "elements" );
 			return elements ? jQuery.makeArray( elements ) : this;
-		} ).filter( function() {
+		} )
+		.filter( function() {
 			var type = this.type;
 
 			// Use .is( ":disabled" ) so that fieldset[disabled] works
 			return this.name && !jQuery( this ).is( ":disabled" ) &&
 				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
 				( this.checked || !rcheckableType.test( type ) );
-		} ).map( function( _i, elem ) {
+		} )
+		.map( function( _i, elem ) {
 			var val = jQuery( this ).val();
 
 			if ( val == null ) {
@@ -12366,8 +12359,7 @@ var
 
 	// Anchor tag for parsing the document origin
 	originAnchor = document.createElement( "a" );
-
-originAnchor.href = location.href;
+	originAnchor.href = location.href;
 
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
@@ -12748,8 +12740,8 @@ jQuery.extend( {
 			// Context for global events is callbackContext if it is a DOM node or jQuery collection
 			globalEventContext = s.context &&
 				( callbackContext.nodeType || callbackContext.jquery ) ?
-				jQuery( callbackContext ) :
-				jQuery.event,
+					jQuery( callbackContext ) :
+					jQuery.event,
 
 			// Deferreds
 			deferred = jQuery.Deferred(),
@@ -13061,10 +13053,8 @@ jQuery.extend( {
 				response = ajaxHandleResponses( s, jqXHR, responses );
 			}
 
-			// Use a noop converter for missing script but not if jsonp
-			if ( !isSuccess &&
-				jQuery.inArray( "script", s.dataTypes ) > -1 &&
-				jQuery.inArray( "json", s.dataTypes ) < 0 ) {
+			// Use a noop converter for missing script
+			if ( !isSuccess && jQuery.inArray( "script", s.dataTypes ) > -1 ) {
 				s.converters[ "text script" ] = function() {};
 			}
 
@@ -13802,6 +13792,12 @@ jQuery.offset = {
 			options.using.call( elem, props );
 
 		} else {
+			if ( typeof props.top === "number" ) {
+				props.top += "px";
+			}
+			if ( typeof props.left === "number" ) {
+				props.left += "px";
+			}
 			curElem.css( props );
 		}
 	}
@@ -13970,11 +13966,8 @@ jQuery.each( [ "top", "left" ], function( _i, prop ) {
 
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
-	jQuery.each( {
-		padding: "inner" + name,
-		content: type,
-		"": "outer" + name
-	}, function( defaultExtra, funcName ) {
+	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
+		function( defaultExtra, funcName ) {
 
 		// Margin is only for outerHeight, outerWidth
 		jQuery.fn[ funcName ] = function( margin, value ) {
@@ -14059,8 +14052,7 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.each(
-	( "blur focus focusin focusout resize scroll click dblclick " +
+jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
 	function( _i, name ) {
@@ -14071,8 +14063,7 @@ jQuery.each(
 				this.on( name, null, data, fn ) :
 				this.trigger( name );
 		};
-	}
-);
+	} );
 
 
 
@@ -14982,6 +14973,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('supplies-list', __webpack
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('supplies-list-item', __webpack_require__(133));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('supplies-list-old-item', __webpack_require__(136));
 
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.directive('focus', {
+  inserted: function inserted(el) {
+    el.focus();
+  }
+});
+
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
   data: {
@@ -15020,7 +15017,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
       _this.products = response.data;
     });
 
-    this.$refs['selectFocus'].focus();
+    // this.$refs['selectFocus'].focus();
   }
 });
 
@@ -15103,15 +15100,14 @@ if (token) {
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.21';
+  var VERSION = '4.17.20';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
 
   /** Error message constants. */
   var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
-      FUNC_ERROR_TEXT = 'Expected a function',
-      INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
+      FUNC_ERROR_TEXT = 'Expected a function';
 
   /** Used to stand-in for `undefined` hash values. */
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -15244,11 +15240,10 @@ if (token) {
   var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
       reHasRegExpChar = RegExp(reRegExpChar.source);
 
-  /** Used to match leading whitespace. */
-  var reTrimStart = /^\s+/;
-
-  /** Used to match a single whitespace character. */
-  var reWhitespace = /\s/;
+  /** Used to match leading and trailing whitespace. */
+  var reTrim = /^\s+|\s+$/g,
+      reTrimStart = /^\s+/,
+      reTrimEnd = /\s+$/;
 
   /** Used to match wrap detail comments. */
   var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
@@ -15257,18 +15252,6 @@ if (token) {
 
   /** Used to match words composed of alphanumeric characters. */
   var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
-
-  /**
-   * Used to validate the `validate` option in `_.template` variable.
-   *
-   * Forbids characters which could potentially change the meaning of the function argument definition:
-   * - "()," (modification of function parameters)
-   * - "=" (default value)
-   * - "[]{}" (destructuring of function parameters)
-   * - "/" (beginning of a comment)
-   * - whitespace
-   */
-  var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
 
   /** Used to match backslashes in property paths. */
   var reEscapeChar = /\\(\\)?/g;
@@ -16099,19 +16082,6 @@ if (token) {
   }
 
   /**
-   * The base implementation of `_.trim`.
-   *
-   * @private
-   * @param {string} string The string to trim.
-   * @returns {string} Returns the trimmed string.
-   */
-  function baseTrim(string) {
-    return string
-      ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
-      : string;
-  }
-
-  /**
    * The base implementation of `_.unary` without support for storing metadata.
    *
    * @private
@@ -16442,21 +16412,6 @@ if (token) {
     return hasUnicode(string)
       ? unicodeToArray(string)
       : asciiToArray(string);
-  }
-
-  /**
-   * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
-   * character of `string`.
-   *
-   * @private
-   * @param {string} string The string to inspect.
-   * @returns {number} Returns the index of the last non-whitespace character.
-   */
-  function trimmedEndIndex(string) {
-    var index = string.length;
-
-    while (index-- && reWhitespace.test(string.charAt(index))) {}
-    return index;
   }
 
   /**
@@ -27627,7 +27582,7 @@ if (token) {
       if (typeof value != 'string') {
         return value === 0 ? value : +value;
       }
-      value = baseTrim(value);
+      value = value.replace(reTrim, '');
       var isBinary = reIsBinary.test(value);
       return (isBinary || reIsOctal.test(value))
         ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -29999,12 +29954,6 @@ if (token) {
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
-      // Throw an error if a forbidden character was found in `variable`, to prevent
-      // potential command injection attacks.
-      else if (reForbiddenIdentifierChars.test(variable)) {
-        throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
-      }
-
       // Cleanup code by stripping empty strings.
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
         .replace(reEmptyStringMiddle, '$1')
@@ -30118,7 +30067,7 @@ if (token) {
     function trim(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return baseTrim(string);
+        return string.replace(reTrim, '');
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -30153,7 +30102,7 @@ if (token) {
     function trimEnd(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.slice(0, trimmedEndIndex(string) + 1);
+        return string.replace(reTrimEnd, '');
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -37609,8 +37558,8 @@ module.exports = function spread(callback) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.14
- * (c) 2014-2021 Evan You
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 
@@ -39310,14 +39259,13 @@ function assertProp (
       type = [type];
     }
     for (var i = 0; i < type.length && !valid; i++) {
-      var assertedType = assertType(value, type[i], vm);
+      var assertedType = assertType(value, type[i]);
       expectedTypes.push(assertedType.expectedType || '');
       valid = assertedType.valid;
     }
   }
 
-  var haveExpectedTypes = expectedTypes.some(function (t) { return t; });
-  if (!valid && haveExpectedTypes) {
+  if (!valid) {
     warn(
       getInvalidTypeMessage(name, value, expectedTypes),
       vm
@@ -39335,9 +39283,9 @@ function assertProp (
   }
 }
 
-var simpleCheckRE = /^(String|Number|Boolean|Function|Symbol|BigInt)$/;
+var simpleCheckRE = /^(String|Number|Boolean|Function|Symbol)$/;
 
-function assertType (value, type, vm) {
+function assertType (value, type) {
   var valid;
   var expectedType = getType(type);
   if (simpleCheckRE.test(expectedType)) {
@@ -39352,12 +39300,7 @@ function assertType (value, type, vm) {
   } else if (expectedType === 'Array') {
     valid = Array.isArray(value);
   } else {
-    try {
-      valid = value instanceof type;
-    } catch (e) {
-      warn('Invalid prop type: "' + String(type) + '" is not a constructor', vm);
-      valid = false;
-    }
+    valid = value instanceof type;
   }
   return {
     valid: valid,
@@ -39365,15 +39308,13 @@ function assertType (value, type, vm) {
   }
 }
 
-var functionTypeCheckRE = /^\s*function (\w+)/;
-
 /**
  * Use function string name to check built-in types,
  * because a simple equality check will fail when running
  * across different vms / iframes.
  */
 function getType (fn) {
-  var match = fn && fn.toString().match(functionTypeCheckRE);
+  var match = fn && fn.toString().match(/^\s*function (\w+)/);
   return match ? match[1] : ''
 }
 
@@ -39398,19 +39339,18 @@ function getInvalidTypeMessage (name, value, expectedTypes) {
     " Expected " + (expectedTypes.map(capitalize).join(', '));
   var expectedType = expectedTypes[0];
   var receivedType = toRawType(value);
+  var expectedValue = styleValue(value, expectedType);
+  var receivedValue = styleValue(value, receivedType);
   // check if we need to specify expected value
-  if (
-    expectedTypes.length === 1 &&
-    isExplicable(expectedType) &&
-    isExplicable(typeof value) &&
-    !isBoolean(expectedType, receivedType)
-  ) {
-    message += " with value " + (styleValue(value, expectedType));
+  if (expectedTypes.length === 1 &&
+      isExplicable(expectedType) &&
+      !isBoolean(expectedType, receivedType)) {
+    message += " with value " + expectedValue;
   }
   message += ", got " + receivedType + " ";
   // check if we need to specify received value
   if (isExplicable(receivedType)) {
-    message += "with value " + (styleValue(value, receivedType)) + ".";
+    message += "with value " + receivedValue + ".";
   }
   return message
 }
@@ -39425,9 +39365,9 @@ function styleValue (value, type) {
   }
 }
 
-var EXPLICABLE_TYPES = ['string', 'number', 'boolean'];
 function isExplicable (value) {
-  return EXPLICABLE_TYPES.some(function (elem) { return value.toLowerCase() === elem; })
+  var explicitTypes = ['string', 'number', 'boolean'];
+  return explicitTypes.some(function (elem) { return value.toLowerCase() === elem; })
 }
 
 function isBoolean () {
@@ -39654,7 +39594,7 @@ var initProxy;
   var allowedGlobals = makeMap(
     'Infinity,undefined,NaN,isFinite,isNaN,' +
     'parseFloat,parseInt,decodeURI,decodeURIComponent,encodeURI,encodeURIComponent,' +
-    'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,BigInt,' +
+    'Math,Number,Date,Array,Object,Boolean,String,RegExp,Map,Set,JSON,Intl,' +
     'require' // for Webpack/Browserify
   );
 
@@ -40157,12 +40097,6 @@ function isWhitespace (node) {
 
 /*  */
 
-function isAsyncPlaceholder (node) {
-  return node.isComment && node.asyncFactory
-}
-
-/*  */
-
 function normalizeScopedSlots (
   slots,
   normalSlots,
@@ -40219,10 +40153,9 @@ function normalizeScopedSlot(normalSlots, key, fn) {
     res = res && typeof res === 'object' && !Array.isArray(res)
       ? [res] // single vnode
       : normalizeChildren(res);
-    var vnode = res && res[0];
     return res && (
-      !vnode ||
-      (res.length === 1 && vnode.isComment && !isAsyncPlaceholder(vnode)) // #9658, #10391
+      res.length === 0 ||
+      (res.length === 1 && res[0].isComment) // #9658
     ) ? undefined
       : res
   };
@@ -40295,28 +40228,26 @@ function renderList (
  */
 function renderSlot (
   name,
-  fallbackRender,
+  fallback,
   props,
   bindObject
 ) {
   var scopedSlotFn = this.$scopedSlots[name];
   var nodes;
-  if (scopedSlotFn) {
-    // scoped slot
+  if (scopedSlotFn) { // scoped slot
     props = props || {};
     if (bindObject) {
       if (!isObject(bindObject)) {
-        warn('slot v-bind without argument expects an Object', this);
+        warn(
+          'slot v-bind without argument expects an Object',
+          this
+        );
       }
       props = extend(extend({}, bindObject), props);
     }
-    nodes =
-      scopedSlotFn(props) ||
-      (typeof fallbackRender === 'function' ? fallbackRender() : fallbackRender);
+    nodes = scopedSlotFn(props) || fallback;
   } else {
-    nodes =
-      this.$slots[name] ||
-      (typeof fallbackRender === 'function' ? fallbackRender() : fallbackRender);
+    nodes = this.$slots[name] || fallback;
   }
 
   var target = props && props.slot;
@@ -40366,7 +40297,6 @@ function checkKeyCodes (
   } else if (eventKeyName) {
     return hyphenate(eventKeyName) !== key
   }
-  return eventKeyCode === undefined
 }
 
 /*  */
@@ -40898,10 +40828,8 @@ function createComponent (
 }
 
 function createComponentInstanceForVnode (
-  // we know it's MountedComponentVNode but flow doesn't
-  vnode,
-  // activeInstance in lifecycle state
-  parent
+  vnode, // we know it's MountedComponentVNode but flow doesn't
+  parent // activeInstance in lifecycle state
 ) {
   var options = {
     _isComponent: true,
@@ -41040,7 +40968,7 @@ function _createElement (
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
     if (config.isReservedTag(tag)) {
       // platform built-in elements
-      if (isDef(data) && isDef(data.nativeOn) && data.tag !== 'component') {
+      if (isDef(data) && isDef(data.nativeOn)) {
         warn(
           ("The .native modifier for v-on is only valid on components but it was used on <" + tag + ">."),
           context
@@ -41362,6 +41290,12 @@ function resolveAsyncComponent (
       ? factory.loadingComp
       : factory.resolved
   }
+}
+
+/*  */
+
+function isAsyncPlaceholder (node) {
+  return node.isComment && node.asyncFactory
 }
 
 /*  */
@@ -41732,8 +41666,7 @@ function updateChildComponent (
   var hasDynamicScopedSlot = !!(
     (newScopedSlots && !newScopedSlots.$stable) ||
     (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
-    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key) ||
-    (!newScopedSlots && vm.$scopedSlots.$key)
+    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
   );
 
   // Any static slot children from the parent may have changed during parent's
@@ -42185,8 +42118,11 @@ Watcher.prototype.run = function run () {
       var oldValue = this.value;
       this.value = value;
       if (this.user) {
-        var info = "callback for watcher \"" + (this.expression) + "\"";
-        invokeWithErrorHandling(this.cb, this.vm, [value, oldValue], this.vm, info);
+        try {
+          this.cb.call(this.vm, value, oldValue);
+        } catch (e) {
+          handleError(e, this.vm, ("callback for watcher \"" + (this.expression) + "\""));
+        }
       } else {
         this.cb.call(this.vm, value, oldValue);
       }
@@ -42408,8 +42344,6 @@ function initComputed (vm, computed) {
         warn(("The computed property \"" + key + "\" is already defined in data."), vm);
       } else if (vm.$options.props && key in vm.$options.props) {
         warn(("The computed property \"" + key + "\" is already defined as a prop."), vm);
-      } else if (vm.$options.methods && key in vm.$options.methods) {
-        warn(("The computed property \"" + key + "\" is already defined as a method."), vm);
       }
     }
   }
@@ -42562,10 +42496,11 @@ function stateMixin (Vue) {
     options.user = true;
     var watcher = new Watcher(vm, expOrFn, cb, options);
     if (options.immediate) {
-      var info = "callback for immediate watcher \"" + (watcher.expression) + "\"";
-      pushTarget();
-      invokeWithErrorHandling(cb, vm, [watcher.value], vm, info);
-      popTarget();
+      try {
+        cb.call(vm, watcher.value);
+      } catch (error) {
+        handleError(error, vm, ("callback for immediate watcher \"" + (watcher.expression) + "\""));
+      }
     }
     return function unwatchFn () {
       watcher.teardown();
@@ -42863,8 +42798,6 @@ function initAssetRegisters (Vue) {
 
 
 
-
-
 function getComponentName (opts) {
   return opts && (opts.Ctor.options.name || opts.tag)
 }
@@ -42886,9 +42819,9 @@ function pruneCache (keepAliveInstance, filter) {
   var keys = keepAliveInstance.keys;
   var _vnode = keepAliveInstance._vnode;
   for (var key in cache) {
-    var entry = cache[key];
-    if (entry) {
-      var name = entry.name;
+    var cachedNode = cache[key];
+    if (cachedNode) {
+      var name = getComponentName(cachedNode.componentOptions);
       if (name && !filter(name)) {
         pruneCacheEntry(cache, key, keys, _vnode);
       }
@@ -42902,9 +42835,9 @@ function pruneCacheEntry (
   keys,
   current
 ) {
-  var entry = cache[key];
-  if (entry && (!current || entry.tag !== current.tag)) {
-    entry.componentInstance.$destroy();
+  var cached$$1 = cache[key];
+  if (cached$$1 && (!current || cached$$1.tag !== current.tag)) {
+    cached$$1.componentInstance.$destroy();
   }
   cache[key] = null;
   remove(keys, key);
@@ -42922,32 +42855,6 @@ var KeepAlive = {
     max: [String, Number]
   },
 
-  methods: {
-    cacheVNode: function cacheVNode() {
-      var ref = this;
-      var cache = ref.cache;
-      var keys = ref.keys;
-      var vnodeToCache = ref.vnodeToCache;
-      var keyToCache = ref.keyToCache;
-      if (vnodeToCache) {
-        var tag = vnodeToCache.tag;
-        var componentInstance = vnodeToCache.componentInstance;
-        var componentOptions = vnodeToCache.componentOptions;
-        cache[keyToCache] = {
-          name: getComponentName(componentOptions),
-          tag: tag,
-          componentInstance: componentInstance,
-        };
-        keys.push(keyToCache);
-        // prune oldest entry
-        if (this.max && keys.length > parseInt(this.max)) {
-          pruneCacheEntry(cache, keys[0], keys, this._vnode);
-        }
-        this.vnodeToCache = null;
-      }
-    }
-  },
-
   created: function created () {
     this.cache = Object.create(null);
     this.keys = [];
@@ -42962,17 +42869,12 @@ var KeepAlive = {
   mounted: function mounted () {
     var this$1 = this;
 
-    this.cacheVNode();
     this.$watch('include', function (val) {
       pruneCache(this$1, function (name) { return matches(val, name); });
     });
     this.$watch('exclude', function (val) {
       pruneCache(this$1, function (name) { return !matches(val, name); });
     });
-  },
-
-  updated: function updated () {
-    this.cacheVNode();
   },
 
   render: function render () {
@@ -43008,9 +42910,12 @@ var KeepAlive = {
         remove(keys, key);
         keys.push(key);
       } else {
-        // delay setting the cache until update
-        this.vnodeToCache = vnode;
-        this.keyToCache = key;
+        cache[key] = vnode;
+        keys.push(key);
+        // prune oldest entry
+        if (this.max && keys.length > parseInt(this.max)) {
+          pruneCacheEntry(cache, keys[0], keys, this._vnode);
+        }
       }
 
       vnode.data.keepAlive = true;
@@ -43093,7 +42998,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.14';
+Vue.version = '2.6.12';
 
 /*  */
 
@@ -43130,7 +43035,7 @@ var isBooleanAttr = makeMap(
   'default,defaultchecked,defaultmuted,defaultselected,defer,disabled,' +
   'enabled,formnovalidate,hidden,indeterminate,inert,ismap,itemscope,loop,multiple,' +
   'muted,nohref,noresize,noshade,novalidate,nowrap,open,pauseonexit,readonly,' +
-  'required,reversed,scoped,seamless,selected,sortable,' +
+  'required,reversed,scoped,seamless,selected,sortable,translate,' +
   'truespeed,typemustmatch,visible'
 );
 
@@ -43254,7 +43159,7 @@ var isHTMLTag = makeMap(
 // contain child elements.
 var isSVG = makeMap(
   'svg,animate,circle,clippath,cursor,defs,desc,ellipse,filter,font-face,' +
-  'foreignobject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
+  'foreignObject,g,glyph,image,line,marker,mask,missing-glyph,path,pattern,' +
   'polygon,polyline,rect,switch,symbol,text,textpath,tspan,use,view',
   true
 );
@@ -43459,8 +43364,7 @@ var hooks = ['create', 'activate', 'update', 'remove', 'destroy'];
 
 function sameVnode (a, b) {
   return (
-    a.key === b.key &&
-    a.asyncFactory === b.asyncFactory && (
+    a.key === b.key && (
       (
         a.tag === b.tag &&
         a.isComment === b.isComment &&
@@ -43468,6 +43372,7 @@ function sameVnode (a, b) {
         sameInputType(a, b)
       ) || (
         isTrue(a.isAsyncPlaceholder) &&
+        a.asyncFactory === b.asyncFactory &&
         isUndef(b.asyncFactory.error)
       )
     )
@@ -44355,7 +44260,7 @@ function updateAttrs (oldVnode, vnode) {
     cur = attrs[key];
     old = oldAttrs[key];
     if (old !== cur) {
-      setAttr(elm, key, cur, vnode.data.pre);
+      setAttr(elm, key, cur);
     }
   }
   // #4391: in IE9, setting type can reset value for input[type=radio]
@@ -44375,8 +44280,8 @@ function updateAttrs (oldVnode, vnode) {
   }
 }
 
-function setAttr (el, key, value, isInPre) {
-  if (isInPre || el.tagName.indexOf('-') > -1) {
+function setAttr (el, key, value) {
+  if (el.tagName.indexOf('-') > -1) {
     baseSetAttr(el, key, value);
   } else if (isBooleanAttr(key)) {
     // set attribute for blank value
@@ -46897,7 +46802,7 @@ var isNonPhrasingTag = makeMap(
 
 // Regular Expressions for parsing tags and attributes
 var attribute = /^\s*([^\s"'<>\/=]+)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
-var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+?\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
+var dynamicArgAttribute = /^\s*((?:v-[\w-]+:|@|:|#)\[[^=]+\][^\s"'<>\/=]*)(?:\s*(=)\s*(?:"([^"]*)"+|'([^']*)'+|([^\s"'=<>`]+)))?/;
 var ncname = "[a-zA-Z_][\\-\\.0-9_a-zA-Z" + (unicodeRegExp.source) + "]*";
 var qnameCapture = "((?:" + ncname + "\\:)?" + ncname + ")";
 var startTagOpen = new RegExp(("^<" + qnameCapture));
@@ -47202,7 +47107,7 @@ var modifierRE = /\.[^.\]]+(?=[^\]]*$)/g;
 var slotRE = /^v-slot(:|$)|^#/;
 
 var lineBreakRE = /[\r\n]/;
-var whitespaceRE$1 = /[ \f\t\r\n]+/g;
+var whitespaceRE$1 = /\s+/g;
 
 var invalidAttributeRE = /[\s"'<>\/=]/;
 
@@ -47250,12 +47155,8 @@ function parse (
   platformMustUseProp = options.mustUseProp || no;
   platformGetTagNamespace = options.getTagNamespace || no;
   var isReservedTag = options.isReservedTag || no;
-  maybeComponent = function (el) { return !!(
-    el.component ||
-    el.attrsMap[':is'] ||
-    el.attrsMap['v-bind:is'] ||
-    !(el.attrsMap.is ? isReservedTag(el.attrsMap.is) : isReservedTag(el.tag))
-  ); };
+  maybeComponent = function (el) { return !!el.component || !isReservedTag(el.tag); };
+
   transforms = pluckModuleFunction(options.modules, 'transformNode');
   preTransforms = pluckModuleFunction(options.modules, 'preTransformNode');
   postTransforms = pluckModuleFunction(options.modules, 'postTransformNode');
@@ -48504,9 +48405,9 @@ function genHandler (handler) {
       code += genModifierCode;
     }
     var handlerCode = isMethodPath
-      ? ("return " + (handler.value) + ".apply(null, arguments)")
+      ? ("return " + (handler.value) + "($event)")
       : isFunctionExpression
-        ? ("return (" + (handler.value) + ").apply(null, arguments)")
+        ? ("return (" + (handler.value) + ")($event)")
         : isFunctionInvocation
           ? ("return " + (handler.value))
           : handler.value;
@@ -48592,8 +48493,7 @@ function generate (
   options
 ) {
   var state = new CodegenState(options);
-  // fix #11483, Root level <script> tags should not be rendered.
-  var code = ast ? (ast.tag === 'script' ? 'null' : genElement(ast, state)) : '_c("div")';
+  var code = ast ? genElement(ast, state) : '_c("div")';
   return {
     render: ("with(this){return " + code + "}"),
     staticRenderFns: state.staticRenderFns
@@ -49055,7 +48955,7 @@ function genComment (comment) {
 function genSlot (el, state) {
   var slotName = el.slotName || '"default"';
   var children = genChildren(el, state);
-  var res = "_t(" + slotName + (children ? (",function(){return " + children + "}") : '');
+  var res = "_t(" + slotName + (children ? ("," + children) : '');
   var attrs = el.attrs || el.dynamicAttrs
     ? genProps((el.attrs || []).concat(el.dynamicAttrs || []).map(function (attr) { return ({
         // slot props are camelized
@@ -51080,7 +50980,7 @@ var content = __webpack_require__(67);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(14)("63a63631", content, false, {});
+var update = __webpack_require__(14)("c1de23d2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -51274,7 +51174,7 @@ var content = __webpack_require__(73);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(14)("03a94420", content, false, {});
+var update = __webpack_require__(14)("359588fa", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -56780,7 +56680,7 @@ if (false) {
 /* 139 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: Node Sass does not yet support your current environment: OS X 64-bit with Unsupported runtime (88)\nFor more information on which environments are supported please see:\nhttps://github.com/sass/node-sass/releases/tag/v4.14.1\n    at module.exports (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/node-sass/lib/binding.js:13:13)\n    at Object.<anonymous> (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/node-sass/lib/index.js:14:35)\n    at Module._compile (node:internal/modules/cjs/loader:1108:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1137:10)\n    at Module.load (node:internal/modules/cjs/loader:973:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:813:14)\n    at Module.require (node:internal/modules/cjs/loader:997:19)\n    at require (node:internal/modules/cjs/helpers:92:18)\n    at Object.<anonymous> (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/sass-loader/lib/loader.js:3:14)\n    at Module._compile (node:internal/modules/cjs/loader:1108:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1137:10)\n    at Module.load (node:internal/modules/cjs/loader:973:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:813:14)\n    at Module.require (node:internal/modules/cjs/loader:997:19)\n    at require (node:internal/modules/cjs/helpers:92:18)\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:18:17)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/NormalModule.js:195:19\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:172:11\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:32:11)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:165:10)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:176:18\n    at loadLoader (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/loadLoader.js:47:3)\n    at iteratePitchingLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:169:2)\n    at runLoaders (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/loader-runner/lib/LoaderRunner.js:365:2)\n    at NormalModule.doBuild (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/NormalModule.js:182:3)\n    at NormalModule.build (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/NormalModule.js:275:15)\n    at Compilation.buildModule (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/Compilation.js:157:10)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/Compilation.js:460:10\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/NormalModuleFactory.js:243:5\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/NormalModuleFactory.js:94:13\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/tapable/lib/Tapable.js:268:11\n    at NormalModuleFactory.<anonymous> (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/CompatibilityPlugin.js:52:5)\n    at NormalModuleFactory.applyPluginsAsyncWaterfall (/Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/tapable/lib/Tapable.js:272:13)\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/NormalModuleFactory.js:69:10\n    at /Applications/XAMPP/xamppfiles/htdocs/cancino/node_modules/webpack/lib/NormalModuleFactory.js:196:7\n    at processTicksAndRejections (node:internal/process/task_queues:76:11)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -76,5 +76,5 @@
       paging: false
     });
 
-    document.getElementById("inputFocus").focus();
+    // document.getElementById("inputFocus").focus();
 </script>
