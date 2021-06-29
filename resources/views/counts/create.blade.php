@@ -11,7 +11,7 @@
     @endif
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7">
             {!! Form::open(['method' => 'POST', 'route' => ['count.store', $mode]]) !!}
                 <color-box title="Agregar conteo en {{ auth()->user()->location->name }}" color="vks" solid>
 
@@ -86,7 +86,10 @@
                 </color-box>
 
             {!! Form::close() !!}
-            <color-box color="primary" title="Historial">
+
+        </div>
+        <div class="col-md-5">
+            <color-box color="primary" title="Últimos 5">
                 <div class="row">
                     <div class="col-md-12">
                         <data-table>
@@ -104,7 +107,6 @@
                     </div>
                 </div>
             </color-box>
-
         </div>
     </div>
 
