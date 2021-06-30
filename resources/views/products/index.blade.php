@@ -36,7 +36,7 @@
                     $all = 0;
                 @endphp
                 <data-table example="1">
-                    {{ drawHeader('modelo', 'descripción', 'código', 'antes', 'después', 'diferencia', 'costo') }}
+                    {{ drawHeader('modelo', 'descripción', 'código', 'antes', 'después', 'diferencia', 'costo', 'valor') }}
                     <template slot="body">
                         @foreach($products as $product)
                             <tr>
@@ -51,6 +51,9 @@
                                 <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->counts->sum('quantity') }}</td>
                                 <td>{{ $product->counts->sum('quantity') - $product->quantity }}</td>
+                                <td>
+                                    {{ number_format($product->price, 2) }}
+                                </td>
                                 <td>
                                     {{ number_format(($product->counts->sum('quantity') - $product->quantity) * $product->price, 2) }}
                                 </td>

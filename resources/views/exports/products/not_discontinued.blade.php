@@ -7,6 +7,7 @@
             <td>Después</td>
             <td>Diferencia</td>
             <td>Costo</td>
+            <td>Valor</td>
         </tr>
     </thead>
 
@@ -23,6 +24,9 @@
             <td>{{ $product->quantity }}</td>
             <td>{{ $product->counts->sum('quantity') }}</td>
             <td>{{ $product->counts->sum('quantity') - $product->quantity }}</td>
+            <td>
+                {{ number_format($product->price, 2) }}
+            </td>
             <td>
                 {{ number_format(($product->counts->sum('quantity') - $product->quantity) * $product->price, 2) }}
             </td>
