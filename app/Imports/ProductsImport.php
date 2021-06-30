@@ -10,23 +10,23 @@ class ProductsImport implements ToCollection
 {
     function collection(Collection $rows)
     {
-        foreach ($rows->splice(1, $rows->count() - 6) as $row) 
+        foreach ($rows->splice(1, $rows->count() - 6) as $row)
         {
             if ($product = Product::where('code', $row[0])->first()) {
                 $product->update([
-                    'status' => $row[3],
-                    'quantity' => $row[4],
-                    'price' => $row[5],
+                    'status' => $row[6],
+                    'quantity' => $row[7],
+                    'price' => $row[8],
                 ]);
             } else {
                 if ($row[3] != 'VAR/FRA') {
                     Product::create([
                         'code' => $row[0],
-                        'description' => $row[1],
-                        'family' => $row[2],
-                        'status' => $row[3],
-                        'quantity' => $row[4],
-                        'price' => $row[5],
+                        'description' => $row[2],
+                        'family' => $row[3],
+                        'status' => $row[6],
+                        'quantity' => $row[7],
+                        'price' => $row[8],
                     ]);
                 }
             }
