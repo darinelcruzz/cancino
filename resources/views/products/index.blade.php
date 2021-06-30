@@ -33,6 +33,7 @@
                 @php
                     $sum = 0;
                     $online = 0;
+                    $all = 0;
                 @endphp
                 <data-table example="1">
                     {{ drawHeader('modelo', 'descripción', 'código', 'antes', 'después', 'diferencia', 'costo') }}
@@ -56,6 +57,7 @@
                             </tr>
                             @php
                                 $sum += ($product->counts->sum('quantity') - $product->quantity) * $product->price;
+                                $all += $product->quantity * $product->price;
                                 $online += $product->status != 'Descontinuado' ? ($product->counts->sum('quantity') - $product->quantity) * $product->price: 0;
                             @endphp
                         @endforeach
@@ -69,6 +71,10 @@
                         <tr>
                             <th colspan="6" style="text-align: right">COSTO TOTAL DIFERENCIAS</th>
                             <td>{{ number_format($sum, 2) }}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="6" style="text-align: right">VALOR INICIAL INVENTARIO</th>
+                            <td>{{ number_format($all, 2) }}</td>
                         </tr>
                     </template>
                 </data-table>
