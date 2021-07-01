@@ -79,13 +79,6 @@ return [
         ],
     ],
 
-    'Tasks' => [
-        'title' => 'Pendientes',
-        'label' => pendingTasksAll(),
-        'icon' => 'fa fa-tasks',
-        'route' => 'helper.tasks'
-    ],
-
     'Employers' => [
         'title' => 'Empleados',
         'icon' => 'fa fa-users',

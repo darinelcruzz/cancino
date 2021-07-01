@@ -47,7 +47,7 @@ return [
 
     'admin' => [
         'title' => 'Admin',
-        'label' => ['warning' => pendingServices() > 0 ? pendingServices(): '', 'danger' => expiredServices() > 0 ? expiredServices(): ''],
+        'label' => ['warning' => pendingServices() > 0 ? pendingServices(): '', 'primary' => printedServices() > 0 ? printedServices(): '', 'danger' => expiredServices() > 0 ? expiredServices(): ''],
         'icon' => 'fa fa-eye',
         'submenu' => [
             'services' => [

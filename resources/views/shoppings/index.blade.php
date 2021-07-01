@@ -24,7 +24,7 @@
     @forelse ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $shoppings->where('store_id', $store->id)->where('status', 'pendiente')->count() }}" button collapsed>
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $shoppings->where('store_id', $store->id)->where('status', 'pendiente')->where('document', '!=', null)->count() }}" button collapsed>
                     <data-table example="{{ $store->id }}">
                         <template slot="header">
                             <tr>
@@ -81,7 +81,7 @@
                                     <td>{{ fdate($note->date_nc, 'd M Y', 'Y-m-d') }}</td>
                                     <td>{{ $note->document }}</td>
                                     <td>
-                                        <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'warning' : 'danger') }}">
+                                        <span class="label label-{{ $note->status == 'aplicada' ? 'success' : ($note->status == 'pendiente' ? 'primary' : 'danger') }}">
                                             {{ ucfirst($note->status) }}
                                         </span>
                                     </td>
@@ -94,8 +94,8 @@
                         <template slot="footer">
                             <tr>
                                 <td colspan="7"></td>
-                                <td align="right"><b>Total</b></td>
-                                <td>{{ fnumber($shoppings->where('store_id', $store->id)->where('type', '!=', 'pronto pago')->where('type', '!=', 'carrito')->sum('amount')) }}</td>
+                                <th>TOTAL</th>
+                                <td align="right">{{ fnumber($shoppings->where('store_id', $store->id)->where('type', '!=', 'pronto pago')->where('type', '!=', 'carrito')->sum('amount')) }}</td>
                             </tr>
                         </template>
                     </data-table>

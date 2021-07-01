@@ -107,7 +107,12 @@ function pendingTasksAll()
 
 function pendingServices()
 {
-    return App\Service::where('status', 'pendiente')->orWhere('status', 'impreso')->count();
+    return App\Service::where('status', 'pendiente')->count();
+}
+
+function printedServices()
+{
+    return App\Service::where('status', 'impreso')->count();
 }
 
 function expiredServices()
@@ -127,7 +132,7 @@ function undefinedShoppings()
 
 function pendingShoppings()
 {
-    return App\Shopping::whereStatus('pendiente')->count();
+    return App\Shopping::where('type', '!=', 'no definido')->whereStatus('pendiente')->count();
 }
 
 function printedShoppings()
