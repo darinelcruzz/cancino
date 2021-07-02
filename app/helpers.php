@@ -120,11 +120,6 @@ function expiredServices()
     return App\Service::where('status', 'vencido')->orWhere('status', 'impreso vencido')->count();
 }
 
-function pendingShoppingsStores()
-{
-    return App\Shopping::whereType('no definido')->count();
-}
-
 function undefinedShoppings()
 {
     return App\Shopping::whereType('no definido')->count();

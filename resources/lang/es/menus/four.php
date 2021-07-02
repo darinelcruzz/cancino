@@ -4,7 +4,7 @@ return [
     'Shoppings' => [
         'title' => 'Compras',
         'icon' => 'fa fa-archive',
-        'label' => undefinedShoppingsStores() > 0 ? undefinedShoppingsStores() : '',
+        'label' => undefinedShoppings() > 0 ? undefinedShoppings(): '',
         'route' => 'shoppings.index'
     ],
 
