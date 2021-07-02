@@ -30,7 +30,12 @@
                                         <td>{!! $checkup->statusLabel !!}</td>
                                         <td>
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
-                                                <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
+                                                {{-- <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi> --}}
+                                                <li>
+                                                    <a href="{{ route('checkup.report', $checkup) }}" target="_blank">
+                                                        <i class="fa fa-file-pdf"></i>Reporte
+                                                    </a>
+                                                </li>
                                                 @if (auth()->user()->level==1)
                                                     <ddi to="{{ route('checkup.edit', $checkup) }}" icon="edit" text="Editar arqueo"></ddi>
                                                     <ddi to="{{ route('sales.edit', $checkup->sale) }}" icon="edit" text="Editar venta"></ddi>

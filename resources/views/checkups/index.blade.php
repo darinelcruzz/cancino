@@ -37,7 +37,11 @@
                                 
                                 <td>
                                     <dropdown icon="cogs" color="{{ $checkup->store->color }}">
-                                        <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi>
+                                        <li>
+                                            <a href="{{ route('checkup.report', $checkup) }}" target="_blank">
+                                                <i class="fa fa-file-pdf"></i>Reporte
+                                            </a>
+                                        </li>
                                     </dropdown>
                                 </td>
                             </tr>

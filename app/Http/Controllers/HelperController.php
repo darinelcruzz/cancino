@@ -12,7 +12,7 @@ class HelperController extends Controller
     function checkups()
     {
         $stores = Store::where('type', '!=', 'c')->get();
-        $checkups = Checkup::where('status', '!=', 2)->get();
+        $checkups = Checkup::where('status', '<', 2)->get();
 
         return view('admin.checkups', compact('checkups', 'stores'));
     }
