@@ -4,9 +4,14 @@
 
 @push('headerTitle')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <a href="{{ route('supplies.create') }}" class="btn btn-github btn-xs pull-left">
                 <i class="fa fa-plus-square"></i>&nbsp;&nbsp;AGREGAR
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="{{ route('supplies.inventory') }}" class="btn btn-github btn-sm pull-right" target="_blank">
+                <i class="fa fa-file-alt"></i>
             </a>
         </div>
         <div class="col-md-4">

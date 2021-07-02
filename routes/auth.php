@@ -15,7 +15,7 @@ Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonC
     Route::get('llenar/fecha/factura', usesas($ctrl, 'invoices'));
     Route::get('agregar', usesas($ctrl, 'create'))->middleware('helper');
     Route::post('agregar', usesas($ctrl, 'store'));
-	  Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
+	Route::get('editar/{shopping}', usesas($ctrl, 'edit'));
     Route::post('editar/{shopping}', usesas($ctrl, 'update'));
     Route::get('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
     Route::post('verificar/{store}', usesas($ctrl, 'verify'))->middleware('helper');
@@ -436,6 +436,7 @@ Route::group(['prefix' => 'insumos', 'as' => 'supplies.'], function () {
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::get('migrar', usesas($ctrl, 'migrate'));
     Route::post('agregar', usesas($ctrl, 'store'));
+    Route::get('imprimir', usesas($ctrl, 'inventory'));
     Route::post('imprimir', usesas($ctrl, 'print'));
     Route::get('editar/{supply}', usesas($ctrl, 'edit'));
     Route::post('editar/{supply}', usesas($ctrl, 'update'));

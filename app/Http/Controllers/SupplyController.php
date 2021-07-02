@@ -13,6 +13,12 @@ class SupplyController extends Controller
         return view('supplies.index', compact('supplies'));
     }
 
+    function inventory()
+    {
+        $supplies = Supply::whereStatus(1)->with('stocks')->get();
+        return view('supplies.inventory', compact('supplies'));
+    }
+
     function create()
     {
         return view('supplies.create');
