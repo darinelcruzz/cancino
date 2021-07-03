@@ -21,15 +21,8 @@ class AccountMovementController extends Controller
 
     function index(Request $request, Store $store = null)
     {
-        if ($store == null) {
-            $store = getStore();
-        }
-
-        $date = $request->date ? $request->date: date('Y-m-d');
-
-        $movements = AccountMovement::where('bank_account_id', $store->bank_account->id)
-            ->get();
-
+        $store = $store ?? getStore();
+        $movements = AccountMovement::where('bank_account_id', $store->bank_account->id)->get();
         return view('account_movements.index', compact('movements'));
     }
 
@@ -56,11 +49,6 @@ class AccountMovementController extends Controller
         AccountMovement::create($attributes);
 
         return redirect(route('account_movements.choose'));
-    }
-
-    function show(AccountMovement $account_movement)
-    {
-
     }
 
     function edit(AccountMovement $accountMovement)
@@ -98,11 +86,6 @@ class AccountMovementController extends Controller
         }
 
         return view('account_movements.import');
-    }
-
-    function destroy(AccountMovement $accountMovement)
-    {
-        //
     }
 
     function fix()

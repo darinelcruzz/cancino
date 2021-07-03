@@ -10,7 +10,6 @@ class ChecklistController extends Controller
     function index($store)
     {
         $checklists = Checklist::where('store_id', $store)->get();
-
         return view('checklists.index', compact('checklists'));
     }
 

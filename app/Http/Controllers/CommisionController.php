@@ -126,9 +126,4 @@ class CommisionController extends Controller
 
         return view('commisions.report', compact('goal', 'past_goal', 'commisions_by_employee', 'commisions_complete'));
     }
-
-    function destroy(Commision $commision)
-    {
-        //
-    }
 }
