@@ -284,7 +284,7 @@
                                 <td>{{ subtotal($item['a']) }}</td>
                                 <td>{{ iva($item['a']) }}</td>
                                 <td>{{ fnumber($item['a']) }}</td>
-                                <td>{{ $options[$item['o']] ?? 'S/E' }}</td>
+                                <td>{{ $options[$item['o'] != null ? $item['o']: 1] }}</td>
                             </tr>
                             @php
                                 $sum = $sum + $item['a'];
