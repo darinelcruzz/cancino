@@ -23,7 +23,7 @@
                                 {!! Field::number('amount', $shopping->amount, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
                             </div>
                             <div class="col-md-6">
-                                {!! Field::date('invoiced_at', date('Y-m-d'), ['label' => 'Fecha factura', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                                {!! Field::date('invoiced_at', $shopping->invoiced_at, ['label' => 'Fecha factura', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                             {!! Field::text('amount', number_format($shopping->amount, 2), ['tpl' => 'lte/withicon', 'disabled'], ['icon' => 'money']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::date('invoiced_at', date('Y-m-d'), ['label' => 'Fecha factura', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                            {!! Field::date('invoiced_at', $shopping->invoiced_at, ['label' => 'Fecha factura', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                         </div>
                     </div>
 

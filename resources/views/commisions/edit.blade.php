@@ -8,24 +8,22 @@
             <color-box title="Agregar ventas de la semana tal de tal mes de tal año "  color="success">
                 {!! Form::open(['method' => 'POST', 'route' => 'commision.update', 'enctype' => 'multipart/form-data']) !!}
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th style="text-align: center;"><h4>Nombre</h4></th>
-                                    <th style="text-align: center;"><h4>Venta</h4></th>
-                                    <th style="text-align: center;"><h4>SterenCard</h4></th>
-                                    <th style="text-align: center;"><h4>Extensiones</h4></th>
-                                    <th style="text-align: center;"><h4>Valor Ext</h4></th>
-                                    <th style="text-align: center;"><h4>Retrasos</h4></th>
-                                    <th style="text-align: center;"><h4>Faltas</h4></th>
+                                    <th style="text-align: left; width: 12%;">NOMBRE</th>
+                                    <th style="text-align: center; width: 22%;">VENTA</th>
+                                    <th style="text-align: center; width: 11%;">STEREN <BR> CARD</th>
+                                    <th style="text-align: center; width: 11%;">EXT</th>
+                                    <th style="text-align: center; width: 22%;">VALOR <br> EXTENSIÓN</th>
+                                    <th style="text-align: center; width: 11%;">RR</th>
+                                    <th style="text-align: center; width: 11%;">FF</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($week as $employer)
                                     <tr>
-                                        <td>
-                                            <h4>{{ $employer->employer->nickname }}</h4>
-                                        </td>
+                                        <th>{{ strtoupper($employer->employer->nickname) }}</th>
                                         <td>
                                             <input class="form-control" type="number" name="sales[{{ $employer->id }}][sale]]" value="{{ $employer->sale ?? 0 }}" step="0.01">
                                         </td>
