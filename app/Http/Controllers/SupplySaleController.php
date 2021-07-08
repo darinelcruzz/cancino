@@ -30,9 +30,9 @@ class SupplySaleController extends Controller
             'amount' => 'required',
         ]);
 
-        SupplySale::create($attributes);
+        $supply_sale = SupplySale::create($attributes);
 
-        return redirect(route('supplies.sales.index'));
+        return redirect(route('supplies.sales.print', $supply_sale));
     }
 
     function show(SupplySale $supply_sale)
