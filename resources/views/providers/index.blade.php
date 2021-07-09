@@ -33,7 +33,7 @@
                                     </dropdown>
                                 </td>
                                 <td>{{ strtoupper($provider->business) }}</td>
-                                <td>{{ $provider->expenses_group->name or 'No pertenece a uno' }}</td>
+                                <td>{{ $provider->expenses_group->name ?? 'No pertenece a uno' }}</td>
                             </tr>
                         @endforeach
                     </template>
