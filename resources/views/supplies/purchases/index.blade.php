@@ -26,8 +26,6 @@
                             <th>Fecha</th>
                             <th>Proveedor</th>
                             <th>Importe</th>
-                            {{-- <th>Estado</th>
-                            <th>Usuario</th> --}}
                         </tr>
                     </thead>
 
@@ -44,7 +42,10 @@
                                     </dropdown>
                                 </td>
                                 <td>{{ fdate($supply_purchase->purchased_at, 'd-M-y', 'Y-m-d') }}</td>
-                                <td>{{ $supply_purchase->provider->social }}</td>
+                                <td>
+                                    <code>{{ $supply_purchase->provider->business }}</code><br>
+                                    {{ $supply_purchase->provider->social }}
+                                </td>
                                 <td>{{ number_format($supply_purchase->amount, 2) }}</td>
                             </tr>
                         @endforeach
