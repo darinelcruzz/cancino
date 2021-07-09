@@ -15,7 +15,7 @@ class SupplyPurchaseController extends Controller
 
     function create()
     {
-        $providers = Provider::where('expenses_group_id', 25)->orWhere('expenses_group_id', 27)->pluck('business', 'id')->toArray();
+        $providers = Provider::where('vks', 1)->pluck('business', 'id')->toArray();
         return view('supplies.purchases.create', compact('providers'));
     }
 

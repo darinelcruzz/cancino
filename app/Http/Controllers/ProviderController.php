@@ -24,6 +24,7 @@ class ProviderController extends Controller
     {
         $validated = $request->validate([
             'expenses_group_id' => 'required',
+            'vks' => 'required',
             'social' => 'required',
             'business' => 'required',
         ]);
@@ -50,6 +51,7 @@ class ProviderController extends Controller
             'expenses_group_id' => 'required',
             'social' => 'required',
             'business' => 'required',
+            'vks' => 'required',
         ]);
 
         $provider->update($validated + ['phone' => '0']);
