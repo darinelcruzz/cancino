@@ -33,7 +33,7 @@ class CommisionController extends Controller
 
         // dd($date);
 
-        $employers = Employer::where('status', '!=', 'inactivo')->where('commision', 1)->where('store_id', $store->id)->get()->pluck('id', 'nickname');
+        $employers = Employer::where('status', '!=', 'inactivo')->where('commision', '>', 0)->where('store_id', $store->id)->get()->pluck('id', 'nickname');
         $goal = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4) - 1)->where('month', substr($date, 5))->get()->last()->sale;
         $now = Goal::where('store_id', $store->id)->where('year', substr($date, 0, 4))->where('month', substr($date, 5))->get()->last();
 
