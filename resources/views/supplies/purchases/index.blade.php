@@ -36,7 +36,7 @@
                                 <td>
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="eye" to="{{ route('supplies.purchases.show', $supply_purchase) }}" text="Ver"></ddi>
-                                        @if(isAdmin())
+                                        @if(isAdmin() || auth()->user()->isHelper)
                                             <ddi icon="edit" to="{{ route('supplies.purchases.edit', $supply_purchase) }}" text="Editar"></ddi>
                                         @endif
                                     </dropdown>

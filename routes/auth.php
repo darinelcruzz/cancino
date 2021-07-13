@@ -448,7 +448,7 @@ Route::group(['prefix' => 'compras-de-insumos', 'as' => 'supplies.purchases.'], 
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-    Route::get('editar/{supply_purchase}', usesas($ctrl, 'edit'));
+    Route::get('editar/{supply_purchase}', usesas($ctrl, 'edit'))->middleware('helper');
     Route::post('editar/{supply_purchase}', usesas($ctrl, 'update'));
     Route::get('{supply_purchase}', usesas($ctrl, 'show'));
 });
