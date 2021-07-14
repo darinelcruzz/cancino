@@ -68,15 +68,16 @@ return [
         ],
     ],
 
+    'providers' => [
+        'title' => ' Proveedores',
+        'icon' => 'fa fa-truck-loading',
+        'route' => 'providers.index'
+    ],
+
     'Commisions' => [
         'title' => 'Comisiones',
         'icon' => 'fa fa-archive',
-        'submenu' => [
-            'create' => [
-                'title' => 'Lista',
-                'route' => 'commision.index',
-            ],
-        ],
+        'route' => 'commision.index',
     ],
 
     'Employers' => [
