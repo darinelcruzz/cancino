@@ -28,7 +28,7 @@
                             !!}                            
                         </div>
                         <div class="col-md-6">
-                            {!! Field::select('type', ['c' => 'Corportativo', 'p' => 'P de algo', 's' => 'Shop'], null,
+                            {!! Field::select('type', ['c' => 'Corportativo', 'p' => 'Profesional', 's' => 'Shop', 'm' => 'Música'], null,
                                 ['tpl' => 'lte/withicon', 'empty' => 'Seleccione un tipo'],
                                 ['icon' => 'sort']) 
                             !!}
