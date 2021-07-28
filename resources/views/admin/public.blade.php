@@ -15,6 +15,7 @@
 
             @foreach($charts as $name)
 
+                @if($name != 'vjc')
                 <color-box title="Ventas {{ ucwords(str_replace('_', ' ', $name)) }}"
                     color="{{ $loop->index < 3 ? 'primary': 'danger' }}">
 
@@ -23,6 +24,7 @@
                     @include('templates/progress', ['num' => $loop->index + 2])
 
                 </color-box>
+                @endif
 
             @endforeach
 
@@ -37,4 +39,5 @@
     {!! $gale_tux->script() !!}
     {!! $gale_tapa->script() !!}
     {!! $comitan->script() !!}
+    {{-- {!! $vjc->script() !!} --}}
 @endsection

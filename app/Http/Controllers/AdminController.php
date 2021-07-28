@@ -177,7 +177,7 @@ class AdminController extends Controller
 
         // dd($sales);
 
-        return view('admin.public', compact('date', 'charts', 'sales', 'points', 'stars', 'goldens', 'chiapas','soconusco','altos','gale_tux','gale_tapa','comitan'));
+        return view('admin.public', compact('date', 'charts', 'sales', 'points', 'stars', 'goldens', 'chiapas','soconusco','altos','gale_tux','gale_tapa','comitan', 'vjc'));
     }
 
     function terminals(Request $request)
