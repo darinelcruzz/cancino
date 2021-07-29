@@ -56038,7 +56038,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		push: function push(item) {
 			this.supplies.push(item);
 			if (this.model == 'sale') {
-				this.subtotals.push({ amount: item.supply.sale_price });
+				this.subtotals.push({ amount: item.supply.sale_price * item.supply.ratio });
 			} else {
 				this.subtotals.push({ amount: item.supply.purchase_price });
 			}
@@ -56284,7 +56284,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	computed: {
 		total: function total() {
-			return this.quantity / this.supply.supply.ratio * this.price;
+			return this.quantity * this.price;
 		}
 	},
 	methods: {

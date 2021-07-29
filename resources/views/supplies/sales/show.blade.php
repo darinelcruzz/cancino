@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <color-box title="Venta #{{ $supply_sale->id }} de insumos" color="vks">
 
                 <div class="table-responsive">
@@ -34,11 +34,9 @@
                             <tr>
                                 <td>{{ $movement->created_at->format('d/m/Y') }}</td>
                                 <td>{{ $movement->supply->description }}</td>
-                                <td>{{ $movement->quantity * $movement->supply->ratio }}</td>
-                                <td>
-                                    {{ number_format($movement->price, 2) }} {{ $movement->supply->ratio > 1 ? '(por c/' . $movement->supply->ratio . ')': ''}}
-                                </td>
-                                <td>{{ number_format($movement->quantity * $movement->price, 2) }}</td>
+                                <td style="text-align: center;">{{ $movement->quantity * $movement->supply->ratio }}</td>
+                                <td style="text-align: right;">{{ number_format($movement->price, 2) }}</td>
+                                <td style="text-align: right;">{{ number_format($movement->supply->ratio * $movement->quantity * $movement->price, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -46,8 +44,8 @@
                     <tfoot>
                         <tr>
                             <td colspan="3"></td>
-                            <th>Total:</th>
-                            <th>{{ number_format($supply_sale->amount, 2) }}</th>
+                            <th style="text-align: right;"><small>TOTAL</small></th>
+                            <th style="text-align: right;">{{ number_format($supply_sale->amount, 2) }}</th>
                         </tr>
                     </tfoot>
                 </table>

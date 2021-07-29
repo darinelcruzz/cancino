@@ -39,7 +39,7 @@
 		},
 		computed: {
 			total() {
-				return (this.quantity / this.supply.supply.ratio) * this.price
+				return this.quantity * this.price
 			}
 		},
 		methods: {

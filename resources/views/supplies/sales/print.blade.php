@@ -76,7 +76,7 @@
             <tbody>
                 @foreach($supply_sale->movements as $movement)
                     <tr>
-                        <td class="box">{{ $movement->quantity }}</td>
+                        <td class="box">{{ $movement->quantity * $movement->supply->ratio }}</td>
                         <td class="box" colspan="3">{{ $movement->supply->description }}</td>
                         <td class="box" colspan="2">{{ $movement->price }}</td>
                         <td class="box" colspan="3">{{ number_format($movement->price * $movement->quantity, 2) }}</td>

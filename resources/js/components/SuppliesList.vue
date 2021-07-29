@@ -57,7 +57,7 @@
 			push(item) {
 				this.supplies.push(item)
 				if (this.model == 'sale') {
-					this.subtotals.push({amount: item.supply.sale_price})
+					this.subtotals.push({amount: item.supply.sale_price * item.supply.ratio})
 				} else {
 					this.subtotals.push({amount: item.supply.purchase_price})
 				}
