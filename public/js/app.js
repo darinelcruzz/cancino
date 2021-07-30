@@ -56312,10 +56312,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	created: function created() {
 		this.price = this.model == 'sale' ? this.supply.supply.sale_price : this.supply.supply.purchase_price;
-		this.byproduct = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0] : '';
-		this.quantity = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].ratio : 1;
-		this.ratio = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].ratio : 1;
-		this.price = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].price : this.price;
+		this.byproduct = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0] : '';
+		this.quantity = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].ratio : 1;
+		this.ratio = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].ratio : 1;
+		this.price = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].price : this.price;
 	}
 });
 
@@ -56335,7 +56335,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", [
-      _vm.supply.supply.byproducts != null
+      _vm.supply.supply.byproducts != null && _vm.model == "sale"
         ? _c("div", [
             _c(
               "select",

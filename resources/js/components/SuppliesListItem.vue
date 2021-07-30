@@ -6,7 +6,7 @@
 			</a>
 		</td>
 		<td>
-			<div v-if="supply.supply.byproducts != null">
+			<div v-if="supply.supply.byproducts != null && model == 'sale'">
 				<select class="form-control" v-model="byproduct" @change="updateByproduct">
 					<option v-for="item in supply.supply.byproducts" :value="item">{{ item.name }}</option>
 				</select>
@@ -67,10 +67,10 @@
 		},
 		created() {
 			this.price = this.model == 'sale' ? this.supply.supply.sale_price: this.supply.supply.purchase_price
-			this.byproduct = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0]: ''
-			this.quantity = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].ratio: 1
-			this.ratio = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].ratio: 1
-			this.price = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].price: this.price
+			this.byproduct = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0]: ''
+			this.quantity = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].ratio: 1
+			this.ratio = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].ratio: 1
+			this.price = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].price: this.price
 		}
 	};
 </script>
