@@ -32,9 +32,20 @@
                                             <ddi icon="edit" to="{{ route('services.edit', $service) }}" text="Editar"></ddi>
                                         @endif
                                         @if($service->status != 'impresa')
-                                            <ddi icon="print" to="{{ route('services.mark', $service) }}" text="Marcar como impreso"></ddi>
+                                            <li>
+                                                <a data-toggle="modal" data-target="#service{{ $service->id }}">
+                                                    <i class="fa fa-print" aria-hidden="true"></i> Marcar como impreso
+                                                </a>
+                                            </li>
                                         @endif
                                     </dropdown>
+                                    <modal id="service{{ $service->id }}" title="Marcar como impreso">
+                                        {!! Form::open(['method' => 'POST', 'route' => ['services.mark', $service]]) !!}
+                                            {!! Field::date('expired_at', date('Y-m-d'), ['label' => 'Vencimiento', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                                            {!! Form::submit('GUARDAR', ['class' => 'btn btn-sm btn-github pull-right']) !!}
+                                        
+                                        {!! Form::close() !!}
+                                    </modal>
                                 </td>
                                 <td>{{ $service->description }}</td>
                                 <td>{{ ucfirst($service->group) }}</td>

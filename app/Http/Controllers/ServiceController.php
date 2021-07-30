@@ -62,10 +62,12 @@ class ServiceController extends Controller
         return view('services.show', compact('service'));
     }
 
-    function mark(Service $service)
+    function mark(Request $request, Service $service)
     {
-
-        $service->update(['status' => 'impreso' . (date('Y-m-d') > $service->expired_at ? ' vencido': '')]);
+        $service->update([
+            'status' => 'impreso' . (date('Y-m-d') > $service->expired_at ? ' vencido': ''),
+            'expired_at' => $request->expired_at
+        ]);
 
         return redirect(route('services.index'));
     }

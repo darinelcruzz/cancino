@@ -404,7 +404,7 @@ Route::group(['prefix' => 'servicios', 'as' => 'services.'], function () {
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-    Route::get('marcar-impresa/{service}', usesas($ctrl, 'mark'));
+    Route::post('marcar-impresa/{service}', usesas($ctrl, 'mark'));
     Route::get('editar/{service}', usesas($ctrl, 'edit'));
     Route::post('editar/{service}', usesas($ctrl, 'update'));
     Route::get('{service}', usesas($ctrl, 'show'));
@@ -440,6 +440,8 @@ Route::group(['prefix' => 'insumos', 'as' => 'supplies.'], function () {
     Route::post('imprimir', usesas($ctrl, 'print'));
     Route::get('editar/{supply}', usesas($ctrl, 'edit'));
     Route::post('editar/{supply}', usesas($ctrl, 'update'));
+    Route::get('subproducto/{supply}', usesas($ctrl, 'add'));
+    Route::post('subproducto/{supply}', usesas($ctrl, 'save'));
     Route::get('{supply}', usesas($ctrl, 'show'));
 });
 

@@ -68,6 +68,22 @@ class SupplyController extends Controller
         return redirect(route('supplies.index'));
     }
 
+    function add(Supply $supply)
+    {
+        return view('supplies.add', compact('supply'));
+    }
+
+    function save(Request $request, Supply $supply)
+    {
+        $validated = $request->validate([
+            'byproducts' => 'required|array',
+        ]);
+
+        $supply->update($validated);
+
+        return redirect(route('supplies.edit', $supply));
+    }
+
     function print(Request $request)
     {
         $date = $request->date;

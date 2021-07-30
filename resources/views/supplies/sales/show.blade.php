@@ -33,10 +33,10 @@
                         @foreach($supply_sale->movements as $movement)
                             <tr>
                                 <td>{{ $movement->created_at->format('d/m/Y') }}</td>
-                                <td>{{ $movement->supply->description }}</td>
-                                <td style="text-align: center;">{{ $movement->quantity * $movement->supply->ratio }}</td>
+                                <td>{{ $movement->description ?? $movement->supply->description }}</td>
+                                <td style="text-align: center;">{{ $movement->quantity * $movement->ratio }}</td>
                                 <td style="text-align: right;">{{ number_format($movement->price, 2) }}</td>
-                                <td style="text-align: right;">{{ number_format($movement->supply->ratio * $movement->quantity * $movement->price, 2) }}</td>
+                                <td style="text-align: right;">{{ number_format($movement->ratio * $movement->quantity * $movement->price, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

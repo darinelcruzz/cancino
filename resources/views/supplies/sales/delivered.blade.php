@@ -52,15 +52,15 @@
                             @else
                                 @php
                                     $supplies2[$movement->supply->id] = 1;
-                                    $amount += $supplies[$movement->supply->id] * $movement->price;
+                                    $amount += $supplies[$movement->supply->id] * $movement->supply->ratio * $movement->price;
                                 @endphp
                                 <tr>
                                     <td>{{ $movement->supply->sat_key }}</td>
                                     <td>{{ $movement->supply->description }}</td>
                                     <td>{{ $movement->supply->unit }}</td>
-                                    <td style="text-align: center;">{{ $supplies[$movement->supply->id] }}</td>
+                                    <td style="text-align: center;">{{ $supplies[$movement->supply->id] * $movement->supply->ratio }}</td>
                                     <td style="text-align: right;">{{ number_format($movement->price/1.16, 2) }}</td>
-                                    <td style="text-align: right;">{{ number_format($supplies[$movement->supply->id] * $movement->price/1.16, 2) }}</td>
+                                    <td style="text-align: right;">{{ number_format($supplies[$movement->supply->id] * $movement->supply->ratio * $movement->price/1.16, 2) }}</td>
                                 </tr>
                             @endif
                         @endforeach

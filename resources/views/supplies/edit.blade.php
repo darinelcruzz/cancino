@@ -38,8 +38,43 @@
                         </div>
                     </div>
 
+                    @if($supply->byproducts)
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Subproducto</th>
+                                        <th>Relación</th>
+                                        <th>Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($supply->byproducts as $byproduct)
+                                    <tr>
+                                        <td>{{ $byproduct['name'] }}</td>
+                                        <td>1:{{ $byproduct['ratio'] }}</td>
+                                        <td>{{ $byproduct['price'] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>    
+                            </table>
+                        </div>
+                    </div>
+
+                    @endif
+
+                    <br>
+                    <a href="{{ route('supplies.add', $supply) }}" class="btn btn-xs btn-success">
+                        <i class="fa fa-plus"></i> <small>SUBPRODUCTO</small>
+                    </a>
+
                     <hr>
 
+                    <a href="{{ route('supplies.index') }}" class="btn btn-danger pull-left">
+                        <i class="fa fa-backward"></i> <small>ATRÁS</small>
+                    </a>
                     {!! Form::submit('C A M B I A R', ['class' => 'btn btn-github pull-right']) !!}
 
                 {!! Form::close() !!}

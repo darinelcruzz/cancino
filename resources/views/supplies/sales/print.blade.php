@@ -76,10 +76,10 @@
             <tbody>
                 @foreach($supply_sale->movements as $movement)
                     <tr>
-                        <td class="box">{{ $movement->quantity * $movement->supply->ratio }}</td>
-                        <td class="box" colspan="3">{{ $movement->supply->description }}</td>
+                        <td class="box">{{ $movement->quantity * $movement->ratio }}</td>
+                        <td class="box" colspan="3">{{ $movement->description ?? $movement->supply->description }}</td>
                         <td class="box" colspan="2">{{ $movement->price }}</td>
-                        <td class="box" colspan="3">{{ number_format($movement->price * $movement->quantity, 2) }}</td>
+                        <td class="box" colspan="3">{{ number_format($movement->ratio * $movement->quantity * $movement->price, 2) }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -88,7 +88,7 @@
                 <tr>
                     <td colspan="4"></td>
                     <th class="box" colspan="2">TOTAL</th>
-                    <th class="box" colspan="3">{{ number_format($supply_sale->movements->sum(function ($item) { return $item->price * $item->quantity; }), 2) }}</th>
+                    <th class="box" colspan="3">{{ number_format($supply_sale->movements->sum(function ($item) { return $item->ratio * $item->price * $item->quantity; }), 2) }}</th>
                 </tr>
             </tfoot>
         </table>

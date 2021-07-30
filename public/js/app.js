@@ -56272,13 +56272,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: ['supply', 'index', 'model'],
 	data: function data() {
 		return {
 			quantity: 1,
-			price: 0
+			price: 0,
+			ratio: 1,
+			byproduct: ''
 		};
 	},
 
@@ -56293,11 +56304,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		update: function update() {
 			this.$root.$emit('sum', this.index, this.total);
+		},
+		updateByproduct: function updateByproduct() {
+			this.ratio = this.byproduct.ratio;
+			this.price = this.byproduct.price;
 		}
 	},
 	created: function created() {
 		this.price = this.model == 'sale' ? this.supply.supply.sale_price : this.supply.supply.purchase_price;
-		this.quantity = this.supply.supply.ratio;
+		this.byproduct = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0] : '';
+		this.quantity = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].ratio : 1;
+		this.ratio = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].ratio : 1;
+		this.price = this.supply.supply.byproducts != null ? this.supply.supply.byproducts[0].price : this.price;
 	}
 });
 
@@ -56317,7 +56335,71 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("td", [
-      _vm._v("\n\t\t\t" + _vm._s(_vm.supply.supply.description) + "\n\t\t\t"),
+      _vm.supply.supply.byproducts != null
+        ? _c("div", [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.byproduct,
+                    expression: "byproduct"
+                  }
+                ],
+                staticClass: "form-control",
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.byproduct = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    _vm.updateByproduct
+                  ]
+                }
+              },
+              _vm._l(_vm.supply.supply.byproducts, function(item) {
+                return _c("option", { domProps: { value: item } }, [
+                  _vm._v(_vm._s(item.name))
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "supplies[" + _vm.index + "][description]"
+              },
+              domProps: { value: _vm.byproduct.name }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "supplies[" + _vm.index + "][ratio]"
+              },
+              domProps: { value: _vm.byproduct.ratio }
+            })
+          ])
+        : _c("div", [
+            _vm._v(
+              "\n            \t" +
+                _vm._s(_vm.supply.supply.description) +
+                "\n            "
+            )
+          ]),
+      _vm._v(" "),
       _c("input", {
         attrs: {
           type: "hidden",
@@ -56362,7 +56444,7 @@ var render = function() {
           })
         ])
       : _c("td", [
-          _vm._v("\n\t\t\t" + _vm._s(_vm.price.toFixed(2)) + "\n\t\t\t"),
+          _vm._v("\n\t\t\t" + _vm._s(_vm.price) + "\n\t\t\t"),
           _c("input", {
             attrs: {
               name: "supplies[" + _vm.index + "][price]",
@@ -56387,12 +56469,9 @@ var render = function() {
           staticClass: "form-control",
           attrs: {
             type: "number",
-            step: _vm.supply.supply.ratio,
-            min: _vm.supply.supply.ratio,
-            max:
-              _vm.model == "sale"
-                ? _vm.supply.quantity * _vm.supply.supply.ratio
-                : 999
+            step: _vm.ratio,
+            min: _vm.ratio,
+            max: _vm.model == "sale" ? _vm.supply.quantity * _vm.ratio : 999
           },
           domProps: { value: _vm.quantity },
           on: {
@@ -56414,7 +56493,7 @@ var render = function() {
             name: "supplies[" + _vm.index + "][quantity]",
             type: "hidden"
           },
-          domProps: { value: _vm.quantity / _vm.supply.supply.ratio }
+          domProps: { value: _vm.quantity / _vm.ratio }
         })
       ])
     ]),
