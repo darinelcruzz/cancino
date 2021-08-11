@@ -100,7 +100,7 @@ class Commision extends Model
     function delaysSum($total)
     {
         $absences = $total > 2000 ? intdiv($this->delays, 3) * 200: (intdiv($this->delays, 3) * $total * 0.10);
-        $delays = ($this->delays % 3) * ($total > 2000 ? 60: ($total * 0.03));
+        $delays = ($this->delays % 3) * ($total > 2000 ? 60: ($total * 0.02));
         return $delays + $absences;
     }
 
