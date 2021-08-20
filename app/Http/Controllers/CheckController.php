@@ -70,14 +70,18 @@ class CheckController extends Controller
 
     function upload(Request $request, Check $check)
     {
-        if ($request->file("invoice0")) {
-            for ($i=0; $i <= $request->quantity; $i++) {
-                $request->file("invoice$i")->storeAs($request->route, $request->{"name$i"} . "___" . $request->{"amount$i"} );
-            }
+        // dd($request->all());
+        $request->validate([
+            'invoices' => 'required|array|min:1',
+        ]);
+
+        foreach ($request->invoices as $key => $value) {
+            ($value['file'])->storeAs($request->route, $value['name'] . "___" . $value['amount']);
         }
 
-        if($check->bank_account->type == 'gastos')
+        if($check->bank_account->type == 'gastos') {
             return redirect(route('checks.show', $check));
+        }
         
         return redirect(route('terminal.show', $check));
     }

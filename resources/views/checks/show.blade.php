@@ -43,12 +43,12 @@
             </color-box>
         </div>
         <div class="col-md-5">
-            <color-box title="Agregar PDFs" color="success" button collapsed>
+            <color-box title="Agregar PDFs" color="success" button>
                 {!! Form::open(['method' => 'POST', 'route' => ['checks.upload', $check], 'enctype' => 'multipart/form-data']) !!}
                     <file-input></file-input>
+                    <input type="hidden" name="route" value="{{ $route }}">
                     <hr>
                     {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
-                    <input type="hidden" name="route" value="{{ $route }}">
                 {!! Form::close() !!}
             </color-box>
         </div>
