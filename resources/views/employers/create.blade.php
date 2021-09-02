@@ -35,7 +35,7 @@
                                     {!! Field::number('sons', 0,['tpl' => 'lte/withicon', 'min' => '0'], ['icon' => 'baby']) !!}
                                 </div>
                             </div>
-                            
+
                             @if(auth()->user()->store_id == 1)
                                 <div class="row">
                                     <div class="col-md-6">
@@ -54,7 +54,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         {!!
-                                            Field::select('job', ['Vendedor' => 'Ventas', 'Bodega' => 'Bodega', 'Apoyo' => 'Apoyo'],
+                                            Field::select('job', ['Vendedor' => 'Ventas', 'Bodega' => 'Bodega', 'Auxiliar' => 'Auxiliar', 'Reparto' => 'Reparto', 'Desarrollo' => 'Desarrollo'],
                                             null, ['empty' => 'Seleccione el puesto', 'tpl' => 'lte/withicon'], ['icon' => 'bezier-curve'])
                                         !!}
                                     </div>
