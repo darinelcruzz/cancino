@@ -33,11 +33,6 @@
                                     </div>
                                 </td>
                                 <td>
-                                    {{ $employee->name }} <br>
-                                    <code>{{ $employee->job }}</code>
-                                </td>
-                                <td>{{ fdate($employee->birthday, 'd M Y', 'Y-m-d') }}</td>
-                                <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
                                         <ddi to="{{ route('employers.show', $employee) }}" icon="eye" text="Detalles"></ddi>
                                         <ddi to="{{ route('employers.explore', $employee) }}" icon="file-pdf" text="Documentos"></ddi>
@@ -64,6 +59,11 @@
                                     </modal>
                                     {!! Form::close() !!}
                                 </td>
+                                <td>
+                                    {{ $employee->name }} <br>
+                                    <code>{{ $employee->job }}</code>
+                                </td>
+                                <td>{{ fdate($employee->birthday, 'd M Y', 'Y-m-d') }}</td>
                             </tr>
                         @endforeach
                     </template>

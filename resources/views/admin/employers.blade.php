@@ -11,33 +11,37 @@
         @foreach($stores as $store)
             <div class="col-md-12">
                 <color-box title="Empleados de {{ $store->first()->store->name }}" label="{{ count($store) }}" color="{{ $store->first()->store->color }}" button collapsed>
-                    <data-table example="{{ $store->first()->store->id }}">
-                        {{ drawHeader('foto', 'nombre', 'cumpleaños', '<i class="fa fa-cogs"></i>') }}
-                        <template slot="body">
+                    <table class="table table-striped table-bordered spanish">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%; text-align: center;"><i class="fa fa-photo"></i></th>
+                                <th style="width: 5%; text-align: center;"><i class="fa fa-cogs"></i></th>
+                                <th><small>NOMBRE</small></th>
+                                <th><small>PUESTO</small></th>
+                                <th style="width: 3%; text-align: center;"><small>EDAD</small></th>
+                                <th style="width: 10%; text-align: right;"><small>CUMPLEAÑOS</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             @foreach ($store as $employee)
                                 <tr>
                                     <td>
                                         <div class="col-md-2">
-                                            <img width="50px;" height="50px" style="border-radius: 50%;" 
+                                            {{-- <img width="50px;" height="50px" style="border-radius: 50%;" 
                                             src="{{ Storage::url('employers/' . $employee->id . '/FOTO.jpeg') }}" 
-                                            alt="Foto de {{ $employee->name }}">
-                                            {{-- @if(Storage::disk('public')->exists('employees/' . $employee->id . '/FOTO.jpeg'))
-                                                <img src="{{ Storage::url('employees/' . $employee->id . '/FOTO.jpeg') }}"
+                                            alt="Foto de {{ $employee->name }}"> --}}
+                                            @if(Storage::disk('public')->exists('employers/' . $employee->id . '/FOTO.jpeg'))
+                                                <img src="{{ Storage::url('employers/' . $employee->id . '/FOTO.jpeg') }}"
                                                     alt="foto de {{ $employee->name }}"
-                                                    width="50px" height="50px"
+                                                    width="30px" height="30px"
                                                     style="border-radius: 50%;">
                                             @else
                                                 <img src="{{ asset('images/default-avatar.png') }}"
-                                                    width="50px" height="50px"
+                                                    width="30px" height="30px"
                                                     style="border-radius: 50%;">
-                                            @endif --}}
+                                            @endif
                                         </div>
                                     </td>
-                                    <td>
-                                        {{ $employee->name }} <br>
-                                        <code>{{ $employee->job }}</code>
-                                    </td>
-                                    <td>{{ fdate($employee->birthday, 'd M Y', 'Y-m-d') }}</td>
                                     <td>
                                         <dropdown icon="cogs" color="{{ $employee->store->id == 1 ? 'github': $employee->store->color }}">
                                             <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
@@ -65,10 +69,14 @@
                                             </modal>
                                         {!! Form::close() !!}
                                     </td>
+                                    <td>{{ $employee->name }}</td>
+                                    <td>{{ $employee->job }}</td>
+                                    <td style="text-align: center;">{{ $employee->age }}</td>
+                                    <td style="text-align: right;">{{ strtoupper(fdate($employee->birthday, 'd F', 'Y-m-d')) }}</td>
                                 </tr>
                             @endforeach
-                        </template>
-                    </data-table>
+                        </tbody>
+                    </table>
                 </color-box>
             </div>
         @endforeach
