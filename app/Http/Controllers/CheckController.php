@@ -51,11 +51,9 @@ class CheckController extends Controller
         
         $check = Check::create($validated);
 
-        if ($request->file("invoice0")) {
+        foreach ($request->invoices as $key => $value) {
             $route = 'public/expenses/store' . $request->store_id . "/$check->folio";
-            for ($i=0; $i <= $request->quantity; $i++) {
-                $request->file("invoice$i")->storeAs($route, $request->{"name$i"});
-            }
+            ($value['file'])->storeAs($route, $value['name'] . "___" . $value['amount']);
         }
 
         return redirect(route('checks.index', $request->store_id));

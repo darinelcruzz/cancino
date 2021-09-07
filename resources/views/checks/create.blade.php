@@ -48,7 +48,7 @@
                             </div>
                         </div>
                         
-                        <file-input v-if='concept==7'></file-input>
+                        <file-input v-if='concept==  7'></file-input>
                         <hr>
                         {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
                         

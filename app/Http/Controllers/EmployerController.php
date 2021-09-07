@@ -89,26 +89,19 @@ class EmployerController extends Controller
 
     function update(Request $request, Employer $employer)
     {
-        $this->validate($request, [
-            'name' => 'sometimes|required',
-            'birthday' => 'sometimes|required',
-            'address' => 'sometimes|required',
-            'married' => 'sometimes|required',
-            'sons' => 'sometimes|required',
-            'job' => 'sometimes|required',
-            'store_id' => 'sometimes|required',
-            'ine' => 'sometimes|required',
-            'curp' => 'sometimes|required',
-            'birth_certificate' => 'sometimes|required',
-            'address_file' => 'sometimes|required',
-            'salary' => 'sometimes|required',
-            'status' => 'sometimes|required',
-            'commision' => 'sometimes|required',
+        $validated = $this->validate($request, [
+            'name' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'married' => 'required',
+            'sons' => 'required',
+            'job' => 'required',
+            'store_id' => 'required',
+            'ingress' => 'required',
+            'salary' => 'required',
         ]);
 
-        $employer->update($request->except('photo'));
-
-        $employer->storeDocuments(request());
+        $employer->update($validated);
 
         return redirect(route('employers.show', $employer));
     }

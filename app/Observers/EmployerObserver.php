@@ -46,6 +46,8 @@ class EmployerObserver
             } else {
                 Mail::to($emails)->queue(new EmployerDismissed($employer));
             }
+        } else {
+            $employer->storeDocuments(request());
         }
     }
 

@@ -1,8 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle')
-    Empleados | Agregar
-@endpush
+@push('pageTitle', 'Empleados | Agregar')
 
 @section('content')
     <div class="row">
