@@ -40,7 +40,7 @@
                                     {!!
                                         Field::select('job',
                                         ['Supervisor' => 'Supervisor', 'Gerente' => 'Gerente', 'Vendedor' => 'Ventas',
-                                        'B2B' => 'B2B', 'Bodega' => 'Bodega', 'Apoyo' => 'Apoyo'],
+                                        'B2B' => 'B2B', 'Bodega' => 'Bodega', 'Auxiliar' => 'Auxiliar', 'Reparto' => 'Reparto', 'Desarrollo' => 'Desarrollo'],
                                         $employer->job, ['empty' => 'Seleccione el puesto', 'tpl' => 'lte/withicon'], ['icon' => 'bezier-curve'])
                                     !!}
                                 </div>
