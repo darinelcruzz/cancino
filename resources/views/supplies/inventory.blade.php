@@ -58,17 +58,19 @@
                 <thead>
                     <tr>
                         <th style="text-align: left;" class="box">INSUMO</th>
+                        <th class="box">CLAVE</th>
                         <th class="box">UNIDAD</th>
-                        <th class="box">TUXTLA GTZ</th>
-                        <th class="box">TAPACHULA</th>
+                        <th class="box">TUX</th>
+                        <th class="box">TAP</th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @foreach($supplies as $supply)
                         @if($supply->totalStock != 0)
                         <tr style="text-transform:uppercase">
                             <td style="text-align: left;" class="box">{{ $supply->description }}</td>
+                            <td class="box">{{ $supply->code }}</td>
                             <td class="box">{{ $supply->unit }}</td>
                             @foreach($supply->stocks as $stock)
                             <td class="box">{{ $stock->quantity }}</td>
