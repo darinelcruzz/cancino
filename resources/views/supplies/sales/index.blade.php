@@ -43,10 +43,10 @@
                                             <ddi icon="print" to="{{ route('supplies.sales.print', $supply_sale) }}" text="Imprimir" target="_blank"></ddi>
                                             @if($supply_sale->status == 'pendiente')
                                                 <ddi icon="plus" to="{{ route('supplies.sales.add', $supply_sale) }}" text="Agregar insumos"></ddi>
+                                                <ddi icon="check" to="{{ route('supplies.sales.mark', $supply_sale) }}" text="Entregada"></ddi>
                                             @endif
                                             @if(isAdmin() && $supply_sale->status == 'pendiente')
                                                 <ddi icon="edit" to="{{ route('supplies.sales.edit', $supply_sale) }}" text="Editar"></ddi>
-                                                <ddi icon="check" to="{{ route('supplies.sales.mark', $supply_sale) }}" text="Entregada"></ddi>
                                             @endif
                                             @if($supply_sale->status == 'entregada')
                                             <li>
@@ -85,10 +85,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>                
+                </div>
             </color-box>
         </div>
-        
+
     </div>
 
 
@@ -133,6 +133,6 @@
                 </div>
             </color-box>
         </div>
-        
+
     </div>
 @endsection
