@@ -76,9 +76,8 @@ class EmployerController extends Controller
 
     function explore(Employer $employer)
     {
-        $route = 'public/employers/' . $employer->id;
+        $route = '/employers/' . $employer->id;
         $files = Storage::files($route);
-
         return view('employers.explore', compact('files', 'employer'));
     }
 
@@ -102,6 +101,7 @@ class EmployerController extends Controller
         ]);
 
         $employer->update($validated);
+        $employer->touch();
 
         return redirect(route('employers.show', $employer));
     }

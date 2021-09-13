@@ -10,7 +10,7 @@
             <div class="box-body box-profile">
                 <p class="text-center">
                     <img v-img width="100px;" height="100px" style="border-radius: 50%;"
-                        src="{{ Storage::url('employers/' . $employer->id . '/FOTO.jpeg') }}"
+                        src="{{ $employer->photo }}"
                         alt="User profile picture">
                 </p>
                 <h3 class="profile-username text-center">{{ $employer->name }}</h3>

@@ -22,8 +22,18 @@ class Employer extends Model
         return $this->hasMany(Payment::class);
     }
 
-    function getPhotoAttribute() {
-        return Storage::url('employers/' . $this->id . '/FOTO.jpeg');
+    function getPhotoAttribute()
+    {
+        if (Storage::exists('employers/' . $this->id)) {
+            foreach (Storage::files('employers/' . $this->id) as $file) {
+                if(str_contains($file, 'FOTO.')) {
+                    return Storage::url($file);
+                }
+            }
+            return asset('images/default-avatar.png');
+        }
+
+        return asset('images/default-avatar.png');
     }
 
     function getAgeAttribute()
@@ -42,7 +52,7 @@ class Employer extends Model
 
     function storeDocuments($request)
     {
-    	$route = 'public/employers/' . $this->id;
+    	$route = '/employers/' . $this->id;
 
         if ($request->file('ine')) {
         	$request->file('ine')->storeAs($route, 'INE.pdf');

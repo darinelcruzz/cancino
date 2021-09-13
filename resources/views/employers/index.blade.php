@@ -18,18 +18,8 @@
                                 <td>
                                     <div class="col-md-2">
                                         <img v-img width="50px;" height="50px" style="border-radius: 50%;" 
-                                            src="{{ Storage::url('employers/' . $employee->id . '/FOTO.jpeg') }}" 
+                                            src="{{ $employee->photo }}" 
                                             alt="User profile picture">
-                                        {{-- @if(Storage::disk('public')->exists('employers/' . $employee->id . '/FOTO.jpeg'))
-                                            <img src="{{ $employee->photo }}"
-                                                alt="foto de {{ $employee->name }}"
-                                                width="50px" height="50px"
-                                                style="border-radius: 50%;">
-                                        @else
-                                            <img src="{{ asset('images/default-avatar.png') }}"
-                                                width="50px" height="50px"
-                                                style="border-radius: 50%;">
-                                        @endif --}}
                                     </div>
                                 </td>
                                 <td>

@@ -27,19 +27,10 @@
                                 <tr>
                                     <td>
                                         <div class="col-md-2">
-                                            {{-- <img width="50px;" height="50px" style="border-radius: 50%;" 
-                                            src="{{ Storage::url('employers/' . $employee->id . '/FOTO.jpeg') }}" 
-                                            alt="Foto de {{ $employee->name }}"> --}}
-                                            @if(Storage::disk('public')->exists('employers/' . $employee->id . '/FOTO.jpeg'))
-                                                <img src="{{ Storage::url('employers/' . $employee->id . '/FOTO.jpeg') }}"
-                                                    alt="foto de {{ $employee->name }}"
-                                                    width="30px" height="30px"
-                                                    style="border-radius: 50%;">
-                                            @else
-                                                <img src="{{ asset('images/default-avatar.png') }}"
-                                                    width="30px" height="30px"
-                                                    style="border-radius: 50%;">
-                                            @endif
+                                            <img src="{{ $employee->photo }}"
+                                                alt="foto de {{ $employee->name }}"
+                                                width="30px" height="30px"
+                                                style="border-radius: 50%;">
                                         </div>
                                     </td>
                                     <td>
@@ -89,16 +80,10 @@
                             <tr>
                                 <td>
                                     <div class="col-md-2">
-                                        @if(Storage::disk('public')->exists('employees/' . $employee->id . '/FOTO.jpeg'))
-                                            <img src="{{ Storage::url('employees/' . $employee->id . '/FOTO.jpeg') }}"
-                                            alt="foto de {{ $employee->name }}"
-                                            width="50px" height="50px"
-                                            style="border-radius: 50%;">
-                                        @else
-                                            <img src="{{ asset('images/default-avatar.png') }}"
-                                            width="50px" height="50px"
-                                            style="border-radius: 50%;">
-                                        @endif
+                                        <img src="{{ $employee->photo }}"
+                                        alt="foto de {{ $employee->name }}"
+                                        width="50px" height="50px"
+                                        style="border-radius: 50%;">
                                     </div>
                                     <div class="col-md-4">
                                         {{ $employee->name }} <br>
