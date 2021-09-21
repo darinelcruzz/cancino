@@ -60,11 +60,20 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach($supply->movements()->orderBy('id', 'desc')->take(20)->get() as $movement)
+                                    @foreach($supply->movements()->orderBy('id', 'desc')->get() as $movement)
                                         <tr>
                                             <td>{{ $movement->id }}</td>
                                             <td>{{ $movement->created_at->format('d/m/Y') }}</td>
-                                            <td>{{ ucfirst($movement->type) }} | {{ $movement->movable_id }}</td>
+                                            <td>                                                <td>
+                                                @if ($movement->type == 'venta')
+                                                    <a href="{{ route('supplies.sales.show', $movement->movable_id) }}">
+                                                @else
+                                                    <a href="{{ route('supplies.purchases.show', $movement->movable_id) }}">
+                                                @endif
+                                                        {{ ucfirst($movement->type) }} | {{ $movement->movable_id }}
+                                                    </a>
+
+                                            </td>
                                             <td>{{ $movement->quantity }}</td>
                                             <td>{{ $movement->type != 'transferencia' ? $movement->destination->name : 'Bodega Tapachula'}}</td>
                                             <td>{{ fnumber($movement->price) }}</td>
