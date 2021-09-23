@@ -1,6 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Conteos')
+@push('pageTitle', 'Conteos|Agregar')
 
 @section('content')
 
