@@ -63,14 +63,16 @@ class SupplySaleController extends Controller
     {
         $sales = SupplySale::where('store_id', $store->id)
             ->where('status', 'entregada')
-            ->with('movements')
-            ->get();
+            ->pluck('id');
 
-        $supplies = $supplies2 = [];
+        $products = SupplyMovement::where('movable_type', 'App\SupplySale')
+            ->whereIn('movable_id', $sales)
+            ->get()
+            ->groupBy(['supply_id', 'description']);
 
         $amount = 0;
 
-        return view('supplies.sales.delivered', compact('sales', 'store', 'supplies', 'supplies2', 'amount'));
+        return view('supplies.sales.delivered', compact('products', 'store', 'amount'));
     }
 
     function mark(SupplySale $supply_sale)

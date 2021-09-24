@@ -2,7 +2,11 @@
 	<tr>
 		<td v-if="editable"><span style="color: navy;"><i class="fa fa-edit"></i></span></td>
 		<td v-else><span style="color: green;"><i class="fa fa-check"></i></span></td>
-		<td>
+		<td v-if="supply.supply.byproducts != null">
+			{{ supply.description }}
+			<input v-if="editable" :name="'supplies[' + index + '][id]'" type="hidden" :value="supply.id">
+		</td>
+		<td v-else>
 			{{ supply.supply.description }}
 			<input v-if="editable" :name="'supplies[' + index + '][id]'" type="hidden" :value="supply.id">
 		</td>
@@ -34,7 +38,7 @@
 		data() {
 			return {
 				quantity: 1,
-				price: 0
+				price: 0,
 			}
 		},
 		computed: {

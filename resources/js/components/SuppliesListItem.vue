@@ -61,16 +61,21 @@
 				this.$root.$emit('sum', this.index, this.total)
 			},
 			updateByproduct() {
-				this.ratio = this.byproduct.ratio
-				this.price = this.byproduct.price
+				this.ratio = this.byproduct.ratio;
+				this.price = this.byproduct.price;
+				this.update();
 			}
 		},
 		created() {
-			this.price = this.model == 'sale' ? this.supply.supply.sale_price: this.supply.supply.purchase_price
-			this.byproduct = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0]: ''
-			this.quantity = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].ratio: 1
-			this.ratio = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].ratio: 1
-			this.price = this.supply.supply.byproducts != null && this.model == 'sale' ? this.supply.supply.byproducts[0].price: this.price
+			this.price = this.model == 'sale' ? this.supply.supply.sale_price: this.supply.supply.purchase_price;
+			if (this.supply.supply.byproducts != null && this.model == 'sale') {
+				let byproduct = this.supply.supply.byproducts[0];
+				this.byproduct = byproduct;
+				this.quantity = byproduct.ratio;
+				this.ratio = byproduct.ratio
+				this.price = byproduct.price
+				this.update();
+			}
 		}
 	};
 </script>
