@@ -70,9 +70,9 @@ class SupplySaleController extends Controller
             ->get()
             ->groupBy(['supply_id', 'description']);
 
-        $amount = 0;
+        $amount = $iva = 0;
 
-        return view('supplies.sales.delivered', compact('products', 'store', 'amount'));
+        return view('supplies.sales.delivered', compact('products', 'store', 'amount', 'iva'));
     }
 
     function mark(SupplySale $supply_sale)
@@ -91,15 +91,21 @@ class SupplySaleController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'supplies' => 'required|array|min:1',
+            'supplieso' => 'required|array|min:1',
+            'supplies' => 'sometimes|required|array|min:1',
             'amount' => 'required',
         ]);
 
         $supply_sale->update($request->only('amount'));
 
-        foreach ($request->supplies as $supply) {
+        foreach ($request->supplieso as $supply) {
             $movement = SupplyMovement::find($supply['id']);
-            $movement->update(['quantity' => $supply['quantity']]);
+            $movement->update(['price' => $supply['price'], 'quantity' => $supply['quantity']]);
+            // $movement->supply->update(['price' => $supply['price']]);
+        }
+
+        if ($request->supplies) {
+            $supply_sale->movements()->createMany($request->supplies);
         }
 
         return redirect(route('supplies.sales.show', $supply_sale));

@@ -56832,6 +56832,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	created: function created() {
 		this.price = this.supply.price;
 		this.quantity = this.supply.quantity;
+		this.update();
 	}
 });
 
@@ -56852,7 +56853,7 @@ var render = function() {
           _vm.editable
             ? _c("input", {
                 attrs: {
-                  name: "supplies[" + _vm.index + "][id]",
+                  name: "supplieso[" + _vm.index + "][id]",
                   type: "hidden"
                 },
                 domProps: { value: _vm.supply.id }
@@ -56866,7 +56867,7 @@ var render = function() {
           _vm.editable
             ? _c("input", {
                 attrs: {
-                  name: "supplies[" + _vm.index + "][id]",
+                  name: "supplieso[" + _vm.index + "][id]",
                   type: "hidden"
                 },
                 domProps: { value: _vm.supply.id }
@@ -56889,7 +56890,7 @@ var render = function() {
             staticClass: "form-control",
             attrs: {
               type: "number",
-              name: "supplies[" + _vm.index + "][price]",
+              name: "supplieso[" + _vm.index + "][price]",
               min: "1",
               step: "0.01"
             },
@@ -56925,7 +56926,7 @@ var render = function() {
               ],
               staticClass: "form-control",
               attrs: {
-                name: "supplies[" + _vm.index + "][quantity]",
+                name: "supplieso[" + _vm.index + "][quantity]",
                 type: "number",
                 min: "1"
               },

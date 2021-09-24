@@ -4,20 +4,20 @@
 		<td v-else><span style="color: green;"><i class="fa fa-check"></i></span></td>
 		<td v-if="supply.supply.byproducts != null">
 			{{ supply.description }}
-			<input v-if="editable" :name="'supplies[' + index + '][id]'" type="hidden" :value="supply.id">
+			<input v-if="editable" :name="'supplieso[' + index + '][id]'" type="hidden" :value="supply.id">
 		</td>
 		<td v-else>
 			{{ supply.supply.description }}
-			<input v-if="editable" :name="'supplies[' + index + '][id]'" type="hidden" :value="supply.id">
+			<input v-if="editable" :name="'supplieso[' + index + '][id]'" type="hidden" :value="supply.id">
 		</td>
 		<td>
 			
-			<input v-if="editable" type="number" :name="'supplies[' + index + '][price]'" v-model.number="price" @change="update" class="form-control" min="1" step="0.01">
+			<input v-if="editable" type="number" :name="'supplieso[' + index + '][price]'" v-model.number="price" @change="update" class="form-control" min="1" step="0.01">
 			<span v-else>{{ supply.price.toFixed(2) }}</span>
 		</td>
 		<td v-if="editable">
 			<div class="input-group input-group-sm">
-                <input :name="'supplies[' + index + '][quantity]'" type="number" v-model.number="quantity" @change="update" class="form-control" min="1">
+                <input :name="'supplieso[' + index + '][quantity]'" type="number" v-model.number="quantity" @change="update" class="form-control" min="1">
             </div>
 		</td>
 		<td v-else>
@@ -57,6 +57,7 @@
 		created() {
 			this.price = this.supply.price
 			this.quantity = this.supply.quantity
+			this.update();
 		}
 	};
 </script>

@@ -21,11 +21,11 @@
                     <table id="example1" class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>Fecha</th>
-                            <th>Producto</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Total</th>
+                            <th><small>FECHA</small></th>
+                            <th><small>PRODUCTO</small></th>
+                            <th><small>CANTIDAD</small></th>
+                            <th><small>PRECIO</small></th>
+                            <th><small>TOTAL</small></th>
                         </tr>
                     </thead>
 
