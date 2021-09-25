@@ -191,6 +191,45 @@ return [
         ],
     ],
 
+    'Inventory' => [
+        'title' => 'Inventarios',
+        'icon' => 'fa fa-people-carry',
+        'submenu' => [
+            'new' => [
+                'title' => 'Nuevo',
+                'route' => 'inventory.create'
+            ],
+            'create' => [
+                'title' => 'Agregar normal',
+                'route' => ['count.create', 'normal']
+            ],
+            'create2' => [
+                'title' => 'Agregar con código de barras',
+                'route' => ['count.create', 'codigo-de-barras']
+            ],
+            'index' => [
+                'title' => 'Conteos',
+                'route' => 'count.index'
+            ],
+            'upload' => [
+                'title' => 'Excel',
+                'route' => 'inventory.upload'
+            ],
+            'products' => [
+                'title' => 'Productos',
+                'route' => 'product.index'
+            ],
+            'locations' => [
+                'title' => 'Ubicaciones',
+                'route' => 'location.create'
+            ],
+            'partials' => [
+                'title' => 'Parciales',
+                'route' => 'inventory.partial.index'
+            ],
+        ],
+    ],
+
     'Loans' => [
         'title' => 'Préstamos',
         'icon' => 'fa fa-random',
@@ -241,45 +280,6 @@ return [
         'icon' => 'fa fa-car-battery',
         'label' => takenProducts() > 0 ? takenProducts(): '',
         'route' => 'admin.taken_products'
-    ],
-
-    'Inventory' => [
-        'title' => 'Inventarios',
-        'icon' => 'fa fa-people-carry',
-        'submenu' => [
-            'new' => [
-                'title' => 'Nuevo',
-                'route' => 'inventory.create'
-            ],
-            'create' => [
-                'title' => 'Agregar normal',
-                'route' => ['count.create', 'normal']
-            ],
-            'create2' => [
-                'title' => 'Agregar con código de barras',
-                'route' => ['count.create', 'codigo-de-barras']
-            ],
-            'index' => [
-                'title' => 'Conteos',
-                'route' => 'count.index'
-            ],
-            'upload' => [
-                'title' => 'Excel',
-                'route' => 'inventory.upload'
-            ],
-            'products' => [
-                'title' => 'Productos',
-                'route' => 'product.index'
-            ],
-            'locations' => [
-                'title' => 'Ubicaciones',
-                'route' => 'location.create'
-            ],
-            'partials' => [
-                'title' => 'Parciales',
-                'route' => 'inventory.partial.index'
-            ],
-        ],
     ],
 
     'Clients' => [
