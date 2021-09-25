@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Inventory, Store};
+use App\{Inventory, Store, Product, Count};
 use App\Imports\ProductsImport;
 use App\Imports\ProductBarcodesImport;
 use Illuminate\Http\Request;
@@ -56,7 +56,25 @@ class InventoryController extends Controller
 
     function show(Inventory $inventory)
     {
+        $products = Product::all();
+        $counts = Count::all();
+        $inventoryValue = 0;
+        $valueCounted = 0;
 
+
+        foreach ($products as $product) {
+            $inventoryValue += $product->price * $product->quantity;
+        }
+        foreach ($counts as $count) {
+            $valueCounted += $count->product->price * $count->quantity;
+        }
+
+        $products = Product::all()->sum('quantity');
+        $productsCounted = Count::all()->sum('quantity');
+        $productAdvance = $productsCounted * 100 /$products;
+        $countAdvance = $valueCounted * 100 /$inventoryValue;
+
+        return view('inventories.show', compact('products', 'productsCounted', 'productAdvance', 'inventoryValue', 'valueCounted', 'countAdvance'));
     }
 
     function edit(Inventory $inventory)
