@@ -34,7 +34,7 @@
                         @foreach($values as $value)
                         <tr>
                             <td>{{ $value[0]->supply->sat_key }}</td>
-                            <td>{{ $value[0]->description }}</td>
+                            <td>{{ $value[0]->description ?? $value[0]->supply->description  }}</td>
                             <td style="text-align: center;"><small>{{ strtoupper($value[0]->supply->unit) }}</small></td>
                             <td style="text-align: center;">{{ $value->sum('quantity') * $value[0]->ratio }}</td>
                             <td style="text-align: right;">{{ number_format($value[0]->price/1.16, 2) }}</td>
