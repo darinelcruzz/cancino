@@ -88,16 +88,17 @@ class EmployerController extends Controller
 
     function update(Request $request, Employer $employer)
     {
+        // dd($request->all());
         $validated = $this->validate($request, [
-            'name' => 'required',
-            'birthday' => 'required',
-            'address' => 'required',
-            'married' => 'required',
-            'sons' => 'required',
-            'job' => 'required',
+            'name' => 'sometimes|required',
+            'birthday' => 'sometimes|required',
+            'address' => 'sometimes|required',
+            'married' => 'sometimes|required',
+            'sons' => 'sometimes|required',
+            'job' => 'sometimes|required',
             'store_id' => 'required',
-            'ingress' => 'required',
-            'salary' => 'required',
+            'ingress' => 'sometimes|required',
+            'salary' => 'sometimes|required',
         ]);
 
         $employer->update($validated);
