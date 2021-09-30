@@ -243,6 +243,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('saldos', usesas($ctrl, 'balances'));
     Route::get('bitacora', usesas($ctrl, 'binnacles'));
     Route::get('prestamos/{store}', usesas($ctrl, 'loans'));
+    Route::get('prestamos', usesas($ctrl, 'invoices'));
     Route::get('productos-en-uso', usesas($ctrl, 'taken_products'));
     Route::get('metas', usesas($ctrl, 'goals'));
     Route::get('publico', usesas($ctrl, 'public_sales', 'public'));

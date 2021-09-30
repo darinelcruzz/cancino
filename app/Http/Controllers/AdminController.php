@@ -117,6 +117,14 @@ class AdminController extends Controller
         return view('admin.loans', compact('lent', 'borrowed', 'store', 'invoiced', 'payed', 'added'));
     }
 
+    function invoices()
+    {
+        $stores = Store::whereType('p')->orWhere('Type', 's')->get();
+        $invoiced = Invoice::whereNull('payed_at')->get();
+
+        return view('invoices.index', compact('invoiced', 'stores'));
+    }
+
     function taken_products()
     {
         $pending = TakenProduct::whereNull('pos')->get()->groupBy('store_id');
