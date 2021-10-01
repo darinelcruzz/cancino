@@ -18,6 +18,11 @@ class Store extends Model
         return $this->hasMany(Sale::class);
     }
 
+    function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'to')->whereNull('payed_at');
+    }
+
     function goals()
     {
         return $this->hasMany(Goal::class);

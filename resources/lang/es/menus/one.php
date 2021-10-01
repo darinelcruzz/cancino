@@ -235,6 +235,10 @@ return [
         'icon' => 'fa fa-random',
         'label' => pendingInvoices() > 0 ? pendingInvoices(): '',
         'submenu' => [
+            'invoices' => [
+                'title' => 'Facturas',
+                'route' => 'admin.invoices'
+            ],
             'Chiapas' => [
                 'title' => 'Chiapas',
                 'route' => ['admin.loans', 2]

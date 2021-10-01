@@ -119,10 +119,11 @@ class AdminController extends Controller
 
     function invoices()
     {
-        $stores = Store::whereType('p')->orWhere('Type', 's')->get();
-        $invoiced = Invoice::whereNull('payed_at')->get();
+        $stores = Store::whereIn('type', ['p', 's'])
+            ->with('invoices.fromr:id,name')
+            ->get();
 
-        return view('invoices.index', compact('invoiced', 'stores'));
+        return view('invoices.index', compact('stores'));
     }
 
     function taken_products()

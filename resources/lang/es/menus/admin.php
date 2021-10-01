@@ -169,12 +169,16 @@ return [
     ],
 
     'Loans' => [
-        'title' => 'Prestamos',
+        'title' => 'Préstamos',
         'icon' => 'fa fa-random',
         'submenu' => [
             'Store' => [
                 'title' => 'Tienda',
                 'route' => 'loans.index',
+            ],
+            'invoices' => [
+                'title' => 'Facturas',
+                'route' => 'admin.invoices'
             ],
             'Chiapas' => [
                 'title' => 'Chiapas',
