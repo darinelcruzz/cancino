@@ -15,9 +15,10 @@ class SupplySaleObserver
     {
         if ($supplySale->status == 'cancelada') {
             foreach ($supplySale->movements as $movement) {
-                $quantity = $movement->supply->quantity;
-                $movement->supply->update(['quantity' => $quantity + $movement->quantity]);
+                $origin = $movement->supply->stocks()->where('store_id', $movement->origin->id)->first();
+                $origin->update(['quantity' => $origin->quantity + $movement->quantity]);
             }
+
         }
     }
 

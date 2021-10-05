@@ -94,7 +94,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Ventas pagadas" color="success" solid button collapsed>
+            <color-box title="Ventas completadas" color="success" solid button collapsed>
                 <div class="table-responsive">
                     <table id="example2" class="table table-striped table-bordered">
                         <thead>
@@ -111,17 +111,21 @@
 
                         <tbody>
                             @foreach($paid_sales as $supply_sale)
-                                <tr>
-                                    <td>{{ $supply_sale->id }}</td>
+                                <tr @if($supply_sale->status == 'cancelada') style ="color: gray;" @endif>
+                                    <td>
+                                        {{ $supply_sale->id }}
+                                        {!! $supply_sale->status == 'cancelada' ? '<i class="fa fa-times"></i>': '' !!}
+                                    </td>
                                     <td>
                                         <dropdown icon="cogs" color="success">
                                             <ddi icon="eye" to="{{ route('supplies.sales.show', $supply_sale) }}" text="Ver"></ddi>
+                                            <ddi icon="print" to="{{ route('supplies.sales.print', $supply_sale) }}" text="Imprimir" target="_blank"></ddi>
                                             @if(auth()->user()->level == 1 && $supply_sale->status != 'cancelada')
                                                 <ddi icon="times" to="{{ route('supplies.sales.destroy', $supply_sale) }}" text="Cancelar"></ddi>
                                             @endif
                                         </dropdown>
                                     </td>
-                                    <td style="text-align: center;">{{ $supply_sale->invoice }}</td>
+                                    <td style="text-align: center;">{{ $supply_sale->invoice ?? 'NO APLICA' }}</td>
                                     <td>{{ $supply_sale->sold_at }}</td>
                                     <td>{{ $supply_sale->store->name }}</td>
                                     <td>{{ number_format($supply_sale->amount, 2) }}</td>
