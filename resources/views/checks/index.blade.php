@@ -94,7 +94,7 @@
                                 </td>
                                 <td>{{ fdate($check->emitted_at, 'd/F/Y', 'Y-m-d') }}</td>
                                 <td>{{ number_format($check->amount, 2) }}</td>
-                                <td>{{ $check->concept }} <br>  <code>{{ $check->group }}</code></td>
+                                <td>{{ $check->concept }} <br>  <code>{{ $check->name }}</code></td>
                                 <td>{{ $check->observations }}</td>
                             </tr>
                         @endforeach

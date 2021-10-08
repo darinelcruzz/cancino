@@ -15,7 +15,7 @@ class DebtController extends Controller
 
     function create()
     {
-        $employers = Employer::whereStatus('1')->pluck('name', 'id')->toArray();
+        $employers = Employer::whereStatus('activo')->pluck('name', 'id')->toArray();
         return view('debts.create', compact('employers'));
     }
 
