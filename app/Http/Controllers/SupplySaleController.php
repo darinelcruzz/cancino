@@ -9,7 +9,7 @@ class SupplySaleController extends Controller
 {
     function index()
     {
-        $pending_sales = SupplySale::where('status', 'pendiente')->get();
+        $pending_sales = SupplySale::whereIn('status', ['pendiente', 'entregada'])->get();
         $paid_sales = SupplySale::whereIn('status', ['pagada', 'cancelada'])->get();
         return view('supplies.sales.index', compact('pending_sales', 'paid_sales'));
     }
@@ -126,7 +126,7 @@ class SupplySaleController extends Controller
         // dd($request->supplies);
 
         $supply_sale->update($request->only('amount'));
-        
+
         $supply_sale->movements()->createMany($request->supplies);
 
         return redirect(route('supplies.sales.show', $supply_sale));

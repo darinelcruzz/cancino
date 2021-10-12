@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-7">
-            <color-box title="Cheque # {{ $check->folio }}" color="primary">
+            <color-box title="Cheque # {{ $check->folio }} - {{ fnumber($check->amount) }}" color="primary">
                 <data-table example="1">
                     {{ drawHeader('Archivo', 'Ver', 'Importe') }}
 
