@@ -99,7 +99,7 @@ class SupplySaleController extends Controller
 
         foreach ($request->supplieso as $supply) {
             $movement = SupplyMovement::find($supply['id']);
-            $movement->update(['price' => $supply['price'], 'quantity' => $supply['quantity']]);
+            $movement->update(['price' => $supply['price'], 'quantity' => $supply['quantity']/$supply['ratio']]);
             // $movement->supply->update(['price' => $supply['price']]);
         }
 

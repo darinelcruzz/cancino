@@ -56312,7 +56312,8 @@ var render = function() {
                   attrs: {
                     supply: supply,
                     editable: _vm.editable,
-                    index: index
+                    index: index,
+                    model: _vm.model
                   }
                 })
               }),
@@ -56498,7 +56499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	computed: {
 		total: function total() {
-			return this.quantity * this.price;
+			return this.quantity * this.price * this.ratio;
 		}
 	},
 	methods: {
@@ -56519,7 +56520,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		if (this.supply.supply.byproducts != null && this.model == 'sale') {
 			var byproduct = this.supply.supply.byproducts[0];
 			this.byproduct = byproduct;
-			this.quantity = byproduct.ratio;
+			this.quantity = this.supply.quantity * byproduct.ratio;
 			this.ratio = byproduct.ratio;
 			this.price = byproduct.price;
 			this.update();
@@ -56806,13 +56807,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: { supply: Object, editable: { type: Boolean, default: false }, index: Number },
+	props: { supply: Object, editable: { type: Boolean, default: false }, index: Number, model: String },
 	data: function data() {
 		return {
 			quantity: 1,
-			price: 0
+			price: 0,
+			ratio: 1
 		};
 	},
 
@@ -56831,7 +56834,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	created: function created() {
 		this.price = this.supply.price;
-		this.quantity = this.supply.quantity;
+		this.quantity = this.supply.quantity * this.supply.ratio;
+		this.ratio = this.supply.ratio;
 		this.update();
 	}
 });
@@ -56891,7 +56895,7 @@ var render = function() {
             attrs: {
               type: "number",
               name: "supplieso[" + _vm.index + "][price]",
-              min: "1",
+              min: "0.01",
               step: "0.01"
             },
             domProps: { value: _vm.price },
@@ -56928,7 +56932,8 @@ var render = function() {
               attrs: {
                 name: "supplieso[" + _vm.index + "][quantity]",
                 type: "number",
-                min: "1"
+                min: _vm.ratio,
+                step: _vm.ratio
               },
               domProps: { value: _vm.quantity },
               on: {
@@ -56943,17 +56948,37 @@ var render = function() {
                   return _vm.$forceUpdate()
                 }
               }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                name: "supplieso[" + _vm.index + "][ratio]",
+                type: "hidden"
+              },
+              domProps: { value: _vm.ratio }
             })
           ])
         ])
-      : _c("td", [_vm._v("\n\t\t\t" + _vm._s(_vm.supply.quantity) + "\n\t\t")]),
+      : _c("td", [
+          _vm._v(
+            "\n\t\t\t" +
+              _vm._s(_vm.supply.quantity * _vm.supply.ratio) +
+              "\n\t\t"
+          )
+        ]),
     _vm._v(" "),
     _vm.editable
       ? _c("td", [_vm._v("\n\t\t\t" + _vm._s(_vm.total.toFixed(2)) + "\n\t\t")])
       : _c("td", [
           _vm._v(
             "\n\t\t\t" +
-              _vm._s((_vm.supply.price * _vm.supply.quantity).toFixed(2)) +
+              _vm._s(
+                (
+                  _vm.supply.price *
+                  _vm.supply.quantity *
+                  _vm.supply.ratio
+                ).toFixed(2)
+              ) +
               "\n\t\t"
           )
         ])

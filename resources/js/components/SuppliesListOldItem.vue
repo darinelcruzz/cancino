@@ -12,33 +12,35 @@
 		</td>
 		<td>
 			
-			<input v-if="editable" type="number" :name="'supplieso[' + index + '][price]'" v-model.number="price" @change="update" class="form-control" min="1" step="0.01">
+			<input v-if="editable" type="number" :name="'supplieso[' + index + '][price]'" v-model.number="price" @change="update" class="form-control" min="0.01" step="0.01">
 			<span v-else>{{ supply.price.toFixed(2) }}</span>
 		</td>
 		<td v-if="editable">
 			<div class="input-group input-group-sm">
-                <input :name="'supplieso[' + index + '][quantity]'" type="number" v-model.number="quantity" @change="update" class="form-control" min="1">
+                <input :name="'supplieso[' + index + '][quantity]'" type="number" v-model.number="quantity" @change="update" class="form-control" :min="ratio" :step="ratio">
+                <input :name="'supplieso[' + index + '][ratio]'" type="hidden" :value="ratio">
             </div>
 		</td>
 		<td v-else>
-			{{ supply.quantity }}
+			{{ supply.quantity * supply.ratio }}
 		</td>
 		<td v-if="editable">
 			{{ total.toFixed(2) }}
 		</td>
 		<td v-else>
-			{{ (supply.price * supply.quantity).toFixed(2) }}
+			{{ (supply.price * supply.quantity * supply.ratio).toFixed(2) }}
 		</td>
 	</tr>	
 </template>
 
 <script>
 	export default {
-		props: {supply: Object, editable: {type: Boolean, default: false}, index: Number},
+		props: {supply: Object, editable: {type: Boolean, default: false}, index: Number, model: String},
 		data() {
 			return {
 				quantity: 1,
 				price: 0,
+				ratio: 1,
 			}
 		},
 		computed: {
@@ -56,7 +58,8 @@
 		},
 		created() {
 			this.price = this.supply.price
-			this.quantity = this.supply.quantity
+			this.quantity = this.supply.quantity * this.supply.ratio
+			this.ratio = this.supply.ratio
 			this.update();
 		}
 	};

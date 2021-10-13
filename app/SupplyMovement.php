@@ -24,6 +24,10 @@ class SupplyMovement extends Model
             return $this->movable->origin;
         }
 
+        if ($this->movable_type == 'App\SupplySale') {
+            return Store::find(1);
+        }
+
         return $this->movable->store ?? Store::find(1);
     }
 

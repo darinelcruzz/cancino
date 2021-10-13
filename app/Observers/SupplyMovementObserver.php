@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\SupplyMovement;
+use App\{SupplyMovement, SupplyStock};
 
 class SupplyMovementObserver
 {
