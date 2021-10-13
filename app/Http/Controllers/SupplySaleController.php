@@ -22,7 +22,6 @@ class SupplySaleController extends Controller
 
     function store(Request $request)
     {
-        // dd($request->all());
         $attributes = $request->validate([
             'sold_at' => 'required',
             'store_id' => 'required',

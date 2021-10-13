@@ -1,6 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle', 'Insumos | Ventas')
+@push('pageTitle', 'Insumos | Venta')
 
 @push('headerTitle')
     <div class="row">
@@ -30,6 +30,9 @@
                     </thead>
 
                     <tbody>
+                        @php
+                            $total = 0;
+                        @endphp
                         @foreach($supply_sale->movements as $movement)
                             <tr>
                                 <td>{{ $movement->created_at->format('d/m/Y') }}</td>
@@ -38,6 +41,9 @@
                                 <td style="text-align: right;">{{ number_format($movement->price, 2) }}</td>
                                 <td style="text-align: right;">{{ number_format($movement->ratio * $movement->quantity * $movement->price, 2) }}</td>
                             </tr>
+                            @php
+                                $total += $movement->ratio * $movement->quantity * $movement->price;
+                            @endphp
                         @endforeach
                     </tbody>
 
@@ -45,13 +51,13 @@
                         <tr>
                             <td colspan="3"></td>
                             <th style="text-align: right;"><small>TOTAL</small></th>
-                            <th style="text-align: right;">{{ number_format($supply_sale->amount, 2) }}</th>
+                            <th style="text-align: right;">{{ number_format($total, 2) }}</th>
                         </tr>
                     </tfoot>
                 </table>
                 </div>
             </color-box>
         </div>
-        
+
     </div>
 @endsection
