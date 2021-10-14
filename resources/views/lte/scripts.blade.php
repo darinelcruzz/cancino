@@ -71,6 +71,10 @@
       "order":[[ 0 , "desc"]]
     });
 
+    $(".simple").DataTable({
+      order: false
+    });
+
     $(".no-pagination").DataTable({
       "order":[[ 0 , "desc"]],
       paging: false

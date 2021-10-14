@@ -21,6 +21,7 @@ class TakenProductController extends Controller
             'code' => 'required',
             'observations' => 'required',
             'taken_at' => 'required',
+            'quantity' => 'required',
         ]);
 
         $takenProduct = TakenProduct::create($request->all());

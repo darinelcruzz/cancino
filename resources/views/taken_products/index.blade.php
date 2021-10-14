@@ -9,7 +9,16 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'taken_products.store']) !!}
 
                     {!! Field::text('code', ['tpl' => 'lte/withicon'], ['icon' => 'barcode']) !!}
-                    {!! Field::date('taken_at', now(), ['label' => 'Fecha', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Field::number('quantity', 1,['tpl' => 'lte/withicon'], ['icon' => 'th']) !!}
+                        </div>
+                        <div class="col-md-6">
+                            {!! Field::date('taken_at', now(), ['label' => 'Fecha', 'tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
+                        </div>
+                    </div>
+
                     {!! Field::text('observations', ['label' => 'Motivo', 'tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
 
                     <hr>
@@ -25,47 +34,50 @@
             </a>
         </div>
         <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-12">
-                    <color-box title="Pendientes" color="danger" button solid>
-                        <data-table example="2">
-                            {{ drawHeader('fecha', 'modelo', 'motivo', 'usuario') }}
-                            <template slot="body">
-                                @foreach($pending as $taken_product)
-                                    <tr>
-                                        <td>{{ fdate($taken_product->taken_at, 'd-M-y', 'Y-m-d') }}</td>
-                                        <td>{{ $taken_product->code }}</td>
-                                        <td>{{ $taken_product->observations }}</td>
-                                        <td>{{ $taken_product->user->name }}</td>
-                                    </tr>
-                                @endforeach
-                            </template>
-                        </data-table>
-                    </color-box>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <color-box title="Dados de baja" color="success" button collapsed solid>
-                        <data-table example="1">
-                            {{ drawHeader('POS', 'productos', 'fecha') }}
-                            <template slot="body">
-                                @foreach($deleted as $pos => $taken_products)
-                                    <tr>
-                                        <td>{{ $pos }}</td>
-                                        <td>
-                                            @foreach($taken_products as $taken_product)
-                                                {{ $taken_product->code }} {{ $loop->last ? '': ', ' }}
-                                            @endforeach
-                                        </td>
-                                        <td>{{ fdate($taken_products->first()->deleted_at, 'd/M/y', 'Y-m-d') }}</td>
-                                    </tr>
-                                @endforeach
-                            </template>
-                        </data-table>
-                    </color-box>
-                </div>
-            </div>
+            <color-box title="Pendientes" color="danger" button solid>
+                <table class="table table-striped table-bordered simple">
+                    <thead>
+                        <tr>
+                            <th><small>FECHA</small></th>
+                            <th><small>MODELO</small></th>
+                            <th><small>CANTIDAD</small></th>
+                            <th><small>MOTIVO</small></th>
+                            <th><small>USUARIO</small></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($pending->sortByDesc('taken_at') as $taken_product)
+                            <tr>
+                                <td>{{ strtoupper(fdate($taken_product->taken_at, 'd/M/y', 'Y-m-d')) }}</td>
+                                <td>{{ $taken_product->code }}</td>
+                                <td>{{ $taken_product->quantity }}</td>
+                                <td>{{ $taken_product->observations }}</td>
+                                <td>{{ $taken_product->user->name }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </color-box>
+
+            <color-box title="Dados de baja" color="success" button collapsed solid>
+                <data-table example="1">
+                    {{ drawHeader('POS', 'productos', 'fecha') }}
+                    <template slot="body">
+                        @foreach($deleted as $pos => $taken_products)
+                            <tr>
+                                <td>{{ $pos }}</td>
+                                <td>
+                                    @foreach($taken_products as $taken_product)
+                                        {{ $taken_product->code }} {{ $loop->last ? '': ', ' }}
+                                    @endforeach
+                                </td>
+                                <td>{{ fdate($taken_products->first()->deleted_at, 'd/M/y', 'Y-m-d') }}</td>
+                            </tr>
+                        @endforeach
+                    </template>
+                </data-table>
+            </color-box>
         </div>
     </div>
 @endsection

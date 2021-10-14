@@ -78,7 +78,7 @@
                         <tr>
                             @foreach($chunk as $item => $wastes)
                                 <td style="width: 23%" class="box">{{ $item }}</td>
-                                <td style="width: 7%" class="box">{{ $wastes->count() }}</td>
+                                <td style="width: 7%" class="box">{{ $wastes->sum('quantity') }}</td>
                                 @if($loop->iteration < 3)
                                     <td style="width: 5%">&nbsp;</td>
                                 @else
