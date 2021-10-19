@@ -23,7 +23,7 @@
                     </data-table>
                     <hr>
                     <a href="{{ route('taken_products.edit', $store_id)}}" class="btn pull-right btn-danger">
-                        <i class="fa fa-trash"></i>&nbsp;&nbsp;DESTRUIR
+                        <i class="fa fa-trash"></i>&nbsp;&nbsp;DAR SALIDA
                     </a>
                     <a href="{{ route('taken_products.print', $store_id) }}" class="btn btn-github pull-left" target="_blank">
                         <i class="fa fa-print"></i>&nbsp;&nbsp;IMPRIMIR

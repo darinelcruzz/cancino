@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <color-box title="Destrucción de {{ $store->name }}" color="danger" solid>
+            <color-box title="Dar salida productos de {{ $store->name }}" color="danger" solid>
                 {!! Form::open(['method' => 'POST', 'route' => 'taken_products.update']) !!}
                     <div class="box-body">
                         <div class="row">
@@ -19,12 +19,12 @@
 
                         @if($errors->has('items'))
                             <div class="has-error">
-                                <p class="help-block">Por favor marca los IDs a destruir</p>
+                                <p class="help-block">Por favor marca los IDs a dar de baja</p>
                             </div>
                         @endif
 
                         <data-table>
-                            {{ drawHeader('<i class="fa fa-check"></i>', 'modelo', 'fecha', 'usuario') }}
+                            {{ drawHeader('<i class="fa fa-check"></i>', 'modelo', 'cantidad', 'fecha', 'usuario') }}
                             <template slot="body">
                                 @foreach ($taken_products as $taken_product)
                                     <tr>
@@ -33,6 +33,7 @@
                                             <input type="checkbox" value="{{ $taken_product->id }}" v-model="wastes">
                                         </td>
                                         <td>{{ $taken_product->code }}</td>
+                                        <td>{{ $taken_product->quantity }}</td>
                                         <td>{{ fdate($taken_product->taken_at, 'd/M/Y', 'Y-m-d') }}</td>
                                         <td>{{ $taken_product->user->name }}</td>
                                     </tr>
@@ -41,11 +42,11 @@
                         </data-table>
                     </div>
                     <div class="box-footer">
-                        <input type="hidden" name="status" value="destruido">
+                        <input type="hidden" name="status" value="baja">
                         <div v-if="wastes[0] != null">
                             <input type="hidden" name="items" :value="wastes">
                         </div>
-                        {!! Form::submit('Destruir', ['class' => 'btn btn-danger btn-block']) !!}
+                        {!! Form::submit('Dar salida', ['class' => 'btn btn-danger btn-block']) !!}
                     </div>
 
                 {!! Form::close() !!}
