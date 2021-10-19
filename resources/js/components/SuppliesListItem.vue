@@ -50,7 +50,7 @@
 		},
 		computed: {
 			total() {
-				return this.quantity * this.price * this.ratio
+				return this.quantity * this.price
 			}
 		},
 		methods: {
@@ -71,7 +71,7 @@
 			if (this.supply.supply.byproducts != null && this.model == 'sale') {
 				let byproduct = this.supply.supply.byproducts[0];
 				this.byproduct = byproduct;
-				this.quantity = this.supply.quantity * byproduct.ratio;
+				this.quantity = byproduct.ratio;
 				this.ratio = byproduct.ratio
 				this.price = byproduct.price
 				this.update();
