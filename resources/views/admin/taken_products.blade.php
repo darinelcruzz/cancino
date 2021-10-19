@@ -8,12 +8,13 @@
             <div class="col-md-6">
                 <color-box title="Pendientes de {{ App\Store::find($store_id)->name . ' (' . count($taken_products) }})" color="danger" button collapsed solid>
                     <data-table example="{{ $store_id }}">
-                        {{ drawHeader('fecha', 'modelo', 'motivo', 'usuario') }}
+                        {{ drawHeader('fecha', 'modelo', 'cantidad', 'motivo', 'usuario') }}
                         <template slot="body">
                             @foreach($taken_products as $taken_product)
                                 <tr>
                                     <td>{{ fdate($taken_product->taken_at, 'd/M/y', 'Y-m-d') }}</td>
                                     <td>{{ $taken_product->code }}</td>
+                                    <td>{{ $taken_product->quantity }}</td>
                                     <td>{{ $taken_product->observations }}</td>
                                     <td>{{ $taken_product->user->name }}</td>
                                 </tr>
