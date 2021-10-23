@@ -25,7 +25,8 @@ class SupplyMovement extends Model
         }
 
         if ($this->movable_type == 'App\SupplySale') {
-            return Store::find(1);
+            $id = $this->movable->store_id % 3 == 0 ? 3: 1;
+            return Store::find($id);
         }
 
         return $this->movable->store ?? Store::find(1);
