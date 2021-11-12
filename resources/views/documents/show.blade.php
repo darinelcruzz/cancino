@@ -14,7 +14,7 @@
                                 <i style="color:red;" class="fa fa-file-{{ explode('.', $file)[1] == 'pdf' ? 'pdf-o': 'word' }} fa-2x"></i>
                                 &nbsp;
                                 <span style="font-size: 24px;">
-                                    {{ substr($file, strlen('public/documents/store0/')) }}
+                                    {{ substr($file, strlen('documents/store0/')) }}
                                 </span>
                             </a>
                         </li>

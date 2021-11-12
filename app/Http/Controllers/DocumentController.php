@@ -9,9 +9,9 @@ class DocumentController extends Controller
 {
     function index()
     {
-        $labels = ['Generales', 'Todas', 'Chiapas', 'Soconusco', 'Altos', 'Galerías Tuxtla', 'Galerías Tapachula', 'Comitán'];
-        $route = 'public/documents';
-        $folders = Storage::directories($route);
+        $labels = ['Generales', 'VKS', 'Chiapas', 'Soconusco', 'Altos', 'Galerías Tuxtla', 'Galerías Tapachula', 'Comitán'];
+        $route = 'documents';
+        $folders = Storage::allDirectories($route);
 
         // dd($labels, $route, $folders);
 
@@ -30,7 +30,7 @@ class DocumentController extends Controller
             'name' => 'required',
         ]);
 
-        $route = '/public/documents/store' . $request->store;
+        $route = 'documents/store' . $request->store;
         $extension = $request->file('doc')->getClientOriginalExtension();
         $request->file('doc')->storeAs($route, $request->name . '.' . $extension);
 
@@ -39,7 +39,7 @@ class DocumentController extends Controller
     
     function show($store)
     {
-        $route = '/public/documents/store' . $store;
+        $route = 'documents/store' . $store;
         $files = Storage::files($route);
 
         // dd($files);
