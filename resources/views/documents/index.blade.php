@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <color-box title="Tiendas" color="primary">
+            <color-box title="TIENDAS" color="vks" solid>
                 <ul>
                     @foreach($folders as $folder)
                     @if(auth()->user()->level == 1 || substr($folder, -1) == 0 || auth()->user()->store_id == substr($folder, -1))
