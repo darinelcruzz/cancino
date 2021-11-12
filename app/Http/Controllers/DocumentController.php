@@ -39,7 +39,7 @@ class DocumentController extends Controller
     
     function show($store)
     {
-        $route = '/public/documents/' . $store;
+        $route = '/public/documents/store' . $store;
         $files = Storage::files($route);
 
         // dd($files);

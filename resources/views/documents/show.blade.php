@@ -5,8 +5,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <color-box title="Archivos" color="primary">
+            <color-box title="ARCHIVOS" color="vks" solid>
                 <ul>
+                    {{-- @dd($files) --}}
                     @foreach($files as $file)
                         <li>
                             <a href="{{ Storage::url($file) }}" target="_blank">
