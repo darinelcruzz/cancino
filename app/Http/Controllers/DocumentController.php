@@ -13,6 +13,8 @@ class DocumentController extends Controller
         $route = 'public/documents';
         $folders = Storage::directories($route);
 
+        // dd($labels, $route, $folders);
+
         return view('documents.index', compact('folders', 'route', 'labels'));
     }
 
@@ -28,7 +30,7 @@ class DocumentController extends Controller
             'name' => 'required',
         ]);
 
-        $route = 'public/documents/store' . $request->store;
+        $route = '/public/documents/store' . $request->store;
         $extension = $request->file('doc')->getClientOriginalExtension();
         $request->file('doc')->storeAs($route, $request->name . '.' . $extension);
 
@@ -37,8 +39,10 @@ class DocumentController extends Controller
     
     function show($store)
     {
-        $route = 'public/documents/' . $store;
+        $route = '/public/documents/' . $store;
         $files = Storage::files($route);
+
+        // dd($files);
 
         return view('documents.show', compact('files', 'route'));
     }

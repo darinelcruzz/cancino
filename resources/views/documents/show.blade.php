@@ -10,11 +10,7 @@
                     @foreach($files as $file)
                         <li>
                             <a href="{{ Storage::url($file) }}" target="_blank">
-                                @if (explode('.', $file)[1] == 'pdf')
-                                    <i style="color:red;" class="fa fa-file-pdf-o fa-2x"></i>
-                                @else
-                                    <i style="color:blue;" class="fa fa-file-word fa-2x"></i>
-                                @endif
+                                <i style="color:red;" class="fa fa-file-{{ explode('.', $file)[1] == 'pdf' ? 'pdf-o': 'word' }} fa-2x"></i>
                                 &nbsp;
                                 <span style="font-size: 24px;">
                                     {{ substr($file, strlen('public/documents/store0/')) }}
