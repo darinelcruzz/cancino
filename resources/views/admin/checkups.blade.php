@@ -18,9 +18,9 @@
                                         <td>{{ fdate($checkup->date_sale,'d-M-Y', 'Y-m-d') }}</td>
                                         <td>{{ fnumber($checkup->amount + $checkup->sale->compensation) }}</td>
                                         <td>{{ $checkup->sale ? fnumber($checkup->sale->public): 'No se guardó' }}</td>
-                                        <td>{{ fnumber($checkup->cash_sums['c']) }} <br> {!! $checkup->cash_sums['d'] > 10 || $checkup->cash_sums['d'] < -10 ? '<code>' . fnumber($checkup->cash_sums['d']) : ''  !!}</code></td>
-                                        <td>{{ fnumber($checkup->card_sums['c']) }}<br> {!! $checkup->card_sums['d'] > 10 || $checkup->card_sums['d'] < -10 ? '<code>' . fnumber($checkup->card_sums['d']) : ''  !!}</code></td>
-                                        <td>{{ fnumber($checkup->transfer_sums['c']) }}<br> {!! $checkup->transfer_sums['d'] > 10 || $checkup->transfer_sums['d'] < -10 ? '<code>' . fnumber($checkup->transfer_sums['d']) : ''  !!}</code></td>
+                                        <td>{{ fnumber($checkup->cash_sums['c']) }} <br> {!! $checkup->cash_sums['d'] > 5 || $checkup->cash_sums['d'] < -5 ? '<code>' . fnumber($checkup->cash_sums['d']) : ''  !!}</code></td>
+                                        <td>{{ fnumber($checkup->card_sums['c']) }}<br> {!! $checkup->card_sums['d'] > 5 || $checkup->card_sums['d'] < -5 ? '<code>' . fnumber($checkup->card_sums['d']) : ''  !!}</code></td>
+                                        <td>{{ fnumber($checkup->transfer_sums['c']) }}<br> {!! $checkup->transfer_sums['d'] > 5 || $checkup->transfer_sums['d'] < -5 ? '<code>' . fnumber($checkup->transfer_sums['d']) : ''  !!}</code></td>
                                         <td>{{ fnumber($checkup->creditSum) }} <br> {!! $checkup->canceledSum ? '<code> -' . fnumber($checkup->canceledSum) : '' !!}</code></td>
                                         <td>{{ fnumber($checkup->online['web']) }}</td>
                                         <td>
