@@ -10,6 +10,7 @@ class Checkup extends Model
 
     protected $casts = [
     	'cash' => 'array',
+    	'online' => 'array',
     	'cash_sums' => 'array',
     	'transfer' => 'array',
     	'transfer_sums' => 'array',
@@ -37,7 +38,7 @@ class Checkup extends Model
     function getAmountAttribute()
     {
         return $this->cash_sums['c'] + $this->transfer_sums['c'] + $this->card_sums['c'] + $this->creditSum - $this->canceledSum + $this->sc_dif
-            + $this->online['web'] + $this->retention;
+            + ($this->online['web']??0) + $this->retention;
     }
 
     function getStatusLabelAttribute()
