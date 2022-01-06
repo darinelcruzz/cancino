@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Charts\TestChart;
-use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup, Task, Checklist, TakenProduct};
+use App\{Shopping, Sale, Note, Store, Binnacle, Expense, Loan, Invoice, Waste, Goal, Employer, Equipment, Checkup, Task, Checklist, TakenProduct, Commision};
 
 class AdminController extends Controller
 {
@@ -20,6 +20,16 @@ class AdminController extends Controller
         });
 
         return view('admin.sales', compact('dates'));
+    }
+
+    function awards()
+    {
+        $employers = Employer::where('status', '!=', 'inactivo')
+          ->get();
+        $commisions = Commision::where('goal_id', '>', '240')
+        ->get();
+
+        return view('admin.awards', compact('employers', 'commisions'));
     }
 
     function deposits(Request $request)

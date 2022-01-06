@@ -260,6 +260,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('formato-de-visita', usesas($ctrl, 'checklist'));
     Route::get('gastos', usesas($ctrl, 'expenses'));
     Route::get('gastos/tienda/{store}', usesas($ctrl, 'storeExpenses'));
+    Route::get('premios', usesas($ctrl, 'awards'));
 });
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
