@@ -84,18 +84,18 @@
                 <data-table example="3">
                     {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">
-                        @foreach($invoiced as $row)
+                        @foreach($invoiced as $invoice)
                             <tr>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ fdate($row->date, 'd-M-y', 'Y-m-d') }}</td>
-                                <td>{{ $row->folio }}</td>
-                                <td>{{ $row->tor->name }}</td>
-                                <td>{{ fnumber($row->amount) }}</td>
-                                <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ $invoice->id }}</td>
+                                <td>{{ fdate($invoice->date, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ $invoice->folio }}</td>
+                                <td>{{ $invoice->tor->name }}</td>
+                                <td>{{ fnumber($invoice->amount) }}</td>
+                                <td>{{ $invoice->pos }} <br> {{ fdate($invoice->pos_at, 'd-M-y', 'Y-m-d') }}</td>
                                 <td>
-                                    <a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
+                                    <a href="{{ route('invoices.show', $invoice)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a>
                                     @if (auth()->user()->level == 1)
-                                        <a href="{{ route('invoices.pay', ['id' => $row->id])}}" class="btn btn-xs btn-primary"><i class="fa fa-dollar"></i></a>
+                                        <a href="{{ route('invoices.pay', $invoice)}}" class="btn btn-xs btn-primary"><i class="fa fa-dollar"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -111,16 +111,16 @@
                 <data-table example="5">
                     {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', 'Pago', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">
-                        @foreach($payed as $row)
+                        @foreach($payed as $invoice)
                             <tr>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ fdate($row->date, 'd-M-y', 'Y-m-d') }}</td>
-                                <td>{{ $row->folio }}</td>
-                                <td>{{ $row->tor->name }}</td>
-                                <td>{{ fnumber($row->amount) }}</td>
-                                <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
-                                <td>{{ fdate($row->payed_at, 'd-M-y', 'Y-m-d') }} </td>
-                                <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
+                                <td>{{ $invoice->id }}</td>
+                                <td>{{ fdate($invoice->date, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ $invoice->folio }}</td>
+                                <td>{{ $invoice->tor->name }}</td>
+                                <td>{{ fnumber($invoice->amount) }}</td>
+                                <td>{{ $invoice->pos }} <br> {{ fdate($invoice->pos_at, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ fdate($invoice->payed_at, 'd-M-y', 'Y-m-d') }} </td>
+                                <td><a href="{{ route('invoices.show', $invoice)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
                             </tr>
                         @endforeach
                     </template>
@@ -134,16 +134,16 @@
                 <data-table example="4">
                     {{ drawHeader('ID', 'Fecha', 'Factura', 'Tienda', 'Importe', 'POS', 'Pago', '<i class="fa fa-eye"></i>') }}
                     <template slot="body">
-                        @foreach($added as $row)
+                        @foreach($added as $invoice)
                             <tr>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ fdate($row->date, 'd-M-y', 'Y-m-d') }}</td>
-                                <td>{{ $row->folio }}</td>
-                                <td>{{ $row->fromr->name }}</td>
-                                <td>{{ fnumber($row->amount) }}</td>
-                                <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
-                                <td>{{ fdate($row->payed_at, 'd-M-y', 'Y-m-d') }} </td>
-                                <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
+                                <td>{{ $invoice->id }}</td>
+                                <td>{{ fdate($invoice->date, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ $invoice->folio }}</td>
+                                <td>{{ $invoice->fromr->name }}</td>
+                                <td>{{ fnumber($invoice->amount) }}</td>
+                                <td>{{ $invoice->pos }} <br> {{ fdate($invoice->pos_at, 'd-M-y', 'Y-m-d') }}</td>
+                                <td>{{ fdate($invoice->payed_at, 'd-M-y', 'Y-m-d') }} </td>
+                                <td><a href="{{ route('invoices.show', $invoice)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
                             </tr>
                         @endforeach
                     </template>
