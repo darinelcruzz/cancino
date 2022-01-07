@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                    <supplies-list model="sale" :old="{{ $supply_transfer->movements()->with('supply')->get() }}" :editable="true"></supplies-list>
+                    <supplies-list model="transfer" :old="{{ $supply_transfer->movements()->with('supply')->get() }}" :editable="true"></supplies-list>
 
                     <hr>
 

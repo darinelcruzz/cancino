@@ -48,18 +48,23 @@ class SupplyPurchaseController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'supplies' => 'required|array|min:1',
+            'supplies' => 'sometimes|required|array|min:1',
+            'supplieso' => 'sometimes|required|array|min:1',
             'amount' => 'required',
         ]);
 
         $supply_purchase->update($request->only('amount', 'provider_id'));
 
-        foreach ($request->supplies as $supply) {
+        foreach ($request->supplieso as $supply) {
             $movement = SupplyMovement::find($supply['id']);
             $movement->update([
                 'quantity' => $supply['quantity'],
                 'price' => $supply['price']
             ]);
+        }
+
+        if ($request->supplies) {
+            $supply_purchase->movements()->createMany($request->supplies);
         }
 
         return redirect(route('supplies.purchases.show', $supply_purchase));

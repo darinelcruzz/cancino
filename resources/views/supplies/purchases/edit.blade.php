@@ -20,7 +20,7 @@
 
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
-                    <supplies-list model="sale" :old="{{ $supply_purchase->movements()->with('supply')->get() }}" :editable="true"></supplies-list>
+                    <supplies-list model="purchase" :old="{{ $supply_purchase->movements()->with('supply')->get() }}" :editable="true"></supplies-list>
 
                     <hr>
 

@@ -2,7 +2,7 @@
 	<tr>
 		<td v-if="editable"><span style="color: navy;"><i class="fa fa-edit"></i></span></td>
 		<td v-else><span style="color: green;"><i class="fa fa-check"></i></span></td>
-		<td v-if="supply.supply.byproducts != null">
+		<td v-if="supply.supply.byproducts != null && model == 'sale'">
 			{{ supply.description }}
 			<input v-if="editable" :name="'supplieso[' + index + '][id]'" type="hidden" :value="supply.id">
 		</td>
