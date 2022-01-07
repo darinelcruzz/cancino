@@ -22,7 +22,7 @@
                                         <td>{{ fnumber($checkup->card_sums['c']) }}<br> {!! $checkup->card_sums['d'] > 5 || $checkup->card_sums['d'] < -5 ? '<code>' . fnumber($checkup->card_sums['d']) : ''  !!}</code></td>
                                         <td>{{ fnumber($checkup->transfer_sums['c']) }}<br> {!! $checkup->transfer_sums['d'] > 5 || $checkup->transfer_sums['d'] < -5 ? '<code>' . fnumber($checkup->transfer_sums['d']) : ''  !!}</code></td>
                                         <td>{{ fnumber($checkup->creditSum) }} <br> {!! $checkup->canceledSum ? '<code> -' . fnumber($checkup->canceledSum) : '' !!}</code></td>
-                                        <td>{{ fnumber($checkup->online['web']) }}</td>
+                                        <td>{{ fnumber($checkup->online['web']??0) }}</td>
                                         <td>
                                             {!! $checkup->retention != 0 ? '<b>Retención:</b> <br><code>' . fnumber($checkup->retention) . '</code><br>' : '' !!}
                                             {!! $checkup->sc_dif != 0 ? '<b>StrenCard:</b> <br><code>' . fnumber($checkup->sc_dif) . '</code>' : '' !!}

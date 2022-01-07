@@ -9,12 +9,17 @@ use Illuminate\Notifications\Notifiable;
 class Employer extends Model
 {
     use Notifiable;
-    
+
     protected $guarded = [];
 
     function store()
     {
         return $this->belongsTo(Store::class);
+    }
+
+    function commision()
+    {
+        return $this->hasMany(Commision::class);
     }
 
     function payment()

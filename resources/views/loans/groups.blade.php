@@ -28,7 +28,7 @@
                                         </span>
                                     @elseif ($row->status == 'aceptado')
                                         ¿Lo recibiste?&nbsp;
-                                        <a href="{{ route('loans.agree', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                        <a href="{{ route('loans.agree', $row)}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                                     @elseif ($row->status == 'recibido')
                                         <span class="label label-info">
                                             {{ ucfirst($row->status) }}
@@ -58,7 +58,7 @@
                                 <td>
                                     @if ($row->status == 'solicitado')
                                         ¿Aceptas?&nbsp;
-                                        <a href="{{ route('loans.agree', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                        <a href="{{ route('loans.agree', $row)}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                                     @elseif ($row->status == 'aceptado')
                                         <span class="label label-success">
                                             {{ ucfirst($row->status) }}
@@ -90,7 +90,7 @@
                                     <td>{{ $row->tor->name }}</td>
                                     <td>{{ fnumber($row->amount) }}</td>
                                     <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
-                                    <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
+                                    <td><a href="{{ route('invoices.show', $row)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             @endif
                         @endforeach
@@ -112,7 +112,7 @@
                                     <td>{{ $row->fromr->name }}</td>
                                     <td>{{ fnumber($row->amount) }}</td>
                                     <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
-                                    <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
+                                    <td><a href="{{ route('invoices.show', $row)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             @endif
                         @endforeach
@@ -137,7 +137,7 @@
                                     <td>{{ fnumber($row->amount) }}</td>
                                     <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
                                     <td>{{ fdate($row->payed_at, 'd-M-y', 'Y-m-d') }}</td>
-                                    <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
+                                    <td><a href="{{ route('invoices.show', $row)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             @endif
                         @endforeach
@@ -160,7 +160,7 @@
                                     <td>{{ fnumber($row->amount) }}</td>
                                     <td>{{ $row->pos }} <br> {{ fdate($row->pos_at, 'd-M-y', 'Y-m-d') }}</td>
                                     <td>{{ fdate($row->payed_at, 'd-M-y', 'Y-m-d') }}</td>
-                                    <td><a href="{{ route('invoices.show', ['id' => $row->id])}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
+                                    <td><a href="{{ route('invoices.show', $row)}}" class="btn btn-xs btn-success"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                             @endif
                         @endforeach

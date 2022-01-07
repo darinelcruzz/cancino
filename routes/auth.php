@@ -105,7 +105,7 @@ Route::group(['prefix' => 'facturas', 'as' => 'invoices.', 'middleware' => 'nonC
     Route::get('/', usesas($ctrl, 'index'));
     Route::get('agregar/{store}', usesas($ctrl, 'create'));
     Route::post('agregar', usesas($ctrl, 'store'));
-    Route::get('detlles/{invoice}', usesas($ctrl, 'show'));
+    Route::get('detalles/{invoice}', usesas($ctrl, 'show'));
     Route::get('editar/{invoice}', usesas($ctrl, 'pay'));
     Route::post('editar', usesas($ctrl, 'pos'));
 });
@@ -260,6 +260,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], fu
     Route::get('formato-de-visita', usesas($ctrl, 'checklist'));
     Route::get('gastos', usesas($ctrl, 'expenses'));
     Route::get('gastos/tienda/{store}', usesas($ctrl, 'storeExpenses'));
+    Route::get('premios', usesas($ctrl, 'awards'));
 });
 
 Route::group(['prefix' => 'apoyo', 'as' => 'helper.', 'middleware' => 'helper'], function () {
