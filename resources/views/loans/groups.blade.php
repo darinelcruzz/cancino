@@ -65,7 +65,7 @@
                                         </span>
                                     @elseif ($row->status == 'recibido')
                                         ¿Facturar?&nbsp;
-                                        <a href="{{ route('invoices.create', ['store_id' => $row->to])}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                                        <a href="{{ route('invoices.create', $row->to)}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                                     @endif
                                 </td>
                             </tr>
