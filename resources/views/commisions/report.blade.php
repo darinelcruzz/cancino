@@ -80,6 +80,7 @@
                 <tbody style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;" class="main">
                     @php
                         $sales_commisions_total = 0;
+                        $total_pay_sum = 0;
                         $total_sum = 0;
                     @endphp
                     @foreach ($commisions_by_employee as $employee_id => $commisions)
@@ -114,7 +115,8 @@
                                     <td rowspan="5">{{ fnumber($total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum)) }}</td>
                                     @php
                                         $sales_commisions_total += $sales_commision_sum;
-                                        $total_sum += $total_employee_sum;
+                                        $total_pay_sum += $total_employee_sum;
+                                        $total_sum += $total_employee_sum  - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum);
                                     @endphp
                                 @endif
                             </tr>
@@ -133,7 +135,7 @@
                         <td><b>{{ fnumber($sales_commisions_total) }}</b></td>
                         <td><b>{{ $commisions_complete->sum('sterencard') }}</b></td>
                         <td><b>{{ $commisions_complete->sum('extensions') }}</b></td>
-                        <td><b>{{ fnumber($total_sum) }}</b></td>
+                        <td><b>{{ fnumber($total_pay_sum) }}</b></td>
                         <td><b>{{ $commisions_complete->sum('dalays') }}</b></td>
                         <td><b>{{ $commisions_complete->sum('absences') }}</b></td>
                         <td><b>{{ fnumber($total_sum) }}</b></td>
