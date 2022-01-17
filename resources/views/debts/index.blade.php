@@ -26,8 +26,8 @@
                                 <td>{{ fnumber($debt->difference) }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
-                                        <ddi to="{{ route('payments.create', ['id' => $debt->id]) }}" icon="plus" text="Abonar"></ddi>
-                                        <ddi to="{{ route('debts.show', ['id' => $debt->id]) }}" icon="eye" text="Abonos"></ddi>
+                                        <ddi to="{{ route('payments.create', $debt) }}" icon="plus" text="Abonar"></ddi>
+                                        <ddi to="{{ route('debts.show', $debt) }}" icon="eye" text="Abonos"></ddi>
                                     </dropdown>
                                 </td>
                             </tr>
@@ -53,7 +53,7 @@
                                 <td>{{ fnumber($debt->difference) }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
-                                        <ddi to="{{ route('debts.show', ['id' => $debt->id]) }}" icon="eye" text="Abonos"></ddi>
+                                        <ddi to="{{ route('debts.show', $debt) }}" icon="eye" text="Abonos"></ddi>
                                     </dropdown>
                                 </td>
                             </tr>
