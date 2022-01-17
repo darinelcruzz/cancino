@@ -34,7 +34,11 @@
 
                     <template slot="footer">
                         <tr>
-                            <td></td>
+                            <td>
+                                <a href="{{ route('checks.print', $check) }}" class="btn btn-primary btn-xs pull-left" target="_blank">
+                                    <i class="fa fa-print"></i>&nbsp;&nbsp;&nbsp;IMPRIMIR
+                                </a>
+                            </td>
                             <th style="text-align: right;"><small>TOTAL</small></th>
                             <td style="text-align: right;">{{ number_format($total, 2) }}</td>
                         </tr>

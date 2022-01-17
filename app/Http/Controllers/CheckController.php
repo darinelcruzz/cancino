@@ -66,6 +66,13 @@ class CheckController extends Controller
         return view('checks.show', compact('files', 'check', 'route'));
     }
 
+    function print(Check $check)
+    {
+        $route = 'public/expenses/store' . $check->bank_account->store_id . "/$check->folio";
+        $files = Storage::files($route);
+        return view('checks.print', compact('check', 'route', 'files'));
+    }
+
     function upload(Request $request, Check $check)
     {
         // dd($request->all());

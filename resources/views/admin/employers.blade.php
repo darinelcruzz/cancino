@@ -35,7 +35,7 @@
                                     </td>
                                     <td>
                                         <dropdown icon="cogs" color="{{ $employee->store->id == 1 ? 'github': $employee->store->color }}">
-                                            <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
+                                            <ddi to="{{ route('employers.show', $employee) }}" icon="eye" text="Detalles"></ddi>
                                             <ddi to="{{ route('employers.explore', $employee) }}" icon="file-pdf" text="Documentos"></ddi>
                                             <ddi to="{{ route('employers.edit', $employee) }}" icon="edit" text="Editar"></ddi>
                                             <ddi to="#" data-toggle="modal" data-target="#employee{{ $employee->id }}" icon="times" text="Dar de baja"></ddi>
@@ -94,7 +94,7 @@
                                 <td>{{ $employee->status }}</td>
                                 <td>
                                     <dropdown icon="cogs" color="warning">
-                                        <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
+                                        <ddi to="{{ route('employers.show', $employee) }}" icon="eye" text="Detalles"></ddi>
                                     </dropdown>
                                 </td>
                             </tr>
@@ -153,7 +153,7 @@
                                 </td>
                                 <td style="width: 5%">
                                     <dropdown icon="cogs" color="default">
-                                        <ddi to="{{ route('employers.show', ['id' => $employee->id]) }}" icon="eye" text="Detalles"></ddi>
+                                        <ddi to="{{ route('employers.show', $employee) }}" icon="eye" text="Detalles"></ddi>
                                         <ddi to="#" data-toggle="modal" data-target="#employee{{ $employee->id }}" icon="arrow-circle-up" text="Dar de alta"></ddi>
                                     </dropdown>
                                     

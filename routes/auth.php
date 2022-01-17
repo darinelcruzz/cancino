@@ -373,6 +373,7 @@ Route::group(['prefix' => 'cheques', 'as' => 'checks.'], function () {
     Route::get('poliza/{check}', usesas($ctrl, 'policy'));
     Route::get('cancelar/{check}', usesas($ctrl, 'destroy'));
     Route::post('subir/{check}', usesas($ctrl, 'upload'));
+    Route::get('imprimir/{check}', usesas($ctrl, 'print'));
     Route::get('eliminar/{path}', usesas($ctrl, 'remove'));
     Route::post('importar', usesas($ctrl, 'import'));
     Route::get('importar', usesas($ctrl, 'import'));
