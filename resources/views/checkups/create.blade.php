@@ -1,8 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle')
-    Arqueo | Crear
-@endpush
+@push('pageTitle', 'Arqueo | Crear')
 
 @section('content')
     <div class="row">
@@ -58,6 +56,7 @@
 
               <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
               <input type="hidden" name="date_sale" value="{{ date('Y-m-d') }}">
+              <input type="hidden" name="status" value="4">
               <input type="hidden" name="store_id" value="{{ auth()->user()->store_id }}">
 
             {!! Form::close() !!}

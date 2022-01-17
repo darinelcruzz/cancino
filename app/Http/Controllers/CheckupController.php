@@ -54,7 +54,9 @@ class CheckupController extends Controller
             }
         }
 
-        $sale->notify(new \App\Notifications\SaleDayStore());
+        if ($checkup->status == 0) {
+            $sale->notify(new \App\Notifications\SaleDayStore());
+        }
 
         return redirect(route('checkup.index'));
     }
@@ -74,6 +76,7 @@ class CheckupController extends Controller
 
     function update(Request $request, Checkup $checkup)
     {
+        // dd($request->all());
         $request->validate([
             'cash' => 'sometimes|required',
         ]);
@@ -84,17 +87,31 @@ class CheckupController extends Controller
 
         $sale->update([
             'cash' => $checkup->cash_sums['c'],
+            'public' => $request->public,
             'total' => round(($checkup->cash_sums['c'] + $checkup->card_sums['c'] + $checkup->transfer_sums['c'] + $checkup->creditSum - $checkup->canceledSum)/1.16,2)
         ]);
 
-        return redirect(route('admin.checkups'));
+        if (isAdmin()) {
+            return redirect(route('admin.checkups'));
+        }
+
+        return redirect(route('checkup.index'));
     }
 
     function updateStatus(Checkup $checkup, $status)
     {
         $checkup->update(['status' => $status]);
 
-        return redirect(route('helper.checkups'));
+        if ($checkup->status != 0) {
+            $sale = Sale::find($checkup->sale->id);
+            $sale->notify(new \App\Notifications\SaleDayStore());
+        }
+
+        if (auth()->user()->store_id == 1) {
+            return redirect(route('helper.checkups'));
+        }
+
+        return redirect(route('checkup.index'));
     }
 
     function report(Checkup $checkup)

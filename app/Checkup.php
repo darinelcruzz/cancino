@@ -43,10 +43,10 @@ class Checkup extends Model
 
     function getStatusLabelAttribute()
     {
-        $color = ['0' => 'warning', '1' => 'danger', '2' => 'success', '3' => 'primary'];
-        $name = ['0' => 'PENDIENTE', '1' => 'ERROR', '2' => 'REVISADO', '3' => 'POS'];
+        $colors = ['warning', 'danger', 'success', 'default', 'primary'];
+        $labels = ['PENDIENTE', 'ERROR', 'REVISADO', 'POS', 'EDITABLE'];
 
-        return "<span class='label label-" . $color[$this->status] ."'>" . $name[$this->status] . "</span>";
+        return "<span class='label label-" . $colors[$this->status] ."'>" . $labels[$this->status] . "</span>";
     }
 
     function getReturnsSumAttribute()

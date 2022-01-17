@@ -1,8 +1,6 @@
 @extends('lte.root')
 
-@push('pageTitle')
-    Arqueo | Editar
-@endpush
+@push('pageTitle', 'Arqueo | Editar')
 
 @section('content')
     <div class="row">
@@ -50,10 +48,10 @@
                     <returns-checkup :stored="{{ $checkup->toJson() }}"></returns-checkup>
                 </tab-content>
 
-                @if (auth()->user()->level==1)
-                    <tab-content title="Confirmar" icon="fa fa-check-double">
-                        <confirm-checkup :stored="{{ $checkup->sale->public }}"></confirm-checkup>
-                    </tab-content>
+                @if ($checkup->status == 4)
+                <tab-content title="Confirmar" icon="fa fa-check-double">
+                    <confirm-checkup :stored="{{ $checkup->sale->public }}"></confirm-checkup>
+                </tab-content>
                 @endif
 
               </form-wizard>
