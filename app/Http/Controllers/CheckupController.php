@@ -102,7 +102,7 @@ class CheckupController extends Controller
     {
         $checkup->update(['status' => $status]);
 
-        if ($checkup->status != 0) {
+        if ($checkup->status == 0) {
             $sale = Sale::find($checkup->sale->id);
             $sale->notify(new \App\Notifications\SaleDayStore());
         }

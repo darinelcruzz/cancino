@@ -42,7 +42,7 @@ class AdminController extends Controller
             ->whereYear('date_sale', substr($date, 0, 4))
             ->orWhereMonth('date_sale', substr($date, 5) - 1)
             ->whereYear('date_sale', substr($date, 0, 4))
-            ->with('checkup:id,cash_sums,card_sums,transfer_sums,retention')
+            ->with('checkup:id,cash_sums,card_sums,transfer_sums,retention,status')
             ->selectRaw('id, observations, status,
             date_sale, store_id, date_deposit, cash,
             DATE_FORMAT(date_sale, "%Y-%m") as month, checkup_id')
