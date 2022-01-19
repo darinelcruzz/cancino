@@ -48,7 +48,7 @@
                     <returns-checkup :stored="{{ $checkup->toJson() }}"></returns-checkup>
                 </tab-content>
 
-                @if ($checkup->status == 4)
+                @if ($checkup->status == 4 || auth()->user()->level <= 1)
                 <tab-content title="Confirmar" icon="fa fa-check-double">
                     <confirm-checkup :stored="{{ $checkup->sale->public }}"></confirm-checkup>
                 </tab-content>
