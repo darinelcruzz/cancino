@@ -35,7 +35,7 @@
                                         @if (auth()->user()->level == 1)
                                             <dropdown icon="cogs" color="primary">
                                                 @if ($note->status != 'aplicada')
-                                                    <ddi to="{{ route('notes.capture', $note]) }}" icon="check" text="Aplicar"></ddi>
+                                                    <ddi to="{{ route('notes.capture', $note) }}" icon="check" text="Aplicar"></ddi>
                                                 @endif
                                                 <ddi to="{{ route('notes.edit', $note->id) }}" icon="edit" text="Editar"></ddi>
                                             </dropdown>
