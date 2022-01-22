@@ -79,6 +79,10 @@
                             <th colspan="2">Gale Tapa</th>
                             <td>5062</td>
                         </tr>
+                        <tr>
+                            <th colspan="2">Comitán</th>
+                            <td>7320</td>
+                        </tr>
                     </tbody>
                 </table>
             </color-box>
