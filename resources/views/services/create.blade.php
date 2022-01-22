@@ -13,7 +13,9 @@
                             {!! Field::text('description', ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::select('group', ['telefono' => 'Teléfono', 'luz' => 'Luz', 'agua' => 'Agua', 'seguro' => 'Seguro', 'basura' => 'Basura', 'predial' => 'Predial'], null,
+                            {!! Field::select('group', ['telefono' => 'Teléfono', 'luz' => 'Luz', 'agua' => 'Agua', 'seguro' => 'Seguro Automovil',
+                                'basura' => 'Basura', 'predial' => 'Predial', 'co2' => 'CO2', 'impuestos' => 'Impuestos', 'contabilidad' => 'Contabilidad'
+                                'fumigacion' => 'Fumigación', 'isn' => 'ISN', 'digibox' => 'Digibox', 'renta' => 'Renta'], null,
                                 ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon'], ['icon' => 'group'])
                             !!}
                         </div>
