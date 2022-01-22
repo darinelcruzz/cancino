@@ -10,7 +10,8 @@ class SupplyController extends Controller
     function index()
     {
         $supplies = Supply::whereStatus(1)->get();
-        return view('supplies.index', compact('supplies'));
+        $low_prices = Supply::whereStatus(1)->get();
+        return view('supplies.index', compact('supplies', 'low_prices'));
     }
 
     function inventory()

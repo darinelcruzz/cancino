@@ -35,6 +35,7 @@
                         </div>
                         <div class="col-md-6">
                             {!! Field::number('sale_price', $supply->sale_price, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money-bill-alt']) !!}
+                            <code>Sugerido {{ fnumber($supply->purchase_price * 1.25) }}</code>
                         </div>
                     </div>
 
@@ -58,7 +59,7 @@
                                         <td>{{ $byproduct['price'] }}</td>
                                     </tr>
                                     @endforeach
-                                </tbody>    
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -80,6 +81,6 @@
                 {!! Form::close() !!}
             </color-box>
         </div>
-        
+
     </div>
 @endsection

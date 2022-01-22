@@ -73,7 +73,7 @@
                                             </modal>
                                         {!! Form::close() !!}
                                     </td>
-                                    <td>{{ $supply_sale->created_at }}</td>
+                                    <td>{{ fdate($supply_sale->created_at, 'd-M-y') }}</td>
                                     <td>
                                         <a href="{{ route('supplies.sales.delivered', $supply_sale->store) }}">
                                             {{ $supply_sale->store->name }}

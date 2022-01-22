@@ -78,6 +78,43 @@
                 </div>
             </color-box>
         </div>
-        
+        <div class="col-md-8">
+            <color-box title="Insumos precios bajos" color="danger" button collapsed label="{{ $low_prices->count() }}">
+                <div class="table-responsive">
+                    <table id="example2" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripción</th>
+                            <th>Compra</th>
+                            <th>Venta</th>
+                            <th>Sugerido</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach($low_prices as $supply)
+                            <tr>
+                                <td>{{ $supply->id }}</td>
+                                <td>
+                                    {{ $supply->description }}<br>
+                                    <code>{{ $supply->code }}</code><span style="color: purple"> {{ $supply->sat_key }}</span>
+                                </td>
+                                <td>{{ fnumber($supply->purchase_price, 2) }}</td>
+                                <td>{{ fnumber($supply->sale_price, 2) }}</td>
+                                <td>
+                                    {{ fnumber($supply->purchase_price * 1.25, 2) }}
+                                    <a href="{{ route('supplies.edit', $supply) }}" class="btn btn-github btn-sm pull-right" target="_blank">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                </div>
+            </color-box>
+        </div>
+
     </div>
 @endsection
