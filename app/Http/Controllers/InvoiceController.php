@@ -71,7 +71,7 @@ class InvoiceController extends Controller
 
         $invoice->update($request->all());
 
-        return redirect(route('admin.loans', ['id' => $invoice->from]));
+        return redirect(route('admin.loans', [$invoice->from]));
     }
 
 }
