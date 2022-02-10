@@ -94,14 +94,16 @@ class Commision extends Model
 
     function absencesSum($total)
     {
-        return $total > 2000 ? $this->absences * 200: $this->absences * $total * 0.10;
+        return $this->absences > 4 ? $this->absences * 300 : ($this->absences > 2 ? $this->absences * 250 : $this->absences * 200);
+        // return $total > 2000 ? $this->absences * 200: $this->absences * $total * 0.10;
     }
 
     function delaysSum($total)
     {
-        $absences = $total > 2000 ? intdiv($this->delays, 3) * 200: (intdiv($this->delays, 3) * $total * 0.10);
-        $delays = ($this->delays % 3) * ($total > 2000 ? 40: ($total * 0.02));
-        return $delays + $absences;
+        return $this->delays > 4 ? $this->delays * 60 : ($this->delays > 2 ? $this->delays * 40 : $this->delays * 20);
+        // $absences = $total > 2000 ? intdiv($this->delays, 3) * 200: (intdiv($this->delays, 3) * $total * 0.10);
+        // $delays = ($this->delays % 3) * ($total > 2000 ? 40: ($total * 0.02));
+        // return $delays + $absences;
     }
 
     function managerPayment($sale, $past_goal, $goal)

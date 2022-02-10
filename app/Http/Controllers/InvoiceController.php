@@ -57,7 +57,7 @@ class InvoiceController extends Controller
             'payed_at' => date("Y-m-d")
         ]);
 
-        return redirect(route('admin.loans', ['id' => $invoice->from]));
+        return redirect(route('admin.loans', [$invoice->from]));
     }
 
     function pos(Request $request)

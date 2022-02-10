@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="box-footer">
-                            <input type="hidden" name="id" value="{{ $invoice->id }}">
+                            <input type="hidden" name="id" value="{{ $invoice }}">
                             {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
                         </div>
 

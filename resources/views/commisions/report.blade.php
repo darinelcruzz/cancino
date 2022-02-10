@@ -110,9 +110,9 @@
                                     <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!}</td>
                                     <td rowspan="5">{!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
                                     <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
-                                    <td rowspan="5">{{ $commisions->sum('delays') }}</td>
-                                    <td rowspan="5">{{ $commisions->sum('absences') }}</td>
-                                    <td rowspan="5">{{ fnumber($total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum)) }}</td>
+                                    <td rowspan="5">{{ $commisions->sum('delays') }}<br> (-${{$commision->delaysSum($total_employee_sum)}})</td>
+                                    <td rowspan="5">{{ $commisions->sum('absences') }}<br> (-${{$commision->absencesSum($total_employee_sum)}})</td>
+                                    <td rowspan="5">{{ fnumber($total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum) > 0 ? $total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum) : 0) }}</td>
                                     @php
                                         $sales_commisions_total += $sales_commision_sum;
                                         $total_pay_sum += $total_employee_sum;
