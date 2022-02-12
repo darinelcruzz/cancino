@@ -52,7 +52,7 @@
             <table width="100%" class="box">
                 <thead>
                     <tr>
-                        <th width="15%" class="box">Fecha</th>
+                        <th width="15%" class="box">FECHA</th>
                         <th width="25%" class="box">MODELO</th>
                         <th width="10%" class="box">CANT</th>
                         <th width="25%" class="box">MOTIVO</th>
@@ -64,7 +64,7 @@
                 <tbody>
                     @foreach($products as $product)
                         <tr>
-                            <td class="box">{{ $product->taken_at }}</td>
+                            <td class="box">{{ fdate($product->taken_at, 'd-M-Y', 'Y-m-d') }}</td>
                             <td class="box">{{ $product->code }}</td>
                             <td class="box">{{ $product->quantity }}</td>
                             <td class="box">{{ $product->observations }}</td>

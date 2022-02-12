@@ -16,7 +16,7 @@
                                     <td>{{ $taken_product->code }}</td>
                                     <td>{{ $taken_product->quantity }}</td>
                                     <td>{{ $taken_product->observations }}</td>
-                                    {{-- <td>{{ $taken_product->user->name }}</td> --}}
+                                    <td>{{ $taken_product->user->name }}</td>
                                 </tr>
                             @endforeach
                         </template>
