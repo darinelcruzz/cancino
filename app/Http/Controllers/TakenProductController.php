@@ -56,13 +56,11 @@ class TakenProductController extends Controller
 
     function print(Store $store)
     {
-        $chunks = TakenProduct::where('store_id', $store->id)
+        $products = TakenProduct::where('store_id', $store->id)
             ->whereNull('pos')
             ->orderBy('code')
-            ->get()
-            ->groupBy('code')
-            ->chunk(3);
+            ->get();
 
-        return view('taken_products.print', compact('chunks', 'store'));
+        return view('taken_products.print', compact('products', 'store'));
     }
 }

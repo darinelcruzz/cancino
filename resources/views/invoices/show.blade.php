@@ -32,7 +32,7 @@
         @if (auth()->user()->store_id == 1 && $invoice->pos == NULL)
             <div class="col-md-3">
                 <color-box title="POS" color="success" solid>
-                    {!! Form::open(['method' => 'POST', 'route' => 'invoices.pos']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => ['invoices.pos', $invoice]]) !!}
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -44,7 +44,6 @@
                             </div>
                         </div>
                         <div class="box-footer">
-                            <input type="hidden" name="id" value="{{ $invoice }}">
                             {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
                         </div>
 

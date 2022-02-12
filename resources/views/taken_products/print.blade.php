@@ -10,26 +10,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 
     <style>
-        .box {
-          border: 1px solid black;
-        }
-
         table, th, td {
             font-size: 9pt;
             font-family: 'Roboto', sans-serif;
             text-align: center;
         }
-
-        .bbottom {
-            border-bottom: 2px solid black;
-        }
-
-        .dashed-line { 
-            width: 100%;
-            margin: auto;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            border: 3px dashed black;
+        .box {
+            border: 1px solid black;
+            border-collapse: collapse;
         }
     </style>
 </head>
@@ -54,44 +42,36 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3">{{ date('d/m/Y') }}</td>
+                        <td colspan="3">Al {{ date('d/m/Y') }}</td>
                     </tr>
                     <tr>
                         <td colspan="9">&nbsp;</td>
-                    </tr>                    
-                    <tr>
-                        <th class="box">MODELO</th>
-                        <th class="box">CANT</th>
-                        <th style="width: 5%"></th>
-                        <th class="box">MODELO</th>
-                        <th class="box">CANT</th>
-                        <th style="width: 5%"></th>
-                        <th class="box">MODELO</th>
-                        <th class="box">CANT</th>
-                        <th></th>
                     </tr>
                 </thead>
-                
-                <tbody>
-                    @foreach($chunks as $chunk)
-
-                        <tr>
-                            @foreach($chunk as $item => $wastes)
-                                <td style="width: 23%" class="box">{{ $item }}</td>
-                                <td style="width: 7%" class="box">{{ $wastes->sum('quantity') }}</td>
-                                @if($loop->iteration < 3)
-                                    <td style="width: 5%">&nbsp;</td>
-                                @else
-                                    <td></td>
-                                @endif
-                            @endforeach
-                        </tr>
-                    
-                    @endforeach
-
+            </table>
+            <table width="100%" class="box">
+                <thead>
                     <tr>
-                        <td colspan="9">&nbsp;</td>
+                        <th width="15%" class="box">Fecha</th>
+                        <th width="25%" class="box">MODELO</th>
+                        <th width="10%" class="box">CANT</th>
+                        <th width="25%" class="box">MOTIVO</th>
+                        <th width="15%" class="box">USUARIO</th>
+                        <th width="10%" class="box"></th>
                     </tr>
+                </thead>
+
+                <tbody>
+                    @foreach($products as $product)
+                        <tr>
+                            <td class="box">{{ $product->taken_at }}</td>
+                            <td class="box">{{ $product->code }}</td>
+                            <td class="box">{{ $product->quantity }}</td>
+                            <td class="box">{{ $product->observations }}</td>
+                            <td class="box">{{ $product->user->name }}</td>
+                            <td class="box"></td>
+                        </tr>
+                    @endforeach
 
                 </tbody>
             </table>

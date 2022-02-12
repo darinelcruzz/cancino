@@ -107,7 +107,7 @@ Route::group(['prefix' => 'facturas', 'as' => 'invoices.', 'middleware' => 'nonC
     Route::post('agregar', usesas($ctrl, 'store'));
     Route::get('detalles/{invoice}', usesas($ctrl, 'show'));
     Route::get('editar/{invoice}', usesas($ctrl, 'pay'));
-    Route::post('editar', usesas($ctrl, 'pos'));
+    Route::post('editar/{invoice}', usesas($ctrl, 'pos'));
 });
 
 Route::group(['prefix' => 'usuarios', 'as' => 'users.', 'middleware' => 'admin'], function () {

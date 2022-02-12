@@ -60,14 +60,12 @@ class InvoiceController extends Controller
         return redirect(route('admin.loans', [$invoice->from]));
     }
 
-    function pos(Request $request)
+    function pos(Request $request, Invoice $invoice)
     {
         $this->validate($request, [
             'pos' => 'required',
             'pos_at' => 'required',
         ]);
-
-        $invoice = Invoice::find($request->id);
 
         $invoice->update($request->all());
 
