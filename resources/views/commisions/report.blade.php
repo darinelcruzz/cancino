@@ -116,7 +116,7 @@
                                     @php
                                         $sales_commisions_total += $sales_commision_sum;
                                         $total_pay_sum += $total_employee_sum;
-                                        $total_sum += $total_employee_sum  - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum);
+                                        $total_sum += max($total_employee_sum  - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum), 0);
                                     @endphp
                                 @endif
                             </tr>
