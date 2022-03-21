@@ -48,7 +48,7 @@ class CheckController extends Controller
             'folio' => 'sometimes|required',
             'observations' => 'sometimes',
         ]);
-        
+
         $check = Check::create($validated);
 
         foreach ($request->invoices as $key => $value) {
@@ -70,7 +70,7 @@ class CheckController extends Controller
     {
         $route = 'public/expenses/store' . $check->bank_account->store_id . "/$check->folio";
         $files = Storage::files($route);
-        return view('checks.print', compact('check', 'route', 'files'));
+        return view('checks.print', compact('files', 'check', 'route'));
     }
 
     function upload(Request $request, Check $check)
@@ -87,7 +87,7 @@ class CheckController extends Controller
         if($check->bank_account->type == 'gastos') {
             return redirect(route('checks.show', $check));
         }
-        
+
         return redirect(route('terminal.show', $check));
     }
 
@@ -110,7 +110,7 @@ class CheckController extends Controller
         if ($request->checks) {
             // dd($request->all());
             Excel::import(new ChecksImport, $request->file('checks'));
-        
+
             return "HECHO, SIN PROBLEMAS";
         }
 

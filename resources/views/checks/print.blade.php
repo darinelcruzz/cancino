@@ -29,40 +29,38 @@
 <body onload="window.print()">
     <section class="invoice">
         <div class="row">
-            <div class="col-md-12">
-                <table width="100%">
-                    <thead>
-                        <tr>
-                            <td rowspan="2">
-                                <img src="{{ asset('images/steren-3.png') }}" alt="steren-logo" height="60px">
-                            </td>
-                            <td colspan="2">
-                                <h3>
-                                    CHEQUE {{ $check->folio }} <br>
-                                    <small>por {{ fnumber($check->amount) }}</small>
-                                </h3>
-                            </td>
-                            <td rowspan="2">
-                                <img src="{{ asset('images/vks-3.png') }}" alt="vks-logo" height="60px">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">&nbsp;</td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td rowspan="2">
+                            <img src="{{ asset('images/steren-3.png') }}" alt="steren-logo" height="60px">
+                        </td>
+                        <td colspan="2">
+                            <h3>
+                                CHEQUE {{ $check->folio }} <br>
+                                <small>por {{ fnumber($check->amount) }}</small>
+                            </h3>
+                        </td>
+                        <td rowspan="2">
+                            <img src="{{ asset('images/vks-3.png') }}" alt="vks-logo" height="60px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">&nbsp;</td>
+                    </tr>
+                </thead>
+            </table>
         </div>
         <br>
         <div class="row">
             <table width="100%">
                 <thead>
                     <tr>
-                        <th class="box">ARCHIVO</th>
+                        <th class="box">FACTURA</th>
                         <th class="box">MONTO</th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @php
                         $total = 0;
@@ -84,6 +82,10 @@
                     <tr>
                         <th class="box">TOTAL</th>
                         <th class="box" style="text-align: right;">{{ number_format($total, 2) }}</th>
+                    </tr>
+                    <tr>
+                        <th class="box">DIFERENCIA</th>
+                        <th class="box" style="text-align: right;">{{ number_format($total - $check->amount, 2) }}</th>
                     </tr>
                 </tfoot>
             </table>

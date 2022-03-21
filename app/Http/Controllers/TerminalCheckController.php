@@ -40,7 +40,7 @@ class TerminalCheckController extends Controller
             'folio' => 'sometimes|required',
             'observations' => 'sometimes',
         ]);
-        
+
         $check = Check::create($validated);
 
         if ($request->file("invoice0")) {
@@ -53,23 +53,23 @@ class TerminalCheckController extends Controller
         return redirect(route('terminal.index'));
     }
 
-    function show(Check $check)
-    {
-        $route = 'public/expenses/store' . $check->bank_account->store_id . "/T$check->folio";
-        $files = Storage::files($route);
-        return view('checks.show', compact('files', 'check', 'route'));
-    }
-
-    function policy(Check $check)
-    {
-        return view('checks.policy', compact('check'));
-    }
+    // function show(Check $check)
+    // {
+    //     $route = 'public/expenses/store' . $check->bank_account->store_id . "/T$check->folio";
+    //     $files = Storage::files($route);
+    //     return view('checks.show', compact('files', 'check', 'route'));
+    // }
+    //
+    // function policy(Check $check)
+    // {
+    //     return view('checks.policy', compact('check'));
+    // }
 
     function destroy(Check $check)
     {
         $check->update(['amount' => 0]);
         $check->account_movement->update([
-            'amount' => 10,
+            'amount' => 0,
             'provider_id' => 10,
             'expenses_group_id' => 10,
         ]);

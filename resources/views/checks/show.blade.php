@@ -42,6 +42,11 @@
                             <th style="text-align: right;"><small>TOTAL</small></th>
                             <td style="text-align: right;">{{ number_format($total, 2) }}</td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <th style="text-align: right;"><small>DIFERENCIA</small></th>
+                            <td style="text-align: right;">{{ number_format($total - $check->amount, 2) }}</td>
+                        </tr>
                     </template>
                 </data-table>
             </color-box>

@@ -24,11 +24,6 @@
                                 {!! Field::number('amount', 0, ['tpl' => 'lte/withicon', 'min' => '0', 'step' => '0.01'], ['icon' => 'dollar']) !!}
                             </div>
                         </div>
-                        {{-- <div class="row">
-                            <div class="col-md-12">
-                                {!! Field::text('letter', ['tpl' => 'lte/withicon', 'placeholder' => 'Monto con letra (sin /100 MXN)'], ['icon' => 'signature']) !!}
-                            </div>
-                        </div> --}}
                         <div class="row">
                             <div class="col-md-6">
                                 {!! Field::text('concept', ['tpl' => 'lte/withicon'], ['icon' => 'pen']) !!}
@@ -47,11 +42,11 @@
                                 <provider-select :group="concept" icon="truck" label="Proveedor" name="provider_id"></provider-select>
                             </div>
                         </div>
-                        
+
                         <file-input v-if='concept==  7'></file-input>
                         <hr>
                         {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
-                        
+
                         <input type="hidden" name="folio" value="{{ $last ? $last->folio + 1: 1 }}">
 
                         <input type="hidden" name="store_id" value="{{ $store->id }}">
