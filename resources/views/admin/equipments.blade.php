@@ -22,10 +22,10 @@
                                     {{ $equipment->type }}
                                 </td>
                                 <td>{{ $equipment->store->name }}</td>
-                                <td></td>
+                                <td>{{ $equipment->last_maintenance }}</td>
                                 <td></td>
                                 <td>
-                                    <dropdown icon="cogs" color="{{ auth()->user()->store->color }}">
+                                    <dropdown icon="cogs" color="primary">
                                         <ddi to="{{ route('equipments.show', $equipment) }}" icon="eye" text="Detalles"></ddi>
                                         <ddi to="{{ route('maintenances.create', ['equipment' => $equipment]) }}" icon="plus" text="Mantenimiento"></ddi>
                                     </dropdown>

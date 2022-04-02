@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Maintenance, Store, Equipment};
+use App\{Maintenance, Store, Equipment, Provider};
 use Illuminate\Http\Request;
 
 class MaintenanceController extends Controller
@@ -16,21 +16,23 @@ class MaintenanceController extends Controller
 
     function create(Equipment $equipment)
     {
-        return view('maintenances.create', compact('equipment'));
+        $providers = Provider::where('expenses_group_id', 26)->pluck('business', 'id')->toArray();
+
+        return view('maintenances.create', compact('equipment', 'providers'));
     }
 
     function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'equipment' => 'required',
-            'type' => 'required',
-            'store_id' => 'required',
-        ]);
 
+        $this->validate($request, [
+            'type' => 'required',
+            'provider_id' => 'required',
+            'cost' => 'required',
+        ]);
+        // falta actualizar el status del equipo
         Maintenance::create($request->all());
 
-        return redirect(route('maintenances.index'));
+        return redirect(route('admin.equipments'));
     }
 
     function show(Maintenance $maintenance)

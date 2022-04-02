@@ -13,33 +13,30 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
-                                    {!! Field::text('name', ['tpl' => 'lte/withicon'], ['icon' => 'barcode']) !!}
+                                    {!! Field::select('type', ['programado' => 'Programado', 'correctivo' => 'Correctivo'],
+                                        null, ['empty' => 'Seleccione tipo de mantenimiento', 'tpl' => 'lte/withicon'], ['icon' => 'screwdriver']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!!
-                                        Field::select('type',
-                                        ['CPU' => 'CPU', 'Clima' => 'Clima', 'Extintor' => 'Extintor', 'Monitor' => 'Monitor'],
-                                        null, ['empty' => 'Seleccione tipo de equipo', 'tpl' => 'lte/withicon'], ['icon' => 'screwdriver'])
-                                    !!}
+                                    {!! Field::date('maintenance_at', Date::now(), ['tpl' => 'lte/withicon'], ['icon' => 'calendar-alt']) !!}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    {!! Field::text('brand', ['tpl' => 'lte/withicon'], ['icon' => 'copyright']) !!}
+                                    {!! Field::select('provider_id', $providers, null, ['empty' => 'Seleccione el proveedor', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
                                 </div>
                                 <div class="col-md-6">
-                                    {!! Field::select('store_id', $allStoresArray, null, ['empty' => 'Seleccione la tienda', 'tpl' => 'lte/withicon'], ['icon' => 'store']) !!}
+                                    {!! Field::number('cost', ['tpl' => 'lte/withicon'], ['icon' => 'dollar']) !!}
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    {!! Field::number('months', ['tpl' => 'lte/withicon'], ['icon' => 'calendar-alt']) !!}
+                                <div class="col-md-12">
+                                    {!! Field::text('observations', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     <hr>
+                    <input type="hidden" name="equipment_id" value="{{ $equipment->id }}">
                     {!! Form::submit('Agregar', ['class' => 'btn btn-success btn-block']) !!}
 
                 {!! Form::close() !!}

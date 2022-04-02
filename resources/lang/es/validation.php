@@ -266,6 +266,7 @@ return [
         'transferred_from' => 'origen',
         'transferred_to' => 'destino',
         'compensation' => 'compensación',
-        'commision' => 'comisión',
+        'cost' => 'costo',
+        'bought_at' => 'compra',
     ],
 ];

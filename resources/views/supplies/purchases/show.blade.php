@@ -53,7 +53,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ $supply_purchase->provider->name }}</td>
+                            <td>
+                                <code>{{ $supply_purchase->provider->business }}</code><br>
+                                {{ $supply_purchase->provider->name }}
+                            </td>
                             <td>{{ fdate($supply_purchase->purchased_at, 'd-M-y', 'Y-m-d') }}</td>
                         </tr>
                     </tbody>

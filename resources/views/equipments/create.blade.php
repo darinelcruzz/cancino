@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     {!!
                                         Field::select('type',
-                                        ['CPU' => 'CPU', 'Clima' => 'Clima', 'Extintor' => 'Extintor', 'Monitor' => 'Monitor'],
+                                        ['CPU' => 'CPU', 'Clima' => 'Clima', 'Extintor' => 'Extintor', 'Monitor' => 'Monitor', 'Carro' => 'Carro'],
                                         null, ['empty' => 'Seleccione tipo de equipo', 'tpl' => 'lte/withicon'], ['icon' => 'screwdriver'])
                                     !!}
                                 </div>
@@ -33,9 +33,19 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    {!! Field::number('months', ['tpl' => 'lte/withicon'], ['icon' => 'calendar-alt']) !!}
+                                    {!! Field::date('bought_at', Date::now(),['tpl' => 'lte/withicon'], ['icon' => 'calendar']) !!}
                                 </div>
-
+                                <div class="col-md-6">
+                                    {!! Field::number('cost', ['tpl' => 'lte/withicon'], ['icon' => 'dollar']) !!}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {!! Field::number('months', ['tpl' => 'lte/withicon', 'label' => 'Mantenimeinto (meses)'], ['icon' => 'calendar-alt']) !!}
+                                </div>
+                                <div class="col-md-8">
+                                    {!! Field::text('observations', ['tpl' => 'lte/withicon'], ['icon' => 'edit']) !!}
+                                </div>
                             </div>
                         </div>
                     </div>

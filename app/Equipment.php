@@ -17,4 +17,9 @@ class Equipment extends Model
     {
         return $this->hasMany(Maintenance::class);
     }
+
+    function getLastMaintenanceAttribute()
+    {
+        return Maintenance::where('equipment_id', $this->id)->get()->last();
+    }
 }

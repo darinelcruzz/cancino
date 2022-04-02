@@ -96,9 +96,11 @@ class EmployerController extends Controller
             'married' => 'sometimes|required',
             'sons' => 'sometimes|required',
             'job' => 'sometimes|required',
-            'store_id' => 'required',
+            'store_id' => 'sometimes|required',
             'ingress' => 'sometimes|required',
             'salary' => 'sometimes|required',
+            'status' => 'sometimes|required',
+            'commision' => 'sometimes|required',
         ]);
 
         $employer->update($validated);
@@ -110,7 +112,7 @@ class EmployerController extends Controller
     function dismiss(Request $request, Employer $employer)
     {
         $employer->update($request->only('status'));
-        
+
         $employer->storeDocuments(request());
 
         Movement::create([
@@ -135,7 +137,7 @@ class EmployerController extends Controller
     function restore(Request $request, Employer $employer)
     {
         $validated = $request->validate(['store_id' => 'required', 'status' => 'required']);
-        
+
         $employer->update($validated);
 
         Movement::create([
