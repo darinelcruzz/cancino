@@ -31,7 +31,6 @@ class BankAccount extends Model
     function getBalanceAttribute()
     {
     	return $this->account_movements
-            ->where('provider_id', '!=', 10)
             ->sum(function ($item) {
         		return $item->type == 'abono' ? $item->amount : $item->amount * (-1);
         	});

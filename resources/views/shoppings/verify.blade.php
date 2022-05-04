@@ -11,7 +11,7 @@
                 {!! Form::open(['method' => 'POST', 'route' => ['shoppings.verify', $store]]) !!}
                     <div class="box-body">
                         <data-table example='1'>
-                            {{ drawHeader('id', 'Folio', 'Monto', 'Fecha', 'POS') }}
+                            {{ drawHeader('id', 'Folio', 'Monto', 'Fecha pago', 'POS') }}
                             <template slot="body">
                                 @foreach ($shoppings as $shopping)
                                     <tr>
@@ -24,7 +24,7 @@
                                             <code>{{ number_format($shopping->amount * 0.02, 2) }} </code>
                                           @endif
                                         </td>
-                                        <td>{{ fdate($shopping->invoiced_at, 'd M y', 'Y-m-d') }}</td>
+                                        <td>{{ fdate($shopping->date, 'd M y', 'Y-m-d') }}</td>
                                         <td>
                                           @if ($shopping->type == 'varfra')
                                             VAR/FRA {{ $shopping->document > 0 ? $shopping->document : ''}}

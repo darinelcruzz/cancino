@@ -69,8 +69,8 @@
                         <td>PUNTO</td>
                         <td>COMISIONES <br> POR VENTAS</td>
                         <td>TOTAL POR <br> VENTAS</td>
-                        <td>STEREN <br> CARD</td>
                         <td>EXT <br> GAR</td>
+                        <td>PxT</td>
                         <td>A PAGAR</td>
                         <td>R</td>
                         <td>F</td>
@@ -107,8 +107,9 @@
                                 <td>{{ fnumber($commision->sales_commision) }}</td>
                                 @if ($loop->index == 0)
                                     <td rowspan="5">{{ fnumber($sales_commision_sum) }}</td>
-                                    <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!}</td>
-                                    <td rowspan="5">{!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
+                                    <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!} <br>
+                                        {!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
+                                    <td rowspan="5"></td>
                                     <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
                                     <td rowspan="5">{{ $commisions->sum('delays') }}<br> (-${{$commision->delaysSum($total_employee_sum)}})</td>
                                     <td rowspan="5">{{ $commisions->sum('absences') }}<br> (-${{$commision->absencesSum($total_employee_sum)}})</td>
