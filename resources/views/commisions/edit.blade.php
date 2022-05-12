@@ -14,8 +14,9 @@
                                     <th style="text-align: left; width: 12%;">NOMBRE</th>
                                     <th style="text-align: center; width: 22%;">VENTA</th>
                                     <th style="text-align: center; width: 11%;">STEREN <BR> CARD</th>
+                                    <th style="text-align: center; width: 11%;">AxT</th>
                                     <th style="text-align: center; width: 11%;">EXT</th>
-                                    <th style="text-align: center; width: 22%;">VALOR <br> EXTENSIÓN</th>
+                                    <th style="text-align: center; width: 11%;">VALOR <br> EXTENSIÓN</th>
                                     <th style="text-align: center; width: 11%;">RR</th>
                                     <th style="text-align: center; width: 11%;">FF</th>
                                 </tr>
@@ -29,6 +30,9 @@
                                         </td>
                                         <td>
                                             <input class="form-control" type="number" name="sales[{{ $employer->id }}][sterencard]" value="{{ $employer->sterencard ?? 0 }}">
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="number" name="sales[{{ $employer->id }}][axt]" value="{{ $employer->axt ?? 0 }}" step="0.01" min="0">
                                         </td>
                                         <td>
                                             <input class="form-control" type="number" name="sales[{{ $employer->id }}][extensions]" value="{{ $employer->extensions ?? 0 }}">

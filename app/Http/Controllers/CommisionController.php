@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Commision, Employer, Goal, Date, Store};
+use App\{Commision, Employer, Goal, Date, Store, Tab};
 use Illuminate\Http\Request;
 
 class CommisionController extends Controller
@@ -42,9 +42,11 @@ class CommisionController extends Controller
 
     function store(Request $request)
     {
+        // dd($request->all());
+        $tab = Tab::latest()->first();
         foreach ($request->sellers as $seller) {
             foreach ($seller as $goal) {
-                Commision::create($goal);
+                Commision::create($goal + ['tab_id' => $tab->id]);
             }
         }
 
@@ -110,6 +112,7 @@ class CommisionController extends Controller
 
     function update(Request $request)
     {
+        // dd($request->all());
         foreach ($request->sales as $id => $commision) {
             Commision::find($id)->update($commision);
         }

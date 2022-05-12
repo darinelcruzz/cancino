@@ -50,7 +50,7 @@ class GoalController extends Controller
 
     function update(Request $request)
     {
-        foreach (Store::where('type', '!=', 'c')->get() as $store) {
+        foreach (Store::whereIn('type', ['p', 's'])->get() as $store) {
             $goal = $store->goals->where('month', $request->month)->where('year', $request->year)->first();
             
             $goal->update([
