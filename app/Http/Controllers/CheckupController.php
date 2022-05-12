@@ -98,9 +98,9 @@ class CheckupController extends Controller
         return redirect(route('checkup.index'));
     }
 
-    function updateStatus(Checkup $checkup, $status)
+    function updateStatus(Request $request, Checkup $checkup, $status)
     {
-        $checkup->update(['status' => $status]);
+        $checkup->update(['status' => $status, 'error' => $request->error ?? null]);
 
         if ($checkup->status == 0) {
             $sale = Sale::find($checkup->sale->id);

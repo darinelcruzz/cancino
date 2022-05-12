@@ -227,6 +227,7 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::get('detalles/{checkup}', usesas($ctrl, 'show'));
     Route::get('reporte/{checkup}', usesas($ctrl, 'report'));
     Route::get('actualizar/{checkup}/{status}', usesas($ctrl, 'updateStatus'));
+    Route::post('actualizar/{checkup}/{status}', usesas($ctrl, 'updateStatus'));
     Route::get('terminales', usesas($ctrl, 'cards'));
     Route::post('terminales', usesas($ctrl, 'cards'));
     Route::get('transferencias-y-cheques', usesas($ctrl, 'transfers'));

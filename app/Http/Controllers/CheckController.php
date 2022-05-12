@@ -66,6 +66,12 @@ class CheckController extends Controller
         return view('checks.show', compact('files', 'check', 'route'));
     }
 
+    function edit(Check $check)
+    {
+        $check->update(['status' => 'revisado']);
+        return redirect(route('checks.index', getStore()));
+    }
+
     function print(Check $check)
     {
         $route = 'public/expenses/store' . $check->bank_account->store_id . "/$check->folio";
@@ -119,7 +125,7 @@ class CheckController extends Controller
 
     function destroy(Check $check)
     {
-        $check->update(['amount' => 0]);
+        $check->update(['amount' => 0, 'status' => 'cancelado']);
         $check->account_movement->update([
             'amount' => 0,
             'provider_id' => 10,

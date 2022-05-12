@@ -75,7 +75,7 @@
         <div class="col-md-9">
             <color-box title="Gastos" color="primary">
                 <data-table example="1">
-                    {{ drawHeader('folio', '<i class="fa fa-cogs"></i>', 'Fecha', 'Monto', 'Concepto', 'Observaciones') }}
+                    {{ drawHeader('folio', '<i class="fa fa-cogs"></i>', 'Fecha', 'Monto', 'Concepto', 'Estado', 'Observaciones') }}
 
                     <template slot="body">
                         @foreach($checks as $check)
@@ -88,6 +88,9 @@
                                             <ddi to="{{ route('checks.show', $check)}}" icon="eye" text="Detalles"></ddi>
                                         @endif
                                         @if (isAdmin() && $check->account_movement->provider_id != 10)
+                                            @if($check->status == 'pendiente')
+                                            <ddi to="{{ route('checks.edit', $check)}}" icon="check" text="Revisado"></ddi>
+                                            @endif
                                             <ddi to="{{ route('checks.destroy', $check)}}" icon="times" text="Cancelar"></ddi>
                                         @endif
                                     </dropdown>
@@ -95,6 +98,11 @@
                                 <td>{{ fdate($check->emitted_at, 'd/F/Y', 'Y-m-d') }}</td>
                                 <td>{{ number_format($check->amount, 2) }}</td>
                                 <td>{{ $check->concept }} <br>  <code>{{ $check->name }}</code></td>
+                                <td>
+                                    <label class="label label-{{ $check->status == 'revisado' ? 'success': ($check->status == 'pendiente' ? 'warning': 'default') }}">
+                                        <small>{{ strtoupper($check->status) }}</small>
+                                    </label>
+                                </td>
                                 <td>{{ $check->observations }}</td>
                             </tr>
                         @endforeach

@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class AddStatusToEquipmentTable extends Migration
+class AddStatusToChecksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddStatusToEquipmentTable extends Migration
      */
     public function up()
     {
-        Schema::table('equipment', function (Blueprint $table) {
-            $table->string('status')->default('nuevo');
+        Schema::table('checks', function (Blueprint $table) {
+            $table->string('status')->default('pendiente');
         });
     }
 
@@ -25,7 +25,7 @@ class AddStatusToEquipmentTable extends Migration
      */
     public function down()
     {
-        Schema::table('equipment', function (Blueprint $table) {
+        Schema::table('checks', function (Blueprint $table) {
             $table->dropColumn('status');
         });
     }
