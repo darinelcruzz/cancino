@@ -77,6 +77,34 @@ class Commision extends Model
         }
     }
 
+    function axtPoint($value)
+    {
+        $type = $this->goal->store->type == 's' ? 'shop': 'pro';
+        if($value >= $this->tab->{'axt_golden_' . $type}['q']) {
+            return array($this->label('dorada') . "<br>", $this->tab->{'axt_golden_' . $type}['a'] * $value);
+        }if($value >= $this->tab->{'axt_star_' . $type}['q']) {
+            return array($this->label('estrella') . "<br>", $this->tab->{'axt_star_' . $type}['a'] * $value);
+        }if($value >= $this->tab->{'axt_black_' . $type}['q'] || $this->employer->commision == 2) {
+            return array($this->label('negro') . "<br>", $this->tab->{'axt_black_' . $type}['a'] * $value);
+        }else {
+            return array($this->label('rojo') . "<br>", 0);
+        }
+    }
+
+    function axtCommission()
+    {
+        $type = $this->goal->store->type == 's' ? 'shop': 'pro';
+        if($this->axt >= $this->tab->{'axt_golden_' . $type}['q']) {
+            return $this->tab->{'axt_golden_' . $type}['a'];
+        } else if($this->axt >= $this->tab->{'axt_star_' . $type}['q']) {
+            return $this->tab->{'axt_star_' . $type}['a'];
+        } else if($this->axt >= $this->tab->{'axt_black_' . $type}['q']) {
+            return $this->tab->{'axt_black_' . $type}['a'];
+        }else {
+            return 0;
+        }
+    }
+
     function extPoint($sum_ext, $sum_amount)
     {
         $tab = Tab::all()->last();

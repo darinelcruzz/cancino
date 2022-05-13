@@ -61,20 +61,26 @@
             <table width="100%" style="border-collapse: collapse; border-bottom: none; border-left: none; border-right: none;" class="spaced">
                 <thead style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black; border-top: 3px solid black;" class="main">
                     <tr>
-                        <td>NOMBRE</td>
-                        <td>MÍNIMO</td>
-                        <td>META ACTUAL</td>
-                        <td>VENDIDO</td>
-                        <td>TOTAL <br> VENDIDO</td>
-                        <td>PUNTO</td>
-                        <td>COMISIONES <br> POR VENTAS</td>
-                        <td>TOTAL POR <br> VENTAS</td>
-                        <td>EXT <br> GAR</td>
-                        <td>PxT</td>
-                        <td>A PAGAR</td>
-                        <td>R</td>
-                        <td>F</td>
-                        <td>TOTAL</td>
+                        <td rowspan="2">NOMBRE</td>
+                        <td rowspan="2">MÍNIMO</td>
+                        <td rowspan="2">META ACTUAL</td>
+                        <td colspan="2">VENDIDO</td>
+                        <td colspan="2">PUNTO</td>
+                        <td colspan="2">COMISIONES</td>
+                        <td rowspan="2">TOTAL</td>
+                        <td rowspan="2">EXT <br> GAR</td>
+                        <td rowspan="2">A PAGAR</td>
+                        <td rowspan="2">R</td>
+                        <td rowspan="2">F</td>
+                        <td rowspan="2">TOTAL</td>
+                    </tr>
+                    <tr>
+                        <td>$</td>
+                        <td>AxT</td>
+                        <td>$</td>
+                        <td>AxT</td>
+                        <td>$</td>
+                        <td>AxT</td>
                     </tr>
                 </thead>
                 <tbody style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;" class="main">
@@ -100,16 +106,24 @@
                                 <td>{{ fnumber($commision->weekly_goal) }}</td>
                                 <td>{{ fnumber($commision->weekly_goal * $goal->star) }}</td>
                                 <td>{{ fnumber($commision->sale) }}</td>
-                                @if ($loop->index == 0)
+                                <td>{{ $commision->axt }}</td>
+                                {{-- @if ($loop->index == 0)
                                     <td rowspan="5">{{ fnumber($commisions->sum('sale')) }}</td>
-                                @endif
+                                @endif --}}
                                 <td>{!! $commision->salePointLabel !!}</td>
+                                <td>{!! $commision->axtPoint($commision->axt)[0] !!}</td>
                                 <td>{{ fnumber($commision->sales_commision) }}</td>
+                                <td>{{ number_format($commision->axtCommission(), 2) }}</td>
+                                @if($loop->index < 3)
+                                @endif
                                 @if ($loop->index == 0)
-                                    <td rowspan="5">{{ fnumber($sales_commision_sum) }}</td>
+                                    <td rowspan="5">
+                                        {{ fnumber($sales_commision_sum) }}
+                                        <hr>
+                                        {{ number_format($commisions->sum(function ($commission) { return $commission->axtCommission();}), 2) }}
+                                    </td>
                                     <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!} <br>
                                         {!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
-                                    <td rowspan="5"></td>
                                     <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
                                     <td rowspan="5">{{ $commisions->sum('delays') }}<br> (-${{$commision->delaysSum($total_employee_sum)}})</td>
                                     <td rowspan="5">{{ $commisions->sum('absences') }}<br> (-${{$commision->absencesSum($total_employee_sum)}})</td>
@@ -130,12 +144,15 @@
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal')) }}</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal') * $goal->star) }}</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('sale')) }}</b></td>
-                        <td><b>{{ fnumber($commisions_complete->sum('sale')) }}</b></td>
-                        <td><b></b></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td><b>{{ fnumber($sales_commisions_total) }}</b></td>
-                        <td><b>{{ fnumber($sales_commisions_total) }}</b></td>
-                        <td><b>{{ $commisions_complete->sum('sterencard') }}</b></td>
-                        <td><b>{{ $commisions_complete->sum('extensions') }}</b></td>
+                        <td><b>{{ number_format($commisions_by_employee->sum(function ($employee) { return $employee->sum(function ($commission) { return $commission->axtCommission();}); }), 2) }}</b></td>
+                        <td></td>
+                        <td></td>
+                        {{-- <td><b>{{ $commisions_complete->sum('sterencard') }}</b></td> --}}
+                        {{-- <td><b>{{ $commisions_complete->sum('extensions') }}</b></td> --}}
                         <td><b>{{ fnumber($total_pay_sum) }}</b></td>
                         <td><b>{{ $commisions_complete->sum('dalays') }}</b></td>
                         <td><b>{{ $commisions_complete->sum('absences') }}</b></td>
