@@ -67,13 +67,13 @@ class Commision extends Model
         $tab = Tab::all()->last();
 
         if($sum_sc >= $tab->sc_golden['q']) {
-            return array("$sum_sc </br>" . $this->label('dorada') . "<br>", $tab->sc_golden['a'] * $sum_sc);
+            return array("$sum_sc " . $this->label('dorada') . "<br>", $tab->sc_golden['a'] * $sum_sc);
         }if($sum_sc >= $tab->sc_star['q']) {
-            return array("$sum_sc </br>" . $this->label('estrella') . "<br>", $tab->sc_star['a'] * $sum_sc);
+            return array("$sum_sc " . $this->label('estrella') . "<br>", $tab->sc_star['a'] * $sum_sc);
         }if($sum_sc >= $tab->sc_black['q'] || $this->employer->commision == 2) {
-            return array("$sum_sc </br>" . $this->label('negro') . "<br>", $tab->sc_black['a'] * $sum_sc);
+            return array("$sum_sc " . $this->label('negro') . "<br>", $tab->sc_black['a'] * $sum_sc);
         }else {
-            return array("$sum_sc </br>" . $this->label('rojo') . "<br>", 0);
+            return array("$sum_sc " . $this->label('rojo') . "<br>", 0);
         }
     }
 
@@ -84,7 +84,7 @@ class Commision extends Model
             return array($this->label('dorada') . "<br>", $this->tab->{'axt_golden_' . $type}['a'] * $value);
         }if($value >= $this->tab->{'axt_star_' . $type}['q']) {
             return array($this->label('estrella') . "<br>", $this->tab->{'axt_star_' . $type}['a'] * $value);
-        }if($value >= $this->tab->{'axt_black_' . $type}['q'] || $this->employer->commision == 2) {
+        }if($value >= $this->tab->{'axt_black_' . $type}['q']) {
             return array($this->label('negro') . "<br>", $this->tab->{'axt_black_' . $type}['a'] * $value);
         }else {
             return array($this->label('rojo') . "<br>", 0);
@@ -110,13 +110,13 @@ class Commision extends Model
         $tab = Tab::all()->last();
 
         if($sum_ext >= $tab->ext_golden['q']) {
-            return array("$sum_ext </br>" . $this->label('dorada') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_golden['p'] * $sum_amount);
+            return array("$sum_ext " . $this->label('dorada') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_golden['p'] * $sum_amount);
         }if($sum_ext >= $tab->ext_star['q']) {
-            return array("$sum_ext </br>" . $this->label('estrella') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_star['p'] * $sum_amount);
+            return array("$sum_ext " . $this->label('estrella') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_star['p'] * $sum_amount);
         }if($sum_ext >= $tab->ext_black['q'] || $this->employer->commision == 2) {
-            return array("$sum_ext </br>" . $this->label('negro') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_black['p'] * $sum_amount);
+            return array("$sum_ext " . $this->label('negro') . "</br>(" . fnumber($sum_amount) . ")</br>", $tab->ext_black['p'] * $sum_amount);
         }else {
-            return array("$sum_ext </br>" . $this->label('rojo') . "</br>", 0);
+            return array("$sum_ext " . $this->label('rojo') . "</br>", 0);
         }
     }
 

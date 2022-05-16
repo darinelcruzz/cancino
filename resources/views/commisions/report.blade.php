@@ -61,26 +61,25 @@
             <table width="100%" style="border-collapse: collapse; border-bottom: none; border-left: none; border-right: none;" class="spaced">
                 <thead style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black; border-top: 3px solid black;" class="main">
                     <tr>
-                        <td rowspan="2">NOMBRE</td>
-                        <td rowspan="2">MÍNIMO</td>
-                        <td rowspan="2">META ACTUAL</td>
-                        <td colspan="2">VENDIDO</td>
-                        <td colspan="2">PUNTO</td>
-                        <td colspan="2">COMISIONES</td>
-                        <td rowspan="2">TOTAL</td>
-                        <td rowspan="2">EXT <br> GAR</td>
-                        <td rowspan="2">A PAGAR</td>
-                        <td rowspan="2">R</td>
-                        <td rowspan="2">F</td>
-                        <td rowspan="2">TOTAL</td>
+                        <td width="8%" rowspan="2">NOMBRE</td>
+                        <td width="8%" rowspan="2">MÍNIMO</td>
+                        <td width="8%" rowspan="2">META ACTUAL</td>
+                        <td width="20%" colspan="3">VENTAS</td>
+                        <td width="15%" colspan="3">AxT</td>
+                        <td width="8%" rowspan="2">TOTAL</td>
+                        <td width="7%" rowspan="2">SC<br>GAR</td>
+                        <td width="8%" rowspan="2">TOTAL</td>
+                        <td width="5%" rowspan="2">R</td>
+                        <td width="5%" rowspan="2">F</td>
+                        <td width="8%" rowspan="2">A PAGAR</td>
                     </tr>
                     <tr>
-                        <td>$</td>
-                        <td>AxT</td>
-                        <td>$</td>
-                        <td>AxT</td>
-                        <td>$</td>
-                        <td>AxT</td>
+                        <td>MONTO</td>
+                        <td>PUNTO</td>
+                        <td>COM</td>
+                        <td width="5%">PRO</td>
+                        <td width="4%">PUNTO</td>
+                        <td width="6%">COM</td>
                     </tr>
                 </thead>
                 <tbody style="border-left: 3px solid black; border-right: 3px solid black; border-bottom: 1px solid black;" class="main">
@@ -98,6 +97,7 @@
                                 $total_employee_sum = $sales_commision_sum
                                     + $commision->scPoint($commisions->sum('sterencard'))[1]
                                     + $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]
+                                    + $commisions->sum(function ($commission) { return $commission->axtCommission();})
                             @endphp
                             <tr>
                                 @if ($loop->index == 0)
@@ -106,21 +106,20 @@
                                 <td>{{ fnumber($commision->weekly_goal) }}</td>
                                 <td>{{ fnumber($commision->weekly_goal * $goal->star) }}</td>
                                 <td>{{ fnumber($commision->sale) }}</td>
+                                <td>{!! $commision->salePointLabel !!}</td>
+                                <td>{{ fnumber($commision->sales_commision) }}</td>
                                 <td>{{ $commision->axt }}</td>
+                                <td>{!! $commision->axtPoint($commision->axt)[0] !!}</td>
+                                <td>{{ fnumber($commision->axtCommission(), 2) }}</td>
                                 {{-- @if ($loop->index == 0)
                                     <td rowspan="5">{{ fnumber($commisions->sum('sale')) }}</td>
                                 @endif --}}
-                                <td>{!! $commision->salePointLabel !!}</td>
-                                <td>{!! $commision->axtPoint($commision->axt)[0] !!}</td>
-                                <td>{{ fnumber($commision->sales_commision) }}</td>
-                                <td>{{ number_format($commision->axtCommission(), 2) }}</td>
                                 @if($loop->index < 3)
                                 @endif
                                 @if ($loop->index == 0)
                                     <td rowspan="5">
-                                        {{ fnumber($sales_commision_sum) }}
-                                        <hr>
-                                        {{ number_format($commisions->sum(function ($commission) { return $commission->axtCommission();}), 2) }}
+                                        ventas <br>{{ fnumber($sales_commision_sum) }} <br><br>
+                                        AxT <br>{{ number_format($commisions->sum(function ($commission) { return $commission->axtCommission();}), 2) }}
                                     </td>
                                     <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!} <br>
                                         {!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
@@ -138,7 +137,7 @@
                         @endforeach
                     @endforeach
                 </tbody>
-                <tfoot>
+                <tbody>
                     <tr style="border-bottom: 3px solid black; border-left: 3px solid black; border-right: 3px solid black;" class="main">
                         <td><b>Total</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal')) }}</b></td>
@@ -150,11 +149,9 @@
                         <td><b>{{ fnumber($sales_commisions_total) }}</b></td>
                         <td><b>{{ number_format($commisions_by_employee->sum(function ($employee) { return $employee->sum(function ($commission) { return $commission->axtCommission();}); }), 2) }}</b></td>
                         <td></td>
-                        <td></td>
-                        {{-- <td><b>{{ $commisions_complete->sum('sterencard') }}</b></td> --}}
-                        {{-- <td><b>{{ $commisions_complete->sum('extensions') }}</b></td> --}}
+                        <td><b>{{ $commisions_complete->sum('sterencard') }}/{{ $commisions_complete->sum('extensions') }}</b></td>
                         <td><b>{{ fnumber($total_pay_sum) }}</b></td>
-                        <td><b>{{ $commisions_complete->sum('dalays') }}</b></td>
+                        <td><b>{{ $commisions_complete->sum('delays') }}</b></td>
                         <td><b>{{ $commisions_complete->sum('absences') }}</b></td>
                         <td><b>{{ fnumber($total_sum) }}</b></td>
                     </tr>
@@ -262,7 +259,7 @@
                         <td style="border: 2px solid black;">{{ fnumber($goal->sellers + $commisions_complete->sum('sale') - $goal->discounts - $goal->steren_card + $extras) }}</td>
                         <td colspan="10"></td>
                     </tr>
-                </tfoot>
+                </tbody>
             </table>
         </div>
     </section>
