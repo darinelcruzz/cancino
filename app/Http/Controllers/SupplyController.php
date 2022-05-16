@@ -29,6 +29,7 @@ class SupplyController extends Controller
     {
         $validated = $request->validate([
             'description' => 'required',
+            'family' => 'required',
             'code' => 'required',
             'sat_key' => 'required',
             'unit' => 'required',
@@ -61,6 +62,7 @@ class SupplyController extends Controller
             'quantity' => 'required',
             'unit' => 'required',
             'purchase_price' => 'required',
+            'family' => 'required',
             'sale_price' => 'required'
         ]);
 

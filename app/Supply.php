@@ -21,6 +21,11 @@ class Supply extends Model
     	return $this->hasMany(SupplyStock::class);
     }
 
+    function setFamilyAttribute($family)
+    {
+        $this->attributes['family'] = strtoupper($family);
+    }
+
     function getTotalStockAttribute()
     {
         return $this->stocks->sum('quantity');

@@ -10,6 +10,8 @@
                 {!! Form::open(['method' => 'POST', 'route' => 'supplies.store']) !!}
 
                     {!! Field::text('description', ['tpl' => 'lte/withicon'], ['icon' => 'comment']) !!}
+                    
+                    {!! Field::text('family', ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
 
                     <div class="row">
                         <div class="col-md-6">

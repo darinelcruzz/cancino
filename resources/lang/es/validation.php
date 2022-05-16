@@ -268,5 +268,6 @@ return [
         'compensation' => 'compensación',
         'cost' => 'costo',
         'bought_at' => 'compra',
+        'family' => 'familia',
     ],
 ];

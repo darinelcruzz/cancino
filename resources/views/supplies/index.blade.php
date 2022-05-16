@@ -41,6 +41,7 @@
                             <th>ID</th>
                             <th><i class="fa fa-cogs"></i></th>
                             <th>Descripción</th>
+                            <th>Familia</th>
                             <th>Clave SAT</th>
                             <th>Tuxtla</th>
                             <th>Tapachula</th>
@@ -63,6 +64,7 @@
                                     {{ $supply->description }}<br>
                                     <code>{{ $supply->code ?? 'TEST' }}</code><span style="color: purple">{{ $supply->sat_key }}</span>
                                 </td>
+                                <td>{!! $supply->family ?? "<code>NO ASIGNADA</code>" !!}</td>
                                 <td>{{ $supply->sat_key }}</td>
                                 @foreach($supply->stocks as $stock)
                                     <td>{{ $stock->quantity }} {{ $supply->unit . ($stock->quantity != 1 ? 's': '') }}</td>

@@ -10,6 +10,7 @@
                 {!! Form::open(['method' => 'POST', 'route' => ['supplies.update', $supply]]) !!}
 
                     {!! Field::text('description', $supply->description, ['tpl' => 'lte/withicon'], ['icon' => 'comment']) !!}
+                    {!! Field::text('family', $supply->family, ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
 
                     <div class="row">
                         <div class="col-md-6">
