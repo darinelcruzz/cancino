@@ -64,8 +64,8 @@
                         <td width="8%" rowspan="2">NOMBRE</td>
                         <td width="8%" rowspan="2">MÍNIMO</td>
                         <td width="8%" rowspan="2">META ACTUAL</td>
-                        <td width="20%" colspan="3">VENTAS</td>
-                        <td width="15%" colspan="3">AxT</td>
+                        <td width="20%" colspan="4">VENTAS</td>
+                        <td width="15%" colspan="4">AxT</td>
                         <td width="8%" rowspan="2">TOTAL</td>
                         <td width="7%" rowspan="2">SC<br>GAR</td>
                         <td width="8%" rowspan="2">TOTAL</td>
@@ -75,9 +75,11 @@
                     </tr>
                     <tr>
                         <td>MONTO</td>
+                        <td>VENVIDO</td>
                         <td>PUNTO</td>
                         <td>COM</td>
                         <td width="5%">PRO</td>
+                        <td>MES</td>
                         <td width="4%">PUNTO</td>
                         <td width="6%">COM</td>
                     </tr>
@@ -106,14 +108,17 @@
                                 <td>{{ fnumber($commision->weekly_goal) }}</td>
                                 <td>{{ fnumber($commision->weekly_goal * $goal->star) }}</td>
                                 <td>{{ fnumber($commision->sale) }}</td>
+                                @if ($loop->index == 0)
+                                    <td rowspan="5">{{ fnumber($commisions->sum('sale')) }}</td>
+                                @endif
                                 <td>{!! $commision->salePointLabel !!}</td>
                                 <td>{{ fnumber($commision->sales_commision) }}</td>
                                 <td>{{ $commision->axt }}</td>
+                                @if ($loop->index == 0)
+                                    <td rowspan="5">{{ number_format($commisions->sum('axt')/5,2) }}</td>
+                                @endif
                                 <td>{!! $commision->axtPoint($commision->axt)[0] !!}</td>
                                 <td>{{ fnumber($commision->axtCommission(), 2) }}</td>
-                                {{-- @if ($loop->index == 0)
-                                    <td rowspan="5">{{ fnumber($commisions->sum('sale')) }}</td>
-                                @endif --}}
                                 @if($loop->index < 3)
                                 @endif
                                 @if ($loop->index == 0)
