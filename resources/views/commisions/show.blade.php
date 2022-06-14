@@ -32,6 +32,7 @@
                                         <th><big>Semana 3</big></th>
                                         <th><big>Semana 4</big></th>
                                         <th><big>Semana 5</big></th>
+                                        <th><big>Semana 6</big></th>
                                         <th><big>Total</big></th>
                                     </tr>
                                 </thead>
@@ -47,6 +48,11 @@
                                             @foreach($commisions as $commision)
                                                 <td>{{ number_format($commision->weekly_goal, 2) }}</td>
                                             @endforeach
+                                            @if($commisions->count() == 5)
+                                            <td>
+                                                <code>N/A</code>
+                                            </td>
+                                            @endif
                                             <td>
                                                 {{ number_format($commisions->sum('weekly_goal'), 2) }}
                                             </td>
@@ -61,6 +67,10 @@
                                                 {{ number_format($commisions->sum('weekly_goal'), 2) }}
                                             </td>
                                         @endforeach
+                                        @if($commisions->count() == 5)
+                                        <td>
+                                        </td>
+                                        @endif
                                         <th><big>{{ number_format($goal->commisions->sum('weekly_goal'), 2) }}</big></th>
                                     </tr>
                                 </tfoot>                    

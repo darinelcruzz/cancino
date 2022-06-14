@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <color-box title="Comisiones de {{ $relation->name }}" color="{{ $relation->color }}">
                     <data-table example="{{ $relation->id }}">
-                        {{ drawHeader('Nombre', '<i class="fa fa-info"></i>','Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'SC', 'Extensiones') }}
+                        {{ drawHeader('Nombre', '<i class="fa fa-info"></i>','Semana 1', 'Semana 2', 'Semana 3', 'Semana 4', 'Semana 5', 'Semana 6', 'SC', 'Extensiones') }}
 
                         <template slot="body">
                             @foreach($store as $employer)
@@ -41,6 +41,9 @@
                                             &nbsp;&nbsp;&nbsp;{!! $goal->salePointLabel !!}
                                         </td>
                                     @endforeach
+                                    @if($employer->count() == 5)
+                                    <td><code>N/A</code></td>
+                                    @endif
                                     <td style="text-align: center;">
                                         {{ $employer->sum('sterencard') }}
                                     </td>
@@ -77,8 +80,12 @@
                                     @endif
                                 </td>
                                 <td></td>
-                                @for ($i=1; $i < 6; $i++)
-                                    <td><a href="{{ route('commision.edit', [$goal_id, $i]) }}" class="btn btn-{{ $relation->color }} btn-xs"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar venta</a></td>
+                                @for ($i=1; $i <= 6; $i++)
+                                    <td>
+                                        <a href="{{ route('commision.edit', [$goal_id, $i]) }}" class="btn btn-{{ $relation->color }} btn-xs">
+                                            <i class="fa fa-plus-square"></i>&nbsp;&nbsp;Agregar venta
+                                        </a>
+                                    </td>
                                 @endfor
                                 <th style="text-align: center;">{{ $total_sc }}</th>
                                 <th style="text-align: center;">{{ $total_ext }} | {{ fnumber($total_amount_ext) }}</th>

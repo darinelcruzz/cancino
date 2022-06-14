@@ -30,6 +30,7 @@
                                     <th style="text-align: center;"><big>SEMANA 3</big></th>
                                     <th style="text-align: center;"><big>SEMANA 4</big></th>
                                     <th style="text-align: center;"><big>SEMANA 5</big></th>
+                                    <th style="text-align: center;"><big>SEMANA 6</big></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,7 +39,7 @@
                                         <th>
                                             <big>{{ strtoupper($name) }}</big>
                                         </th>
-                                        @foreach ([1, 2, 3, 4, 5] as $week)
+                                        @foreach ([1, 2, 3, 4, 5, 6] as $week)
                                             <td>
                                                 <employee-week-goal :week="{{ $week }}" :employee="{{ $employer_id }}" :goal="{{ $now->id }}"></employee-week-goal>
                                             </td>
@@ -57,6 +58,7 @@
                                     <td><big><week-sum week="3"></week-sum></big></td>
                                     <td><big><week-sum week="4"></week-sum></big></td>
                                     <td><big><week-sum week="5"></week-sum></big></td>
+                                    <td><big><week-sum week="6"></week-sum></big></td>
                                     <th><big><goal-sum></goal-sum></big></th>
                                 </tr>
                             </tfoot>                    

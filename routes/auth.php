@@ -6,6 +6,29 @@ Route::get('/prueba', function () {
     return view('test');
 })->name('test');
 
+Route::get('/agregar-semanas', function () {
+    $employers = App\Commision::where('goal_id', '>=', 347)->get()->groupBy('employer_id');
+    // dd($comms);
+    foreach ($employers as $id => $commissions) {
+        $com = $commissions->first();
+        App\Commision::create([
+            'employer_id' => $id,
+            'goal_id' => $com->goal_id,
+            'week' => 6,
+            'weekly_goal' => 0,
+            'sale' => 0,
+            'sterencard' => 0,
+            'extensions' => 0,
+            'amount_ext' => 0,
+            'delays' => 0,
+            'absences' => 0,
+            'tab_id' => $com->tab_id,
+        ]);
+    }
+
+    return 'HECHO';
+});
+
 // Route::get('/prueba', usesas('SaleController', 'prueba'));
 
 Route::group(['prefix' => 'compras', 'as' => 'shoppings.', 'middleware' => 'nonCheckup'], function () {
