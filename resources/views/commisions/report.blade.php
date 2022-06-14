@@ -91,6 +91,9 @@
                         $total_sum = 0;
                     @endphp
                     @foreach ($commisions_by_employee as $employee_id => $commisions)
+                        @php
+                        $comCount = $commisions->count();
+                        @endphp
                         @foreach ($commisions as $commision)
                             @php
                                 $sales_commision_sum = $commisions->sum(function ($item) {
@@ -103,35 +106,33 @@
                             @endphp
                             <tr>
                                 @if ($loop->index == 0)
-                                    <td rowspan="5">{{ $commision->employer->nickname }}</td>
+                                    <td rowspan="{{ $comCount }}">{{ $commision->employer->nickname }}</td>
                                 @endif
                                 <td>{{ fnumber($commision->weekly_goal) }}</td>
                                 <td>{{ fnumber($commision->weekly_goal * $goal->star) }}</td>
                                 <td>{{ fnumber($commision->sale) }}</td>
                                 @if ($loop->index == 0)
-                                    <td rowspan="5">{{ fnumber($commisions->sum('sale')) }}</td>
+                                    <td rowspan="{{ $comCount }}">{{ fnumber($commisions->sum('sale')) }}</td>
                                 @endif
                                 <td>{!! $commision->salePointLabel !!}</td>
                                 <td>{{ fnumber($commision->sales_commision) }}</td>
                                 <td>{{ $commision->axt }}</td>
                                 @if ($loop->index == 0)
-                                    <td rowspan="5">{{ number_format($commisions->sum('axt')/5,2) }}</td>
+                                    <td rowspan="{{ $comCount }}">{{ number_format($commisions->sum('axt')/5,2) }}</td>
                                 @endif
                                 <td>{!! $commision->axtPoint($commision->axt)[0] !!}</td>
                                 <td>{{ fnumber($commision->axtCommission(), 2) }}</td>
-                                @if($loop->index < 3)
-                                @endif
                                 @if ($loop->index == 0)
-                                    <td rowspan="5">
+                                    <td rowspan="{{ $comCount }}">
                                         ventas <br>{{ fnumber($sales_commision_sum) }} <br><br>
                                         AxT <br>{{ number_format($commisions->sum(function ($commission) { return $commission->axtCommission();}), 2) }}
                                     </td>
-                                    <td rowspan="5">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!} <br>
+                                    <td rowspan="{{ $comCount }}">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!} <br>
                                         {!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
-                                    <td rowspan="5">{{ fnumber($total_employee_sum) }}</td>
-                                    <td rowspan="5">{{ $commisions->sum('delays') }}<br> (-${{$commision->delaysSum($total_employee_sum)}})</td>
-                                    <td rowspan="5">{{ $commisions->sum('absences') }}<br> (-${{$commision->absencesSum($total_employee_sum)}})</td>
-                                    <td rowspan="5">{{ fnumber($total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum) > 0 ? $total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum) : 0) }}</td>
+                                    <td rowspan="{{ $comCount }}">{{ fnumber($total_employee_sum) }}</td>
+                                    <td rowspan="{{ $comCount }}">{{ $commisions->sum('delays') }}<br> (-${{$commision->delaysSum($total_employee_sum)}})</td>
+                                    <td rowspan="{{ $comCount }}">{{ $commisions->sum('absences') }}<br> (-${{$commision->absencesSum($total_employee_sum)}})</td>
+                                    <td rowspan="{{ $comCount }}">{{ fnumber($total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum) > 0 ? $total_employee_sum - $commision->absencesSum($total_employee_sum) - $commision->delaysSum($total_employee_sum) : 0) }}</td>
                                     @php
                                         $sales_commisions_total += $sales_commision_sum;
                                         $total_pay_sum += $total_employee_sum;
