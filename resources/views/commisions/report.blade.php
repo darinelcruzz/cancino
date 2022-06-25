@@ -75,11 +75,10 @@
                     </tr>
                     <tr>
                         <td>MONTO</td>
-                        <td>VENVIDO</td>
                         <td>PUNTO</td>
+                        <td>VENVIDO</td>
                         <td>COM</td>
                         <td width="5%">PRO</td>
-                        <td>MES</td>
                         <td width="4%">PUNTO</td>
                         <td width="6%">COM</td>
                     </tr>
@@ -111,15 +110,12 @@
                                 <td>{{ fnumber($commision->weekly_goal) }}</td>
                                 <td>{{ fnumber($commision->weekly_goal * $goal->star) }}</td>
                                 <td>{{ fnumber($commision->sale) }}</td>
+                                <td>{!! $commision->salePointLabel !!}</td>
                                 @if ($loop->index == 0)
                                     <td rowspan="{{ $comCount }}">{{ fnumber($commisions->sum('sale')) }}</td>
                                 @endif
-                                <td>{!! $commision->salePointLabel !!}</td>
                                 <td>{{ fnumber($commision->sales_commision) }}</td>
                                 <td>{{ $commision->axt }}</td>
-                                @if ($loop->index == 0)
-                                    <td rowspan="{{ $comCount }}">{{ number_format($commisions->sum('axt')/5,2) }}</td>
-                                @endif
                                 <td>{!! $commision->axtPoint($commision->axt)[0] !!}</td>
                                 <td>{{ fnumber($commision->axtCommission(), 2) }}</td>
                                 @if ($loop->index == 0)
