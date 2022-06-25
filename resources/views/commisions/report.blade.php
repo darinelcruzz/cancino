@@ -76,7 +76,7 @@
                     <tr>
                         <td>MONTO</td>
                         <td>PUNTO</td>
-                        <td>VENVIDO</td>
+                        <td>VENDIDO</td>
                         <td>COM</td>
                         <td width="5%">PRO</td>
                         <td width="4%">PUNTO</td>
