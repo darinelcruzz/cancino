@@ -65,7 +65,7 @@
                         <td width="8%" rowspan="2">MÍNIMO</td>
                         <td width="8%" rowspan="2">META ACTUAL</td>
                         <td width="20%" colspan="4">VENTAS</td>
-                        <td width="15%" colspan="4">AxT</td>
+                        <td width="15%" colspan="3">AxT</td>
                         <td width="8%" rowspan="2">TOTAL</td>
                         <td width="7%" rowspan="2">SC<br>GAR</td>
                         <td width="8%" rowspan="2">TOTAL</td>
