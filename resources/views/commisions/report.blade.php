@@ -146,9 +146,8 @@
                         <td><b>{{ fnumber($commisions_complete->sum('weekly_goal') * $goal->star) }}</b></td>
                         <td><b>{{ fnumber($commisions_complete->sum('sale')) }}</b></td>
                         <td></td>
-                        <td></td>
+                        <td><b>{{ fnumber($commisions_complete->sum('sale')) }}</b></td>
                         <td><b>{{ fnumber($sales_commisions_total) }}</b></td>
-                        <td></td>
                         <td></td>
                         <td></td>
                         <td><b>{{ number_format($commisions_by_employee->sum(function ($employee) { return $employee->sum(function ($commission) { return $commission->axtCommission();}); }), 2) }}</b></td>
