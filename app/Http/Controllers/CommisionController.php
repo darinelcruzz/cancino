@@ -43,7 +43,7 @@ class CommisionController extends Controller
     function store(Request $request)
     {
         // dd($request->all());
-        $tab = Tab::latest()->first();
+        $tab = Tab::all()->last();
         foreach ($request->sellers as $seller) {
             foreach ($seller as $goal) {
                 Commision::create($goal + ['tab_id' => $tab->id]);
