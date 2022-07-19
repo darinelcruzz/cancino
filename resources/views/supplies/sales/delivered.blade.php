@@ -30,22 +30,35 @@
                     </thead>
 
                     <tbody>
-                    @foreach($products as $key => $values)
-                        @foreach($values as $value)
+                    @foreach($families as $family => $products)
+                        @php
+                            $famount = 0;
+                        @endphp
                         <tr>
-                            <td>{{ $value[0]->supply->sat_key }}</td>
-                            <td>{{ $value[0]->description ?? $value[0]->supply->description  }}</td>
-                            <td style="text-align: center;"><small>{{ strtoupper($value[0]->supply->unit) }}</small></td>
-                            <td style="text-align: center;">{{ $value->sum('quantity') * $value[0]->ratio }}</td>
-                            <td style="text-align: right;">{{ number_format($value[0]->price/1.16, 2) }}</td>
-                            <td style="text-align: right;">{{ number_format($value->sum(function ($item) { return $item->price/1.16 * $item->quantity * $item->ratio;}), 2) }}</td>
+                            <th colspan="6" style="text-align:center;">{{ $family }}</th>
+                        </tr>
+                        @foreach($products as $product => $values)
+                        
+                        <tr>
+                            <td>{{ $values[0]->supply->sat_key }}</td>
+                            <td>{{ $values[0]->description ?? $values[0]->supply->description  }}</td>
+                            <td style="text-align: center;"><small>{{ strtoupper($values[0]->supply->unit) }}</small></td>
+                            <td style="text-align: center;">{{ $values->sum('quantity') * $values[0]->ratio }}</td>
+                            <td style="text-align: right;">{{ number_format($values[0]->price/1.16, 2) }}</td>
+                            <td style="text-align: right;">{{ number_format($values->sum(function ($item) { return $item->price/1.16 * $item->quantity * $item->ratio;}), 2) }}</td>
 
                             @php
-                            $amount += $value->sum(function ($item) { return $item->price/1.16 * $item->quantity * $item->ratio;});
-                            $iva += $value->sum(function ($item) { return $item->price * $item->quantity * $item->ratio;});
+                            $amount += $values->sum(function ($item) { return $item->price/1.16 * $item->quantity * $item->ratio;});
+                            $famount += $values->sum(function ($item) { return $item->price/1.16 * $item->quantity * $item->ratio;});
+                            $iva += $values->sum(function ($item) { return $item->price * $item->quantity * $item->ratio;});
                             @endphp
                         </tr>                        
                         @endforeach
+                        <tr>
+                            <th colspan="4"></th>
+                            <th><small>TOTAL</small></th>
+                            <th style="text-align: right;">{{ number_format($famount, 2) }}</th>
+                        </tr>
                     @endforeach
                     </tbody>
 

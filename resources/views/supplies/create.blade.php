@@ -11,7 +11,7 @@
 
                     {!! Field::text('description', ['tpl' => 'lte/withicon'], ['icon' => 'comment']) !!}
                     
-                    {!! Field::text('family', ['tpl' => 'lte/withicon'], ['icon' => 'comments']) !!}
+                    {!! Field::select('family', $families, null, ['tpl' => 'lte/withicon', 'empty' => 'Seleccione una familia'], ['icon' => 'comments']) !!}
 
                     <div class="row">
                         <div class="col-md-6">

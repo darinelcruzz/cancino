@@ -49,25 +49,25 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('star', 1, ['tpl' => 'lte/withicon'], ['icon' => 'star']) !!}
+                            {!! Field::number('star', 1, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'star']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('golden', 1, ['tpl' => 'lte/withicon'], ['icon' => 'medal']) !!}
+                            {!! Field::number('golden', 1, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'medal']) !!}
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('cash', 0, ['label' => 'Dinero para monedas', 'tpl' => 'lte/withicon'], ['icon' => 'cash-register']) !!}
+                            {!! Field::number('cash', 0, ['label' => 'Dinero para monedas', 'tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'cash-register']) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Field::number('expense', 0, ['label' => 'Dinero para gastos', 'tpl' => 'lte/withicon'], ['icon' => 'wallet']) !!}
+                            {!! Field::number('expense', 0, ['label' => 'Dinero para gastos', 'tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'wallet']) !!}
                         </div>
                     </div> 
 
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Field::number('salary', 0, ['tpl' => 'lte/withicon'], ['icon' => 'money-check-alt']) !!}
+                            {!! Field::number('salary', 0, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money-check-alt']) !!}
                         </div>
                     </div>   
 

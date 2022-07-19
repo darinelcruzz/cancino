@@ -22,7 +22,16 @@ class SupplyController extends Controller
 
     function create()
     {
-        return view('supplies.create');
+        $supplies = Supply::whereNotNull('family')->get()->groupBy('family');
+        $families = [];
+
+        foreach ($supplies as $family => $value) {
+            $families[$family] = $family;
+        }
+
+        // dd($families);
+
+        return view('supplies.create', compact('families'));
     }
 
     function store(Request $request)

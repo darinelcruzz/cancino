@@ -64,14 +64,17 @@ class SupplySaleController extends Controller
             ->where('status', 'entregada')
             ->pluck('id');
 
-        $products = SupplyMovement::where('movable_type', 'App\SupplySale')
+        $families = SupplyMovement::where('movable_type', 'App\SupplySale')
             ->whereIn('movable_id', $sales)
+            ->with('supply')
             ->get()
-            ->groupBy(['supply_id', 'description']);
+            ->groupBy(['supply.family', 'supply.description']);
+
+        // dd($families);
 
         $amount = $iva = 0;
 
-        return view('supplies.sales.delivered', compact('products', 'store', 'amount', 'iva'));
+        return view('supplies.sales.delivered', compact('families', 'store', 'amount', 'iva'));
     }
 
     function mark(SupplySale $supply_sale)
