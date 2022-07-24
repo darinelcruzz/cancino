@@ -274,7 +274,7 @@
                     </tr>
                     @php
                         $sum = 0;
-                        $options = ['1' => 'DEVOLUCION DE EFECTIVO', '2' => 'CAMBIO DE PRODUCTO', '3' => 'REFACTURACION', '4' => 'NOTA DE CREDITO'];
+                        $options = ['1' => 'DEVOLUCION DE EFECTIVO', '2' => 'CAMBIO DE PRODUCTO', '3' => 'REFACTURACION', '4' => 'NOTA DE CREDITO', '5' => 'DEVOLUCION TRANSFERENCIA'];
                     @endphp
                     @if ($checkup->returns)
                         @foreach ($checkup->returns as $item)
