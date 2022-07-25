@@ -162,8 +162,34 @@
                                     </tbody>
                                 </table>
                             </td>
-                        </tr>
-                    @endif
+                        @endif
+                        @if ($checkup->net_pay_1 || $checkup->net_pay_2)
+                            <td valign="TOP" width="18%">
+                                <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2"><b>NET PAY 1</b></td>
+                                        </tr>
+                                        @foreach ($checkup->net_pay_1 as $item)
+                                            <tr>
+                                                <td width="45%">{{ $item['f'] }}</td>
+                                                <td width="55%">{{ fnumber($item['a']) }}</td>
+                                            </tr>
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="2"><b>NET PAY 2</b></td>
+                                        </tr>
+                                        @foreach ($checkup->net_pay_2 as $item)
+                                            <tr>
+                                                <td width="45%">{{ $item['f'] }}</td>
+                                                <td width="55%">{{ fnumber($item['a']) }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </td>
+                        @endif
+                    </tr>
                     <tr>
                         <td>
                             <table width="80%" style="border-collapse: collapse;" align="center" border="3" class="spaced">

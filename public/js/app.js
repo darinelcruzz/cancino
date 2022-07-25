@@ -52769,6 +52769,92 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52926,6 +53012,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['stored'],
     data: function data() {
         return {
+            np1: [],
+            np2: [],
             bbva: [],
             banamex: [],
             clip: [],
@@ -52937,6 +53025,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         total: function total() {
             return this.round(this.banamex.reduce(function (total, item) {
                 return total + item.amount;
+            }, 0) + this.np1.reduce(function (total, item) {
+                return total + item.amount;
+            }, 0) + this.np2.reduce(function (total, item) {
+                return total + item.amount;
             }, 0) + this.bbva.reduce(function (total, item) {
                 return total + item.amount;
             }, 0) + this.clip.reduce(function (total, item) {
@@ -52947,7 +53039,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.round(this.total - this.cut);
         }
     },
-    methods: {
+    methods: (_methods = {
+        addToNP1: function addToNP1() {
+            this.np1.push({ folio: '', amount: 0 });
+        },
+        addToNP2: function addToNP2() {
+            this.np2.push({ folio: '', amount: 0 });
+        },
         addToBanamex: function addToBanamex() {
             this.banamex.push({ folio: '', amount: 0 });
         },
@@ -52957,19 +53055,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addToClip: function addToClip() {
             this.clip.push({ folio: '', amount: 0 });
         },
-        popFromBanamex: function popFromBanamex(index) {
-            this.banamex.splice(index, 1);
-        },
-        popFromBbva: function popFromBbva(index) {
-            this.bbva.splice(index, 1);
-        },
-        popFromClip: function popFromClip(index) {
-            this.clip.splice(index, 1);
-        },
-        round: function round(value) {
-            return Number(Math.round(value + 'e2') + 'e-2');
+        popFromNP1: function popFromNP1(index) {
+            this.np1.splice(index, 1);
         }
-    },
+    }, _defineProperty(_methods, 'popFromNP1', function popFromNP1(index) {
+        this.np2.splice(index, 1);
+    }), _defineProperty(_methods, 'popFromBanamex', function popFromBanamex(index) {
+        this.banamex.splice(index, 1);
+    }), _defineProperty(_methods, 'popFromBbva', function popFromBbva(index) {
+        this.bbva.splice(index, 1);
+    }), _defineProperty(_methods, 'popFromClip', function popFromClip(index) {
+        this.clip.splice(index, 1);
+    }), _defineProperty(_methods, 'round', function round(value) {
+        return Number(Math.round(value + 'e2') + 'e-2');
+    }), _methods),
     updated: function updated() {
         this.$root.$emit('checkupdate', [2, { method: 'tarjetas', cut: this.round(this.cut), diff: this.round(this.difference) }]);
     },
@@ -53003,6 +53102,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }
 
+            if (this.stored.net_pay_1) {
+                for (var i = this.stored.net_pay_1.length - 1; i >= 0; i--) {
+                    this.np1.push({
+                        folio: this.stored.net_pay_1[i]['f'],
+                        amount: Number(this.stored.net_pay_1[i]['a'])
+                    });
+                }
+            }
+
+            if (this.stored.net_pay_2) {
+                for (var i = this.stored.net_pay_2.length - 1; i >= 0; i--) {
+                    this.np2.push({
+                        folio: this.stored.net_pay_2[i]['f'],
+                        amount: Number(this.stored.net_pay_2[i]['a'])
+                    });
+                }
+            }
+
             this.cut = this.stored.card_sums.c;
         }
     }
@@ -53016,405 +53133,647 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-3" }, [
-      _c("table", { staticClass: "table table-striped table-bordered" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.bbva, function(item, index) {
-            return _c("tr", [
-              _c("td", { staticStyle: { width: "5%" } }, [
-                _c(
-                  "a",
-                  {
-                    staticStyle: { color: "red" },
-                    on: {
-                      click: function($event) {
-                        return _vm.popFromBbva(index)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fa fa-times" })]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: item.folio,
-                      expression: "item.folio"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", maxlength: "4" },
-                  domProps: { value: item.folio },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(item, "folio", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "bbva[" + index + "][f]" },
-                  domProps: { value: item.folio }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model.number",
-                      value: item.amount,
-                      expression: "item.amount",
-                      modifiers: { number: true }
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "number", min: "0", step: "0.01" },
-                  domProps: { value: item.amount },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(item, "amount", _vm._n($event.target.value))
-                    },
-                    blur: function($event) {
-                      return _vm.$forceUpdate()
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "bbva[" + index + "][a]" },
-                  domProps: { value: item.amount }
-                })
-              ])
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("tfoot", [
-          _c("tr", [
-            _c("td", { attrs: { colspan: "3" } }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-info btn-xs",
-                  on: { click: _vm.addToBbva }
-                },
-                [
-                  _c("i", { staticClass: "fa fa-plus" }),
-                  _vm._v("  BBVA\n                        ")
-                ]
-              )
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-3" }, [
-      _c("table", { staticClass: "table table-striped table-bordered" }, [
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.banamex, function(item, index) {
-            return _c("tr", [
-              _c("td", { staticStyle: { width: "5%" } }, [
-                _c(
-                  "a",
-                  {
-                    staticStyle: { color: "red" },
-                    on: {
-                      click: function($event) {
-                        return _vm.popFromBanamex(index)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fa fa-times" })]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: item.folio,
-                      expression: "item.folio"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", maxlength: "4" },
-                  domProps: { value: item.folio },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(item, "folio", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "banamex[" + index + "][f]" },
-                  domProps: { value: item.folio }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model.number",
-                      value: item.amount,
-                      expression: "item.amount",
-                      modifiers: { number: true }
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "number", min: "0", step: "0.01" },
-                  domProps: { value: item.amount },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(item, "amount", _vm._n($event.target.value))
-                    },
-                    blur: function($event) {
-                      return _vm.$forceUpdate()
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "banamex[" + index + "][a]" },
-                  domProps: { value: item.amount }
-                })
-              ])
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("tfoot", [
-          _c("tr", [
-            _c("td", { attrs: { colspan: "3" } }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary btn-xs",
-                  on: { click: _vm.addToBanamex }
-                },
-                [
-                  _c("i", { staticClass: "fa fa-plus" }),
-                  _vm._v("  BANAMEX\n                        ")
-                ]
-              )
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-3" }, [
-      _c("table", { staticClass: "table table-striped table-bordered" }, [
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.clip, function(item, index) {
-            return _c("tr", [
-              _c("td", { staticStyle: { width: "5%" } }, [
-                _c(
-                  "a",
-                  {
-                    staticStyle: { color: "red" },
-                    on: {
-                      click: function($event) {
-                        return _vm.popFromClip(index)
-                      }
-                    }
-                  },
-                  [_c("i", { staticClass: "fa fa-times" })]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: item.folio,
-                      expression: "item.folio"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", maxlength: "4" },
-                  domProps: { value: item.folio },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(item, "folio", $event.target.value)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "clip[" + index + "][f]" },
-                  domProps: { value: item.folio }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model.number",
-                      value: item.amount,
-                      expression: "item.amount",
-                      modifiers: { number: true }
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "number", min: "0", step: "0.01" },
-                  domProps: { value: item.amount },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(item, "amount", _vm._n($event.target.value))
-                    },
-                    blur: function($event) {
-                      return _vm.$forceUpdate()
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "clip[" + index + "][a]" },
-                  domProps: { value: item.amount }
-                })
-              ])
-            ])
-          }),
-          0
-        ),
-        _vm._v(" "),
-        _c("tfoot", [
-          _c("tr", [
-            _c("td", { attrs: { colspan: "3" } }, [
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-warning btn-xs",
-                  on: { click: _vm.addToClip }
-                },
-                [
-                  _c("i", { staticClass: "fa fa-plus" }),
-                  _vm._v("  Clip\n                        ")
-                ]
-              )
-            ])
-          ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-3" }, [
-      _c("table", { staticClass: "table table-bordered table-striped" }, [
-        _c("tbody", [
-          _c("tr", [
-            _c("th", [_vm._v("Suma")]),
-            _vm._v(" "),
-            _c("td", { staticStyle: { "text-align": "right" } }, [
-              _vm._v(
-                "\n                        " +
-                  _vm._s(_vm._f("currency")(_vm.total)) +
-                  "\n                        "
-              ),
-              _c("input", {
-                attrs: { type: "hidden", name: "card_sums[s]" },
-                domProps: { value: _vm.total }
-              })
-            ])
-          ]),
+  return _c("div", { staticClass: "cards" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
+          _vm._m(0),
           _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("Corte")]),
-            _vm._v(" "),
-            _c("td", { staticStyle: { "text-align": "right" } }, [
-              _c("div", { staticClass: "input-group input-group-sm" }, [
-                _c("input", {
-                  directives: [
+          _c(
+            "tbody",
+            _vm._l(_vm.np1, function(item, index) {
+              return _c("tr", [
+                _c("td", { staticStyle: { width: "5%" } }, [
+                  _c(
+                    "a",
                     {
-                      name: "model",
-                      rawName: "v-model.number",
-                      value: _vm.cut,
-                      expression: "cut",
-                      modifiers: { number: true }
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "number", min: "0", step: "0.01" },
-                  domProps: { value: _vm.cut },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                      staticStyle: { color: "red" },
+                      on: {
+                        click: function($event) {
+                          return _vm.popFromNP1(index)
+                        }
                       }
-                      _vm.cut = _vm._n($event.target.value)
                     },
-                    blur: function($event) {
-                      return _vm.$forceUpdate()
-                    }
-                  }
-                }),
+                    [_c("i", { staticClass: "fa fa-times" })]
+                  )
+                ]),
                 _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "hidden", name: "card_sums[c]" },
-                  domProps: { value: _vm.round(_vm.cut) }
-                })
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.folio,
+                        expression: "item.folio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", maxlength: "4" },
+                    domProps: { value: item.folio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "folio", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "hidden",
+                      name: "net_pay_1[" + index + "][f]"
+                    },
+                    domProps: { value: item.folio }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: item.amount,
+                        expression: "item.amount",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", step: "0.01" },
+                    domProps: { value: item.amount },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "amount", _vm._n($event.target.value))
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "hidden",
+                      name: "net_pay_1[" + index + "][a]"
+                    },
+                    domProps: { value: item.amount }
+                  })
+                ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("tfoot", [
+            _c("tr", [
+              _c("td", { attrs: { colspan: "3" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-github btn-xs",
+                    on: { click: _vm.addToNP1 }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-plus" }),
+                    _vm._v("  NET PAY 1\n                            ")
+                  ]
+                )
               ])
             ])
-          ]),
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
+          _vm._m(1),
           _vm._v(" "),
-          _c("tr", [
-            _c("th", [_vm._v("Diferencia")]),
+          _c(
+            "tbody",
+            _vm._l(_vm.bbva, function(item, index) {
+              return _c("tr", [
+                _c("td", { staticStyle: { width: "5%" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticStyle: { color: "red" },
+                      on: {
+                        click: function($event) {
+                          return _vm.popFromBbva(index)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-times" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.folio,
+                        expression: "item.folio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", maxlength: "4" },
+                    domProps: { value: item.folio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "folio", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "bbva[" + index + "][f]" },
+                    domProps: { value: item.folio }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: item.amount,
+                        expression: "item.amount",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", step: "0.01" },
+                    domProps: { value: item.amount },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "amount", _vm._n($event.target.value))
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "bbva[" + index + "][a]" },
+                    domProps: { value: item.amount }
+                  })
+                ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("tfoot", [
+            _c("tr", [
+              _c("td", { attrs: { colspan: "3" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-info btn-xs",
+                    on: { click: _vm.addToBbva }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-plus" }),
+                    _vm._v("  BBVA\n                            ")
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
+          _vm._m(2),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.banamex, function(item, index) {
+              return _c("tr", [
+                _c("td", { staticStyle: { width: "5%" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticStyle: { color: "red" },
+                      on: {
+                        click: function($event) {
+                          return _vm.popFromBanamex(index)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-times" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.folio,
+                        expression: "item.folio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", maxlength: "4" },
+                    domProps: { value: item.folio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "folio", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "hidden",
+                      name: "banamex[" + index + "][f]"
+                    },
+                    domProps: { value: item.folio }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: item.amount,
+                        expression: "item.amount",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", step: "0.01" },
+                    domProps: { value: item.amount },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "amount", _vm._n($event.target.value))
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "hidden",
+                      name: "banamex[" + index + "][a]"
+                    },
+                    domProps: { value: item.amount }
+                  })
+                ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("tfoot", [
+            _c("tr", [
+              _c("td", { attrs: { colspan: "3" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-primary btn-xs",
+                    on: { click: _vm.addToBanamex }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-plus" }),
+                    _vm._v("  BANAMEX\n                            ")
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
+          _vm._m(3),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.clip, function(item, index) {
+              return _c("tr", [
+                _c("td", { staticStyle: { width: "5%" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticStyle: { color: "red" },
+                      on: {
+                        click: function($event) {
+                          return _vm.popFromClip(index)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-times" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.folio,
+                        expression: "item.folio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", maxlength: "4" },
+                    domProps: { value: item.folio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "folio", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "clip[" + index + "][f]" },
+                    domProps: { value: item.folio }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: item.amount,
+                        expression: "item.amount",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", step: "0.01" },
+                    domProps: { value: item.amount },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "amount", _vm._n($event.target.value))
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "clip[" + index + "][a]" },
+                    domProps: { value: item.amount }
+                  })
+                ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("tfoot", [
+            _c("tr", [
+              _c("td", { attrs: { colspan: "3" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-warning btn-xs",
+                    on: { click: _vm.addToClip }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-plus" }),
+                    _vm._v("  Clip\n                            ")
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("table", { staticClass: "table table-striped table-bordered" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.np2, function(item, index) {
+              return _c("tr", [
+                _c("td", { staticStyle: { width: "5%" } }, [
+                  _c(
+                    "a",
+                    {
+                      staticStyle: { color: "red" },
+                      on: {
+                        click: function($event) {
+                          return _vm.popFromNP1(index)
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fa fa-times" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: item.folio,
+                        expression: "item.folio"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", maxlength: "4" },
+                    domProps: { value: item.folio },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "folio", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "hidden",
+                      name: "net_pay_2[" + index + "][f]"
+                    },
+                    domProps: { value: item.folio }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: item.amount,
+                        expression: "item.amount",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", step: "0.01" },
+                    domProps: { value: item.amount },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(item, "amount", _vm._n($event.target.value))
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: {
+                      type: "hidden",
+                      name: "net_pay_2[" + index + "][a]"
+                    },
+                    domProps: { value: item.amount }
+                  })
+                ])
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("tfoot", [
+            _c("tr", [
+              _c("td", { attrs: { colspan: "3" } }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-github btn-xs",
+                    on: { click: _vm.addToNP2 }
+                  },
+                  [
+                    _c("i", { staticClass: "fa fa-plus" }),
+                    _vm._v("  NET PAY 2\n                            ")
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-3" }, [
+        _c("table", { staticClass: "table table-bordered table-striped" }, [
+          _c("tbody", [
+            _c("tr", [
+              _c("th", [_vm._v("Suma")]),
+              _vm._v(" "),
+              _c("td", { staticStyle: { "text-align": "right" } }, [
+                _vm._v(
+                  "\n                            " +
+                    _vm._s(_vm._f("currency")(_vm.total)) +
+                    "\n                            "
+                ),
+                _c("input", {
+                  attrs: { type: "hidden", name: "card_sums[s]" },
+                  domProps: { value: _vm.total }
+                })
+              ])
+            ]),
             _vm._v(" "),
-            _c("td", { staticStyle: { "text-align": "right" } }, [
-              _vm._v(
-                "\n                        " +
-                  _vm._s(_vm._f("currency")(_vm.difference)) +
-                  "\n                        "
-              ),
-              _c("input", {
-                attrs: { type: "hidden", name: "card_sums[d]" },
-                domProps: { value: _vm.round(_vm.difference) }
-              })
+            _c("tr", [
+              _c("th", [_vm._v("Corte")]),
+              _vm._v(" "),
+              _c("td", { staticStyle: { "text-align": "right" } }, [
+                _c("div", { staticClass: "input-group input-group-sm" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model.number",
+                        value: _vm.cut,
+                        expression: "cut",
+                        modifiers: { number: true }
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "number", min: "0", step: "0.01" },
+                    domProps: { value: _vm.cut },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.cut = _vm._n($event.target.value)
+                      },
+                      blur: function($event) {
+                        return _vm.$forceUpdate()
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "hidden", name: "card_sums[c]" },
+                    domProps: { value: _vm.round(_vm.cut) }
+                  })
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Diferencia")]),
+              _vm._v(" "),
+              _c("td", { staticStyle: { "text-align": "right" } }, [
+                _vm._v(
+                  "\n                            " +
+                    _vm._s(_vm._f("currency")(_vm.difference)) +
+                    "\n                            "
+                ),
+                _c("input", {
+                  attrs: { type: "hidden", name: "card_sums[d]" },
+                  domProps: { value: _vm.round(_vm.difference) }
+                })
+              ])
             ])
           ])
         ])
@@ -53423,6 +53782,22 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", { attrs: { colspan: "3" } }, [_vm._v("NET PAY 1")])]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", [_c("i", { staticClass: "fa fa-times" })]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Folio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cantidad")])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -53470,6 +53845,22 @@ var staticRenderFns = [
           _c("i", { staticClass: "fa fa-plus" })
         ])
       ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", [_c("i", { staticClass: "fa fa-times" })]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Folio")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cantidad")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", { attrs: { colspan: "3" } }, [_vm._v("NET PAY 2")])]),
       _vm._v(" "),
       _c("tr", [
         _c("th", [_c("i", { staticClass: "fa fa-times" })]),

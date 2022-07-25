@@ -23,6 +23,8 @@ class Checkup extends Model
         'clip' => 'array',
         'credit' => 'array',
         'canceled' => 'array',
+        'net_pay_1' => 'array',
+        'net_pay_2' => 'array',
     ];
 
     function store()
