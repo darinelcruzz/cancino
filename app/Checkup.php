@@ -100,6 +100,28 @@ class Checkup extends Model
         return $sum;
     }
 
+    function getNp1SumAttribute()
+    {
+        $sum = 0;
+
+        foreach ((array) $this->net_pay_1 as $item) {
+            $sum += $item['a'];
+        }
+
+        return $sum;
+    }
+
+    function getNp2SumAttribute()
+    {
+        $sum = 0;
+
+        foreach ((array) $this->net_pay_2 as $item) {
+            $sum += $item['a'];
+        }
+
+        return $sum;
+    }
+
     function getCreditSumAttribute()
     {
         $sum = 0;

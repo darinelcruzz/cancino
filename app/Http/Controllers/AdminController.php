@@ -221,9 +221,11 @@ class AdminController extends Controller
                 $bbva += $sale->bbva_sum;
                 $banamex += $sale->banamex_sum;
                 $clip += $sale->clip_sum;
+                $np1 += $sale->np1_sum;
+                $np2 += $sale->np2_sum;
             }
 
-            $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2)]);
+            $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2), 'NETPAY1' => round($np1, 2), 'NETPAY2' => round($np2, 2)]);
 
             $chart->labels($data->keys());
             $chart->dataset('Ventas', 'bar', $data->values())->color(['#1D4B96', '#E03317', '#D67A1D']);
@@ -231,7 +233,7 @@ class AdminController extends Controller
             ${strtolower($store->tabName)} = $chart;
         }
 
-        return view('admin.terminals', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan'));
+        return view('admin.terminals', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan', 'san_cristobal'));
     }
 
     function results(Request $request)

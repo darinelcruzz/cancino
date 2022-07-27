@@ -39,5 +39,6 @@
     {!! $gale_tux->script() !!}
     {!! $gale_tapa->script() !!}
     {!! $comitan->script() !!}
+    {!! $san_cristobal->script() !!}
     {{-- {!! $vjc->script() !!} --}}
 @endsection
