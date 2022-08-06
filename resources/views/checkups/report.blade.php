@@ -164,28 +164,59 @@
                             </td>
                         @endif
                         @if ($checkup->net_pay_1 || $checkup->net_pay_2)
-                            <td valign="TOP" width="18%">
+                            @php
+                                $np1t = $np2t = 0;
+                            @endphp
+                            <td valign="TOP" width="9%">
                                 <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
-                                    <tbody>
+                                    <thead>
                                         <tr>
                                             <td colspan="2"><b>NET PAY 1</b></td>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         @foreach ($checkup->net_pay_1 as $item)
                                             <tr>
                                                 <td width="45%">{{ $item['f'] }}</td>
                                                 <td width="55%">{{ fnumber($item['a']) }}</td>
+                                                @php
+                                                $np1t += $item['a'];
+                                                @endphp
                                             </tr>
                                         @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th>{{ number_format($np1t, 2) }}</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </td>
+                            <td valign="TOP" width="9%">
+                                <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
+                                    <thead>
                                         <tr>
                                             <td colspan="2"><b>NET PAY 2</b></td>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         @foreach ($checkup->net_pay_2 as $item)
                                             <tr>
                                                 <td width="45%">{{ $item['f'] }}</td>
                                                 <td width="55%">{{ fnumber($item['a']) }}</td>
+                                                @php
+                                                $np2t += $item['a'];
+                                                @endphp
                                             </tr>
                                         @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th>{{ number_format($np2t, 2) }}</th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </td>
                         @endif
