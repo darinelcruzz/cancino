@@ -163,11 +163,11 @@
                                 </table>
                             </td>
                         @endif
-                        @if ($checkup->net_pay_1 || $checkup->net_pay_2)
+                        @if ($checkup->net_pay_1)
                             @php
-                                $np1t = $np2t = 0;
+                                $np1t = 0;
                             @endphp
-                            <td valign="TOP" width="9%">
+                            <td valign="TOP" width="{{ $checkup->net_pay_2 ? '9': '18' }}%">
                                 <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
                                     <thead>
                                         <tr>
@@ -193,7 +193,12 @@
                                     </tfoot>
                                 </table>
                             </td>
-                            <td valign="TOP" width="9%">
+                        @endif
+                        @if ($checkup->net_pay_2)
+                            @php
+                                $np2t = 0;
+                            @endphp
+                            <td valign="TOP" width="{{ $checkup->net_pay_1 ? '9': '18' }}%">
                                 <table width="100%" style="border-collapse: collapse;" border="1" class="spaced">
                                     <thead>
                                         <tr>
