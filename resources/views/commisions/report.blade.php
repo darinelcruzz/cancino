@@ -123,7 +123,10 @@
                                         ventas <br>{{ fnumber($sales_commision_sum) }} <br><br>
                                         AxT <br>{{ number_format($commisions->sum(function ($commission) { return $commission->axtCommission();}), 2) }}
                                     </td>
-                                    <td rowspan="{{ $comCount }}">{!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!} <br>
+                                    <td rowspan="{{ $comCount }}">
+                                        @if($commisions->sum('sterencard') > 0)
+                                        {!! $commision->scPoint($commisions->sum('sterencard'))[0] . fnumber($commision->scPoint($commisions->sum('sterencard'))[1]) !!} <br>
+                                        @endif
                                         {!! $commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[0] . fnumber($commision->extPoint($commisions->sum('extensions'), $commisions->sum('amount_ext'))[1]) !!}</td>
                                     <td rowspan="{{ $comCount }}">{{ fnumber($total_employee_sum) }}</td>
                                     <td rowspan="{{ $comCount }}">{{ $commisions->sum('delays') }}<br> (-${{$commision->delaysSum($total_employee_sum)}})</td>

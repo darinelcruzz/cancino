@@ -72,9 +72,11 @@ function colorDay($sale, $amount, $deposit)
     $interval = $start->diff($end);
     $interval = $interval->format('%a');
 
-    if ($day == 'vie' && $interval < 4 ) {
+    // return $day;
+
+    if ($day == 'vie.' && $interval < 4 ) {
         return 'green';
-    }elseif($day == 'sáb' && $interval < 3 ){
+    }elseif($day == 'sáb.' && $interval < 3 ){
         return 'green';
     }elseif($interval < 2 || $amount == 0){
         return 'green';
@@ -82,6 +84,7 @@ function colorDay($sale, $amount, $deposit)
         return 'red';
     }
 }
+
 //labels
 function pendingDeposits()
 {

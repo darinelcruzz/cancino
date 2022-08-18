@@ -32,6 +32,8 @@
                             <select v-model="item.observations" class="form-control">
                                 <option value="">Selecciona tipo</option>
                                 <option value="1">Devolución de efectivo</option>
+                                <option value="5">Devolución transferencia</option>
+                                <option value="6">Devolución NETPAY</option>
                                 <option value="2">Cambio de producto</option>
                                 <option value="3">Refacturación</option>
                                 <option value="4">Nota de crédito</option>

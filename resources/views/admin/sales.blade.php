@@ -29,7 +29,7 @@
                                     <td>{{ fnumber($stores->where('store_id', 5)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->where('store_id', 6)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->where('store_id', 7)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 8)->sum('total')) }}</td>
+                                    <td>{{ fnumber($stores->where('store_id', 9)->sum('total')) }}</td>
                                     <td>{{ fnumber($stores->sum('total')) }}</td>
                                 </tr>
                                 @php
@@ -39,7 +39,7 @@
                                     $galeTux = $galeTux + $stores->where('store_id', 5)->sum('total');
                                     $galeTapa = $galeTapa + $stores->where('store_id', 6)->sum('total');
                                     $comitan = $comitan + $stores->where('store_id', 7)->sum('total');
-                                    $sancris = $sancris + $stores->where('store_id', 8)->sum('total');
+                                    $sancris = $sancris + $stores->where('store_id', 9)->sum('total');
                                     $total = $total + $stores->sum('total');
                                 @endphp
                             @endforeach

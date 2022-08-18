@@ -36,7 +36,7 @@ class AdminController extends Controller
     {
         $date = $request->date ? $request->date: date('Y-m');
 
-        $storesCollection = Store::where('type', '!=', 'c')->pluck('name', 'id');
+        $storesCollection = Store::whereNotIn('type', ['m', 'c'])->pluck('name', 'id');
 
         $months = Sale::whereMonth('date_sale', substr($date, 5))
             ->whereYear('date_sale', substr($date, 0, 4))

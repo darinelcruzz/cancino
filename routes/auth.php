@@ -344,7 +344,7 @@ Route::group(['prefix' => 'comisiones', 'as' => 'commision.'], function () {
     Route::get('editar/trabajador/{employer}/{goal}', usesas($ctrl, 'editEmployer'));
     Route::post('editar/trabajador', usesas($ctrl, 'updateEmployer'));
     Route::get('editar/{goal}/{week}', usesas($ctrl, 'edit'));
-    Route::post('editar', usesas($ctrl, 'update'));
+    Route::post('editar/{goal}/{week}', usesas($ctrl, 'update'));
     Route::get('extras/{goal}', usesas($ctrl, 'extras'));
     Route::post('extras/{goal}', usesas($ctrl, 'add'));
     Route::get('reporte/{goal}', usesas($ctrl, 'report'));

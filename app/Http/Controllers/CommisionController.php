@@ -79,7 +79,9 @@ class CommisionController extends Controller
     {
         $week = Commision::where('goal_id', $goal->id)->where('week', $week)->get();
 
-        return view('commisions.edit', compact('week'));
+        $month = fdate($week->first()->goal->month, 'M', 'm');
+
+        return view('commisions.edit', compact('week', 'month'));
     }
 
     function editEmployer(Employer $employer, Goal $goal)
@@ -110,14 +112,18 @@ class CommisionController extends Controller
         return redirect(route('commision.index'));
     }
 
-    function update(Request $request)
+    function update(Request $request, Goal $goal, $week)
     {
-        // dd($request->all());
         foreach ($request->sales as $id => $commision) {
             Commision::find($id)->update($commision);
         }
 
-        return redirect(route('commision.index'));
+        if ($week >= 6) {
+            return redirect(route('commision.index'));
+        } else {
+            return redirect(route('commision.edit', [$goal->id, $week + 1]));
+        }
+
     }
 
     function report(Goal $goal)

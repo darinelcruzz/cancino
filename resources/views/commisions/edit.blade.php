@@ -5,8 +5,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <color-box title="Agregar ventas de la semana tal de tal mes de tal año "  color="success">
-                {!! Form::open(['method' => 'POST', 'route' => 'commision.update', 'enctype' => 'multipart/form-data']) !!}
+            <color-box title="Agregar ventas de la semana {{ $week->first()->week }} de {{ $month }} de {{ $week->first()->goal->year }}"  color="success">
+                {!! Form::open(['method' => 'POST', 'route' => ['commision.update', [$week->first()->goal, $week->first()->week]], 'enctype' => 'multipart/form-data']) !!}
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered">
                             <thead>
@@ -52,7 +52,7 @@
                         </table>
                     </div>
                     <hr>
-                    {!! Form::submit('Agregar', ['class' => 'btn btn-success pull-right']) !!}
+                    {!! Form::submit('G U A R D A R | S I G', ['class' => 'btn btn-success pull-right']) !!}
                 {!! Form::close() !!}
             </color-box>
         </div>

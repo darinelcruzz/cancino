@@ -54440,6 +54440,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['stored'],
@@ -54650,6 +54652,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [
                       _vm._v("Devolución de efectivo")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "5" } }, [
+                      _vm._v("Devolución transferencia")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "6" } }, [
+                      _vm._v("Devolución NETPAY")
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "2" } }, [
