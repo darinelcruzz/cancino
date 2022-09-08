@@ -66,6 +66,7 @@ class SupplySaleController extends Controller
 
         $families = SupplyMovement::where('movable_type', 'App\SupplySale')
             ->whereIn('movable_id', $sales)
+            ->where('folio', null)
             ->with('supply')
             ->get()
             ->groupBy(['supply.family', 'supply.description']);

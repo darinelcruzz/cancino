@@ -472,6 +472,13 @@ Route::group(['prefix' => 'insumos', 'as' => 'supplies.'], function () {
     Route::get('{supply}', usesas($ctrl, 'show'));
 });
 
+Route::group(['prefix' => 'insumos/facturas', 'as' => 'supplies.invoices.'], function () {
+    $ctrl = 'SupplyInvoiceController';
+    Route::get('/', usesas($ctrl, 'index'));
+    Route::get('agregar/{store}/{family}', usesas($ctrl, 'create'));
+    Route::post('agregar', usesas($ctrl, 'store'));
+});
+
 Route::group(['prefix' => 'compras-de-insumos', 'as' => 'supplies.purchases.'], function () {
     $ctrl = 'SupplyPurchaseController';
     Route::get('/', usesas($ctrl, 'index'));

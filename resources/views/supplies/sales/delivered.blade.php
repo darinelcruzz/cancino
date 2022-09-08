@@ -35,7 +35,9 @@
                             $famount = 0;
                         @endphp
                         <tr>
-                            <th colspan="6" style="text-align:center;">{{ $family }}</th>
+                            <th colspan="7" style="text-align:center;">
+                                {{ $family }} | <a href="{{ route('supplies.invoices.create', [$store, $family]) }}">FACTURAR</a>
+                            </th>
                         </tr>
                         @foreach($products as $product => $values)
                         
