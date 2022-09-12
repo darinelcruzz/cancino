@@ -9,7 +9,7 @@
             <div class="col-md-12">
                 <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $checkups->where('store_id', $store->id)->whereIn('status', [0,1,4])->count() }}" button collapsed>
                     <data-table example="{{ $store->id }}">
-                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'web', 'Otros', 'estado', '') }}
+                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'web', 'otros', 'observaciones', 'estado', '') }}
                         <template slot="body">
                             @foreach($checkups as $checkup)
                                 @if ($checkup->store_id == $store->id)
@@ -26,7 +26,9 @@
                                         <td>
                                             {!! $checkup->retention != 0 ? '<b>Retención:</b> <br><code>' . fnumber($checkup->retention) . '</code><br>' : '' !!}
                                             {!! $checkup->sc_dif != 0 ? '<b>StrenCard:</b> <br><code>' . fnumber($checkup->sc_dif) . '</code>' : '' !!}
+                                            {!! $checkup->sale->net_pay != 0 ? '<b>Net Pay:</b> <br><code>' . fnumber($checkup->sale->net_pay) . '</code>' : '' !!}
                                         </td>
+                                        <td>{{ $checkup->observations }}</td>
                                         <td>{!! $checkup->statusLabel !!}</td>
                                         <td>
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">

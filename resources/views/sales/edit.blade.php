@@ -34,6 +34,11 @@
                             {!! Field::number('sc_dif', $sale->checkup->sc_dif, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'credit-card']) !!}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Field::number('net_pay', $sale->net_pay, ['tpl' => 'lte/withicon', 'step' => '0.01'], ['icon' => 'money']) !!}
+                        </div>
+                    </div>
                     {!! Field::text('observations', $sale->observations, ['tpl' => 'lte/withicon'], ['icon' => 'eye']) !!}
                     <hr>
                     <input type="hidden" name="id" value="{{ $sale->id }}">
