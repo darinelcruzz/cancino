@@ -42,12 +42,16 @@
                         @foreach($products as $product => $values)
                         
                         <tr>
+                            {{-- @dd($values->pluck('price')) --}}
+                            @php
+                            $price = max($values->pluck('price')->toArray()) / 1.16;
+                            @endphp
                             <td>{{ $values[0]->supply->sat_key }}</td>
                             <td>{{ $values[0]->description ?? $values[0]->supply->description  }}</td>
                             <td style="text-align: center;"><small>{{ strtoupper($values[0]->supply->unit) }}</small></td>
                             <td style="text-align: center;">{{ $values->sum('quantity') * $values[0]->ratio }}</td>
-                            <td style="text-align: right;">{{ number_format($values[0]->price/1.16, 2) }}</td>
-                            <td style="text-align: right;">{{ number_format($values->sum(function ($item) { return $item->price/1.16 * $item->quantity * $item->ratio;}), 2) }}</td>
+                            <td style="text-align: right;">{{ number_format($price, 2) }}</td>
+                            <td style="text-align: right;">{{ number_format($values->sum('quantity') * $values[0]->ratio * $price, 2) }}</td>
 
                             @php
                             $amount += $values->sum(function ($item) { return $item->price/1.16 * $item->quantity * $item->ratio;});

@@ -32,7 +32,7 @@
 
         <div class="col-md-6">
             <color-box title="Productos" color="vks">
-                <supplies color="github" :store="store_id % 3 == 0 ? 3: 1"></supplies>
+                <supplies color="github" :store="(store_id == 3 || store_id == 6) ? 3: 1"></supplies>
             </color-box>
         </div>
         

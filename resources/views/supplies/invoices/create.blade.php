@@ -37,7 +37,7 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($movements as $movement)
+                                        @foreach($movements->sortBy('supply_id') as $movement)
                                         <tr>
                                             <td>{{ $movement->supply->sat_key }}</td>
                                             <td>

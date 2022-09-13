@@ -9,9 +9,8 @@ class SupplySaleController extends Controller
 {
     function index()
     {
-        $pending_sales = SupplySale::whereIn('status', ['pendiente', 'entregada'])->get();
-        $paid_sales = SupplySale::whereIn('status', ['pagada', 'cancelada'])->get();
-        return view('supplies.sales.index', compact('pending_sales', 'paid_sales'));
+        $sales = SupplySale::all();
+        return view('supplies.sales.index', compact('sales'));
     }
 
     function create()
