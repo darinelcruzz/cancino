@@ -23,7 +23,7 @@
                             </div>
                         @endif
 
-                        <data-table>
+                        <data-table example="1">
                             {{ drawHeader('<i class="fa fa-check"></i>', 'modelo', 'cantidad', 'fecha', 'usuario') }}
                             <template slot="body">
                                 @foreach ($taken_products as $taken_product)
