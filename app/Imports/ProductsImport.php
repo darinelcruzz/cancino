@@ -31,7 +31,7 @@ class ProductsImport implements ToCollection
                         ]);
                     }
                 // }
-            }
+            // }
         }
     }
 }
