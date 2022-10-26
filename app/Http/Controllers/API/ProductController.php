@@ -11,7 +11,7 @@ class ProductController extends Controller
 	{
 		return Product::query()
 			->select('id', 'description', 'code')
-			//->where('status', 'Descontinuado')
+			->where('status', 'Descontinuado')
 			->where('quantity', '!=', 0)
 			->get();
 	}
