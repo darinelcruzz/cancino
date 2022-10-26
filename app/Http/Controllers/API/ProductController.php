@@ -10,9 +10,9 @@ class ProductController extends Controller
 	function index()
 	{
 		return Product::query()
-			->select('id', 'description', 'code')
-			->where('status', 'Descontinuado')
-			->where('quantity', '!=', 0)
+			->select('id', 'description', 'code', 'quantity')
+			// ->where('status', 'Descontinuado')
+			// ->where('quantity', '!=', 0)
 			->get();
 	}
 }
