@@ -19,7 +19,9 @@ class AdminController extends Controller
             return $item->groupBy('date_sale');
         });
 
-        return view('admin.sales', compact('dates'));
+        $header = Store::whereIn('type', ['p', 's'])->pluck('name', 'id');
+
+        return view('admin.sales', compact('dates', 'header'));
     }
 
     function awards()

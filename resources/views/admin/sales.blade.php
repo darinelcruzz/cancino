@@ -12,49 +12,54 @@
 @section('content')
     @foreach ($dates as $month => $days)
         <div class="row">
-            @php
-                $chiapas = $soconusco = $altos = $galeTux = $galeTapa = $comitan = $sancris = $total = 0;
-            @endphp
+                @php
+                
+                foreach($header as $id => $name) {
+                    $storeSums[strtolower(str_replace(' ', '', str_replace(['á', 'ó'], ['a', 'o'], $name)))] = 0;
+                }
+                
+                $storeSums['total'] = 0;
+
+                @endphp
             <div class="col-md-12">
                 <color-box title="{{ ucfirst(fdate("$month-1", 'F \(Y\)', 'Y-m-j')) }}" color="primary" solid button {{ $loop->index == 0 ? '': 'collapsed' }}>
                     <data-table example="{{ $loop->iteration }}">
-                        {{ drawHeader('Fecha','Chiapas', 'Soconusco', 'Altos', 'Gale Tux', 'Gale Tapa', 'Comitán', 'San Cristóbal', 'Total') }}
+                        <template slot="header">
+                            <tr>
+                                <th><small>FECHA</small></th>
+                                @foreach($header as $head)
+                                <th style="text-align: right;">{{ $head }}</th>
+                                @endforeach
+                                <th><small>TOTAL</small></th>
+                            </tr>
+                        </template>
+
                         <template slot="body">
                             @foreach ($days as $date => $stores)
                                 <tr>
                                     <td>{{ fdate($date, 'd, l', 'Y-m-d') }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 2)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 3)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 4)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 5)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 6)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 7)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->where('store_id', 9)->sum('total')) }}</td>
-                                    <td>{{ fnumber($stores->sum('total')) }}</td>
+                                    @foreach($header as $id => $name)
+
+                                    <td style="text-align: right;">{{ fnumber($stores->where('store_id', $id)->sum('total')) }}</td>
+
+                                    @php
+                                    $storeSums[strtolower(str_replace(' ', '', str_replace(['á', 'ó'], ['a', 'o'], $name)))] += $stores->where('store_id', $id)->sum('total')
+                                    @endphp
+
+                                    @endforeach
+                                    <td style="text-align: right;">{{ fnumber($stores->sum('total')) }}</td>
                                 </tr>
                                 @php
-                                    $chiapas = $chiapas + $stores->where('store_id', 2)->sum('total');
-                                    $soconusco = $soconusco + $stores->where('store_id', 3)->sum('total');
-                                    $altos = $altos + $stores->where('store_id', 4)->sum('total');
-                                    $galeTux = $galeTux + $stores->where('store_id', 5)->sum('total');
-                                    $galeTapa = $galeTapa + $stores->where('store_id', 6)->sum('total');
-                                    $comitan = $comitan + $stores->where('store_id', 7)->sum('total');
-                                    $sancris = $sancris + $stores->where('store_id', 9)->sum('total');
-                                    $total = $total + $stores->sum('total');
+                                    $storeSums['total'] += $stores->sum('total');
                                 @endphp
                             @endforeach
                         </template>
                         <template slot="footer">
                             <tr>
                                 <td><b>Total</b></td>
-                                <td><b>{{ fnumber($chiapas) }}</b></td>
-                                <td><b>{{ fnumber($soconusco) }}</b></td>
-                                <td><b>{{ fnumber($altos) }}</b></td>
-                                <td><b>{{ fnumber($galeTux) }}</b></td>
-                                <td><b>{{ fnumber($galeTapa) }}</b></td>
-                                <td><b>{{ fnumber($comitan) }}</b></td>
-                                <td><b>{{ fnumber($sancris) }}</b></td>
-                                <td><b>{{ fnumber($total) }}</b></td>
+                                @foreach($storeSums as $sum)
+                                <td style="text-align: right;"><b>{{ fnumber($sum) }}</b></td>
+                                @endforeach
                             </tr>
                         </template>
                     </data-table>
