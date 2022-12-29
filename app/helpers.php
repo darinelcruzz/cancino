@@ -26,7 +26,7 @@ function isVKS()
 
 function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s', $alt = 'N/A')
 {
-    // return date($format, strtotime($original_date));
+    return date($format, strtotime($original_date));
     if ($original_date == NULL) {
         return $alt;
     }
@@ -67,6 +67,7 @@ function fileExists($file)
 
 function colorDay($sale, $amount, $deposit)
 {
+    return 'green';
     $start = new Date(strtotime($sale));
     $day = $start->format('D');
     $end = new Date(strtotime($deposit));
