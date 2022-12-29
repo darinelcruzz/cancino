@@ -26,11 +26,12 @@ function isVKS()
 
 function fdate($original_date, $format = 'Y-m-d', $original_format = 'Y-m-d H:i:s', $alt = 'N/A')
 {
-    return $original_date != null ? date($format, strtotime($original_date)): '';
+    // return $original_date != null ? date($format, strtotime($original_date)): '';
+    Date::setLocale('es');
     if ($original_date == NULL) {
         return $alt;
     }
-    $date = Date::createFromFormat($original_format, $original_date);
+    $date = \Date::createFromFormat($original_format, $original_date);
     return $date->format($format);
 }
 
@@ -67,7 +68,8 @@ function fileExists($file)
 
 function colorDay($sale, $amount, $deposit)
 {
-    return 'green';
+    // return 'green';
+    Date::setLocale('es');
     $start = new Date(strtotime($sale));
     $day = $start->format('D');
     $end = new Date(strtotime($deposit));
@@ -76,9 +78,9 @@ function colorDay($sale, $amount, $deposit)
 
     // return $day;
 
-    if ($day == 'vie.' && $interval < 4 ) {
+    if ($day == 'viernes' && $interval < 4 ) {
         return 'green';
-    }elseif($day == 'sáb.' && $interval < 3 ){
+    }elseif($day == 'sábado' && $interval < 3 ){
         return 'green';
     }elseif($interval < 2 || $amount == 0){
         return 'green';

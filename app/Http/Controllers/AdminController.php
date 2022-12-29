@@ -196,8 +196,6 @@ class AdminController extends Controller
             $goldens[$store->id]= $store->getGolden($date);
         }
 
-        $tonala = '';
-
         // dd($sales);
 
         return view('admin.public', compact('date', 'charts', 'sales', 'points', 'stars', 'goldens', 'chiapas','soconusco', 'san_cristobal', 'altos', 'gale_tux', 'gale_tapa', 'comitan', 'vjc', 'tonala'));

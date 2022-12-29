@@ -75,6 +75,14 @@ return [
                 'title' => 'Comitán',
                 'route' => ['admin.loans', 7]
             ],
+            'sancris' => [
+                'title' => 'San Cristóbal',
+                'route' => ['admin.loans', 9]
+            ],
+            'tonala' => [
+                'title' => 'Tonalá',
+                'route' => ['admin.loans', 11]
+            ],
         ],
     ],
 

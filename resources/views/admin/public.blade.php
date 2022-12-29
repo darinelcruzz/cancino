@@ -40,5 +40,6 @@
     {!! $gale_tapa->script() !!}
     {!! $comitan->script() !!}
     {!! $san_cristobal->script() !!}
+    {!! $tonala->script() !!}
     {{-- {!! $vjc->script() !!} --}}
 @endsection
