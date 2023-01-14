@@ -185,7 +185,7 @@ class AdminController extends Controller
     {
         $date = isset($request->date) ? $request->date : date('Y-m');
 
-        $stores = Store::where('type', '!=', 'c')->get();
+        $stores = Store::whereNotIn('type', ['c', 'm', 'e'])->get();
 
         foreach ($stores as $store) {
             ${strtolower($store->tabName)} = $this->buildChart($store, $date);
@@ -196,9 +196,9 @@ class AdminController extends Controller
             $goldens[$store->id]= $store->getGolden($date);
         }
 
-        // dd($sales);
+        // dd($stores->pluck('name'), $points, $charts);
 
-        return view('admin.public', compact('date', 'charts', 'sales', 'points', 'stars', 'goldens', 'chiapas','soconusco', 'san_cristobal', 'altos', 'gale_tux', 'gale_tapa', 'comitan', 'vjc', 'tonala'));
+        return view('admin.public', compact('date', 'charts', 'sales', 'points', 'stars', 'goldens', 'chiapas','soconusco', 'san_cristobal', 'altos', 'gale_tux', 'gale_tapa', 'comitan', 'tonala'));
     }
 
     function terminals(Request $request)

@@ -38,7 +38,7 @@
                 <tbody>
                     <tr>
                         <td width="33%" rowspan="3"><img SRC="{{ asset('/img/Steren.png') }}"></td>
-                        <th width="33%" align="center"><b>VENTA DE {{ strtoupper(fdate($goal->month . '/' . $goal->year , 'F Y', 'n/Y')) }}</b></th>
+                        <th width="33%" align="center"><b>VENTA DE {{ strtoupper(['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'][$goal->month - 1] . ' ' . $goal->year) }}</b></th>
                         <td width="12%"></td>
                         <td width="12%" align="right">AÑO ANTERIOR:</td>
                         <td width="10%" align="right">{{ fnumber($past_goal->sale) }}</td>

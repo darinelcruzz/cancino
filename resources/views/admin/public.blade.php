@@ -13,18 +13,16 @@
     <div class="row">
         <div class="col-md-12">
 
-            @foreach($charts as $name)
+            @foreach($charts as $num => $name)
 
-                @if($name != 'vjc')
                 <color-box title="Ventas {{ ucwords(str_replace('_', ' ', $name)) }}"
                     color="{{ $loop->index < 3 ? 'primary': 'danger' }}">
 
                     <div>{!! $$name->container() !!}</div>
 
-                    @include('templates/progress', ['num' => $loop->index + 2])
+                    @include('templates/progress', ['num' => $num])
 
                 </color-box>
-                @endif
 
             @endforeach
 
