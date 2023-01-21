@@ -83,6 +83,14 @@
                             <th colspan="2">Comitán</th>
                             <td>7320</td>
                         </tr>
+                        <tr>
+                            <th colspan="2">San Cristóbal</th>
+                            <td>3302</td>
+                        </tr>
+                        {{-- <tr>
+                            <th colspan="2">Tonalá</th>
+                            <td>7320</td>
+                        </tr> --}}
                     </tbody>
                 </table>
             </color-box>
