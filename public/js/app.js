@@ -53002,6 +53002,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['stored'],
@@ -53017,6 +53019,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
+        np1Total: function np1Total() {
+            return this.np1.reduce(function (total, item) {
+                return total + item.amount;
+            }, 0);
+        },
+        np2Total: function np2Total() {
+            return this.np2.reduce(function (total, item) {
+                return total + item.amount;
+            }, 0);
+        },
         total: function total() {
             return this.round(this.banamex.reduce(function (total, item) {
                 return total + item.amount;
@@ -53232,7 +53244,7 @@ var render = function() {
           _vm._v(" "),
           _c("tfoot", [
             _c("tr", [
-              _c("td", { attrs: { colspan: "3" } }, [
+              _c("td", { attrs: { colspan: "1" } }, [
                 _c(
                   "a",
                   {
@@ -53244,7 +53256,16 @@ var render = function() {
                     _vm._v("  NET PAY 1\n                            ")
                   ]
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticStyle: { "text-align": "right" },
+                  attrs: { colspan: "2" }
+                },
+                [_vm._v(_vm._s((_vm.np1Total || 0).toFixed(2)))]
+              )
             ])
           ])
         ])
@@ -53347,7 +53368,7 @@ var render = function() {
           _vm._v(" "),
           _c("tfoot", [
             _c("tr", [
-              _c("td", { attrs: { colspan: "3" } }, [
+              _c("td", { attrs: { colspan: "1" } }, [
                 _c(
                   "a",
                   {
@@ -53359,7 +53380,16 @@ var render = function() {
                     _vm._v("  NET PAY 2\n                            ")
                   ]
                 )
-              ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "td",
+                {
+                  staticStyle: { "text-align": "right" },
+                  attrs: { colspan: "2" }
+                },
+                [_vm._v(_vm._s((_vm.np2Total || 0).toFixed(2)))]
+              )
             ])
           ])
         ])

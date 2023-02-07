@@ -30,11 +30,12 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3">
+                            <td colspan="1">
                                 <a @click="addToNP1" class="btn btn-github btn-xs">
                                     <i class="fa fa-plus"></i>&nbsp;&nbsp;NET PAY 1
                                 </a>
                             </td>
+                            <td colspan="2" style="text-align: right;">{{ (np1Total || 0).toFixed(2) }}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -69,11 +70,12 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3">
+                            <td colspan="1">
                                 <a @click="addToNP2" class="btn btn-github btn-xs">
                                     <i class="fa fa-plus"></i>&nbsp;&nbsp;NET PAY 2
                                 </a>
                             </td>
+                            <td colspan="2" style="text-align: right;">{{ (np2Total || 0).toFixed(2) }}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -245,6 +247,12 @@ export default {
         };
     },
     computed: {
+        np1Total() {
+            return this.np1.reduce((total, item) => total + item.amount, 0);
+        },
+        np2Total() {
+            return this.np2.reduce((total, item) => total + item.amount, 0);
+        },
         total() {
             return this.round(this.banamex.reduce((total, item) => total + item.amount, 0)
                 + this.np1.reduce((total, item) => total + item.amount, 0)
