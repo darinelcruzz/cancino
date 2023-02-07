@@ -30,12 +30,12 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="1">
+                            <td colspan="2">
                                 <a @click="addToNP1" class="btn btn-github btn-xs">
                                     <i class="fa fa-plus"></i>&nbsp;&nbsp;NET PAY 1
                                 </a>
                             </td>
-                            <td colspan="2" style="text-align: right;">{{ (np1Total || 0).toFixed(2) }}</td>
+                            <td colspan="1" style="text-align: right;">{{ (np1Total || 0).toFixed(2) | currency }}</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -70,12 +70,12 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="1">
+                            <td colspan="2">
                                 <a @click="addToNP2" class="btn btn-github btn-xs">
                                     <i class="fa fa-plus"></i>&nbsp;&nbsp;NET PAY 2
                                 </a>
                             </td>
-                            <td colspan="2" style="text-align: right;">{{ (np2Total || 0).toFixed(2) }}</td>
+                            <td colspan="1" style="text-align: right;">{{ (np2Total || 0).toFixed(2) | currency }}</td>
                         </tr>
                     </tfoot>
                 </table>

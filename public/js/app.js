@@ -53244,7 +53244,7 @@ var render = function() {
           _vm._v(" "),
           _c("tfoot", [
             _c("tr", [
-              _c("td", { attrs: { colspan: "1" } }, [
+              _c("td", { attrs: { colspan: "2" } }, [
                 _c(
                   "a",
                   {
@@ -53262,9 +53262,13 @@ var render = function() {
                 "td",
                 {
                   staticStyle: { "text-align": "right" },
-                  attrs: { colspan: "2" }
+                  attrs: { colspan: "1" }
                 },
-                [_vm._v(_vm._s((_vm.np1Total || 0).toFixed(2)))]
+                [
+                  _vm._v(
+                    _vm._s(_vm._f("currency")((_vm.np1Total || 0).toFixed(2)))
+                  )
+                ]
               )
             ])
           ])
@@ -53368,7 +53372,7 @@ var render = function() {
           _vm._v(" "),
           _c("tfoot", [
             _c("tr", [
-              _c("td", { attrs: { colspan: "1" } }, [
+              _c("td", { attrs: { colspan: "2" } }, [
                 _c(
                   "a",
                   {
@@ -53386,9 +53390,13 @@ var render = function() {
                 "td",
                 {
                   staticStyle: { "text-align": "right" },
-                  attrs: { colspan: "2" }
+                  attrs: { colspan: "1" }
                 },
-                [_vm._v(_vm._s((_vm.np2Total || 0).toFixed(2)))]
+                [
+                  _vm._v(
+                    _vm._s(_vm._f("currency")((_vm.np2Total || 0).toFixed(2)))
+                  )
+                ]
               )
             ])
           ])
