@@ -38,6 +38,10 @@ return [
                 'title' => 'Transferencias y cheques',
                 'route' => 'checkup.transfers'
             ],
+            'netpay' => [
+                'title' => 'NETPAY',
+                'route' => 'checkup.netpay'
+            ],
             'terminal' => [
                 'title' => 'Terminales',
                 'route' => 'admin.terminals'

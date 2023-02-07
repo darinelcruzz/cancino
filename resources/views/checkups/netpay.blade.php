@@ -46,7 +46,7 @@
                                 @php
                                     $sum = 0;
                                 @endphp
-                            @foreach($checkup->net_pay_1 as $amount)
+                            @foreach($checkup->net_pay_1 ?? [] as $amount)
                                 @php
                                     $sum += $amount['a'];
                                 @endphp
@@ -55,7 +55,7 @@
                                 @php
                                     $sum = 0;
                                 @endphp
-                            @foreach($checkup->net_pay_2 as $amount)
+                            @foreach($checkup->net_pay_2 ?? [] as $amount)
                                 @php
                                     $sum += $amount['a'];
                                 @endphp
