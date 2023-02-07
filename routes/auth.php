@@ -256,6 +256,8 @@ Route::group(['prefix' => 'arqueo', 'as' => 'checkup.'], function () {
     Route::get('transferencias-y-cheques', usesas($ctrl, 'transfers'));
     Route::post('transferencias-y-cheques', usesas($ctrl, 'transfers'));
     Route::post('transferencias-y-cheques/imprimir', usesas($ctrl, 'print'));
+    Route::get('netpay', usesas($ctrl, 'netpay'));
+    Route::post('netpay', usesas($ctrl, 'netpay'));
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'high'], function () {

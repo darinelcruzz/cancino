@@ -8,8 +8,8 @@
         <div class="wrapper">
             <header class="main-header">
                 <a href="/inicio" class="logo">
-                  <span class="logo-mini"><b>Grupo</b> Cancino</span>
-                  <span class="logo-lg"><b>Grupo</b> Cancino</span>
+                  <span class="logo-mini"><b>VKS</b></span>
+                  <span class="logo-lg"><b>VKS</b> Admin</span>
                 </a>
               <nav class="navbar navbar-static-top" role="navigation">
               </nav>

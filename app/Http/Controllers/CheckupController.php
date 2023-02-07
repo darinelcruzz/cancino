@@ -164,6 +164,21 @@ class CheckupController extends Controller
         return view('checkups.transfers', compact('checkups', 'from', 'to', 'store', 'stores'));
     }
 
+    function netpay(Request $request)
+    {
+        $from = isset($request->from) ? $request->from : date('Y-m-d');
+        $to = isset($request->to) ? $request->to : date('Y-m-d');
+        $store = isset($request->store) ? Store::find($request->store) : getStore();
+
+        $checkups = Checkup::where('store_id', $store->id)
+            ->whereBetween('date_sale', [$from, $to])
+            ->get();
+
+        $stores = Store::where('type', '!=', 'c')->pluck('name', 'id')->toArray();
+
+        return view('checkups.netpay', compact('checkups', 'from', 'to', 'store', 'stores'));
+    }
+
     function print(Request $request)
     {
         $from = $request->from;

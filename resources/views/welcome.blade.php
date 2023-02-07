@@ -1,6 +1,6 @@
 @extends('lte.root')
 @push('pageTitle')
-    Cancino | Inicio
+    VKS | Inicio
 @endpush
 @push('headerTitle')
     Bienvenido(a), {{ auth()->user()->name }}
