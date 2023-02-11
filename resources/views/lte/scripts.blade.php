@@ -58,10 +58,13 @@
       "order":[[ 0 , "desc"]]
     });
     $("#example11").DataTable({
-      "order":[[ 0 , "asc"]]
+      "order":[[ 0 , "desc"]]
     });
     $("#example12").DataTable({
-      "order":[[ 0 , "asc"]]
+      "order":[[ 0 , "desc"]]
+    });
+    $("#example13").DataTable({
+      "order":[[ 0 , "desc"]]
     });
     $(".ordered").DataTable({
       "order":[[ 0 , "desc"]]
