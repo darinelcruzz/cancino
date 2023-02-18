@@ -12,9 +12,10 @@ class TerminalCheckController extends Controller
 {
     function index()
     {
-        $stores = Store::with('bank_accounts.checks')->get();
+        $others = Store::whereIn('type', ['c', 'e'])->with('bank_accounts.checks')->get();
+        $steren = Store::whereIn('type', ['p', 's'])->with('bank_accounts.checks')->get();
 
-        return view('checks.terminal.index', compact('stores'));
+        return view('checks.terminal.index', compact('others', 'steren'));
     }
 
     function create(BankAccount $bank_account)

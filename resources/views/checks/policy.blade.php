@@ -1,7 +1,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Póliza</title>
+    <title>
+        Póliza {{ $check->account_movement->bank_account->store->name }}
+        Ch{{ $check->folio }}
+        Cta{{ substr($check->account_movement->bank_account->number, -4) }}
+    </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('/img/logo.ico') }}" />
