@@ -7,7 +7,13 @@
     @foreach ($stores as $store)
         <div class="row">
             <div class="col-md-12">
-                <color-box title="{{ $store->name }}" color="{{ $store->color }}" label="{{ $checkups->where('store_id', $store->id)->whereIn('status', [0,1,4])->count() }}" button collapsed>
+                <color-box title="{{ $store->name }}" color="{{ $store->color }}"
+                @if (auth()->user()->level==1)
+                    label="{{ $checkups->where('store_id', $store->id)->whereIn('status', [0,1,4])->count() }}"
+                @else
+                    label="{{ $checkups->where('store_id', $store->id)->where('status', 0)->count() }}"
+                @endif
+                button collapsed>
                     <data-table example="{{ $store->id }}">
                         {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'web', 'otros', 'observaciones', 'estado', '') }}
                         <template slot="body">
@@ -32,7 +38,6 @@
                                         <td>{!! $checkup->statusLabel !!}</td>
                                         <td>
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">
-                                                {{-- <ddi to="{{ route('checkup.report', $checkup) }}" icon="file-pdf" text="Reporte"></ddi> --}}
                                                 <li>
                                                     <a href="{{ route('checkup.report', $checkup) }}" target="_blank">
                                                         <i class="fa fa-file-pdf"></i>Reporte
@@ -44,17 +49,17 @@
                                                 @endif
                                                 @if ($checkup->status < 2)
                                                     <ddi to="{{ route('checkup.updateStatus', ['checkup' => $checkup, 'status' => '2']) }}" icon="check" text="Verificada"></ddi>
+                                                    <ddi to="{{ route('checkup.updateStatus', ['checkup' => $checkup, 'status' => '4']) }}" icon="check" text="Editable"></ddi>
                                                 @endif
                                                 @if ($checkup->status == 0)
-                                                <li>
-                                                    <a href="{{ route('checkup.report', $checkup) }}" target="_blank">
-                                                        <i class="fa fa-file-pdf"></i>Reporte
-                                                    </a>                                                    
-                                                </li>
-                                                <li>
-                                                    <a type="button" data-toggle="modal" data-target="#errormodal{{ $checkup->id }}"><i class="fa fa-times"></i> Error</a>
-                                                </li>
-                                                    {{-- <ddi to="{{ route('checkup.updateStatus', ['checkup' => $checkup, 'status' => '1']) }}" icon="times" text="Error"></ddi> --}}
+                                                    <li>
+                                                        <a href="{{ route('checkup.report', $checkup) }}" target="_blank">
+                                                            <i class="fa fa-file-pdf"></i>Reporte
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a type="button" data-toggle="modal" data-target="#errormodal{{ $checkup->id }}"><i class="fa fa-times"></i> Error</a>
+                                                    </li>
                                                 @endif
                                             </dropdown>
 

@@ -12,7 +12,7 @@ return [
     'Sales' => [
         'title' => 'Ventas',
         'icon' => 'fa fa-money',
-        'label' => ['danger' => pendingDepositsAll() > 0 ? pendingDepositsAll(): '', 'primary' => uncheckedCheckups()],
+        'label' => ['danger' => pendingDepositsAll() > 0 ? pendingDepositsAll(): '', 'warning' => uncheckedCheckups() > 0 ? uncheckedCheckups() : '' , 'primary' => editableCheckups() > 0 ? editableCheckups() : '', ],
         'submenu' => [
             'Deposits' => [
                 'title' => 'Depósitos',

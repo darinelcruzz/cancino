@@ -168,6 +168,16 @@ function pendingCheckupsAll()
     return App\Checkup::whereStatus(0)->count();
 }
 
+function uncheckedCheckups()
+{
+    return App\Checkup::whereIn('status', [0,1])->count();
+}
+
+function editableCheckups()
+{
+    return App\Checkup::whereStatus(4)->count();
+}
+
 function evaluationEmployeeAll()
 {
     return App\Employer::whereIn('status', ['evaluacion uno', 'evaluacion dos', 'evaluacion tres'])->count();
@@ -187,11 +197,6 @@ function pendingLoans()
         ->where('status', '!=', 'facturado')
         ->where('status', '!=', 'cancelado')->count();
     return $from + $to;
-}
-
-function uncheckedCheckups()
-{
-    return App\Checkup::where('status', '<', 2)->count();
 }
 
 function checkEmployeeIngress()

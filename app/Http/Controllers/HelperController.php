@@ -11,7 +11,7 @@ class HelperController extends Controller
 {
     function checkups()
     {
-        $stores = Store::where('type', '!=', 'c')->get();
+        $stores = Store::whereIn('type', ['p', 's'])->get();
         $checkups = Checkup::whereIn('status', [0,1,4])->get();
 
         return view('admin.checkups', compact('checkups', 'stores'));
