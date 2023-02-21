@@ -39,7 +39,7 @@ return [
                 'route' => 'checkup.transfers'
             ],
             'netpay' => [
-                'title' => 'NETPAY',
+                'title' => 'Netpay',
                 'route' => 'checkup.netpay'
             ],
             'terminal' => [

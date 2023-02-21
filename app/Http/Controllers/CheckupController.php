@@ -132,18 +132,20 @@ class CheckupController extends Controller
             ->where('store_id', auth()->user()->store_id)
             ->get();
 
-        $bbva = $banamex = $clip = 0;
+        $bbva = $banamex = $clip = $np1 = $np2 = 0;
 
         foreach ($sales as $sale) {
             $bbva += $sale->bbva_sum;
             $banamex += $sale->banamex_sum;
             $clip += $sale->clip_sum;
+            $np1 += $sale->np1_sum;
+            $np2 += $sale->np2_sum;
         }
 
-        $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2)]);
+        $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2), 'Netpay I' => round($np1, 2) , 'Netpay II' => round($np2, 2)]);
 
         $chart->labels($data->keys());
-        $chart->dataset('Ventas', 'bar', $data->values())->color(['#1D4B96', '#E03317', '#D67A1D']);
+        $chart->dataset('Ventas', 'bar', $data->values())->color(['#1D4B96', '#E03317', '#D67A1D', '#00AAE4', '#00AAE4']);
 
         return view('checkups.cards', compact('date', 'chart'));
     }

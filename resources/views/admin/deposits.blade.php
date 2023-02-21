@@ -56,8 +56,19 @@
                                 </tr>
                             @endforeach
                         </template>
+                        <template slot="footer">
+                            <tr>
+                                <td><b>Pendientes</b></td>
+                                @foreach ($pendings as $stores => $sale)
+                                    <td><b>
+                                        {{ fnumber($sale->sum('cash')) }} en  {{ $sale->count() }}
+                                    </td></b>
+
+                                @endforeach
+                            </tr>
+                        </template>
                     </data-table>
-                </solid-box>
+                </color-box>
             </div>
         </div>
     @endforeach

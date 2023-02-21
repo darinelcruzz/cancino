@@ -27,6 +27,7 @@
                                 <th><small>TRANS|cheques</small></th>
                                 <th><small>CRÉDITO</small></th>
                                 <th><small>WEB</small></th>
+                                <th><small>NOTAS</small></th>
                                 <th><small>OTROS</small></th>
                                 <th><small>ESTADO</small></th>
                             </tr>
@@ -60,24 +61,17 @@
                                     <td>{{ fnumber($checkup->creditSum) }} <br> {!! $checkup->canceledSum ? '<code> -' . fnumber($checkup->canceledSum) : '' !!}</code>
                                     </td>
                                     <td>{{ fnumber($checkup->online['web']??0) }}</td>
+                                    <td>{{ fnumber($checkup->returnsSum + $checkup->notesSum) }}</td>
                                     <td>
                                         {!! $checkup->retention != 0 ? '<b>Retención:</b> <br><code>' . fnumber($checkup->retention) . '</code><br>' : '' !!}
                                         {!! $checkup->sc_dif != 0 ? '<b>StrenCard:</b> <br><code>' . fnumber($checkup->sc_dif) . '</code>' : '' !!}
                                     </td>
-
                                     <td>{!! $checkup->statusLabel !!}</td>
-
                                 </tr>
                             @endforeach 
                         </tbody>
                     </table>
                 </div>
-                {{-- <data-table example="1">
-                    {{ drawHeader('#', '<i class="fa fa-cogs"></i>', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'web', 'otros', 'estado') }}
-                    <template slot="body">
-                        
-                    </template>
-                </data-table> --}}
             </color-box>
         </div>
     </div>

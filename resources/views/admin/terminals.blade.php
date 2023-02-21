@@ -12,16 +12,15 @@
 
     <div class="row">
 
-        @foreach(['chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan'] as $store_name)
+        @foreach(['chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan', 'san_cristobal', 'tonala'] as $store_name)
         
-        <div class="col-md-6">
-            <color-box title="{{ ucwords(str_replace('_', ' ', $store_name)) }}" 
-                color="{{ $loop->index < 3 ? 'primary': 'danger' }}">
-                
-                <div>{!! $$store_name->container() !!}</div>
+            <div class="col-md-6">
+                <color-box title="{{ ucwords(str_replace('_', ' ', $store_name)) }}" color="{{ $loop->index < 3 ? 'primary' : 'danger' }}">
 
-            </color-box>
-        </div>
+                    <div>{!! $$store_name->container() !!}</div>
+
+                </color-box>
+            </div>
 
         @endforeach
 
@@ -35,4 +34,6 @@
     {!! $gale_tux->script() !!}
     {!! $gale_tapa->script() !!}
     {!! $comitan->script() !!}
+    {!! $san_cristobal->script() !!}
+    {!! $tonala->script() !!}
 @endsection

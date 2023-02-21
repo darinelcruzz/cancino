@@ -55,8 +55,10 @@ class Checkup extends Model
     {
         $sum = 0;
 
-        foreach ($this->returns as $return) {
-            $sum += $return['a'];
+        if ($this->returns != NULL) {
+            foreach ($this->returns as $return) {
+                $sum += $return['a'] ;
+            }
         }
 
         return $sum;
@@ -64,7 +66,7 @@ class Checkup extends Model
 
     function getNotesSumAttribute()
     {
-        return $this->notes['a'] ?? 0;
+        return $this->notes['a'];
     }
 
     function getBbvaSumAttribute()

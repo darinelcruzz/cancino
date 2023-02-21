@@ -15,7 +15,7 @@
                 @endif
                 button collapsed>
                     <data-table example="{{ $store->id }}">
-                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'web', 'otros', 'observaciones', 'estado', '') }}
+                        {{ drawHeader('', 'fecha', 'corte', 'público S/IVA', 'efectivo', 'tarjetas', 'transfer y cheques', 'crédito', 'web', 'notas', 'otros', 'observaciones', 'estado', '') }}
                         <template slot="body">
                             @foreach($checkups as $checkup)
                                 @if ($checkup->store_id == $store->id)
@@ -29,12 +29,13 @@
                                         <td>{{ fnumber($checkup->transfer_sums['c']) }}<br> {!! $checkup->transfer_sums['d'] > 5 || $checkup->transfer_sums['d'] < -5 ? '<code>' . fnumber($checkup->transfer_sums['d']) : ''  !!}</code></td>
                                         <td>{{ fnumber($checkup->creditSum) }} <br> {!! $checkup->canceledSum ? '<code> -' . fnumber($checkup->canceledSum) : '' !!}</code></td>
                                         <td>{{ fnumber($checkup->online['web']??0) }}</td>
+                                        <td>{{ fnumber($checkup->returnsSum + $checkup->notesSum) }}</td>
                                         <td>
                                             {!! $checkup->retention != 0 ? '<b>Retención:</b> <br><code>' . fnumber($checkup->retention) . '</code><br>' : '' !!}
                                             {!! $checkup->sc_dif != 0 ? '<b>StrenCard:</b> <br><code>' . fnumber($checkup->sc_dif) . '</code>' : '' !!}
                                             {!! $checkup->sale->net_pay != 0 ? '<b>Net Pay:</b> <br><code>' . fnumber($checkup->sale->net_pay) . '</code>' : '' !!}
                                         </td>
-                                        <td>{{ $checkup->observations }}</td>
+                                        <td>{{ $checkup->sale->observations }}</td>
                                         <td>{!! $checkup->statusLabel !!}</td>
                                         <td>
                                             <dropdown icon="cogs" color="{{ $checkup->store->color }}">

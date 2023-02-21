@@ -38,7 +38,11 @@ class AdminController extends Controller
     {
         $date = $request->date ? $request->date: date('Y-m');
 
-        $storesCollection = Store::whereNotIn('type', ['m', 'c'])->pluck('name', 'id');
+        $storesCollection = Store::whereNotIn('type', ['m', 'c', 'e'])->pluck('name', 'id');
+
+        $pendings = Sale::whereStatus('pendiente')->orderBy('store_id')->get()->groupBy('store_id');
+
+        // dd($pendings);
 
         $months = Sale::whereMonth('date_sale', substr($date, 5))
             ->whereYear('date_sale', substr($date, 0, 4))
@@ -56,7 +60,7 @@ class AdminController extends Controller
             return $item->groupBy('date_sale');
         });
 
-        return view('admin.deposits', compact('months', 'date', 'storesCollection'));
+        return view('admin.deposits', compact('months', 'date', 'storesCollection', 'pendings'));
     }
 
     function checkups()
@@ -215,7 +219,7 @@ class AdminController extends Controller
                 ->where('store_id', $store->id)
                 ->get();
 
-            $bbva = $banamex = $clip = 0;
+            $bbva = $banamex = $clip = $np1 = $np2 = 0;
 
             foreach ($sales as $sale) {
                 $bbva += $sale->bbva_sum;
@@ -225,15 +229,15 @@ class AdminController extends Controller
                 $np2 += $sale->np2_sum;
             }
 
-            $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2), 'NETPAY1' => round($np1, 2), 'NETPAY2' => round($np2, 2)]);
+            $data = collect(['BBVA' => round($bbva, 2), 'Banamex' => round($banamex, 2), 'CLIP+' => round($clip, 2), 'Netpay I' => round($np1, 2), 'Netpay II' => round($np2, 2)]);
 
             $chart->labels($data->keys());
-            $chart->dataset('Ventas', 'bar', $data->values())->color(['#1D4B96', '#E03317', '#D67A1D']);
+            $chart->dataset('Ventas', 'bar', $data->values())->color(['#1D4B96', '#E03317', '#D67A1D', '#00AAE4', '#00AAE4']);
 
             ${strtolower($store->tabName)} = $chart;
         }
 
-        return view('admin.terminals', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan', 'san_cristobal'));
+        return view('admin.terminals', compact('date', 'chiapas', 'soconusco', 'altos', 'gale_tux', 'gale_tapa', 'comitan', 'san_cristobal', 'tonala'));
     }
 
     function results(Request $request)

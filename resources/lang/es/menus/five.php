@@ -17,6 +17,7 @@ return [
     'checkups' => [
         'title' => 'Arqueo',
         'icon' => 'fa fa-cash-register',
+        'label' => ['primary' => editableCheckups() > 0 ? editableCheckups() : ''],
         'submenu' => [
             'create' => [
                 'title' => 'Agregar',
