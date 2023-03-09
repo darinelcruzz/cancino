@@ -44,7 +44,7 @@ class GoalController extends Controller
 
     function edit($month, $year)
     {
-        $stores = Store::where('type', '!=', 'c')->get();
+        $stores = Store::whereIn('type', ['p', 's'])->get();
         return view('goals.update', compact('stores', 'month', 'year'));
     }
 

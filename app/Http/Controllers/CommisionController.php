@@ -135,4 +135,15 @@ class CommisionController extends Controller
 
         return view('commisions.report', compact('goal', 'past_goal', 'commisions_by_employee', 'commisions_complete'));
     }
+
+    function sales($month)
+    {
+        $goal = Goal::where('month', 12)->where('year', 2022)->get();
+
+        $commisions_complete = Commision::where('goal_id', $goal->id)->get()->groupBy('goal_id');
+
+        dd($commisions_complete);
+
+        return view('commisions.sales', compact('goal', 'past_goal', 'commisions_by_employee', 'commisions_complete'));
+    }
 }

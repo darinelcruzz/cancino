@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Grupo Cancino | Corte {{ fdate($checkup->date_sale, 'd/m/Y', 'Y-m-d') }}</title>
+    <title>VKS | Corte {{ fdate($checkup->date_sale, 'd/m/Y', 'Y-m-d') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ asset('/img/logo.ico') }}" />
@@ -187,7 +187,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th></th>
+                                            <th><b>Total</b></th>
                                             <th>{{ number_format($np1t, 2) }}</th>
                                         </tr>
                                     </tfoot>
@@ -218,7 +218,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th></th>
+                                            <th><b>Total</b></th>
                                             <th>{{ number_format($np2t, 2) }}</th>
                                         </tr>
                                     </tfoot>
