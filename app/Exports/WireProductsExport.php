@@ -6,13 +6,12 @@ use App\Product;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class NotDiscontinuedProductsExport implements FromView
+class WireProductsExport implements FromView
 {
     function view(): View
     {
         return view('exports.products.not_discontinued', [
-            'products' => Product::where('status', '!=', 'Descontinuado')
-                ->where('family', 'not like', '%CAB/%')
+            'products' => Product::where('family', 'like', '%CAB/%')
             	->with('counts')
 	            ->get()
 	            ->filter(function($item) {

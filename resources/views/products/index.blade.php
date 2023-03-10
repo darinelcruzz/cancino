@@ -10,7 +10,13 @@
 
                     <div class="col-md-6">
                         <a href="{{ route('product.export', 'no-descontinuado') }}" class="btn btn-xs btn-github">
-                            EN LINEA &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                            EN LINEA  &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                        </a>
+                        <a href="{{ route('product.export', 'cable') }}" class="btn btn-xs btn-primary">
+                            Cable &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                        </a>
+                        <a href="{{ route('product.export', 'Sin cable') }}" class="btn btn-xs btn-primary">
+                            Cable &nbsp;&nbsp;<i class="fa fa-file-download"></i>
                         </a>
 
                         <a href="{{ route('product.export', 'descontinuado') }}" class="btn btn-xs btn-default">

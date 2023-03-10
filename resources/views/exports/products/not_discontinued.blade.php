@@ -30,6 +30,8 @@
             <td>
                 {{ number_format(($product->counts->sum('quantity') - $product->quantity) * $product->price, 2) }}
             </td>
+            <td></td>
+            <td></td>
         </tr>
 
         @php
@@ -45,8 +47,11 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             <td>TOTAL</td>
             <td>{{ number_format($sum, 2) }}</td>
+            <td></td>
+            <td></td>
         </tr>
     </tfoot>
 </table>
