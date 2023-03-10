@@ -13,10 +13,10 @@
                             EN LINEA  &nbsp;&nbsp;<i class="fa fa-file-download"></i>
                         </a>
                         <a href="{{ route('product.export', 'cable') }}" class="btn btn-xs btn-primary">
-                            Cable &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                            CABLE &nbsp;&nbsp;<i class="fa fa-file-download"></i>
                         </a>
-                        <a href="{{ route('product.export', 'Sin cable') }}" class="btn btn-xs btn-primary">
-                            Cable &nbsp;&nbsp;<i class="fa fa-file-download"></i>
+                        <a href="{{ route('product.export', 'sin-cable') }}" class="btn btn-xs btn-primary">
+                            SIN-CABLE &nbsp;&nbsp;<i class="fa fa-file-download"></i>
                         </a>
 
                         <a href="{{ route('product.export', 'descontinuado') }}" class="btn btn-xs btn-default">
@@ -74,15 +74,15 @@
 
                     <template slot="footer">
                         <tr>
-                            <th colspan="6" style="text-align: right">COSTO TOTAL DIFERENCIAS EN LÍNEA</th>
+                            <th colspan="7" style="text-align: right">COSTO TOTAL DIFERENCIAS EN LÍNEA</th>
                             <td>{{ number_format($online, 2) }}</td>
                         </tr>
                         <tr>
-                            <th colspan="6" style="text-align: right">COSTO TOTAL DIFERENCIAS</th>
+                            <th colspan="7" style="text-align: right">COSTO TOTAL DIFERENCIAS</th>
                             <td>{{ number_format($sum, 2) }}</td>
                         </tr>
                         <tr>
-                            <th colspan="6" style="text-align: right">VALOR INICIAL INVENTARIO</th>
+                            <th colspan="7" style="text-align: right">VALOR INICIAL INVENTARIO</th>
                             <td>{{ number_format($all, 2) }}</td>
                         </tr>
                     </template>

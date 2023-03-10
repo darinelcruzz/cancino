@@ -14,9 +14,6 @@ class WireProductsExport implements FromView
             'products' => Product::where('family', 'like', '%CAB/%')
             	->with('counts')
 	            ->get()
-	            ->filter(function($item) {
-			        return $item->difference != 0;
-			    })
         ]);
     }
 }

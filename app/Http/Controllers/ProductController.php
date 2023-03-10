@@ -12,7 +12,9 @@ class ProductController extends Controller
 {
     function index()
     {
-        $products = Product::with('counts')->get();
+        $products = Product::query()
+            ->with('counts', 'counts.inventory.store')
+            ->get();
         return view('products.index', compact('products'));
     }
 
@@ -42,11 +44,11 @@ class ProductController extends Controller
            return Excel::download(new DiscontinuedProductsExport, 'descontinuados.xlsx');
         }
 
-        if($format == 'wire') {
+        if($format == 'cable') {
            return Excel::download(new WireProductsExport, 'cable.xlsx');
         }
 
-        if($format == 'sin_cable') {
+        if($format == 'sin-cable') {
            return Excel::download(new NotWireProductsExport, 'sin_cable.xlsx');
         }
 
