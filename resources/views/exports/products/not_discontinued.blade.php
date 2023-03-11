@@ -1,13 +1,16 @@
 <table>
     <thead>
         <tr>
-            <td>Código</td>
-            <td>Estado</td>
-            <td>Antes</td>
-            <td>Después</td>
-            <td>Diferencia</td>
-            <td>Costo</td>
-            <td>Valor</td>
+            <th>Código</th>
+            <th>Estado</th>
+            <th>Antes</th>
+            <th>Después</th>
+            <th>Diferencia</th>
+            <th>Costo</th>
+            <th>Valor</th>
+            <th></th>
+            <th></th>
+            <th>Link</th>
         </tr>
     </thead>
 
@@ -32,6 +35,8 @@
             </td>
             <td></td>
             <td></td>
+            <td>https://www.vks.com.mx/conteos/{{ $product->id }}</td>
+
         </tr>
 
         @php
@@ -50,6 +55,7 @@
             <td></td>
             <td>TOTAL</td>
             <td>{{ number_format($sum, 2) }}</td>
+            <td></td>
             <td></td>
             <td></td>
         </tr>

@@ -314,6 +314,7 @@ Route::group(['prefix' => 'conteos', 'as' => 'count.'], function () {
     Route::post('agregar/{mode?}', usesas($ctrl, 'store'));
     Route::get('editar/{count}', usesas($ctrl, 'edit'));
     Route::post('editar/{count}', usesas($ctrl, 'update'));
+    Route::get('/{product}', usesas($ctrl, 'show'));
 });
 
 Route::group(['prefix' => 'productos', 'as' => 'product.'], function () {

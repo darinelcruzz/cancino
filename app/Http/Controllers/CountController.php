@@ -21,6 +21,13 @@ class CountController extends Controller
         return view('counts.index', compact('counts'));
     }
 
+    function show($product)
+    {
+        $counts = Count::where('product_id', $product)->get();
+
+        return view('counts.index', compact('counts'));
+    }
+
     function create($mode = 'normal')
     {
         $locations = Location::all()->pluck('name', 'id')->toArray();
