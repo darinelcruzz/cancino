@@ -11,7 +11,7 @@ class NotWireProductsExport implements FromView
     function view(): View
     {
         return view('exports.products.not_discontinued', [
-            'products' => Product::'products' => Product::where('status', '!=', 'Descontinuado')
+            'products' => Product::where('status', '!=', 'Descontinuado')
                 ->where('family', 'not like', '%CAB/%')
             	->with('counts')
 	            ->get()

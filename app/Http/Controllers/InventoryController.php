@@ -56,8 +56,8 @@ class InventoryController extends Controller
 
     function show(Inventory $inventory)
     {
-        $products = Product::all();
-        $counts = Count::all();
+        $products = Product::select('id', 'price', 'quantity')->get();
+        $counts = Count::with('product:id,price')->get();
         $inventoryValue = 0;
         $valueCounted = 0;
 
@@ -69,8 +69,8 @@ class InventoryController extends Controller
             $valueCounted += $count->product->price * $count->quantity;
         }
 
-        $products = Product::all()->sum('quantity');
-        $productsCounted = Count::all()->sum('quantity');
+        $products = $products->sum('quantity');
+        $productsCounted = $counts->sum('quantity');
         $productAdvance = $productsCounted * 100 /$products;
         $countAdvance = $valueCounted * 100 /$inventoryValue;
 
