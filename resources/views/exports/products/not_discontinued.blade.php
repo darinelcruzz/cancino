@@ -35,7 +35,7 @@
             </td>
             <td></td>
             <td></td>
-            <td>https://www.vks.com.mx/conteos/{{ $product->id }}</td>
+            <td><a href=https://www.vks.com.mx/conteos/{{ $product->id }}>link</td>
 
         </tr>
 
