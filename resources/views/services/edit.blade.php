@@ -15,7 +15,7 @@
                         <div class="col-md-6">
                             {!! Field::select('group', ['telefono' => 'Teléfono', 'luz' => 'Luz', 'agua' => 'Agua', 'seguro' => 'Seguro Automovil',
                                 'basura' => 'Basura', 'predial' => 'Predial', 'co2' => 'CO2', 'impuestos' => 'Impuestos', 'contabilidad' => 'Contabilidad',
-                                'fumigacion' => 'Fumigación', 'isn' => 'ISN', 'digibox' => 'Digibox', 'renta' => 'Renta'], $service->group,
+                                'fumigacion' => 'Fumigación', 'isn' => 'ISN', 'Timbrado' => 'Timbrado', 'renta' => 'Renta'], $service->group,
                                 ['empty' => 'Seleccione un grupo', 'tpl' => 'lte/withicon'], ['icon' => 'group'])
                             !!}
                         </div>

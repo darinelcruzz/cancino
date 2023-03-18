@@ -28,7 +28,7 @@
                                     <dropdown icon="cogs" color="github">
                                         <ddi icon="usd" to="{{ route('service_payments.create', $service) }}" text="Pagar"></ddi>
                                         <ddi icon="clock" to="{{ route('services.show', $service) }}" text="Historial pagos"></ddi>
-                                        @if(auth()->user()->id == 2)
+                                        @if(auth()->user()->level == 1)
                                             <ddi icon="edit" to="{{ route('services.edit', $service) }}" text="Editar"></ddi>
                                         @endif
                                         @if($service->status != 'impresa')
@@ -78,7 +78,7 @@
                                 <td>
                                     <dropdown icon="cogs" color="success">
                                         <ddi icon="clock" to="{{ route('services.show', $service) }}" text="Historial pagos"></ddi>
-                                        @if(auth()->user()->id == 2)
+                                        @if(auth()->user()->level == 1)
                                             <ddi icon="edit" to="{{ route('services.edit', $service) }}" text="Editar"></ddi>
                                         @endif
                                     </dropdown>
