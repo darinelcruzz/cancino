@@ -12,14 +12,14 @@ class ProductsImport implements ToCollection
     {
         foreach ($rows->splice(1, $rows->count() - 6) as $row)
         {
-            // if ($row[6] == 'Descontinuado' && $row[7] != 0) {
-            //     if ($product = Product::where('code', $row[0])->first()) {
-            //         $product->update([
-            //             'status' => $row[6],
-            //             'quantity' => $row[7],
-            //             'price' => $row[8],
-            //         ]);
-            //     } else {
+            if ($row[6] != 'Descontinuado' && $row[7] != 0) {
+                if ($product = Product::where('code', $row[0])->first()) {
+                    $product->update([
+                        'status' => $row[6],
+                        'quantity' => $row[7],
+                        'price' => $row[8],
+                    ]);
+                } else {
                     if ($row[3] != 'VAR/FRA') {
                         Product::create([
                             'code' => $row[0],
@@ -33,4 +33,6 @@ class ProductsImport implements ToCollection
                 }
             }
         }
+    }
+}
 

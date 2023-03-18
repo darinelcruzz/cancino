@@ -52,9 +52,9 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
             <td>TOTAL</td>
             <td>{{ number_format($sum, 2) }}</td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
