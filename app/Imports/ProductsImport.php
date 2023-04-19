@@ -12,7 +12,7 @@ class ProductsImport implements ToCollection
     {
         foreach ($rows->splice(1, $rows->count() - 6) as $row)
         {
-            if ($row[6] != 'Descontinuado' && $row[7] != 0) {
+            if ($row[6] != 'Descontinuado' || $row[7] != 0) {
                 if ($product = Product::where('code', $row[0])->first()) {
                     $product->update([
                         'status' => $row[6],
