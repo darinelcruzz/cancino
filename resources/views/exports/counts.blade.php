@@ -12,9 +12,9 @@
         @foreach($counts as $count)
 
         <tr>
-            <td>{{ $count->product->code }}</td>
+            <td>{{ $count->product->code ?? 'Eliminado' }}</td>
             <td>{{ $count->team }}</td>
-            <td>{{ $count->location->name }}</td>
+            <td>{{ $count->location->name ?? 'Eliminado' }}</td>
             <td>{{ $count->quantity }}</td>
         </tr>
 
